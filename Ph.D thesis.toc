@@ -1,0 +1,27 @@
+\let \CTEX@spaceChar \relax 
+\contentsline {chapter}{摘\CTEX@spaceChar \CTEX@spaceChar 要}{i}{chapter*.1}
+\contentsline {chapter}{Abstract}{iii}{chapter*.2}
+\contentsline {chapter}{目录}{v}{chapter*.3}
+\contentsline {chapter}{\numberline {第一章\hspace {0.3em}}引言}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}本文研究的范围及其方程系统}{2}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}单介质Euler方程}{2}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}理想磁流体方程}{3}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}多介质Euler方程}{4}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}高速化学反应Euler方程}{5}{subsection.1.1.4}
+\contentsline {section}{\numberline {1.2}可压缩流中间断问题的理论研究简介}{9}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Euler方程弱解及解存在性的研究}{9}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}黎曼问题和Euler方程近似解}{11}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}计算流体力学和数值方法发展}{11}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}计算流体力学简介}{12}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}数值方法的发展}{12}{subsection.1.3.2}
+\contentsline {subsubsection}{\numberline {1.3.2.1}空间离散方法}{13}{subsubsection.1.3.2.1}
+\contentsline {subsubsection}{\numberline {1.3.2.2}近似黎曼求解器}{16}{subsubsection.1.3.2.2}
+\contentsline {subsubsection}{\numberline {1.3.2.3}时间离散方法}{17}{subsubsection.1.3.2.3}
+\contentsline {section}{\numberline {1.4}间断问题数值研究现状和不足}{18}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}激波捕捉格式和激波分辨率}{18}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}物质界面和界面追踪方法}{18}{subsection.1.4.2}
+\contentsline {subsection}{\numberline {1.4.3}爆轰波和化学反应刚性}{20}{subsection.1.4.3}
+\contentsline {chapter}{参考文献}{21}{appendix*.6}
+\contentsline {chapter}{发表文章目录}{47}{appendix*.7}
+\contentsline {chapter}{简\CTEX@spaceChar \CTEX@spaceChar 历}{49}{appendix*.8}
+\contentsline {chapter}{致\CTEX@spaceChar \CTEX@spaceChar 谢}{51}{appendix*.9}

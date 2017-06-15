@@ -1,0 +1,88 @@
+\section{不同格式计算结果的比较}
+在了解了Taylor-Green涡流动基本特点的基础上，我们采用不同格式，分别在$32^3$，$64^3$上进行了计算，并以上一节中的计算结果作为参照，比较不同格式在计算同一问题时所表现出不同的数值特点。
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[无粘 $32^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Ek_INV_32}}
+\subfigure[Re=1600 $32^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Ek_Re1600_32}}
+\subfigure[无粘 $64^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Ek_INV_64}}
+\subfigure[Re=1600 $64^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Ek_Re1600_64}}
+\caption{不同格式在不同网格下动能$E_k$随时间变化。}
+\label{chapter5fig:4}
+\end{center}
+\end{figure}
+
+图\ref{chapter5fig:4}给出了不同格式在不同网格下，动能计算随时间的变化规律。可以看出，所有的格式均产生了数值耗散，动能在$t \approx 3$时刻开始出现与初始值比较明显的差异。随着网格数的提高和格式阶数的提高，耗散掉的动能越大，但耗散的速率基本一致，无论是否考虑粘性作用。这说明，数值耗散较大是差分格式的本质特征，粗略的看七阶格式和五阶格式耗散的差异并不大，对整体流场的改进有限。
+
+对于五阶WENO格式和五阶CRWENO格式来说，CRWENO格式在网格数为$32^3$时，较晚偏离理想值。然而有趣的是，当网格数增加到$64^3$时，两者出现明显误差的时刻相近，随后CRWENO格式比WENO格式有更快的耗散速率。类似的情况也出现在七阶WENO格式和HCCS格式上。考虑之前章节中对几个格式的二维无粘计算结果，紧致格式的耗散应当小于显式的迎风格式。与之前计算中不同的是，在二维计算中，为了保证收敛性，紧致格式在边界处通常采用的是高阶的中心格式，如HCCS采用八阶中心格式。而在NUC3d代码中，为了实现高效率的并行和激波捕捉能力，紧致格式在边界处（无论是内边界还是外边界）都采用阶数相对应的WENO格式：CRWENO格式采用五阶WENO格式，HCCS采用七阶WENO格式。对于边界附近的三个点都是由显式格式计算，这样在总体网格数量不太大的情况下，例如$32^3$和$64^3$，每个方向上分别有20\%和10\%的点由显式格式计算。结合表\ref{tab:convergence1}，在这一网格点比例下，七阶WENO格式的精度的确会好于HCCS。
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[无粘 $32^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Ek_INV_64s}}
+\subfigure[Re=1600 $32^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Ek_Re1600_64s}}
+\caption{单块$64^3$网格计算与区块分解的$64^3$网格计算结果比较}
+\label{chapter5fig:5}
+\end{center}
+\end{figure}
+
+图\ref{chapter5fig:5}给出了两种不同网格方式计算结构的比较。对于区块分解的网格($64^3$的网格被分成$8 \times 32^3$的网格)，其网格交接处为内边界，采用显式格式处理。从图中可以看出，对于CRWENO格式，采用哪种方式对于计算结果的影响并不大，而对于HCCS则会产生比较明显的影响。与预期的不同的是，单块网格时，HCCS的计算结果并不比采用多块网格时的耗散更低。在已经出现耗散时，单块网格的耗散要快一些。这说明，HCCS对于边界格式的精度比CRWENO格式更为敏感。
+
+我们考察不同格式对涡量计算结果的影响。图\ref{chapter5fig:6}给出了不同格式在不同网格下计算出的涡量随时间变化规律。与动能的规律一致，七阶格式计算得到的涡量峰值要大于五阶格式的结果。五阶WENO格式与CRWENO格式在不同网格上的计算结果相近，但是有细节上的不同。七阶WENO格式所计算出的涡量峰值最大，但是并不能因此认为七阶WENO格式的计算结果比HCCS格式更准确。在涡量上升区域（$t=0-4$），HCCS格式较七阶WENO格式有着更快的上升率，也更接近$128^3$ 的计算结果。到t=4以后，其上升的梯度才出现较大偏离。
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[无粘 $32^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_INV_32_1}}
+\subfigure[Re=1600 $32^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_Re1600_32_1}}
+\subfigure[无粘 $64^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_INV_64_1}}
+\subfigure[Re=1600 $64^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_Re1600_64_1}}
+\caption{不同格式在不同网格下涡量$\Omega$随时间变化。}
+\label{chapter5fig:6}
+\end{center}
+\end{figure}
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[无粘 $32^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_INV_32_2}}
+\subfigure[Re=1600 $32^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_Re1600_32_2}}
+\subfigure[无粘 $64^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_INV_64_2}}
+\subfigure[Re=1600 $64^3$]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_Re1600_64_2}}
+\caption{上升阶段涡量$\Omega$随时间变化。}
+\label{chapter5fig:7}
+\end{center}
+\end{figure}
+图\ref{chapter5fig:7}给出了涡量上升区域时刻的放大图。可以看出，HCCS 在上升区域计算结果更为接近$128^3$网格的结果，但是上升到一定区域后梯度就会变缓。在这两组网格下，粘性对于涡量的变化影响并不明显。同样，我们考察网格交接方式对于紧致格式计算结果的影响。图\ref{chapter5fig:8} 给出了不同网格分块方式下，CRWENO和HCCS涡量演化的计算结果。
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[无粘]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_INV_64s_1}}
+\subfigure[Re=1600]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_Re1600_64s_1}}
+\subfigure[无粘上升区域]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_INV_64s_2}}
+\subfigure[Re=1600 上升区域]{
+\includegraphics[width=0.45\textwidth]{figures/chapter5/Enstrophy_Re1600_64s_2}}
+\caption{不同网格分块方式对于计算结果的影响}
+\label{chapter5fig:8}
+\end{center}
+\end{figure}
+可以看出，涡量的变化对于网格分块方式比动能更为敏感。对于CRWENO格式，单块计算能够降低耗散性，而对于HCCS则增加了其耗散性。但对于HCCS来说，耗散性的增加仍然只是在增长区之后产生的。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/drikikas2007}
+\caption{文献\cite{drikakis2007simulation}中不同计算方法对计算结果的分布影响}
+\label{chapter6fig:9}
+\end{center}
+\end{figure}
+从计算结果上看，就动能耗散来说，几种格式的计算结果都十分接近，高阶格式计算结果偏离理论值得时间要晚于低阶格式。在偏离理论值之后，各个格式的耗散速率也是基本一致。图\ref{chapter6fig:9}给出了文献中不同格式计算结果的比较，图中二阶格式计算所得的涡量峰值甚至要大于四阶格式的计算结果。本文中，对于七阶WENO格式和HCCS格式，其精度阶数虽然一致，但计算结果也有着明显的差别。这说明，阶数对于复杂流动计算结果的影响实际上是很难估量的，不能单从涡量峰值来衡量格式的数值耗散特点。由于每个格式的数值特点不同，当计算结果偏离理想情况之后，控制方程的非线性将使解有着很大的偏差，从而涡量最终的发展趋势也会有很大的不同。对于直接数值模拟来说，网格的分辨率是更为重要的因素。

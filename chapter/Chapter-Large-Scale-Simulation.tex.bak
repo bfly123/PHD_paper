@@ -1,0 +1,656 @@
+\chapter{复杂流动的大规模数值模拟}\label{chap:DNS}
+本章将利用所开发的NUC3d程序进行复杂流动的大规模数值模拟。通过模拟低速泰勒- 格林涡流动，NUC3d程序的正确性和鲁棒性得到验证。在此基础上，针对可压缩均匀各向同性湍流和超声速平板边界层壁面粗糙元素诱导转捩现象进行了直接数值模拟研究。
+\section{泰勒-格林涡演化的数值模拟}\label{chap:tgv}
+泰勒-格林涡是由Taylor和Green在1937年\cite{green1937mechanism}提出用于研究大尺度涡向小尺度涡演化问题的一种特殊的涡结构。其初始条件可以通过解析函数给出。在粘性作用下，泰勒-格林涡会逐渐失稳并形成湍流\cite{brachet1983small}，由于其具有确定的解析初始条件并最终会发展为湍流，因此它是用于研究湍流形成的一个很好的例子。尽管泰勒-格林涡的初始结构非常简单，然而在数值上要想将其准确的模拟并不容易，因此，它也是用于测试数值算法的一个很好的算例\cite{shu2005numerical,johnsen2010assessment}。 本章中将使用所提出的HCCS方法计算Taylor-Green涡演化问题，以验证NUC3d程序的正确性。
+\subsection{初始条件与边界条件}
+泰勒-格林涡流动的初始条件为：
+\begin{equation}
+u(x,y,z,0)=U_0\text{sin}(x)\text{cos}(y)\text{cos}(z)
+\end{equation}
+\begin{equation}
+v(x,y,z,0)=-U_0cos(x)sin(y)cos(z)
+\end{equation}
+\begin{equation}
+w(x,y,z,0)=0
+\end{equation}
+\begin{equation}
+\rho(x,y,z,0)=1
+\end{equation}
+\begin{equation}
+T(x,y,z,0)=1
+\end{equation}
+\begin{equation}
+p(x,y,z,0)=\frac{\rho T}{\gamma Ma^2}+\frac{\rho U_0^2}{16}[(2 +cos(2z)(cos(2x)+cos(2y))-2]
+\end{equation}
+对于无量纲的Navier-Stokes方程，我们取$U_0=1$，$T=1$，理想气体的比热比取为$\gamma=5/3$\cite{johnsen2010assessment}，马赫数$Ma=0.08$。计算域为尺寸为$[0,2\pi]^3$的正方形，在各个方向的边界上都设置为周期性边界条件。计算中，通量分裂方法采用AUSM格式，时间推进为3阶TVD Runge-Kutta方法。在无粘情况下，涡会受到不断的拉伸和卷曲，由于不存在耗散作用，涡量将不断增长，考察全流场的拟涡能积分：
+\begin{equation}
+\Omega(t)=\frac{1}{(2\pi)^3}\int_{0}^{2 \pi}\int_{0}^{2 \pi}\int_{0}^{2 \pi} \frac{\bm{\omega(t)}  \bm{\omega(t)}}{2} dx dy dz
+\end{equation}
+流场的动能为：
+\begin{equation}
+E_k(t)=\frac{1}{(2\pi)^3}\int_{0}^{2 \pi}\int_{0}^{2 \pi}\int_{0}^{2 \pi} \rho \frac{\bm{u(t)}  \bm{u(t)}}{2} dx dy dz
+\end{equation}
+对于无粘流动或者雷诺数非常大的流动来说，由于不存在物理上的耗散作用，动能将保持恒定值。而对于拟涡能来说，在拉伸和卷绕作用下，其值将逐渐增大并趋向无穷\cite{shu2005numerical}。
+
+\subsection{Taylor-Green涡流动的基本形态}
+为了验证NUC3d程序对于复杂低速流动的正确性，我们计算了Re=1600 的演化过程，计算网格为$128^3$，空间离散采用HCCS格式，对流通量分裂方法为AUSM格式，时间推进采用三阶TVD Runge-Kutta方法，时间推进到t=20。
+
+图\ref{chapter5fig:1}给出了不同时刻涡量等值面分布。可以看出，随着时间的增长，流场中涡由简单的结构逐渐发展成为相互卷绕的复杂涡管，在粘性力的作用下，这些涡逐渐耗散并最终完全消失。涡结构由最初的球形开始发展，在拉伸力的作用下形成环形的涡管结构，这些涡管一方面在粘性力的作用下逐渐耗散，其结构中比较细的部分先断裂，从而形成孤立的涡管，这些孤立的涡管会继续被拉伸和耗散、并相互缠绕，最终动能全部转化为热能。涡量的最大值也经历了一个先增后减的过程。因此可以推断，在流动发展的前半段时间，涡量的产生作用要大于耗散作用；而在后半段耗散作用要强于产生作用。这是因为，在开始时，涡的尺度较大，粘性力对其影响很小，主要是拉伸和延展过程。当流场中大涡逐渐转化为尺度极小的涡丝时，粘性力很快将这些涡丝所包含的动能耗散掉，而大涡并没有补充从而最大涡量呈现出下降的趋势。
+
+图\ref{chapter5fig:2}给出了速度的二阶不变量Q=0.05等值面在不同时刻的分布，速度梯度张量的二阶不变量为：
+\begin{equation}
+Q=\frac{1}{2}\left[\omega_i\omega_i-S_{ij}S_{ij}\right]
+\end{equation}
+其中$\omega_i$是涡量，$S_{ij}$是应变率张量。
+与之前的观察一致，封闭的涡逐渐被拉伸为环形的涡管结构。在涡发展的过程中，逐渐形成了两层涡量较为集中的高涡量层。这两个高涡量层一方面受到粘性力的作用涡量强度逐渐降低，另一方面，诱导产生其他涡，使得其附近区域的涡量逐渐增加。
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[t=0.0，$\Omega=1.5(\Omega_{Max}=1.989579)$]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/t=0_0}}
+\subfigure[t=3.06，$\Omega=1.5(\Omega_{Max}=3.820016)$]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/t=3_06}}
+\subfigure[t=6.12，$\Omega=5(\Omega_{Max}=13.93016)$]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/t=6_12}}
+\subfigure[t=8.95，$\Omega=5(\Omega_{Max}=14.1496)$]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/t=8_95}}
+\subfigure[t=12.01，$\Omega=5(\Omega_{Max}=10.95418)$]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/t=12_01}}
+\subfigure[t=15.13，$\Omega=5(\Omega_{Max}=7.652555)$]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/t=15_13}}
+\caption{不同时刻涡量等值面图，云图由速度给出，速度范围为0到1}
+\label{chapter5fig:1}
+\end{center}
+\end{figure}
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[t=0.0]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/q_t=0_0}}
+\subfigure[t=3.06]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/q_t=3_06}}
+\subfigure[t=6.12]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/q_t=6_12}}
+\subfigure[t=8.95]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/q_t=8_95}}
+\subfigure[t=12.01]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/q_t=12_01}}
+\subfigure[t=15.13]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/q_t=15_13}}
+\caption{Q=0.05的等值面图，云图由涡量给出，涡量范围为0到2}
+\label{chapter5fig:2}
+\end{center}
+\end{figure}
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[t=0.0]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/streamrod_0_0}}
+\subfigure[t=3.06]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/streamrod_3_06}}
+\subfigure[t=6.12]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/streamrod_6_12}}
+\subfigure[t=8.95]{
+\includegraphics[width=0.4\textwidth]{figures/chapter5/streamrod_8_95}}
+\caption{不同时刻局部流线分布}
+\label{chapter5fig:3}
+\end{center}
+\end{figure}
+
+涡管的拉伸卷绕作用使得区域内的流线发生缠绕。图\ref{chapter5fig:3}给出了局部的流线图。虽然涡管之间在拓扑结构上产生连接，但从流线的显示可以看出，不同区域间的流体实际上并不会发生交换，而是基本在初始区域内流动。这一现象值得研究，对于充分发展湍流，流动间的对流是非常强烈的，而Taylor-Green涡流动中，流线依然集中在初始条件相关的区域内，本文计算结果与文献\cite{shu2005numerical}的结果相一致。Taylor-Green 涡在不同区域流线交换很少的现象及机理值得做进一步的研究。
+
+
+\section{可压缩均匀各向同性湍流的直接数值模拟}
+由于目前关于湍流的理论都是在均匀各向同性假设下推导的，因此对均匀各向同性湍流的数值模拟具有重要的研究价值\cite{Wang2012Scaling}。 对于不可压缩流动，为了获得高分辨率的流场信息，通常采用谱方法计算。然而，对于可压缩流动，特别是当湍流马赫数接近或大于1时，流场中会出现激波等间断结构\cite{samtaney2001direct}，谱方法不再适用。高精度激波捕捉方法的提出满足了可压缩湍流的计算需求，使得研究激波在湍流中的作用成为可能。本节中利用前文中提出的数值方法计算了可压缩均匀各向同性湍流并分析了流场中不同模态动能的能谱分布，同时分析了螺旋度（Helicity）对能量分布的影响。
+
+在没有能量输入的情况下，湍流中的动能会在粘性作用下衰减，动能全部转化为热。在整个耗散过程中，流动结构受到几个参数的影响较大\cite{pope2001turbulent,sagaut2008homogeneous}，这些参数为：
+
+泰勒尺度雷诺数
+$$
+Re_\lambda=Re\frac{< \rho > u_{rms} \lambda}{<\mu>}
+$$
+其中
+$$
+u_{rms}=\sqrt{\frac{<u^2+v^2+w^2>}{3}}
+$$
+$$
+\lambda=\frac{u_{rms}}{\sqrt{<(\partial u/\partial x)^2+(\partial v/\partial y)^2+(\partial w/\partial z)^2>/3}}
+$$
+
+涡翻转时间
+$$
+\tau=\frac{\lambda}{u_{rms}}
+$$
+
+湍流马赫数
+$$
+Ma_t=Ma\frac{u_{rms}}{<c>}
+$$
+
+湍流的积分尺度
+$$
+L=\frac{\pi}{2 u_{rms}^2}\int \frac{E(k)}{k}dk
+$$
+
+平均耗散
+$$
+\epsilon=-\frac{1}{Re}<\frac{u_i}{\rho}\frac{\partial \sigma_{ij}}{\partial x_j}>=\frac{1}{Re}<\frac{\sigma_{ij}}{\rho}\frac{\partial u_i}{\partial x_j}>
+$$
+
+Kolmogorov尺度
+$$
+\eta=\left[\frac{<\frac{\mu}{\rho}>^3}{\epsilon}\right]^{1/4}
+$$
+
+速度梯度的偏斜度（Velocity derivative skewness）
+$$
+Skew=\frac{<(\partial u_i/\partial x_i)^3>}{<(\partial u_i/\partial x_i)^2>^{3/2}}
+$$
+
+压缩性（dilatation）
+$$
+\theta=<(\partial u_i/\partial x_i)^2>^{1/2}
+$$
+
+可压缩流动的动量输运方程为：
+\begin{equation}\label{chapter7eq:moment}
+\begin{split}
+\frac{\partial u_i}{\partial t} + u_j \frac{\partial}{\partial x_j} u_i=-\frac{1}{\rho}\frac{\partial p}{\partial x_i}+\frac{1}{\rho}\frac{\partial \sigma_{ij}}{\partial x_j}
+\end{split}
+\end{equation}
+对动量方程取旋度得到涡量的输运方程：
+\begin{equation}\label{chapter7eq:vorticity}
+\begin{split}
+\frac{\partial \omega_i}{\partial t} + u_j \frac{\partial}{\partial x_j} \omega_i=\omega_j \frac{\partial}{\partial x_j} u_i -\frac{\partial u_j}{\partial x_j} \omega_i \\
+-\epsilon_{ijk}\frac{\partial}{\partial x_j}(\frac{1}{\rho}\frac{\partial p}{\partial x_k})+\epsilon_{ijk}\frac{\partial}{\partial x_j}(\frac{1}{\rho}\frac{\partial \sigma_{lk}}{\partial x_l}).
+\end{split}
+\end{equation}
+螺旋度（Helicity）的定义为:
+$$
+H = \int_{V} \overrightarrow{u} \cdot \overrightarrow{\omega} dV
+$$
+定义螺旋度密度为:
+$$
+h = \overrightarrow{u} \cdot \overrightarrow{\omega}
+$$
+方程\eqref{chapter7eq:moment}与涡量$\overrightarrow{\omega}$的点积加上方程\eqref{chapter7eq:vorticity}与速度矢量$\overrightarrow{u}$的点积可以得到螺旋度密度的输运方程：
+\begin{equation}\label{chapter7eq:helicity}
+\begin{split}
+\frac{\partial h}{\partial t} + u_j \frac{\partial}{\partial x_j} h=\frac{\partial}{\partial x_i}\frac{\omega_i u_j u_j}{2}-\frac{\partial u_i}{\partial x_i}h \\
++\epsilon_{ijk}u_i\frac{\partial}{\partial x_j}\left[\frac{1}{\rho}(\frac{\partial \tau_{kl}}{\partial x_l}-\frac{\partial p}{\partial x_k})\right]+\frac{\omega_i}{\rho}\left[\frac{u_i}{\rho}(\frac{\partial \sigma_{ij}}{\partial x_j}-\frac{\partial p}{\partial x_i})\right]
+\end{split}
+\end{equation}
+考虑到速度的Helmholtz分解，速度可分解为旋转分量（solenoidal）和压缩分量（compressible）：
+\begin{equation}
+\vec u= \vec u^s + \vec u^c
+\end{equation}
+其中
+\begin{equation}
+\nabla \cdot \vec u^s=0
+\end{equation}
+\begin{equation}
+\nabla \times \vec u^c=0
+\end{equation}
+考虑这些分量的傅里叶变换有：
+\begin{equation}
+i\vec k \cdot \bm {\hat {u}}^s(\vec k)=0
+\end{equation}
+\begin{equation}
+i\vec k \times \bm {\hat {u}}^c(\vec k)=0
+\end{equation}
+动能在壳上的能谱为：
+\begin{equation}
+E(k)=\oint_{|\vec k'|=k}E(\vec k')d{\vec k'}
+\end{equation}
+其中
+\begin{equation}
+E(\vec k)=\frac{1}{2}\bm {\hat {u}}(\vec k) \bm {\hat {u}}^*(\vec k)
+\end{equation}
+螺旋度的能谱为：
+\begin{equation}
+H(\vec k)=\bm {\hat {u}}(\vec k) \bm {\hat {\omega}}^*(\vec k)
+\end{equation}
+螺旋速度分量可以进一步分解为左旋分量(l或$+$)和右旋分量(r或$-$)\cite{melander1993polarized}：
+\begin{equation}\label{helical_decomp}
+\bm {\hat u}^\pm(\vec k)=\frac{1}{2}(\bm {\hat u^s}(\vec k) \pm i\frac{\vec k}{|k|} \times \bm {\hat u^s}(\vec k))
+\end{equation}
+\begin{equation}
+\bm {\hat u^s}(\vec k)=\bm {\hat u}(\vec k)-\frac{\bm {\hat u}(\vec k)\cdot \vec k}{|\vec k|^2}\vec k
+\end{equation}
+且有
+\begin{equation}
+i\bm k \times \bm {\hat u}^\pm(\vec k)=\pm |\bm k|\bm {\hat u}^\pm(\vec k)
+\end{equation}
+左右螺旋分量实际上构成了速度矢量和涡量矢量一组共有的正交基。涡量在这组正交基下的两个分量分别平行于$\bm {\hat u}^{+}(\vec k)$和$-\bm {\hat u}^{-}(\vec k)$，而速度的两个分量分别平行于$\bm {\hat u}^{+}(\vec k)$和$\bm {\hat u}^{-}(\vec k)$。因此，速度和涡量有一个分量方向相同，而另一个分量方向相反。也就是说，速度可以分解为两个分量，这两个分量对应的涡量具有相反的旋转手性。类比于速度在谱空间的螺旋波分解\eqref{helical_decomp}，在物理空间中也可以构建这样一组正交基。对于螺旋模态和涡量有：
+\begin{equation}
+\bm { u}^{s}=\bm { u}^{s,+}+\bm { u}^{s,-}
+\end{equation}
+\begin{equation}
+\bm { \omega}=\frac{|\bm \omega|}{|\bm u|}(\bm { u}^{s,+}-\bm { u}^{s,-})
+\end{equation}
+并且
+\begin{equation}
+\bm { u}^{s,+}\cdot\bm { u}^{s,-}=0
+\end{equation}
+可以得到
+\begin{equation}
+\bm {u}^{s,\pm}= \frac{1}{2} \left[\bm { u}^{s} \pm \frac{|\bm u|}{|\bm \omega|} \bm {\omega} \right]
+\end{equation}
+
+均匀各向同性湍流的初始条件通常根据给定的动能能谱给出\cite{johnsen2010assessment,ristorcelli1997consistent}：
+\begin{equation}\label{chapter7eq:init_power}
+E(k)=16u^2_{rms}\sqrt{\frac{2}{\pi}}(\frac{k}{k_0})^4\frac{1}{k_0}exp\left(-2(\frac{k}{k_0})^2\right)
+\end{equation}
+其中$k_0$是最大能谱位置。根据能谱分布可给出速度分布在谱空间的分布：
+\begin{equation}
+\bm {\hat u}(k_1,k_2,k_3)=(\frac{k_2}{k_{12}}\alpha+\frac{k_1}{k_{12}}\frac{k_3}{k}\beta,-\frac{k_1}{k_{12}}\alpha+\frac{k_2}{k_{12}}\frac{k_3}{k}\beta,-\frac{k_{12}}{k}\beta)
+\end{equation}
+其中$k=\sqrt{k_1^2+k_2^2+k_3^2}$，$k_{12}=\sqrt{k_1^2+k_2^2}$，对于$k_{12}=0$有$k_1/k_{12}=0,k_2/k_{12}=1$ 并且
+\begin{equation}
+\alpha=\sqrt{\frac{2E(k)}{4 \pi k^2}}e^{i\phi_1}cos\phi_3
+\end{equation}
+\begin{equation}
+\beta=\sqrt{\frac{2E(k)}{4 \pi k^2}}e^{i\phi_2}sin\phi_3
+\end{equation}
+$\phi_1,\phi_2,\phi_3$为在$(0,2\pi)$上均匀分布的随机数。对谱空间的速度做傅里叶逆变换可以得到初始速度分布，密度和压力取为常数。
+
+\subsection{自由衰减均匀各向同性湍流}
+
+根据\eqref{chapter7eq:init_power}的能谱，计算了湍流马赫数$Ma_t=0.3$ 和$Ma_t=0.6$湍流的自由衰减过程，初始泰勒雷诺数分别为$Re_\lambda=40$ 和$Re_\lambda=80$，网格数为$256^3$，所有边界设置为周期边界条件。
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/kinetic_HIT}
+\caption{不同马赫数和雷诺数动能随时间的变化}
+\label{chapter7fig:17}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/enstrophy_HIT}
+\caption{不同马赫数和雷诺数涡量随时间的变化}
+\label{chapter7fig:18}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/helicity_HIT}
+\caption{不同马赫数和雷诺数螺旋度随时间的变化}
+\label{chapter7fig:19}
+\end{center}
+\end{figure}
+
+图片\ref{chapter7fig:17}，\ref{chapter7fig:18}和\ref{chapter7fig:19} 给出了动能、涡量和螺旋度随时间变化的规律。从动能的变化过程可以看出，当$t/\tau_0>2$ 时，动能随$t^{-1.5}$变化。这说明自相似的湍流耗散结构已经形成。从涡量的变化过程也可以看出，当$t/\tau_0>2$时，涡量的变化也展现出了自相似的规律。螺旋度随着流动的耗散趋向于零。对于$Ma_t=0.3$的流动，在初始时刻其螺旋度的符号相反，其动能的耗散过程的指数规律是一致的。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/power_spec_Ma03_Re40}
+\caption{能量在不同模态上分布的能谱($Ma_t=0.3,Re_\lambda=40$，$t/\tau_0=2$)}
+\label{chapter7fig:20}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/power_spec_Ma03_Re80}
+\caption{能量在不同模态上分布的能谱($Ma_t=0.3,Re_\lambda=80$，$t/\tau_0=2$)}
+\label{chapter7fig:21}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/power_spec_Ma06_Re80}
+\caption{能量在不同模态上分布的能谱($Ma_t=0.6,Re_\lambda=80$，$t/\tau_0=2$)}
+\label{chapter7fig:22}
+\end{center}
+\end{figure}
+
+图\ref{chapter7fig:20}，\ref{chapter7fig:21}和\ref{chapter7fig:22}给出了不同参数下动能不同模态的能谱分布：动能能谱$E_k$，压缩模态能谱$E_k^c$，左旋模态能谱$E_k^l$，右旋模态能谱$E_k^r$，旋转模态能谱$E_k^s$。 横坐标波数由柯尔莫戈洛夫尺度$\eta$无量纲化，动能由$k^{5/3}\epsilon^{-2/3}$无量纲化。三个算例中的$\eta$分别为：$0.456$，$0.228$和$0.0279$。动能耗散$\epsilon$分别为：$0.00373$，$0.0038$和$0.0288$。所有计算都分辨到Kolmogolov尺度，在大尺度上，在能谱中可以看到明显的惯性区，$E(k)k^{5/3}\epsilon^{-2/3}$接近常数。对于$Ma=0.6$的流动，在小尺度上压缩模态能量要大于旋转模态的能量。虽然螺旋度在$t/\tau_0=2$时并不为零，但并没有出现明显的宇称不守恒，旋转模态的两个方向上的能量依然保持相等。
+
+\subsection{受迫均匀各向同性湍流}
+与上节不同的是，本节将在流场中注入能量，使得动能不被完全耗散，但保持湍流结构。注入能量的方式为在控制方程中加入体积力。体积力的形式有多种，比较常见的体积力形式包括固定给定波数的能量\cite{Wang:2010bk}、泰勒-格林涡形式外力\cite{Alexakis2014Rotating}、ABC外力\cite{mininni2009helicity}。
+固定能量体积力的表达形式为：
+\begin{equation}
+\bm{f}=(\sigma-1)\bm{u^{s}}
+\end{equation}
+\begin{equation}
+\sigma=\sqrt{\frac{E^0(k_0)-E^c(k_0)}{E^s(k_0)}}
+\end{equation}
+
+其中$E^0(k_0)$是给定的能量，$k_0$是给定的波数，$E^s(k_0)$和$E^c(k_0)$分别是旋转模态和压缩模态的在波数$k_0$上的能量。
+
+Taylor-Green体积力的表达形式为：
+\begin{align}
+& f_x=2.0f_0sin(k_0x)cos(k_0y)sin(k_0z)\\
+& f_y=-2.0f_0cos(k_0x)sin(k_0y)sin(k_0z)\\
+& f_z=0
+\end{align}
+其中$f_0$是体积力强度，$k_0$是能量所加载的波数。
+
+ABC体积力的表达形式为：
+\begin{align}
+& f_x=f_0((cos(k_0y)+1.1sin(k_0z))\\
+& f_y=f_0(1.1cos(k_0z)+0.9sin(k_0x))\\
+& f_z=f_0(0.9cos(k_0x)+0.9sin(k_0y))
+\end{align}
+其中$f_0$是体积力强度，$k_0$是能量所加载的波数。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/skew_lambda}
+\caption{skew和泰勒尺度$\lambda$随时间变化}
+\label{chapter7fig:23}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/Re_lambda_Mat}
+\caption{泰勒尺度雷诺数$Re_\lambda$和湍流马赫数$Ma_t$ 随时间变化}
+\label{chapter7fig:23}
+\end{center}
+\end{figure}
+
+本计算中采用固定$k_0$处的能量，通过改变体积力强度使得$Ma_t\approx 0.9$。 待能量稳定后，泰勒尺度雷诺数$Re_\lambda=100$，外力强度为$f_0=0.25$，能量在$k_0=1$ 处注入，$\eta=0.0223$，$\epsilon=0.0438$。需要注意的是，在以上三种外力中，只有TG 外力是没有螺旋度的，其他几种力都会向流动中注入螺旋度。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/power_spec_forced_Re100_Ma1}
+\caption{能量在不同模态上分布的能谱($Ma_t \approx 0.9,Re_\lambda=100$，$t\approx 130$)}
+\label{chapter7fig:23}
+\end{center}
+\end{figure}
+
+图\ref{chapter7fig:23}给出了能量在不同模态上的分布。网格分辨率($128^3$) 达到了$\eta$尺度，在大尺度上有较明显的惯性区。与自由衰减湍流中的结构一致，在小尺度上，可压缩模态的能量大于旋转模态。在大尺度上，可压缩模态能量与旋转模态相比要小于在中间尺度上的比例。
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/chapter7/q}
+\caption{流场中涡量和shocklet的分布$t\approx 130$}
+\label{chapter7fig:24}
+\end{center}
+\end{figure}
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/chapter7/div}
+\caption{x=0截面上压缩项$\theta$分布}
+\label{chapter7fig:25}
+\end{center}
+\end{figure}
+
+图\ref{chapter7fig:24}给出了流场中压缩项$\theta=\partial u_i/\partial x_i$等值面和涡量等值面分布，其中管状结构为流场中的涡，平面结构为shocklet，云图由螺旋度给出。可以看出，在这一湍流马赫数下，流场中会出现大量的间断结构。
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figures/chapter7/ratio}
+\caption{旋转模态动能与压缩模态动能比}
+\label{chapter7fig:26}
+\end{center}
+\end{figure}
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figures/chapter7/helicity_forced}
+\caption{螺旋度能谱分布}
+\label{chapter7fig:27}
+\end{center}
+\end{figure}
+
+图\ref{chapter7fig:26}给出了旋转模态能量（$E^s(k)$）与压缩模态能量（$E^c(k)$）的比值在不同尺度下的分布。可以看出，在大尺度上，旋转能占主导作用，在惯性区，两者的比值为常数7.5。在Kolmogolov尺度附近，压缩模态能量与旋转模态能量比例接近1。这说明对于可压缩流动，压缩模态在Kolmogolov尺度附近占主导作用。在小尺度上，比例的分布接近于$(k\eta)^{-8/3}$。图\ref{chapter7fig:27}给出了螺旋度的能谱分布。在惯性子区，螺旋度的分布接近$(k\eta)^{-2/3}$，这一分布与理论$H(k)\propto 2kE(k)$ 的结论是一致的\cite{Chen2003The}。
+
+\section{超声速平板边界层壁面粗糙诱导转捩的直接数值模拟}\label{chap:rit}
+超声速层流边界层的转捩现象对于航空航天工程来说非常重要。由于湍流带来更大的摩擦阻力和热流，准确的预报层流边界层的转捩对于飞行器的热防护和气动布局设计都有着重要的参考意义。超声速边界层的转捩现象已经被大量的研究，然而这些研究主要集中在边界层对于外界流场中扰动的稳定性问题，如\cite{fedorov2011transition}。而粗糙元素对于边界层的转捩影响的研究却远没有其他转捩方式研究的透彻\cite{reshotko2008transition,muppidi2012direct,reshotko2004role,schneider2008effects}。 事实上，对粗糙元素诱导转捩现象的深入理解对于工业部门意义更大，无论是何种航空器，不管加工精度多高，其表面都会有不平整因素。而对于长期使用或者反复使用的航空航天飞行器，由于气动热的烧蚀作用，即使在最初制造完成的时候物面是十分光滑平整的，经过长期使用后势必有各种划痕和不平整因素。甚至，在飞行器的飞行过程中，空气中的微小颗粒或太空中的颗粒与物面发生碰撞产生划痕，这都会直接改变飞行器再入过程中的热特性和边界层的流动结构\cite{reda2002review,batt1983review}。 本章将采用直接数值模拟（Direct numerical simulation）的方法研究Ma=2.0的层流边界层在周期壁面粗糙元素的干扰下转捩的过程。
+
+\subsection{计算设置}
+流动的控制方程为理想气体的Navier-Stokes方程\eqref{chapter1eq:1}。计算域流向范围为$-4<x<5$；展向的范围为$0<z<0.175$；壁面法向的范围为$0<y<1$。粗糙元素被设置在$0<x<0.5$ 的范围内，其几何参数为：
+\begin{align}\label{chapter7eq:1}
+&y(x,z)=
+\begin{cases}
+ y_{max}(1-cos(2 \pi z/z_{max} k)) x, & 0<x<0.5\\
+ y_{max}(1-cos(2 \pi z/z_{max} k)) (1-x), & 0.5<x<1
+\end{cases}&
+\end{align}
+其中$y_{max}$是壁面元素的垂直法向最大高度，本计算中取$y_{max}=0.02$，这一尺寸与此处层流边界层的厚度相当\cite{muppidi2012direct}。$z_{max}$ 为展向尺寸，这里取与计算域展向宽度一致为$z_{max}=0.175$。k为元素个数，本计算中取为k=4。 图\ref{chapter7fig:1}给出了粗糙元素的示意图。
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[]{
+\includegraphics[width=0.45\textwidth]{figures/chapter7/rough_element_1}}
+\subfigure[]{
+\includegraphics[width=0.45\textwidth]{figures/chapter7/rough_element_2}}
+\subfigure[]{
+\includegraphics[width=0.45\textwidth]{figures/chapter7/rough_element_3}}
+\subfigure[]{
+\includegraphics[width=0.45\textwidth]{figures/chapter7/rough_element_4}}
+\caption{壁面粗糙元素示意图}
+\label{chapter7fig:1}
+\end{center}
+\end{figure}
+
+计算中来流马赫数$Ma=2.0$，来流的雷诺数为$Re=635000 /Inch$，来流的温度取为$T_0=170K$。壁面采用等温壁面，对于$Ma=2.0$的流动，不考虑壁面温度恢复系数，取壁面的温度为$T_w=1.8T_0$。入口处采用均匀来流条件，因此边界层起始位置为$x=-4$，上边界$y=1$和出口边界$x=5$处采用零阶外推条件。展向边界$z=0$ 和$z=0.175$采用周期边界条件。
+
+计算中我们采用七阶HCCS 格式离散无粘通量，流通量分裂方法为AUSM格式，粘性项采用八阶中心格式，时间推进采用三阶TVD Runge-Kutta方法。初始条件采用均匀来流条件$(\rho, u, v, w, p)=(1.0,1.0,0.0,0.0,\frac{1.0}{\gamma Ma^2})$。 理想气体的比热比$\gamma$取为1.4，普朗特数Pr取为0.72。
+
+计算的总网格数为$(N_x,N_y,N_z)=(1664,96,192)$，采用MPICH并行计算。计算区域被分为468个子区域，采用468个CPU计算。为了提高对小尺度结构的分辨率，在法向和流向都采用了网格加密，其中法向第一层网格高度$\Delta y_0=0.0001$ 从而$y^{+} \approx 1$，最后一个网格的尺度为$\Delta y_N=0.5$，映射函数采用双曲正切函数。流向在不同区域网格数有所不同，在区域连接处采用局部加密的方式确保网格过渡光滑，在$-4<x<0$ 的区域流动主要为层流，因此取网格总数为96；边界层在$0<x<4$内发生失稳和转捩，并最终形成湍流，因此取网格总数为1536；为防止出口边界对边界层计算造成影响，采用缓冲区的方式将湍流完全耗散，缓冲区域$4<x<5$网格数设定为32。 在z 方向，网格为均匀分布。
+\subsection{Ma=2.0边界层壁面粗糙诱导转捩}
+\subsubsection{平均流场}
+图\ref{chapter7fig:2}给出了计算区域平均壁面摩擦系数沿流向的分布，可以看出，在层流区域($-3<x<1$) 计算结果与层流理论摩擦系数结果\cite{white2006viscous}符合的很好。在壁面元素区域，壁面摩擦系数发生剧烈变化，通过粗糙元素区域后，边界层受到扰动，发生转捩，壁面摩擦系数快速增长。转捩完成后，湍流边界层的摩擦系数要明显大于层流边界层的摩擦系数。
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/Cf}
+\caption{壁面摩擦系数分布}
+\label{chapter7fig:2}
+\end{center}
+\end{figure}
+
+层流区域(x=-2)和湍流区域(x=3.5)的速度剖面在图\ref{chapter7fig:3}中给出。可以看出，在$x=3.5$速度分布与$x=-2$处明显不同，在其速度型中出现了明显的对数区域，这与通常认为的湍流边界层速度型是一致的，因此可以认为此区域转捩已经完成。
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/averaged_velocity}
+\caption{平均速度分布}
+\label{chapter7fig:3}
+\end{center}
+\end{figure}
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/velocity_f}
+\caption{平均脉动速度分布}
+\label{chapter7fig:4}
+\end{center}
+\end{figure}
+图\ref{chapter7fig:4}给出了$x=3.5$处各个方向湍流脉动强度的分布，流向的脉动强度要大于其他两个方向的。本计算的结果与文献\cite{muppidi2012direct}的结果基本一致。
+\subsubsection{瞬时流场}
+对于转捩现象，由于无法证明其满足各态遍历假设，因此我们更关心的瞬时的流场分布。
+图\ref{chapter7fig:5}给出$z=0.0875$截面上的温度云图分布。从图中可以看出，层流边界层在通过壁面粗糙元素区域时，边界层厚度会增加。这是由于粗糙元素会形成类似收缩-扩张管的结构，这一结构导致流动通过受阻，边界层被向上抬起。与文献中\cite{muppidi2012direct,bernardini2012compressibility} 不同的是，本计算中的粗糙元素既不是单独存在的元素，也不是在流向和展向都存在的粗糙分布，而是存在长细比的沿着流向分布的结构。
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/chapter7/slice-z/z00875}
+\caption{z=0.0875截面上的温度云图}
+\label{chapter7fig:5}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/q290000}
+\caption{Q判据等值面（Q=1），云图为法向高度y，范围为0 到0.025}
+\label{chapter7fig:6}
+\end{center}
+\end{figure}
+图\ref{chapter7fig:6}中给出了，Q判据的等值面图。从图中我们可以看出，当流动经过粗糙元素时，流场中首先会形成几道相互交错的激波结构。通过粗糙元素组成的“峡谷”后，流场中会出现沿着流向分布的涡对，这些涡对将影响边界层的结构，产生不稳定因素，边界层的转捩与流向涡对的失稳有着直接的联系\cite{bernardini2012compressibility}。流向涡在达到$x=1.5$位置附近完全失稳，湍流中的发卡涡结构形成，随后流动完全演变为湍流结构。与TS 波诱导转捩和Tripping诱导转捩\cite{schlatter2012turbulent} 相比，我们所观察到转捩过程中的拟序结构与横流转捩中的结构更为相似\cite{ messing2010investigation}，即在流向涡管周围先形成环状的不稳定结构。而流向涡管在之前还会形成相互干扰的结构，这些结构又与在T-S波作用下的失稳结构十分近似\cite{cherubini2011minimal}，形成类似$\Lambda$涡的结构。
+
+图\ref{chapter7fig:7}-\ref{chapter7fig:11}给出了不同高度和不同流向位置的密度分布云图。流向涡的密度要大于周围流体的密度。在向下游的发展过程中，流向涡基本保持了很好的对称性，直到$x=1.4$附近。流向涡的展向对称性丧失，流动失稳发生转捩。在边界处靠近上层的位置，失稳的现象更为明显。失稳后，湍流迅速形成，流动中流向涡的展向周期特性在转捩中的边界层完全丧失。同时，我们观察到，在边界层底层的结构尺度要小于在边界层上层的结构尺度。如$y=0.005$，其展向结构的尺度要明显小于其他高度的尺度。
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[y=0.005]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0005/0005_1}}
+\subfigure[y=0.01]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/001/001_1}}
+\subfigure[y=0.015]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0015/0015_1}}
+\subfigure[y=0.02]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/002/002_1}}
+\subfigure[y=0.025]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0025/0025_1}}
+\caption{x=0.0至x=0.7不同高度的密度分布云图}
+\label{chapter7fig:7}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[y=0.005]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0005/0005_2}}
+\subfigure[y=0.01]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/001/001_2}}
+\subfigure[y=0.015]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0015/0015_2}}
+\subfigure[y=0.02]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/002/002_2}}
+\subfigure[y=0.025]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0025/0025_2}}
+\caption{x=0.7至x=1.4不同高度的密度分布云图}
+\label{chapter7fig:8}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[y=0.005]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0005/0005_3}}
+\subfigure[y=0.01]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/001/001_3}}
+\subfigure[y=0.015]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0015/0015_3}}
+\subfigure[y=0.02]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/002/002_3}}
+\subfigure[y=0.025]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0025/0025_3}}
+\caption{x=1.4至x=2.1不同高度的密度分布云图}
+\label{chapter7fig:9}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[y=0.005]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0005/0005_4}}
+\subfigure[y=0.01]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/001/001_4}}
+\subfigure[y=0.015]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0015/0015_4}}
+\subfigure[y=0.02]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/002/002_4}}
+\subfigure[y=0.025]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0025/0025_4}}
+\caption{x=2.1至x=2.8不同高度的密度分布云图}
+\label{chapter7fig:10}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[y=0.005]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0005/0005_5}}
+\subfigure[y=0.01]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/001/001_5}}
+\subfigure[y=0.015]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0015/0015_5}}
+\subfigure[y=0.02]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/002/002_5}}
+\subfigure[y=0.025]{
+\includegraphics[width=0.8\textwidth]{figures/chapter7/slice-y/0025/0025_5}}
+\caption{x=2.8至x=3.5不同高度的密度分布云图}
+\label{chapter7fig:11}
+\end{center}
+\end{figure}
+\subsubsection{流向涡对结构的形成过程}
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[x=0]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/u/0}}
+\subfigure[x=0.125]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/u/1}}
+\subfigure[x=0.25]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/u/2}}
+\subfigure[x=0.375]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/u/3}}
+\subfigure[x=0.5]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/u/4}}
+\subfigure[x=0.625]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/u/5}}
+\subfigure[x=0.75]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/u/6}}
+\subfigure[x=0.875]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/u/7}}
+\subfigure[x=1.0]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/u/8}}
+\caption{不同流向位置流向速度u速度分布云图}
+\label{chapter7fig:12}
+\end{center}
+\end{figure}
+为了更清楚的看到流向涡结构的失稳过程，我们截取沿着流向不同位置的流场结构图。图\ref{chapter7fig:12}给出了不同流向位置流向速度$u$ 的分布云图。在$x=0.0$位置，流动处于完全层流状态，边界层在展向完全没有变化。进入粗糙元素区域后，在粗糙元素表面还会形成二次流动，特别是在"峡谷"区域。不同元素上的二次流动发生相互作用，形成一个低速流动区域。而在“山峰”的位置，边界层被抬起。这样粗糙元素就在流动中形成了一个速度梯度，破坏了边界层原有的稳定结构。在通过粗糙元素后，边界层的平均厚度并未发生明显的变化，但是速度梯度的形成本身会更进一步诱导结构的变化。随着流动的继续发展，在“山峰”位置处了流动速度增加，这些对应位置的边界层变薄，而在“山谷”处的低速流动向上扩张，使得边界层变厚。这一过程持续发展，最终形成鲜明的低速流动管(x=1.0)。
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[x=0]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/omega0/0}}
+\subfigure[x=0.125]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/omega0/1}}
+\subfigure[x=0.25]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/omega0/2}}
+\subfigure[x=0.375]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/omega0/3}}
+\subfigure[x=0.5]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/omega0/4}}
+\subfigure[x=0.625]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/omega0/5}}
+\subfigure[x=0.75]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/omega0/6}}
+\subfigure[x=0.875]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/omega0/7}}
+\subfigure[x=1.0]{
+\includegraphics[width=0.3\textwidth]{figures/chapter7/slice-x/omega0/8}}
+\caption{不同流向位置流向涡量$\omega_0$分布云图}
+\label{chapter7fig:13}
+\end{center}
+\end{figure}
+图\ref{chapter7fig:13}给出了低速涡管形成过程中，流向涡量的变化过程。层流边界层进入粗糙元素区域时，粗糙元素会诱导形成二次流动结构，剪切层。靠近壁面的流体沿着粗糙元素向边界层上层运动，而离壁面较远的流体向下运动。离开粗糙区域后。剪切层靠近壁面的区域增强，并在壁面上又诱导形成强剪切区域，最终形成了流向的涡对结构。流向涡量分布上看，这些涡对之间会发生相互作用。涡对结构在刚离开粗糙元素结构时是比较对称的，随着流动的发展，他们间相互诱导逐渐丧失了对称性，并导致最终的完全失稳。
+
+从上面的分析中可以看出，流动的失稳是与流向涡的形成有关的。而流向涡的形成原因主要在于壁面粗糙元素产生的二次流动，而不完全是边界层上抬。边界层通过粗糙区域后，其厚度并没有发生明显的变化，但是二次流动在边界层内形成了更复杂的流动结构。正是这些流动结构的失稳造成了流动的转捩。
+\subsection{Ma=2.9的壁面粗糙诱导转捩}
+为研究马赫数对转捩的影响，我们计算了$Ma=2.9$的边界层发展过程。计算中的其他设置与$Ma=2.0$中一致。图\ref{chapter7fig:14}给出了不同马赫数瞬时Q等值面的分布。可以看到，在马赫数等于2.0的情况下，边界层很快发生转捩，而在马赫数等于2.9时，直到接近计算域出口时流动才转捩为湍流。
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[Ma=2.0]{
+\includegraphics[width=0.6\textwidth]{figures/chapter7/q330000_ma20}}
+\subfigure[Ma=2.9]{
+\includegraphics[width=0.6\textwidth]{figures/chapter7/q330000_ma29}}
+\caption{不同马赫数下Q等值面的分布}
+\label{chapter7fig:14}
+\end{center}
+\end{figure}
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/Enstrophy}
+\caption{流场涡量积分随时间的变化}
+\label{chapter7fig:15}
+\end{center}
+\end{figure}
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/chapter7/Kinetic}
+\caption{流场动能的积分随时间的变化}
+\label{chapter7fig:16}
+\end{center}
+\end{figure}
+
+值得注意的是，对于马赫数等于2.9的算例，转捩过程并不是稳定的。图\ref{chapter7fig:15}和\ref{chapter7fig:16} 给出了涡量和动能在全计算域上的积分随时间的变化曲线。可以看到，对于2.0马赫的算例，流场很快达到平衡，动能和涡量随着时间基本不发生变化。而对于2.9马赫的流动，虽然经过了很长的流动时间，其动能和涡量并没有达到稳定而是一直在发生一定的波动。这说明，在计算时间内，边界层的流动状态是不稳定的，在某一时刻某些区域可能是湍流，而在一段时间后这个区域又成为层流或者处于失稳过程。马赫数对于转捩的影响，文献\cite{bernardini2012compressibility}中做了大量的算例研究，其作者认为，马赫数或压缩性对流动的影响并不大。而在本算例中，在相同的流动雷诺数和粗糙元素尺度下，流场结构发生了比较大的改变，这说明马赫数对转捩的影响是非常明显的。从Q等值面的图中我们还可以看出，在2.9马赫算例中，流向涡的失稳过程较2.0马赫流动中失稳过程要慢的多。流场中会形成非常大尺度的$\Lambda$涡结构。当这些涡结构相互靠近并发生干扰时，流动才会发生类似2.0马赫中的转捩过程。2.9马赫中边界层转捩的间歇性现象可能与这些$\Lambda$涡结构相关，流动转捩位置与其发生相互作用位置有关，当其很快靠近时流动转捩的就较早，而当其发生相互作用更靠近下游时，流动转捩位置就更靠近下游。本文的计算结果表明，马赫数较大时，这些流向涡结构的流向尺度也会更大而文献中认为的不转捩流动很可能是计算域流向尺度太小造成的。
+
+
+\section{本章小结}
+本章首先计算了一个经典的涡演化问题，Taylor-Green 涡演化过程，以验证程序的正确性。Taylor-Green 涡流动的初始条件由解析解给出，随着流动的发展，其流动结构发生快速扭曲，形成更小尺度的涡结构，并最终向湍流结构发展。
+
+对于均匀各向同性湍流的直接模拟有助于提高对于湍流机理的理解。我们计算了自由衰减湍流和有能量注入的湍流。通过对旋转模态能量和压缩模态能量在各个尺度上比例分布分析发现，在惯性子区两者能量的比例接近常数。在接近Kolmogolov尺度的区域，两者的比例接近1。在更小的尺度上压缩模态起主导作用。
+
+进一步，我们利用直接数值模拟的方法研究了沿展向周期布置的壁面粗糙元素对于超声速层流边界层的影响。计算发现，在2.0马赫下，所布置的壁面粗糙元素会造成边界层的转捩。造成转捩的原因在于，壁面粗糙元素会产生二次流动结构，这种流动结构是具有较大速度梯度的剪切层。在离开粗糙元素后，剪切层会在边界层中形成流向的涡对结构。这些涡对结构发生相互作用并失稳形成湍流。与文献中认为的不同的是，本文结果表明粗糙元素抬高层流边界层对于边界层转捩影响不大，造成转捩的根源在于其诱导产生二次流动进而产生流向的涡对。二次流动中的高剪切层才是造成边界层转捩的原因。
+
+我们还初步研究了马赫数对于边界层转捩的影响。在相同的计算设置下，我们发现2.9马赫数的层流边界层会产生间歇性转捩现象。这一现象产生的原因是，大马赫数下，流向涡相互作用会形成具有较大展向和流向尺度的$\Lambda$ 涡结构。这些涡结构在流场中的分布是不固定的，只有在一定的分布下，涡结构之间发生快速的相互作用才会造成流动的失稳转捩。
+
+由于壁面粗糙元素诱导转捩的可变因素太多，需要大量的算例才能获得规律。进一步，我们打算研究不同粗糙元素展向分布个数和高度对转捩过程的影响。大尺度流向涡的形成机理也是我们比较感兴趣的问题。
