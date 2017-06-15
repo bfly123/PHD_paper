@@ -1,0 +1,609 @@
+\XeTeXinputencoding "GB2312"
+
+\chapter{引言}\label{chap:introduction}
+间断问题是计算流体力学中，乃至整个计算数学中长久存在的难点。在数学上，间断问题体现为，对流方程不存在无限可微的经典解而只能在更广义的不连续函数空间寻求弱解。弱解是普遍存在的，实际上，对于几乎所有连续力学模型都遵循的非线性双曲守恒方程的初值问题(Cauchy问题)来说，即使初始值是光滑的，解在有限时间内也会发展出奇异性\cite{riemann1860fortpflanzung,smoller2012shock,应隆安1991双曲型守恒律方程及其差分方法}。从物理角度，间断体现为某些物理量在空间上的不连续性。在流体力学中，这种弱解主要体现为激波、接触间断、物质界面、爆轰（燃）波等。
+
+激波在可压缩流体中就像衣服上的褶皱一样随处可见，是可压缩流中最主要的一类间断，所有和可压缩流动有关的问题都躲不开激波。在物理上，激波成因已经得到极为充分的研究\cite{moretti1987computation,osher1985shock}，然而更复杂的激波间或是激波与其他结构如激波/边界层、激波/界面间的相互作用等仍是当今理论研究\cite{bzhongabinsky2011shock,zheltovodov1996shock,hildebrand2016global,nichols2016stability}、实验研究\cite{anderson2015experimental,tumuklu2015shock,merritt2013experimental}和数值模拟\cite{hadjadj2015numerical,yang2016large,xiang2016investigations}的热点，有很强的工程背景。除此之外，在化学反应流中，激波和化学反应相互作用还能形成如爆燃波、爆轰波等衍生的间断类型，其中爆轰波\cite{glassman2014combustion,lee2008detonation,fickett2012detonation}的研究在诸如发动机\cite{bussing1996pulse,bussing1994introduction}、高能炸药爆炸\cite{lee2008detonation,dremin1972detonation,cheret2012detonation}等诸多领域均有重要应用。
+
+当流体中存在压强无法匹配时，根据特征线是汇聚或是发散的，会形成激波或稀疏波，当压力可以匹配而密度无法匹配时或存在不同状态的物质时，就会出现接触间断或界面\cite{傅德薰2002计算流体力学}，事实上界面是不同状态的物质间存在的一种特殊的接触间断类型\cite{cocchi1997riemann}，因此有些学者也把接触间断称为接触界面\cite{toro1994restoration,andronov1976turbulent}。通过接触间断，压力和法向速度连续而密度、切向速度以及状态方程可能存在间断。界面问题的集中体现在各种多相流研究中，是其中最为关键的问题，也是多相流求解的难点所在。多相流在高速可压缩流动中同样有广泛应用\cite{brennen2005fundamentals}，如空化\cite{hammitt1980cavitation,young1999cavitation,bergant2006water}、燃烧室混合\cite{leckner1998fluidized}、反应堆蒸汽发生器\cite{kolev2005multiphase}和发电厂锅炉等方面。
+
+激波和接触间断是孤立存在的吗？恰恰相反，可压缩多相流中广泛存在激波，而激波/界面相互作用极大增加了界面问题研究的难度\cite{rupert1992shock,liu2003ghost,meshkov1969instability}。
+
+
+\section{本文研究的范围及其方程系统}
+
+本文将从数值模拟角度对高速可压缩流中的各类间断问题进行较为系统的研究，其中包括先进的激波捕捉方法、高精度低耗散的杂交格式以及其在磁流体中的应用、界面追踪方法和刚性化学反应流及爆轰波相关研究。
+
+本文研究涉及四种物质状态，包括可压缩单介质理想气体、理想磁流体、存在界面的多介质流体以及存在化学反应的可压缩多组分气体混合物。下面分别给出描述这四种物质状态所采用的具体的方程系统。
+
+\subsection{单介质Euler方程}
+研究各种常见单介质可压缩流动问题时，我们常采用无黏、无导热的Euler方程，它是Navier-Stocks(NS)方程的简化方程，既是NS方程分层次求解的一层，也能满足很多物理问题的求解要求，同时，Euler方程研究也是其它如磁流体、多相流及化学反应流等复杂方程系统研究的基础。下面给出二维守恒型Euler方程：
+
+\begin{equation}\label{eq1_1}
+  \frac{\partial U}{\partial t} +\frac{\partial F}{\partial x}+\frac{\partial G}{\partial y}=0
+  \end{equation}
+其中
+\begin{eqnarray*}
+  U=\left(
+  \begin{array}{l}
+	\rho\\
+	\rho u\\
+	\rho v \\
+	E\\
+	\end{array}
+	\right)
+  ,
+ F=\left(
+  \begin{array}{l}
+	\rho u\\
+	\rho u^2+p\\
+	\rho uv \\
+	u(E+p)\\
+	\end{array}
+	\right)
+	,
+ G=\left(
+  \begin{array}{l}
+	\rho v\\
+	\rho uv\\
+	\rho v^2+p \\
+	v(E+p)\\
+	\end{array}
+	\right)
+	,
+\end{eqnarray*}
+其中$\rho$ 为密度，$u$为x方向速度，$v$为y方向速度，$p$是流体的压力，$E$是总能量，对于理想气体有如下形式状态方程
+\begin{equation}\label{state1}
+  p=(\gamma-1)[E-\frac{1}{2}\rho(u^2+v^2)],
+\end{equation}
+其中$\gamma$为比热比。
+
+%
+%\subsubsection{单介质理想气体状态方程}
+%对于单介质理想气体，Eq.(\ref{eq1_1})中不需要含有组分$z$项和源项，状态方程为
+%\begin{equation}
+% \rho e=\frac{p}{\gamma-1}
+%  \end{equation}
+%其中$\gamma$ 为比热比。
+%
+%\subsubsection{多相流状态方程}
+% 对于无相变、无反应的多相流，同样不存在源项，本文主要研究理想气体和水两种流体，可以写成统一形式
+%% 状态方程一般采用Mie-Gruneison状态方程形式
+%%  \begin{equation}\label{pe}
+%%   \rho e=f(\rho)p+g(\rho)
+%%\end{equation}
+%%其中，$f$和$g$是密度和一些和热传导相关的常数的函数。本文我们主要研究两种形式的状态方程。
+%%
+%%第一种是$\gamma$控制的理想气体，$$f=1/(\gamma-1), \hspace{0.3cm}
+%%g=0.0.$$。
+%%
+%%第二种为水的Tait状态方程，
+%%
+%%$$p=B[\rho/\rho_0]^N-B+A.$$
+%%其中$N=7.15,A=1.0\times 10^5 Pa, B=3.31\times 10^8 Pa$和$\rho_0=1000.0kg/m^3$。可能写成方程\ref{pe}形式，$f=1/(N-1)$和$g=N(B-A)/(N-1)$。式
+%%
+%  \begin{equation}\label{pe1}
+%   p=(\gamma-1)\rho e -\gamma B
+%\end{equation}
+%其中$\gamma$和$B$为常数。当$B=0$时，方程(\ref{pe1})为理想气体状态方程；当$\gamma=7.15$，$B=3309$时，方程(\ref{pe1})为水的状态方程。
+%
+%\subsubsection{多组分反应状态方程}
+%对于多组分化学反应，源项根据不同反应模型有所不同，对于最简单的单步反应模型
+%\begin{equation}
+%  A \rightarrow B,
+%\end{equation}
+%
+%
+虽然Euler方程形式较NS方程大大简化，但是采用Euler方程至少有四点实际意义:
+
+1，可以认为Euler方程是NS方程在大雷诺数下的一种特例情况\cite{童秉纲1990气体动力学}。
+
+2, 在气体动力学中，求解无分离流动问题时，将无黏流动理论和边界层理论结合，可以很好解决这类工程问题。
+
+3, 很多流动现象的机理研究都可以采用Euler方程，比如激波结构，由于系统简单，更容易分析和研究。
+
+4, 由于Euler方程是NS方程的对流部分，数值上对流部分的方法设计更为困难，通常在Euler方程上设计算法，然后推广应用在NS方程中。
+
+%
+%通常，我们采用雷诺数度量黏性效应大小，它是
+%\begin{equation*}
+%  Re=\frac{\rho V L}{\mu}=\frac{\mbox{惯性力}}{\mbox{粘性力}},
+%\end{equation*}
+%式中$L$和$V$分别为物体的特征长度和特征速度，$\mu$是气体的黏度。例如空气在15$^{\circ}C$时的黏度$\mu=1.789\times 10^{-5} N \cdot s/m^2$。弱气体的流速较大，而黏性较小，则雷诺数很大，表明黏性效应很小。于是在附体流动这一类问题中，气体的黏性效应只出现在物面边界层区域内以及物后的窄尾迹区，这些区域以外的流场可认为是无黏的。当雷诺数足够大，边界层会足够薄，其位移厚度对无黏外流的附加影响可忽略。这样我们可以不考虑边界层厚度，认为物面外都是无黏流场。实际上，在此条件下，用无黏流求解出的物面压力分布，与考虑边界层所得到的屋面压力分布几乎一致。对于导热，其来自于黏性耗散，因此不考虑黏性同时，热传导同样无需考虑。因此，Euler方程可以看成NS方程在大雷诺数下的一种特例情况。
+%
+%另外，由于NS方程对流项求解相对于黏性项会遇到更多的困难，所以很多数值研究都针对Euler方程展开，逻辑上，由于Euler方程是NS方程对流项的简化方程，一般对求解Euler方程更准确、有效的数值方法也能更好推广于求解NS方程系统。或者说，我们的方法如果能用于求解NS方程，那么其必然是有效的Euler方程求解方法。可以将Euler方程看做NS方程的预测系统和验证系统。
+%
+基于这些考虑，针对我们要研究的方法和问题来说，采用无黏Euler方程都是一件合理的事情。
+
+\subsection{理想磁流体方程}
+磁流体(MHD)在气体动力学中主要出现在飞行器再入、燃烧室等超高温情况下电离产生的等离子体相关研究方面，理想磁流体方程是磁流体研究中最简单的模型方程，它和Euler方程有类似的波动结构，但是它同时具有非严格的双曲性质、更复杂的特征值系统和流场间断结构。本文并不深入研究磁流体，只将Euler的数值方法推广于理想MHD方程求解中，验证方法的适用性。下面给出二维理想磁流体控制方程：
+\begin{equation}\label{eq1_2}
+  \frac{\partial U}{\partial t} +\frac{\partial F}{\partial x}+\frac{\partial G}{\partial y}=0,
+  \end{equation}
+其中
+\begin{eqnarray*}
+  \resizebox{0.92\hsize}{!}{
+  U=\!\left(\!
+  \begin{array}{l}
+	\rho\\
+	\rho u\\
+	\rho v\\
+	E\\
+	B_x\\
+	B_y\\
+	B_z\\
+\end{array}\!
+\right)\!
+,
+F\!=\!\left(\!
+\begin{array}{l}
+  \rho u\\
+  \rho u^2+p_t-B_x^2\\
+  \rho u v-B_xB_y\\
+  (E+p_t)u-B_x(uB_x+vB_y)\\
+  0\\
+  uB_y-vB_x\\
+  uB_z\\
+ \end{array}\!
+ \right)\!
+ ,
+ G\!=\!\left(\!
+ \begin{array}{l}
+   \rho v\\
+   \rho u v-B_yB_x\\
+   \rho v^2+p_t-B_y^2\\
+   (E+p_t)v-B_y(uB_x+vB_y)\\
+   vB_x-uB_y\\
+   0\\
+   vB_z\\
+   \end{array}
+  \!  \right)\!
+,
+}
+\end{eqnarray*}
+和
+$
+  p_t=p+(B_x^2+B_y^2+B_z^2)/2, 
+ $
+ 其中$B$为磁场强度，$E$为电场强度，对于磁场有限制条件
+ \begin{eqnarray*}
+   \frac{\partial B_x}{\partial x}+\frac{\partial B_y}{\partial y}=0.
+\end{eqnarray*}
+状态方程为
+\begin{eqnarray*}
+  p=(\gamma-1)[E-\frac{1}{2}\rho(u^2+v^2)-\frac{1}{2}(B_x^2+B_y^2+B_z^2)].
+\end{eqnarray*}
+
+理想磁流体方程将流体看成完美的导体，具有无限大的电导率，并且忽略了位移电流。该方程是模拟磁流体最简化的自恰系统，多用在研究等离子体的宏观稳定性和平衡性等方面，尤其在磁约束核聚变中，该方程有重要作用\cite{freidberg1987ideal}。
+
+理想磁流体方程(\ref{eq1_2})和Euler方程(\ref{eq1_1})相比，增加了前麦克斯韦(Pre-Maxwell)方程\cite{mikevs2013pre}，对于一维来说特征根从3个增加到7个，从小到大分别为
+$$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
+可见从原本一个声速量增加到了三个分别可以称为
+快波
+，中速波(Alfv\'{e}n)和慢波。Alfv\'{e}n波为
+\begin{eqnarray*}
+  c_a=\frac{|B_x|}{\sqrt{\rho}},
+\end{eqnarray*}
+快波和慢波为
+\begin{eqnarray*}
+  c_{f,s}=\sqrt{\frac{1}{2}\left[c^2+b^2 \pm \sqrt{(c^2+b^2)^2-4c^2c_a^2}\right]},
+\end{eqnarray*}
+其中$c$为声速，$b^2=\frac{B_x^2+B_y^2+B_z^2}{\rho}$。
+
+对于一维方程系统来说，如果任意$u$的特征根都不相同，则认为该双曲系统为严格的双曲系统\cite{schecter1991undercompressive}，而方程 (\ref{eq1_2})中，三个波速在特殊情况下可能等值，因此该系统为非严格双曲(non-strictly hyperbolic)系统\cite{damevin2001development,roe1996notes,schecter1991undercompressive}。
+
+由于理想磁流体中波速更多、特征值系统更为复杂以及其非严格双曲的特性都为数值构造带来很多困难，流场中更为丰富的激波结构也对数值方法的稳定性提出考验。由于方程本身的相似性，很多Euler方程求解方法都曾推广到理想磁流体方程研究中。限于主题，本文并不对该方程系统做深入研究，只将构造的数值方法做初步推广工作。
+
+
+\subsection{多介质Euler方程}
+界面问题是多介质、多相流中最基本问题，在多介质可压缩流中同样具有重要地位，界面出现在存在明确分界面的流体中，本文采用无相变、无扩散的多介质Euler方程描述这一问题，该方程系统也是描述界面问题的最简单系统。多介质Euler方程和单介质方程 (\ref{eq1_1}) 相似，只是增加一个标记不同介质的方程，和界面相关的方程多采用非守恒形式，
+\begin{equation}
+	\left\{
+  \begin{array}{l}
+  \displaystyle \frac{\partial U}{\partial t} +\frac{\partial F}{\partial x}+\frac{\partial G}{\partial y}=0\\[0.5em]
+  \displaystyle \frac{\partial z}{\partial t}+u\frac{\partial z}{\partial x}+v\frac{\partial z}{\partial y}=0\\
+  \end{array}
+  \right.
+\end{equation}
+其中
+\begin{eqnarray*}
+  U=\left(
+  \begin{array}{l}
+	\rho\\
+	\rho u\\
+	\rho v \\
+	E\\
+	\end{array}
+	\right)
+  ,
+ F=\left(
+  \begin{array}{l}
+	\rho u\\
+	\rho u^2+p\\
+	\rho uv \\
+	u(E+p)\\
+	\end{array}
+	\right)
+	,
+ G=\left(
+  \begin{array}{l}
+	\rho v\\
+	\rho uv\\
+	\rho v^2+p \\
+	v(E+p)\\
+	\end{array}
+	\right)
+	.
+\end{eqnarray*}
+
+
+不同介质具有不相同的状态方程形式和参数，以两介质问题为例，
+\begin{equation}
+ \left\{ 
+   \begin{array}{l}
+	 \text{状态1} \hspace{0.5cm} \text{当} z=z_1,\\
+	 \text{状态2} \hspace{0.5cm} \text{当} z=z_2.\\
+   \end{array}
+   \right.
+\end{equation}
+本文主要研究理想气体和水，理想气体状态方程在公式 (\ref{state1}) 中已经给出去，水的状态方程为
+\begin{equation}\label{state2}
+  p=(\gamma-1)\rho e -\gamma B,
+\end{equation}
+其中$\gamma=7.15$，$B=3309$。
+
+该方程系统忽略了粘性、热传导以及表面张力效应，是研究界面问题的极为简化的模型方程，可能只在高速问题中才有定量的研究的意义，如激波/气泡相互作用\cite{allaire2002five,shyue1998efficient}、水下爆炸\cite{nourgaliev2006adaptive}等方面。但是该方程系统仍然在界面问题的数值方法研究以及定性分析等方面有广范应用。
+
+\subsection{高速化学反应Euler方程}
+
+在化学反应流动中，激波会带来新的物理问题，如爆燃和爆轰。爆燃波和爆轰波是化学反应流中具有代表性的间断结构，它们的相关理论、实验以及数值研究在如炸药、发动机等极多高温、高超气体动力学领域中有重要意义。本文采用如下的无粘、无传热的Euler反应方程系统
+\begin{equation}\label{eq1_4}
+  \frac{\partial U}{\partial t} +\frac{\partial F}{\partial x}+\frac{\partial G}{\partial y}=S
+  \end{equation}
+其中
+\begin{eqnarray*}
+  U=\left(
+  \begin{array}{l}
+	\rho\\
+	\rho u\\
+	\rho v \\
+	E\\
+	\rho  z_1\\
+	\rho  z_2\\
+	 \vdots\\
+	\rho z_{ns-1}\\
+	\end{array}
+	\right)
+  ,
+ F=\left(
+  \begin{array}{l}
+	\rho u\\
+	\rho u^2+p\\
+	\rho uv \\
+	u(E+p)\\
+		\rho  z_1 u\\
+	\rho  z_2 u\\
+	 \vdots\\
+	\rho z_{ns-1} u\\
+	\end{array}
+	\right)
+	,
+ G=\left(
+  \begin{array}{l}
+	\rho v\\
+	\rho uv\\
+	\rho v^2+p \\
+	v(E+p)\\
+		\rho  z_1 v\\
+	\rho  z_2 v\\
+	 \vdots\\
+	\rho z_{ns-1} v\\
+	\end{array}
+	\right)
+	,
+S=
+ \left(
+  \begin{array}{c}
+	0\\
+	0\\
+	0\\
+	0\\
+	\omega_1\\
+	\omega_2\\
+	\vdots\\
+	\omega_{ns-1}
+	\end{array}
+ \right)
+,
+\end{eqnarray*}
+
+
+其中$ns$为多组分流体中的组分数，$z_i$和$\omega_i$分别为$i$组分质量分数和生成率。由于总的质量分数为$1$，则第$ns$组分为
+\begin{eqnarray*}
+  z_{ns}=1-\sum_{i=1}^{ns-1}z_i.
+\end{eqnarray*}
+
+不同的反应模型下生成率有不同形式，本文主要采用三种形式，从简单到复杂分别为固定比热比的单步总包反应模型，固定比热比的多步反应模型和变比热比的基元反应模型。
+
+\noindent \textbf{固定比热比单步总包反应模型}
+
+对于固定比热比的单步总包反应模型
+\begin{eqnarray*}
+  A\rightarrow B
+\end{eqnarray*}
+其中A代表反应物，B代表生成物，反应源项为
+\begin{equation}
+  \omega_1=-K(T)\rho z,
+\end{equation}
+其中$K$为反应率可以通过Arrhenius率
+\begin{eqnarray*}
+  K(T)=K_0 e^{-T_{ign}/T}
+\end{eqnarray*}
+或者如下Heaviside率求得
+\begin{eqnarray*}
+  K(T)=\left\{ 
+  \begin{array}{lcl}
+	 1/\epsilon, &  & T \geqslant T_{ign},\\
+	 0,          &  & T <         T_{ign},
+	 \end{array}
+	 \right.
+\end{eqnarray*}
+其中$K_0$是反应率常数，$T_{ign}$是燃点和$\epsilon$是反应时间。状态方程为
+\begin{eqnarray*}
+  p=(\gamma- 1)\left(E-\frac{1}{2}\rho(u^2+v^2)-\frac{1}{2}\rho u^2-q_0 \rho z \right).
+\end{eqnarray*}
+其中$q_0$为反应热。
+
+\noindent \textbf{固定比热比多步反应模型}
+
+对于固定比热比多步反应模型，考虑有$ns$组分的可逆反应
+\begin{equation}\label{eq1_7}
+  \sum_{i=1}^{ns}\mu_{i,j}'\chi_i \leftrightarrow \sum_{i=1}^{ns}\mu_{i,j}''\chi_i \hspace{1cm} (j=1,\cdots,nr)
+\end{equation}
+其中$nr$为反应方程数，化学计量数$\mu$为整数，$\chi_i$代表第i组分，上标$'$ 正方向反应化学计量数，$''$代表反方向反应化学计量数。$i$组分反应率可以写成
+\begin{eqnarray*}
+  \omega_i={W_i}\sum_{k=1}^{nr}{(\mu_{i,k}''-\mu_{i,k}')} K_k \prod_{j}^{ns}{\left( \frac{\rho z_j}{W_j}\right)^{\mu_{j,k}'} },
+\end{eqnarray*}
+其中$nr$为反应数，$W_i$为i组分的摩尔质量，反应率$K_i$采用Heaviside形式
+\begin{eqnarray*}
+  K_i(T)=\left\{
+	\begin{array}{lcl}
+	  1/\epsilon_i,& &  T\geqslant T_{ign},\\
+	  0,    & & T<T_{ign}.
+	\end{array} \right.
+ & & i=1,2,\cdots , nr
+ \end{eqnarray*}
+ 状态方程为
+\begin{eqnarray*}
+  p=(\gamma- 1)\left(E-\frac{1}{2}\rho(u^2+v^2)-\frac{1}{2}\rho u^2-q_1 \rho z_1 -q_2\rho z_2 - \cdots -q_{ns}\rho z_{ns} \right).
+\end{eqnarray*}
+其中$q_i$为i组分反应热。
+
+\noindent \textbf{多步基元反应模型}
+
+根据物理问题不同和对计算精准度要求不同，模拟可能需要了解详细的化学反应动力学，基元反应模型就是针对这样的要求提出的，这里的基元反应就是指反应物微粒（原子、分子、离子和自由基等）一步实现的化学变化。区别于多步简化模型，基元反应模型中的混合物各种热力学参数如焓、熵和比热比等会随着温度变化而改变。基元反应模型研究的气体对象为理想气体方程控制下的的热完全气体（$T<4000K$）。关于量热完全气体（Calorically perfect/Perfect)、热完全气体(Thermally perfect/Semi-perfect)、理想气体(Ideal)和真实气体（Imperfect）的详细概念可以参照\cite{anderson2010fundamentals}。
+
+我们同样可以采用公式（\ref{eq1_7}）来代表所有基元反应，其中$ns$代表所有反应物和三体的数目。第i组分的质量生成率为
+\begin{equation}
+  \omega_i=W_i\sum_{k=1}^{nr}(\nu_{k,i}''-\nu_{k,i}')\left\{ K_{f,k}(T)\prod_{j=1}^{ns}\gamma_j^{\nu_{b,k}'}-K_{b,j}(T)\prod_{j=1}^{ns}\gamma_j^{\nu_{k,j}''}\right\}
+\end{equation}
+其中，$K_{f,k}$、$K_{b,k}$分别为第k个反应的正向和逆向反应速率常数，可以通过Arrhenius公式求得
+\begin{equation}
+  K_{f,k}=A_k T^{b_j}exp\left(-\frac{E_{a,k}}{R_u T}\right)
+\end{equation}
+参数$A_k$,$b_k$和$E_{a,k}$分别为第k个基元反应的指前因子、温度系数和活化能。逆反应速率常数$K_{b,k}$可以通过下面方式求得
+\begin{equation}
+  K_{b,k}=\frac{K_{f,k}}{K_{c,k}},K_{c,k}=K_{p,k}\left(\frac{p_{atm}}{R_uT}\right)^{\sum_{i=1}^{ns}(\nu_{i,k}''-\nu_{i,k}')}
+\end{equation}
+其中，$p_{atm}$为标准大气压，$K_{p,k}$为压力平衡常数
+\begin{equation}
+  K_{p,k}=exp\left(\sum_{i=1}^{ns}(\nu_{i,k}''-\nu_{i,k}')\left(\frac{S_i}{R_u}-\frac{H_i}{R_uT}\right)\right)
+\end{equation}
+$S_k$和$H_k$为k组分的摩尔熵和焓，具体表达见正文。
+
+热完全气体混合物遵从道尔顿分压定律，混合气体压力等于各组分压力之和，而各组分气体仍然满足热完全气体假设。混合气体状态方程为
+\begin{equation}\label{eq1_6}
+  p=\rho R T=\sum_{i=1}^{ns}\rho_i R_i T=\sum_{i=1}^{ns}z_i \rho_i T=\rho\frac{R_u}{\bar{W}}T
+\end{equation}
+其中，$\bar{W}$为平均摩尔质量
+\begin{eqnarray*}
+  \bar{W}=\frac{1}{\sum_{i=1}^{ns}z_i/W_i}
+\end{eqnarray*}
+需要注意的是，公式(\ref{eq1_6})中的$R$为混合气体的特定气体常数（Special gas constant）
+\begin{equation}
+  R=\sum_{i=1}^{ns}z_i R_i
+\end{equation}
+$R_i$为第i个组分的气体常数
+\begin{equation}
+  R_i=\frac{R_u}{W_i}
+\end{equation}
+其中$R_u$为气体常数（又被称为摩尔气体常数、普世气体常数、理想气体常数）其值为$R_u=8.3144598J\cdot mol^{-1}\codt K^{-1}$。每一气体组分均遵从热完全气体假设，工程上通常采取拟合公式来得到每一组分的热力学参数，如等压比热$C_p$等，会在正文中详细说明。
+
+\section{可压缩流中间断问题的理论研究简介}
+随着计算机技术的发展，数值求解已经慢慢成为研究各类方程的最主要工具。同时，伴随着学科的细化，数值研究和理论研究已经俨然成为两个相去甚远的方向。但是，
+数学理论一直都是数值方法的源头，也是数值研究的合理性所在。所以，尽管本文并不开展这方面理论性研究，然而仍有必要在引入数值方法之前简单介绍相关的数学理论的发展历史和现状。
+
+\subsection{Euler方程弱解及解存在性的研究}
+
+Euler方程遵循双曲守恒率，关于非线性双曲守恒率方程的理论研究基本上是从广义函数和弱解的概念被学者们熟知后才开始。1950年E.Hopf\cite{hopf1950partial}给出关于Burgers方程的严格数学理论研究，被认为是双曲率数学研究的奠基性工作，这之后有了这方面一系列重要工作\cite{lax1954weak,lax1957hyperbolic,oleinik1957discontinuous,oleinik1957uniqueness,oleinik1959uniqueness}等。如，由于弱解定义不能保证问题解的唯一性，Lax\cite{lax1957hyperbolic}和Oleinik\cite{oleinik1957discontinuous}分别提出的保证解唯一性的熵条件。第二次世界大战中，跨音速飞行器出现，使人们越来越多的空气动力学研究及激波现象，激波理论研究称为非线性前沿科学，也推动了守恒率方程研究的发展。
+
+理论上，对于非线性双曲守恒率方程，即便初值充分光滑，在足够长的时间内，解都会失去光滑出现奇异性，这一现象被称为解的爆破。弱解的定义可针对于如下一般形式的双曲守恒率方程
+\begin{equation} \label{eqqq1}
+  u_t+\nabla_x f(u)=0,
+\end{equation}
+其中$t\in R_+$，$x\in R^d$，$d\geq 1$，$u=u(t,x) \in R^n$，$n\geq 1$，$f(u)=(f_i^j(u))_{n\times d}$是$n\times d$的矩阵。
+
+弱解定义\cite{赖耕2010二维可压流体}：如果可测向量函数$u=(u^1,\cdots,n^n): \Omega \subset R_+ \times R_x^d \to R^n$满足
+
+1. $u \in L_{loc}^1(\Omega)$，
+
+2. $f(u) \in L_{loc}^1(\Omega)$,
+
+3. 对于所有$\phi \in C_0^\infty (\Omega)$都满足
+\begin{eqnarray*}
+  \int \int_\Omega u^j \phi_t + f^j(u) \cdot \Delta_x \phi dx dt=0, \hspace{0.3cm} j=1,\cdots,n,
+\end{eqnarray*}
+则称$u$在分布的意义下满足双曲守恒率方程 (\ref{eqqq1})，或称$u$为方程 (\ref{eqqq1})的一个弱解。其中$R$为实数空间，$L_{loc}^1$为强可测一阶可积空间\cite{王儒智2005banach}，$C$为复数空间。
+
+然而，由于缺乏针对于弱解有效的数学工具，如泛函分析等常用的标准微分工具都不再奏效，当前仅对单守恒率方程有完善的理论研究\cite{oleinik1959uniqueness,lax1954weak,dafermos1976generalized}，而对于方程组理论的研究，目前主要停留在一维问题，及两方程的二维问题。研究内容也从奢求理论解转移到证明方程解的存在性及数值方法解的收敛性上来。目前理论研究方法主要包括Glimm格式\cite{glimm1965solutions}和补偿列紧理论\cite{刘小民2012一维非严格双曲守恒律方程的,杨瑞芳2007非齐次双曲型守恒律组的粘性解与弱解的研究}，Glimm格式曾经是研究方程组存在性定理的唯一方法，1965年Glimm采用该方法证明了一维单方程的一般形式下''小初值''和特殊形式下''大初值''解得存在性，其中''小初值''指的是初始值总变差$TV(u_0)$充分小，并和Lax\cite{glimm1970decay}证明了$2\times 2$方程组在严格双曲，非线性情况下，初始扰动充分小假设下弱解的存在性。然而该方法依然存在有很多局限性\cite{liu1980vacuum}。补偿列理论在80年代由Tartar提出\cite{tartar1979compensated,tartar1983compensated}，之后得到广泛研究和应用，尤其在气体动力学方程中，如1983年DiPerna等\cite{diperna1983convergence}，1985年Ding等人\cite{ding1985convergence,chen1986convergence}，1994年和1996年Lions等\cite{lions1994kinetic,lions1996existence}，一系列工作解决了气体动力学方程组在不同比热比$\gamma$下如下形式的等熵流动方程的解存在性问题。
+\begin{equation*}
+  \left\{
+	\begin{array}{l}
+	  \rho_t+(\rho u)_x=0,\\
+	  (\rho u)_t+(\rho u^2+p(\rho))_x=0,\\
+	 \end{array}
+	 \right.
+\end{equation*}
+其中，$p=p_0\rho^\gamma$。但是我们知道，尽管在无黏、无传热流体中，流体穿过激波也并不是等熵过程，虽然后续工作，如Huang等人对等温过程也给出了解存在性证明，但是目前补偿列紧理论只能适用于严格双曲$2\times2$方程组
+\begin{equation*}
+ \left\{
+	\begin{array}{l}
+	  u_t+f(u,v)_x=0,\\
+	  v_t+g(u,v)_x=0.\\
+	 \end{array}
+	 \right. 
+\end{equation*}
+该方法也尚不能给出Euler方程解存在性证明。
+对于高维问题，目前是数学上的一个热点问题，当然也是难点，尚缺乏充分的理论结果\cite{sheng2002two,tan1994two,pang2016global}。
+不过我们都坚信，欧拉方程乃至NS方程都是有唯一解的，并终有一天会得到完善的数学证明。
+
+\subsection{黎曼问题和Euler方程近似解}
+
+尽管欧拉方程的解在数学上缺乏足够的存在性证明，但是我们仍然需要通过一定方式求得它的近似解，甚至近似解本身要比解的存在性研究更为久远。我们可以一直追溯到伟大的数学家、物理学家伯恩哈德$\cdot$黎曼，1858年，黎曼\cite{riemann1860fortpflanzung}在研究激波管问题时，巧妙的构造了Euler方程在一组特殊初值条件下的理论解，这组初值设定为任意间断值的阶跃函数，即
+\begin{equation*}
+  U=\left\{
+	\begin{array}{l}
+	U_L \hspace{1cm} x<x_0\\
+	U_R \hspace{1cm} x\geq x_0\\
+	\end{array}
+\right.
+\end{equation*}
+根据间断不同，黎曼构造出了四类解，分别由向前、向后稀疏波和向前、向后激波组成，并利用相平面分析方法给出了判别条件。该类Cauchy问题被称为黎曼问题。尽管黎曼问题在黎曼所有伟大工作中并不是那么显眼，但是该问题在求解拟线性双曲方程尤其在求解空气动力学方程中起到了第一块基石的作用\cite{gelfand1963some}，并且开创了“微分方程广义解”概念及“相平面分析”方法之先河，具有的超前性。1957年Lax\cite{lax1957hyperbolic,lax1960hyperbolic,lax1971shock}对一维黎曼解存在性和唯一性给出了证明。至此，一维黎曼问题得到彻底解决，它的理论解由冲击波，中心稀疏波和接触间断三类基本波构成。
+
+二维黎曼问题由于复杂性，到了80年代，甚至它问题的提法都尚未澄清。85年，张同和郑玉玺分析最简二维模型黎曼问题，成为二维问题的一个实质性突破。1990年他们在文献\cite{zhang1990conjecture}中给出一套分析和猜想，他们假设初始间断线在$t>0$ 时发出一道平面基本波，这样四道波相互作用会形成16类不同问题。随着数值计算的发展，Schulz和Carsten\cite{schulz1993classification}，Chang\cite{chang19952,chang20002}等，Lax和Liu\cite{lax1998solution}对这一猜想就行了数值模拟，并最终将二维黎曼问题完善为19类。目前为止，尚没有一类情况被完善证明\cite{肖伟2012气体动力学中压差方程双对称结构}。
+
+
+ 黎曼问题的重要意义并不仅在于它是对流方程的一组理论解，而在于它是构造更一般Cauchy问题近似解的基础，通过将一般的初值离散成有限个黎曼问题,然后采用拼接的方式得到下一时刻值的分布，以此来推进时间的发展，使得近似求解一般初值Euler方程乃至所有非线性对流方程成为可能。 
+
+ \section{计算流体力学和数值方法发展}
+理论研究虽然非常严谨，但是远远无法满足多变的工程需要。尤其在流体力学领域，早期工程研究主要通过实验模拟完成。随着计算机技术发展，数值研究的优点不断彰显，如，省钱、省人力、模拟更为灵活，同时能给出更为详细的计算资料，又如，数值模拟可以免受研究问题尺度、环境限制等。
+ \subsection{计算流体力学简介}
+ 采用数值离散逼近方法求解和研究方程原本就是数学中的常用手段，如有限差分方法早在19世纪前就经常用来分析方程性质。伴随着非线性双曲型守恒率方程理论的完善，以及人类计算能力的极大提高，通过数值方法求解双曲率方程成为数学研究的一大分支。尤其在流体力学研究中，通过数值方法求解流体力学控制方程已经发展成了独立且庞大的一门学科---计算流体力学(CFD)。
+ 
+ 学者们普遍将1922年Lewis Fry Richardson 采用数值方法预测天气的工作\cite{richardson2007weather}作为CFD开始的标志，在同时期，美国学者也曾采用世界上第一台通用计算机ENIAC进行了类似的CFD计算。实际上CFD尚未真正出现前，相关理论工作早已开始，我们上节已经讲述了大量此类工作，包括CFD出现后的大量工作，都可以被划归在数学范围内，我们当然也可以称它们为CFD的早期理论研究。如1928年，Coutant、Friedrichs 和Lewy\cite{courant1928partiellen}提出有限差分方法求解偏微分方程时收敛的Courant-Friedrichs-Lewy(CFL) 条件，值得注意的是CFL条件只是数值解收敛的一个必要条件，并非充分条件，很多论文甚至书籍提到这项工作时曾出现错误。
+
+ 计算流体力学成为了独立学科以后，研究重点也有了很大偏移，基于其工程背景的要求，区别于数学理论研究，CFD绝大部分工作都集中于数值方法的发展、工程应用的推广以及以CFD为工具的物理机理性研究上。从70年代开始，伴随着数值方法、模型方程、网格划分以及计算机软硬件能力不断提升，CFD真正得到了广泛应用，从航空、气象、船舶、化工到体育、动画等等各个领域都慢慢有了CFD的身影。1981年第一代商业化软件PHONICS出现，标志着CFD从科研向工程应用的延伸。进入90年代，一大批优秀的商业软件涌现，如FLUENT，CFX，STAR-CD等等，在此基础上，CFD工程师也成为许多行业中不可或缺的角色，推动着其他相关学科的研究和工业化的发展。
+
+ \subsection{数值方法的发展}
+ 流体力学方程的数值方法从大的框架可以分为有限差分法、有限体积法、有限元法、边界元法和有限分析法等。各个方法具有不同的求解区域离散方式和控制方程的离散方式，有各自的优缺点，本文采用有限差分方法。
+ 
+ 有限差分方法采用有限个网格节点代替连续的计算域，以泰勒级数展开等方法，将控制方程中的导数用节点函数值的差商代替进行离散。有限差分方法是一种直接将微分方程变为代数问题的数值方法，直观且简单，发展较为成熟。下面简单的回顾数值方法的发展和现状。
+ 
+1959年，Godunov\cite{godunov1959difference}首先采用数值方法求解非线性偏微分方程，文中他证明，想要保持方程的解是单调的，那么线性对流格式最多只有一阶精度，同时他认为一阶迎风格式在某种意义上是最好的，并且给出了如何将迎风格式应用在非线性守恒方程系统的方法。在Godunov的方法中，在每一个时刻，每个计算单元当成一个值，经过一个很短时间后，通过在单元交界面求解黎曼问题
+\begin{equation}
+  U_0(x)=\left\{ 
+	\begin{array}{l}
+	  U_L=U_i \hspace{1cm} x<x_{i+\frac{1}{2}}\\
+	  U_R=U_{i+1} \hspace{0.6cm} x>x_{i+\frac{1}{2}}\\
+	\end{array}
+ \right.
+ \end{equation}
+在该时间步结束时进行单元平均，可以得到新的分段的分布，以此推进方程的发展。Godunov方法整体具有一阶精度，即便处理间断时也能得到非常稳定计算结果。该工作也成为有限体积方法的基础。
+
+从Godunov之后数值方法的研究变得更为清晰，Godunov类方法主要包括，近似黎曼求解器、空间离散方法和时间离散方法。
+
+\subsubsection{空间离散方法}
+
+尽管Godunov定理将线性方法的稳定性和一阶格式紧紧的绑定，但是在西方学术圈，该研究并没有得到足够的重视，60和70年代，学者们仍然试图构造了一系列更高阶的格式。P.D.Lax和B.Wendroff\cite{lax1960systems}在1960年合作构造了二阶差分格式，尽管该格式由于耗散不足会导致计算激波时出现严重的振荡，但是仍然具有深远影响。Lax-Wendroff格式和它的一系列二阶、三阶改进格式\cite{rubin1967difference,maccormack1969effect,rusanov1970difference,burstein1970third}主导了对流方程研究领域超过了10年之久。
+
+直到70年代，才有人开始意识到Godunov定理的重要性并试图将其避开，这之后不到一年时间，就出现了两种无振荡的高精度对流格式，分别是Boris和Book提出的通量修正输运方法（Flux-Corrected Transport/FCT）方法和接下来Van Leer提出的MUSCL（Monotone Upstream Scheme for Conservation Laws）格式。FCT方法依然采用Lax-Wendroff方法类似的预估-校正结构，第一步采用一阶格式预估时间发展后的解，然后在校正步通过反扩散的方式移除大量的耗散误差，达到二阶或三阶精度。在第二步，修正的通量会和临时解进行比较，并且在需要的地方进行限制，保证没有新的极值点出现也没有极值增加。其中的对比过程让该方法成为非线性方法。经过1973年到1979年的发展\cite{boris1973flux,book1975flux,boris1976flux,zalesak1979fully}，FCT方法得到较广泛的应用，但是其并没有对后期的Godunov型高精度格式发展起到太大影响。同时期，Van Leer认为振荡是由于并非单调插值引起的，他继承了Godunov方法的特点，将单元内的常值分布变为线性分布或二次分布，然后非线性限制分布函数的一阶和二阶导数值，以此得到二阶精度的稳定MUSCL格式\cite{van1973towards,van1974towards,van1977towards,van1979towards1,van1977towards,van1979towards}。MUSCL类格式在80年代继续发展并成为当时最为流行的格式。FCT方法和MUSCL格式虽然相去甚远，但是它们都是通过方法中的非线性性质来防止计算中大梯度带来的数值振荡，在对流方法接下来的发展中这一特点一直得到了保存。
+
+同一时期，Harten在ICASE做访问学者，在这里他受到Roe关于迎风格式工作的影响\cite{harten1997upstream}，他考虑到无振荡插值只适用在一维空间，所以并不太接受无振荡插值的概念。实际上，他更多的受到Glimm和Lax关于一维标量守恒方程的解的总变差是不增的这一研究结果启发\cite{lax1970decay}。通过分析，Harten引入离散方程的总变差作为其振荡性质的度量\cite{harten1983high,goodman1985accuracy}，总变差同样可以应用在更高纬度求解上。由此，Harten提出了总变差不增（Total-Variation-Diminishing/TVD）方法，并推导出保证TVD性质的充分条件。之后学者们证明了TVD性质在线性方程中可以推导出单调插值条件。在当时，TVD方法迅速成为了高精度迎风格式的代名词。
+
+随着算法研究的发展，TVD类格式暴露出了它们固有的不足，如无法区分激波和光滑的极值点，导致光滑区域精度过低。在不久之后，Goodman和LeVeque\cite{goodman1985accuracy}认为TVD在高维离散中过于呆板，导致高维TVD对流格式精度不会高于一阶。Harten 因此重新审视了曾被他忽视的无振荡插值方面的工作，并和Osher合作提出了基本无振荡（Essentially Non-Oscillatory/ENO）格式\cite{harten1986some,harten1987uniformly}。ENO格式的基本思想是在构造插值多项式时采用自适应选取最光滑插值模板的方式来避免引入数值振荡。ENO格式不再满足TVD性质，允许总变差有微小的增加，但是仍需满足总变差有界（Total-Variation-Bounded/TVB。 
+
+ENO格式单一选取模板的策略虽然能够达到无振荡的目的，然后由于光滑区模板的浪费造成精度仍然不足。1994年Liu等人\cite{liu1994weighted}提出了加权的思想，将ENO的所有子模板进行凸组合加权取代原有的选取最光滑的模板的方法，以此来构造光滑区的高精度并保持间断区域ENO的性质。该文章中构造了最早的三阶有限体积WENO格式。随后，1996年Jiang和Shu\cite{shu1988efficient}构造了经典的五阶WENO格式并给出了光滑因子和非线性权重构造的基本框架。
+
+进入新世纪，以WENO格式为代表的高精度激波捕捉格式应用更为广泛，WENO本身也在不断地发展和完善中。2005年，Henrick\cite{henrick2005mapped}指出Jiang和Shu所构造的经典的五阶WENO格式（WENO-JS）在导数等于0的极值点达不到理想精度。他构造了一个投影函数来到道极值点理想精度（WENO-M），在2008年，Borges等人建议采用五点模板来构造高阶的光滑因子，并发展了WENO-Z格式。另一方面，更高阶的WENO格式也得到发展，如七阶、九阶甚至十一阶WENO\cite{balsara2000monotonicity,gerolymos2009very}以及中心型WENO格式等\cite{levy2000compact,martin2006bandwidth}。
+
+从以上回顾可以看出，空间格式的研究主要关注在保证间断稳定性情况下提高光滑区域的精度。然而，想保证稳定性，一定数值耗散是不可避免的，因此协调、处理这一对矛盾是格式研究的一个重点和难点。尽管通过构造更高阶的WENO格式可以提高光滑区域的精度，但在在计算小尺度波时，耗散仍然可能过大\cite{zhang2008development,johnsen2010assessment}。另外，WENO格式本身需要较高的计算量，通过这种方式提高精度往往是得不偿失的。
+
+目前提高光滑区精度主要有两种方法，一种方法是借鉴有近似谱方法分辨特性的紧致格式\cite{lele1992compact}的优点，构造紧致重构WENO（CRWENO）格式; 另一种方法是结合高精度线性格式构造杂交格式或称混合格式（Hybrid Scheme）。CRWENO格式的思想是将低阶紧致模板做WENO格式的非线性加权重构得到激波稳定的高阶紧致格式，这部分工作主要见于文献\cite{jiang2001weighted,ghosh2014weighted,deng1997compact}等。研究表明CRWENO和传统WENO格式相比，的确具有更好的小尺度分辨能力\cite{zhang2008development}。值得一提的是，2015年Peng和Shen\cite{peng2015improvement}在Shen等人\cite{shen2014improvement,shen2014multistep}的多步加权WENO思想基础上，构造了多步加权的CRWENO格式，该格式基于紧致格式的隐式特性，通过改善间断附近过渡点精度来改善全局精度，取得了良好的效果。杂交格式和CRWENO格式相比，由于它思想简单，有丰富的选择，因此应用和研究都更为广泛。杂交格式采用间断识别器来区分光滑区域和间断区域，然后采用激波捕捉格式和其他低耗散、计算量小的线性格式在不同区域求解，达到兼顾两者优点的目的。常用的杂交格式有混合中心-WENO格式\cite{hill2004hybrid,kim2005high}，混合紧致-WENO格式\cite{pirozzoli2002conservative,ren2003characteristic}、混合谱方法-WENO格式\cite{costa2007multi}等。由于间断识别器在杂交格式中至关重要，发展间断识别器也是杂交格式研究的一个热门领域。2006年Shen和Zha\cite{shen2011generalized}以WENO-JS和WENO-Z格式的光滑因子为基础，提出了一种无参数的间断识别器，并且构造了将激波当成内边界处理的有限紧致格式。
+
+
+\subsubsection{近似黎曼求解器}
+近似黎曼求解器的发展是和空间离散方法同步进行的。黎曼求解器是为了解决非线性方程线性化近似的问题。
+在Godunov等的早期工作中，学者们采用基于理论解的''精确黎曼求解器''，但是这过于耗费计算量，并且较近似李曼求解器比也没有优势。因此，发展黎曼问题的数值解或称为''近似黎曼求解器''成为CFD算法研究的另一大主要方面。由于黎曼求解器主要工作就是将非线性方程分裂为正向和负向的波便于采用迎风格式，所以也将其称为分裂方法。分裂方法并没有和空间离散方法类似的清晰的时间脉络，种类也比较繁多，具体可以分为通量差分分裂（flux-difference splitting）、流通矢量分裂（flux-vector splitting）、特征重构方法和对流迎风分离压力（Advection upstream splitting method/AUSM）等。
+
+通量差分分裂方法基于对精确黎曼求解器的模拟，该类方法又称为Godunov类方法，如最经典也最为常用的基于当地Jacobian矩阵线化的Roe求解器\cite{roe1981approximate}、基于简单波分解的Osher求解器\cite{osher1982upwind}、基于两波假设的HLL求解器\cite{harten1983upstream}以及可以模拟接触间断的基于三波假设的HLLC求解器\cite{toro1994restoration}、需要迭代的双激波近似黎曼求解器\cite{liu2005ghost}和为了避免红玉现象而提出的旋转混合求解器等。
+
+流通矢量分裂方法基于无碰撞Boltzmann方程，因此该类方法也称为Boltzmann类方法\cite{harten1997upstream}，流通矢量分裂方法将相邻单元间的分布函数进行了抹平，因此较通量差分分裂有较大的误差，但是由于它们通常形式简单、易于实现，所以仍然有较多的应用。常用的流通矢量分裂方法有Lax-Friedrichs（LF）分裂\cite{lax1954weak}，Steger-Warming（SW）分裂\cite{steger1981flux}和Van-Leer分裂\cite{van1982flux}等。
+
+特征分裂方法（特征重构方法）不同于在物理空间进行分裂的FDS和FVS方法，它的所有分裂和重构都在特征空间进行。在特征空间求得导数的近似后再变换回物理空间。该类方法具有最好的求解质量，严格保证了局部特征方向，然而由于其过大的矩阵运算，目前仅常用在一维问题的求解中。所有流通矢量分裂的分裂方法都可以应用在特征分裂中。
+
+对流迎风分离压力方法是从Van Leer分裂方法发展而来的，它们将无粘通量分裂为与特征速度相关的对流项和与特征声速相关的压力项，对其进行分别处理。该类方法兼具了FVS和FDS的一些优势，具有iFVS的简单性和算效率，又具有FVS的精准性，自Liou在1993年\cite{liou1993new}提出以来就得到了广泛的关注和发展。目前应用较为广泛的有不存在''Carbuncle''现象的AUSM+格式\cite{liou1996sequel,liou2006sequel}、激波计算稳定的AUSMDV格式\cite{wadaaccurate}，以及结合了他们优势的AUSMPW\cite{kim1998improvement}和AUSMPW+\cite{kim2001methods}格式。以上这些方法由于将总焓从能量方程分出，所以可以统称为H-CUSP（Total enthalpy convective upwind and split pressure）方法，然而从特征值系统看的话，H-CUSP类方法并不能沿着传播方向保持守恒\cite{zha2005low,zha2005low}，而总能却能保持守恒，因此Zha提出在对流项使用总能的E-CUSP格式\cite{zha1993numerical,zha1999numerical,zha2008calculation}，该格式具有低耗散且更为稳定的效果。
+
+\subsubsection{时间离散方法}
+在Godunov类方法推广开前的60-70年代，学者们往往将时间和空间统一离散，如当时经典的Lax-Wendroff格式等，时间和空间精度也需要统一分析。随着Godunov类方法普及，由于它们属于半离散方法，时间离散和空间离散需要独立进行，因此对流方程的时间离散方法也得到发展。
+
+时间离散方法其实是一个极为古老的问题，它们基本上都是来源于20世纪以前对如下的常微分方程求解
+\begin{equation}
+  \frac{dx}{dt}=f(t,x),x(0)=x_0,
+\end{equation}
+如最早的一阶Euler方法（1768年）。1895年Runge和1900年Heun尝试在Euler方法中增加子时间步，到1901年Kutta最终给出了显式Runge-Kutta方法的一般形式。隐式方法的发展同样可以追溯到1824年，Cauchy为了进行误差估计，在Euler方法中引入中间变量，间接的构造了隐式Euler格式。但是直到1955年才由Hammer和Hollingsworth在Radau格式基础上构造了第一个二阶的隐式Runge-Kutta类格式\cite{hammer1955trapezoidal}。
+
+Runge-Kutta格式并不单指一种格式，而是一系列的总称，如三阶Runge-Kutta就可以有无数种系数组合。1988年，Shu\cite{shu1988total}根据对流方程解的TVD性质，给出了一组三阶Runge-Kutta的系数组合，该格式被称为TVD Runge-Kutta格式。TVD Runge-Kutta格式在对流方程数值模拟中得到广泛采用。
+\section{间断问题数值研究现状和不足}
+在1.2节我们笼统的回顾了一般流体力学的数值方法，通过这些脉络性的介绍，我们从单介质流体力学角度了解了Euler方程数值求解体系的发展过程，但是这些介绍远没有触及本文所要关注的间断问题研究现状和遇到的问题。本小结将分别介绍和总结和激波、物质界面以及爆轰波相关的研究前沿。
+\subsection{激波捕捉格式和激波分辨率}
+在Godunov求解体系中，数值稳定性一直是处在第一位的。无论是早期的无振荡插值、总变差不增还是现在WENO格式的基本无振荡性质的提出，都是为了保证计算的稳定性。一直以来，WENO格式改进的主线思路也是在保证激波稳定性的基础上提高光滑区域的精度，尤其关注非线性权重容易出问题的极值点。尽管光滑区域精度提高的确也能改善激波的分辨效果，但是这也只是高精度带来的附属效果。很少有人关注在激波区域附近传统WENO格式是否能有所改善进而改善其对于激波的分辨率。
+
+2014年，Shen和Zha\cite{shen2014improvement}分析了现存的五阶WENO格式发现，它们在如图\ref{fig1}所示的过渡点的精度只有三阶，激波分辨率不足可能对激波引起的分离流、激波/湍流相互作用等问题的计算准确度产生影响。在该文章中，他们在两个临近四阶模板上构造了两个四阶通量和一个光滑/间断识别器来提高过渡点精度。在更早的工作中\cite{shen2001fifth}，Shen等人曾提出多步重构的思想，并用它来解决传统WENO-JS格式的光滑因子在极值点不满足$\beta_k=D(1+O(\Delta x^2))$的问题。尽管该方法并不能满足极值点五阶收敛的充分必要条件\cite{henrick2005mapped}，但是多步重构的思想仍然有重要的意义。
+
+本文基于\cite{shen2014improvement}的研究，给出了一种新的WENO格式构造方法，该方法结合了Henrick的投影函数，并通过逐阶构造的方法来提高WENO-Z在过渡点精度、降低耗散，进而改善方法对于激波的分辨率，第四章对此有详细的研究，并通过算例验证了该方法在求解和激波相关的问题时，的确有更好的效果。
+
+\subsection{物质界面和界面追踪方法}
+在物理上，界面一般定义为不同物质或物质不同物理状态间分界面。理论上，界面是存在一定厚度的，界面具有和两边完全不同的特殊物理性质，且含有界面能。但在多相流体力学中，由于界面真实厚度只有分子的量级，在绝大多数模拟中，我们将界面当成没有厚度的几何分界面，同时忽略跨过界面的扩散作用。
+
+我们知道，数值耗散会抹平原本清晰的分界面，如果想要的到准确的界面位置就需要使用界面方法或称为界面模型。目前，尽管界面方法有多种分类方式\cite{tryggvason2001front}，但是多数学者都将其分为界面追踪方法和界面捕捉方法两类\cite{bonometti2007interface}。
+
+界面追踪方法是借助拉格朗日技术，采用运动网格或标记粒子来实时跟踪界面位置的变化。如锋面追踪（Front-tracking）方法\cite{unverdi1992front,de2004front,tryggvason2001front}和标记（Marker）\cite{popinet1999front}方法就是通过引入第二套移动网格来高准确度的给出界面位置和曲率。该类方法的难点是在于对界面破碎和合并的模拟较为复杂\cite{torres2000point,shin2002modeling}。Particle-in-Cell（PIC）方法\cite{harlow1965numerical,brackbill1988flip}和Marker-and-Cell（MAC）方法\cite{tome1994gensmac,mckee2008mac}是通过在界面附近引入拉格朗日粒子，然后追踪粒子的运动来跟踪界面位置。粒子类方法是最为古老的界面方法\cite{mckee2008mac}，但是应用非常有限，究其原因，计算量和存储量过大是粒子类方法的一个限制，在流场压缩和膨胀的时候粒子点的管理是另外一个难点\cite{unverdi1992front}，除此之外，粒子类方法还难以给出准确的几何界面线（面）。
+
+另一类界面方法完全是基于欧拉技术，该类方法在欧拉网格内引入界面方程的形式来定义界面的位置。最典型的方法当属水平集（Level Set）方法和流体体积分数（Volume of Fluid/VOF）法。Level Set方法\cite{osher1988fronts,sussman1994level,sethian1999level}采用一个光滑的距离函数，用距离函数为零的位置来定义界面。自从该方法提出后，由于它优美的数学理论、漂亮的计算结果和应用简单，Level Set方法得到极为广泛的发展和应用。当然，Level Set也有诸多不足，如鲁棒性差，重新初始化计算量大，耗散大等，尤其被学者们诟病的是它的守恒性较其它界面方法都要更差。
+VOF方法\cite{hirt1981volume,youngs1982time,lafaurie1994modelling}也属于欧拉的框架，该方法在每个单元间含有一个代表某一相流体的体积分数，当体积分数介于0和1之间则认为该单元跨过界面，通过捕捉体积分数来获得界面位置。不同于Level Set方法，VOF方法具有精确地守恒性。该方法难点在于每一步需要有效的界面重构方法。界面重构决定于当地的体积分数和梯度方向，界面可以通过分段线性插值得到\cite{scardovelli1999direct}，但该过程目前仍然过分复杂也难以取得预想的效果。
+
+整体来讲，界面追踪方法更直观，在处理界面的融合和破裂时有其优势；界面捕捉方法更易于实现，在处理界面伴随流场压缩或膨胀时有优势\cite{li2008hybrid}。
+将它们彼此结合来避免它们各自的缺陷是目前一个比较流行的思路，其中应用最多的是和粒子类方法相结合，比如利用粒子方法的守恒性和Level Set方法的光滑性的粒子-水平集（Particle Level Set）方法\cite{enright2002hybrid,enright2005fast}。然而这种结合即增加了方法实现的难度，在复杂问题时也并不那么奏效。
+
+本文尝试提出一种基于欧拉网格，具有界面追踪思想的粒子方法。该方法直接用来求解对流方程
+  \begin{equation}
+	\frac{\partial z}{\partial t}+u\frac{\partial z}{\partial x}+v\frac{\partial z}{\partial y}=0
+\end{equation}
+该方法中，引入两类拉格朗日信息点，并不同于MAC方法中的标记粒子，也不同于PIC方法中携带全部流体信息的粒子，信息点携带距当地网格中心距离信息和对流信息$z$。两类信息点分别被称为单元点（Cell Point）和粒子点（Particle Point），在计算开始，每个单元分别在单元中心引入一个信息点，计算中同时根据速度场进行追踪。对于粒子点，如同传统的朗格朗日粒子一样全域追踪。对于单元点，每一步我们通过有效的生成算法，来保证每个单元只含有一个单元点。根据单元点位置和对流信息，我们可以捕捉界面的位置。详细过程将在第四章中说明。
+
+\subsection{刚性化学反应流和爆轰波}
+化学反应流（Reacting flow）也称为流体热化学（Aerothermochemistry），指的是在流动过程中伴随着化学反应产生的传质传热过程。在化学反应流中，本文主要关注刚性化学反应流和爆轰波两个与激波相关的物理问题。
+\subsubsection{刚性化学反应流}
+在数值模拟化学反应流时，如燃烧或高速化学反应等，常常会遇到化学反应时间尺度和流动时间尺度相差悬殊的情况，这种情况既限制了数值模拟的时间步长也限制了空间网格尺度，不论是时间步过长还是空间网格不足都可能导致错误的计算结果，这一问题被学者们称为化学反应刚性问题\cite{colella1986theoretical,leveque1990study,bourlioux1991theoretical}，求解的流体也被成为刚性化学反应流。
+
+一般的化学反应流模拟中，我们都可能会遇到一定的化学反应源项刚性，但是这种刚性只体现为时间尺度问题。时间刚性尽管可以通过算子分裂方法减小化学反应步时间步长或者采用隐式时间方法可以解决这一问题\cite{najm1998semi}，但是想构造高阶的、刚性稳定的时间方法构造仍然有巨大的难度，而高阶隐式格式又由于需要过大的计算量也并非理想的选择。
+
+
+
+
+
+
+也就表明，数值求解方法已经成为数学上研究弱解的主要工具。
+
+
+%
+%关于非线性双曲守恒方程的理论进展并不显著，由于解的不连续性，绝大多数标准微分工具不能使用，泛函分析也同样不奏效，也同样无法使用
+%本文的研究内容如下：
+%\begin{enumerate}[1)]
+%    \item 针对CRWENO格式在激波附近精度降阶的问题，我们提出一种多步加权的方式，新格式在激波附近区域的精度得到较大提高。
+%    \item 针对混合格式的关键问题—————开关/加权函数，我们提出了一种具有高精度的开关函数，该函数不含问题相关的参数，具有较好的普适性和鲁棒性。利用这一开关函数，可以发展一类耗散极低的混合激波捕捉格式，作为一个特例我们发展了一种七阶的紧致混合格式。该格式所使用的模板与五阶CRWENO格式一样，但精度和耗散性质都优于五阶CRWENO格式，在光滑区能达到七阶精度。通过大量的数值比较，证明了所提出的函数及新格式的优越性。
+%    \item 为将所发展的数值方法应用到实际的可压缩复杂流动计算中，我们发展了两套高性能并行求解器。基于GPU处理器，我们开发了一套求解化学反应流动的快速CFD代码，其速度要比CPU程序快20倍。对于大规模可压缩湍流计算，我们开发出了一套三维并行CFD程序，能够以极高的并行效率实现湍流的大规模数值模拟。
+%    \item 利用三维大规模并行程序，我们计算了Taylor-Green涡流动，获得了丰富的流动结构，验证了程序的正确性。计算了可压缩各向均匀同性湍流，分析了压缩模态的作用区域。通过对超声速平板边界层的直接数值模拟，研究了粗糙元诱导边界层转捩的问题，模拟了流动转捩的全过程。在两种不同的来流马赫数条件下，数值结果表明：低马赫数条件比高马赫数更容易转捩，并且高马赫数的转捩有不稳定、间歇性的转捩现象。
+%    \item 由于凝聚炸药爆轰中强非线性的状态方程，利用理想气体的Riemann问题求解方法将遇到一些难以克服的问题。为此，我们发展了AUSM-FVS方法，极大地减少了对流数值通量对状态方程的依赖性，进一步结合高阶WENO 重构，发展了GPU求解程序，研究了凝聚态物质的爆轰现象，准确模拟了凝聚态炸药爆轰波的直角衍射过程，清晰的捕捉到了未完全反应区域及压力波壁面反射现象。
+%\end{enumerate}
+

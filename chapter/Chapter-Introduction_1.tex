@@ -1,0 +1,563 @@
+\chapter{引言}\label{chap:introduction}
+在早期的流体力学研究中，理论分析和实验是研究的主要手段。随着人类对流动现象理解的加深和研究问题的复杂化，很多现象，例如恒星的形成演化过程、超新星爆炸过程、高超声速流动等，已经难以通过实验手段复现或者无法获得细致的局部信息。随着二十世纪$40$年代计算机的诞生和近几十年来计算机性能的飞跃，数值模拟逐渐成为现代流体力学研究重要的方法和手段。
+
+模，法也；拟，度也。二者放在一起，即模拟，便是根据理解来模仿、仿效的意思。因此，对自然现象的模拟就是根据人类所获得的自然规律来模仿、仿效自然。通过模拟自然现象，人类能够验证从自然中理解、发现的新现象或探索利用自然规律的途径。
+
+数学是描述人类对自然规律理解的语言，计算机则是复现自然规律的工具。如果说用数学描述的自然规律是诗歌，那么通过计算机根据自然规律模拟自然现象就是将诗歌所描述的意境绘制出来。对流动现象的数值模拟就是将“风起云涌”、“碧波荡漾”和“斗转星移”等“画”在计算机中。然而流体的运动规律错综复杂，并不是那么好“画”。子曰：“知者乐水，仁者乐山；知者动，仁者静；知者乐，仁者寿。”古代的智者陶醉于水那周流无滞且深邃通达的智慧中，而今天的科学家们则沉浸在对流体力学规律的探索中。经过千百年的探索，人类已经推导出能够描述流体一般运动规律的Navier-Stokes方程。然而准确模拟流动现象对于科学家和工程师来说仍然是个具有挑战性的问题，特别是对于存在多种流动结构的可压缩流动。无论在天体演化、气象研究还是高速飞行器设计中都能看到可压缩流动的身影。准确模拟可压缩流动无疑对于科学研究和工程设计都有着重大的意义。
+
+本章首先将介绍可压缩流动的主要特点并给出流动的控制方程；其次，介绍可压缩流动方程的数值求解方法并着重介绍高精度激波捕捉格式；再次，回顾了现有的可压缩流动高精度数值方法并分析其待改进之处；最后，给出本文主要研究内容。
+
+\section{可压缩复杂流动的主要特点和控制方程}
+
+可压缩流动中不仅可能出现激波间断和具有时间和空间多尺度特点的湍流，还有各种结构的相互作用。为了准确模拟具有多种流动结构及其相互作用的可压缩复杂流动，需要对各种流动结构的特点有一定的了解。在对流动现象理解的基础上，对于控制方程的数学理解将帮助建立正确的数值方法从而准确高效地实现对方程的数值求解。
+
+\subsection{可压缩复杂流动的主要特点}
+流体存在可压缩性，在外力作用下流体的体积会发生变化，衡量流体压缩性的无量纲参数是马赫数。马赫数是流动速度与声速的比，也可理解为流体动能与内能之比：
+$$
+Ma=\frac{U}{c},
+$$
+其中$U$是流动的特征速度，$c$是声速。当流动的马赫数超过$0.3$时，流体的压缩性将对流动产生显著影响。随着马赫数逐渐增加，并接近声速，流场中可能出现不连续的间断结构：激波。激波两侧流体的速度、密度和压力都发生剧烈变化，且这一变化满足守恒律。激波常出现在高速飞行器表面或头部、发动机进气道及燃烧室中（如图\ref{chapter1fig:shocks}），它对于飞行器的热性能、气动力、发动机的效率等都有着显著的影响。
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/scramjet}
+\caption{超声速燃烧冲压发动机中的激波（图片来自：\url{https://www.nasa.gov/centers/langley/images/content/142861main_x43a_intscramjet_550.gif})}
+\label{chapter1fig:shocks}
+\end{center}
+\end{figure}
+除了激波外，流动状态不同时还可能出现接触间断。接触间断两侧流体的压力和速度连续，但密度不连续，例如，水面（空气和水的交界面）就是一种接触间断。相对于激波，接触间断是一种不稳定的结构，在外界扰动的作用下，接触间断会失稳，间断两侧的物质会发生混合，这一不稳定被称为Kelvin–Helmholtz不稳定。天空中的波浪状的云就是典型的K-H不稳定现象(如图\ref{fig:khcloud})。
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=0.6\textwidth]{khcloud.jpg}
+ \caption{Kelvin–Helmholtz云：大气中上下两层密度不同的气流发生失稳形成波浪状的云（图片来自：\url{http://earthsky.org/earth/kelvin-helmholzt-clouds}）}
+ \label{fig:khcloud}
+\end{figure}
+激波和接触间断的厚度通常在一个分子自由程尺度，因此在宏观流动中，可以认为激波和接触间断是一个没有厚度的界面，在数值计算中也把这两种结构看作是数学上不连续的间断结构。在可压缩流场中除了可能出现间断结构外，通常还伴随着其他波系的出现，这些波系包括压缩波和膨胀波。流体通过压缩波后压力会增加，而经过膨胀波压力会降低。压缩波汇聚相交产生激波，因此经过激波后流体被强烈的压缩。然而不存在膨胀激波，这是因为膨胀激波违反热力学第二定律。
+
+守恒方程的间断问题被称为黎曼（Riemann）问题。Menikoff\cite{Menikoff1989The}对连续介质的黎曼问题做了详细而深入地讨论。连续介质黎曼问题的解不仅与初值有关，还与物质的状态方程有关。对于理想气体来说，由于状态方程是齐次的，因此求解比较简单。而对于状态方程非线性比较强的物质，其黎曼问题的求解就极其困难，无法给出解析解。黎曼问题的数值求解一直是计算流体力学中一个重要的待解决问题，虽然理想气体的黎曼问题能够精确求解，但是由于求解精确解需要很大的计算量，因此人们提出了各种近似黎曼求解器，最著名的是Godunov 格式\cite{godunov1959difference}。Toro\cite{toro2001shock} 介绍了多种针对理想气体发展出来的近似黎曼求解器。理想气体的近似黎曼求解器已经发展的非常成熟，然而对于高度非线性的状态方程，目前仍然没有一种很好的方法求解黎曼问题，只能从现有的理想气体近似黎曼求解器出发做进一步地线性近似。
+
+湍流是流体力学中又一重要问题。从$1883$ 年Reynolds的湍流实验以来，经过近一百五十年的研究，人类对于湍流的深层机理仍没有研究透彻。衡量湍流最重要的参数是雷诺数。雷诺数$Re$是流体惯性力和粘性力的比:
+$$
+Re=\frac{\rho U L}{\mu}
+$$
+其中$\rho$是密度，$U$是特征速度，$L$是特征长度，$\mu$是粘性系数。当雷诺数超过一定临界数值时，流动将从层流变为湍流，这一过程称为转捩。与层流相比，湍流中流体运动变化剧烈，难以预测，至今没有一个能够准确描述所有转捩及湍流结构的模型。
+
+层流转捩为湍流有多种途径。通常，人们更为关注边界层的转捩途径。在一定频率的小扰动（T-S 波）作用下，层流边界层会逐渐失稳直至转捩\cite{klebanoff1955characteristics}，这一过程称为自然转捩（nature transition）。在自然转捩过程，扰动会经历一个平缓的线性增长过程，随后快速增长发生转捩。当扰动强度较大时，扰动不经历线性增长过程，转捩过程较为剧烈，这种转捩称为旁路转捩（Bypass transition）\cite{henningson1993mechanism,jacobs2001simulations,andersson1999optimal}。在曲率比较大的物面上，流动会形成Gotler涡，并失稳发生转捩\cite{floryan1982stability,floryan1991gortler,hall1983linear}。 在后掠机翼上还会发生由于展向流动失稳造成的横流转捩现象\cite{white1991high,joslin1994role,wassermann2002mechanisms,malik1999secondary}。 以上几种失稳过程中，壁面虽然可能有曲率，但整体上是光滑的。当壁面上存在不光滑因素时，如机翼上的划痕、铆钉等，边界层也会发生转捩，称为粗糙诱导转捩（Roughness Induced Transition）\cite{bernardini2012compressibility,muppidi2012direct,schneider2008effects,morkovin1990roughness,reshotko2004role}。对于各种转捩现象，人们进行了大量的研究但由于影响因素太多，尚未形成统一的理论。
+
+湍流具有极宽的频率范围\cite{frisch1995turbulence}。流动中最大的尺度称为含能尺度（Energy-containing range），流动中主要能量包含在这一尺度的涡结构中。尺度小于含能尺度的区域称为普适平衡区（Universal equilibrium range），在这一区域中涡受到粘性和对流的作用。普适平衡区又可分为惯性子区（Inertial subrange）和耗散区（Dissipation range），大于泰勒尺度$\lambda$的区域为惯性子区，这一区域中涡主要受对流作用；小于泰勒尺度的区域为耗散区，粘性影响逐渐起到主要作用。Kolmogorov尺度是最小耗散涡的尺度，处在这个尺度下的流动结构，在粘性力作用下动能被耗散为热能，此尺度的雷诺数$Re\approx1$。
+
+湍流可以是三维的也可以是二维的，当流动的一个方向尺度远远小于另外两个方向的尺度时，可以存在二维湍流\cite{kraichnan1980two,boffetta2012two,batchelor1969computation}。 与三维湍流相反，二维湍流的涡量是向上传递，即涡量由小尺度结构传递给大尺度结构\cite{kraichnan1967inertial,kraichnan1971inertial}。 研究发现，三维湍流中也存在这一逆输运过程，但其强度要小于正输运过程，因此总体上三维湍流涡量由大尺度结构流向小尺度结构。二维湍流的逆向输运过程类似于物质的波色-爱因斯坦凝聚\cite{smith1993bose}因此吸引了许多研究者的注意。同时，二维湍流也能够在一定程度上帮助人们理解黑洞、星系和台风（飓风）的形成\cite{leith1971atmospheric}。
+
+在跨声速和超声速流动中，当湍流的脉动速度接近声速时，局部区域可能出现小尺度的激波，由于这种激波尺度很小，因此被称为Shocklet。 研究表明\cite{samtaney2001direct}，Shocklet的尺度与Kolmogorov尺度相当。也就是说，要想准确模拟可压缩湍流，数值方法需要能够在Kolmogorov尺度上分辨激波，这给数值格式提出了很高的要求。
+
+为了准确模拟湍流流动，计算时要求空间分辨尺度达到Kolmogorov尺度，由于$\eta/L \sim Re^{-3/4}$，$L$是流动的特征尺度。三维流动模拟时需要$(L/\eta)^3=Re^{9/4}$ 数量级的网格，计算量巨大。为了减小计算量，人们推导出了雷诺平均NS方程（RANS），雷诺平均方程会含有雷诺应力项造成方程的不封闭。为封闭求解雷诺平均方程，人们提出了各种湍流模型，这些模型大致可分为代数模型、涡粘模型和雷诺应力模型
+\cite{wilcox1998turbulence}。以上提到的几类湍流模型大多有一定的工程背景，对于某些流动能够获得很好的效果，而对于另一些有一定的误差，且大部分模型无法预报转捩。对于马赫数较大的可压缩流动，湍流模型通常不能准确地预测壁面热流，需加深对可压缩湍流的理解才能提出更为准确的可压缩湍流模型。大涡模拟（large eddy simulation）从另一个角度来模拟湍流，其核心思想是对于网格可分辨的尺度直接求解，对于小于网格的尺度（或亚格子尺度）则用模型代替\cite{sagaut2006large}。大涡模拟对于空间湍流的效果较好，但对于壁面湍流仍然需要大量的网格才能达到理想的效果。为提高大涡模拟对壁面湍流的准确度，人们又提出了在壁面附近使用湍流模型在远离壁面使用亚格子模型的方法，称为分离涡模型（Detached eddy simulation）\cite{spalart2009detached,spalart2006new}。随着模型准确度的提高，LES 和DES 在工程上逐渐也有了较为广泛的应用。 近几年来，由于计算机性能的显著提升，人们逐渐开始采用直接数值模拟（Direct Numerical Simulation，DNS）的方法来研究湍流，即不采用任何湍流模型直接模拟湍流的各个尺度。DNS在湍流研究中的广泛采用在一定程度上推动了高精度格式的发展，人们不断发展出精度更高效率更高的数值方法来提高DNS的准确度。
+
+湍流和间断结构的相互作用使得可压缩流动更为复杂。对于层流边界层来说，激波与边界层相互作用会导致边界层发生分离、转捩、再附等一些列复杂的现象。在发动机内流中，边界层的流动形态（层流或湍流）对于燃料的混合起着决定作用。对于高速飞行器，分离点的位置会影响气动力的分布。对这些现象的准确捕捉直接决定了壁面热流的强度以及下游边界层的结构，因此对飞行器以及发动机的设计具有重要意义。
+\subsection{可压缩复杂流动的控制方程}
+可压缩复杂流动的控制方程为Navier-Stokes方程，该方程由英国的Stokes和法国的Navier在十九世纪独立推导。Navier-Stokes方程描述的是在粘性力作用下流体的运动规律，以下给出无量纲的Navier-Stokes方程：
+\begin{align}\label{chapter1eq:1}
+U_t+F_x+G_y+H_z=\frac{1}{Re}F^v_x+\frac{1}{Re}G^v_y+\frac{1}{Re}H^v_z
+\end{align}
+向量U，F，G，H， $F^v$，$G^v$，$H^v$ 为:
+\begin{equation}
+\nonumber
+\begin{split}
+U &=\left[\begin{matrix}
+\rho,
+\rho u,
+\rho v,
+\rho w,
+E
+\end{matrix}
+\right],\\
+F &=\left[\begin{matrix}
+\rho u,
+\rho u^2+p,
+\rho uv,
+\rho uw,
+Eu+pu
+\end{matrix}
+\right],\\
+G &=\left[\begin{matrix}
+\rho v,
+\rho uv,
+\rho v^2+p,
+\rho vw,
+Ev+pv
+\end{matrix}
+\right],\\
+H &=\left[\begin{matrix}
+\rho w,
+\rho wu,
+\rho wv,
+\rho w^2+p,
+Ew+pw
+\end{matrix}
+\right],\\
+F^v &=\left[\begin{matrix}
+0,
+\tau_{xx},
+\tau_{yx},
+\tau_{zx},
+u\tau_{xx}+v\tau_{yx}+w\tau_{zx}+q_x
+\end{matrix}
+\right],\\
+G^v &=\left[\begin{matrix}
+0,
+\tau_{xy},
+\tau_{yy},
+\tau_{zy},
+u\tau_{xy}+v\tau_{yy}+w\tau_{zy}+q_y
+\end{matrix}
+\right],\\
+H^v &=\left[\begin{matrix}
+0,
+\tau_{xz},
+\tau_{yz},
+\tau_{zz},
+u\tau_{xz}+v\tau_{yz}+w\tau_{zz}+q_z
+\end{matrix}
+\right]
+\end{split}
+\end{equation}
+其中$\rho$是密度，$u$是x方向速度，$v$是y方向速度，$w$是z方向速度，$p$是流体的压力，$E$是总能量
+\begin{equation}\label{chapter1eq:2}
+E=\rho e+ 1/2\rho(u^2+v^2+w^2),
+\end{equation}
+$e$是流体单位质量的内能，通常有：
+$$
+e=e(\rho,p).
+$$
+其具体的表达形式由状态方程给出。$\tau_{ij}$ 是流体的粘性应力
+ \begin{equation}\label{chapter1eq:3}
+ \tau_{ij}=2\mu S_{ij}+\lambda S_{kk}\delta_{ij}, \quad S_{ij}=\frac{1}{2}\left(\frac{\partial u_i}{\partial x_j}+\frac{\partial u_j}{\partial x_i}\right), \quad i,j=x,y,z
+\end{equation}
+$S_{ij}$称为应变率张量，$\mu$为动力粘性系数（或第一粘性系数），$\lambda$ 为体积（bulk）粘性系数（或第二粘性系数）。对于温度不太高的流体，Stokes 假设认为：
+\begin{equation}\label{chapter1eq:4}
+\lambda + 2/3 \mu = 0
+\end{equation}
+因此可以得到
+\begin{equation}\label{chapter1eq:5}
+ \tau_{ij}=\mu\left( \frac{\partial u_i}{\partial x_j}+\frac{\partial u_j}{\partial x_i}-\frac{2}{3}\frac{\partial u_k}{\partial x_k} \delta_{ij} \right).
+\end{equation}
+热传导项为：
+\begin{equation}\label{chapter1eq:6}
+q_i=\mu \frac{C_v}{Ma^2Pr}\frac{\partial T}{\partial x_i}
+\end{equation}
+其中$C_v$是定容比热，$Pr$是Prandtl数，表示粘性扩散与热传导之比：
+$$
+Pr=\frac{C_p \mu}{\kappa}
+$$
+$C_p$是定压比热。
+F，G，H为对流项， $F^v$，$G^v$，$H^v$为粘性项。如果流动是无粘的，则忽略方程\eqref{chapter1eq:1} 中的$F^v$，$G^v$，$H^v$项，成为三维Euler 方程。
+
+湍流流动中各物理量随着时间空间发生剧烈地变化，大量的瞬时信息无法直观地给出规律，因而人们更关心的是在统计意义上湍流的规律。为研究湍流的统计平均特点，我们可以去研究经过平均处理的N-S方程，即Reynolds平均方程（RANS），对于可压缩流动也可考察质量加权（Favre平均）的Reynolds平均方程。Reynolds平均方程在大量的文献中被反复推导过，在此不再推导而直接给出。在给出RANS方程前需要强调的是，Reynolds平均方程是建立在湍流的各态遍历假设之上的（充分发展湍流），即认为湍流的各物理量遍历了统计空间中的所有位置。对于未充分发展的湍流或者转捩中的层流，Reynolds平均方程失去意义。
+
+对于雷诺平均有：
+\begin{equation}\label{chapter1eq:7}
+f=\bar{f}+f', f=(\rho,p),
+\end{equation}
+对于质量加权平均有：
+\begin{equation}\label{chapter1eq:8}
+f=\tilde{f}+f'', f=(u_i,e,\tau_{ij}),
+\end{equation}
+并且有：
+\begin{equation}\label{chapter1eq:9}
+\tilde{f}=\frac{\overline{\rho f}}{\bar{\rho}}
+\end{equation}
+其中
+$$
+\overline{f}=\frac{1}{T}\int_{t_0}^{t_0+T}f(t)dt,\quad T\rightarrow \inf
+$$
+则经过质量加权平均的N-S方程为：
+\begin{flalign}\label{TKE:1}
+&\frac{\partial \bar{\rho}}{\partial t}+\frac{\partial}{\partial x_j}(\bar{\rho}\tilde{u_j})=0
+\end{flalign}
+\begin{flalign}\label{TKE:2}
+&\frac{\partial \bar{\rho}\tilde{u_i}}{\partial t}+\frac{\partial\bar{\rho}\tilde{u_i}\tilde{u_j}}{\partial x_i}=-\frac{\partial \bar{p}}{\partial x_i}+\frac{\partial}{\partial x_j}(\overline{\tau_{ij}}-\overline{\rho u_i''u_j''})
+\end{flalign}
+\begin{flalign}\label{TKE:3}
+\begin{split}
+&\frac{\partial}{\partial t}\left(\bar{\rho} \frac{1}{2} \widetilde{u_i''u_i''}\right)+\frac{\partial}{\partial x_j}\left[\bar{\rho} \tilde{u_j} \frac{1}{2} \widetilde{u_i''u_i''}\right]=\\
+&-\overline{u_j'' \frac{\partial p}{\partial x_j}}+\overline{u_k'' \frac{\partial \tau_{kj}}{\partial x_j}}-\overline{\rho u_k''u_j''}\frac{\partial \tilde{u_k}}{\partial x_j}-\frac{\partial}{\partial x_j}\left[\overline{u_j'' \left(\frac{1}{2} \rho u_k''u_k''\right)}\right]
+\end{split}
+\end{flalign}
+
+\begin{flalign}\label{TKE:4}
+\begin{split}
+&\frac{\partial}{\partial t}\left(\bar{\rho} \frac{1}{2} \tilde{u_i}\tilde{u_i}\right)+\frac{\partial}{\partial x_j}\left[\bar{\rho} \tilde{u_j} \frac{1}{2} \tilde{u_i}\tilde{u_i}\right]=\\
+&-\widetilde{u_j} \frac{\partial \bar{p}}{\partial x_j}+\widetilde{u_k} \frac{\partial \overline{\tau_{kj}}}{\partial x_j}+\frac{\partial}{\partial x_j}\left(-\overline{\rho u_k''u_j''}\widetilde{u_k}\right)+\overline{\rho u_k''u_j''}\frac{\partial \widetilde{u_k}}{\partial x_j}
+\end{split}
+\end{flalign}
+
+\begin{flalign}\label{TKE:5}
+\begin{split}
+&\frac{\partial }{\partial t}\left(\bar{\rho} \tilde{e}\right)+\frac{\partial }{\partial x_j}\left[\bar{\rho} \tilde{u_j} \tilde{e}\right]=
+-\frac{\partial \widetilde{u_j} \bar{p}}{\partial x_j}
++\widetilde{u_j} \frac{\partial \bar{p}}{\partial x_j}-\frac{\partial \overline{u_j'' p}}{\partial x_j}+\overline{u_j'' \frac{\partial p}{\partial x_j}}\\
+&+\frac{\partial \widetilde{u_k} \overline{\tau_{kj}}}{\partial x_j}
+-\widetilde{u_k} \frac{\partial \overline{\tau_{kj}}}{\partial x_j}+\frac{\partial \overline{u_k'' \tau_{kj}}}{\partial x_j}-\overline{u_k'' \frac{\partial \tau_{kj}}{\partial x_j}}
+-\frac{\partial }{\partial x_j}\left(\bar{\rho} \widetilde{u_j''e''}\right)+\frac{\partial q_j}{\partial x_j}
+\end{split}
+\end{flalign}
+在此单位质量湍动能被定义为：
+$$
+ \tilde{k}=\frac{1}{2} \widetilde{u_i''u_i''}
+$$
+方程\eqref{TKE:3}被称为湍流动能输运方程。类比平均动能的输运方程 \eqref{TKE:4}, 在湍动能输运方程中第一项是压力做功项，第二项是粘性应力做功项，第三项为雷诺应力做功项，第四项是湍动能在湍流脉动作用下的湍流输运项（turbulent transport）。雷诺应力的定义为：
+$$
+ \tau_{Rij}=-\overline{\rho u_i''u_j''}
+$$
+压力做功项和粘性应力做功项可以被分解为：
+\begin{equation}\label{eq:pressure}
+\overline{u_j'' \frac{\partial p}{\partial x_j}}=\overline{u_j''} \frac{\partial \bar{p}}{\partial x_j}+\overline{ \frac{\partial u_j'' p'}{\partial x_j}}-\overline{ p' \frac{\partial u_j'' }{\partial x_j}}
+\end{equation}
+\begin{equation}\label{eq:viscous}
+\overline{u_k'' \frac{\partial \tau_{kj}}{\partial x_j}}=\overline{u_k''} \frac{\partial  \overline{\tau_{kj}}}{\partial x_j}+\overline{ \frac{\partial u_k'' \tau_{kj}'}{\partial x_j}}-\overline{\tau_{kj}' \frac{\partial u_k''}{\partial x_j}}
+\end{equation}
+以上两式中，第一项表示的都是平均流场对脉动流场所做的功，第二、三项表示的是脉动流场中脉动压力和脉动应力所做的功。一般来说，对于应力$S_{ij}$, 其单位时间对单位质量流体微团的功为：
+\begin{equation}
+W=\frac{\partial u_i S_{ij}}{\partial x_j}= u_i \frac{\partial S_{ij}}{\partial x_j}+ \frac{\partial u_i}{\partial x_j}S_{ij}
+\end{equation}
+第一项是合应力对微团做的功；第二项是微团体积发生变化时应力所做的功。
+
+%因此，有些文献中把$\partial \overline{u_k'' \tau'_{kj}} /\partial x_j$ 和$\partial \overline{u_k'' p'}/\partial x_k$理解为扩散项是不准确的。
+
+比较方程\eqref{TKE:3}-\eqref{TKE:5}可以得到能量的输运路径。雷诺应力只负责在平均动能和湍动能之间输运能量，而能量由动能向内能的转移则是由压力和粘性力负责。也就是说雷诺应力不直接参与耗散过程。
+
+将式\eqref{eq:pressure},\eqref{eq:viscous}带入湍动能输运方程\eqref{TKE:3}可以得到物理上更直观的表达：
+\begin{flalign}\label{TKE:6}
+\begin{split}
+&\frac{\partial}{\partial t}\left(\bar{\rho} \frac{1}{2} \widetilde{u_i''u_i''}\right)+\frac{\partial}{\partial x_j}\left[\bar{\rho} \tilde{u_j} \frac{1}{2} \widetilde{u_i''u_i''}\right]=\\
+&-\overline{u_j''} \frac{\partial \bar{p}}{\partial x_j}-\overline{ \frac{\partial u_j'' p'}{\partial x_j}}+\overline{ p' \frac{\partial u_j'' }{\partial x_j}}+\overline{u_k''} \frac{\partial  \overline{\tau_{kj}}}{\partial x_j}+\overline{ \frac{\partial u_k'' \tau_{kj}'}{\partial x_j}}-\overline{\tau_{kj}' \frac{\partial u_k''}{\partial x_j}}\\
+&-\overline{\rho u_k''u_j''}\frac{\partial \tilde{u_k}}{\partial x_j}-\frac{\partial}{\partial x_j}\left[\overline{u_j'' \left(\frac{1}{2} \rho u_k''u_k''\right)}\right]
+\end{split}
+\end{flalign}
+\section{可压缩Navier-Stokes方程的数值解法}
+Navier-Stokes方程组是一组非线性的偏微分方程组，为了进行数值求解，需要构建数值格式获得空间导数的值，也需要一定的时间推进格式求解不同时刻的流场。除了空间格式和时间格式外，对于黎曼问题，需要近似黎曼求解器求解。同时还要考虑格式的迎风性问题，以保证数值计算的稳定性。
+\subsection{有限差分方法}
+不失一般性，我们考虑标量守恒律偏微分方程的求解。线性标量守恒律方程为：
+\begin{equation}\label{chapter1eq:10}
+\frac{\partial u}{\partial t}+\frac{\partial f(u)}{\partial x}=0,
+\end{equation}
+其中$u(x,t)$是守恒变量，$f(u)$是通量函数。
+
+在均匀网格上有$\Delta x =x_{i+1}-x_{i}$, 我们考虑数值通量$\hat{f}(x)$：
+$$
+f(x)=\frac{1}{\Delta x}\int_{x-\Delta x /2}^{x+\Delta x / 2}\hat{f}(\xi)d\xi，
+$$
+使得数值通量的差分对于通量函数的一阶导数即$f'_i=\left.\partial f(u)/\partial x\right|_{x=x_i}$ 为$k$阶近似：
+\begin{equation}\label{chapter1eq:11}
+\frac{\hat{f}_{i+\frac{1}{2}}-\hat{f}_{i-\frac{1}{2}}}{\Delta x}=f'_i+O(\Delta x^k).
+\end{equation}
+
+数值通量 $\hat{f}_{i+\frac{1}{2}}$ 可以通过高阶插值得到：
+\begin{equation}\label{chapter1eq:12}
+\sum_{l=-L_1}^{L_2}\alpha_{l}\hat{f}_{i+l+\frac{1}{2}}=\sum_{m=-M_1}^{M_2}\beta_m f(x_{i+m})
+\end{equation}
+$L_1$和$L_2$以及$M_1$和$M_2$可以根据所需要的精度和形式调整。考虑五个点模板$S^5=$ ($x_{i-2},x_{i-1},x_i,x_{i+1},x_{i+2}$) 上的显式插值, 我们可以得到五阶的迎风格式：
+\begin{equation}
+UW5: \quad \hat{f}_{i+\frac{1}{2}}=-\frac{3}{60}f_{i-2}+\frac{27}{60}f_{i-1}+\frac{47}{60}f_{i}-\frac{13}{60}f_{i+1}+\frac{2}{60}f_{i+2}\label{chapter1eq:up5} \\
+\end{equation}
+同样，如果考虑五点模板上的隐式插值，我们可以得到五阶和七阶的迎风紧致格式：
+\begin{eqnarray}
+& C_5: &\frac{3}{10}\hat{f}_{i-\frac{1}{2}}+\frac{6}{10}\hat{f}_{i+\frac{1}{2}}+\frac{1}{10}\hat{f}_{i+\frac{3}{2}}=\frac{1}{30}f_{i-1}+\frac{19}{30}f_i+\frac{10}{30}f_{i+1}\label{chapter1eq:uwc5} \\
+\nonumber & C_7: &\frac{2}{7}\hat{f}_{i-\frac{1}{2}}+\frac{4}{7}\hat{f}_{i+\frac{1}{2}}+\frac{1}{7}\hat{f}_{i+\frac{3}{2}}=-\frac{1}{420}f_{i-2}+\frac{19}{420}f_{i-1}+\frac{239}{420}f_i\\
+& &+\frac{53}{140}f_{i+1}+\frac{1}{105}f_{i+2}\label{chapter1eq:uwc7}
+\end{eqnarray}
+\subsubsection{加权基本无振荡格式——WENO格式}
+五阶迎风格式可以写成三个三阶格式的凸组合形式：
+\begin{eqnarray}
+&UW_3^0: \hat{f^0}_{i+\frac{1}{2}} &=\frac{1}{3}f_{i-2}-\frac{7}{6}f_{i-1}+\frac{11}{6}f_i\label{chapter1eq:14a}\\
+&UW_3^1: \hat{f^1}_{i+\frac{1}{2}} &=-\frac{1}{6}f_{i-1}+\frac{5}{6}f_i+\frac{1}{3}f_{i+1}\label{chapter1eq:14b}\\
+&UW_3^2: \hat{f^2}_{i+\frac{1}{2}} &=\frac{1}{3}f_{i}+\frac{5}{6}f_{i+1}-\frac{1}{6}f_{i+2}\label{chapter1eq:14c}
+\end{eqnarray}
+其相应的权重系数为$c_0=0.1$，$c_1=0.6$和$c_2=0.3$。
+
+将线性权重系数$c_k$替换为非线性WENO权重函数，我们可以得到五阶WENO格式：
+\begin{equation}\label{chapter1eq:15}
+WENO5: \quad \hat{f}_{i+\frac{1}{2}}=\omega_0 \hat{f^0}_{i+\frac{1}{2}}+\omega_1 \hat{f^1}_{i+\frac{1}{2}}+\omega_2 \hat{f^2}_{i+\frac{1}{2}}
+\end{equation}
+其中非线性权函数$\omega_k$被定义为:
+\begin{eqnarray}\label{chapter1eq:16}
+\omega_k = \frac{a_k}{\sum_{i}a_i},  a_k= \frac{c_k}{(\varepsilon+\beta_k)^p}, k=\{0,1,2\}, p=1,2,...
+\end{eqnarray}
+$\beta_k$ 是光滑因子 \cite{jiang1996efficient}:
+\begin{eqnarray}
+&\beta_0&=\frac{13}{12}(f_{i-2}-2f_{i-1}+f_{i})^2+\frac{1}{4}(f_{i-2}-4f_{i-1}+3f_i)^2\label{chapter1eq:17a}\\
+&\beta_1&=\frac{13}{12}(f_{i-1}-2f_{i}+f_{i+1})^2+\frac{1}{4}(f_{i-1}-f_{i+1})^2\label{chapter1eq:17b}\\
+&\beta_2&=\frac{13}{12}(f_{i}-2f_{i+1}+f_{i+2})^2+\frac{1}{4}(3f_{i}-4f_{i+1}+f_{i+2})^2\label{chapter1eq:17c}
+\end{eqnarray}
+$\epsilon$ 是一个避免零出现在分母中而添加的小数.
+
+Henrick等\cite{henrick2005mapped}分析发现, 对于五阶WENO格式，非线性权函数\eqref{chapter1eq:16} 不满足五阶收敛的充分必要条件。他们提出了一种映射函数来提高权函数的精度：
+\begin{eqnarray}
+&g_k(\omega)=\frac{\omega(c_k+c^2_k-3c_k\omega+\omega^2)}{c^2_k+\omega(1-2c_k)},\label{chapter1eq:18}\\
+&\omega^M_k=\frac{g_k}{\mathop{\pmb{\sum}}_{i}g_i}.\label{chapter1eq:19}
+\end{eqnarray}
+采用这一映射函数的WENO格式被称为WENO-M格式。然而映射函数极大地增加了计算量，在文献\cite{borges2008improved}中, Borges等人引入了一个新的光滑因子$\tau_5=|\beta_0-\beta_2|$，并基于该光滑因子提出了一个新的权函数：
+\begin{equation}\label{chapter1eq:20}
+a_k=c_k\left(1+(\frac{\tau_5}{\beta_k+\varepsilon})^q\right), k=\{0,1,2\}, q=1,2,...
+\end{equation}
+这个新格式(被称为WENO-Z格式)的计算量要远小于WENO-M格式，并能满足五阶精度的收敛要求。
+\subsubsection{紧致重构WENO格式——CRWENO格式}
+对于五阶迎风紧致格式\eqref{chapter1eq:uwc5}，其可以被写成三个三阶紧致格式的凸组合形式：
+\begin{eqnarray}
+&C_3^0: \frac{2}{3}\hat{f}_{i-\frac{1}{2}}+\frac{1}{3}\hat{f}_{i+\frac{1}{2}}=\frac{1}{6}f_{i-1}+\frac{5}{6}f_i\label{chapter1eq:21a}\\
+&C_3^1: \frac{1}{3}\hat{f}_{i-\frac{1}{2}}+\frac{2}{3}\hat{f}_{i+\frac{1}{2}}=\frac{5}{6}f_i+\frac{1}{6}f_{i+1}\label{chapter1eq:21b}\\
+&C_3^2: \frac{2}{3}\hat{f}_{i+\frac{1}{2}}+\frac{1}{3}\hat{f}_{i+\frac{3}{2}}=\frac{1}{6}f_i+\frac{5}{6}f_{i+1}\label{chapter1eq:21c}
+\end{eqnarray}
+相应的权重系数为$c_0=\frac{2}{10}$, $c_1=\frac{5}{10}$ 和 $c_2=\frac{3}{10}$。
+
+将最优权重系数$c_k$替换为非线性WENO权函数, 可以得到五阶CRWENO格式\cite{ghosh2012compact}:
+\begin{equation}
+\begin{split}\label{chapter1eq:22}
+C_{\text{CRWENO5}}: \tilde{\alpha}_{-1}^5\hat{f}_{i-\frac{1}{2}}+\tilde{\alpha}_0^5\hat{f}_{i+\frac{1}{2}}+\tilde{\alpha}_1^5\hat{f}_{i+\frac{3}{2}}=\sum_{r=-1}^{1}\tilde{\beta}_r^5 f_{i+r}
+\end{split}
+\end{equation}
+其中
+\begin{equation}\label{chapter1eq:coef75}
+\begin{split}
+\nonumber &\tilde{\alpha}_{-1}^5=\frac{2}{3}\omega_0+\frac{1}{3}\omega_1, \quad \tilde{\alpha}_{0}^5=\frac{1}{3}\omega_0+\frac{2}{3}(\omega_1+\omega_2), \quad \tilde{\alpha}_{1}^5=\frac{1}{3}\omega_3,\\
+&\tilde{\beta}_{-1}^5=\frac{\omega_0}{6}, \quad \tilde{\beta}_{0}^5=\frac{5(\omega_0+\omega_1)+\omega_2}{6}, \quad \tilde{\beta}_{1}^5=\frac{\omega_1+5\omega_2}{6},\\
+\end{split}
+\end{equation}
+非线性权函数的定义与\eqref{chapter1eq:16}中一致。
+\subsection{通量分裂方法}
+对于双曲守恒律，Courant提出采用迎风型格式能保证计算的稳定性。为实现迎风，需要将通量函数$f(u)$写为正负通量之和的形式：
+\begin{equation}\label{chapter1eq:23}
+f(u)=f^+(u)+f^-(u)
+\end{equation}
+实现分裂的方法有多种，如Steger-Warming格式\cite{steger1981flux}，Lax-Friedrichs格式\cite{lax1954weak}，AUSM格式\cite{liou1996sequel,liou2006sequel,liou2001ten} 等。
+以一维欧拉方程为例，我们介绍几种常用的通量分裂方法：
+\begin{align}\label{chapter1eq:24}
+U_t+F(U)_x=0
+\end{align}
+其中$U=(\rho,\rho u,E)^T$，$F(U)=(\rho u,\rho u^2+p, u(E+p))^T$。这里$\rho$是密度，$u$是速度，$E=\rho e +1/2 \rho u^2$是总能量，$e$是内能，$p$ 是压力。
+通量$F(U)$的Jacobian矩阵为：
+\begin{equation}\label{chapter1eq:25}
+A=\frac{D(f(U))}{D(U)}
+\end{equation}
+其具体形式为：
+\begin{equation}\label{chapter1eq:26}
+A=\left[\begin{matrix}
+&0 \quad &1 \quad &0\\
+&-u^2+\frac{\partial p}{\partial \rho} \quad  & u+\frac{\partial p}{\partial \rho u} \quad  &\frac{\partial p}{\partial E}\\
+&-\frac{u}{\rho} E-\frac{u}{\rho}p+u\frac{\partial p}{\partial \rho} \quad & \frac{E}{\rho}+\frac{p}{\rho}+u\frac{\partial p}{\partial \rho u} \quad &u+\frac{\partial p}{\partial E}
+\end{matrix}\right]
+\end{equation}
+为获得式中压力$p$对守恒量的偏导数，我们考虑物质的状态方程：
+\begin{equation}\label{chapter1eq:27}
+e=e(p,\rho)
+\end{equation}
+对式子全微分有：
+\begin{equation}\label{chapter1eq:28}
+de=\frac{\partial e}{\partial p}dp+\frac{\partial e}{\partial \rho}d\rho
+\end{equation}
+假设压力$p$也是内能$e$和密度$\rho$的函数：
+\begin{equation}\label{chapter1eq:29}
+p=p(e,\rho)
+\end{equation}
+微分上式得
+\begin{equation}\label{chapter1eq:30}
+dp=\frac{\partial p}{\partial e}de+\frac{\partial p}{\partial \rho}d\rho
+\end{equation}
+如果把压力看做是守恒变量的函数同样有微分形式：
+\begin{equation}\label{chapter1eq:31}
+dp=\frac{\partial p}{\partial \rho}d\rho+\frac{\partial p}{\partial \rho u}d\rho u+\frac{\partial p}{\partial E}dE
+\end{equation}
+考虑到$E=\rho e +1/2 \rho u^2$，则：
+\begin{equation}\label{chapter1eq:32}
+dE=ed\rho+\rho de + d(\frac{1}{2}\rho u^2)
+\end{equation}
+或
+\begin{equation}\label{chapter1eq:33}
+de=\frac{1}{\rho}dE-\frac{e}{\rho}d\rho + \frac{1}{\rho}d(\frac{1}{2}\rho u^2)
+\end{equation}
+将式\eqref{chapter1eq:33}带入式\eqref{chapter1eq:30}中并比较同类项可以得到：
+\begin{equation}\label{chapter1eq:34}
+\frac{\partial p}{\partial \rho}=\frac{\frac{1}{2}u^2-e-\rho e_\rho}{\rho e_p}
+\end{equation}
+\begin{equation}\label{chapter1eq:35}
+\frac{\partial p}{\partial \rho u}=-\frac{u}{\rho e_p}
+\end{equation}
+\begin{equation}\label{chapter1eq:36}
+\frac{\partial p}{\partial E}=\frac{1}{\rho e_p}
+\end{equation}
+其中，
+\begin{equation}\label{chapter1eq:37}
+e_p=\frac{\partial e}{\partial p}\bigg|_{\rho}
+\end{equation}
+\begin{equation}\label{chapter1eq:38}
+e_\rho=\frac{\partial e}{\partial \rho}\bigg|_{p}
+\end{equation}
+由此，Jacobian矩阵可以写成全部为已知函数的表达形式：
+\begin{equation}\label{chapter1eq:39}
+A=\left[\begin{matrix}
+&0 \quad &1 \quad &0\\
+&-u^2+\frac{\frac{1}{2}u^2-e-\rho e_\rho}{\rho e_p} \quad  & 2u-\frac{u}{\rho e_p} \quad  &\frac{1}{\rho e_p}\\
+&-\frac{uE}{\rho}-\frac{up}{\rho}+u\frac{\frac{1}{2}u^2-e-\rho e_\rho}{\rho e_p} \quad & \frac{E}{\rho}+\frac{p}{\rho}-\frac{u^2}{\rho e_p} \quad & u+\frac{u}{\rho e_p}
+\end{matrix}\right]
+\end{equation}
+对于理想气体有：
+\begin{equation}\label{chapter1eq:40}
+e=\frac{p}{(\gamma-1) \rho}
+\end{equation}
+代入上式可以得到：
+\begin{equation}\label{chapter1eq:41}
+A=\left[\begin{matrix}
+&0 \quad &1 \quad &0\\
+&-\frac{3-\gamma}{2}u^2 \quad  & (3-\gamma)u \quad  &\gamma-1\\
+&\frac{\gamma-2}{2}u^3-\frac{uc^2}{\gamma-1} \quad & \frac{c^2}{\gamma-1}+\frac{3-2\gamma}{2}u^2 \quad & \gamma u
+\end{matrix}\right]
+\end{equation}
+其中$c=\sqrt{\gamma p/\rho}$是声速。与流通量函数相比可以得到:
+\begin{equation}\label{chapter1eq:42}
+F=AU
+\end{equation}
+因此对于理想气体，可以直接从Jacobian矩阵出发，根据其特征值将其分解为正反两部分,即：
+\begin{equation}\label{chapter1eq:43}
+F=F^{+}+F^{-}=R\Lambda^{+}R^{-1}U+R\Lambda^{-}R^{-1}U
+\end{equation}
+其中矩阵R为A的右特征矩阵：
+\begin{equation}\label{chapter1eq:44}
+R=\left[\begin{matrix}
+&-\frac{\gamma-1}{c^2} \quad &-\frac{1}{2c} \quad &\frac{1}{2c}\\
+&-\frac{\gamma-1}{c^2}u \quad  & -\frac{u-c}{2c} \quad  &\frac{u+c}{2c}\\
+&-\frac{\gamma-1}{c^2}\frac{u^2}{2} \quad & -\frac{1}{2c}(\frac{u^2}{2}+\frac{c^2}{\gamma-1}-uc)  \quad & \frac{1}{2c}(\frac{u^2}{2}+\frac{c^2}{\gamma-1}+uc)
+\end{matrix}\right]
+\end{equation}
+A的特征矩阵为：
+\begin{equation}\label{chapter1eq:45}
+\Lambda=\left[\begin{matrix}
+&\lambda_1 \quad &0 \quad &0\\
+&0 \quad  & \lambda_2 \quad  &0\\
+&0 \quad & 0 \quad &\lambda_3
+\end{matrix}\right]
+\end{equation}
+$$
+\lambda_1=u, \quad \lambda_2=u-c, \quad \lambda_3=u+c
+$$
+则特征值可以按照如下方式分解：
+\begin{equation}\label{chapter1eq:46}
+\lambda^{\pm}=\frac{\lambda \pm |\lambda| }{2}
+\end{equation}
+将$\lambda^{\pm}$代入\eqref{chapter1eq:43}可以得到正负通量，这种分裂方式为Steger-Warming\cite{steger1981flux}格式。由于这种分裂方式利用了状态方程的齐次性，因此不适用于具有复杂状态方程的物质。
+
+Lax-Friedrichs\cite{lax1954weak}格式是一种更为简单的方法，它不依赖于状态方程且具有较大的耗散性，因而比较稳定。其分裂方式为：
+\begin{equation}\label{chapter1eq:47}
+F(U)^{\pm}=\frac{1}{2}(F(U) \pm \lambda_{max}U)
+\end{equation}
+
+相比于Lax-Friedrichs格式，AUSM格式耗散较低，且它的构建也不依赖于状态方程，因此有比较广泛的应用。AUSM格式有多种改进\cite{liou2006sequel,kitamura2013towards,kim2001methods}，这里我们只介绍最基本的AUSM+格式。考虑通量F:
+\begin{equation}\label{chapter1eq:48}
+F=\left[\begin{matrix}
+\rho u\\
+\rho u^2 + p\\
+u(E+p)
+\end{matrix}\right]
+\end{equation}
+通量可以写成对流项和压力项两部分：
+\begin{equation}\label{chapter1eq:49}
+F=F_c+F_p=u\left[\begin{matrix}
+\rho\\
+\rho u \\
+E+p
+\end{matrix}\right]+
+\left[\begin{matrix}
+0\\
+p\\
+0
+\end{matrix}\right]
+\end{equation}
+对于对流项有
+\begin{equation}\label{chapter1eq:50}
+F_c=u\left[\begin{matrix}
+\rho\\
+\rho u \\
+E+p
+\end{matrix}\right]=M \alpha \left[\begin{matrix}
+\rho\\
+\rho u \\
+E+p
+\end{matrix}\right]
+\end{equation}
+其中$M$是马赫数，$\alpha$是声速。在单元交界面$x_{i+1/2}$上AUSM格式的表达形式为：
+\begin{equation}\label{chapter1eq:51}
+\begin{split}
+F_{i+1/2}=&\alpha_{i+1/2}\frac{1}{2}(M_{i+1/2}+|M_{i+1/2}|)\left[\begin{matrix}
+\rho\\
+\rho u \\
+E+p
+\end{matrix}\right]_L \\
+&+\alpha_{i+1/2}\frac{1}{2}(M_{i+1/2}-|M_{i+1/2}|)\left[\begin{matrix}
+\rho\\
+\rho u \\
+E+p
+\end{matrix}\right]_R\\
+&+\left[\begin{matrix}
+0\\
+P^{+}(M_L)p_L+P^{-}(M_R)p_R\\
+0
+\end{matrix}\right]
+\end{split}
+\end{equation}
+其中
+\begin{flalign}
+M_{i+1/2}=M^{+}(M_L)+M^{-}(M_R)
+\end{flalign}
+\begin{flalign}\label{chapter1eq:52}
+M^{\pm}(M)=
+\begin{cases}
+\frac{1}{2}(M \pm |M|), \quad &|M| \geq 1\\
+\pm \frac{1}{4}(M\pm 1)^2 \pm \frac{1}{8}(M^2-1)^2, \quad &otherwise
+\end{cases}&
+\end{flalign}
+\begin{flalign}
+P^{\pm}(M)=
+\begin{cases}
+\frac{1}{2}(1 \pm sign(M)), \quad &|M| \geq 1\\
+\pm \frac{1}{4}(M \pm 1)^2(2\mp M) \pm \frac{3}{16}(M^2-1)^2, \quad &otherwise
+\end{cases}&
+\end{flalign}
+$\alpha_{i+1/2}$可以有多种取值，这里取最简单的$\alpha_{i+1/2}=\sqrt{\alpha_L \alpha_R}$.
+
+ 从公式中可以看出，AUSM 格式是根据马赫数来计算在网格交界面上的物理通量。这里需要注意的是，对于高阶的有限差分格式：
+ \begin{equation}\label{chapter1eq:53}
+ \hat{f}_{i+1/2} \neq f(x_{i+1/2})
+ \end{equation}
+ 因此，在有限差分中直接使用AUSM格式获得的通量实际上是增加了格式的耗散，降低了精度。在后面的章节中我们将提出一种简单的方法使得这个问题得到解决，即将AUSM格式与有限差分格式匹配起来。
+\subsection{时间推进格式及粘性项离散方法}
+本文中采用显式推进的方法进行时间推进，三阶TVD Runge-Kutta\cite{shu1988total}方法被用作时间推进：
+\begin{align}
+&u^{(1)}=u^n+\Delta tL(u^n)\label{chapter1eq:54}\\
+&u^{(2)}=\frac{3}{4}u^n+\frac{1}{4}u^{(1)}+\frac{1}{4}\Delta tL(u^{(1)})\label{chapter2eq:46}\\
+&u^{n+1}=\frac{1}{3}u^n+\frac{2}{3}u^{(2)}+\frac{2}{3}\Delta tL(u^{(2)})\label{chapter2eq:47}.
+\end{align}
+
+对于粘性项，由于粘性作用实际上是一种扩散作用，需要考虑其对称性。本文采用高阶中心格式的方式处理粘性项。
+
+\section{高精度激波捕捉格式的发展现状和不足}
+由于激波和多尺度问题可能同时出现在可压缩流动中，数值格式需要能够同时分辨这两种现象。一般来说，对于多尺度问题例如湍流和声波，为了保证在所考虑的波数范围内获得高分辨率，数值格式需要有极低的耗散和色散特性。对于激波等间断问题，数值格式需要引入一定的数值耗散来抑制非物理振荡，这同时增加了间断区域和光滑区域的耗散。由于两种现象对于数值方法相互矛盾的要求，大多数现有的方法仅能成功处理一种现象。
+
+发展高精度激波捕捉格式的目的是无振荡的分辨间断的同时保证高精度。目前影响最为广泛的激波捕捉格式是Jiang和Shu\cite{jiang1996efficient}的加权基本无振荡格式（Weighted Essentially Non-Oscillatory scheme），被称为WENO-JS格式。基于Harten 等\cite{harten1987uniformly}的ENO（Essentially Non-Oscillatory）格式和Liu等\cite{liu1994weighted}的有限体积WENO 格式，WENO-JS格式是在有限差分框架下发展并且对于多维问题更有效。相比于传统低阶激波捕捉格式，WENO-JS格式通过改进光滑因子获得了很好的激波捕捉能力同时保持在光滑区域的高精度特点。尽管有这些优点，数值实验表明WENO-JS格式的光滑因子对于复杂流动结构，如湍流，耗散仍然太大。进一步，WENO-JS格式的加权函数在一阶导数等于0的关键点（Critical point）上无法达到设计的五阶精度。为了提高WENO-JS格式在关键点处的精度，Henrick等\cite{henrick2005mapped}针对WENO-JS格式的加权函数提出了一种映射函数。然而该映射函数极大地增加了计算量。另一种改进措施是Borges 等人提出的WENO-Z 格式\cite{borges2008improved}，它通过引入一个新的加权函数，在极小的计算量代价下获得了低耗散和理想精度。Yamaleev 和Carpenter\cite{Yamaleev:2009gp}提出了ESWENO格式，它能保证任意阶导数为零时达到理想阶数。Martin等\cite{martin2006bandwidth} 针对可压缩湍流的大涡模拟和直接模拟发展了一组对称WENO格式。Martin的格式被优化以达到最高阶精度和带宽。然而，Shen和Zha\cite{Shen:2014gf}表明以上提到的WENO格式在激波附近只有二阶精度，并提出了一种多步加权型WENO格式\cite{Shen:2014gfa}以提高激波附近的精度。尽管WENO格式可以被发展到任意高阶，WENO格式的谱分辨率仍然不能令人满意。特别的它们对于可压缩湍流中的小尺度结构的数值耗散甚至会超过真实的物理耗散。
+
+对于多尺度结构主导的问题，紧致格式相比于激波捕捉格式就谱分辨率而言是更好的选择。紧致格式并没有获得足够的重视直到Lele的开创性工作\cite{lele1992compact}。他发展了一系列具有近谱方法分辨率的中心紧致格式。基于傅里叶分析，Lele分析了不同格式的谱分辨率。在此之后，紧致格式被广泛应用于湍流和声学模拟中。受到Lele的中心紧致格式的启发，多种形式的紧致格式被发展起来，并通过优化参数获得了较高的分辨率和较小的耗散/色散。Tam和Webb\cite{tam1993dispersion}证明了即使是被优化过的Lele的紧致格式仍然会产生错误的波速，色散关系保持（dispersion-relation-preserving）格式被提出以解决这一问题。对于双曲守恒问题，例如欧拉方程，迎风紧致格式被发展起来，它们被证明对于对流占优问题比中心格式更为鲁棒。尽管紧致格式对于多尺度问题有较高的分辨率，它们在激波附近会产生振荡，因此不适合用于超声速流动的模拟。一种抑制紧致格式在激波附近发生数值振荡的方法是基于WENO格式和ENO格式的思想构建紧致格式。Jiang等\cite{jiang2001weighted} 基于Lele的中心紧致格式发展了一种加权紧致格式。这个格式是几个不同模板上的低阶紧致格式的加权组合。Deng和Zhang\cite{deng1997compact}发展了一种用WENO格式重构单元中心型紧致格式单元边界通量的加权紧致格式。Zhang等\cite{zhang2008development} 将Deng的格式扩展到更高阶。Ghosh和Baeder\cite{ghosh2012compact}提出了一种更为有效的五阶紧致重构WENO格式（CRWENO）。这个格式的组合方式类似于Jiang的格式但是以守恒形式表达。CRWENO格式有很好的激波捕捉能力和高分辨率。数值研究表明在相同的网格上相比于其他WENO格式，CRWENO格式能分辨出更精细的结构\cite{ghosh2014weighted}。
+
+另一种更为直接有效地进行可压缩流动高精度数值模拟的方法是使用混合格式。混合格式的基本思想是在光滑区域使用耗散低的格式如紧致格式，在激波附近则使用激波捕捉格式。Adams和Shariff\cite{adams1996high} 发展了混合紧致-ENO 格式，两种格式通过简单的判别方法被耦合起来并被用于激波- 湍流相互作用的研究上。Pirozzoli\cite{pirozzoli2002conservative}跟随Adams 的方法，提出了一种混合紧致-WENO格式。Ren 等\cite{ren2003characteristic}提出了一种更为准确的开关函数并发展了一种特征变量重构混合紧致-WENO格式。Hill和Pullin\cite{hill2004hybrid}用一种基于WENO格式光滑因子的开关函数将中心格式和WENO 格式组合起来。Kim 和Kwon\cite{kim2005high}用Ren的光滑因子结合了几种中心格式和WENO 格式。Costa和Don\cite{Costa:2007dl}将谱方法与WENO 格式混合起来。Cheng 等\cite{Cheng:2013jk}结合了Runge-Kutta 间断伽辽金（Discontinuous Galerkin）格式和WENO格式。数值结果表明这些混合格式在光滑区域比激波捕捉格式耗散小同时保持了无振荡捕捉激波的能力。
+
+发展混合格式的一个难点问题是如何准确和有效的识别激波。许多函数被用来发展激波识别方法，例如相邻点流动变量的差，流动量梯度以及多分辨率系数等。尽管这些函数被成功地应用到混合格式中，一个共同的缺点是它们包含问题相关的经验参数，这个参数被作为阈值以判断开启或关闭激波捕捉格式。引入这个参数会带来一系列的问题如精度的降低和鲁棒性的丧失\cite{zhang2008development}。Shen和Zha\cite{Shen:2011bt}提出了一种无参数的有限紧致格式，这个格式通过WENO-JS格式和WENO-Z格式的光滑因子识别激波并将所识别的激波当作内边界来处理。
+
+
+\section{本文的研究目的和研究内容}
+
+Shen和Zha\cite{Shen:2014gf}的分析表明，一个$2r+1$阶WENO格式在激波附近会发生降阶，CRWENO格式也有这样的问题。对于传统WENO格式，所重构出的数值通量是单元中心通量的显式插值，某个点的精度降低对于其他点影响很小。然而，由于紧致格式的隐式插值特点，某些点精度的降低将影响全局的精度。对于可压缩湍流的直接模拟和大涡模拟来说，shocklet是一种基本和重要的现象。若干shocklet可能同时出现在流场中。由于shocklet出现带来的加权紧致格式精度的降低将造成数值模拟结果无效。因此提高激波附近精度是十分重要的。在提高激波附近格式精度的基础上，最大可能降低光滑区域的耗散和提高其谱分辨率则对于模拟湍流等小尺度结构必不可少。因此，本文将从这两个关键问题出发，发展普适的高精度低耗散激波捕捉算法。
+
+本文的研究内容如下：
+\begin{enumerate}[1)]
+    \item 针对CRWENO格式在激波附近精度降阶的问题，我们提出一种多步加权的方式，新格式在激波附近区域的精度得到较大提高。
+    \item 针对混合格式的关键问题—————开关/加权函数，我们提出了一种具有高精度的开关函数，该函数不含问题相关的参数，具有较好的普适性和鲁棒性。利用这一开关函数，可以发展一类耗散极低的混合激波捕捉格式，作为一个特例我们发展了一种七阶的紧致混合格式。该格式所使用的模板与五阶CRWENO格式一样，但精度和耗散性质都优于五阶CRWENO格式，在光滑区能达到七阶精度。通过大量的数值比较，证明了所提出的函数及新格式的优越性。
+    \item 为将所发展的数值方法应用到实际的可压缩复杂流动计算中，我们发展了两套高性能并行求解器。基于GPU处理器，我们开发了一套求解化学反应流动的快速CFD代码，其速度要比CPU程序快20倍。对于大规模可压缩湍流计算，我们开发出了一套三维并行CFD程序，能够以极高的并行效率实现湍流的大规模数值模拟。
+    \item 利用三维大规模并行程序，我们计算了Taylor-Green涡流动，获得了丰富的流动结构，验证了程序的正确性。计算了可压缩各向均匀同性湍流，分析了压缩模态的作用区域。通过对超声速平板边界层的直接数值模拟，研究了粗糙元诱导边界层转捩的问题，模拟了流动转捩的全过程。在两种不同的来流马赫数条件下，数值结果表明：低马赫数条件比高马赫数更容易转捩，并且高马赫数的转捩有不稳定、间歇性的转捩现象。
+    \item 由于凝聚炸药爆轰中强非线性的状态方程，利用理想气体的Riemann问题求解方法将遇到一些难以克服的问题。为此，我们发展了AUSM-FVS方法，极大地减少了对流数值通量对状态方程的依赖性，进一步结合高阶WENO 重构，发展了GPU求解程序，研究了凝聚态物质的爆轰现象，准确模拟了凝聚态炸药爆轰波的直角衍射过程，清晰的捕捉到了未完全反应区域及压力波壁面反射现象。
+\end{enumerate}

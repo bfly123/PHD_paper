@@ -1,0 +1,417 @@
+\chapter{大规模并行可压缩流动求解器简介}\label{chap:solver}
+可压缩复杂流动包含了间断和多尺度结构，为了能够准确的模拟各个尺度上的结构及其相互作用，需要使用非常细致的网格。对于复杂的问题，单CPU已经不能够在短时间内完成对大网格数算例的计算，需要开发出能够高效率并行的可压缩流动求解程序。作者在读期间开发了两套针对复杂流场的大规模并行程序。以下依次对程序做一些介绍。
+\section{GPU加速的二维可压缩流动求解器}
+GPU（Graphics Processing Units）俗称显卡，是计算机中用于渲染显示画面的设备。由于图像的高度动态性，显卡需要以极快的速度完成图像计算并进行显示。为此，显卡芯片结构被设计成具有高度并行计算能力，能够承担高强度计算。由于显卡的这种特点，人们尝试用显卡进行科学计算，并获得了出其意料的加速效果。然而由于显卡编程难度大，早期GPU计算并未得到广泛关注。随着NVIDIA公司推出CUDA编程语言，大大降低了GPU编程的难度，同时还推出了具有更强浮点运算能力的芯片，使得GPU在科学计算领域有了更大的应用空间。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{chapter4/chapter4fig7.jpg}
+\caption{GPU的计算性能}
+\label{chapter4fig:7}
+\end{center}
+\end{figure}
+
+计算流体力学（CFD）属于计算密集型领域，Navier-Stokes方程的求解需要进行大量的浮点运算。同时由于流动结构的复杂性，要捕捉足够细致的流场结构需要足够密集的网格。具有实际应用价值的计算甚至需要$10^8$数量级的网格，其计算量是惊人的，普通的计算机难以胜任，必须进行并行计算。考虑到GPU具有极强的并行计算能力，很多学者尝试着将GPU引进到计算流体力学中。Cohen\cite{cohen2009fast}等实现了双精度的流体计算。Tolke\cite{tolke2008teraflop}实现了格子波尔兹曼方法在GPU上的加速。Khajeh-Saeed\cite{khajeh2013direct}使用GPU进行了各项同性湍流直接数值模拟。针对存在激波间断的可压缩流动， Antoniou\cite{antoniou2010acceleration}在GPU上实现了WENO格式的加速，获得了较大的加速比例。Esfahanian\cite{esfahanian2013assessment} 实现了一维和二维WENO格式的GPU程序，其一维的加速效果达到惊人的1000倍。为实现大规模的直接数值模拟，Salvadore\cite{salvadore2013gpu}用多块GPU进行了混合层流动的直接数值模拟。Karantasis\cite{karantasis2014high}则比较了不同形式并行对GPU计算效率的影响。对于更复杂的结构，Elsen\cite{elsen2008large}首次在在GPU上实现了有限体积方法对复杂外形超音速流动的计算。Fu\cite{fu2014multi}在GPU上实现了多种格式的有限体积方法计算，并进行了大量验算。就数值方法而言，以上提到的文献中多采用显示迎风格式进行空间离散。相比于迎风格式，紧致格式具有更高的谱分辨率和低耗散的特点，因此更适合于湍流计算。然而，使用紧致格式时，需要求解代数方程组。在GPU上实现代数方程组的求解并不简单。 Tutkun\cite{tutkun2012gpu}在GPU上实现了紧致格式并将其用于流动计算中，其计算时间的40\%花费在代数方程求解上。为提高紧致格式的计算效率，Esfahanian\cite{esfahanian2014efficient}使用了一种改进的三对角方程求解器，并获得了一定的加速效果，然而其方法受到网格点数的限制。
+\subsection{GPU构架简介}
+相比于CPU，GPU有着完全不同的硬件、执行和内存构架，为了设计出高效率的GPU程序，必须对此有比较深入的理解。以下简单介绍一下NVIDIA GPU的一些基本概念和结构\cite{nvidia2008programming,cuda2012best}。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{chapter4/chapter4fig8.jpg}
+\caption{GPU与CPU结构比较}
+\label{chapter4fig:8}
+\end{center}
+\end{figure}
+在硬件层面，每个GPU由若干个SM（多线程处理器）组成，这些SM相当于CPU中核（Core）的概念。每个SM还拥有若干个SP（流处理器或CUDA核），这些处理器是GPU运算的基本单元。以本文中所使用的NVIDIA GTX 750Ti为例，总共有五个多线程处理器，每个处理器包含了128个CUDA核。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{chapter4/chapter4fig9.jpg}
+\caption{GPU的线程模型}
+\label{chapter4fig:9}
+\end{center}
+\end{figure}
+
+从运行角度来说，GPU运算的最基本结构称为线程（Thread），一个或多个线程组成一个线程块（Thread Block），GPU中的线程以块为单元，被分配到各个处理器上。在每个线程块中，所有的线程同时执行相同的运算，而不同的线程块虽然也是执行同样的运算但是实际上并不是同时执行的。在分配Block的过程中，GPU并不按照逻辑顺序执行分配，而是将随机的Block分配到各个处理器上。也就是说GPU实际的并行是在Block内部，认识到这一点才能设计正确的程序。对于NVIDIA GTX 750Ti来说，每个线程块最多包含2048个线程，这也是每个SM能同时处理的最大线程数。在执行过程中，每个Block中的线程又以32 个为一组分成不同的Warp。在处理器中，这些Warp被同时执行，与线程块中线程的同时执行不同的是，线程块中的线程同时开始但可能并不是同时完成某项任务，而Warp中的所有线程同时开始并同时结束。如果线程执行过程中存在逻辑分支，如if-else结构，那么执行if中运算的线程将继续执行而不满足条件的进程将被搁置直到前面这些线程完成运算。随后等待的这些线程执行else结构中的运算而其他的线程继续等待。从以上可以看出，由于存在等待机制，GPU 不擅长处理存在大量逻辑分支的运算。之所以这样设计是出于节能的考虑，具体原理可参考NVIDIA的相关说明书\cite{nvidia2008programming}。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{chapter4/chapter4fig10.jpg}
+\caption{GPU的内存模型}
+\label{chapter4fig:10}
+\end{center}
+\end{figure}
+
+GPU的内存有三个层次，包括全局内存（Global memory）、共享内存（Shared memory）和寄存器（Register）。 全局内存是整个GPU共享的内存空间，即我们平时称的显存。相比于其他两种内存其特点是存储量大但是读取速度慢。由于全局内存读取速度较慢，为了提高效率，GPU中有一种独特的内存读取方式称为一致读取，即当一个Warp中的所有线程读取内存中连续的数据时，GPU将通过某种机制快速的将这些数据发送到各个线程。考虑到GPU内存读取的这一特点，在设计数据结构时应该使用数组结构（structure of arrays）而不是通常所使用的结构数组（array of structures）。共享内存属于片上内存，是每个SM所独有的，每个SM拥有48k的共享内存。之所以称为共享内存是因为对于同一个Block中的线程，这个存储空间是被共享的。一个Block中的线程不能访问另一个Block中的共享内存。由于这一个特点，如果程序中大量使用到了共享内存，同时还要权衡一个线程块的大小和每个SM 上最多分配的线程数量。如果一个Block使用了SM中的全部共享内存，则即使这个Block中的线程数量小于总线程上限，其它Block也不能被执行直到该Block执行完毕。寄存器是在运算过程中用于存储变量的结构，是几种内存中读取速度最快的。当然每个SM上的寄存器数量也是有限的，NVIDIA GTX 750Ti的每个SM总共有65536个寄存器可以使用。虽然整体的数量较大，但是考虑到每个SM 最多处理2048个线程，在此情况下分配到每个线程上的寄存器数量仅为32个。现有的GPU构架中，一个寄存器的大小为32-bit，也就是一个单精度浮点数据的大小，如果使用双精度数据，所使用的寄存器将翻倍。寄存器的分配不由程序员控制，而是由编译器分配和优化。因此，要限制寄存器的使用量需要一定的经验。
+
+考虑到寄存器的读取速度要快于共享内存和全局内存，因此除了需要反复更新数据的地方用到共享内存外，所有数据从全局内存中获取后将一直被存储在寄存器中。由于使用到了大量的寄存器，而GPU每一个处理器的寄存器数量是有限的，因此会降低SM的占有率。然而通过比较使用不同的数据存储方式发现，即使在使用共享内存达到100\%占用率时，其速度仍然要慢于大量使用寄存器时的速度。另一个角度来说，由于双精度数据需要使用到两个32-bit寄存器，在进行大量浮点运算时，难以将寄存器数量降低到实现100\%占用率的水平。因此与其花费大量时间优化使用共享内存的程序，不如直接使用寄存器。
+
+\subsection{二维可压缩流动GPU求解器}
+基于上一节所介绍的GPU结构，作者设计了具有较高效率的CUDA程序。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{chapter4/chapter4fig11.jpg}
+\caption{GPU相对于CPU的加速比}
+\label{chapter4fig:11}
+\end{center}
+\end{figure}
+
+由于存在一致读取的机制，本文程序中将不同网格点上同一变量的数据存储在一个数组中，并按照网格的下标顺序排列。程序整体上分为通量分裂、通量重构和时间推进三个模块，每一个模块对应一组kernel函数。对于通量分裂模块，由于大量重复的使用一些变量，例如密度、声速等，为避免重复读取内存带来的延迟，程序中只使用一个kernel函数进行全部通量的分裂。在重构部分，由于正负通量存储在不同的数组中，并且重构所使用到的数据范围不同—— 对于正通量WENO格式使用i-2到i+2五个点，而负通量使用i-1到i+3范围的点，每个方向（x和y方向）分别有两个kernel。为了充分利用GPU，在kernel 中，每个线程需要处理流动通量矢量中的四个分量，这相当于每个线程进行四次重构。
+时间推进由于没有复杂的算法，因此其程序的结构与CPU版本基本一致。
+
+本程序还加入了能够求解化学反应流动的部分。该部分将在第五章中介绍。
+
+对于程序的加速效果，作者在GTX750Ti GPU上进行了简单的测试。图\ref{chapter4fig:11}给出了本程序相对于Xeon 2609 CPU的加速效果。
+
+可以看出，GPU的加速效果非常明显，单GPU能够达到相当于24 CPU cores的计算效率。考虑到 GTX750Ti 是一款相对低端的GPU，这里获得的加速效果是比较保守的。后文中将使用Tesla K40M GPU进行可压缩流动的计算，其加速效果要比GTX750Ti 高出一个数量级。
+\section{三维并行结构网格有限差分可压缩流动求解器}
+对于三维可压缩流动，作者开发了一套三维结构网格并行求解器:NUmerical Calculator 3 Dimensional(NUC3d)。本程序采用C++11语言编写，总行数大约2万。
+\subsection{NUC3d程序的数据结构}
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{chapter4/chapter4fig1.jpg}
+\caption{NUC3d程序类结构}
+\label{chapter4fig:1}
+\end{center}
+\end{figure}
+
+在构建面向对象的C++程序时\cite{lippman2005c++}，首先抽象出一系列类。这些类是程序的基本单元，所有的数据结构和对数据的操作都被定义在类中。图\ref{chapter4fig:1}给出了NUC3d程序的类结构示意图。主程序只声明一个signleblock类或者 multiblock类。singleblock类只包含一个block类，而multiblock类可以包含多个block类。目前multiblock类仍在完善中，但不影响整体程序的使用。
+
+$signleblock$类包含了$block$类，$MPICommunicator$类，$IOControler$ 类，$PhysicsModel$类，$fieldOperator$类和$boundaryCondition$类。其中，$block$类包含了网格和流场的所有信息；$MPICommunicator$类用于数据通信操作；$IOControler$类包含了计算的控制和其他输入输出信息；$PhysicsModel$类中定义了各种物理模型，如物质状态方程、粘性模型等；$fieldOperator$类包含了各种场的运算方法，如WENO格式、时间推进格式等；$boundaryCondition$类包含的是每个block的边界信息和相邻关系等。
+
+\begin{table}[!htbp]
+   \caption{NUC3d程序所支持的数值方法}\label{tab:scheme}
+  \begin{center}\footnotesize
+  \begin{tabular}{ccc}
+  \toprule
+     &  无粘通量 & 粘性通量 \\
+  \midrule
+     & 一阶迎风格式 & 二阶中心格式 \\
+     & 三阶WENO格式 & 四阶中心格式 \\
+     & 五阶WENO-JS格式 & 六阶中心格式 \\
+     & 五阶WENO-JS格式 &  \\
+     & 五阶CRWENO格式 &  \\
+     & 五阶多步加权CRWENO格式 &  \\
+     & 七阶WENO-JS格式 & 八阶中心格式 \\
+     & 七阶HCCS格式 &  \\
+  \bottomrule
+  \end{tabular}
+  \end{center}
+\end{table}
+
+表\ref{tab:scheme}中展示了本程序所支持的空间格式。对于紧致格式，为了避免因为追求精度而带来效率的牺牲，我们采用本地内点紧致格式，边界点显式格式的方法，该方法的可行性可参见文献\cite{Chao:2009hf}。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{chapter4/chapter4fig2.jpg}
+\caption{block类结构}
+\label{chapter4fig:2}
+\end{center}
+\end{figure}
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{chapter4/chapter4fig3.jpg}
+\caption{EulerData3d类的结构及其派生体系}
+\label{chapter4fig:3}
+\end{center}
+\end{figure}
+
+block类包含了所有的流场和几何信息，是NUC3d程序的核心类。其结构如图 \ref{chapter4fig:2}所示。针对不同的流动方程，EulerData3d类派生出几种不同的派生类，这些类具有相似的数据结构但又有各自特有的数据。EulerData3d类的派生体系如图\ref{chapter4fig:3}所示。
+在下一步的开发中将逐步完成化学反应欧拉方程和化学反应Navier-Stokes方程两个派生类的编制。同时还要考虑多块网格中网格坐标系不同的情况，这种情况会增加程序在通信和插值上的复杂度。
+\subsection{NUC3d程序的控制方程}
+均匀正交网格的三维求解器比较好实现，只要对于所使用的算法比较熟悉，通常很快能够写出能用于计算的程序。而当所考虑的问题具有稍微复杂的结构时，如存在有曲率的壁面或者需要局部加密等等，就需要使用曲线坐标系下的Navier-Stokes方程求解。由于在求解的方程中出现了几何参数，如何处理这些参数是第一个需要考虑的问题。通常，对于非解析模型（模型的外形不能由解析表达式直接给出）来说，其几何变量不能通过解析表达式精确的获得，因此需要采用插值的方式获取。为了获得几何变量的空间插值，本文借鉴文献\cite{zhang2015simple,kopriva1996conservative,kopriva1998staggered} 中对有限元的处理方法，采用高阶插值的方式获得了精度较高的几何变量。
+
+带有坐标变换的Navier-Stokes方程为：
+ \begin{align}\label{eq:NS-trans}
+\frac{\partial U'}{\partial t}+\frac{\partial F'}{\partial \xi }+\frac{\partial G'}{\partial \eta }+\frac{\partial H'}{\partial \zeta }=\frac{1}{Re}\frac{\partial F_v'}{\partial \xi }+\frac{1}{Re}\frac{\partial G_v'}{\partial \eta }+\frac{1}{Re}\frac{\partial H_v'}{\partial \zeta}
+\end{align}
+其中向量U'，F'，G'，H'， $F_v'$，$G_v'$，$H_v'$ 为:
+\begin{align}
+U' & =U/|J| \\
+F' &= (\xi_x F+ \xi_y G+ \xi_z H)/|J| \\
+G' &= (\eta_x F+ \eta_y G+ \eta_z H)/|J| \\
+H' &= (\zeta_x F+ \zeta_y G+ \zeta_z H)/|J| \\
+F_v' &= (\xi_x F_v+ \xi_y G_v+ \xi_z H_v)/|J| \\
+G_v' &= (\eta_x F_v+ \eta_y G_v+ \eta_z H_v)/|J| \\
+H_v' &= (\zeta_x F_v+ \zeta_y G_v+ \zeta_z H_v)/|J|
+\end{align}
+向量U，F，G，H， $F_v$，$G_v$，$H_v$ 为Navier-Stokes方程中的各通量:
+\begin{equation}
+\nonumber
+\begin{split}
+U &=\left[\begin{matrix}
+\rho,
+\rho u,
+\rho v,
+\rho w,
+E
+\end{matrix}
+\right],\\
+F &=\left[\begin{matrix}
+\rho u,
+\rho u^2+p,
+\rho uv,
+\rho uw,
+Eu+pu
+\end{matrix}
+\right],\\
+G &=\left[\begin{matrix}
+\rho v,
+\rho uv,
+\rho v^2+p,
+\rho vw,
+Ev+pv
+\end{matrix}
+\right],\\
+H &=\left[\begin{matrix}
+\rho w,
+\rho wu,
+\rho wv,
+\rho w^2+p,
+Ew+pw
+\end{matrix}
+\right],\\
+F_v &=\left[\begin{matrix}
+0,
+\tau_{xx},
+\tau_{yx},
+\tau_{zx},
+u\tau_{xx}+v\tau_{yx}+w\tau_{zx}+q_x
+\end{matrix}
+\right],\\
+G_v &=\left[\begin{matrix}
+0,
+\tau_{xy},
+\tau_{yy},
+\tau_{zy},
+u\tau_{xy}+v\tau_{yy}+w\tau_{zy}+q_y
+\end{matrix}
+\right],\\
+H_v &=\left[\begin{matrix}
+0,
+\tau_{xz},
+\tau_{yz},
+\tau_{zz},
+u\tau_{xz}+v\tau_{yz}+w\tau_{zz}+q_z
+\end{matrix}
+\right]
+\end{split}
+\end{equation}
+$J$为几何变换的雅克比行列式值：
+\begin{equation}
+|J|=\left|\begin{matrix}
+\xi_x \quad \xi_y \quad \xi_z\\
+\eta_x \quad \eta_y \quad \eta_z\\
+\zeta_x \quad \zeta_y \quad \zeta_z
+\end{matrix}
+\right|
+\end{equation}
+对于几何变换有：
+\begin{equation}
+\left[\begin{matrix}
+d\xi\\
+d\eta\\
+d\zeta
+\end{matrix}
+\right]=
+\left[\begin{matrix}
+\xi_x \quad \xi_y \quad \xi_z\\
+\eta_x \quad \eta_y \quad \eta_z\\
+\zeta_x \quad \zeta_y \quad \zeta_z
+\end{matrix}
+\right]\left[\begin{matrix}
+dx\\
+dy\\
+dz
+\end{matrix}
+\right]
+\end{equation}
+以及
+\begin{equation}
+\left[\begin{matrix}
+dx\\
+dy\\
+dz
+\end{matrix}
+\right]=
+\left[\begin{matrix}
+x_\xi \quad x_\eta \quad x_\zeta\\
+y_\xi \quad y_\eta \quad y_\zeta\\
+z_\xi \quad z_\eta \quad z_\zeta
+\end{matrix}
+\right]\left[\begin{matrix}
+d\xi\\
+d\eta\\
+d\zeta
+\end{matrix}
+\right]
+\end{equation}
+因此有：
+\begin{equation}
+J=
+\left[\begin{matrix}
+\xi_x \quad \xi_y \quad \xi_z\\
+\eta_x \quad \eta_y \quad \eta_z\\
+\zeta_x \quad \zeta_y \quad \zeta_z
+\end{matrix}
+\right]=
+\left[\begin{matrix}
+x_\xi \quad x_\eta \quad x_\zeta\\
+y_\xi \quad y_\eta \quad y_\zeta\\
+z_\xi \quad z_\eta \quad z_\zeta
+\end{matrix}
+\right]^{-1}
+\end{equation}
+几何参数的表达式为：
+\begin{align}
+\xi_x &=(y_\eta z_\zeta-y_\zeta z_\eta)|J|\\
+\xi_y &=(z_\eta x_\zeta-z_\zeta x_\eta)|J|\\
+\xi_z &=(x_\eta y_\zeta-x_\zeta y_\eta)|J|\\
+\eta_x &=(y_\zeta z_\xi-y_\xi z_\zeta)|J|\\
+\eta_y &=(z_\zeta x_\xi-z_\xi x_\zeta)|J|\\
+\eta_z &=(x_\zeta y_\xi-x_\xi y_\zeta)|J|\\
+\zeta_x &=(y_\xi z_\eta-y_\eta z_\xi)|J| \\
+\zeta_y &=(z_\xi x_\eta-z_\eta x_\xi)|J| \\
+\zeta_z &=(x_\xi y_\eta-x_\eta y_\xi)|J|
+\end{align}
+由于我们通常从网格生成软件获得的网格或者通过代数或几何方法生成的网格给出的都是$(x,y,z)$坐标，因此，从$(x,y,z)$出发直接计算其对计算坐标的导数较为简单。在计算中我们取$(d\xi,d\eta,d\zeta)=(1,1,1)$可以大大简化计算几何量时的复杂度，同时计算差分时也不用再算一次除法。
+
+\subsection{几何变量的求解}
+为了获取几何量首先我们要定义网格点和数据点的相对位置。本程序中，网格采用贴体的方式，即网格边界的形状与壁面或物理边界的形状一致。而将计算点放在八个网格点组成的单元的中心（Cell center）。这种方式与有限体积方法的处理方式一致，可以有效的避免所谓的角点问题，简化程序。如图\ref{chapter4fig:4}给出了网格的示意图。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{chapter4/chapter4fig4.jpg}
+\caption{网格及数据位置示意图}
+\label{chapter4fig:4}
+\end{center}
+\end{figure}
+
+对于网格点的空间坐标，我们将其写为计算坐标空间多项式的形式：
+\begin{equation}
+X(\xi,\eta,\zeta)=\sum_{l=i_0}^{i_1}\sum_{m=j_0}^{j_1}\sum_{n=k_0}^{k_1}X_{l,m,n}h_l(\xi)h_m(\eta)h_n(\zeta),X=x,y,z
+\end{equation}
+其中，$h_i(\xi),h_j(\eta),h_k(\zeta)$是拉格朗日多项式，其表达形式为：
+\begin{equation}
+h_i(x)=\prod_{s=0,s\neq i}^{N}{\left(\frac{x-x_s}{x_i-x_s}\right)}
+\end{equation}
+物理空间坐标对计算坐标的导数也可以通过插值多项式得到：
+\begin{equation}
+X(\xi,\eta,\zeta)_{\xi}=\sum_{l=i_0}^{i_1}\sum_{m=j_0}^{j_1}\sum_{n=k_0}^{k_1}X_{l,m,n}h_l'(\xi)h_m(\eta)h_n(\zeta)
+\end{equation}
+\begin{equation}
+X(\xi,\eta,\zeta)_{\eta}=\sum_{l=i_0}^{i_1}\sum_{m=j_0}^{j_1}\sum_{n=k_0}^{k_1}X_{l,m,n}h_l(\xi)h_m'(\eta)h_n(\zeta)
+\end{equation}
+\begin{equation}
+X(\xi,\eta,\zeta)_{\zeta}=\sum_{l=i_0}^{i_1}\sum_{m=j_0}^{j_1}\sum_{n=k_0}^{k_1}X_{l,m,n}h_l(\xi)h_m(\eta)h_n'(\zeta)
+\end{equation}
+由于我们把数据存储在单元的中心点处，因此数据点的计算坐标为
+$$
+(\xi_{i+1/2},\eta_{j+1/2},\zeta_{k+1/2})
+$$
+从而其物理空间坐标为：
+\begin{equation}\label{chapter4eq:x_center}
+x(\xi_{i+1/2},\eta_{j+1/2},\zeta_{k+1/2})=\sum_{l=i_0}^{i_1}\sum_{m=j_0}^{j_1}\sum_{n=k_0}^{k_1}x_{l,m,n}h_l(\xi_{i+1/2})h_m(\eta_{i+1/2})h_n(\zeta_{i+1/2})
+\end{equation}
+\begin{equation}\label{chapter4eq:y_center}
+y(\xi_{j+1/2},\eta_{j+1/2},\zeta_{k+1/2})=\sum_{l=i_0}^{i_1}\sum_{m=j_0}^{j_1}\sum_{n=k_0}^{k_1}y_{l,m,n}h_l(\xi_{i+1/2})h_m(\eta_{i+1/2})h_n(\zeta_{i+1/2})
+\end{equation}
+\begin{equation}\label{chapter4eq:z_center}
+z(\xi_{k+1/2},\eta_{j+1/2},\zeta_{k+1/2})=\sum_{l=i_0}^{i_1}\sum_{m=j_0}^{j_1}\sum_{n=k_0}^{k_1}z_{l,m,n}h_l(\xi_{i+1/2})h_m(\eta_{i+1/2})h_n(\zeta_{i+1/2})
+\end{equation}
+在程序中，我们设定：
+$$
+\Delta \xi=\xi_{i+1}-\xi_i=1,\quad \Delta \eta=\eta_{i+1}-\eta_i=1,\quad \Delta \zeta=\zeta_{i+1}-\zeta_i=1
+$$
+因此式子\eqref{chapter4eq:x_center}-\eqref{chapter4eq:z_center} 可以写为：
+\begin{equation}
+x(i+1/2,j+1/2,k+1/2)=\sum_{l=i_0}^{i_1}\sum_{m=j_0}^{j_1}\sum_{n=k_0}^{k_1}x_{l,m,n}h_l(i+1/2)h_m(j+1/2)h_n(i+1/2)
+\end{equation}
+\begin{equation}
+y(i+1/2,j+1/2,k+1/2)=\sum_{l=i_0}^{i_1}\sum_{m=j_0}^{j_1}\sum_{n=k_0}^{k_1}y_{l,m,n}h_l(i+1/2)h_m(j+1/2)h_n(i+1/2)
+\end{equation}
+\begin{equation}
+z(i+1/2,j+1/2,k+1/2)=\sum_{l=i_0}^{i_1}\sum_{m=j_0}^{j_1}\sum_{n=k_0}^{k_1}z_{l,m,n}h_l(i+1/2)h_m(j+1/2)h_n(i+1/2)
+\end{equation}
+对于拉格朗日多项式，我们可以得到其系数，在程序中取五点四阶拉格朗日多项式插值，其系数为：
+$$
+\left[\begin{array}{ccccc}
+ 35/128 & 32/32 & -35/64 &  7/32 &  -5/128\\
+ -5/128 & 15/32 &  45/64 & -5/32 &  3/128\\
+  3/128 & -5/32 &  45/64 & 15/32 & -5/128\\
+ -5/128 &  7/32 & -35/64 & 35/32 & 35/128
+\end{array}\right]
+$$
+一阶导数的多项式系数为：
+$$
+\left[\begin{array}{ccccc}
+-11/12  & 17/24 & 3/8   &-5/24  & 1/24\\
+1/24    &-9/8   & 9/8   &-1/24  & 0\\
+0       & 1/24  & -9/8  & 9/8   & -1/24\\
+-1/24   & 5/24    &-3/8   &-17/24 & 11/12
+\end{array}\right]
+$$
+值得注意的是，对于处于插值范围左右两侧的点，其一阶导数的精度只有二阶。但是这对于计算的影响并不大。
+在插值过程中，我们将整个网格分为大小为$5 \times 5 \times 5$的小块，这些块在边界处公用点，插值就在这些小块上分别进行。这样做的目的是减小整个插值多项式的阶数。经验表明，当网格变化相对剧烈时，高阶（大于5 阶）的多项式将会产生振荡。几何变量的振荡将会对物理计算的稳定性和精度带来非常不利的影响，因此我们采用阶数不是太高的多项式完成对几何变量的插值。
+\subsection{并行方法与区块划分}
+当总网格数量比较大时，需要采用并行的方法减小总计算时间。本程序采用MPICH函数库\cite{balaji2014mpich}实现并行。为了尽可能减小由于通讯延迟带来的额外计算时间，我们采用非阻塞通信的函数MPI\_Isend()和MPI\_Irecv()实现异步的计算和通信，即在计算网格内部数据的同时进行数据交换。具体的实现方法可以参考程序的代码：
+
+\href{https://github.com/juncas/NUC3d}{NUC3d程序源代码网址：https://github.com/juncas/NUC3d}
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{chapter4/chapter4fig5.jpg}
+\caption{复杂网格拓扑结构示意图}
+\label{chapter4fig:5}
+\end{center}
+\end{figure}
+
+目前版本程序的分块方式比较简单，采用结构网格笛卡尔分块方式。例如对于总网格数为$N_x\times N_y \times N_z$ 的网格，根据需要在三个方向分别进行$p_x$，$p_y$和$p_z$切分，则最终的网格块数为$p_x\times p_y \times p_z$。 每个MPI进程分配一个网格块，因此总进程数与总网格块数相等。本程序还能处理拓扑结构稍微复杂一点的网格，如图\ref{chapter4fig:5}所示。当总网格数不能用$N_x\times N_y \times N_z$表达时，例如，$N1_x\times N1_y \times N1_z+N2_x\times N2_y \times N2_z$ 我们可以先将其分解为两块大网格，$N1_x\times N1_y \times N1_z$和$N2_x\times N2_y \times N2_z$再根据前述方法进行更进一步的划分。
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{chapter4/chapter4fig6.jpg}
+\caption{NUC3d程序强扩展性，4至512核}
+\label{chapter4fig:6}
+\end{center}
+\end{figure}
+
+为了验证程序的正确性和效率，作者进行了大量的测试。分别在天河一号B长沙中心，天河二号吕梁中心进行了测试。对于强扩展性，即给定总网格数而改变进程数，可以得到如图\ref{chapter4fig:6}结果。可以看出来，本程序的并行效率非常高，随着网格变化通讯对总计算时间基本没有影响
+
+\subsection{边界条件}
+程序目前可以处理的边界条件包括五种:
+\begin{itemize}
+\item 内边界
+\item 入口边界
+\item 出口边界
+\item 对称边界
+\item 壁面边界
+\end{itemize}
+内边界为不同网格块的交界面，目前要求所有网格块的$(\xi,\eta,\zeta)$方向一致。交界面传递数据的宽度由所使用的格式决定。入口边界根据给定的入口条件（速度的三个分量、密度和压力）设置相应位置数据点的信息。出口条件采用对网格内一层点零阶外推实现。壁面边界条件为无滑移壁面，同时需要给定壁面的温度，根据给定的温度以及压力法向梯度为0的假设来设置边界处数据点的值。
+
+对于存在壁面的计算，由于初始条件通常直接给为均匀来流条件，在壁面附近会产生很大的梯度，影响计算的稳定性。因此，在壁面附近的0至n点采用低阶格式，表\ref{chapter4tab:1}给出了各点所对应的格式。
+\begin{table}[!htbp]
+   \caption{壁面边界处不同网格点所对应的格式}\label{chapter4tab:1}
+  \begin{center}\footnotesize
+  \begin{tabular}{ccc}
+  \toprule
+  n  &  无粘通量 & 粘性通量 \\
+  \midrule
+  0  & 一阶迎风格式 & 一阶偏心格式 \\
+  1  & 二阶中心格式 & 二阶中心格式 \\
+  2  & 三阶WENO格式 & 四阶中心格式 \\
+  3  & 五阶WENO格式 & 六阶中心格式 \\
+  \bottomrule
+  \end{tabular}
+  \end{center}
+\end{table}
+
+\section{本章小结}
+本章中介绍了作者开发的两款可压缩流动求解器。CFD程序的开发和调试是一个浩大的工程，一个通用的CFD求解器需要千万级别的代码行数。CFD发展到今天，以一个人的力量已经无法独立开发出全套的算法。能够做的只是针对特定问题写出特定的代码。
+
+在开发NUC3d程序之前，作者写过几个单线程的FORTRAN求解器，这些求解器主要用于算法的测试，并没有实际的应用价值。从开发FORTRAN代码的经验中，作者感受到FORTRAN语言虽然对于科学计算有着非常高的计算效率，但是其可扩展性非常差，不具有现代编程语言的任何特点。考虑到作者将来可能继续从事流体力学研究，独立开发出一套具有一定扩展性和通用性的CFD代码是十分必要的。C++作为广泛被使用的编程语言在几乎所有计算机领域都大放光彩，因此，作者选择C++作为开发语言。在经过一段时间学习C++的编程方法后，经过近半年的努力，完成了目前这个版本NUC3d的开发。尽管说这个版本的NUC3d程序还有一定的局限性，但是已经能够满足本文的计算需求。在今后的开发中，作者考虑对现有代码进行重构，进一步提升其代码的现代性，同时增加和完善化学反应流动部分的功能。
+
+GPU是目前最强劲和最环保的处理器构架。作者早在读硕士期间就有开发基于GPU的CFD求解器的构想。在读博期间，在导师的支持下，完成了一套能够处理简单问题的化学反应可压缩流动求解器的CUDA代码开发是一件辛苦但是收获颇丰的事情。在可预见的未来，GPU将成为大规模计算的主力军，而现有的大部分CFD代码对GPU几乎都不支持。在今后的工作中，作者将基于现有程序开发出MPI并行的GPU程序以满足日益增长的计算要求。
+
+在接下来的几章中，我们将把所开发的两款求解器应到具有实际研究价值的流动计算中去。

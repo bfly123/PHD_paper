@@ -1,0 +1,132 @@
+%% Thesis Template of Chinese Academy of Sciences
+%%   for using CASthesis package with LaTeX2e
+%%
+%% Created by Ling-Yun Wu <aloft@ctex.org>
+%%
+%% $Id: template.tex,v 1.10 2007/01/09 05:10:46 aloft Exp $
+
+\XeTeXinputencoding "GB2312"
+\documentclass{CASthesis}
+%\usepackage{xeCJK}
+\usepackage{ccmap}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{enumerate}
+% 可选参数：
+% notypeinfo 取消扉页的LaTeX版本信息
+%
+% 下面三个选一个：
+% dvipdfm 使用 dvipdfm(x) 生成最终的 PDF 文档 (缺省设置）
+% dvips 使用 dvips 生成最终的 PS 文档
+% pdftex 使用 pdfLaTeX 生成最终的 PDF 文档
+
+% 设置图形文件的搜索路径
+\graphicspath{{chapter/}{figures/}}
+
+% 取消链接的颜色（黑白打印时）
+%\hypersetup{colorlinks=false}
+
+% 小节标题靠左对齐
+%\CTEXsetup[format+={\flushleft}]{section}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 封面部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  % 中文封面内容
+  \confidential{}
+\title{可压缩流动中间断问题的高分辨率数值求解方法及应用}            % 论文标题
+%  \title{}
+  \author{刘利}
+  \advisor{申义庆~研究员}
+  %\author{}
+  %\advisor{}
+ \advisorinstitute{中国科学院力学研究所}
+  \degree{博士}
+  \majordegree{理学博士}
+  \major{流体力学}
+  \submitdate{2017~年~4~月}
+  \institute{中国科学院力学研究所}
+
+  % 英文封面内容
+  \englishtitle{A Study of High-Resolution Algorithms \\  for Discontinuous Problems in Complex\\ Compressible Flows and Their Applications}
+  \englishauthor{Li Liu}
+  \englishadvisor{Prof. Yiqing Shen}
+  %\englishauthor{}
+  %\englishadvisor{}
+  \englishinstitute{Institute of Mechanics \\
+        University of Chinese Academy of Sciences}
+  \englishdegree{Doctor}
+  \englishmajordegree{Fluid Mechanics}
+  \englishdate{April, 2017}
+
+  % 封面
+  \maketitle
+
+  % 英文封面
+  \makeenglishtitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 前言部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+
+  % 摘要
+  \include{chapter/abstract}
+
+  % 目录
+  \tableofcontents
+  % 表格目录
+  \listoftables
+  % 插图目录
+  \listoffigures
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 正文部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+
+  \include{chapter/Chapter-Introduction}
+%  \include{chapter/Chapter-Low-Dissipation-Shock-Capturing-Scheme}
+%  \include{chapter/Chapter-MHD}
+%  \include{chapter/Chapter-Dual-Information-Method}
+%  \include{chapter/Chapter-Ghost-Fluid-method-and-Interface}
+%  \include{chapter/Chapter-Perturbation-Method}
+%  \include{chapter/Chapter-Stiff-Reaction}
+%  \include{chapter/Chapter-elementary-Reaction}
+%  \include{chapter/Chapter-Conclusion}
+
+  % 附录
+  \appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 附件部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+
+  % 参考文献
+  % 使用 BibTeX
+  \bibliography{bib/mybibfile}
+  \nocite{*}
+
+  % 发表文章目录
+  \include{chapter/pub}
+
+  % 个人简历
+  \include{chapter/resume}
+
+  % 致谢
+
+  \include{chapter/thanks}
+
+
+
+\end{document}
