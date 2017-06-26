@@ -20,8 +20,9 @@
 \contentsline {section}{\numberline {1.4}间断问题数值研究现状和不足}{18}{section.1.4}
 \contentsline {subsection}{\numberline {1.4.1}激波捕捉格式和激波分辨率}{18}{subsection.1.4.1}
 \contentsline {subsection}{\numberline {1.4.2}物质界面和界面追踪方法}{18}{subsection.1.4.2}
-\contentsline {subsection}{\numberline {1.4.3}爆轰波和化学反应刚性}{20}{subsection.1.4.3}
-\contentsline {chapter}{参考文献}{21}{appendix*.6}
-\contentsline {chapter}{发表文章目录}{47}{appendix*.7}
-\contentsline {chapter}{简\CTEX@spaceChar \CTEX@spaceChar 历}{49}{appendix*.8}
-\contentsline {chapter}{致\CTEX@spaceChar \CTEX@spaceChar 谢}{51}{appendix*.9}
+\contentsline {subsection}{\numberline {1.4.3}刚性化学反应流和爆轰波}{20}{subsection.1.4.3}
+\contentsline {subsubsection}{\numberline {1.4.3.1}化学反应流时间方法}{20}{subsubsection.1.4.3.1}
+\contentsline {chapter}{参考文献}{23}{appendix*.6}
+\contentsline {chapter}{发表文章目录}{49}{appendix*.7}
+\contentsline {chapter}{简\CTEX@spaceChar \CTEX@spaceChar 历}{51}{appendix*.8}
+\contentsline {chapter}{致\CTEX@spaceChar \CTEX@spaceChar 谢}{53}{appendix*.9}

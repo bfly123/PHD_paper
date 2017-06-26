@@ -77,45 +77,46 @@ Warning--empty journal in freidberg1987ideal
 Warning--empty journal in glimm1970decay
 Warning--empty journal in harten1989eno
 Warning--empty journal in osher1985shock
-You've used 237 entries,
+Warning--can't use both volume and number fields in smooke1988comparison
+You've used 242 entries,
             2253 wiz_defined-function locations,
-            1730 strings with 40076 characters,
-and the built_in function-call counts, 75775 in all, are:
-= -- 7623
-> -- 3114
+            1755 strings with 41056 characters,
+and the built_in function-call counts, 77680 in all, are:
+= -- 7818
+> -- 3194
 < -- 0
-+ -- 1357
-- -- 1056
-* -- 6206
-:= -- 12312
-add.period$ -- 710
-call.type$ -- 237
-change.case$ -- 1212
++ -- 1394
+- -- 1084
+* -- 6369
+:= -- 12606
+add.period$ -- 725
+call.type$ -- 242
+change.case$ -- 1241
 chr.to.int$ -- 0
-cite$ -- 241
-duplicate$ -- 2490
-empty$ -- 6230
-format.name$ -- 1056
-if$ -- 15525
+cite$ -- 247
+duplicate$ -- 2551
+empty$ -- 6381
+format.name$ -- 1084
+if$ -- 15921
 int.to.chr$ -- 0
-int.to.str$ -- 237
-missing$ -- 245
-newline$ -- 1182
-num.names$ -- 474
-pop$ -- 1039
+int.to.str$ -- 242
+missing$ -- 250
+newline$ -- 1207
+num.names$ -- 484
+pop$ -- 1061
 preamble$ -- 1
-purify$ -- 996
+purify$ -- 1020
 quote$ -- 0
-skip$ -- 1484
+skip$ -- 1527
 stack$ -- 0
-substring$ -- 5759
-swap$ -- 603
+substring$ -- 5922
+swap$ -- 624
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 904
-warning$ -- 4
-while$ -- 853
-width$ -- 240
-write$ -- 2385
+type$ -- 924
+warning$ -- 5
+while$ -- 874
+width$ -- 245
+write$ -- 2437
 (There were 15 error messages)

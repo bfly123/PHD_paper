@@ -299,6 +299,13 @@
 \newblock Detonation waves in condensed media.
 \newblock Tech. rep., DTIC Document, 1972.
 
+\bibitem{eberhardt1992diagonal}
+{\sc Eberhardt, S., and Imlay, S.}
+\newblock Diagonal implicit scheme for computing flows with finite rate
+  chemistry.
+\newblock {\em Journal of Thermophysics and Heat Transfer 6}, 2 (1992),
+  208--216.
+
 \bibitem{elling2008supersonic}
 {\sc Elling, V., and Liu, T.-P.}
 \newblock Supersonic flow onto a solid wedge.
@@ -326,6 +333,12 @@
 {\sc Evans, M.~W., Harlow, F.~H., and Bromberg, E.}
 \newblock The particle-in-cell method for hydrodynamic calculations.
 \newblock Tech. rep., DTIC Document, 1957.
+
+\bibitem{fan2012fully}
+{\sc Fan, Y., Durlofsky, L.~J., and Tchelepi, H.~A.}
+\newblock A fully-coupled flow-reactive-transport formulation based on element
+  conservation, with application to co 2 storage simulations.
+\newblock {\em Advances in Water Resources 42\/} (2012), 47--61.
 
 \bibitem{fedkiw1999non}
 {\sc Fedkiw, R.~P., Aslam, T., Merriman, B., and Osher, S.}
@@ -593,6 +606,12 @@
 \newblock {\em International Journal for Numerical Methods in Fluids 42}, 7
   (2003), 765--790.
 
+\bibitem{knio1999semi}
+{\sc Knio, O.~M., Najm, H.~N., and Wyckoff, P.~S.}
+\newblock A semi-implicit numerical scheme for reacting flow: Ii. stiff,
+  operator-split formulation.
+\newblock {\em Journal of Computational Physics 154}, 2 (1999), 428--467.
+
 \bibitem{kolev2005multiphase}
 {\sc Kolev, N.~I.}
 \newblock {\em Multiphase flow dynamics: Fundamentals}.
@@ -777,6 +796,12 @@
 \newblock A level set formulation for premixed combustion les considering the
   turbulent flame structure.
 \newblock {\em Combustion and Flame 156}, 4 (2009), 801--812.
+
+\bibitem{najm1998semi}
+{\sc Najm, H.~N., Wyckoff, P.~S., and Knio, O.~M.}
+\newblock A semi-implicit numerical scheme for reacting flow: I. stiff
+  chemistry.
+\newblock {\em Journal of Computational Physics 143}, 2 (1998), 381--402.
 
 \bibitem{nguyen2002fully}
 {\sc Nguyen, D., Gibou, F., and Fedkiw, R.}
@@ -1030,6 +1055,14 @@
 {\sc Smoller, J.}
 \newblock {\em Shock waves and reaction—diffusion equations}, vol.~258.
 \newblock Springer Science \& Business Media, 2012.
+
+\bibitem{smooke1988comparison}
+{\sc Smooke, M., Puri, I., and Seshadri, K.}
+\newblock A comparison between numerical calculations and experimental
+  measurements of the structure of a counterflow diffusion flame burning
+  diluted methane in diluted air.
+\newblock In {\em Symposium (International) on Combustion\/} (1988), vol.~21,
+  Elsevier, pp.~1783--1792.
 
 \bibitem{soo2003new}
 {\sc Soo~Kim, M., Sun~Park, J., and Lee, W.~I.}
