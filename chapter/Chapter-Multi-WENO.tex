@@ -1,0 +1,623 @@
+
+\XeTeXinputencoding "GB2312"
+\chapter{多步加权基本无振荡（Multi-WENO）格式}\label{chap:multiWENO}
+加权基本无振荡格式（WENO）自1994年由Liu\cite{liu1994weighted}提出以来，在近20年已得到广泛应用。WENO格式基本思想是将ENO格式\cite{harten1987uniformly}的最光子滑模板用所有子模板的凸组合重构代替，为了达到高精度特性并保持间断附近的无振荡特性，子模板的权重非常重要。
+
+Jiang和Shu\cite{jiang1996efficient}分析了Liu\cite{liu1994weighted}引入的光滑因子，认为采用该光滑因子只能让$r$阶ENO格式收敛到一个$r+1$阶WENO格式，他们在该文中，构造了一个经典的五阶WENO格式，并给出了构造光滑因子和权重函数的一般框架。2005年Henrick等人\cite{henrick2005mapped}指出，Jiang和Shu提出的光滑度量因子不能提高WENO格式在一阶导数为零的极值点精度，他们在该文章中构造了一个映射函数来得到极值点的最优精度。2008年，Borges等人\cite{borges2008improved}建议采用整体的五点模板来推导光滑因子取代Jiang和Shu经典的光滑因子。另一方面，学者们构造了一系列高于五阶的WENO格式\cite{balsara2000monotonicity,gerolymos2009very,wang2001optimized}。如Martin等人\cite{martin2006bandwidth}提出的$2r$阶精度的对称型WENO格式，可以达到更低耗散的效果。
+
+上面提到的WENO格式都是通过$r$阶精度的ENO格式来设计光滑区域到达$2r-1$或$2r$阶精度的WENO格式，它们的目的都是提高光滑区的精度，尤其是极值点（$f'_i=0$）。因此，对于含有间断的问题，上述的方法在连接光滑区和间断区的过渡点，并不能达到理想精度。例如，Shen和Zha\cite{shen2014improvement}分析了现存的各种五阶WENO格式，发现这些格式在过渡点半点精度只有三阶。这一缺点可能会影响五阶格式的整体表现。如在模拟激波诱导的分离流时或在模拟激波/湍流相互作用时。
+
+由于解在过渡区仍然是光滑的，理论上，该点的半点通量可以达到四阶精度。换言之，可以通过四个点的光滑模板来构造一个四阶半点通量。在\cite{shen2014improvement}工作中，Shen和Zha引入了两个四阶的通量和一个判断相邻两个四阶通量光滑/间断的判别器用来提高精度。Shen等人在更早的工作中\cite{shen2001fifth}，指出Jiang和Shu的经典的光滑因子$IS_K$在极值点不能满足$\beta_k=D(1+O(\Delta^2))$ ，并提出一种逐阶的重构来满足上述条件。但是这一方法在极值点并不满足五阶收敛的充分必要条件\cite{henrick2005mapped}。
+
+本章我们基于\cite{shen2014improvement}的分析，构造了一种新形式的WENO方法。该方法结合了Hentick的映射函数、WENO-Z格式以及多步的构造方法。新方法的优点主要是提高了WENO格式在近激波区域的精度。数值算例显示该方法比前文提到的各种五阶WENO格式耗散都要第。
+
+\section{本章涉及的数值方法}
+本节中，我们将给出本章涉及到的数值方法的具体的表达，这些方法也会在后文中经常应用到。
+
+\subsection{Lax-Friedrichs（LF）通量分裂方法和空间半离散}
+引言\ref{riemann_solver} 中介绍了各类近似黎曼求解器，在流通矢量分裂中，LF分裂方法是形式最为简单、最为常用的一种\cite{ren2003characteristic,borges2008improved,balsara2000monotonicity}，具有较好的稳定性。
+
+对于双曲率方程，为了实现迎风性，流通矢量方法通常将通量函数表达正负通量之和的形式，以一维方程为例，
+\begin{equation}\label{eq21}
+  \frac{\partial u}{\partial t}+\frac{\partial f(u)}{\partial x}=0,
+\end{equation}
+LF方法给出的正负通量为
+\begin{equation}
+  f^\pm (u)=f(u)\pm \lambda_{max} u,
+\end{equation}
+其中$\lambda_{max}$是雅克比矩阵$\frac{\partial f}{\partial u}$的当地最大特征值。
+
+采用Godunov方法可以实现空间和时间的独立离散，所以Godunov方法通常也称为半离散方法。方程（\ref{eq21}）的空间半离散形式为
+\begin{equation}
+  \frac{du_i(t)}{dt}=-\frac{1}{\Delta x}(h_{i+1/2}-h_{i-1/2}),
+\end{equation}
+其中$h_{i+1/2}=h^+_{i+1/2}+h^-_{i+1/2}$。本文中，我们仅构造 $h^+_{i+1/2}$ 通量。为了简便文中省略掉了上标 '+'，$h^-_{i+1/2}$的构造遵从同样的规律。
+\subsection{加权基本无振荡/WENO格式\cite{jiang2001weighted,henrick2005mapped,borges2008improved}}
+五阶WENO格式的通量构造为
+\begin{equation}
+h_{i+1/2}=\sum_{k=0}^{2}\omega_kq_k,
+\end{equation}
+其中，$q_k$是子模板$S_k^3=(x_{i+k-2},x_{i+k-1},x_{i+k})$上的三阶通量
+\begin{equation}\label{eq:q}
+  \left\{
+	\begin{array}{l}
+	  \displaystyle 	  q_0=\frac{1}{3}f_{i-2}-\frac{7}{6}f_{i-1}+\frac{11}{6}f_i,\\[0.4em]
+	  \displaystyle q_1=-\frac{1}{6}f_{i-1}+\frac{5}{6}f_i+\frac{1}{3}f_{i+1},\\[0.4em]
+	  \displaystyle q_2=\frac{1}{3}f_i+\frac{5}{6}f_{i+1}-\frac{1}{6}f_{i+2}.\\
+	\end{array}
+ \right.
+ \end{equation}
+
+模板权重$\omega_k$为
+\begin{equation}
+  \omega_k=\frac{\alpha_k}{\alpha_0+\alpha_1+\alpha_2},
+\end{equation}
+其中
+\begin{equation}\label{alphak}
+  \alpha_k=\frac{c_k}{(\varepsilon+IS_k)^p},
+\end{equation}
+$IS_k$是子模板$S_k^3$的光滑度量因子。在文献\cite{jiang1996efficient}中，Jiang和Shu建议$IS_k$选取为
+\begin{equation}\label{eqIS}
+  IS_k=\sum_{l=1}^2 \int_{x_{i-1/2}}^{x_{i+1/2}}\Delta x^{2l-1}\left[q_k^{(l)}(x)\right]^2dx.
+\end{equation}
+Eq.(\ref{eqIS})的泰勒展开为
+\begin{equation}\label{eqIS2}
+  \left\{
+	\begin{array}{l}
+	  \displaystyle IS_0=\frac{13}{12}(f_{i-2}-2f_{i-1}+f_i)^2+\frac{1}{4}(f_{i-2}-4f_{i-1}+3f_i)^2,\\[0.6em]
+	  \displaystyle IS_1=\frac{13}{12}(f_{i-1}-2f_i+f_{i+1})^2+\frac{1}{4}(f_{i-1}-f_{i+1})^2,\\[0.6em]
+	  \displaystyle IS_2=\frac{13}{12}(f_i-2f_{i+1}+f_{i+2})^2+\frac{1}{4}(3f_i-4f_{i+1}+f_{i+2})^2,\\
+	\end{array}
+	\right.
+\end{equation}
+其中$c_0=0.3$，$c_1=0.6$，$c_2=0.1$ 是构造五阶迎风格式的线性最优权重。 如果 $f'_i=0$， Eq.(\ref{eqIS2})中的$IS_k=D(1+O(\Delta x)$，$\omega_k=c_k+O(\Delta x)$不符合格式所要求的收敛精度\cite{henrick2005mapped,borges2008improved,shen2001fifth}。
+
+Henrick等人\cite{henrick2005mapped}给出了关于Jiang和Shu的WENO格式详细的精度分析，并且认为满足五阶收敛需要满足如下的条件
+\begin{equation}\label{eq:condition}
+  \sum_k=0^2 A_k(\omega_k^+-\omega_k^-)=O(\Delta x^3),
+\end{equation}
+\begin{equation*}
+  \omega_k^{\pm}-c_k=O(\Delta x^2),
+\end{equation*}
+其中$A_k$为$q_k$的泰勒展开中的三阶项$(\Delta x^3)$系数\cite{henrick2005mapped}。为了满足前面的条件，提高权重系数$\omega_k$的系数，映射函数$g_k(\omega)$定义为
+\begin{equation}
+  g_k(\omega)=\frac{\omega(c_k+c_k^2-3c_k\omega+\omega^2)}{c_k^2+\omega(1-2c_k)},
+\end{equation}
+通过$g_k(\omega)$生成新的权重，并构造了新的WENO格式---WENO-M格式。该格式可以在极值点达到五阶收敛精度。
+
+Borges等人\cite{borges2008improved}提出一个五阶收敛的充分条件
+\begin{equation}\label{conditionWENO}
+  \omega_k^{\pm}-c_k=O(\Delta x^3),
+\end{equation}
+并引入了一个系数$\tau_5$
+\begin{equation}\label{eq:tau5}
+  \tau_5=|IS_0-IS_2|,
+\end{equation}
+用$\tau_5$来构造新的光滑因子
+\begin{equation}
+  IS_k^z=\frac{IS_k+\varepsilon}{IS_k+\tau_5+\varepsilon},
+\end{equation}
+通过新的$IS_k^z$构造的WENO格式---WENO-Z格式，可以在极值点满足条件（\ref{conditionWENO}）。
+
+在本文所有用到$\varepsilon$的公式中，该系数都是为了防止分母为零，在文章\cite{jiang1996efficient}中，$\varepsilon=10^{-6}$，在文章\cite{henrick2005mapped,borges2008improved}中，$\varepsilon=10^{-40}$。Eq.(\ref{alphak})中的$p$作用是增加间断区权重间的差距。
+\subsection{Runge-Kutta时间方法}
+在引言\ref{chap:timemethod}中我们简单回顾了对流方程的各种时间方法的发展，目前应用最为广泛的是Shu根据对流方程TVD性质发展的一套三阶显示Runge-Kutta格式\cite{shu1988efficient}。对于如下方程
+\begin{equation}
+  \frac{du}{dt}=L(u),
+\end{equation}
+三阶TVD Runge-Kutta格式具体表达如下，
+\begin{equation}
+  \left\{
+	\begin{array}{l}
+	  \displaystyle u^{(1)}=u^n+\Delta t L(u^n),\\[0.7em]
+	  \displaystyle u^{(2)}=\frac{3}{4}u^n+\frac{1}{4}u^{(1)}+\frac{1}{4}\Delta tL(u^{(1)}),\\[0.7em]
+	  \displaystyle u^{n+1}=\frac{1}{3}u^n+\frac{2}{3}u^{(2)}+\frac{2}{3}\Delta tL(u^{(2)}).\\
+	\end{array}
+	\right.
+\end{equation}
+
+\section{过渡点精度分析}\cite{shen2014improvement}
+过渡点是连接光滑区和间断去的网格点，在前言\ref{cap:transition}中有较详细的图示和描述。在文献\cite{shen2014improvement}中分析了五阶WENO格式在过渡点降阶问题，认为无论是WENO-Z格式还是WENO-JS格式在过渡点只有三阶精度，然而该分析存在一些错误，其实该点只有二阶精度，以下我们将给出更为准确的分析，其中括号内为原不准确的表述。
+
+图.\ref{transition}中，点$i$和点$i+1$是两个间断点，点$i-1$即被称作过渡点，在该点，模板
+$$S_{(i-1)-1/2}^5=(x_{i-4},x_{i-3},\cdots,x_i)$$
+是光滑模板；因此，$h_(i-1)-1/2$通过WENO-Z或者WENO-JS格式可以得到一个五阶通量。然而对于模板$$S_{(i-1)+1/2}^5=(x_{i-3},x_{i-2},\cdots,x_{i+1})$$
+由于在子模板$S_2^3=(x_{i-1},x_i,x_{i+1})$上存在间断，所以无论采用了WENO-Z还是WENO-JS总有
+\begin{equation*}
+  IS_2>>IS_0,IS_1.
+\end{equation*}
+在计算通量$h_{(i-1)+1/2}$时有
+\begin{equation*}
+  \omega_0 \rightarrow \frac{1}{7}, \omega_1 \rightarrow \frac{6}{7},\omega_2 \rightarrow0,
+\end{equation*}
+在$\Delta x \rightarrow 0$时$h_{(i-1)-1/2}$和$h_{(i-1)+1/2}$分别为
+\begin{equation*}
+  h_{(i-1)-1/2}=\frac{1}{30}f_{i-4}-\frac{13}{60}f_{i-3}+\frac{47}{60}f_{i-2}+\frac{9}{20}f_{i-1}-\frac{1}{20}f_i,
+\end{equation*}
+和
+\begin{equation*}
+  h_{(i-1)+1/2}=\frac{1}{21}f_{i-3}-\frac{13}{42}f_{i-2}+\frac{41}{42}f_{i-1}-\frac{2}{7}f_i,
+\end{equation*}
+（原文中$f_{i-3}$前系数为$1/20$）。
+应用泰勒分析有
+\begin{equation*}
+  \frac{1}{\Delta x}(h_{(i-1)+\frac{1}{2}}-h_{(i-1)-\frac{1}{2}})=f'_{i-1}+O(\Delta x^2),
+ \end{equation*}
+（原文中为$O(\Delta x^3)$)，
+同样的情况也会发生在下游的点$i+3$。
+
+由于过渡点仍然属于光滑区域，因此该点的半点通量应该达到四阶和五阶，而一阶导数精度应该达到三阶（\cite{shen2014improvement}中为四阶）。
+
+为了提高过渡点的精度，在文献\cite{shen2014improvement}中，构造了一个新的方法
+\begin{equation}\label{eq:tranWENO}
+  h_{i+1/2}=\left\{
+	\begin{array}{l}
+	  q_0^4, \hspace{0.2cm} \text{if}\hspace{0.2cm}  \tau_4^0\le \text{min}(IS_k) \hspace{0.2cm} \text{and}\hspace{0.2cm} \tau_4^1\ge \text{min}(IS_k),\\
+	  q_1^4, \hspace{0.2cm} \text{if} \hspace{0.2cm} \tau_4^1 \ge \text{min}(IS_k) \hspace{0.2cm} \text{and} \hspace{0.2cm}\tau_4^1\le \text{min}(IS_k),\\
+	  h^{\text{WENO-Z}},\hspace{0.2cm}\text{otherwise},\\
+	\end{array}
+	\right.
+\end{equation}
+其中，
+\begin{equation*}
+  \left\{
+	\begin{array}{l}
+	  \displaystyle 	q_0^4=\frac{1}{12}(f_{i-2}-5f_{i-1}+13f_i+3f_{i+1}),\\[0.5em]
+	\displaystyle q_1^4=\frac{1}{12}(-f_{i-1}+7f_i+7f_{i+1}-f_{i+2}),\\
+	\end{array}
+\right.
+\end{equation*}
+是两个四阶通量，可以通过方程 (\ref{eq:q}) 中两个三阶通量$q_k$组合得到
+\begin{equation*}
+  \left\{
+	\begin{array}{l}
+	  q_0^4=c_0^{4,0}q_0+c_1^{4,0}q_1,\\
+	  q_1^4=c_0^{4,1}q_1+c_1^{4,1}q_2.\\
+	\end{array}
+	\right.
+\end{equation*}
+系数$c_k^{4,l}$（$k=0,1;l=0,1$）分别为
+\begin{equation*}
+  c_0^{4,0}=0.25,\hspace{0.2cm} c_1^{4,0}=0.75;\hspace{0.2cm} c_0^{4,1}=0.5, \hspace{0.2cm} c_1^{4,1}=0.5,
+\end{equation*}
+其中$\tau_4^0$和$\tau_4^1$分别为
+\begin{equation*}
+  \left\{
+	\begin{array}{l}
+	  \tau_4^0=|IS_0-IS_1|,\\
+	  \tau_4^1=|IS_1-IS_2|.\\
+	\end{array}
+	\right.
+\end{equation*}
+
+尽管Eq.(\ref{eq:tranWENO})中关于过渡点的计算并不十分精确，但是仍然可以有效的提高过渡点精度，并保持ENO的性质\cite{shen2014improvement}。
+
+\section{WENO格式的多步加权方法}\label{sec:mult}
+不同于 Eq.(\ref{eq:tranWENO})中的方法，本文中，我们构造结合了Henrick 映射函数\cite{henrick2005mapped}和逐步提高精度阶的WENO-Z格式思想\cite{shen2001fifth}，构造了一种新型的多步加权WENO方法。图.\ref{fig:illu_multi}可以用来说明该方法。
+
+第一步，构造如下两个四阶的加权通量
+\begin{equation}\label{eq:multi_WENO1}
+  \left\{
+	\begin{array}{l}
+	  h_0^4=\omega_0^{4,0}q_0+\omega_1^{4,0}q_1,\\
+	  h_1^4=\omega_0^{4,1}q_1+\omega_1^{4,1}q_2,\\
+\end{array}
+\right.
+\end{equation}
+权重系数$\omega_k^{4,l}$（$k=0,1$；$l=0,1$）通过结合WENO-Z和映射函数求得
+\begin{equation*}
+  \begin{aligned}
+	\omega_k^{4,l}=\frac{g_k\left(\phi_k^{4,l}\right)}{\sum_k g_k\left(\phi_k^{4,l}\right)},\hspace{0.2cm} & \phi_k^{4,l}=\frac{\alpha_k^{4,l}}{\sum_k \alpha_k^{4,l}}, \\
+ \alpha_k^{4,l}=c_k^{4,l}\left(1+\frac{\tau_4^l}{IS_{l+k}+\varepsilon}\right),\hspace{0.2cm} & \tau_4^l=|IS_{l+1}-IS_{l}|.
+\end{aligned}
+\end{equation*}
+其中最佳权重系数$c_k^{4,l}$（$k=0,1$，$l=0,1$）和 Eq.(\ref{eq:tranWENO})中相同。
+
+第二步，通过以下方式构造最终的五阶模板
+\begin{equation}\label{eq:multi_WENO2}
+  h_{i+1/2}=\omega_0h_0^4+\omega_1h_1^4,
+  \end{equation}
+  其中，
+  \begin{equation*}
+	\begin{aligned}
+	\omega_k=\frac{g_k\left(\phi_k \right)}{\sum_k g_k\left(\phi_k\right)},&\hspace{0.2cm} \phi_k=\frac{\alpha_k}{\sum_k \alpha_k},\\
+	\alpha_k=c_k^5\left(1+\frac{\tau_5}{IS_{2k}+\varepsilon}\right),&\hspace{0.2cm}\tau_5=|IS_2-IS_0|.
+	\end{aligned}
+
+\end{equation*}
+
+其中$c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
+
+下面我们分析新的方法Eq.(\ref{eq:multi_WENO1}，\ref{eq:multi_WENO2})的精度，通过泰勒展开可以得到
+\begin{equation*}
+  \tau_4^l=|f'_if'''_i|\Delta x^4+O(\Delta x^5),
+\end{equation*}
+和
+\begin{equation*}
+  \phi_k^{4,l}=\left\{
+	\begin{array}{l}
+	  c_k^{4,l}+O(\Delta x^2), \hspace{0.2cm} \text{if} \hspace{0.2cm} f'_i\ne 0,\\
+	  c_k^{4,l}+O(\Delta x), \hspace{0.2cm} \text{if} \hspace{0.2cm} f'_i= 0 \hspace{0.05cm} \text{and} \hspace{0.05cm} f''_i\ne=0,\\
+	  \end{array}
+	  \right.
+	\end{equation*}
+应用合适的映射函数$g_k(\omega)$
+\begin{equation*}
+  g_k\left(\phi_k^{4,l}\right)=c_k^{4,l}+\frac{\left(\phi_k^{4,l}-c_k^{4,l}\right)^3}{c_k^{4,l}-\left(c_k^{4,l}\right)^3}+\cdots,
+  \end{equation*}
+容易发现
+\begin{equation}
+  \omega_k^{4,l}=\left\{
+	\begin{array}{l}
+	  c_k^{4,l}+O(\Delta x^6), \hspace{0.2cm} \text{if} \hspace{0.2cm} f'_i\ne 0,\\
+	  c_k^{4,l}+O(\Delta x^3), \hspace{0.2cm} \text{if} \hspace{0.2cm} f'_i= 0 \hspace{0.05cm} \text{and} \hspace{0.05cm} f''_i\ne=0,\\
+	\end{array}
+	\right.
+\end{equation}
+同样可以得到
+\begin{equation}
+  \omega_k=\left\{
+	\begin{array}{l}
+	  c_k^5+O(\Delta x^9), \hspace{0.2cm} \text{if} \hspace{0.2cm} f'_i\ne 0,\\
+	  c_k^5+O(\Delta x^3), \hspace{0.2cm} \text{if} \hspace{0.2cm} f'_i= 0   \hspace{0.05cm} \text{and} \hspace{0.05cm} f''_i\ne=0,\\
+	\end{array}
+	\right.
+\end{equation}
+因此，上文提到的第一和第二步加权过程中无论在$f'_i\ne 0$情况下还是在$f'_i=0$和$f''_i\ne 0$情况下都满足条件(\ref{eq:condition})。因此多步加权过程Eq.(\ref{eq:multi_WENO1})和Eq.(\ref{eq:multi_WENO2})在光滑区没有发生降阶。
+
+如果$x_i$是过渡点（例如，间断介于点$x_{i+1}$和点$x_{i+2}$之间）。在第一步通过Eq.(\ref{eq:multi_WENO1})可以得到四阶精度的半点通量$h_0^4$。在第二步，由于$IS_2>>IS_0$因此在Eq.(\ref{eq:multi_WENO2})中有$\omega_1\rightarrow 0$，最后的$h_{i+1/2}\rightarrow h_0^4$。因此，过渡点将有三阶精度。
+
+要说明的是，计算Eq.(\ref{eq:multi_WENO1})和Eq.(\ref{eq:multi_WENO2})比起WENO-Z或者WENO-M都需要更多的计算量，这是由于它需要同时采用WENO-Z和WENO-M来求解六个权重系数。然而多步过程只在间断附近才需要，因此可以通过一些措施来减少计算量，比如通过有效的激波识别过程来确定非光滑模板并结合其它格式构造如下的杂交方法
+\begin{equation}
+  h_{i+1/2}=\left\{
+	\begin{array}{l}
+	  h_{i+1/2}^{\text{present}},\hspace{0.2cm} \text{如果模板 $S_i^5$ 是间断模板},\\
+	  h_{i+1/2}^{\text{other}}, \hspace{0.2cm} \text{其它},\\
+	  \end{array}
+	  \right.
+	\end{equation}
+	其中$h_{i+1/2}^\text{present}$代表当前的多步加权WENO格式，$h_{i+1/2}^{\text{other}}$代表其它格式构造的结果。该部分将会在下一章间断识别方法中详细分析。
+
+	\section{数值算例}
+	\subsection{线性对流算例}
+	线性对流问题的控制方程如下，
+\begin{equation}
+\left\{
+  \begin{array}{l}
+	\displaystyle \frac{\partial u}{\partial t}+\frac{\partial u}{\partial t}=0, \hspace{0.2cm} -1\leqslant x \leqslant 1,\\
+	\displaystyle u(x,0)=u_0(x), \hspace{0.2cm} \text{周期边界条件}.
+\end{array}
+\right.
+\end{equation}
+
+\begin{enumerate}[1.]
+
+  \item 初始条件
+		\begin{equation*}
+		  u_0(x)=\text{sin}\left(\pi x -\frac{\text{sin}(\pi x)}{\pi}\right).
+		\end{equation*}
+
+		\hspace{2em}这一初始条件含有两个极值点，表.\ref{tab:critical} 给出了误差和精度。可以看出，在光滑区，新的方法可以保持和WENO-Z和WENO-M相同的精度，都能达到五阶。
+
+\begin{table}[htbp]
+  \small
+  \centering
+\setlength{\belowcaptionskip}{10pt}
+\caption{\small 不同格式精度对比，$T=2$}
+  \begin{tabular}{cccccc}
+	\toprule
+	Scheme        & N       & $L_1$ error  & $L_1$ order & $L_{\infty}$ error & $L_{\infty}$ order \\
+	\midrule
+	WENO-Z        &40       &0.217102e-3     &---          &  0.677211e-4         & ---  \\
+				  &80       &0.649393e-5     &5.063         & 0.237405e-5         & 4.834 \\
+           		  &160       &0.204882e-6     &4.986         &  0.785200e-7         & 4.918 \\
+           		  &320      &0.748874e-8     & 4.774        & 0.250232e-8         & 4.971 \\
+           		  &640      &0.364893e-9     &4.359        & 0.779779e-10         & 5.004 \\
+	WENO-M        &40       &0.210766e-3     &---          &  0.672781e-4        & ---  \\
+		          &80       &0.648426e-5     &5.023         &  0.225867e-5         & 4.897 \\
+   		          &160       &0.204671e-6     &4.986         &  0.720345e-7         & 4.971 \\
+   		          &320      &0.640983e-8     &4.997         &  0.226830e-8         & 4.989 \\
+   		          &640      &0.200631e-9     &4.998         &  0.710974e-10         &4.996 \\
+ present         &40       &0.203332e-3    &---           &  0.714827e-4         & ---  \\
+				 &80       &0.649369e-5    &4.969          & 0.229242e-5         & 4.963 \\
+           	      &160       &0.204635e-6    &4.988          &  0.724031e-7         & 4.985 \\
+           	      &320      &0.640982e-8    &4.997          &  0.227140e-8         & 4.994 \\
+           	      &640      &0.200642e-9    &4.998          &  0.711126e-10         & 4.997 \\
+	\bottomrule
+	\end{tabular}
+\label{tab:critical}
+\end{table}
+
+	  \item 初始条件
+		\begin{equation}\label{eq:linear1}
+	  u_0(x)=\left\{
+		\begin{array}{l}
+		  \displaystyle -\text{sin}(\pi x) -\frac{1}{2}x^3, \hspace{0.2cm} -1<x\leqslant 0,\\[0.3em]
+		 \displaystyle  -\text{sin}（\pi x)-\frac{1}{2}x^3+1, \hspace{0.2cm}, 0<x\leqslant 1,\\
+\end{array}
+\right.
+\end{equation}
+图.\ref{fig:linear2}(a)中给出的是$N=200$网格点在$t=6$时刻的结果，可以看出，在间断附近，新的方法得到的结果较WENO-Z或WENO-M都有更好的表现。图..\ref{fig:linear2}(b)给出的是当前格式和七阶WENO（WENO-7）\cite{balsara2000monotonicity}格式结果对比，可以看到，新的格式在间断附近的计算结果比WENO-7都要好。这也符合 \ref{sec:multi}中的分析，在过渡点$i-1$，WENO-7和新格式都有三阶精度，但是在点$i-2$WENO-7只有三阶精度，而新的格式有五阶精度。
+\begin{figure}
+  \centering
+  (a)
+  \includegraphics[width=10cm]{chap2_fig1.png}
+
+  (b)
+  \includegraphics[width=10cm]{chap2_fig2.png}
+  \caption{初始条件Eq.(\ref{eq:linear1})下计算结果对比，$t=6$.}
+  \label{fig:linear2}
+\end{figure}
+
+\item 初始条件
+\begin{eqnarray}\label{eq:linear3}
+ u_0(x)\!=\!\left\{\!
+   \begin{array}{ll} 
+	\! \frac{1}{6} \left( G(x,\beta ,z\!-\!\delta)\! +\! G(x, \beta, z\!+\!\delta)\! +\!4 G(x,\beta, z) \right)\!,\! &  \! {\!-0.8\! \leqslant\! x\! \leqslant\! -0.6},\\
+	\! 1,                                                                                         \!& \! {\!-0.4\! \leqslant\! x\! \leqslant\! -0.2},\\
+	\! 1-|10(x-0.1)|,                                                                             \!& \! {\!0\! \leqslant \! x \! \leqslant \! 0.2},\\
+	\! \frac{1}{6} \left( F(x,\alpha ,a\!-\!\delta)\! +\! F(x, \alpha, a\!+\!\delta)\! +\!4 F(x,\alpha, a) \right)\!,\!&\! {\!0.4\! \leqslant\! x\! \leqslant\! 0.6},\\
+	0,               \!&\!\text {otherwise},
+   \end{array}  \right.
+\end{eqnarray}
+其中
+\begin{eqnarray*}
+  G(x,\beta ,z)=\text{exp}(-\beta (x-z)^2),
+\end{eqnarray*}
+\begin{eqnarray*}
+  F(x, \gamma,a)=\sqrt{\text{max}(1-\alpha^2(x-a^2),0)}.
+\end{eqnarray*}
+系数$a=0.5$, $z=-0.7$, $\delta=0.05$ 和$\beta=log2/36\delta^2$。理论解中包含一个光滑的高斯波、一个方波、一个三角波和一个半椭圆波。图.\ref{fig:linear3}(a)和图.\ref{fig:linear3}(b)中给出了新格式和五阶WENO-Z以及WENO-M格式对比结果。可以看到新方法的确可以提高间断附近的数值表现。在图.\fig{fig:linear3}(a)和图.\ref{fig:linear3}(b)中给出了新格式和WENO-7格式对比。和上一个算例相同，在含间断的区域以及椭圆波区域新方法都有更好的表现。
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{chap2_fig3.png}
+  \includegraphics[width=10cm]{chap2_fig4.png}
+  \caption{(a)初始条件Eq.(\ref{eq:linear3})下计算结果对比，$t=6$. (b) 图.\ref{fig:linear3}(a)的局部放大图.}
+  \label{fig:linear3}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{chap2_fig5.png}
+  \includegraphics[width=10cm]{chap2_fig6.png}
+  \caption{(a)初始条件Eq.(\ref{eq:linear3})下计算结果对比，$t=6$. (b) 图.\ref{fig:linear4}(a)的局部放大图.}
+  \label{fig:linear4}
+\end{figure}
+
+
+\end{enumerate}
+
+\subsection{非线性对流算例}
+非线性对流算例采用的控制方程为无黏Burgus方程
+\begin{equation}
+  \frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}=0, \hspace{0.2cm} 0\leqslant x \leqslant 2\pi,
+\end{equation}
+初始条件为
+\begin{equation*}
+  u_0(x)=0.3+0.7\text{sin}(x),\hspace{0.2cm} 0\leqslant  x \leqslant 2\pi, \text{周期边界条件}.
+\end{equation*}
+该算例中，通量分裂采用$f^{\pm}=(f\pm au)/2$，其中$f=u^2/2$，$a=max(u_i)$。图.()给出在$N=80$网格下$t=2$时刻计算结果，可以看到相比与WENO-Z和WENO-M，新的格式在间断附近的结果更接近间断解。
+
+\subsection{一维激波管算例}
+我们在引言\ref{chap:2d_Euler}中给出二维的Euler方程系统，一维的方程更为简化
+\begin{equation}
+  \frac{\partial U}{\partial t}+\frac{\partial F}{\partial x}=0,
+\end{equation}
+其中$U=(\rho,\rho u,rho E)^T$，$F=(\rho u, \rho u^2+p,u(E+p))^T$。对于理想气体有$p=(\gamma-1)(E-\rho u^2)$，$\gamma=1.4$。
+\begin{enumerate}[1.]
+\item Sod激波管算例
+  初始条件为
+  \begin{equation*}
+	(\rho,u,p)=\left\{
+	  \begin{array}{ll}
+		(1,0,1),& x<0,\\
+		(0.125,0,0.1),&x\geqslant 0.
+	\end{array}
+	\right.
+	\end{equation*}
+	图.给出了在$N=200$网格下$t=0.14$时刻的计算结果。可以看出，在激波附近，新的方法较WENO-Z和WENO-M更准确。
+\item Lax激波管算例
+  初始条件为
+  \begin{equation*}
+	(\rho,u,p)=\left\{
+	  \begin{array}{ll}
+		(0.445,0.698,0.3528),& x<0,\\
+		(0.500,0.000,0.5710),& x\geqslant x.
+	\end{array}
+	\right.
+\end{equation*}
+
+	图.给出了在$N=200$网格下$t=1.3$时刻的计算结果。在Sod激波管算例中，新的格式在间断附近的计算结果明显较其它五阶WENO格式更准确。
+
+\item Shu-Osher问题
+  初始条件为
+  \begin{equation*}
+	(\rho,u,p)=\left\{
+	  \begin{array}{ll}
+		(3.857143,2.629369,10.33333),& \text{当} x<-4,\\
+		(1+\varepsilon \text{sin}5x,0,1),& \text{当} x\geqslant -4.
+	\end{array}
+	\right.
+	\end{equation*}
+	这一算例模拟的是一道马赫数为3的激波和一道正弦的熵波相互作用\cite{shu1989efficient}。图.给出$N=200$网格下在$t=1.8$时刻的计算结果。`exact'结果是采用WENO-Z格式在$N=2000$网格下得到的。可以看到采用了新格式，即便是在光滑区也能达到更好的精度。这表明，如果结果是剧烈变化的，新方法具有更低的耗散。
+
+	图.给出了新的方法在不同网格（$N=200$，$N=400$，$N=800$）情况下计算结果，可以看到，采用$N=800$网格的结果和`exact'结果较好的吻合。也表明，新的方法在计算复杂问题是具有较好的收敛特性。
+\item 冲击波相互作用算例
+  初始条件为
+  \begin{equation*}
+	(\rho,u,p)=\left\{
+	  \begin{array}{ll}
+		(1,0,1000), & 0\leqslant x<0.1,\\
+		(1,0,0.1),& 0.1\leqslant x<0.9,\\
+		(1,0,100),&  0.9\leqslant x\leqslant 1.0.
+	\end{array}
+	\right.
+\end{equation*}
+图.给出了在$N=400$网格下$t=0.038$时刻的计算结果，通过结果对比表明，新的格式可以较其它格式更好的捕捉强激波结构。
+\end{enumerate}
+
+\subsection{二维对流传播方程}
+二维线性对流传播方程为
+\begin{equation}
+  \left\{
+	\begin{array}{l}
+	  \displaystyle \frac{\partial u}{\partial t}+\frac{\partial u}{\partial x}+\frac{\partial u}{\partial y}=0,\hspace{0.2cm} -1\leqslant x,y\leqslant 1,\\[0.3em]
+	  \displaystyle u(x,y,0)=u_0(x,y),\\
+	\end{array}
+	\right.
+\end{equation}
+初始条件为$u_0(x,y)=\text{sin}(\pi(x+y))$，采用周期边界条件。表.中给出了不同格式的误差，可以看到对于光滑算例，三种方法都能达到和一维中一样的五阶精度。
+
+\begin{table}[htbp]
+  \small
+  \centering
+%\setlength{\belowcaptionskip}{10pt}
+\caption{\small 2D线性对流传播方程算例中不同格式计算精度对比，$T=2$}
+  \begin{tabular}{cccccc}
+	\toprule
+	Scheme        & N       & $L_1$ error  & $L_1$ order & $L_{\infty}$ error & $L_{\infty}$ order \\
+	\midrule
+	WENO-Z        &20       &0.342283E-03     &---          &  0.214133E-03         & ---  \\
+				  &40       &0.102111E-04     & 5.067        & 0.637584E-05			& 5.746 \\
+           		  &80       &0.314224E-06    &5.022         &  0.199111E-06			&5.680 \\
+           		  &160      &0.979186E-08     &5.004        & 0.622505E-08			& 5.658 \\
+           		  &320      &0.305789E-09    &5.001        & 0.194579E-09			&5.653 \\
+	WENO-M        &20       &0.314390E-03     &---          &  0.210032E-03        & ---  \\
+		          &40       &0.995888E-05	& 4.980			 & 0.636855E-05			& 5.625 \\
+   		          &80       &0.312491E-06	&4.994			&0.199092E-06			& 5.644 \\
+   		          &160      &0.977631E-08   & 4.998			& 0.622500E-08			&5.650 \\
+   		          &320      &0.305630E-09	& 4.999			& 0.194578E-09			&5.652 \\
+ present         &20       &0.312598E-03    &---           & 0.201245E-03          & ---  \\
+				 &40       &0.995287E-05	&4.973			&0.635348E-05			&4.985 \\
+           	      &80       &0.312471E-06	&4.993			& 0.199062E-06			&5.644 \\
+           	      &160      &0.977603E-08	& 4.998			& 0.622479E-08			&5.650 \\
+           	      &320      &0.305600E-09	& 5.000			& 0.194560E-09			& 5.651 \\
+	\bottomrule
+	\end{tabular}
+\label{tab:2D_advection}
+\end{table}
+\subsection{二维变系数线性对流守恒方程算例}
+本算例采用的二维线性对流守恒率方程为
+\begin{equation}
+  \frac{\partial u}{\partial t}+\frac{\partial (-yu)}{\partial x}+\frac{\partial(xu)}{\partial y}=0,\hspace{0.2cm} -1\leqslant x,y\leqslant 1,
+\end{equation}
+边界条件为周期边界，初始条件为一个高出其它位置一个单位，半径为0.5的圆。这一问题模拟的是一个旋转的固体，用来验证网格方向影响（Grid orientation effect）\cite{cockburn1994nonlinearly,shen2006high}。图.给出了在$200\times 200$网格下$t=2$时刻的计算结果。可以看到网格方向影响并不严重，图 给出坐标线$x=-0.02,-0.48$和$-0.52$上结果对比，可以看出新的方法是三种格式中最好的。
+
+\subsection{二维激波/涡相互作用算例}
+该算例我们采用二维Euler方程\ref{eq1_1}，问题描述的是一道静止的激波和运动的涡之间的相互作用\cite{jiang1996efficient}。计算区域为$[0,2]\times[0,1]$。初始时刻在$x=0.5$有一道垂直于x轴，马赫数为$1.1$的静止激波。激波左侧状态为$(\rho,u,v,p)=(1,1.1,\sqrt{\gamma},0,1)$。在激波左侧以$(x_c,y_c)=(0.25,0.5)$为中心设置一个小涡，涡采用速度$(u,v)$、温度（$T=p/\rho$）和熵（$S=ln(p/\rho^\gamma)$）的扰动来描述：
+\begin{equation*}
+  \left\{
+	\begin{array}{l}
+	  \displaystyle   \~ u=\varepsilon \tau e^{\alpha (1-\tau^2)}\text{sin}\theta\\
+	  \displaystyle   \~ v=-\varepsilon \tau e^{\alpha (1-\tau^2)}\text{cos}\theta\\
+	  \displaystyle   \~T=-\frac{(\gamma-1)\varepsilon^2 e^{2\alpha (1-\tau^2)}}{4\alpha \gamma}\\
+	  \displaystyle \~ S=0\\
+	  \end{array}
+	  \right.
+\end{equation*}
+其中，$\tau=r/r_c$，$r=\sqrt{(x-x_c)^2+(y-y_c)^2}$，$\varepsilon$ 代表涡的强度，$\alpha$ 控制涡的衰减速度，$r_c$是涡最大强度的临界半径。采用和文献\cite{jiang1996efficient,shen2011generalized}中相同的值，$\varepsilon=0.3$，$r_c=0.05$，$\alpha=0.204$。
+
+计算时间步选取为\cite{}<++>
+\begin{equation}\label{eq:cfl}
+  \Delta t=\sigma \frac{\Delta t_x \Delta t_y}{\Delta t_x+\Delta t_y},\hspace{0.2cm}
+  \text{其中}\hspace{0.2cm} \Delta x_t=\frac{\Delta x}{\text{max}_{i,j}(|u_{i,j}|+c_{i,j})},
+  \hspace{0.2cm}
+\Delta y_t=\frac{\Delta y}{\text{max}_{i,j}(|v_{i,j}|+c_{i,j})},
+\end{equation}
+公式中的$c$为声速，$\sigma=0.5$是Courant-Friedrichs-Lewy（CFL）数。
+
+图 给出新方法在$t=0.6$时刻计算结果中的压力分布， 图 给出中轴线$y=0.5$上的压力曲线对比结果。计算采用$251\times 101$的网格，其中参考解`exact'为WENO-Z格式在$2001\times 401$网格下的计算结果。从图中可以看出，激波后，在压力峰值，新格式几乎可以达到和参考解相同的高度，在压力波谷，新方法也有较其它两种格式更好的表现。
+
+图 给出新方法在$251\times 101$，$501\times 201$和$1001\times 401$不同网格下结果对比，可以看到，在精细的网格下，结果很好的收敛到参考解。压力峰值的微小差异也表明，即便在粗糙网格下该方法也只有非常小的耗散。
+
+\subsection{激波/剪切层相互作用算例}
+本小节我们通过一个激波/剪切层相互作用算例来进一步验证新方法的低耗散性\cite{}<++>。该算例我们求解二维Navier-stocks 方程
+\begin{equation}\label{eq:ns}
+  \frac{\partial U}{\partial t}+\frac{\partial F}{\partial x}+\frac{\partial G}{\partial y}=\frac{1}{\text{Re}}\left(\frac{\partial F_v}{\partial x}+\frac{\partial G_v}{\partial y}\right)
+\end{equation}
+其中，
+\begin{equation*}
+  U=\left(
+	\begin{array}{l}
+	  \rho\\
+	  \rho u\\
+	  \rho v\\
+	  \rho e\\
+	\end{array}
+  \right)
+  ,
+  \hspace{0.2cm}
+  F=\left(
+	\begin{array}{l}
+	  \rho u\\
+	  \rho u^2+p\\
+	  \rho u v\\
+	  (\rho e+p)u\\
+	\end{array}
+  \right)
+  ,
+  \hspace{0.2cm}
+  G=\left(
+  \begin{array}{l}
+	\rho v\\
+	\rho uv\\
+	\rho v^2+p\\
+	(\rho e+p)v\\
+	\end{array}
+	\right)
+\end{equation*}
+\begin{equation*}
+F_v=\left(
+\begin{array}{l}
+  0\\
+  \tau_{xx}\\
+  \tau_{xy}\\
+  u\tau_{xx}+v\tau_{xy}+q_x\\
+  \end{array}
+  \right)
+  ,
+  \hspace{0.2cm}
+  \G_v=\left(
+  \begin{array}{l}
+	0\\
+	\tau_{xy}\\
+	\tau_{yy}\\
+	u\tau_{xy}+v\tau_{yy}+q_y\\
+	\end{array}
+	\right)
+	\end{equation*}
+	以及
+	$
+	  \tau_{xx}=\frac{2}{3}\mu (2u_x-v_y)$，
+	  $\tau_{xy}=\frac{2}{3}\mu (u_y+v_x)$，
+	  $\tau_{yy}=\frac{2}{3}\mu (2v_y-u_x)$，
+	  $q_x=\mu T_x/[(\gamma-1)M^2\text{Pr}]$，
+	  $q_y=\mu T_y/[(\gamma-1)M^2\text{Pr}]$，
+	  $p=(\gamma-1)(\rho e-\rho u^2/2)$，
+	  $\gamma=1.4$。
+
+	  在该算例中，由于剪切层穿过激波形成的不稳定性会引起一系列涡。计算开始时，一道角度为$\theta=12 ^{\circ}$马赫数为0.5的斜激波作用在混合边界层上。计算区域为$[x,y]=[0,200]\times[-20,20]$，入流速度通过一个双曲正切函数给出
+	  \begin{equation*}
+		u=2.5+0.5 tanh(2y)
+		\end{equation*}
+上层流体$\rho _u=1.6374$，$p_u=0.3327$；下层流体，$\rho_l=0.3626$，$p_l=0.3327$。上层流体选取的是激波后的参数。下璧面采用滑仪条件。在入流速度$v$上加入脉动量
+\begin{equation*}
+  v'=\sum_{k=1}^2 a_k\text{cos}(2\pi kt/T+\phi_k)\text{exp}(-y^2/b)
+\end{equation*}
+周期为$T=\lambda/u_c$，波长为$\lambda =30$，对流速度$u_c=2.68$，$b=10$，$a_1=a_2=0.05$，$\phi_2=\pi/2$。普朗特数$\text{Pr}=0.72$，雷诺数$Re=500$。黏性项采用四阶中心格式\cite{}<++>，网格如文献\cite{}<++>统一采用$321\times 81$，时间步长同样通过公式（\ref{eq:cfl}）求得。图给出密度分布，可以看到三种方法都能很好的求解该问题，但是对于涡，尤其是后面的四个，新的方法比其它两种方法捕捉的都更清晰。
+
+\section{小结}
+结合Henrick的映射函数和逐阶加权WENO-Z的思想，本文构造了一种新形式的WENO格式。每一步重构都满足五阶收敛的充分条件，因此最终得到的五阶形式格式在光滑区甚至是极值点都能到达五阶精度。该方法的突出优点是它可以提高WENO格式在过渡点的表现，因此，间断附近的数值耗散明显低于其它五阶WENO格式。一系列数值算例验证了该方法的有效性。
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,194 @@
+\XeTeXinputencoding "GB2312"
+\chapter{间断识别方法比较研究}
+为了能更准确的模拟可压缩流中复杂的激波和其它流场结构相互作用，如激波/边界层、激波/涡等，需要数值方法既能高分辨率的捕捉激波又能高精度低耗散的求解光滑区的小尺度结构\cite{pirozzoli2011numerical}。在上一章中，我们提出了多步加权的思想，并构造了多步加权五阶WENO格式，进一步改善了WENO格式在间断附近的表现，从算例中我们也能看出WENO格式可以求解各种和强间断相关的问题所表现出的准确性和鲁棒性。
+
+尽管WENO格式在理论上可以构造到任意阶精度\cite{jiang1996efficient,balsara2000monotonicity,gerolymos2009very}，然而近些年研究发现，在求解短波时，尤其在可压缩湍流的计算中\cite{zhang2008development}WENO格式会存在过度的耗散以至掩盖了真实的物理黏性，造成计算的不准确。为了避免这一问题，学者们发展了一系列杂交格式（hybrid method），如WENO-紧致格式\cite{pirozzoli2002conservative,ren2003characteristic,zhou2007new,shen2011generalized}，WENO-中心格式和WENO-迎风格式等，在光滑区采用高精度低耗散格式，在间断区采用WENO类激波捕捉格式。对于杂交格式，最为关键的问题是准确的识别激波。
+
+最近，Li和Qiu\cite{li2010hybrid}在WENO-迎风格式中比较了多种间断识别方法，并且通过算例证明杂交格式比起WENO格式更为高效。Shen和Zha在有限紧致的工作\cite{shen2011generalized}中构造了一种基于WENO-Z格式光滑因子提出的激波识别方法。该识别方法无人为的或和问题相关的自由参数，有效性在文\cite{shen2011generalized}中得到了验证。
+
+在本章中，我们系统的研究、比较不同间断识别器，包含文\cite{li2010hybrid,zhu2009adaptive,shen2011generalized}中的识别方法。
+
+\section{有限紧致格式（the finite compact scheme）}
+本文将各种识别方法应用在有限紧致格式\cite{shen2011generalized}来验证它们的表现。有限紧致格式（the finite compact scheme）是一种结合了WENO格式和紧致格式的杂交格式，有限紧致格式将间断看成流场的内边界，进而将流场分成有限个光滑区域。有限紧致格式具体的构造思想为：
+\begin{enumerate}[(1)]
+\item 首先通过间断识别方法识别出间断区域，该区域包括边界都采用WENO格式构造通量。
+\item 将介于两个间断区域之间（或者介于边界和间断区域之间）的光滑节点定义为紧致模板，并采用紧致格式构造紧致模板上的通量。
+\end{enumerate}
+
+注意在第(2)步，第(1)步中构造的间断区域模板通量将自动的作为内边界。
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{illu_finite_compact.png}
+  \caption{有限紧致格式示意图}
+  \label{fig:illu_compact}
+\end{figure}
+
+图 (\ref{fig:illu_compact})  给出有限紧致格式的示意图，其中$M$为紧致模板个数。在应用有限紧致格式求解中，需要一个用来定义光滑区域起始点和终止点的数组。有限紧致格式具体构造细节如下：
+
+\hspace{-0.8cm}\rule [-10pt]{14.3cm}{0.02cm}
+\begin{spacing}{0.5}
+\begin{enumerate}
+	\scriptsize 
+  \item[第0]步:\hspace{0.15cm}  采用边界条件计算$h_{1/2}$和$h_{N+1/2}$
+  \item[第1]步: \hspace{0.1cm} $M=1$  {\color{black!70}!搜寻第M个光滑区域的起始点和终止点}
+
+	\hspace{0.6cm}	$\text{start}\_\text{point}(M)=1$ {\color{black!70}  !第M光滑区域的起始点}
+
+		\hspace{0.6cm}{\color{black!60!blue!80}Do} $i=1,N-1$  {\color{black!70} !对模板$S_i$采用间断识别方法}
+
+	\hspace{0.8cm} {\color{black!60!blue!80} IF}($S_i$是间断模板） {\color{black!60!blue!80}THEN}
+
+	\hspace{1.0cm}   $\text{end}\_\text{point}(M)=i$  {\color{black!70}!第M光滑区域的终止点}
+
+	\hspace{1.0cm} $M=M+1$
+
+	\hspace{1.0cm} $\text{start}\_\text{point}=i+1$
+
+	\hspace{1.0cm} 采用激波捕捉格式计算$h_{i+1/2}$:
+
+	\hspace{1.2cm} $h_{i+1/2}=\sum_{k=0}^2 \omega_k\hat{f}^k(x_{i+1/2})$
+	
+		\hspace{0.8cm} {\color{black!60!blue!80}END IF}
+
+			\hspace{0.6cm}{\color {black!60!blue!80}END DO}
+
+			\hspace{0.6cm}$\text{end}\_\text{point}(M)=N$
+		  \item[第2]步: \hspace{0.15cm} {\color{black!60!blue!80} DO} $k=1,M$  {\color{black!70}!采用紧致格式计算第k紧致模板（光滑区域）}
+
+			\hspace{0.9cm}			{\color{black!60!blue!80}DO} $i=\text{start}\_\text{point}(k),\text{end}\_\text{point}(k)-1$
+
+			\hspace{1.3cm}计算紧致格式右端项$d_{i+1/2}$
+
+			\hspace{0.9cm} {\color{black!60!blue!80}END DO}
+
+			\hspace{0.9cm} 求解三对角紧致格式：
+
+			\hspace{1.1cm} $\alpha h_{i-1/2}+\gamma h_{i+1/2}+\beta h_{i+3/2}=d_{i+1/2}$
+
+			\hspace{0.9cm} 其中，$i=\text{start}\_\text{point}(k),\cdots, \text{end}\_\text{point}(k)-1$
+
+			\hspace{0.6cm} {\color{black!60!blue!80}ENDDO}
+
+		\end{enumerate}
+
+	  \end{spacing}
+
+\hspace{-0.8cm}\rule [-10pt]{14.3cm}{0.02cm}
+
+\section{间断识别方法}
+\subsection{$\tau_5$识别方法\cite{shen2011generalized}}
+在\cite{shen2011generalized} 有限紧致格式采用的是Shen和Zha提出的一种基于WENO-Z格式光滑度量因子的间断识别方法。为了简便本文称其为SZ识别方法。
+
+Borges等人\cite{borges2008improved} 在WENO-Z构造中中引入了一个$\tau_5$系数，如公式 (\ref{eq:tau_5})中所示。Shen和Zha\cite{shen2011generalized}指出，$\tau_5$具有如下重要的性质：
+\begin{enumerate}
+  \item[(1)] 在模板$S^5=(x_{i-2},x_{i-1},\cdots,x_{i+2})$上，如果不存在间断，则$\tau_5<<IS_k$（$k=0,1,2$）。
+  \item[(2)] 如果在$S^5$模板上存在间断但是在子模板$S_k^3$上光滑，则对于光滑子模板有$IS_k<<\tau_5$。
+  \item[(3)] $\tau_5\leq \text{max}(IS_0,IS_1,IS_2)$。
+\end{enumerate}
+根据这些性质可以得到如下的间断判别方法：
+
+ 如果$\tau_5>\text{min}(IS_0,IS_1,IS_2)$，则模板$S^5$是一个间断模板。
+
+ \subsection{平均总变差（Average total variation）识别方法}
+
+ 对于平均总变差方法我们采用和\cite{qiu2005comparison,zhu2009adaptive,li2010hybrid}中相同的缩写ATV，其中TV代表$t_n$时刻的总变差
+ \begin{equation*}
+   TV=TV(u^n)=\sum_j |u_{i+1}^n-u_j^n|
+\end{equation*}
+如果
+\begin{equation*}
+  |u_{j+1}^n-u_j^n|\geq \theta \frac{TV}{N}
+\end{equation*}
+则认为$[x_j,x_{j+1}]$内存在间断。单元$I_j$（$[x_{j-1/2},x_{j+1/2}]$）和单元$I_{j+1}$为间断单元。其中，$\theta$为问题相关参数，它的选择对识别方法的效果影响很大，本文统一选用$\theta=0.3$。
+
+\subsection{基于minmod函数的TVB识别方法\cite{cockburn1989tvb}}
+为了便于表达，\cite{li2010hybrid}中在单元$I_j$上给出了一个二次多项式$P_2(x)$
+  \begin{equation}
+	P_2(x)=u_j^{(0)}+u_j^{(1)}\frac{x-x_j}{\Delta x}+u_j^{(2)}\left[\left(\frac{x-x_j}{\Delta x}\right)^2-\frac{1}{12}\right]
+ \end{equation}
+ 其中$I_j$为$x\in [x_{i-1/2},x_{j+1/2}]$。
+ 在单元点上有
+ \begin{equation*}
+   P_2(x_k)=u_k^n, \hspace{0.3cm} k=j-1.j.j+1
+\end{equation*}
+由此可以得到
+\begin{equation*}
+  u_j^{(0)}=\frac{1}{24}(u_{j-1}^n+22u_j^n+u_{j+1}^n),\hspace{0.2cm} u_j^{(1)}=\frac{1}{2}(u_{j+1}^n-u_{j-1}^n),\hspace{0.2cm} u_j^{(2)}=\frac{1}{2}(u_{j-1}^n-2u_j^n+u_{j+1}^n
+  \end{equation*}
+
+  在TVB识别方法中，首先定义
+  \begin{equation*}
+	\widetilde{u}_j=P_2(x_{j+1/2})-u_j^{(0)}, \hspace{0.2cm} \widetilde{\widetilde u}_j=-P_2(x_{j-1/2})+u_j^{(0)}
+  \end{equation*}
+然后通过minmod函数进行修正
+\begin{equation*}
+  \begin{array}{l}
+  \widetilde{u}_j^{(\text{mod})}=\widetilde{m}(\widetilde{u}_j,u_{j+1}^{(0)}-u_j^{(0)},u_j^{(0)}-u_{j-1}^{(0)})$,\\
+  \widetilde{\widetilde{u}}_j^{(\text{mod})}=\widetilde{m}(\widetilde{\widetilde{u}}_j,u_{j+1}^{(0)}-u_j^{(0)},u_j^{(0)}-u_{j-1}^{(0)})$.\\
+  \end{array}
+\end{equation*}
+其中$\widetilde{m}$为
+\begin{equation*}
+  \widetilde{m}(a_1,a_2,\cdots,a_n)=\left\{
+	\begin{array}{ll}
+	  a_1 & \text{if} \hspace{0.2cm} |a_1|\leq M(\Delta x)^2,\\
+	  m(a_1,a_2,\cdots,a_n)& \text{otherwise},\\
+	  \end{array}
+\end{equation*}
+minmod函数$m$为
+\begin{equation}\label{eq:minmod}
+  m(a_1.a_2,\cdots,a_n)=\left\{
+	\begin{array}{ll}
+	  s\cdot \text{min}\limits_{1\leqslant j \leqslant n} |a_j| &  \text{if} \hspace{0.2cm} \text{sign}(a_1)=\text{sign}(a_2)=\cdots=\text{sign}(a_n)=s,\\
+	  0& \text{otherwise}.\\
+	  \end{array}
+	  \right.
+  \end{equation}
+  如果$\widetilde{u}_j^{(\text{mod})}\ne \widetilde{u}_j$或 $\widetilde{\widetilde{u}}_j^{(\text{mod})}\ne \widetilde{\widetilde{u}}_j$则认为单元$I_j$为问题单元。
+
+  其中$M$为TVB识别方法中的一个问题相关参数，同样难以很好的给出，本文中我们采用\cite{cockburn1989tvb}中$M$为初始解光滑区域的二阶导数最大值成正比的设定：
+  \begin{equation*}
+	M=\frac{2}{3}\text{max}\limits_{J}|u_{xx}^0|
+\end{equation*}
+\subsection{XS识别方法\cite{xu2005anti}}
+Xu和Shu在文章\cite{xu2005anti}中引入了一个强间断判别方法，该方法中定义了一个$\phi_j$函数
+\begin{equation*}
+  \phi_j=\frac{\beta_j}{\beta_j+\gamma_j}
+\end{equation*}
+其中
+\begin{equation*}
+  \alpha_j=(u_j^n-u_{j-1}^n)^2+\varepsilon, \hspace{0.2cm} \beta_j=\left(\frac{\alpha_j}{\alpha_{j-1}}+\frac{\alpha_{j+1}}{\alpha_{j+2}}\right)^2,\hspace{0.2cm} \gamma_j=\frac{(u_{text{max}}-u_{\text{min})^2}}{\alpha_j}
+  \end{equation*}
+  这里$\varepsilon$是一个防止分母为0的小系数。$u_{\text{max}}$和$u_{\text{min}}$为所有节点在$t^n$时刻$u_j^n$最大值和最小值。在光滑区域有$0\leqslant \phi_i\leqslant 1$和$\phi_i=O(\Delta x)$。在间断区域$\gamma_j<<\beta_j$，$\phi_j$趋近于1。因此，本文中我们认为$\phi_j>(\Delta x)^2$时单元$I_j$和单元$I_{j+1}$为间断单元。
+  \subsection{Biswas，Devine和Flaherty动量限制（moment limiter）方法\cite{biswas1994parallel}（BDF）}
+  该方法中定义
+  \begin{equation*}
+	u_j^{(l),\text{mod}}=\frac{1}{2l-1}m\left\left( (2l-1)u_j^{(l)},u_{j+1}^{(l-1)}-u_j^{(l-1)}, u_j^{(l-1)}-u_{j-1}^{(l-1)} \right), \hspace{0.2cm} l=1, 2 
+ \end{equation*}
+ 其中$m$为公式 \ref{eq:minmod}中的minmod函数。如果$u_j^{(2),\text{mod}}\ne u_j^{(2)}$认为$I_j$为间断单元。
+ \subsection{KXRCF间断识别器\cite{krivodonova2004shock}}
+ KXRCF间断识别方法将单元$I_j$的边界分为入流边界$\partial I_j^+$和出流边界$\partial I_j^-$两部分，如果
+ \begin{equation}\label{eq:kxrcf}
+   \frac{\left| \int_{\partial I_j^_} (u^h|_{I_j}-u^h|_{I_{n_J}})ds \right|}{h_j^{\frac{k+1}{2}}|\partial I_j^-|\left\|u^h|_{I_j}\right\|}\ll 1
+\end{equation}
+则认为$I_j$单元为间断单元。这里$h_j$定义为单元$I_j$的半径，$I_{n_J}$为单元$I_j$出流边界$\partial I_j^-$的邻居单元。本文中上面公式\ref{eq:kxrcf}可以简化为
+\begin{equation*}
+  \frac{u^h(-\frac{1}{2})|_j-u^h(\frac{1}{2})|_{j-1}|}{(\Delta x)^{3/2}\sqrt{\int _{-1/2}^{1/2}[u^h(x)|_j}^2 dx} \gg 1
+\end{equation*}
+其中
+\begin{equation*}
+  \begin{array}{l}
+	\displaystyle u^h(-\frac{1}{2})|_j=u_j^{(0)}-\frac{1}{2}u_j^{(1)}+\frac{1}{6}u_j^{(2)},\\[2em]
+	\displaystyle u^h(\frac{1}{2})|_{j-1}=u_{j-1}^{(0)}+\frac{1}{2}u_{j-1}^{(1)}+\frac{1}{6}u_{j-1}^{(2)},\\[2em]
+	\displaystyle \int_{-1/2}^{1/2}[u^h(x)|_j]^2dx=a^2+\frac{b^2}{12}+\frac{c^2}{80}+\frac{ac}{6}\\
+\end{array}
+\end{equation*}
+$a$，$b$，$c$分别为
+\begin{equation*}
+  a=u_j^{(0)}-\frac{1}{12}u_j^{(2)},\hspace{0.2cm}b=u_j^{(1)},\hspace{0.2cm} c=u_j^{(2)}
+\end{equation*}
+
+\section{数值算例}
+
+   
+

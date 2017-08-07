@@ -102,6 +102,11 @@
 \newblock Detonation capturing for stiff combustion chemistry.
 \newblock {\em Combustion Theory and Modelling 2}, 3 (1998), 313--348.
 
+\bibitem{biswas1994parallel}
+{\sc Biswas, R., Devine, K.~D., and Flaherty, J.~E.}
+\newblock Parallel, adaptive finite element methods for conservation laws.
+\newblock {\em Applied Numerical Mathematics 14}, 1-3 (1994), 255--283.
+
 \bibitem{bonometti2007interface}
 {\sc Bonometti, T., and Magnaudet, J.}
 \newblock An interface-capturing method for incompressible two-phase flows.
@@ -113,6 +118,12 @@
 {\sc Book, D.~L., Boris, J.~P., and Hain, K.}
 \newblock Flux-corrected transport ii: Generalizations of the method.
 \newblock {\em Journal of Computational Physics 18}, 3 (1975), 248--283.
+
+\bibitem{borges2008improved}
+{\sc Borges, R., Carmona, M., Costa, B., and Don, W.~S.}
+\newblock An improved weighted essentially non-oscillatory scheme for
+  hyperbolic conservation laws.
+\newblock {\em Journal of Computational Physics 227}, 6 (2008), 3191--3211.
 
 \bibitem{boris1976flux}
 {\sc Boris, J.~P., and Book, D.}
@@ -159,6 +170,19 @@
   02-07), Reston, VA, American Institute of Aeronautics and Astronautics,
   Inc.(Progress in Astronautics and Aeronautics. 165\/} (1996), 421--472.
 
+\bibitem{bykovskii2006continuous}
+{\sc Bykovskii, F.~A., Zhdan, S.~A., and Vedernikov, E.~F.}
+\newblock Continuous spin detonations.
+\newblock {\em Journal of Propulsion and Power 22}, 6 (2006), 1204.
+
+\bibitem{calder2000high}
+{\sc Calder, A.~C., Curtis, B.~C., Dursi, L., Fryxell, B., MacNeice, P., Olson,
+  K., Ricker, P., Rosner, R., Timmes, F., Tufo, H., et~al.}
+\newblock High performance reactive fluid flow simulations using adaptive mesh
+  refinement on thousands of processors.
+\newblock In {\em Proceedings of the 2000 ACM/IEEE conference on
+  Supercomputing\/} (2000), IEEE Computer Society, p.~56.
+
 \bibitem{chang1989application}
 {\sc Chang, S.-H.}
 \newblock {\em On the application of subcell resolution to conservation laws
@@ -184,6 +208,12 @@
   interaction of contact discontinuities.
 \newblock {\em Discrete and Continuous Dynamical Systems 6}, 2 (2000),
   419--430.
+
+\bibitem{chapman1899vi}
+{\sc Chapman, D.~L.}
+\newblock Vi. on the rate of explosion in gases.
+\newblock {\em The London, Edinburgh, and Dublin Philosophical Magazine and
+  Journal of Science 47}, 284 (1899), 90--104.
 
 \bibitem{chen1986convergence}
 {\sc Chen, G.~Q.}
@@ -218,6 +248,17 @@
   multimaterial flows.
 \newblock {\em Journal of Computational Physics 137}, 2 (1997), 265--298.
 
+\bibitem{cockburn1989tvb}
+{\sc Cockburn, B., and Shu, C.-W.}
+\newblock Tvb runge-kutta local projection discontinuous galerkin finite
+  element method for conservation laws. ii. general framework.
+\newblock {\em Mathematics of computation 52}, 186 (1989), 411--435.
+
+\bibitem{cockburn1994nonlinearly}
+{\sc Cockburn, B., and Shu, C.-W.}
+\newblock Nonlinearly stable compact schemes for shock calculations.
+\newblock {\em SIAM Journal on Numerical Analysis 31}, 3 (1994), 607--627.
+
 \bibitem{colella1986theoretical}
 {\sc Colella, P., Majda, A., and Roytburd, V.}
 \newblock Theoretical and numerical structure for reacting shock waves.
@@ -235,6 +276,11 @@
 \newblock {\"U}ber die partiellen differenzengleichungen der mathematischen
   physik.
 \newblock {\em Mathematische annalen 100}, 1 (1928), 32--74.
+
+\bibitem{crandall1980method}
+{\sc Crandall, M., and Majda, A.}
+\newblock The method of fractional steps for conservation laws.
+\newblock {\em Numerische Mathematik 34}, 3 (1980), 285--314.
 
 \bibitem{crandall1972semigroup}
 {\sc Crandall, M.~G.}
@@ -294,6 +340,17 @@
 \newblock The lorentz transformation and absolute time.
 \newblock {\em Physica 19}, 1-–12 (1953), 888--896.
 
+\bibitem{dong2012trajectory}
+{\sc Dong, L., and Wang, B.}
+\newblock Trajectory-tracking scheme in lagrangian form for solving linear
+  advection problems: preliminary tests.
+\newblock {\em Monthly Weather Review 140}, 2 (2012), 650--663.
+
+\bibitem{doring1943detonation}
+{\sc D{\"o}ring, W.}
+\newblock On detonation processes in gases.
+\newblock {\em Ann. Phys 43}, 421-436 (1943), 9.
+
 \bibitem{dremin1972detonation}
 {\sc Dremin, A.~N., Savrov, S., Trofimov, V.~S., and Shvedov, K.}
 \newblock Detonation waves in condensed media.
@@ -339,6 +396,11 @@
 \newblock A fully-coupled flow-reactive-transport formulation based on element
   conservation, with application to co 2 storage simulations.
 \newblock {\em Advances in Water Resources 42\/} (2012), 47--61.
+
+\bibitem{fay1959two}
+{\sc Fay, J.~A.}
+\newblock Two-dimensional gaseous detonations: Velocity deficit.
+\newblock {\em The Physics of Fluids 2}, 3 (1959), 283--289.
 
 \bibitem{fedkiw1999non}
 {\sc Fedkiw, R.~P., Aslam, T., Merriman, B., and Osher, S.}
@@ -439,6 +501,11 @@
   overexpanded nozzles.
 \newblock {\em Aerospace Science and Technology 42\/} (2015), 158--168.
 
+\bibitem{haier1987solving}
+{\sc Haier, E., Norsett, S., and Wanner, G.}
+\newblock Solving ordinary differential equations i, nonstiff problems.
+\newblock {\em Section III 8\/} (1987).
+
 \bibitem{hairer1999stiff}
 {\sc Hairer, E., and Wanner, G.}
 \newblock Stiff differential equations solved by radau methods.
@@ -482,6 +549,12 @@
 \bibitem{harten1989eno}
 {\sc Harten, A.}
 \newblock Eno schemes with subcell resolution.[essentially nonoscillatory.
+
+\bibitem{harten1987uniformly}
+{\sc Harten, A., Engquist, B., Osher, S., and Chakravarthy, S.~R.}
+\newblock Uniformly high order accurate essentially non-oscillatory schemes,
+  iii.
+\newblock {\em Journal of computational physics 71}, 2 (1987), 231--303.
 
 \bibitem{harten1983upstream}
 {\sc Harten, A., Lax, P.~D., and van Leer, B.}
@@ -566,6 +639,17 @@
   splitting.
 \newblock {\em Computing and Visualization in Science 1}, 4 (1999), 231--249.
 
+\bibitem{ji2010new}
+{\sc Ji, H., Lien, F.-S., and Yee, E.}
+\newblock A new adaptive mesh refinement data structure with an application to
+  detonation.
+\newblock {\em Journal of Computational Physics 229}, 23 (2010), 8981--8993.
+
+\bibitem{jiang1996efficient}
+{\sc Jiang, G.-S., and Shu, C.-W.}
+\newblock Efficient implementation of weighted eno schemes.
+\newblock {\em Journal of computational physics 126}, 1 (1996), 202--228.
+
 \bibitem{jiang2001weighted}
 {\sc Jiang, L., Shan, H., and Liu, C.}
 \newblock Weighted compact scheme for shock capturing.
@@ -579,6 +663,17 @@
 \newblock Assessment of high-resolution methods for numerical simulations of
   compressible turbulence with shock waves.
 \newblock {\em Journal of Computational Physics 229}, 4 (2010), 1213--1237.
+
+\bibitem{johnson1988error}
+{\sc Johnson, C.}
+\newblock Error estimates and adaptive time-step control for a class of
+  one-step methods for stiff ordinary differential equations.
+\newblock {\em SIAM Journal on Numerical Analysis 25}, 4 (1988), 908--926.
+
+\bibitem{jouguet1905propagation}
+{\sc Jouguet, E.}
+\newblock On the propagation of chemical reactions in gases.
+\newblock {\em J. de mathematiques Pures et Appliquees 1}, 347-425 (1905), 2.
 
 \bibitem{kim2005high}
 {\sc Kim, D., and Kwon, J.~H.}
@@ -622,6 +717,13 @@
 \newblock On spurious numerics in solving reactive equations.
 \newblock {\em Proceedings of the ASTRONUM-2012, The Big Island, Hawaii\/}
   (2012), 24--28.
+
+\bibitem{krivodonova2004shock}
+{\sc Krivodonova, L., Xin, J., Remacle, J.-F., Chevaugeon, N., and Flaherty,
+  J.~E.}
+\newblock Shock detection and limiting with discontinuous galerkin methods for
+  hyperbolic conservation laws.
+\newblock {\em Applied Numerical Mathematics 48}, 3-4 (2004), 323--338.
 
 \bibitem{lafaurie1994modelling}
 {\sc Lafaurie, B., Nardone, C., Scardovelli, R., Zaleski, S., and Zanetti, G.}
@@ -687,6 +789,11 @@
 \newblock {\em International journal for numerical methods in fluids 23}, 6
   (1996), 545--566.
 
+\bibitem{leveque1992numerical}
+{\sc LeVeque, R.~J.}
+\newblock {\em Numerical methods for conservation laws}.
+\newblock Springer Science \& Business Media, 1992.
+
 \bibitem{leveque1990study}
 {\sc LeVeque, R.~J., and Yee, H.~C.}
 \newblock A study of numerical methods for hyperbolic conservation laws with
@@ -697,6 +804,12 @@
 {\sc Levy, D., Puppo, G., and Russo, G.}
 \newblock Compact central weno schemes for multidimensional conservation laws.
 \newblock {\em SIAM Journal on Scientific Computing 22}, 2 (2000), 656--672.
+
+\bibitem{li2010hybrid}
+{\sc Li, G., and Qiu, J.}
+\newblock Hybrid weighted essentially non-oscillatory schemes with different
+  indicators.
+\newblock {\em Journal of Computational Physics 229}, 21 (2010), 8105--8129.
 
 \bibitem{li2008hybrid}
 {\sc Li, Z., Jaberi, F.~A., and Shih, T.~I.}
@@ -731,6 +844,12 @@
 {\sc Liou, M.-S., and Steffen, C.~J.}
 \newblock A new flux splitting scheme.
 \newblock {\em Journal of Computational physics 107}, 1 (1993), 23--39.
+
+\bibitem{liu2016efficient}
+{\sc Liu, L., and Becerra, M.}
+\newblock An efficient semi-lagrangian algorithm for simulation of corona
+  discharges: the position-state separation method.
+\newblock {\em IEEE Transactions on Plasma Science 44}, 11 (2016), 2822--2831.
 
 \bibitem{liu2005ghost}
 {\sc Liu, T., Khoo, B., and Wang, C.}
@@ -769,6 +888,17 @@
 \newblock The mac method.
 \newblock {\em Computers \& Fluids 37}, 8 (2008), 907--930.
 
+\bibitem{mclachlan2002splitting}
+{\sc McLachlan, R.~I., and Quispel, G. R.~W.}
+\newblock Splitting methods.
+\newblock {\em Acta Numerica 11\/} (2002), 341--434.
+
+\bibitem{mcrae1982numerical}
+{\sc McRae, G.~J., Goodin, W.~R., and Seinfeld, J.~H.}
+\newblock Numerical solution of the atmospheric diffusion equation for
+  chemically reacting flows.
+\newblock {\em Journal of Computational Physics 45}, 1 (1982), 1--42.
+
 \bibitem{merritt2013experimental}
 {\sc Merritt, E.~C., Moser, A.~L., Hsu, S.~C., Loverich, J., and Gilmore, M.}
 \newblock Experimental characterization of the stagnation layer between two
@@ -785,6 +915,12 @@
 {\sc Mike{\v{s}}, J., Stepanov, S., and Jukl, M.}
 \newblock The pre-maxwell equations.
 \newblock In {\em Geometric Methods in Physics}. Springer, 2013, pp.~377--381.
+
+\bibitem{moresi2003lagrangian}
+{\sc Moresi, L., Dufour, F., and M{\"u}hlhaus, H.-B.}
+\newblock A lagrangian integration point finite element method for large
+  deformation modeling of viscoelastic geomaterials.
+\newblock {\em Journal of Computational Physics 184}, 2 (2003), 476--497.
 
 \bibitem{moretti1987computation}
 {\sc Moretti, G.}
@@ -898,6 +1034,11 @@
   interaction.
 \newblock {\em Journal of Computational Physics 178}, 1 (2002), 81--117.
 
+\bibitem{pirozzoli2011numerical}
+{\sc Pirozzoli, S.}
+\newblock Numerical methods for high-speed flows.
+\newblock {\em Annual review of fluid mechanics 43\/} (2011), 163--194.
+
 \bibitem{poinsot1992study}
 {\sc Poinsot, T., Echekki, T., and Mungal, M.}
 \newblock A study of the laminar flame tip and implications for premixed
@@ -910,6 +1051,19 @@
   tension.
 \newblock {\em International Journal for Numerical Methods in Fluids 30}, 6
   (1999), 775--793.
+
+\bibitem{powers2005accurate}
+{\sc Powers, J.~M., and Paolucci, S.}
+\newblock Accurate spatial resolution estimates for reactive supersonic flow
+  with detailed chemistry.
+\newblock {\em AIAA journal 43}, 5 (2005), 1088--1099.
+
+\bibitem{qiu2005comparison}
+{\sc Qiu, J., and Shu, C.-W.}
+\newblock A comparison of troubled-cell indicators for runge--kutta
+  discontinuous galerkin methods using weighted essentially nonoscillatory
+  limiters.
+\newblock {\em SIAM Journal on Scientific Computing 27}, 3 (2005), 995--1013.
 
 \bibitem{ren2003characteristic}
 {\sc Ren, Y.-X., Zhang, H., et~al.}
@@ -997,6 +1151,12 @@
 \newblock {\em International Journal for Numerical Methods in Fluids 75}, 4
   (2014), 231--249.
 
+\bibitem{shen2006high}
+{\sc Shen, Y., Yang, G., and Gao, Z.}
+\newblock High-resolution finite compact difference schemes for hyperbolic
+  conservation laws.
+\newblock {\em Journal of Computational Physics 216}, 1 (2006), 114--137.
+
 \bibitem{shen2010application}
 {\sc Shen, Y., and Zha, G.}
 \newblock Application of low diffusion e-cusp scheme with high order weno
@@ -1027,11 +1187,23 @@
 \newblock Two-dimensional riemann problem for scalar conservation laws.
 \newblock {\em Journal of Differential Equations 183}, 1 (2002), 239--261.
 
+\bibitem{shepherd2009detonation}
+{\sc Shepherd, J.}
+\newblock Detonation in gases.
+\newblock {\em Proceedings of the Combustion Institute 32}, 1 (2009), 83--98.
+
 \bibitem{shin2002modeling}
 {\sc Shin, S., and Juric, D.}
 \newblock Modeling three-dimensional multiphase flow using a level contour
   reconstruction method for front tracking without connectivity.
 \newblock {\em Journal of Computational Physics 180}, 2 (2002), 427--470.
+
+\bibitem{shipilova2007particle}
+{\sc Shipilova, O., Haario, H., and Smolianski, A.}
+\newblock Particle transport method for convection problems with reaction and
+  diffusion.
+\newblock {\em International journal for numerical methods in fluids 54}, 10
+  (2007), 1215--1238.
 
 \bibitem{shu1988total}
 {\sc Shu, C.-W.}
@@ -1045,11 +1217,24 @@
   shock-capturing schemes.
 \newblock {\em Journal of Computational Physics 77}, 2 (1988), 439--471.
 
+\bibitem{shu1989efficient}
+{\sc Shu, C.-W., and Osher, S.}
+\newblock Efficient implementation of essentially non-oscillatory
+  shock-capturing schemes, ii.
+\newblock {\em Journal of Computational Physics 83}, 1 (1989), 32--78.
+
 \bibitem{shyue1998efficient}
 {\sc Shyue, K.-M.}
 \newblock An efficient shock-capturing algorithm for compressible
   multicomponent problems.
 \newblock {\em Journal of Computational Physics 142}, 1 (1998), 208--242.
+
+\bibitem{smolianski2007fast}
+{\sc Smolianski, A., Shipilova, O., and Haario, H.}
+\newblock A fast high-resolution algorithm for linear convection problems:
+  particle transport method.
+\newblock {\em International journal for numerical methods in engineering 70},
+  6 (2007), 655--684.
 
 \bibitem{smoller2012shock}
 {\sc Smoller, J.}
@@ -1063,6 +1248,11 @@
   diluted methane in diluted air.
 \newblock In {\em Symposium (International) on Combustion\/} (1988), vol.~21,
   Elsevier, pp.~1783--1792.
+
+\bibitem{soloukhin1966multiheaded}
+{\sc Soloukhin, R.}
+\newblock Multiheaded structure of gaseous detonation.
+\newblock {\em Combustion and Flame 10}, 1 (1966), 51--58.
 
 \bibitem{soo2003new}
 {\sc Soo~Kim, M., Sun~Park, J., and Lee, W.~I.}
@@ -1115,6 +1305,13 @@
   laws.
 \newblock In {\em Systems of nonlinear partial differential equations}.
   Springer, 1983, pp.~263--285.
+
+\bibitem{tome2001gensmac3d}
+{\sc Tom{\'e}, M., Cuminato, J., Mangiavacchi, N., McKee, S., et~al.}
+\newblock Gensmac3d: a numerical method for solving unsteady three-dimensional
+  free surface flows.
+\newblock {\em International Journal for Numerical Methods in Fluids 37}, 7
+  (2001), 747--796.
 
 \bibitem{tome1994gensmac}
 {\sc Tome, M.~F., and McKee, S.}
@@ -1223,6 +1420,17 @@
   advection equations with stiff source terms.
 \newblock {\em Journal of Computational Physics 231}, 1 (2012), 190--214.
 
+\bibitem{wang2001optimized}
+{\sc Wang, Z.~J., and Chen, R.}
+\newblock Optimized weighted essentially nonoscillatory schemes for linear
+  waves with discontinuity.
+\newblock {\em Journal of Computational Physics 174}, 1 (2001), 381--404.
+
+\bibitem{wanner1991solving}
+{\sc Wanner, G., and Hairer, E.}
+\newblock Solving ordinary differential equations ii.
+\newblock {\em Stiff and Differential-Algebraic Problems\/} (1991).
+
 \bibitem{welch1965mac}
 {\sc Welch, J.~E., Harlow, F.~H., Shannon, J.~P., and Daly, B.~J.}
 \newblock The mac method-a computing technique for solving viscous,
@@ -1235,6 +1443,12 @@
 \newblock Investigations of three-dimensional shock/shock interactions over
   symmetrical intersecting wedges.
 \newblock {\em AIAA Journal 54}, 1 (2016), 1472--1481.
+
+\bibitem{xu2005anti}
+{\sc Xu, Z., and Shu, C.-W.}
+\newblock Anti-diffusive flux corrections for high order finite difference weno
+  schemes.
+\newblock {\em Journal of Computational Physics 205}, 2 (2005), 458--485.
 
 \bibitem{yang2016large}
 {\sc Yang, G., Yao, Y., Fang, J., Gan, T., and Lu, L.}
@@ -1272,6 +1486,13 @@
 \newblock Time-dependent multi-material flow with large fluid distortion.
 \newblock {\em Numerical methods for fluid dynamics 24}, 2 (1982), 273--285.
 
+\bibitem{yu2016development}
+{\sc Yu, C., Gao, Z., and Sheu, T.~W.}
+\newblock Development of a symplectic and phase error reducing perturbation
+  finite-difference advection scheme.
+\newblock {\em Numerical Heat Transfer, Part B: Fundamentals 70}, 2 (2016),
+  136--151.
+
 \bibitem{yu1999zero}
 {\sc Yu, S.-H.}
 \newblock Zero-dissipation limit of solutions with shocks for systems of
@@ -1284,6 +1505,12 @@
 \newblock Fully multidimensional flux-corrected transport algorithms for
   fluids.
 \newblock {\em Journal of computational physics 31}, 3 (1979), 335--362.
+
+\bibitem{zeldovich1940theory}
+{\sc Zeldovich, J.}
+\newblock To the theory of detonation propagation in gas systems.
+\newblock {\em Journal of experimental and theoretical physics 10}, 5 (1940),
+  542--568.
 
 \bibitem{zha2008calculation}
 {\sc Zha, G., Shen, Y., and Wang, B.}
@@ -1344,6 +1571,18 @@
 \newblock Advances in perturbation finite difference (pfd) method [j].
 \newblock {\em Advances in Mechanics 2\/} (2000), 003.
 
+\bibitem{zhou2007new}
+{\sc Zhou, Q., Yao, Z., He, F., and Shen, M.}
+\newblock A new family of high-order compact upwind difference schemes with
+  good spectral resolution.
+\newblock {\em Journal of Computational Physics 227}, 2 (2007), 1306--1339.
+
+\bibitem{zhu2009adaptive}
+{\sc Zhu, H., and Qiu, J.}
+\newblock Adaptive runge--kutta discontinuous galerkin methods using different
+  indicators: one-dimensional case.
+\newblock {\em Journal of Computational Physics 228}, 18 (2009), 6957--6976.
+
 \bibitem{傅德薰2002计算流体力学}
 {\sc 傅德薰, 马延文, et~al.}
 \newblock {\em 计算流体力学}.
@@ -1355,6 +1594,11 @@
 \newblock PhD thesis, 中国科学院研究生院
   (武汉物理与数学研究所), 2012.
 
+\bibitem{姜宗林2012气相爆轰物理的若干研究进展}
+{\sc 姜宗林, 滕宏辉, and 刘云峰}.
+\newblock 气相爆轰物理的若干研究进展.
+\newblock {\em 力学进展 42}, 2 (2012), 129--140.
+
 \bibitem{应隆安1991双曲型守恒律方程及其差分方法}
 {\sc 应隆安, and 滕振寰}.
 \newblock 双曲型守恒律方程及其差分方法, 1991.
@@ -1364,10 +1608,20 @@
 \newblock {\em 计算流体力学教程}.
 \newblock 高等教育出版社, 2010.
 
+\bibitem{张旭东2011旋转爆轰自持机理的数值研究}
+{\sc 张旭东, 范宝春, 潘振华, and 归明月}.
+\newblock 旋转爆轰自持机理的数值研究.
+\newblock {\em 弹道学报 23}, 1 (2011), 1--4.
+
 \bibitem{杨瑞芳2007非齐次双曲型守恒律组的粘性解与弱解的研究}
 {\sc 杨瑞芳}.
 \newblock {\em 非齐次双曲型守恒律组的粘性解与弱解的研究}.
 \newblock PhD thesis, 南京航空航天大学, 2007.
+
+\bibitem{潘振华2014t}
+{\sc 潘振华, 范宝春, and 归明月}.
+\newblock T 型管内流动气体中爆轰绕射过程的数值模拟.
+\newblock {\em 爆炸与冲击 34}, 6 (2014), 709--715.
 
 \bibitem{王东红2014多介质流体界面追踪方法研究及误差分析}
 {\sc 王东红}.
@@ -1379,6 +1633,11 @@
 \newblock Banach 空间中非线性脉冲 volterra 积分方程的 l\_
   (loc)\~{} p 解.
 \newblock Master's thesis, 山东师范大学, 2005.
+
+\bibitem{王昌建2005直管内胞格爆轰的基元反应数值研究}
+{\sc 王昌建, and 徐胜利}.
+\newblock 直管内胞格爆轰的基元反应数值研究.
+\newblock {\em 爆炸與衝擊 25}, 5 (2005), 405--416.
 
 \bibitem{童秉纲1990气体动力学}
 {\sc 童秉纲, 孔祥言, 邓国华, et~al.}

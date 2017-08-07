@@ -15,6 +15,9 @@
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{color}
 % 可选参数：
 % notypeinfo 取消扉页的LaTeX版本信息
 %
@@ -31,8 +34,7 @@
 
 % 小节标题靠左对齐
 %\CTEXsetup[format+={\flushleft}]{section}
-
-
+\CTEXsetup[name={, },number={}]{part}
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -93,10 +95,12 @@
 %% 正文部分
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mainmatter
-
   \include{chapter/Chapter-Introduction}
-%  \include{chapter/Chapter-Low-Dissipation-Shock-Capturing-Scheme}
-%  \include{chapter/Chapter-MHD}
+\part{上部分}
+\include{chapter/Chapter-part-1}
+  \include{chapter/Chapter-Multi-WENO}
+  \include{chapter/Chapter-detector}
+  \part{下部分}
 %  \include{chapter/Chapter-Dual-Information-Method}
 %  \include{chapter/Chapter-Ghost-Fluid-method-and-Interface}
 %  \include{chapter/Chapter-Perturbation-Method}
