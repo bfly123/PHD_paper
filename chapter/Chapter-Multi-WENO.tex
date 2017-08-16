@@ -1,9 +1,9 @@
 
 \XeTeXinputencoding "GB2312"
 \chapter{多步加权基本无振荡（Multi-WENO）格式}\label{chap:multiWENO}
-加权基本无振荡格式（WENO）自1994年由Liu\cite{liu1994weighted}提出以来，在近20年已得到广泛应用。WENO格式基本思想是将ENO格式\cite{harten1987uniformly}的最光子滑模板用所有子模板的凸组合重构代替，为了达到高精度特性并保持间断附近的无振荡特性，子模板的权重非常重要。
+加权基本无振荡格式（WENO）自1994年由Liu\cite{liu1994weighted}提出以来，在这20年里已得到十分广泛的应用。WENO格式基本思想是将ENO格式\cite{harten1987uniformly}的最光子滑模板用所有子模板的凸组合重构代替。在WENO格式构造中，子模板权重函数的选取对格式的精度和无振荡的保持都十分重要。
 
-Jiang和Shu\cite{jiang1996efficient}分析了Liu\cite{liu1994weighted}引入的光滑因子，认为采用该光滑因子只能让$r$阶ENO格式收敛到一个$r+1$阶WENO格式，他们在该文中，构造了一个经典的五阶WENO格式，并给出了构造光滑因子和权重函数的一般框架。2005年Henrick等人\cite{henrick2005mapped}指出，Jiang和Shu提出的光滑度量因子不能提高WENO格式在一阶导数为零的极值点精度，他们在该文章中构造了一个映射函数来得到极值点的最优精度。2008年，Borges等人\cite{borges2008improved}建议采用整体的五点模板来推导光滑因子取代Jiang和Shu经典的光滑因子。另一方面，学者们构造了一系列高于五阶的WENO格式\cite{balsara2000monotonicity,gerolymos2009very,wang2001optimized}。如Martin等人\cite{martin2006bandwidth}提出的$2r$阶精度的对称型WENO格式，可以达到更低耗散的效果。
+Jiang和Shu\cite{jiang1996efficient}分析了Liu\cite{liu1994weighted}引入的光滑因子，认为采用该光滑因子构造的权重函数只能让$r$阶ENO格式收敛到一个$r+1$阶WENO格式，他们在该文中，构造了一个经典的五阶WENO格式，并给出了构造光滑因子和权重函数的一般框架。2005年Henrick等人\cite{henrick2005mapped}指出，Jiang和Shu提出的光滑度量因子不能提高WENO格式在一阶导数为零的极值点精度，他们在该文章中构造了一个映射函数来得到极值点的最优精度。2008年，Borges等人\cite{borges2008improved}建议采用整体的五点模板来推导光滑因子取代Jiang和Shu经典的光滑因子。另一方面，学者们构造了一系列高于五阶的WENO格式\cite{balsara2000monotonicity,gerolymos2009very,wang2001optimized}。如Martin等人\cite{martin2006bandwidth}提出的$2r$阶精度的对称型WENO格式，可以达到更低耗散的效果。
 
 上面提到的WENO格式都是通过$r$阶精度的ENO格式来设计光滑区域到达$2r-1$或$2r$阶精度的WENO格式，它们的目的都是提高光滑区的精度，尤其是极值点（$f'_i=0$）。因此，对于含有间断的问题，上述的方法在连接光滑区和间断区的过渡点，并不能达到理想精度。例如，Shen和Zha\cite{shen2014improvement}分析了现存的各种五阶WENO格式，发现这些格式在过渡点半点精度只有三阶。这一缺点可能会影响五阶格式的整体表现。如在模拟激波诱导的分离流时或在模拟激波/湍流相互作用时。
 
@@ -14,7 +14,7 @@ Jiang和Shu\cite{jiang1996efficient}分析了Liu\cite{liu1994weighted}引入的光滑因子
 \section{本章涉及的数值方法}
 本节中，我们将给出本章涉及到的数值方法的具体的表达，这些方法也会在后文中经常应用到。
 
-\subsection{Lax-Friedrichs（LF）通量分裂方法和空间半离散}
+\subsection{Lax-Friedrichs（LF）通量分裂方法和空间半离散}\label{chap:LF}
 引言\ref{riemann_solver} 中介绍了各类近似黎曼求解器，在流通矢量分裂中，LF分裂方法是形式最为简单、最为常用的一种\cite{ren2003characteristic,borges2008improved,balsara2000monotonicity}，具有较好的稳定性。
 
 对于双曲率方程，为了实现迎风性，流通矢量方法通常将通量函数表达正负通量之和的形式，以一维方程为例，
@@ -100,7 +100,7 @@ Borges等人\cite{borges2008improved}提出一个五阶收敛的充分条件
 通过新的$IS_k^z$构造的WENO格式---WENO-Z格式，可以在极值点满足条件（\ref{conditionWENO}）。
 
 在本文所有用到$\varepsilon$的公式中，该系数都是为了防止分母为零，在文章\cite{jiang1996efficient}中，$\varepsilon=10^{-6}$，在文章\cite{henrick2005mapped,borges2008improved}中，$\varepsilon=10^{-40}$。Eq.(\ref{alphak})中的$p$作用是增加间断区权重间的差距。
-\subsection{Runge-Kutta时间方法}
+\subsection{Runge-Kutta时间方法}\label{chap:RK}
 在引言\ref{chap:timemethod}中我们简单回顾了对流方程的各种时间方法的发展，目前应用最为广泛的是Shu根据对流方程TVD性质发展的一套三阶显示Runge-Kutta格式\cite{shu1988efficient}。对于如下方程
 \begin{equation}
   \frac{du}{dt}=L(u),
@@ -279,9 +279,9 @@ $$S_{(i-1)-1/2}^5=(x_{i-4},x_{i-3},\cdots,x_i)$$
 	其中$h_{i+1/2}^\text{present}$代表当前的多步加权WENO格式，$h_{i+1/2}^{\text{other}}$代表其它格式构造的结果。该部分将会在下一章间断识别方法中详细分析。
 
 	\section{数值算例}
-	\subsection{线性对流算例}
+	\subsection{线性对流算例}\label{numexp:linear}
 	线性对流问题的控制方程如下，
-\begin{equation}
+	\begin{equation}\label{eq:linear}
 \left\{
   \begin{array}{l}
 	\displaystyle \frac{\partial u}{\partial t}+\frac{\partial u}{\partial t}=0, \hspace{0.2cm} -1\leqslant x \leqslant 1,\\
@@ -399,9 +399,9 @@ $$S_{(i-1)-1/2}^5=(x_{i-4},x_{i-3},\cdots,x_i)$$
 \end{equation*}
 该算例中，通量分裂采用$f^{\pm}=(f\pm au)/2$，其中$f=u^2/2$，$a=max(u_i)$。图.()给出在$N=80$网格下$t=2$时刻计算结果，可以看到相比与WENO-Z和WENO-M，新的格式在间断附近的结果更接近间断解。
 
-\subsection{一维激波管算例}
+\subsection{一维激波管算例}\label{chap:1d_shock}
 我们在引言\ref{chap:2d_Euler}中给出二维的Euler方程系统，一维的方程更为简化
-\begin{equation}
+\begin{equation}\label{eq:1d_euler}
   \frac{\partial U}{\partial t}+\frac{\partial F}{\partial x}=0,
 \end{equation}
 其中$U=(\rho,\rho u,rho E)^T$，$F=(\rho u, \rho u^2+p,u(E+p))^T$。对于理想气体有$p=(\gamma-1)(E-\rho u^2)$，$\gamma=1.4$。

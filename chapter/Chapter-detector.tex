@@ -18,7 +18,7 @@
 注意在第(2)步，第(1)步中构造的间断区域模板通量将自动的作为内边界。
 \begin{figure}
   \centering
-  \includegraphics[width=10cm]{illu_finite_compact.png}
+  \includegraphics[width=12cm]{illu_finite_compact.png}
   \caption{有限紧致格式示意图}
   \label{fig:illu_compact}
 \end{figure}
@@ -28,7 +28,6 @@
 \hspace{-0.8cm}\rule [-10pt]{14.3cm}{0.02cm}
 \begin{spacing}{0.5}
 \begin{enumerate}
-	\scriptsize 
   \item[第0]步:\hspace{0.15cm}  采用边界条件计算$h_{1/2}$和$h_{N+1/2}$
   \item[第1]步: \hspace{0.1cm} $M=1$  {\color{black!70}!搜寻第M个光滑区域的起始点和终止点}
 
@@ -189,6 +188,149 @@ $a$，$b$，$c$分别为
 \end{equation*}
 
 \section{数值算例}
+本文采用和上一章相同的LF通量分裂方法（章节 \ref{chap:LF}）和三阶Runge-Kutta时间方法（章节 \ref{chap:RK}）。
+\subsection{线性对流算例}
+该算例和算例 \ref{numexp:linear} 类似，分别测试一个组合波算例一个光滑正弦函数算例。控制方程为 (\ref{eq:linear})
+\begin{enumerate}[1.]
+  \item 初始条件
+\begin{equation*}
+  u_0(x)=\text{sin}(\pi x)
+\end{equation*}
 
+该算例是完全光滑的，如果一个间断识别方法完全准确，结果应该无限接近紧致格式的计算结果。反之，识别的越不准确，会有越多的点当成间断点计算，也就越接近WENO-Z的结果。通过该算例我们可以验证不同间断识别方法对于光滑区误识别的问题。在表\ref{tab:detector}中我们给出了WENO-Z格式、紧致格式、结合了不同识别方法的有限紧致格式结果的$L_\infty$误差。从中我们可以看到，只有TVB、KXRCF和SZ识别方法的计算结果明显区别于WENO-Z格式，而SZ识别方法结果和紧致格式相同。
    
+
+
+\begin{table}[htbp]
+  \small
+  \centering
+\setlength{\belowcaptionskip}{10pt}
+\caption{\small $u=\text{sin}(\pi x)$初始条件下，不同识别方法的计算误差，$T=10$，$\Delta x=0.02$}
+  \begin{tabular}{cccc}
+	\toprule
+	识别方法        & $L_\infty$误差       & 识别方法  & $L_{\infty}$ 误差  \\
+	\midrule
+	WENO-Z        &6.613E-007       &TVB     & 4.217E-007       \\
+	BDF			  &6.613E-007      &KXRCF     &2.566E-007     \\
+    XS    		  &5.593E-007      &SZ        &2.071E-007     \\
+    ATV   		  &5.593E-007      &紧致格式  &2.071E-007    \\
+	\bottomrule
+	\end{tabular}
+\label{tab:detector}
+\end{table}
+\item 组合波算例 初始条件为\ref{eq:linear3}，该算例中包含高斯波、方波、三角波和椭圆波，用来验证识别方法对于间断问题的识别能力，如果将间断误识别为光滑区域会引起数值振荡甚至发散。
+
+  图 \ref{fig:detector_linear} 给出结合了不同识别方法的有限紧致格式（FC）在$t=8$时刻的计算结果及局部放大图，我们可以看到除了ATV方法，其它识别方法都能得到无振荡的计算结果。在高斯波、方波和三角波部分，SZ识别方法具有最好的结果，接下来是TVB识别方法。在椭圆波部分，KXRCF具有最好的结果，接下来是SZ识别方法。总体来说，SZ识别方法具有最好的精度效果。
+  \begin{figure}
+	\centering
+	\includegraphics[width=12cm]{detector_linear_multi.eps}
+ \caption{有限紧致格式结合不同识别方法的组合波计算结果，$t=8.0$}
+ \label{fig:detector_linear}
+ \end{figure}
+
+ \end{enumerate}
+ \subsection{一维激波管算例}
+ 该部分采用和章节 \ref{chap:1d_shock}相同的一维欧拉方程 (\ref{eq:1d_euler})，Lax激波管算例、Shu-osher激波管算例及冲击波相互作用算例。
+ \begin{enumerate}[1.]
+ \item Lax激波管算例
+   图 \ref{fig:detector_lax} 给出有限紧致格式结合不同识别方法在$N=200$网格下的计算结果和局部放大图，可以看到ATV、TVB和KXRCF识别方法的结果都存在振荡，其中KXRCF振荡最为剧烈，SZ识别方法具有最好的结果，BDF方法也有不错的效果。
+
+   \begin{figure}
+	 \centering
+	 \includegraphics[width=12cm]{detector_lax.eps}
+	 \caption{Lax激波管算例，有限紧致格式结合不同识别方法，密度曲线，$t=1.3$}
+	 \label{fig:detector_lax}
+	 \end{figure}
+
+	 \item Shu-Osher激波管算例
+	   图 \ref{fig:detector_shuo} 中给出不同识别方法在$N=200$网格下计算结果和局部放大对比，总体来讲SZ识别方法在所有区域都有很好的表现，TVB识别方法也具有较好的效果，KXRCF识别方法和BDF识别方法分别在波峰和波谷表现良好。
+
+   \begin{figure}
+	 \centering
+	 \includegraphics[width=12cm]{detector_shuo.eps}
+	 \caption{Shu-Osher激波管算例，有限紧致格式结合不同识别方法，密度曲线，$t=1.8$}
+	 \label{fig:detector_shuo}
+	 \end{figure}
+   \item 冲击波相互作用算例	
+ 图 \ref{fig:detector_two_blast} 给出$N=200$网格$t=0.038$时刻的计算结果，通过三个区域放大图可以看到，在波峰SZ识别方法和ATV识别方法具有最好的表现，接下来是TVB识别方法。在波谷KXRCF具有最好的效果，在大梯度的光滑区域，仍然是SZ识别方法计算效果最准确。 
+	 
+ 
+   \begin{figure}
+	 \centering
+	 \includegraphics[width=12cm]{detector_two_blast.eps}
+	 \caption{冲击波相互作用算例，有限紧致格式结合不同间断识别方法，密度曲线，$t=0.038$}
+	 \label{fig:detector_two_blast}
+	 \end{figure}
+\end{enumerate}
+
+\subsection{二维算例}
+接下来我们考虑二维Euler方程 (\ref{eq1_1}) 算例。
+\begin{enumerate}[1.]
+  \item 二维黎曼问题算例
+
+	在前言 \ref{chap:riemann} 中我们曾讨论过二维黎曼问题研究现状。由于该类问题具有简单的二维结构，学者们经常用它们做数值测试算例。我们知道，二维黎曼问题有多达19种，其中某些在数值计算中较为常用\cite{schulz1993numerical}。我们选取其中一种，初始条件为
+	\begin{equation*}
+	  (\rho,u,v,p)=\left\{
+		\begin{array}{ll}
+		  (1.5,0,0,1.5)   & \text{if} \hspace{0.2cm} 0.8\leqslant x \leqslant 1, \hspace{0.2cm} 0.8\leqslant y\leqslant 1,\\
+		  (0.5323,1.206,0,0.3) & \text{if} \hspace{0.2cm} 0 \leqslant x < 0.8,\hspace{0.2cm} 0.8\leqslant y \leqslant 1,\\
+		  (0.138,1.2606,1.2606,0.019) & \text{if} \hspace{0.2cm} 0\leqslant x < 0.8, \hspace{0.2cm} 0\leqslant y< 0.8,\\
+		  (0.5323,0,1.206,0.3) & \text{if}  \hspace{0.2cm} 0.8< x \leqslant 1, \hspace{0.2cm} 0\leqslant y< 0.8.\\
+		\end{array}
+		\right.
+		\end{equation*}
+		计算时间为$t=0.8$，图 \ref{fig:detector_gasdynamics} 给出有限紧致格式结合不同识别方法的计算结果和局部方法图，计算网格为$400\times 400$，对比算例为采用WENO格式分别在$400\times 400$和加密的$800\times 800$网格下计算结果。可以看到，采用了SZ识别方法可以获得最为精细的计算结果，识别出更多的小尺度结构，其中TVB识别方法的结果也较WENO-Z要好，而使用了KXRCF和BDF识别方法，计算结果较纯粹的WENO-Z并没有太大的改善，使用了ATV和XS识别方法的结果由于振荡，甚至比采用纯粹的WENO-Z格式效果更差。
+
+		\begin{figure}
+		  \centering
+		  \begin{tikzpicture}
+			\matrix[column sep=0mm, row sep=0mm]
+			{
+			  \node[rectangle]{
+				\includegraphics[width=7cm]{detector_gasdynamics_ATV.eps}};&
+			  \node[rectangle]{
+				\includegraphics[width=7cm]{detector_gasdynamics_XS.eps}};\\
+			  \node[rectangle]{
+				\includegraphics[width=7cm]{detector_gasdynamics_BDF.eps}};&
+			  \node[rectangle]{
+				\includegraphics[width=7cm]{detector_gasdynamics_KXRCF.eps}};\\
+			  \node[rectangle]{
+				\includegraphics[width=7cm]{detector_gasdynamics_TVB.eps}};&
+			  \node[rectangle]{
+				\includegraphics[width=7cm]{detector_gasdynamics_SZ.eps}};\\
+			  \node[rectangle]{
+				\includegraphics[width=7cm]{detector_gasdynamics_WENO_400.eps}};&
+			  \node[rectangle]{
+				\includegraphics[width=7cm]{detector_gasdynamics_WENO_800.eps}};\\
+			  };
+			\end{tikzpicture}
+		  \caption{二维黎曼问题密度等值线，不同识别方法对比，$t=0.8$}
+		  \label{fig:detector_gasdynamics}
+		\end{figure}
+	\item 双马赫反射问题
+
+双马赫反射问题是另外一个经常用来验证数值方法的二维算例\cite{woodward1984numerical}，在该问题中，一道和壁面有一定夹角的强激波从水平方向扫过壁面。计算区域采用$[0,4]\times[0,1]$的矩形区域，下边界$\frac{1}{6}\leqslant x\leqslant 6$采用壁面反射条件，初始时，一道马赫数为10的激波和水平$60^\circ$安置在$x=\frac{1}{6},y=0$，在$0<x<\frac{1}{6}$区域采用准确的激波后条件。上边界通过马赫数为10的激波条件实时计算得到。左右边界分别采用入流和出流条件。波前采用$\rho=1.4$，$p=1$。计算时间为$t=0.2$，该算例中我们只采用上面算例中无振荡的四中激波识别方法。图 \ref{fig:detector_doublemach}  给出了密度结果及放大图。从中我们可以看到SZ识别方法具有最好的表现。
+
+		\begin{figure}
+		  \centering
+				\includegraphics[width=13cm]{detector_doublemach_WENO.eps}
+
+				\includegraphics[width=13cm]{detector_doublemach_TVB.eps}
+
+				\includegraphics[width=13cm]{detector_doublemach_BDF.eps}
+
+				\includegraphics[width=13cm]{detector_doublemach_KXRCF.eps}
+
+			\includegraphics[width=13cm]{detector_doublemach_SZ.eps}
+
+		  \caption{双马赫反射问题不同识别方法对比，密度等值线图，$t=0.2$}
+		  \label{fig:detector_doublemach}
+		  \vspace{-10pt}
+		\end{figure}
+
+\end{enumerate}
+
+\section{小结}
+本章中，我们将一些常用的间断识别方法加入有限紧致格式中，对它们的表现进行了一系列的数值比较。最终我们认为基于WENO-Z格式$\tau_5$参数的SZ识别方法最为准确有效。当然，其它的一些识别方法，如TVB、KXRCF和BDF，都能保证格式无振荡的性质，但是并不能在每个算例中都有足够精确的表现。由于SZ识别方法的有效性，我们可以进一步将它结合进其它杂交格式中，或将采用了SZ识别方法的有限紧致格式应用在更复杂流场问题求解中，如下一章中的理想磁流体流动高精度稳定求解。
+
 

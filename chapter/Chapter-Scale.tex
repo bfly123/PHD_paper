@@ -1,0 +1,138 @@
+\XeTeXinputencoding "GB2312"
+\chapter{化学反应中相关尺度的探讨}\label{chap:scale}
+尺度在英文中对应于``scale''，而``scale''是一个较常用而且意义宽泛的名词和动词。作为名词，尺度主要包含以下两层含义：
+\begin{enumerate}[1.]
+  \item 主观的度量，《Cambridge Dictionary》解释为``a set of numbers, amounts, etc., used to measure or compare the level of something''。在本文可以对应于网格尺度、时间步长，是我们主观观察问题所采用的度量的大小。 
+	\item 客观事物特征与变化的空间和时间范围，《Cabridge Dictionary》解释为``the size or level of something''。文中对应于时间尺度、空间尺度和特征尺度等等。
+\end{enumerate}
+\section{化学反应时间尺度分析方程和空间尺度分析方程}
+除了对尺度概念简单的字面理解，在研究中，每种尺度都应该有更明确的数学定义。为了便于理解全文，下面对空间尺度和时间尺度进行简单的分析和解释，更准确、详细的理论工作请参阅\cite{powers2005accurate,strang1988linear}。
+
+各种尺度的分析都是针对如下形式ODE方程展开的。
+\begin{equation}\label{eq:scale_ODE}
+  \frac{dY_i}{dx}=f_i(Y_1,Y_2,\cdots,Y_n)
+\end{equation}
+
+对于化学反应时间尺度分析，采用反应ODE方程
+\begin{equation}\label{eq:scale_ODE_time}
+  \frac{dz_i}{dt}=\frac{\omega_i}{\rho_i},  \hspace{0.3cm} i=1,\cdots,ns-1
+  \end{equation}
+
+明显满足方程 (\ref{eq:scale_ODE}) 的形式，
+
+对于化学反应的空间尺度分析，我们需要对反应Euler方程做一些特殊的处理，以一维反应Euler方程为例
+
+
+\begin{equation}\label{eq1_4}
+  \frac{\partial U}{\partial t} +\frac{\partial F}{\partial x}=S
+  \end{equation}
+其中
+\begin{eqnarray*}
+  U=\left(
+  \begin{array}{l}
+	\rho\\
+	\rho u\\
+	E\\
+	\rho  z_1\\
+	\rho  z_2\\
+	 \vdots\\
+	\rho z_{ns-1}\\
+	\end{array}
+	\right)
+  ,
+ F=\left(
+  \begin{array}{l}
+	\rho u\\
+	\rho u^2+p\\
+	u(E+p)\\
+		\rho  z_1 u\\
+	\rho  z_2 u\\
+	 \vdots\\
+	\rho z_{ns-1} u\\
+	\end{array}
+	\right)
+	,
+S=
+ \left(
+  \begin{array}{c}
+	0\\
+	0\\
+	0\\
+	\omega_1\\
+	\omega_2\\
+	\vdots\\
+	\omega_{ns-1}
+	\end{array}
+ \right)
+,
+\end{eqnarray*}
+跨过激波，如果采用随体坐标，流体满足如下形式方程
+\begin{equation*}
+  \left\{
+  \begin{array}{l}
+	\displaystyle \frac{d}{dx}(\rho u)=0\\[0.5em]
+	\displaystyle \frac{d}{dx}(\rho u^2+p)=0\\[0.5em]
+	\displaystyle \frac{d}{dx}[u(E+p)]=0\\[0.5em]
+  \displaystyle \frac{d}{dx}(\rho u z_i)=\omega_i, \hspace{0.3cm} i=1,\cdots,ns-1\\
+  \end{array}
+  \right.
+\end{equation*}
+如果假设波前的状态为
+\begin{eqnarray*}
+  (\rho,u,p,z_i,E,T)=(\rho_0,D,p_0,z_{i0},E_0,T_0), \hspace{0.3cm} i=1,\cdots,ns-1
+  \end{eqnarray*}
+  既可得到爆轰波的Rankine-Hugoniot关系
+  \begin{equation}
+	\rho u=\rho_0 D
+\end{equation}
+\begin{equation}
+ \rho u^2+p=\rho_9 D^2+p_0
+\end{equation}
+\begin{equation}
+E+p=E_0+p_0  
+\end{equation}
+\begin{equation}\label{eq:scale_ODE_spatial}
+  \frac{dz_i}{dx}=\frac{\omega_i}{\rho_i D}, \hspace{0.3cm} i=1,\cdots,ns-1
+\end{equation}
+
+我们可以看到反映化学反应的时间尺度的方程 (\ref{eq:scale_ODE_time}) 和空间尺度的方程 (\ref{eq:scale_ODE_spatial})非常接近，实际上仅相差一个爆轰波波速$D$。
+
+\section{尺度分析\cite{powers2005accurate}}
+
+我们对方程 (\ref{eq:scale_ODE_time}）进行经典的特征分析，为了方便我们将方程写为
+\begin{equation*}
+  \frac{d \boldsymbol{y} }{dx}=\boldsymbol{f}(\boldsymbol{y})
+\end{equation*}
+其中${\boldsymbol{y}} =(Y_1,\cdots,Y_n)$，${\boldsymbol{f}}=(f_1,\cdots,f_n)$。然后，我们在点$(x,{\boldsymbol{y}} )= (x^*, \boldsymbol{y} ^*)$进行线化处理
+\begin{equation}\label{eq:scale_linear}
+  \frac{d\boldsymbol{y} }{dx}=\boldsymbol{J}\cdot (\boldsymbol{y}-\boldsymbol{y}^*)+\boldsymbol{b}, \hspace{0.3cm} {\boldsymbol{y}} (x^*)=\boldsymbol{y} ^* 
+\end{equation}
+其中$\boldsymbol{J}=\partial f_i/\partial Y_j|_{y=y^*}$，而$\boldsymbol{b}$为一个常数向量。
+
+然后我们定义一个新量$\zeta =\boldsymbol{y}-\boldsymbol{y}^*+\boldsymbol{J}^{-1}\cdot \boldsymbol{b}$，方程 (\ref{eq:scale_linear})变为
+\begin{equation}
+  \frac{d\zeta}{dx}=\boldsymbol{J}\cdot \zeta, \hspace{0.3cm} \zeta(x^*)=\boldsymbol{J}\cdot \boldsymbol{b}
+  \end{equation}
+  假设$\boldsymbol{J}$是n维线性无关矩阵，可以将$\boldsymbol{J}$特征分解为$\boldsymbol{J} = \boldsymbol{P}\cdot \boldsymbol{\lambda}\cdot \boldsymbol{P}^{-1}$，假设$\omega=\boldsymbol{P}^{-1}\cdot \zeta $，则上式可以化为
+  \begin{equation}
+	\frac{d\omega}{dx}=\Lambda \cdot \omega,\hspace{0.3cm}   \omega(x^*)=\boldsymbol{P}^{-1}\cdot \boldsymbol{J}^{-1}\cdot \boldsymbol{b}\end{equation}
+  该方程的解为
+  \begin{equation}
+	\omega (x)=e^{\Lambda (x-x^*)} \cdot \boldsymbol{P}^{-1}\cdot \boldsymbol{J}^{-1}\cdot \boldsymbol{b}
+ \end{equation}
+ 第i项的当地$x=x^*$特征尺度可以定义为
+ \begin{equation}
+   l_i=1/|\text{Re}(\lambda_i)|,
+\end{equation}
+
+对于方程 (\ref{eq:scale_ODE_spatial}) 可以认为$l_i$为$i$组分的当地空间尺度$\mathcal{L}_i$，对于方程 (\ref{eq:scale_ODE_time}) 可以认为其为当地时间尺度$\mathcal{T} _i$。同样我们可以定义，所有组分当地最小特征尺度为当地最佳空间尺度$\mathcal{L}^{\text{local}}$和当地最佳时间尺度$\mathcal{T}^{\text{local}}$。对于组分$i$，全局最小的特征尺度可以定义为该组分的最佳空间尺度$\mathcal{L}^{\text{global}}_i$和最佳时间尺度$\mathcal{T}^{\text{global}}_i$。根据方程 (\ref{eq:scale_ODE_time})和 （\ref{eq:scale_ODE_spatial})关系我们可以推知$\mathcal{L}^{\text{global}}_i \propto D \mathcal{T}^{\text{global}}_i$。
+由此我们也可以看出时间尺度和空间尺度间复杂的相关性。
+
+
+
+
+
+
+
+
+

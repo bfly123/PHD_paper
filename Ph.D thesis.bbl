@@ -495,6 +495,11 @@
 \newblock On the accuracy of stable schemes for 2d scalar conservation laws.
 \newblock {\em Mathematics of computation\/} (1985), 15--21.
 
+\bibitem{strang1988linear}
+{\sc G.Strang}.
+\newblock {\em Linear Algebra and its Applications, 3rd ed.}
+\newblock Fort Worth, TX: Harcourt Brace Jovanovich, 1988.
+
 \bibitem{hadjadj2015numerical}
 {\sc Hadjadj, A., Perrot, Y., and Verma, S.}
 \newblock Numerical study of shock/boundary layer interaction in supersonic
@@ -568,6 +573,12 @@
   conservation laws.
 \newblock In {\em Upwind and High-Resolution Schemes}. Springer, 1997,
   pp.~53--79.
+
+\bibitem{harten1986some}
+{\sc Harten, A., Osher, S., Engquist, B., and Chakravarthy, S.~R.}
+\newblock Some results on uniformly high-order accurate essentially
+  nonoscillatory schemes.
+\newblock {\em Applied Numerical Mathematics 2}, 3-5 (1986), 347--377.
 
 \bibitem{helzel2000modified}
 {\sc Helzel, C., Leveque, R.~J., and Warnecke, G.}
@@ -1356,8 +1367,7 @@
 {\sc Van~Leer, B.}
 \newblock Towards the ultimate conservative difference scheme i. the quest of
   monotonicity.
-\newblock In {\em Proceedings of the Third International Conference on
-  Numerical Methods in Fluid Mechanics\/} (1973), Springer, pp.~163--168.
+\newblock 163--168.
 
 \bibitem{van1974towards}
 {\sc Van~Leer, B.}
@@ -1437,6 +1447,12 @@
   incompressible, transient fluid-flow problems involving free surfaces.
 \newblock Tech. rep., Los Alamos Scientific Lab., Univ. of California, N. Mex.,
   1965.
+
+\bibitem{woodward1984numerical}
+{\sc Woodward, P., and Colella, P.}
+\newblock The numerical simulation of two-dimensional fluid flow with strong
+  shocks.
+\newblock {\em Journal of computational physics 54}, 1 (1984), 115--173.
 
 \bibitem{xiang2016investigations}
 {\sc Xiang, G., Wang, C., Teng, H., and Jiang, Z.}

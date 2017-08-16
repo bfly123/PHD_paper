@@ -1,0 +1,28 @@
+
+\XeTeXinputencoding "GB2312"
+\chapter{有限紧致格式在理想磁流体中的应用}
+如前文章节\ref{chap:Intro_MHD} 中所述，理想磁流体（MHD）方程尽管是模拟磁流体的最简单自恰系统，但是由于电磁场和流场的耦合作用，仍然较Euler方程更为复杂，包括更多的波速、更复杂的特征值系统、非严格双曲特性和更丰富的流场结构等。
+
+由于理想磁流体方程和Euler方程相似性，很多的流体力学高精度数值方法被推广到MHD方程的求解中。
+
+另一方面，由于MHD特征系统更为复杂，所以发展适合MHD方程的近似黎曼求解器是另外一个更有挑战的工作。
+
+\section{数值方法}
+\subsection{E-CUSP近似李曼求解器}
+对于一维Euler方程 
+\begin{equation}
+  \frac{\partial U}{\partial t}+\frac{\partial F}{\partial x}=0
+\end{equation}
+其中 $U=(\rho, \rho u,\rho E)^T$，$F=\left( \rho u,\rho u^2+p,u(E+p) \right)^T$
+，E-CUSP格式的构造基于特征分析\cite{}<++> ，基本思想是将通量$F$分裂分对流通量$F^C$和压力通量$F^P$，
+\begin{equation}
+  F=F^C+F^P =\left(
+  \begin{array}{l}
+	\rho u\\
+	\rho u^2\\
+	uE\\
+	\end{array}
+	\right)
+\end{equation}
+通量$F^C$特征值为$(u,u,u)$，代表对流过程，通量$F^P$具有特征值$(0,-a,a)$，代表各个方向延声速传播的压力波。根据它们的不同特征，Zha et al.\cite{}<++>建议对于对流项采取迎风重构，对于压力项在亚声速区采用同时考虑上游和下游的重构方式。
+

@@ -4,14 +4,9 @@ The top-level auxiliary file: Ph.D thesis.aux
 The style file: acm.bst
 A level-1 auxiliary file: chapter/abstract.aux
 A level-1 auxiliary file: chapter/Chapter-Introduction.aux
-A level-1 auxiliary file: chapter/Chapter-part-1.aux
-A level-1 auxiliary file: chapter/Chapter-Multi-WENO.aux
-A level-1 auxiliary file: chapter/Chapter-detector.aux
-A level-1 auxiliary file: chapter/pub.aux
-A level-1 auxiliary file: chapter/resume.aux
-A level-1 auxiliary file: chapter/thanks.aux
-Reallocated field_info (elt_size=4) to 10290 items from 5000.
+A level-1 auxiliary file: chapter/Chapter-Scale.aux
 Database file #1: bib/mybibfile.bib
+Reallocated field_info (elt_size=4) to 10014 items from 5000.
 Repeated entry---line 1727 of file bib/mybibfile.bib
  : @book{lee2008detonation
  :                        ,
@@ -92,54 +87,52 @@ Repeated entry---line 5481 of file bib/mybibfile.bib
  : @article{shen2011generalized
  :                             ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "bzhongabinsky2011shock"
 Warning--I didn't find a database entry for "van1979towards1"
-Warning--I didn't find a database entry for "harten1986some"
-Warning--I didn't find a database entry for ""
 Warning--empty journal in freidberg1987ideal
 Warning--empty journal in glimm1970decay
 Warning--empty journal in harten1989eno
 Warning--empty journal in osher1985shock
 Warning--can't use both volume and number fields in smooke1988comparison
-You've used 287 entries,
+Warning--empty journal in van1973towards
+You've used 290 entries,
             2253 wiz_defined-function locations,
-            1974 strings with 48094 characters,
-and the built_in function-call counts, 92637 in all, are:
-= -- 9324
-> -- 3859
+            1981 strings with 48385 characters,
+and the built_in function-call counts, 93421 in all, are:
+= -- 9401
+> -- 3900
 < -- 0
-+ -- 1677
-- -- 1314
-* -- 7705
-:= -- 15050
-add.period$ -- 860
-call.type$ -- 287
-change.case$ -- 1488
++ -- 1695
+- -- 1328
+* -- 7773
+:= -- 15195
+add.period$ -- 869
+call.type$ -- 290
+change.case$ -- 1503
 chr.to.int$ -- 0
-cite$ -- 292
-duplicate$ -- 2971
-empty$ -- 7569
-format.name$ -- 1314
-if$ -- 18937
+cite$ -- 296
+duplicate$ -- 2986
+empty$ -- 7625
+format.name$ -- 1328
+if$ -- 19080
 int.to.chr$ -- 0
-int.to.str$ -- 287
-missing$ -- 296
-newline$ -- 1432
-num.names$ -- 574
-pop$ -- 1233
+int.to.str$ -- 290
+missing$ -- 300
+newline$ -- 1447
+num.names$ -- 580
+pop$ -- 1245
 preamble$ -- 1
-purify$ -- 1223
+purify$ -- 1236
 quote$ -- 0
-skip$ -- 1763
+skip$ -- 1765
 stack$ -- 0
-substring$ -- 7136
-swap$ -- 718
+substring$ -- 7195
+swap$ -- 715
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1102
-warning$ -- 5
-while$ -- 1044
-width$ -- 290
-write$ -- 2886
+type$ -- 1112
+warning$ -- 6
+while$ -- 1053
+width$ -- 293
+write$ -- 2914
 (There were 20 error messages)

@@ -18,6 +18,9 @@
 \usepackage{tikz}
 \usepackage{setspace}
 \usepackage{color}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{amssymb}
 % 可选参数：
 % notypeinfo 取消扉页的LaTeX版本信息
 %
@@ -97,20 +100,23 @@
 \mainmatter
   \include{chapter/Chapter-Introduction}
 \part{上部分}
-\include{chapter/Chapter-part-1}
+%\include{chapter/Chapter-part-1}
   \include{chapter/Chapter-Multi-WENO}
   \include{chapter/Chapter-detector}
-  \part{下部分}
-%  \include{chapter/Chapter-Dual-Information-Method}
-%  \include{chapter/Chapter-Ghost-Fluid-method-and-Interface}
-%  \include{chapter/Chapter-Perturbation-Method}
-%  \include{chapter/Chapter-Stiff-Reaction}
-%  \include{chapter/Chapter-elementary-Reaction}
-%  \include{chapter/Chapter-Conclusion}
+  \include{chapter/Chapter-MHD}
+  \part{下部分}{
+  \include{chapter/Chapter-Dual-Information-Method}
+  \include{chapter/Chapter-Ghost-Fluid-method-and-Interface}
+  \include{chapter/Chapter-Perturbation-Method}
+  \include{chapter/Chapter-Stiff-Reaction}
+  \include{chapter/Chapter-elementary-Reaction}
+}
+  \include{chapter/Chapter-Conclusion}
 
   % 附录
   \appendix
-
+\renewcommand{\appendixname}{Appendix~}
+  \include{chapter/Chapter-Scale}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 附件部分
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -122,14 +128,14 @@
   \nocite{*}
 
   % 发表文章目录
-  \include{chapter/pub}
+%  \include{chapter/pub}
 
   % 个人简历
-  \include{chapter/resume}
+  %\include{chapter/resume}
 
   % 致谢
 
-  \include{chapter/thanks}
+  %\include{chapter/thanks}
 
 
 

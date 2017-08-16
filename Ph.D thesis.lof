@@ -2,18 +2,28 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces 过渡点示意图。}}{20}{figure.1.1}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces 过渡点示意图\cite {shen2014improvement}。}}{20}{figure.1.1}
 \contentsline {figure}{\numberline {1.2}{\ignorespaces 典型爆轰波压力曲线\cite {shepherd2009detonation}}}{23}{figure.1.2}
 \contentsline {figure}{\numberline {1.3}{\ignorespaces 二维胞格结构示意图\cite {shepherd2009detonation}。}}{24}{figure.1.3}
-\contentsline {figure}{\numberline {1.4}{\ignorespaces 一个典型的爆轰波虚假传播计算结果\cite {wang2012high}}}{26}{figure.1.4}
-\contentsline {figure}{\numberline {1.5}{\ignorespaces $2H_2+O_2+7Ar$反应组分摩尔比变化和激波前沿距离关系\cite {powers2005accurate}}}{29}{figure.1.5}
-\contentsline {figure}{\numberline {1.6}{\ignorespaces $2H_2+O_2+7Ar$反应不同特征值最佳尺度和激波前沿距离关系\cite {powers2005accurate}}}{29}{figure.1.6}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces 一个典型的爆轰波虚假传播计算结果\cite {wang2012high}}}{27}{figure.1.4}
+\contentsline {figure}{\numberline {1.5}{\ignorespaces $2H_2+O_2+7Ar$反应组分摩尔比变化和激波前沿距离间关系\cite {powers2005accurate}}}{29}{figure.1.5}
+\contentsline {figure}{\numberline {1.6}{\ignorespaces $2H_2+O_2+7Ar$反应不同特征值空间尺度和激波前沿距离间关系\cite {powers2005accurate}}}{29}{figure.1.6}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces 初始条件Eq.(\ref {eq:linear1})下计算结果对比，$t=6$.}}{45}{figure.2.1}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces (a)初始条件Eq.(\ref {eq:linear3})下计算结果对比，$t=6$. (b) 图.\ref {fig:linear3}(a)的局部放大图.}}{47}{figure.2.2}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces (a)初始条件Eq.(\ref {eq:linear3})下计算结果对比，$t=6$. (b) 图.\ref {fig:linear4}(a)的局部放大图.}}{48}{figure.2.3}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces 有限紧致格式示意图}}{56}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces 有限紧致格式结合不同识别方法的组合波计算结果，$t=8.0$}}{62}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Lax激波管算例，有限紧致格式结合不同识别方法，密度曲线，$t=1.3$}}{63}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Shu-Osher激波管算例，有限紧致格式结合不同识别方法，密度曲线，$t=1.8$}}{64}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces 冲击波相互作用算例，有限紧致格式结合不同间断识别方法，密度曲线，$t=0.038$}}{65}{figure.3.5}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces 二维黎曼问题密度等值线，不同识别方法对比，$t=0.8$}}{66}{figure.3.6}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces 双马赫反射问题不同识别方法对比，密度等值线图，$t=0.2$}}{67}{figure.3.7}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
