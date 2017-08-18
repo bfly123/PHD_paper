@@ -3,9 +3,9 @@
 \chapter{有限紧致格式在理想磁流体中的应用}
 如前文章节\ref{chap:Intro_MHD} 中所述，理想磁流体（MHD）方程尽管是模拟磁流体的最简单自恰系统，但是由于电磁场和流场的耦合作用，仍然较Euler方程更为复杂，包括更多的波速、更复杂的特征值系统、非严格双曲特性和更丰富的流场结构等。
 
-由于理想磁流体方程和Euler方程相似性，很多的流体力学高精度数值方法被推广到MHD方程的求解中。
+由于理想磁流体方程和Euler方程的相似性，很多的流体力学高精度的数值方法都被推广到MHD方程求解中。如Yee等人提出的高精度低耗散滤波格式\cite{yee2007development}。Balbas\cite{balbas2004non}发展的求解一维和二维MHD方程的高分辨率、无振荡中心格式。Gaitonde\cite{gaitonde1999development}将紧致差分格式和滤波器结合，应用在三维理想磁流体方程求解中。 考虑到无论是中心格式还是紧致格式在求解激波时都需要做特殊的处理的难点，Shen等人\cite{shen2012cusp}将高精度WENO格式推广在MHD方程求解中。然而，如第 \ref{sep:detector} 章中所述，WENO格式尽管具有高精度和稳定捕捉激波的优点，但是相比中心格式和紧致格式而言，对于高频短波的分辨能力较差。
 
-另一方面，由于MHD特征系统更为复杂，所以发展适合MHD方程的近似黎曼求解器是另外一个更有挑战的工作。
+另一方面，由于MHD特征系统的复杂性，发展适合MHD方程的近似黎曼求解器是另外一个更有挑战的工作。早期工作中，很多常见的通量差分分裂方法都被发展到MHD求解中，如Roe求解器\cite{brio1988upwind,roe1996notes,dai1994approximate}、HLL求解器\cite{janhunen2000positive}、HLLC求解器\cite{gurski2004hllc,honkkila2007hllc,miyoshi2005multi}等。由于MHD方程对于特征变量并不是一次齐次的，因此不能直接采用流通矢量方法，MAcCormack通过引入额外变量$\~ \alpha$ \cite{maccormack2010non,maccormackupwind}将\cite{lombard1983multi}中的方法推广到MHD求解中。然而，由于流通矢量分裂方法基于特征值和特征向量运算，在MHD方程中，该类方法会异常复杂。近些年，对流迎风分离压力类方法在流体力学求解中取得巨大成功，如章节 \ref{riemann_solver} 中所介绍的，包括Liou等人提出的AUSM系列格式\cte{liou1993new,wadaaccurate,liou1995progress,liou1996sequel,liou2001ten}、Van Leer-H\ddot{a}nel 格式\cite{hanel1987accuracy}
 
 \section{数值方法}
 \subsection{E-CUSP近似李曼求解器}

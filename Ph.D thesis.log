@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.21)  14 AUG 2017 10:42
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.21)  19 AUG 2017 00:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4678,10 +4678,89 @@ File: figures/detector_doublemach_SZ.eps Graphic file (type eps)
 
 ]
 第四章
-) [69] [70
+
+LaTeX Warning: Citation `yee2007development' on page 69 undefined on input line
+ 6.
 
 
-] [71] [72]
+LaTeX Warning: Citation `balbas2004non' on page 69 undefined on input line 6.
+
+
+LaTeX Warning: Citation `gaitonde1999development' on page 69 undefined on input
+ line 6.
+
+
+LaTeX Warning: Citation `shen2012cusp' on page 69 undefined on input line 6.
+
+
+LaTeX Warning: Citation `brio1988upwind' on page 69 undefined on input line 8.
+
+
+LaTeX Warning: Citation `dai1994approximate' on page 69 undefined on input line
+ 8.
+
+
+LaTeX Warning: Citation `janhunen2000positive' on page 69 undefined on input li
+ne 8.
+
+
+LaTeX Warning: Citation `gurski2004hllc' on page 69 undefined on input line 8.
+
+
+LaTeX Warning: Citation `honkkila2007hllc' on page 69 undefined on input line 8
+.
+
+
+LaTeX Warning: Citation `miyoshi2005multi' on page 69 undefined on input line 8
+.
+
+
+LaTeX Warning: Command \~ invalid in math mode on input line 8.
+
+Missing character: There is no ̃ in font cmmi12!
+
+LaTeX Warning: Citation `maccormack2010non' on page 69 undefined on input line 
+8.
+
+
+LaTeX Warning: Citation `maccormackupwind' on page 69 undefined on input line 8
+.
+
+
+LaTeX Warning: Citation `lombard1983multi' on page 69 undefined on input line 8
+.
+
+! Undefined control sequence.
+l.8 ...�括Liou等人提出的AUSM系列格式\cte
+                                                  {liou1993new,wadaaccurate,...
+
+? 
+
+! Package amsmath Error: \ddot allowed only in math mode.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 ...996sequel,liou2001ten}、Van Leer-H\ddot{a}
+                                                  nel 格式\cite{hanel1987a...
+
+? 
+
+LaTeX Warning: Citation `hanel1987accuracy' on page 69 undefined on input line 
+8.
+
+
+Overfull \hbox (43.06924pt too wide) in paragraph at lines 8--9
+\EU1/lmr/m/n/12.045 AUSM \EU1/FandolSong-Regular(0)/m/n/12.045 系 列 格 式 \EU1/lmr
+/m/n/12.045 liou1993new,wadaaccurate,liou1995progress,liou1996sequel,liou2001te
+n\EU1/FandolSong-Regular(0)/m/n/12.045 、|
+ []
+
+[69]) [70] [71
+
+
+] [72]
 \openout2 = `chapter/Chapter-Dual-Information-Method.aux'.
 
 
@@ -7817,10 +7896,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 142.
  ) 
 Here is how much of TeX's memory you used:
- 38465 strings out of 495252
- 768809 string characters out of 6180858
- 731499 words of memory out of 5000000
- 41022 multiletter control sequences out of 15000+600000
+ 38483 strings out of 495252
+ 769121 string characters out of 6180858
+ 731889 words of memory out of 5000000
+ 41040 multiletter control sequences out of 15000+600000
  28986 words of font info for 157 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  70i,18n,79p,10502b,1117s stack positions out of 5000i,500n,10000p,200000b,80000s

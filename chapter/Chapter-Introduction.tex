@@ -537,16 +537,16 @@ ENO¸ñÊ½µ¥Ò»Ñ¡È¡Ä£°åµÄ²ßÂÔËäÈ»ÄÜ¹»´ïµ½ÎÞÕñµ´µÄÄ¿µÄ£¬È»ºóÓÉÓÚ¹â»¬ÇøÄ£°åµÄÀË·ÑÔì³É¾
 
 
 \subsubsection{½üËÆÀèÂüÇó½âÆ÷}\label{riemann_solver}
-½üËÆÀèÂüÇó½âÆ÷µÄ·¢Õ¹ÊÇºÍ¿Õ¼äÀëÉ¢·½·¨Í¬²½½øÐÐµÄ¡£ÀèÂüÇó½âÆ÷ÊÇÎªÁË½â¾ö·ÇÏßÐÔ·½³ÌÏßÐÔ»¯½üËÆµÄÎÊÌâ¡£
-ÔÚGodunovµÈµÄÔçÆÚ¹¤×÷ÖÐ£¬Ñ§ÕßÃÇ²ÉÓÃ»ùÓÚÀíÂÛ½âµÄ``¾«È·ÀèÂüÇó½âÆ÷''£¬µ«ÊÇÕâ¹ýÓÚºÄ·Ñ¼ÆËãÁ¿£¬²¢ÇÒºÍ½üËÆÀèÂüÇó½âÆ÷±ÈÒ²²¢Ã»ÓÐÓÅÊÆ¡£Òò´Ë£¬·¢Õ¹ÀèÂüÎÊÌâµÄÊýÖµ½â»ò³ÆÎª``½üËÆÀèÂüÇó½âÆ÷''³ÉÎªCFDËã·¨ÑÐ¾¿µÄÁíÒ»´óÖ÷Òª·½Ãæ¡£ÓÉÓÚÀèÂüÇó½âÆ÷Ö÷Òª¹¤×÷¾ÍÊÇ½«·ÇÏßÐÔ·½³Ì·ÖÁÑÎªÕýÏòºÍ¸ºÏòµÄ²¨±ãÓÚ²ÉÓÃÓ­·ç¸ñÊ½£¬ËùÒÔÒ²½«Æä³ÆÎª·ÖÁÑ·½·¨¡£·ÖÁÑ·½·¨²¢Ã»ÓÐºÍ¿Õ¼äÀëÉ¢·½·¨ÀàËÆµÄÇåÎúµÄÊ±¼äÂöÂç£¬ÖÖÀàÒ²±È½Ï·±¶à£¬¾ßÌå¿ÉÒÔ·ÖÎªÍ¨Á¿²î·Ö·ÖÁÑ£¨flux-difference splitting£©¡¢Á÷Í¨Ê¸Á¿·ÖÁÑ£¨flux-vector splitting£©¡¢ÌØÕ÷ÖØ¹¹·½·¨ºÍ¶ÔÁ÷Ó­·ç·ÖÀëÑ¹Á¦£¨Advection upstream splitting method/AUSM£©µÈ¡£
+½üËÆÀèÂüÇó½âÆ÷µÄ·¢Õ¹ÊÇºÍ¿Õ¼äÀëÉ¢·½·¨Í¬²½½øÐÐµÄ¡£ÀèÂüÇó½âÆ÷µÄ×÷ÓÃÊÇÎªÁË½â¾ö·ÇÏßÐÔ·½³ÌÏßÐÔ»¯½üËÆµÄÎÊÌâ¡£
+ÔÚGodunovµÈµÄÔçÆÚ¹¤×÷ÖÐ£¬Ñ§ÕßÃÇ²ÉÓÃ»ùÓÚÀíÂÛ½âµÄ``¾«È·ÀèÂüÇó½âÆ÷''£¬µ«ÊÇÕâ¹ýÓÚºÄ·Ñ¼ÆËãÁ¿£¬²¢ÇÒºÍ½üËÆÀèÂüÇó½âÆ÷±ÈÒ²²¢Ã»ÓÐÓÅÊÆ¡£Òò´Ë£¬·¢Õ¹ÀèÂüÎÊÌâµÄÊýÖµ½â»ò³ÆÎª``½üËÆÀèÂüÇó½âÆ÷''³ÉÎªCFDËã·¨ÑÐ¾¿µÄÁíÒ»´óÖ÷Òª·½Ãæ¡£ÓÉÓÚÀèÂüÇó½âÆ÷Ö÷Òª¹¤×÷¾ÍÊÇ½«·ÇÏßÐÔ·½³Ì·ÖÁÑÎªÕýÏò´«²¥ºÍ¸ºÏò´«²¥µÄ²¨£¬ÒÔ±ãÓÚ²ÉÓÃÓ­·ç¸ñÊ½£¬ËùÒÔÒ²½«Æä³ÆÎª·ÖÁÑ·½·¨¡£·ÖÁÑ·½·¨²¢Ã»ÓÐºÍ¿Õ¼äÀëÉ¢·½·¨ÀàËÆµÄÇåÎúµÄÊ±¼äÂöÂç£¬ÖÖÀàÒ²±È½Ï·±¶à£¬¾ßÌå¿ÉÒÔ·ÖÎªÍ¨Á¿²î·Ö·ÖÁÑ£¨flux-difference splitting£©¡¢Á÷Í¨Ê¸Á¿·ÖÁÑ£¨flux-vector splitting£©¡¢ÌØÕ÷ÖØ¹¹·½·¨ºÍ¶ÔÁ÷Ó­·ç·ÖÀëÑ¹Á¦£¨Advection upstream splitting method/AUSM£©µÈ¡£
 
 Í¨Á¿²î·Ö·ÖÁÑ·½·¨»ùÓÚ¶Ô¾«È·ÀèÂüÇó½âÆ÷µÄÄ£Äâ£¬¸ÃÀà·½·¨ÓÖ³ÆÎªGodunovÀà·½·¨£¬Èç×î¾­µäÒ²×îÎª³£ÓÃµÄ»ùÓÚµ±µØJacobian¾ØÕóÏß»¯µÄRoeÇó½âÆ÷\cite{roe1981approximate}¡¢»ùÓÚ¼òµ¥²¨·Ö½âµÄOsherÇó½âÆ÷\cite{osher1982upwind}¡¢»ùÓÚÁ½²¨¼ÙÉèµÄHLLÇó½âÆ÷\cite{harten1983upstream}ÒÔ¼°¿ÉÒÔÄ£Äâ½Ó´¥¼ä¶ÏµÄ»ùÓÚÈý²¨¼ÙÉèµÄHLLCÇó½âÆ÷\cite{toro1994restoration}¡¢ÐèÒªµü´úµÄË«¼¤²¨½üËÆÀèÂüÇó½âÆ÷\cite{liu2005ghost}ºÍÎªÁË±ÜÃâºìÓñÏÖÏó¶øÌá³öµÄÐý×ª»ìºÏÇó½âÆ÷µÈ¡£
 
-Á÷Í¨Ê¸Á¿·ÖÁÑ·½·¨»ùÓÚÎÞÅö×²Boltzmann·½³Ì£¬Òò´Ë¸ÃÀà·½·¨Ò²³ÆÎªBoltzmannÀà·½·¨\cite{harten1997upstream}£¬Á÷Í¨Ê¸Á¿·ÖÁÑ·½·¨½«ÏàÁÚµ¥Ôª¼äµÄ·Ö²¼º¯Êý½øÐÐÁËÄ¨Æ½£¬Òò´Ë½ÏÍ¨Á¿²î·Ö·ÖÁÑÓÐ½Ï´óµÄÎó²î£¬µ«ÊÇÓÉÓÚËüÃÇÍ¨³£ÐÎÊ½¼òµ¥¡¢Ò×ÓÚÊµÏÖ£¬ËùÒÔÈÔÈ»ÓÐ½Ï¶àµÄÓ¦ÓÃ¡£³£ÓÃµÄÁ÷Í¨Ê¸Á¿·ÖÁÑ·½·¨ÓÐLax-Friedrichs£¨LF£©·ÖÁÑ\cite{lax1954weak}£¬Steger-Warming£¨SW£©·ÖÁÑ\cite{steger1981flux}ºÍVan-Leer·ÖÁÑ\cite{van1982flux}µÈ¡£
+Á÷Í¨Ê¸Á¿·ÖÁÑ·½·¨»ùÓÚÎÞÅö×²Boltzmann·½³Ì£¬Òò´Ë¸ÃÀà·½·¨Ò²³ÆÎªBoltzmannÀà·½·¨\cite{harten1997upstream}£¬Á÷Í¨Ê¸Á¿·ÖÁÑ·½·¨½«ÏàÁÚµ¥Ôª¼äµÄ·Ö²¼º¯Êý½øÐÐÄ¨Æ½£¬Òò´Ë½ÏÍ¨Á¿²î·Ö·ÖÁÑÓÐ½Ï´óµÄÎó²î£¬µ«ÊÇÓÉÓÚËüÃÇÍ¨³£ÐÎÊ½¼òµ¥¡¢Ò×ÓÚÊµÏÖ£¬ËùÒÔÈÔÈ»ÓÐ½Ï¶àµÄÓ¦ÓÃ¡£³£ÓÃµÄÁ÷Í¨Ê¸Á¿·ÖÁÑ·½·¨ÓÐLax-Friedrichs£¨LF£©·ÖÁÑ\cite{lax1954weak}£¬Steger-Warming£¨SW£©·ÖÁÑ\cite{steger1981flux}ºÍVan-Leer·ÖÁÑ\cite{van1982flux}µÈ¡£
 
 ÌØÕ÷·ÖÁÑ·½·¨£¨ÌØÕ÷ÖØ¹¹·½·¨£©²»Í¬ÓÚÔÚÎïÀí¿Õ¼ä½øÐÐ·ÖÁÑµÄFDSºÍFVS·½·¨£¬ËüµÄËùÓÐ·ÖÁÑºÍÖØ¹¹¶¼ÔÚÌØÕ÷¿Õ¼ä½øÐÐ¡£ÔÚÌØÕ÷¿Õ¼äÇóµÃµ¼ÊýµÄ½üËÆºóÔÙ±ä»»»ØÎïÀí¿Õ¼ä¡£¸ÃÀà·½·¨¾ßÓÐ×îºÃµÄÇó½âÖÊÁ¿£¬ÑÏ¸ñ±£Ö¤ÁË¾Ö²¿ÌØÕ÷·½Ïò£¬È»¶øÓÉÓÚÆä¹ý´óµÄ¾ØÕóÔËËã£¬Ä¿Ç°½ö³£ÓÃÔÚÒ»Î¬ÎÊÌâµÄÇó½âÖÐ¡£ËùÓÐÁ÷Í¨Ê¸Á¿·ÖÁÑµÄ·ÖÁÑ·½·¨¶¼¿ÉÒÔÓ¦ÓÃÔÚÌØÕ÷·ÖÁÑÖÐ¡£
 
-¶ÔÁ÷Ó­·ç·ÖÀëÑ¹Á¦·½·¨ÊÇ´ÓVan Leer·ÖÁÑ·½·¨·¢Õ¹¶øÀ´µÄ£¬ËüÃÇ½«ÎÞÕ³Í¨Á¿·ÖÁÑÎªÓëÌØÕ÷ËÙ¶ÈÏà¹ØµÄ¶ÔÁ÷ÏîºÍÓëÌØÕ÷ÉùËÙÏà¹ØµÄÑ¹Á¦Ïî£¬¶ÔÆä½øÐÐ·Ö±ð´¦Àí¡£¸ÃÀà·½·¨¼æ¾ßÁËFVSºÍFDSµÄÒ»Ð©ÓÅÊÆ£¬¾ßÓÐFVSµÄ¼òµ¥ÐÔºÍÐ§ÂÊ£¬ÓÖ¾ßÓÐFVSµÄ¾«×¼ÐÔ£¬×ÔLiouÔÚ1993Äê\cite{liou1993new}Ìá³öÒÔÀ´¾ÍµÃµ½ÁË¹ã·ºµÄ¹Ø×¢ºÍ·¢Õ¹¡£Ä¿Ç°Ó¦ÓÃ½ÏÎª¹ã·ºµÄÓÐ²»´æÔÚ''Carbuncle''ÏÖÏóµÄAUSM+¸ñÊ½\cite{liou1996sequel,liou2006sequel}¡¢¼¤²¨¼ÆËãÎÈ¶¨µÄAUSMDV¸ñÊ½\cite{wadaaccurate}£¬ÒÔ¼°½áºÏÁËËûÃÇÓÅÊÆµÄAUSMPW\cite{kim1998improvement}ºÍAUSMPW+\cite{kim2001methods}¸ñÊ½¡£ÒÔÉÏÕâÐ©·½·¨ÓÉÓÚ½«×ÜìÊ´ÓÄÜÁ¿·½³Ì·Ö³ö£¬ËùÒÔ¿ÉÒÔÍ³³ÆÎªH-CUSP£¨Total enthalpy convective upwind and split pressure£©·½·¨£¬È»¶ø´ÓÌØÕ÷ÖµÏµÍ³¿´µÄ»°£¬H-CUSPÀà·½·¨²¢²»ÄÜÑØ×Å´«²¥·½Ïò±£³ÖÊØºã\cite{zha2005low,zha2005low}£¬¶ø×ÜÄÜÈ´ÄÜ±£³ÖÊØºã£¬Òò´ËZhaÌá³öÔÚ¶ÔÁ÷ÏîÊ¹ÓÃ×ÜÄÜµÄE-CUSP¸ñÊ½\cite{zha1993numerical,zha1999numerical,zha2008calculation}£¬¸Ã¸ñÊ½¾ßÓÐµÍºÄÉ¢ÇÒ¸üÎªÎÈ¶¨µÄÐ§¹û¡£
+¶ÔÁ÷Ó­·ç·ÖÀëÑ¹Á¦·½·¨ÊÇ´ÓVan Leer·ÖÁÑ·½·¨·¢Õ¹¶øÀ´µÄ£¬ËüÃÇ½«ÎÞÕ³Í¨Á¿·ÖÁÑÎªÓëÌØÕ÷ËÙ¶ÈÏà¹ØµÄ¶ÔÁ÷ÏîºÍÓëÌØÕ÷ÉùËÙÏà¹ØµÄÑ¹Á¦Ïî£¬¶ÔÆä½øÐÐ·Ö±ð´¦Àí¡£¸ÃÀà·½·¨¼æ¾ßÁËFVSºÍFDSµÄÒ»Ð©ÓÅÊÆ£¬¾ßÓÐFVSµÄ¼òµ¥ÐÔºÍÐ§ÂÊ£¬ÓÖ¾ßÓÐFVSµÄ¾«×¼ÐÔ£¬×ÔLiouÔÚ1993Äê\cite{liou1993new}Ìá³öÒÔÀ´¾ÍµÃµ½ÁË¹ã·ºµÄ¹Ø×¢ºÍ·¢Õ¹¡£Ä¿Ç°Ó¦ÓÃ½ÏÎª¹ã·ºµÄÓÐ¿ÉÒÔ±ÜÃâ''Carbuncle''ÏÖÏóµÄAUSM+¸ñÊ½\cite{liou1996sequel,liou2006sequel}¡¢¼¤²¨¼ÆËãÎÈ¶¨µÄAUSMDV¸ñÊ½\cite{wadaaccurate}£¬ÒÔ¼°½áºÏÁËËüÃÇÓÅµãµÄAUSMPW\cite{kim1998improvement}ºÍAUSMPW+\cite{kim2001methods}¸ñÊ½¡£ÒÔÉÏÕâÐ©·½·¨ÓÉÓÚ½«×ÜìÊ´ÓÄÜÁ¿·½³Ì·Ö³ö£¬ËùÒÔÒ²¿ÉÒÔÍ³³ÆÎªH-CUSP£¨Total enthalpy convective upwind and split pressure£©·½·¨£¬È»¶ø´ÓÌØÕ÷ÖµÏµÍ³¿´µÄ»°£¬×ÜìÊ²¢²»ÄÜÑØ×Å´«²¥·½Ïò±£³ÖÊØºã\cite{zha2005low,zha2005low}£¬¶ø×ÜÄÜÈ´±£³ÖÊØºã£¬¾Ý´ËZhaÌá³öÁËÔÚ¶ÔÁ÷ÏîÊ¹ÓÃ×ÜÄÜµÄE-CUSP¸ñÊ½\cite{zha1993numerical,zha1999numerical,zha2008calculation}£¬¸Ã¸ñÊ½Í¬Ñù¾ßÓÐµÍºÄÉ¢¶øÇÒ¸üÎªÎÈ¶¨¡£
 
 \subsubsection{Ê±¼äÀëÉ¢·½·¨}\label{chap:timemethod}
 ÔÚGodunovÀà·½·¨ÍÆ¹ã¿ªÖ®Ç°µÄ60-70Äê´ú£¬Ñ§ÕßÃÇÍùÍù½«Ê±¼äºÍ¿Õ¼äÍ³Ò»ÀëÉ¢£¬Èçµ±Ê±¾­µäµÄLax-Wendroff¸ñÊ½µÈ£¬Ê±¼äºÍ¿Õ¼ä¾«¶ÈÒ²ÐèÒªÍ³Ò»·ÖÎö¡£Ëæ×ÅGodunovÀà·½·¨ÆÕ¼°£¬ÓÉÓÚËüÃÇÊôÓÚ°ëÀëÉ¢·½·¨£¬Ê±¼äÀëÉ¢ºÍ¿Õ¼äÀëÉ¢ÐèÒª¶ÀÁ¢½øÐÐ£¬Òò´Ë¶ÔÁ÷·½³ÌµÄÊ±¼äÀëÉ¢·½·¨Ò²µÃµ½·¢Õ¹¡£

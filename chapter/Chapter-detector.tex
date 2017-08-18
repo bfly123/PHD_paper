@@ -1,5 +1,5 @@
 \XeTeXinputencoding "GB2312"
-\chapter{间断识别方法比较研究}
+\chapter{间断识别方法比较研究}\label{sep:detector}
 为了能更准确的模拟可压缩流中复杂的激波和其它流场结构相互作用，如激波/边界层、激波/涡等，需要数值方法既能高分辨率的捕捉激波又能高精度低耗散的求解光滑区的小尺度结构\cite{pirozzoli2011numerical}。在上一章中，我们提出了多步加权的思想，并构造了多步加权五阶WENO格式，进一步改善了WENO格式在间断附近的表现，从算例中我们也能看出WENO格式可以求解各种和强间断相关的问题所表现出的准确性和鲁棒性。
 
 尽管WENO格式在理论上可以构造到任意阶精度\cite{jiang1996efficient,balsara2000monotonicity,gerolymos2009very}，然而近些年研究发现，在求解短波时，尤其在可压缩湍流的计算中\cite{zhang2008development}WENO格式会存在过度的耗散以至掩盖了真实的物理黏性，造成计算的不准确。为了避免这一问题，学者们发展了一系列杂交格式（hybrid method），如WENO-紧致格式\cite{pirozzoli2002conservative,ren2003characteristic,zhou2007new,shen2011generalized}，WENO-中心格式和WENO-迎风格式等，在光滑区采用高精度低耗散格式，在间断区采用WENO类激波捕捉格式。对于杂交格式，最为关键的问题是准确的识别激波。
