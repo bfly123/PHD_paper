@@ -58,15 +58,16 @@
 \contentsline {subsection}{\numberline {3.3.3}二维算例}{63}{subsection.3.3.3}
 \contentsline {section}{\numberline {3.4}小结}{65}{section.3.4}
 \contentsline {chapter}{\numberline {第四章\hspace {0.3em}}有限紧致格式在理想磁流体中的应用}{69}{chapter.4}
-\contentsline {section}{\numberline {4.1}数值方法}{69}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}E-CUSP近似李曼求解器}{69}{subsection.4.1.1}
-\contentsline {part}{\hspace {1em}下部分}{71}{part.2}
-\contentsline {chapter}{\numberline {第五章\hspace {0.3em}}虚拟流体方法和两相流界面捕捉}{73}{chapter.5}
-\contentsline {chapter}{\numberline {第六章\hspace {0.3em}}数值摄动方法}{75}{chapter.6}
-\contentsline {chapter}{\numberline {第七章\hspace {0.3em}}DIP方法在刚性化学反应流动中的应用}{77}{chapter.7}
-\contentsline {chapter}{\numberline {第八章\hspace {0.3em}}双信息保存方法在基元反应模型爆轰中的应用}{79}{chapter.8}
-\contentsline {chapter}{\numberline {第九章\hspace {0.3em}}½��ۺ�չ��}{81}{chapter.9}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{83}{appendix.A}
-\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{83}{section.A.1}
-\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{85}{section.A.2}
-\contentsline {chapter}{参考文献}{87}{appendix*.6}
+\contentsline {section}{\numberline {4.1}数值方法}{70}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}E-CUSP近似李曼求解器\cite {shen2012cusp}}{70}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}控制输运（Constrained Transport/CT）方法\cite {balsara1999staggered}}{72}{subsection.4.1.2}
+\contentsline {part}{\hspace {1em}下部分}{75}{part.2}
+\contentsline {chapter}{\numberline {第五章\hspace {0.3em}}虚拟流体方法和两相流界面捕捉}{77}{chapter.5}
+\contentsline {chapter}{\numberline {第六章\hspace {0.3em}}数值摄动方法}{79}{chapter.6}
+\contentsline {chapter}{\numberline {第七章\hspace {0.3em}}DIP方法在刚性化学反应流动中的应用}{81}{chapter.7}
+\contentsline {chapter}{\numberline {第八章\hspace {0.3em}}双信息保存方法在基元反应模型爆轰中的应用}{83}{chapter.8}
+\contentsline {chapter}{\numberline {第九章\hspace {0.3em}}½��ۺ�չ��}{85}{chapter.9}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{87}{appendix.A}
+\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{87}{section.A.1}
+\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{89}{section.A.2}
+\contentsline {chapter}{参考文献}{91}{appendix*.6}

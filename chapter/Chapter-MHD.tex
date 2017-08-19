@@ -3,18 +3,25 @@
 \chapter{有限紧致格式在理想磁流体中的应用}
 如前文章节\ref{chap:Intro_MHD} 中所述，理想磁流体（MHD）方程尽管是模拟磁流体的最简单自恰系统，但是由于电磁场和流场的耦合作用，仍然较Euler方程更为复杂，包括更多的波速、更复杂的特征值系统、非严格双曲特性和更丰富的流场结构等。
 
-由于理想磁流体方程和Euler方程的相似性，很多的流体力学高精度的数值方法都被推广到MHD方程求解中。如Yee等人提出的高精度低耗散滤波格式\cite{yee2007development}。Balbas\cite{balbas2004non}发展的求解一维和二维MHD方程的高分辨率、无振荡中心格式。Gaitonde\cite{gaitonde1999development}将紧致差分格式和滤波器结合，应用在三维理想磁流体方程求解中。 考虑到无论是中心格式还是紧致格式在求解激波时都需要做特殊的处理的难点，Shen等人\cite{shen2012cusp}将高精度WENO格式推广在MHD方程求解中。然而，如第 \ref{sep:detector} 章中所述，WENO格式尽管具有高精度和稳定捕捉激波的优点，但是相比中心格式和紧致格式而言，对于高频短波的分辨能力较差。
+由于理想磁流体方程和Euler方程的相似性，很多的流体力学高精度的数值方法都被推广到MHD方程求解中。如Yee等人提出的高精度低耗散滤波格式\cite{yee2007development}。Balbas\cite{balbas2004non}发展的求解一维和二维MHD方程的高分辨率、无振荡中心格式。Gaitonde\cite{gaitonde1999development}将紧致差分格式和滤波器结合，应用在三维理想磁流体方程求解中。 考虑到无论是中心格式还是紧致格式在求解激波时都需要做特殊的处理的难点，Shen等人\cite{shen2012cusp}将高精度WENO格式推广在MHD方程求解中。然而，如第 \ref{sep:detector} 章中所述，WENO格式尽管具有高精度和稳定捕捉激波的优点，但是相比中心格式和紧致格式而言，对于高频短波的分辨能力较差。对于这一不足，杂交格式是一个较好的解决思路（前言\ref{cap:spatial_method}和第\ref{sep:detector}章中），由于结合了线性格式的高精度、低耗散特性和激波捕捉格式的稳定性，杂交格式理论上应该更适合MHD方程的求解。
 
-另一方面，由于MHD特征系统的复杂性，发展适合MHD方程的近似黎曼求解器是另外一个更有挑战的工作。早期工作中，很多常见的通量差分分裂方法都被发展到MHD求解中，如Roe求解器\cite{brio1988upwind,roe1996notes,dai1994approximate}、HLL求解器\cite{janhunen2000positive}、HLLC求解器\cite{gurski2004hllc,honkkila2007hllc,miyoshi2005multi}等。由于MHD方程对于特征变量并不是一次齐次的，因此不能直接采用流通矢量方法，MAcCormack通过引入额外变量$\~ \alpha$ \cite{maccormack2010non,maccormackupwind}将\cite{lombard1983multi}中的方法推广到MHD求解中。然而，由于流通矢量分裂方法基于特征值和特征向量运算，在MHD方程中，该类方法会异常复杂。近些年，对流迎风分离压力类方法在流体力学求解中取得巨大成功，如章节 \ref{riemann_solver} 中所介绍的，包括Liou等人提出的AUSM系列格式\cte{liou1993new,wadaaccurate,liou1995progress,liou1996sequel,liou2001ten}、Van Leer-H\ddot{a}nel 格式\cite{hanel1987accuracy}
+另一方面，由于MHD特征系统的复杂性，发展适合MHD方程的近似黎曼求解器是另外一项更具有挑战性的工作。关于MHD求解的早期工作中，很多常见的通量差分分裂方法都被发展到MHD求解中，如Roe求解器\cite{brio1988upwind,roe1996notes,dai1994approximate}、HLL求解器\cite{janhunen2000positive}和HLLC求解器\cite{gurski2004hllc,honkkila2007hllc,miyoshi2005multi}等。由于MHD方程对于特征变量并不是一次齐次的，因此不能直接采用流通矢量方法，MAcCormack通过引入额外变量$\tilde{a}$ \cite{maccormack2010non,maccormackupwind}将\cite{lombard1983multi}中的方法推广到MHD求解中。然而，由于流通矢量分裂方法基于特征值和特征向量运算，在MHD方程中，该类方法会异常复杂。
+
+近些年，对流迎风分离压力类方法在流体力学求解中取得巨大成功，如章节 \ref{riemann_solver} 中所介绍的，包括Liou等人提出的AUSM系列格式\cite{liou1993new,wadaaccurate,liou1995progress,liou1996sequel,liou2001ten}、Van Leer-\"{a}nel 格式\cite{hanel1987accuracy}和Edwards等人提出的LDFSS格式\cite{edwards1997low}等。这些格式都属于H-CUSP类格式。然而，总焓$H$并不能沿传播方向保持守恒，而总能$E$却是守恒的，据此，Zha等人提出在对流项使用总能的E-CUSP格式\cite{zha1993numerical,zha1999numerical,zhacomparative,zha2004calculation,zha2011improved}，在流体力学方程求解中取得了很好的结果。
+
+Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，Han等人随后\cite{han2009accurate}发展了一套求解MHD方程的AUSMPW+/M-AUSMPW+格式。2012年，Shen等人\cite{shen2012cusp}等人将更为稳定的E-CUSP格式发展到MHD求解中，认为该格式可以很好的求解MHD中的复杂的波动特性。
+
+本章，我们将采用了SZ识别方法的有限紧致格式\cite{shen2011generalized,shen2006high}和为磁流体方程求解发展的E-CUSP格式\cite{shen2012cusp}相结合，用来求解理想磁流体方程，通过数值算例验证该求解体系的鲁棒性和准确性。
+
 
 \section{数值方法}
-\subsection{E-CUSP近似李曼求解器}
+\subsection{E-CUSP近似李曼求解器\cite{shen2012cusp}}
 对于一维Euler方程 
 \begin{equation}
   \frac{\partial U}{\partial t}+\frac{\partial F}{\partial x}=0
 \end{equation}
 其中 $U=(\rho, \rho u,\rho E)^T$，$F=\left( \rho u,\rho u^2+p,u(E+p) \right)^T$
-，E-CUSP格式的构造基于特征分析\cite{}<++> ，基本思想是将通量$F$分裂分对流通量$F^C$和压力通量$F^P$，
+，E-CUSP格式的构造基于特征分析\cite{zha1993numerical,zha1999numerical,zhacomparative} ，基本思想是将通量$F$分裂分对流通量$F^C$和压力通量$F^P$，
 \begin{equation}
   F=F^C+F^P =\left(
   \begin{array}{l}
@@ -24,5 +31,145 @@
 	\end{array}
 	\right)
 \end{equation}
-通量$F^C$特征值为$(u,u,u)$，代表对流过程，通量$F^P$具有特征值$(0,-a,a)$，代表各个方向延声速传播的压力波。根据它们的不同特征，Zha et al.\cite{}<++>建议对于对流项采取迎风重构，对于压力项在亚声速区采用同时考虑上游和下游的重构方式。
+通量$F^C$特征值为$(u,u,u)$，代表对流过程，通量$F^P$具有特征值$(0,-a,a)$，代表各个方向延声速传播的压力波。根据它们的不同特征，Zha et al.\cite{zha1993numerical,zha1999numerical,zhacomparative}建议对于对流项采取迎风重构，对于压力项在亚声速区采用同时考虑上游和下游的重构方式。
+
+对于磁流体特征系统，特征值中含有三个不同的特征波速---快波$c_f$、慢波$c_s$和中速Alfv\'{e}n波，异常复杂，目前尚没有和流体力学方程$F^P$项对应的精确的通量公式。然而由于磁流体方程有和流体力学方程相似的波动特性，E-CUSP的基本思想也可以推广到求解MHD方程中来。
+
+对于一维MHD方程的空间半离散为
+\begin{equation}
+  \frac{dU}{dt}=\frac{1}{\Delta x}(E_{i+1/2}-E_{i-1/2})=0,
+\end{equation}
+通量$E$可以分解为
+\begin{equation}\label{eq:ecusp_E}
+  E={\bf{f}} u+P+\phi u
+\end{equation}
+其中
+\begin{equation*}
+  { \bf{f}} =\left\{
+	\begin{array}{l}
+	  \rho\\
+	  \rho u\\
+	  \rho v\\
+	  E\\
+	  B_x\\
+	  B_y\\
+	  \end{array}
+	\right\}
+	,
+	P=\left\{
+	  \begin{array}{l}
+		0\\
+		p_t-B_x^2\\
+		-B_yB_x\\
+		-B_x(uB_x+vB_y)\\
+		-uB_x\\
+		-vB_x
+		\end{array}
+	\right\}
+	,
+	\phi=\left\{
+	  \begin{array}{l}
+		0\\
+		0\\
+		0\\
+		p_t\\
+		0\\
+		0\\
+		\end{array}
+	  \right\}
+	  \end{equation*}
+和E-CUSP格式中将$pu$从焓项$\rho H u$中分裂出来类似，$p_tu$也被分裂出来。
+
+E-CUSP格式的数值通量为\cite{zha2011improved}：
+\begin{equation}
+  E_{1/2}=a_{1/2}[C^++{\bf{f}}_L+C^-{\bf{f}}_R]+[D_L^++D_R^- P_R]+\phi_{1/2}
+\end{equation}
+其中
+\begin{equation}
+  \begin{array}{l}
+
+  \displaystyle  M_{L,R}=\frac{u_{L,R}}{a_{1/2}},\\
+  \displaystyle C^+=\alpha_L^+(1+\beta _L)M_L-\frac{1}{4}\beta_L(M_L+1)^2\\
+  \displaystyle C^-=\alpha_R^-(1+\beta _L)M_L+\frac{1}{4}\beta_L(M_L-1)^2\\
+  \displaystyle \alpha_{L,R}^+=\frac{1}{2}[1\pm \text{sign}(M_{L,R})]\\
+  \displaystyle \beta_{L,R}=-\text{max}[0,1-\text{int}(|M_{L,R}|)]\\
+  \displaystyle D_{L,R}^{\pm}=\alpha _{L,R}^{\pm}(1+\beta_{L,R})-\frac{1}{2}\beta_{L,R}(1\pmM_{L,R})\\
+  \displaystyle \psi_{1/2}=a_{1/2}(C^++C^-)(D^+\psi_L+D^-\psi_R)
+\end{array}
+\end{equation}
+
+在文章\cite{han2009accurate}中，马赫数是通过快波波速来定义的$M=\frac{u}{c_f}$，意味着$M_{L,R}$可以定义为$M_{L,R}=\frac{u_{L,R}}{c_{f_{1/2}}}$。然而，公式 (\ref{eq:ecusp_E})中的压力项不再是由单个波速决定的了，如何计算相对波速$M_{L,R}$仍然是个待解决的问题。Shang\cite{shang2001recent}指出在高频和低频波，快波的传播速度和声波相同，但是中频波的快波速度明显要高于声波波速。在\cite{shen2012cusp}中，采用的是声波和快波波速平均的形式
+\begin{equation}
+M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
+\end{equation}
+其中，
+\begin{equation*}
+  a_{1/2}=\frac{1}{2}(C_{fL}+C_L+C_{fR}+C_R)
+\end{equation*}
+这样的平均可以保证结果更好的鲁棒性。
+
+
+\subsection{控制输运（Constrained Transport/CT）方法\cite{balsara1999staggered}}
+数值模拟MHD方程时，需要保证磁场散度为零的限制条件，$\Delta \cdot \overrightarrow{B}=0$。有几种方法可以满足这一条件，Powell等人通过在原方程中添加一个和$\Delta \cdot B$成正比的源项，得到一个新的特征系统。但是，这一系统会存在一些不确定性\cite{powell1999solution}。投影方法\cite{brackbill1980effect}通过求解泊松方程和限制边界条件来满足磁场散度为零的条件。Balsara和Spicer\cite{balsara1999staggered}提出的控制输运方法是另外一种可以将散度误差控制到机器误差精度的方法。Toth\cite{toth2000b}认为控制输运方法是他所有测试过的方法中最准确的。因此本文采用控制输运方法。
+
+首先，给出法拉第方程
+\begin{equation}\label{eq:BE}
+  \frac{\partial \overrightarrow{B}}{\partial t}+\Delta \times \overrightarrow{E}=0
+\end{equation}
+对于理想磁流体电场$\overrightarrow{E}$为
+\begin{equation}
+  \overrightarrow{E} =-v\times \overrightarrow{B}
+\end{equation}
+
+在控制输运方法中，
+，磁场强度$\overrightarrow{B}$沿区域边缘取平均值$\overline{B}$, 方程\ref{eq:BE} 的半离散形式:
+  \begin{equation}
+	\frac{d\overline{B}_{x_{i-1/2,j,k}}}{dt}=-\frac{E_{z_{i-1/2,j+1/2,k}}-E_{z_{i-1/2.j-1/2,k}}}{\delta y}+\frac{E_{z_{i-1/2,j,k+1/2}}-E_{z_{i-1/2,j,k-1/2}}}{\delta z},
+  \end{equation}
+
+  \begin{equation}
+	\frac{d\overline{B}_{x_{i,j,k-1/2}}}{dt}=-\frac{E_{z_{i+1/2,j,k-1/2}}-E_{z_{i-1/2.j-1/2,k}}}{\delta x}+\frac{E_{z_{i-1/2,j,k+1/2}}-E_{z_{i-1/2,j,k-1/2}}}{\delta y},
+  \end{equation}
+  \begin{equation}
+	\frac{d\overline{B}_{x_{i,j-1/2,k}}}{dt}=-\frac{E_{z_{i+1/2,j-1/2,k}}-E_{z_{i-1/2.j-1/2,k}}}{\delta x}+\frac{E_{z_{i,j-1/2,k+1/2}}-E_{z_{i,j-1/2,k-1/2}}}{\delta z},
+	\end{equation}
+	其中，
+	\begin{equation*}
+	  E_{x_{i,j+1/2,k+1/2}}=\frac{1}{4}(G_{7i,j,k+1/2}+G_{7i,j+1,k+1/2}-F_{8i,j+1/2,k}-F_{8i,j+1/2,k+1}),
+	  \end{equation*}
+	  \begin{equation*}
+	  E_{y_{i+1/2,j,k+1/2}}=\frac{1}{4}(E_{8i+1/2,j,k}+E_{8i+1/2,j,k+1}-G_{6i,j,k+1/2}-G_{6i+1,j,k+1/2}),
+	  \end{equation*}
+	  \begin{equation*}
+	  E_{z_{i+1/2,j+1/2,k}}=\frac{1}{4}(F_{6i,j+1/2,k}+F_{6i+1,j+1/2,k}-E_{7i+1/2,j,k}-E_{7i+1/2,j+1,k}),
+	  \end{equation*}
+	  其中$E_n$,$F_n$,$G_n$ ($n=6,7,8$) 是E-CUSP格式(\ref{Ecusp})中的第n通量。
+
+	  二维情况下，通量可简化为:
+	  \begin{equation*}
+		E_{x_{i,j+1/2}}=-F_{8i,j+1/2},
+	  \end{equation*}
+	  \begin{equation*}
+		E_{y_{i+1/2,j}}=E_{8i+1/2,j},
+	\end{equation*}
+	  \begin{equation*}
+		E_{z_{i+1/2,j+1/2}}=\frac{1}{4}(F_{6i,j+1/2}+F_{6i+1,j+1/2}-E_{7i+1/2,j}-E_{7i+1/2,j+1}),
+	\end{equation*}
+	由于$\overline{B}$是$B$在计算区域的平均值，因此需要对能量进行如下修正:
+\begin{equation}
+  \rho e=\rho e+\frac{1}{2}((\overline{B}^{n+1})^2-(B^{n+1})^2)
+\end{equation}
+  
+
+
+
+
+
+
+
+
+
+
+
+
 

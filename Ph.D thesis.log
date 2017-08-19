@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.21)  19 AUG 2017 00:33
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.21)  19 AUG 2017 18:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4678,89 +4678,61 @@ File: figures/detector_doublemach_SZ.eps Graphic file (type eps)
 
 ]
 第四章
+[69]
 
-LaTeX Warning: Citation `yee2007development' on page 69 undefined on input line
- 6.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@ifnextchar' on input line 18.
 
-
-LaTeX Warning: Citation `balbas2004non' on page 69 undefined on input line 6.
-
-
-LaTeX Warning: Citation `gaitonde1999development' on page 69 undefined on input
- line 6.
-
-
-LaTeX Warning: Citation `shen2012cusp' on page 69 undefined on input line 6.
-
-
-LaTeX Warning: Citation `brio1988upwind' on page 69 undefined on input line 8.
-
-
-LaTeX Warning: Citation `dai1994approximate' on page 69 undefined on input line
- 8.
-
-
-LaTeX Warning: Citation `janhunen2000positive' on page 69 undefined on input li
-ne 8.
-
-
-LaTeX Warning: Citation `gurski2004hllc' on page 69 undefined on input line 8.
-
-
-LaTeX Warning: Citation `honkkila2007hllc' on page 69 undefined on input line 8
-.
-
-
-LaTeX Warning: Citation `miyoshi2005multi' on page 69 undefined on input line 8
-.
-
-
-LaTeX Warning: Command \~ invalid in math mode on input line 8.
-
-Missing character: There is no ̃ in font cmmi12!
-
-LaTeX Warning: Citation `maccormack2010non' on page 69 undefined on input line 
-8.
-
-
-LaTeX Warning: Citation `maccormackupwind' on page 69 undefined on input line 8
-.
-
-
-LaTeX Warning: Citation `lombard1983multi' on page 69 undefined on input line 8
-.
-
+[70]
 ! Undefined control sequence.
-l.8 ...�括Liou等人提出的AUSM系列格式\cte
-                                                  {liou1993new,wadaaccurate,...
-
+l.96 ...+\beta_{L,R})-\frac{1}{2}\beta_{L,R}(1\pmM
+                                                  _{L,R})\\
 ? 
 
-! Package amsmath Error: \ddot allowed only in math mode.
-
-See the amsmath package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.8 ...996sequel,liou2001ten}、Van Leer-H\ddot{a}
-                                                  nel 格式\cite{hanel1987a...
-
-? 
-
-LaTeX Warning: Citation `hanel1987accuracy' on page 69 undefined on input line 
-8.
+LaTeX Warning: Reference `eq:ecusp_E' on page 71 undefined on input line 101.
 
 
-Overfull \hbox (43.06924pt too wide) in paragraph at lines 8--9
-\EU1/lmr/m/n/12.045 AUSM \EU1/FandolSong-Regular(0)/m/n/12.045 系 列 格 式 \EU1/lmr
-/m/n/12.045 liou1993new,wadaaccurate,liou1995progress,liou1996sequel,liou2001te
-n\EU1/FandolSong-Regular(0)/m/n/12.045 、|
- []
-
-[69]) [70] [71
+LaTeX Warning: Citation `shang2001recent' on page 71 undefined on input line 10
+1.
 
 
-] [72]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [71]
+
+LaTeX Warning: Citation `balsara1999staggered' on page 72 undefined on input li
+ne 112.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@ifnextchar' on input line 112.
+
+
+LaTeX Warning: Citation `powell1999solution' on page 72 undefined on input line
+ 113.
+
+
+LaTeX Warning: Citation `brackbill1980effect' on page 72 undefined on input lin
+e 113.
+
+
+LaTeX Warning: Citation `balsara1999staggered' on page 72 undefined on input li
+ne 113.
+
+
+LaTeX Warning: Citation `toth2000b' on page 72 undefined on input line 113.
+
+
+LaTeX Warning: Reference `eq:BE' on page 72 undefined on input line 125.
+
+[72]
+
+LaTeX Warning: Reference `Ecusp' on page 73 undefined on input line 146.
+
+) [73] [74
+
+
+] [75] [76]
 \openout2 = `chapter/Chapter-Dual-Information-Method.aux'.
 
 
@@ -4769,7 +4741,7 @@ No file chapter/Chapter-Dual-Information-Method.tex.
 
 (./chapter/Chapter-Ghost-Fluid-method-and-Interface.tex
 第五章
-) [73
+) [77
 
 
 
@@ -4777,31 +4749,31 @@ No file chapter/Chapter-Dual-Information-Method.tex.
 ]
 \openout2 = `chapter/Chapter-Perturbation-Method.aux'.
 
- (./chapter/Chapter-Perturbation-Method.tex [74
+ (./chapter/Chapter-Perturbation-Method.tex [78
 
 
 
 ]
 第六章
-) [75]
+) [79]
 \openout2 = `chapter/Chapter-Stiff-Reaction.aux'.
 
- (./chapter/Chapter-Stiff-Reaction.tex [76
+ (./chapter/Chapter-Stiff-Reaction.tex [80
 
 
 
 ]
 第七章
-) [77]
+) [81]
 \openout2 = `chapter/Chapter-elementary-Reaction.aux'.
 
- (./chapter/Chapter-elementary-Reaction.tex [78
+ (./chapter/Chapter-elementary-Reaction.tex [82
 
 
 
 ]
 第八章
-) [79]
+) [83]
 \openout2 = `chapter/Chapter-Conclusion.aux'.
 
  (./chapter/Chapter-Conclusion.tex
@@ -4810,7 +4782,7 @@ Invalid UTF-8 byte or sequence at line 1 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1 replaced by U+FFFD.
- [80
+ [84
 
 
 
@@ -7829,16 +7801,16 @@ ndolSong-Regular(0)/m/n/12.045 䲨 \EU1/lmr/m/n/12.045 �������󣬱
 (0)/m/n/12.045 䲨 \EU1/lmr/m/n/12.045 �˶¯µ�Ӱ����Ҫ¸�½�һ²½µ��о¿¡£ 
  []
 
-[81]
+[85]
 \openout2 = `chapter/Chapter-Scale.aux'.
 
- (./chapter/Chapter-Scale.tex [82
+ (./chapter/Chapter-Scale.tex [86
 
 
 
 ]
 Appendix\nobreakspace {} A
-[83]
+[87]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 100.
@@ -7846,26 +7818,26 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [84])
-[85] [86
+ [88])
+[89] [90
 
 
-] (./Ph.D thesis.bbl [87
+] (./Ph.D thesis.bbl [91
 
-] [88] [89] [90] [91] [92] [93] [94] [95]
-[96] [97] [98] [99] [100] [101] [102] [103] [104] [105] [106]
-Underfull \hbox (badness 1117) in paragraph at lines 1119--1123
+] [92] [93] [94] [95] [96] [97] [98] [99]
+[100] [101] [102] [103] [104] [105] [106] [107] [108] [109] [110] [111]
+Underfull \hbox (badness 1117) in paragraph at lines 1219--1223
 []\EU1/lmr/m/sc/12.045 Rupert, V.  \EU1/lmr/m/n/12.045 Shock-interface interact
 ion: current research on the
  []
 
-[107] [108] [109] [110] [111] [112] [113] [114]
+[112] [113] [114] [115] [116] [117] [118] [119] [120] [121]
 
 LaTeX Font Warning: Font shape `EU1/FandolSong-Regular(0)/m/sc' undefined
 (Font)              using `EU1/FandolSong-Regular(0)/m/n' instead on input line
- 1603.
+ 1732.
 
-[115]) [116]
+[122]) [123]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 142.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 142.
  (./Ph.D thesis.aux (./chapter/abstract.aux)
@@ -7896,12 +7868,12 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 142.
  ) 
 Here is how much of TeX's memory you used:
- 38483 strings out of 495252
- 769121 string characters out of 6180858
- 731889 words of memory out of 5000000
- 41040 multiletter control sequences out of 15000+600000
- 28986 words of font info for 157 fonts, out of 8000000 for 9000
+ 38506 strings out of 495252
+ 769555 string characters out of 6180858
+ 732882 words of memory out of 5000000
+ 41059 multiletter control sequences out of 15000+600000
+ 29002 words of font info for 159 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  70i,18n,79p,10502b,1117s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Ph.D thesis.pdf (132 pages).
+Output written on Ph.D thesis.pdf (139 pages).
