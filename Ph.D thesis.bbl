@@ -83,6 +83,12 @@
   with increasingly high order of accuracy.
 \newblock {\em Journal of Computational Physics 160}, 2 (2000), 405--452.
 
+\bibitem{balsara1999staggered}
+{\sc Balsara, D.~S., and Spicer, D.~S.}
+\newblock A staggered mesh algorithm using high order godunov fluxes to ensure
+  solenoidal magnetic fields in magnetohydrodynamic simulations.
+\newblock {\em Journal of Computational Physics 149}, 2 (1999), 270--292.
+
 \bibitem{bao2000random}
 {\sc Bao, W., and Jin, S.}
 \newblock The random projection method for hyperbolic conservation laws with
@@ -154,6 +160,12 @@
 \newblock Theoretical and numerical structure for unstable one-dimensional
   detonations.
 \newblock {\em SIAM Journal on Applied Mathematics 51}, 2 (1991), 303--343.
+
+\bibitem{brackbill1980effect}
+{\sc Brackbill, J.~U., and Barnes, D.~C.}
+\newblock The effect of nonzero∇{\textperiodcentered} b on the numerical
+  solution of the magnetohydrodynamic equations.
+\newblock {\em Journal of Computational Physics 35}, 3 (1980), 426--430.
 
 \bibitem{brackbill1988flip}
 {\sc Brackbill, J.~U., Kothe, D.~B., and Ruppel, H.~M.}
@@ -1163,6 +1175,12 @@
 \newblock {\em International Journal for Numerical Methods in Fluids 30}, 6
   (1999), 775--793.
 
+\bibitem{powell1999solution}
+{\sc Powell, K.~G., Roe, P.~L., Linde, T.~J., Gombosi, T.~I., and De~Zeeuw,
+  D.~L.}
+\newblock A solution-adaptive upwind scheme for ideal magnetohydrodynamics.
+\newblock {\em Journal of Computational Physics 154}, 2 (1999), 284--309.
+
 \bibitem{powers2005accurate}
 {\sc Powers, J.~M., and Paolucci, S.}
 \newblock Accurate spatial resolution estimates for reactive supersonic flow
@@ -1255,6 +1273,11 @@
 {\sc Shampine, L.~F.}
 \newblock {\em Numerical solution of ordinary differential equations}, vol.~4.
 \newblock CRC Press, 1994.
+
+\bibitem{shang2001recent}
+{\sc Shang, J.}
+\newblock Recent research in magneto-aerodynamics.
+\newblock {\em Progress in Aerospace Sciences 37}, 1 (2001), 1--20.
 
 \bibitem{shen2014multistep}
 {\sc Shen, Y., Liu, L., and Yang, Y.}
@@ -1450,6 +1473,12 @@
 {\sc Tosatto, L., and Vigevano, L.}
 \newblock Numerical solution of under-resolved detonations.
 \newblock {\em Journal of Computational Physics 227}, 4 (2008), 2317--2343.
+
+\bibitem{toth2000b}
+{\sc T{\'o}th, G.}
+\newblock The∇{\textperiodcentered} b= 0 constraint in shock-capturing
+  magnetohydrodynamics codes.
+\newblock {\em Journal of Computational Physics 161}, 2 (2000), 605--652.
 
 \bibitem{tryggvason2001front}
 {\sc Tryggvason, G., Bunner, B., Esmaeeli, A., Juric, D., Al-Rawahi, N.,

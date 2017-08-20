@@ -127,6 +127,7 @@
   \frac{\partial \bm{U}}{\partial t} +\frac{\partial \bm{F}}{\partial x}+\frac{\partial \bm{G}}{\partial y}+\frac{\partial \bm{H}}{\partial z}=0,
   \end{equation}
 其中
+{\footnotesize
 \begin{equation*}
 	\bm{U}=\!\left(\!
   \begin{array}{l}
@@ -184,6 +185,7 @@
 \! \right)
 ,
 \end{equation*}
+}
 和
 $
   p_t=p+(B_x^2+B_y^2+B_z^2)/2, 
@@ -220,14 +222,14 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
 
 \subsection{多介质Euler方程}
 界面问题是多介质、多相流中最基本问题，在多介质可压缩流中同样具有重要地位，界面出现在存在明确分界面的流体中，本文采用无相变、无扩散的多介质Euler方程描述这一问题，该方程系统也是描述界面问题的最简单系统。多介质Euler方程和单介质方程 (\ref{eq1_1}) 相似，只是增加一个标记不同介质的方程，和界面相关的方程多采用非守恒形式，
-\begin{equation}
+\begin{eqnarray}
 \left\{
   \begin{array}{l}
-	\displaystyle  \frac{\partial \bm{U}}{\partial t} +\frac{\partial \bm{F}}{\partial x}+\frac{\partial \bm{G}}{\partial y}=0\\[0.2em]
-\displaystyle  \frac{\partial z}{\partial t}+u\frac{\partial z}{\partial x}+v\frac{\partial z}{\partial y}=0
+	\displaystyle 	 \frac{\partial \bm{U}}{\partial t} +\frac{\partial \bm{F}}{\partial x}+\frac{\partial \bm{G}}{\partial y}=0\\[2em]
+\displaystyle \frac{\partial z}{\partial t}+u\frac{\partial z}{\partial x}+v\frac{\partial z}{\partial y}=0 
 \end{array}
    \right .
-\end{equation}
+ \end{eqnarray}
 其中
 \begin{eqnarray*}
   \bm{U}=\left(
@@ -259,7 +261,6 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
 	.
 \end{eqnarray*}
 
-
 不同介质具有不相同的状态方程形式和参数，以两介质问题为例，
 \begin{equation}
  \left\{ 
@@ -284,6 +285,7 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
   \frac{\partial \bm{U}}{\partial t} +\frac{\partial \bm{F}}{\partial x}+\frac{\partial \bm{G}}{\partial y}=\bm{S}
   \end{equation}
 其中
+{\footnotesize
 \begin{eqnarray*}
   \bm{U}=\left(
   \begin{array}{l}
@@ -339,7 +341,7 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
  \right)
 ,
 \end{eqnarray*}
-
+}
 
 其中$ns$为多组分流体中的组分数，$z_i$和$\omega_i$分别为$i$组分质量分数和生成率。由于总的质量分数为$1$，则第$ns$组分为
 \begin{eqnarray*}

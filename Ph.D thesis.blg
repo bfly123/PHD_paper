@@ -4,17 +4,9 @@ The top-level auxiliary file: Ph.D thesis.aux
 The style file: acm.bst
 A level-1 auxiliary file: chapter/abstract.aux
 A level-1 auxiliary file: chapter/Chapter-Introduction.aux
-A level-1 auxiliary file: chapter/Chapter-Multi-WENO.aux
-A level-1 auxiliary file: chapter/Chapter-detector.aux
 A level-1 auxiliary file: chapter/Chapter-MHD.aux
-A level-1 auxiliary file: chapter/Chapter-Dual-Information-Method.aux
-A level-1 auxiliary file: chapter/Chapter-Ghost-Fluid-method-and-Interface.aux
-A level-1 auxiliary file: chapter/Chapter-Perturbation-Method.aux
-A level-1 auxiliary file: chapter/Chapter-Stiff-Reaction.aux
-A level-1 auxiliary file: chapter/Chapter-elementary-Reaction.aux
-A level-1 auxiliary file: chapter/Chapter-Conclusion.aux
 A level-1 auxiliary file: chapter/Chapter-Scale.aux
-Reallocated field_info (elt_size=4) to 10865 items from 5000.
+Reallocated field_info (elt_size=4) to 10589 items from 5000.
 Database file #1: bib/mybibfile.bib
 Repeated entry---line 1727 of file bib/mybibfile.bib
  : @book{lee2008detonation
@@ -109,8 +101,6 @@ Repeated entry---line 5973 of file bib/mybibfile.bib
  :                        ,
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "van1979towards1"
-Warning--I didn't find a database entry for ""
-Warning--I didn't find a database entry for "schulz1993numerical"
 Warning--empty journal in freidberg1987ideal
 Warning--empty journal in glimm1970decay
 Warning--empty journal in harten1989eno
@@ -118,45 +108,45 @@ Warning--empty journal in osher1985shock
 Warning--can't use both volume and number fields in smooke1988comparison
 Warning--empty journal in van1973towards
 Warning--empty year in zhacomparative
-You've used 312 entries,
+You've used 317 entries,
             2253 wiz_defined-function locations,
-            2087 strings with 51922 characters,
-and the built_in function-call counts, 100501 in all, are:
-= -- 10112
-> -- 4159
+            2101 strings with 52401 characters,
+and the built_in function-call counts, 102127 in all, are:
+= -- 10279
+> -- 4224
 < -- 0
-+ -- 1812
-- -- 1414
-* -- 8336
-:= -- 16312
-add.period$ -- 934
-call.type$ -- 312
-change.case$ -- 1612
++ -- 1842
+- -- 1436
+* -- 8482
+:= -- 16575
+add.period$ -- 949
+call.type$ -- 317
+change.case$ -- 1638
 chr.to.int$ -- 0
-cite$ -- 319
-duplicate$ -- 3232
-empty$ -- 8237
-format.name$ -- 1414
-if$ -- 20557
+cite$ -- 324
+duplicate$ -- 3277
+empty$ -- 8369
+format.name$ -- 1436
+if$ -- 20884
 int.to.chr$ -- 0
-int.to.str$ -- 312
-missing$ -- 321
-newline$ -- 1556
-num.names$ -- 624
-pop$ -- 1343
+int.to.str$ -- 317
+missing$ -- 326
+newline$ -- 1581
+num.names$ -- 634
+pop$ -- 1359
 preamble$ -- 1
-purify$ -- 1323
+purify$ -- 1344
 quote$ -- 0
-skip$ -- 1922
+skip$ -- 1947
 stack$ -- 0
-substring$ -- 7770
-swap$ -- 782
+substring$ -- 7914
+swap$ -- 792
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1198
+type$ -- 1218
 warning$ -- 7
-while$ -- 1134
-width$ -- 315
-write$ -- 3131
+while$ -- 1154
+width$ -- 320
+write$ -- 3181
 (There were 23 error messages)

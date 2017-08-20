@@ -39,6 +39,7 @@
 % 小节标题靠左对齐
 %\CTEXsetup[format+={\flushleft}]{section}
 \CTEXsetup[name={, },number={}]{part}
+
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -85,7 +86,7 @@
 \frontmatter
 
   % 摘要
-  \include{chapter/abstract}
+%  \include{chapter/abstract}
 
   % 目录
   \tableofcontents
@@ -100,19 +101,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mainmatter
   \include{chapter/Chapter-Introduction}
-\part{上部分}
+%\part{上部分}
 %\include{chapter/Chapter-part-1}
-  \include{chapter/Chapter-Multi-WENO}
-  \include{chapter/Chapter-detector}
+  %\include{chapter/Chapter-Multi-WENO}
+  %\include{chapter/Chapter-detector}
   \include{chapter/Chapter-MHD}
-  \part{下部分}{
-  \include{chapter/Chapter-Dual-Information-Method}
-  \include{chapter/Chapter-Ghost-Fluid-method-and-Interface}
-  \include{chapter/Chapter-Perturbation-Method}
-  \include{chapter/Chapter-Stiff-Reaction}
-  \include{chapter/Chapter-elementary-Reaction}
-}
-  \include{chapter/Chapter-Conclusion}
+%  \part{下部分}{
+  %\include{chapter/Chapter-Dual-Information-Method}
+  %\include{chapter/Chapter-Ghost-Fluid-method-and-Interface}
+  %\include{chapter/Chapter-Perturbation-Method}
+  %\include{chapter/Chapter-Stiff-Reaction}
+  %\include{chapter/Chapter-elementary-Reaction}
+%}
+  %\include{chapter/Chapter-Conclusion}
 
   % 附录
   \appendix
