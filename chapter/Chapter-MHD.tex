@@ -18,12 +18,12 @@ Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，H
 \subsection{E-CUSP近似李曼求解器\cite{shen2012cusp}}
 对于一维Euler方程 
 \begin{equation}
-  \frac{\partial U}{\partial t}+\frac{\partial F}{\partial x}=0
+  \frac{\partial \bm{U}}{\partial t}+\frac{\partial \bm{F}}{\partial x}=0
 \end{equation}
-其中 $U=(\rho, \rho u,\rho E)^T$，$F=\left( \rho u,\rho u^2+p,u(E+p) \right)^T$
-，E-CUSP格式的构造基于特征分析\cite{zha1993numerical,zha1999numerical,zhacomparative} ，基本思想是将通量$F$分裂分对流通量$F^C$和压力通量$F^P$，
+其中 $\bm{U}=(\rho, \rho u,\rho E)^T$，$\bm{F}=\left( \rho u,\rho u^2+p,u(E+p) \right)^T$
+，E-CUSP格式的构造基于特征分析\cite{zha1993numerical,zha1999numerical,zhacomparative} ，基本思想是将通量$\bm{F}$分裂分对流通量$\bm{F}^C$和压力通量$\bm{F}^P$，
 \begin{equation}
-  F=F^C+F^P =\left(
+  \bm{F}=\bm{F}^C+\bm{F}^P =\left(
   \begin{array}{l}
 	\rho u\\
 	\rho u^2\\
@@ -31,21 +31,21 @@ Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，H
 	\end{array}
 	\right)
 \end{equation}
-通量$F^C$特征值为$(u,u,u)$，代表对流过程，通量$F^P$具有特征值$(0,-a,a)$，代表各个方向延声速传播的压力波。根据它们的不同特征，Zha et al.\cite{zha1993numerical,zha1999numerical,zhacomparative}建议对于对流项采取迎风重构，对于压力项在亚声速区采用同时考虑上游和下游的重构方式。
+通量$\bm{F}^C$特征值为$(u,u,u)$，代表对流过程，通量$\bm{F}^P$具有特征值$(0,-a,a)$，代表各个方向延声速传播的压力波。根据它们的不同特征，Zha et al.\cite{zha1993numerical,zha1999numerical,zhacomparative}建议对于对流项采取迎风重构，对于压力项在亚声速区采用同时考虑上游和下游的重构方式。
 
-对于磁流体特征系统，特征值中含有三个不同的特征波速---快波$c_f$、慢波$c_s$和中速Alfv\'{e}n波，异常复杂，目前尚没有和流体力学方程$F^P$项对应的精确的通量公式。然而由于磁流体方程有和流体力学方程相似的波动特性，E-CUSP的基本思想也可以推广到求解MHD方程中来。
+对于磁流体特征系统，特征值中含有三个不同的特征波速---快波$c_f$、慢波$c_s$和中速Alfv\'{e}n波，异常复杂，目前尚没有和流体力学方程$\bm{F}^P$项对应的精确的通量公式。然而由于磁流体方程有和流体力学方程相似的波动特性，E-CUSP的基本思想也可以推广到求解MHD方程中来。
 
 对于一维MHD方程的空间半离散为
 \begin{equation}
-  \frac{dU}{dt}=\frac{1}{\Delta x}(E_{i+1/2}-E_{i-1/2})=0,
+  \frac{d\bm{U}}{dt}=\frac{1}{\Delta x}(\bm{F}_{i+1/2}-\bm{F}_{i-1/2})=0,
 \end{equation}
 通量$E$可以分解为
 \begin{equation}\label{eq:ecusp_E}
-  E={\bf{f}} u+P+\phi u
+  \bm{F}={\bm{f}} u+\bm{P}+\bm{\psi} u
 \end{equation}
 其中
 \begin{equation*}
-  { \bf{f}} =\left\{
+  { \bm{f}} =\left\{
 	\begin{array}{l}
 	  \rho\\
 	  \rho u\\
@@ -56,7 +56,7 @@ Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，H
 	  \end{array}
 	\right\}
 	,
-	P=\left\{
+	\bm{P}=\left\{
 	  \begin{array}{l}
 		0\\
 		p_t-B_x^2\\
@@ -67,7 +67,7 @@ Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，H
 		\end{array}
 	\right\}
 	,
-	\phi=\left\{
+	\bm{\psi}=\left\{
 	  \begin{array}{l}
 		0\\
 		0\\
@@ -82,7 +82,7 @@ Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，H
 
 E-CUSP格式的数值通量为\cite{zha2011improved}：
 \begin{equation}
-  E_{1/2}=a_{1/2}[C^++{\bf{f}}_L+C^-{\bf{f}}_R]+[D_L^++D_R^- P_R]+\phi_{1/2}
+  \bm{F}_{1/2}=a_{1/2}[C^+{\bm{f}}_L+C^-\bm{f}_R]+[D_L^+ \bm{P}_L + D_R^-\bm{P}_R]+\bm{\psi}_{1/2}
 \end{equation}
 其中
 \begin{equation}
@@ -93,8 +93,8 @@ E-CUSP格式的数值通量为\cite{zha2011improved}：
   \displaystyle C^-=\alpha_R^-(1+\beta _L)M_L+\frac{1}{4}\beta_L(M_L-1)^2\\
   \displaystyle \alpha_{L,R}^+=\frac{1}{2}[1\pm \text{sign}(M_{L,R})]\\
   \displaystyle \beta_{L,R}=-\text{max}[0,1-\text{int}(|M_{L,R}|)]\\
-  \displaystyle D_{L,R}^{\pm}=\alpha _{L,R}^{\pm}(1+\beta_{L,R})-\frac{1}{2}\beta_{L,R}(1\pmM_{L,R})\\
-  \displaystyle \psi_{1/2}=a_{1/2}(C^++C^-)(D^+\psi_L+D^-\psi_R)
+  \displaystyle D_{L,R}^{\pm}=\alpha _{L,R}^{\pm}(1+\beta_{L,R})-\frac{1}{2}\beta_{L,R}(1\pm M_{L,R})\\
+  \displaystyle \bm{\psi}_{1/2}=a_{1/2}(C^++C^-)(D^+\bm{\psi}_L+D^- \bm{\psi}_R)
 \end{array}
 \end{equation}
 
@@ -110,40 +110,35 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 
 
 \subsection{控制输运（Constrained Transport/CT）方法\cite{balsara1999staggered}}
-数值模拟MHD方程时，需要保证磁场散度为零的限制条件，$\Delta \cdot \overrightarrow{B}=0$。有几种方法可以满足这一条件，Powell等人通过在原方程中添加一个和$\Delta \cdot B$成正比的源项，得到一个新的特征系统。但是，这一系统会存在一些不确定性\cite{powell1999solution}。投影方法\cite{brackbill1980effect}通过求解泊松方程和限制边界条件来满足磁场散度为零的条件。Balsara和Spicer\cite{balsara1999staggered}提出的控制输运方法是另外一种可以将散度误差控制到机器误差精度的方法。Toth\cite{toth2000b}认为控制输运方法是他所有测试过的方法中最准确的。因此本文采用控制输运方法。
+数值模拟MHD方程时，需要保证磁场散度为零的限制条件，$\Delta \cdot \bm{B}=0$。有几种方法可以满足这一条件，Powell等人通过在原方程中添加一个和$\Delta \cdot \bm{B}$成正比的源项，得到一个新的特征系统。但是，这一系统会存在一些不确定性\cite{powell1999solution}。投影方法\cite{brackbill1980effect}通过求解泊松方程和限制边界条件来满足磁场散度为零的条件。Balsara和Spicer\cite{balsara1999staggered}提出的控制输运方法是另外一种可以将散度误差控制到机器误差精度的方法。Toth\cite{toth2000b}认为控制输运方法是他所有测试过的方法中最准确的。因此本文采用控制输运方法。
 
 首先，给出法拉第方程
 \begin{equation}\label{eq:BE}
-  \frac{\partial \overrightarrow{B}}{\partial t}+\Delta \times \overrightarrow{E}=0
+  \frac{\partial \bm{B}}{\partial t}+\Delta \times \bm{E}=0
 \end{equation}
-对于理想磁流体电场$\overrightarrow{E}$为
+对于理想磁流体电场$\bm{E}$为
 \begin{equation}
-  \overrightarrow{E} =-v\times \overrightarrow{B}
+  \bm{E} =-v\times \bm{B}
 \end{equation}
 
 在控制输运方法中，
-，磁场强度$\overrightarrow{B}$沿区域边缘取平均值$\overline{B}$, 方程\ref{eq:BE} 的半离散形式:
+，磁场强度$\bm{B}$沿区域边缘取平均值$\bm{B}$, 方程\ref{eq:BE} 的半离散形式:
   \begin{equation}
-	\frac{d\overline{B}_{x_{i-1/2,j,k}}}{dt}=-\frac{E_{z_{i-1/2,j+1/2,k}}-E_{z_{i-1/2.j-1/2,k}}}{\delta y}+\frac{E_{z_{i-1/2,j,k+1/2}}-E_{z_{i-1/2,j,k-1/2}}}{\delta z},
-  \end{equation}
-
-  \begin{equation}
-	\frac{d\overline{B}_{x_{i,j,k-1/2}}}{dt}=-\frac{E_{z_{i+1/2,j,k-1/2}}-E_{z_{i-1/2.j-1/2,k}}}{\delta x}+\frac{E_{z_{i-1/2,j,k+1/2}}-E_{z_{i-1/2,j,k-1/2}}}{\delta y},
-  \end{equation}
-  \begin{equation}
-	\frac{d\overline{B}_{x_{i,j-1/2,k}}}{dt}=-\frac{E_{z_{i+1/2,j-1/2,k}}-E_{z_{i-1/2.j-1/2,k}}}{\delta x}+\frac{E_{z_{i,j-1/2,k+1/2}}-E_{z_{i,j-1/2,k-1/2}}}{\delta z},
+	\begin{array}{l}
+	  \frac{d\overline{\bm{B}}_{x_{\!i\!-\!1\!/\!2,j,k}}}{dt}\!=\!-\frac{\bm{E}_{z_{i\!-\!1\!/\!2,j\!+\!1\!/\!2,k}}\!-\!\bm{E}_{z_{i\!-\!1\!/\!2.j\!-\!1\!/\!2,k}}}{\delta y}\!+\!\frac{\bm{E}_{z_{i\!-\!1\!/\!2,j,k\!+\!1\!/\!2}}\!-\!\bm{E}_{z_{i\!-\!1\!/\!2,j,k\!-\!1\!/\!2}}}{\delta z},\\
+	    \frac{d\overline{\bm{B}}_{x_{i,j,k\!-\!1/2}}}{dt}\!=\!-\frac{\bm{E}_{z_{i\!+\!1/2,j,k\!-\!1\!/\!2}}\!-\!\bm{E}_{z_{i\!-\!1\!/\!2,j\!-\!1\!/\!2,k}}}{\delta x}\!+\!\frac{\bm{E}_{z_{i\!-\!1\!/\!2,j,k\!+\!1\!/\!2}}\!-\!\bm{E}_{z_{i\!-\!1\!/\!2,j,k\!-\!1\!/\!2}}}{\delta y},\\
+	  \frac{d\overline{\bm{B}}_{x_{i,j\!-\!1/2,k}}}{dt}\!=\!-\frac{\bm{E}_{z_{i\!+\!1\!/\!2,j\!-\!1\!/\!2,k}}\!-\!\bm{E}_{z_{i\!-\!1\!/\!2.j\!-\!1\!/\!2,k}}}{\delta x}\!+\!\frac{\bm{E}_{z_{i,j\!-\!1\!/\!2,k\!+\!1\!/\!2}}\!-\!\bm{E}_{z_{i,j\!-\!1\!/\!2,k\!-\!1\!/\!2}}}{\delta z},
+	\end{array}
 	\end{equation}
 	其中，
 	\begin{equation*}
-	  E_{x_{i,j+1/2,k+1/2}}=\frac{1}{4}(G_{7i,j,k+1/2}+G_{7i,j+1,k+1/2}-F_{8i,j+1/2,k}-F_{8i,j+1/2,k+1}),
+	  \begin{array}{l}
+		\bm{E}_{x_{i,j+1/2,k+1/2}}\!=\!\frac{1}{4}(\bm{H}_{7i,j,k+1/2}\!+\!\bm{H}_{7i,j+1,k+1/2}\!-\!\bm{G}_{8i,j+1/2,k}\!-\!\bm{G}_{8i,j+1/2,k+1}),\\
+		\bm{E}_{y_{i+1/2,j,k+1/2}}\!=\!\frac{1}{4}(\bm{F}_{8i+1/2,j,k}\!+\!\bm{F}_{8i+1/2,j,k+1}\!-\!\bm{H}_{6i,j,k+1/2}-\bm{H}_{6i+1,j,k+1/2}),\\
+		\bm{E}_{z_{i+1/2,j+1/2,k}}\!=\frac{1}{4}(\bm{G}_{6i,j+1/2,k}+\bm{G}_{6i+1,j+1/2,k}\!-\!\bm{F}_{7i+1/2,j,k}\!-\!\bm{F}_{7i+1/2,j+1,k}),
+		\end{array}
 	  \end{equation*}
-	  \begin{equation*}
-	  E_{y_{i+1/2,j,k+1/2}}=\frac{1}{4}(E_{8i+1/2,j,k}+E_{8i+1/2,j,k+1}-G_{6i,j,k+1/2}-G_{6i+1,j,k+1/2}),
-	  \end{equation*}
-	  \begin{equation*}
-	  E_{z_{i+1/2,j+1/2,k}}=\frac{1}{4}(F_{6i,j+1/2,k}+F_{6i+1,j+1/2,k}-E_{7i+1/2,j,k}-E_{7i+1/2,j+1,k}),
-	  \end{equation*}
-	  其中$E_n$,$F_n$,$G_n$ ($n=6,7,8$) 是E-CUSP格式(\ref{Ecusp})中的第n通量。
+	  其中$\bm{F}_n$,$\bm{G}_n$,$\bm{H}_n$ ($n=6,7,8$) 是三维空间的第n通量。
 
 	  二维情况下，通量可简化为:
 	  \begin{equation*}

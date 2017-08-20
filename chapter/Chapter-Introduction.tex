@@ -13,19 +13,19 @@
 
 \section{本文研究的范围及其方程系统}
 
-本文将从数值模拟角度对高速可压缩流中的各类间断问题进行较为系统的研究，其中包括先进的激波捕捉方法、高精度低耗散的杂交格式以及其在磁流体中的应用、界面追踪方法和刚性化学反应流及爆轰波相关研究等。
+本文将从数值方法角度对高速可压缩流中的各类间断问题进行较为系统的研究，其中包括先进的激波捕捉格式和激波识别方法、高精度低耗散的杂交格式及其在磁流体中的应用、界面追踪方法和刚性化学反应流及爆轰波相关研究等。
 
-本文研究涉及四种物质状态，包括可压缩单介质理想气体、理想磁流体、存在界面的多介质流体以及存在化学反应的可压缩多组分气体混合物。下面分别给出描述这四种物质状态所采用的具体的方程系统。
+本文研究涉及四种方程系统，包括可压缩单介质理想气体、理想磁流体、存在界面的多介质流体以及存在化学反应的可压缩多组分气体混合物。下面分别给出具体的方程系统。
 
 \subsection{单介质Euler方程}\label{chap:2d_Euler}
 研究各种常见单介质可压缩流动问题时，我们常采用无黏、无导热的Euler方程，它是Navier-Stocks(NS)方程的简化方程，既是NS方程分层次求解的一层，也能满足很多物理问题的求解要求，同时，Euler方程研究也是其它如磁流体、多相流及化学反应流等复杂方程系统研究的基础。下面给出二维守恒型Euler方程：
 
 \begin{equation}\label{eq1_1}
-  \frac{\partial U}{\partial t} +\frac{\partial F}{\partial x}+\frac{\partial G}{\partial y}=0
+  \frac{\partial \bm{U}}{\partial t} +\frac{\partial \bm{F}}{\partial x}+\frac{\partial \bm{G}}{\partial y}=0
   \end{equation}
 其中
 \begin{eqnarray*}
-  U=\left(
+  \bm{U}=\left(
   \begin{array}{l}
 	\rho\\
 	\rho u\\
@@ -34,7 +34,7 @@
 	\end{array}
 	\right)
   ,
- F=\left(
+  \bm{F}=\left(
   \begin{array}{l}
 	\rho u\\
 	\rho u^2+p\\
@@ -43,7 +43,7 @@
 	\end{array}
 	\right)
 	,
- G=\left(
+	\bm{G}=\left(
   \begin{array}{l}
 	\rho v\\
 	\rho uv\\
@@ -121,18 +121,19 @@
 基于这些考虑，针对我们要研究的方法和问题来说，本文主要采用无黏Euler方程系统。
 
 \subsection{理想磁流体方程}\label{chap:Intro_MHD}
-磁流体(MHD)在气体动力学中主要出现在如飞行器再入、燃烧室等存在等离子体的超高温情况中。理想磁流体方程是磁流体研究中最简单的模型方程，它和Euler方程有类似的波动结构，但是它同时具有非严格的双曲性质、更复杂的特征值系统和流场结构。本文并不深入研究磁流体，只将Euler的数值方法推广于理想MHD方程求解中，验证方法的适用性。下面给出二维理想磁流体控制方程：
+磁流体(MHD)在气体动力学中主要出现在如飞行器再入、燃烧室等存在等离子体的超高温情况中。理想磁流体方程是磁流体研究中最简单的模型方程，它和Euler方程有类似的波动结构，但是它同时具有非严格的双曲性质、更复杂的特征值系统和流场结构。本文并不深入研究磁流体，只将Euler的数值方法推广于理想MHD方程求解中，验证方法的适用性。下面给出三维理想磁流体控制方程：
+
 \begin{equation}\label{eq1_2}
-  \frac{\partial U}{\partial t} +\frac{\partial F}{\partial x}+\frac{\partial G}{\partial y}=0,
+  \frac{\partial \bm{U}}{\partial t} +\frac{\partial \bm{F}}{\partial x}+\frac{\partial \bm{G}}{\partial y}+\frac{\partial \bm{H}}{\partial z}=0,
   \end{equation}
 其中
 \begin{equation*}
-  \resizebox{0.92\hsize}{!}{
-  U=\!\left(\!
+	\bm{U}=\!\left(\!
   \begin{array}{l}
 	\rho\\
 	\rho u\\
 	\rho v\\
+	\rho w\\
 	E\\
 	B_x\\
 	B_y\\
@@ -140,40 +141,57 @@
 \end{array}\!
 \right)
 ,
-F\!=\!\left(\!
+\bm{F}\!=\!\left(\!
 \begin{array}{l}
   \rho u\\
   \rho u^2+p_t-B_x^2\\
   \rho u v-B_xB_y\\
+  \rho u w-B_xB_z\\
   (E+p_t)u-B_x(uB_x+vB_y)\\
   0\\
   uB_y-vB_x\\
-  uB_z\\
+  uB_z-wB_x\\
  \end{array}\!
  \right)
  ,
- G\!=\!\left(\!
+ \end{equation*}
+ ,
+ \begin{equation*}
+ \bm{G}\!=\!\left(\!
  \begin{array}{l}
    \rho v\\
    \rho u v-B_yB_x\\
    \rho v^2+p_t-B_y^2\\
+   \rho u w-B_yB_w\\
    (E+p_t)v-B_y(uB_x+vB_y)\\
    vB_x-uB_y\\
    0\\
-   vB_z\\
+   vB_z-wB_y\\
    \end{array}
   \!  \right)
-}
+  ,
+\bm{H}\!=\!\left(\!
+\begin{array}{l}
+  \rho w\\
+  \rho u w-B_z B_x\\
+  \rho v w-B_z B_y\\
+  \rho w^2+p_t-B_z^2\\
+  (E+p_t)w-B_z(uB_x+vB_y+wB_z)\\
+  wB_x-uB_z\\
+  wB_y-vB_z\\
+  0\\
+\end{array}
+\! \right)
 ,
 \end{equation*}
 和
 $
   p_t=p+(B_x^2+B_y^2+B_z^2)/2, 
  $
- 其中$B$为磁场强度，$E$为电场强度，对于磁场有限制条件
- \begin{eqnarray*}
-   \frac{\partial B_x}{\partial x}+\frac{\partial B_y}{\partial y}=0.
-\end{eqnarray*}
+ 其中$\bm{B}$为磁场强度，$\bm{E}$为电场强度，对于磁场有限制条件
+ \begin{equation}
+   \nabla  \cdot \bm{B}=0
+   \end{equation}
 状态方程为
 \begin{eqnarray*}
   p=(\gamma-1)[E-\frac{1}{2}\rho(u^2+v^2)-\frac{1}{2}(B_x^2+B_y^2+B_z^2)].
@@ -203,25 +221,25 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
 \subsection{多介质Euler方程}
 界面问题是多介质、多相流中最基本问题，在多介质可压缩流中同样具有重要地位，界面出现在存在明确分界面的流体中，本文采用无相变、无扩散的多介质Euler方程描述这一问题，该方程系统也是描述界面问题的最简单系统。多介质Euler方程和单介质方程 (\ref{eq1_1}) 相似，只是增加一个标记不同介质的方程，和界面相关的方程多采用非守恒形式，
 \begin{equation}
-	\left\{
+\left\{
   \begin{array}{l}
-  \displaystyle \frac{\partial U}{\partial t} +\frac{\partial F}{\partial x}+\frac{\partial G}{\partial y}=0\\[0.5em]
-  \displaystyle \frac{\partial z}{\partial t}+u\frac{\partial z}{\partial x}+v\frac{\partial z}{\partial y}=0\\
-  \end{array}
-  \right.
+	\displaystyle  \frac{\partial \bm{U}}{\partial t} +\frac{\partial \bm{F}}{\partial x}+\frac{\partial \bm{G}}{\partial y}=0\\[0.2em]
+\displaystyle  \frac{\partial z}{\partial t}+u\frac{\partial z}{\partial x}+v\frac{\partial z}{\partial y}=0
+\end{array}
+   \right .
 \end{equation}
 其中
 \begin{eqnarray*}
-  U=\left(
+  \bm{U}=\left(
   \begin{array}{l}
 	\rho\\
 	\rho u\\
 	\rho v \\
-	E\\
+	\bm{E}\\
 	\end{array}
 	\right)
   ,
- F=\left(
+  \bm{F}=\left(
   \begin{array}{l}
 	\rho u\\
 	\rho u^2+p\\
@@ -230,7 +248,7 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
 	\end{array}
 	\right)
 	,
- G=\left(
+	\bm{G}=\left(
   \begin{array}{l}
 	\rho v\\
 	\rho uv\\
@@ -263,11 +281,11 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
 
 在化学反应流动中，激波会带来新的物理问题，如爆燃和爆轰。爆燃波和爆轰波是化学反应流中具有代表性的间断结构，它们的相关理论、实验以及数值研究在如炸药、发动机等极多高温、高超气体动力学领域中有重要意义。本文采用如下的无粘、无传热的Euler反应方程系统
 \begin{equation}\label{eq1_4}
-  \frac{\partial U}{\partial t} +\frac{\partial F}{\partial x}+\frac{\partial G}{\partial y}=S
+  \frac{\partial \bm{U}}{\partial t} +\frac{\partial \bm{F}}{\partial x}+\frac{\partial \bm{G}}{\partial y}=\bm{S}
   \end{equation}
 其中
 \begin{eqnarray*}
-  U=\left(
+  \bm{U}=\left(
   \begin{array}{l}
 	\rho\\
 	\rho u\\
@@ -280,7 +298,7 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
 	\end{array}
 	\right)
   ,
- F=\left(
+  \bm{F}=\left(
   \begin{array}{l}
 	\rho u\\
 	\rho u^2+p\\
@@ -293,7 +311,7 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
 	\end{array}
 	\right)
 	,
- G=\left(
+	\bm{G}=\left(
   \begin{array}{l}
 	\rho v\\
 	\rho uv\\
@@ -306,7 +324,7 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
 	\end{array}
 	\right)
 	,
-S=
+	\bm{S}=
  \left(
   \begin{array}{c}
 	0\\
