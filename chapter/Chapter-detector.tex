@@ -8,7 +8,7 @@
 
 在本章中，我们系统的研究、比较不同间断识别器，包含文\cite{li2010hybrid,zhu2009adaptive,shen2011generalized}中的识别方法。
 
-\section{有限紧致格式（the finite compact scheme）}
+\section{有限紧致格式（the finite compact scheme）}\label{sep:compact}
 本文将各种识别方法应用在有限紧致格式\cite{shen2011generalized}来验证它们的表现。有限紧致格式（the finite compact scheme）是一种结合了WENO格式和紧致格式的杂交格式，有限紧致格式将间断看成流场的内边界，进而将流场分成有限个光滑区域。有限紧致格式具体的构造思想为：
 \begin{enumerate}[(1)]
 \item 首先通过间断识别方法识别出间断区域，该区域包括边界都采用WENO格式构造通量。
