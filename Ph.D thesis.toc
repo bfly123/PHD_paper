@@ -18,17 +18,19 @@
 \contentsline {section}{\numberline {1.4}间断问题数值研究现状和不足}{19}{section.1.4}
 \contentsline {subsection}{\numberline {1.4.1}激波捕捉格式和激波分辨率}{19}{subsection.1.4.1}
 \contentsline {subsection}{\numberline {1.4.2}物质界面和界面追踪方法}{20}{subsection.1.4.2}
+\contentsline {subsubsection}{\numberline {1.4.2.1}传统界面}{20}{subsubsection.1.4.2.1}
+\contentsline {subsubsection}{\numberline {1.4.2.2}耗散界面}{21}{subsubsection.1.4.2.2}
 \contentsline {subsection}{\numberline {1.4.3}气相爆轰波}{22}{subsection.1.4.3}
-\contentsline {subsubsection}{\numberline {1.4.3.1}爆轰波理论}{22}{subsubsection.1.4.3.1}
-\contentsline {subsubsection}{\numberline {1.4.3.2}源项数值刚性问题的时间方法}{24}{subsubsection.1.4.3.2}
+\contentsline {subsubsection}{\numberline {1.4.3.1}爆轰波理论}{23}{subsubsection.1.4.3.1}
+\contentsline {subsubsection}{\numberline {1.4.3.2}源项数值刚性问题的时间方法}{25}{subsubsection.1.4.3.2}
 \contentsline {subsubsection}{\numberline {1.4.3.3}刚性化学反应流动的空间刚性问题}{26}{subsubsection.1.4.3.3}
-\contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{28}{subsubsection.1.4.3.4}
-\contentsline {section}{\numberline {1.5}本文所开展研究内容}{30}{section.1.5}
-\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}有限紧致格式在理想磁流体中的应用}{33}{chapter.2}
-\contentsline {section}{\numberline {2.1}数值方法}{34}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}E-CUSP近似李曼求解器\cite {shen2012cusp}}{34}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}控制输运（Constrained Transport/CT）方法\cite {balsara1999staggered}}{36}{subsection.2.1.2}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{39}{appendix.A}
-\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{39}{section.A.1}
-\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{41}{section.A.2}
-\contentsline {chapter}{参考文献}{43}{appendix*.4}
+\contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{29}{subsubsection.1.4.3.4}
+\contentsline {section}{\numberline {1.5}本文所开展研究内容}{31}{section.1.5}
+\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}双信息保存方法（Dual information preserving method）方法}{33}{chapter.2}
+\contentsline {section}{\numberline {2.1}不同的界面类型和界面方法}{33}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}传统界面}{33}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.2}多相界面和耗散界面}{34}{section.2.2}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{37}{appendix.A}
+\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{37}{section.A.1}
+\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{39}{section.A.2}
+\contentsline {chapter}{参考文献}{41}{appendix*.4}

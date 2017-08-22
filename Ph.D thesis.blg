@@ -2,11 +2,10 @@ This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Ph.D thesis.aux
 The style file: acm.bst
-A level-1 auxiliary file: chapter/abstract.aux
 A level-1 auxiliary file: chapter/Chapter-Introduction.aux
-A level-1 auxiliary file: chapter/Chapter-MHD.aux
+A level-1 auxiliary file: chapter/Chapter-Dual-Information-Method.aux
 A level-1 auxiliary file: chapter/Chapter-Scale.aux
-Reallocated field_info (elt_size=4) to 10589 items from 5000.
+Reallocated field_info (elt_size=4) to 10290 items from 5000.
 Database file #1: bib/mybibfile.bib
 Repeated entry---line 1727 of file bib/mybibfile.bib
  : @book{lee2008detonation
@@ -47,6 +46,10 @@ I'm skipping whatever remains of this entry
 Repeated entry---line 3671 of file bib/mybibfile.bib
  : @article{lax1954weak
  :                     ,
+I'm skipping whatever remains of this entry
+I was expecting an "="---line 4283 of file bib/mybibfile.bib
+ :   year={1992},还有其它方法，如连续界面力模型（cotinuum 
+ :                                                                        surface force model）\cite{
 I'm skipping whatever remains of this entry
 Repeated entry---line 4289 of file bib/mybibfile.bib
  : @article{de2004front
@@ -101,6 +104,7 @@ Repeated entry---line 5973 of file bib/mybibfile.bib
  :                        ,
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "van1979towards1"
+Warning--I didn't find a database entry for "anderson1998diffuse"
 Warning--empty journal in freidberg1987ideal
 Warning--empty journal in glimm1970decay
 Warning--empty journal in harten1989eno
@@ -108,45 +112,45 @@ Warning--empty journal in osher1985shock
 Warning--can't use both volume and number fields in smooke1988comparison
 Warning--empty journal in van1973towards
 Warning--empty year in zhacomparative
-You've used 317 entries,
+You've used 328 entries,
             2253 wiz_defined-function locations,
-            2101 strings with 52401 characters,
-and the built_in function-call counts, 102127 in all, are:
-= -- 10279
-> -- 4224
+            2154 strings with 53976 characters,
+and the built_in function-call counts, 105791 in all, are:
+= -- 10655
+> -- 4371
 < -- 0
-+ -- 1842
-- -- 1436
-* -- 8482
-:= -- 16575
-add.period$ -- 949
-call.type$ -- 317
-change.case$ -- 1638
++ -- 1907
+- -- 1486
+* -- 8812
+:= -- 17166
+add.period$ -- 982
+call.type$ -- 328
+change.case$ -- 1696
 chr.to.int$ -- 0
-cite$ -- 324
-duplicate$ -- 3277
-empty$ -- 8369
-format.name$ -- 1436
-if$ -- 20884
+cite$ -- 335
+duplicate$ -- 3376
+empty$ -- 8668
+format.name$ -- 1486
+if$ -- 21625
 int.to.chr$ -- 0
-int.to.str$ -- 317
-missing$ -- 326
-newline$ -- 1581
-num.names$ -- 634
-pop$ -- 1359
+int.to.str$ -- 328
+missing$ -- 337
+newline$ -- 1636
+num.names$ -- 656
+pop$ -- 1395
 preamble$ -- 1
-purify$ -- 1344
+purify$ -- 1391
 quote$ -- 0
-skip$ -- 1947
+skip$ -- 2002
 stack$ -- 0
-substring$ -- 7914
-swap$ -- 792
+substring$ -- 8250
+swap$ -- 814
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1218
+type$ -- 1262
 warning$ -- 7
-while$ -- 1154
-width$ -- 320
-write$ -- 3181
-(There were 23 error messages)
+while$ -- 1197
+width$ -- 331
+write$ -- 3291
+(There were 24 error messages)

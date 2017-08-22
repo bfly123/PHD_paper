@@ -19,6 +19,12 @@
   fluid flows.
 \newblock Tech. rep., Los Alamos Scientific Lab., N. Mex., 1970.
 
+\bibitem{anderson1997diffuse}
+{\sc Anderson, D., and McFadden, G.~B.}
+\newblock A diffuse-interface description of internal waves in a near-critical
+  fluid.
+\newblock {\em Physics of Fluids 9}, 7 (1997), 1870--1879.
+
 \bibitem{anderson2015experimental}
 {\sc Anderson, M., Vorobieff, P., Truman, C., Corbin, C., Kuehner, G., Wayne,
   P., Conroy, J., White, R., and Kumar, S.}
@@ -36,6 +42,11 @@
   Pevnitskii, A., and Tolshmyakov, A.}
 \newblock Turbulent mixing at contact surface accelerated by shock waves.
 \newblock {\em Sov. Phys. JETP 44}, 2 (1976), 424--427.
+
+\bibitem{antanovskii1995phase}
+{\sc Antanovskii, L.~K.}
+\newblock A phase field model of capillarity.
+\newblock {\em Physics of fluids 7}, 4 (1995), 747--753.
 
 \bibitem{artzi1989generalized}
 {\sc Artzi, M.~B.}
@@ -160,6 +171,11 @@
 \newblock Theoretical and numerical structure for unstable one-dimensional
   detonations.
 \newblock {\em SIAM Journal on Applied Mathematics 51}, 2 (1991), 303--343.
+
+\bibitem{brackbill1992continuum}
+{\sc Brackbill, J., Kothe, D.~B., and Zemach, C.}
+\newblock A continuum method for modeling surface tension.
+\newblock {\em Journal of computational physics 100}, 2 (1992), 335--354.
 
 \bibitem{brackbill1980effect}
 {\sc Brackbill, J.~U., and Barnes, D.~C.}
@@ -296,6 +312,11 @@
 \newblock {\em SIAM Journal on Scientific and Statistical Computing 7}, 4
   (1986), 1059--1080.
 
+\bibitem{collins1985diffuse}
+{\sc Collins, J.~B., and Levine, H.}
+\newblock Diffuse interface model of diffusion-limited crystal growth.
+\newblock {\em Physical Review B 31}, 9 (1985), 6119.
+
 \bibitem{costa2007multi}
 {\sc Costa, B., and Don, W.~S.}
 \newblock Multi-domain hybrid spectral-weno methods for hyperbolic conservation
@@ -392,6 +413,11 @@
 \newblock Detonation waves in condensed media.
 \newblock Tech. rep., DTIC Document, 1972.
 
+\bibitem{du2005retrieving}
+{\sc Du, Q., Liu, C., and Wang, X.}
+\newblock Retrieving topological information for phase field models.
+\newblock {\em SIAM Journal on Applied Mathematics 65}, 6 (2005), 1913--1932.
+
 \bibitem{eberhardt1992diagonal}
 {\sc Eberhardt, S., and Imlay, S.}
 \newblock Diagonal implicit scheme for computing flows with finite rate
@@ -409,6 +435,12 @@
 \newblock Supersonic flow onto a solid wedge.
 \newblock {\em Communications on Pure and Applied Mathematics 61}, 10 (2008),
   1347--1448.
+
+\bibitem{elliott1986cahn}
+{\sc Elliott, C.~M., and Songmu, Z.}
+\newblock On the cahn-hilliard equation.
+\newblock {\em Archive for Rational Mechanics and Analysis 96}, 4 (1986),
+  339--357.
 
 \bibitem{engquist1991robust}
 {\sc Engquist, B., and Sj{\"o}green, B.}
@@ -706,11 +738,28 @@
 \newblock Convergence of viscosity solutions for isothermal gas dynamics.
 \newblock {\em SIAM journal on mathematical analysis 34}, 3 (2002), 595--610.
 
+\bibitem{huang1969diffuse}
+{\sc Huang, J., and Webb, W.}
+\newblock Diffuse interface in a critical fluid mixture.
+\newblock {\em The Journal of Chemical Physics 50}, 9 (1969), 3677--3693.
+
 \bibitem{hwang2000numerical}
 {\sc Hwang, P., Fedkiw, R., Merriman, B., Aslam, T., Karagozian, A., and Osher,
   S.}
 \newblock Numerical resolution of pulsating detonation waves.
 \newblock {\em DCJ 2\/} (2000), 1.
+
+\bibitem{jacqmin1999calculation}
+{\sc Jacqmin, D.}
+\newblock Calculation of two-phase navier--stokes flows using phase-field
+  modeling.
+\newblock {\em Journal of Computational Physics 155}, 1 (1999), 96--127.
+
+\bibitem{jamet2001second}
+{\sc Jamet, D., Lebaigue, O., Coutris, N., and Delhaye, J.}
+\newblock The second gradient method for the direct numerical simulation of
+  liquid--vapor flows with phase change.
+\newblock {\em Journal of Computational Physics 169}, 2 (2001), 624--651.
 
 \bibitem{janhunen2000positive}
 {\sc Janhunen, P.}
@@ -1565,6 +1614,12 @@
   advection equations with stiff source terms.
 \newblock {\em Journal of Computational Physics 231}, 1 (2012), 190--214.
 
+\bibitem{wang2008modelling}
+{\sc Wang, X., and Du, Q.}
+\newblock Modelling and simulations of multi-component lipid membranes and open
+  membranes via diffuse interface approaches.
+\newblock {\em Journal of mathematical biology 56}, 3 (2008), 347--371.
+
 \bibitem{wang2001optimized}
 {\sc Wang, Z.~J., and Chen, R.}
 \newblock Optimized weighted essentially nonoscillatory schemes for linear
@@ -1656,6 +1711,12 @@
   hyperbolic conservation laws.
 \newblock {\em Archive for rational mechanics and analysis 146}, 4 (1999),
   275--370.
+
+\bibitem{yue2010sharp}
+{\sc Yue, P., Zhou, C., and Feng, J.~J.}
+\newblock Sharp-interface limit of the cahn--hilliard model for moving contact
+  lines.
+\newblock {\em Journal of Fluid Mechanics 645\/} (2010), 279--294.
 
 \bibitem{zalesak1979fully}
 {\sc Zalesak, S.~T.}
