@@ -594,7 +594,7 @@ Runge-Kutta¸ñÊ½²¢²»µ¥Ö¸Ò»ÖÖ¸ñÊ½£¬¶øÊÇÒ»ÏµÁÐµÄ×Ü³Æ£¬ÈçÈý½×Runge-Kutta¾Í¿ÉÒÔÓÐÎÞÊý
 
 ±¾ÎÄ»ùÓÚ\cite{shen2014improvement}µÄÑÐ¾¿£¬¸ø³öÁËÒ»ÖÖÐÂµÄWENO¸ñÊ½¹¹Ôì·½·¨£¬¸Ã·½·¨½áºÏÁËHenrickµÄÍ¶Ó°º¯Êý£¬²¢Í¨¹ýÖð½×¹¹ÔìµÄ·½·¨À´Ìá¸ßWENO-ZÔÚ¹ý¶Éµã¾«¶È¡¢½µµÍºÄÉ¢£¬½ø¶ø¸ÄÉÆ·½·¨¶ÔÓÚ¼¤²¨µÄ·Ö±æÂÊ£¬µÚËÄÕÂ¶Ô´ËÓÐÏêÏ¸µÄÑÐ¾¿£¬²¢Í¨¹ýËãÀýÑéÖ¤ÁË¸Ã·½·¨ÔÚÇó½âºÍ¼¤²¨Ïà¹ØµÄÎÊÌâÊ±£¬µÄÈ·ÓÐ¸üºÃµÄÐ§¹û¡£
 
-\subsection{ÎïÖÊ½çÃæºÍ½çÃæ×·×Ù·½·¨}
+\subsection{ÎïÖÊ½çÃæºÍ½çÃæ×·×Ù·½·¨}\label{cap:interface}
 ÔÚÎïÀíÉÏ£¬½çÃæÒ»°ã¶¨ÒåÎª²»Í¬ÎïÖÊ»òÎïÖÊ²»Í¬ÎïÀí×´Ì¬¼ä·Ö½çÃæ¡£¸ù¾ÝÊÇ·ñ¿¼ÂÇ½çÃæºñ¶È£¬¿ÉÒÔ½«½çÃæ·ÖÎª´«Í³½çÃæºÍºÄÉ¢½çÃæÁ½Àà¡£
 \subsubsection{´«Í³½çÃæ}
 ËäÈ»ÀíÂÛÉÏ½çÃæ´æÔÚÒ»¶¨ºñ¶È£¬µ«ÔÚ¶àÏàÁ÷ÌåÁ¦Ñ§ÖÐ£¬ÓÉÓÚ½çÃæÕæÊµºñ¶ÈÖ»ÓÐ·Ö×ÓµÄÁ¿¼¶£¬ÔÚ¾ø´ó¶àÊýÄ£ÄâÖÐ£¬ÎÒÃÇ½«½çÃæµ±³ÉÃ»ÓÐºñ¶ÈµÄ¼¸ºÎ·Ö½çÃæ£¬Í¬Ê±ºöÂÔ¿ç¹ý½çÃæµÄÀ©É¢×÷ÓÃ¡£
@@ -609,13 +609,15 @@ VOF·½·¨\cite{hirt1981volume,youngs1982time,lafaurie1994modelling}Ò²ÊôÓÚÅ·À­µÄ¿ò¼
 ÕûÌåÀ´½²£¬½çÃæ×·×Ù·½·¨¸üÖ±¹Û£¬ÔÚ´¦Àí½çÃæµÄÈÚºÏºÍÆÆÁÑÊ±ÓÐÆäÓÅÊÆ£»½çÃæ²¶×½·½·¨¸üÒ×ÓÚÊµÏÖ£¬ÔÚ´¦Àí½çÃæ°éËæÁ÷³¡Ñ¹Ëõ»òÅòÕÍÊ±ÓÐÓÅÊÆ\cite{li2008hybrid}¡£
 ½«ËüÃÇ±Ë´Ë½áºÏÀ´±ÜÃâËüÃÇ¸÷×ÔµÄÈ±ÏÝÊÇÄ¿Ç°Ò»¸ö±È½ÏÁ÷ÐÐµÄË¼Â·£¬ÆäÖÐÓ¦ÓÃ×î¶àµÄÊÇºÍÁ£×ÓÀà·½·¨Ïà½áºÏ£¬±ÈÈçÀûÓÃÁ£×Ó·½·¨µÄÊØºãÐÔºÍLevel Set·½·¨µÄ¹â»¬ÐÔµÄÁ£×Ó-Ë®Æ½¼¯£¨Particle Level Set£©·½·¨\cite{enright2002hybrid,enright2005fast}¡£È»¶øÕâÖÖ½áºÏ¼´Ôö¼ÓÁË·½·¨ÊµÏÖµÄÄÑ¶È£¬ÔÚ¸´ÔÓÎÊÌâÊ±Ò²²¢²»ÄÇÃ´×àÐ§¡£
 \subsubsection{ºÄÉ¢½çÃæ}
-Í¨³£µÄ½çÃæ·½·¨¶¼ÊÇ²»¿¼ÂÇ½çÃæºñ¶ÈµÄ£¬È»¶ø£¬¶ÔÓÚÄ³Ð©ÎïÀíÎÊÌâ½çÃæºñ¶ÈÊÇÖÁ¹ØÖØÒª£¬ÕâÒ»ÀàÎÞ·¨ºöÂÔºñ¶ÈµÄ½çÃæ±»³ÆÎªºÄÉ¢½çÃæ£¨diffuse interface£©\cite{anderson1998diffuse}¡£ºÄÉ¢½çÃæ¿ÉÄÜµÄÐÎ³ÉÔ­Òò°üÀ©£¬½çÃæ¼äµÄÎïÖÊ¼äµÄÀ©É¢¡¢Ïà±ä£¨ÓÈÆä¶ÔÓÚÈýÏàµãÁ÷Ìå»ìºÏÎï£©\cite{huang1969diffuse,jamet2001second}¡¢¾§ÌåÉú³¤\cite{collins1985diffuse}¼°»¯Ñ§·´Ó¦µÈ¡£
+Í¨³£µÄ½çÃæ·½·¨¶¼²»¿¼ÂÇ½çÃæºñ¶È£¬È»¶ø£¬ÔÚÑÐ¾¿Ä³Ð©ÎïÀíÎÊÌâ£¬ÈçÑÐ¾¿ÎïÖÊ¼äµÄÀ©É¢¡¢Ïà±ä£¨ÓÈÆä¶ÔÓÚÈýÏàµãÁ÷Ìå»ìºÏÎï£©\cite{huang1969diffuse,jamet2001second}¡¢¾§ÌåÉú³¤\cite{collins1985diffuse}¼°»¯Ñ§·´Ó¦µÈÊ±£¬½çÃæºñ¶È¶¼ÊÇÖÁ¹ØÖØÒª¡£ÕâÒ»ÀàÎÞ·¨ºöÂÔºñ¶ÈµÄ½çÃæ±»³ÆÎªºÄÉ¢½çÃæ£¨diffuse interface£©\cite{anderson1998diffuse}¡£
 
-±¾ÎÄ³¢ÊÔÌá³öÒ»ÖÖ»ùÓÚÅ·À­Íø¸ñ£¬¾ßÓÐ½çÃæ×·×ÙË¼ÏëµÄÁ£×Ó·½·¨---Ë«ÐÅÏ¢±£´æ·½·¨£¨Dual information preseving method/DIP£©¡£¸Ã·½·¨Ö±½ÓÓÃÀ´Çó½â¶ÔÁ÷·½³Ì
+¶ÔÓÚºÄÉ¢½çÃæ£¬Ñ§ÕßÖ÷Òª²ÉÓÃCahn-Hilliard·½³Ì\cite{elliott1986cahn,yue2010sharp}½øÐÐÄ£Äâ¡£Ä£Äâ¹ý¶É½çÃæµÄ·½·¨Ö÷ÒªÓÐÈçÏÂ¼¸ÖÖ\cite{jacqmin1999calculation}£¬·æÃæ×·×Ù·½·¨\cite{unverdi1992front}ÔÚ½çÃæÁ½²à²ÉÓÃ¹â»¬µÄ·Ö²¼£¬ËùÒÔ¿ÉÒÔ×·×ÙºÄÉ¢½çÃæ£¬È»¶øÕâÖÖ½çÃæºñ¶ÈÖ÷ÒªÊÇÓÉÊýÖµºÄÉ¢Ôì³É£¬²¢·Ç¿É¿ØµÄ¡£DuµÈÈË\cite{du2005retrieving,wang2008modelling}²ÉÓÃÈýÌõlevel setÏßµÄ·½·¨À´×·×ÙºÄÉ¢½çÃæ£¬ÕâÖÖ·½Ê½²¢²»ÄÜµÃµ½½çÃæÄÚÕæÊµµÄ·Ö²¼£¬Ö»ÄÜÓ¦ÓÃÔÚ½çÃæºñ¶È±ä»¯²»´óµÄÇé¿öÖÐ¡£»¹ÓÐÆäËü·½·¨£¬ÈçÁ¬Ðø½çÃæÁ¦Ä£ÐÍ£¨cotinuum surface force model£©\cite{brackbill1992continuum}¡¢Ïà³¡Ä£ÐÍ£¨phase-field£©\cite{anderson1997diffuse,antanovskii1995phase}µÈ¡£
+
+±¾ÎÄÌá³öÒ»ÖÖ»ùÓÚÅ·À­Íø¸ñ£¬¾ßÓÐ½çÃæ×·×ÙË¼ÏëµÄÁ£×Ó·½·¨---Ë«ÐÅÏ¢±£´æ·½·¨£¨Dual information preseving method/DIP£©¡£¸Ã·½·¨¼È¿ÉÒÔÓÃÀ´×·×Ù´«Í³½çÃæÒ²¿ÉÒÔ×·×ÙºÄÉ¢½çÃæ£¬Ä£Äâ½çÃæºñ¶È±ä»¯¡£DIP·½·¨Ö±½ÓÓÃÀ´Çó½â¶ÔÁ÷·½³Ì
   \begin{equation}
 	\frac{\partial z}{\partial t}+u\frac{\partial z}{\partial x}+v\frac{\partial z}{\partial y}=0
 \end{equation}
-¸Ã·½·¨ÖÐ£¬ÒýÈëÁ½ÀàÀ­¸ñÀÊÈÕÐÅÏ¢µã£¬·Ö±ð³ÆÎªµ¥Ôªµã£¨Cell-Point£©ºÍÁ£×Óµã£¨Particle-Point£©ÐÅÏ¢µã£¬µ¥ÔªµãÏÞ¶¨ÔÚµ¥ÔªÄÚÔË¶¯£¬Á£×ÓµãÈ«¼ÆËãÓò×·×Ù¡£ÔÚ¼ÆËã¿ªÊ¼£¬Ã¿¸öµ¥Ôª·Ö±ðÔÚµ¥ÔªÖÐÐÄÒýÈëÒ»¸öµ¥ÔªµãºÍÒ»¸öÁ£×Óµã£¬¼ÆËãÖÐ¸ù¾ÝËÙ¶È³¡½øÐÐ¸üÐÂÎ»ÖÃ¡£
+ÔÚ¸Ã·½·¨ÖÐ£¬ÒýÈëÁ½ÀàÀ­¸ñÀÊÈÕÐÅÏ¢µã£¬·Ö±ð³ÆÎªµ¥Ôªµã£¨Cell-Point£©ºÍÁ£×Óµã£¨Particle-Point£©ÐÅÏ¢µã£¬µ¥ÔªµãÏÞ¶¨ÔÚµ¥ÔªÄÚÔË¶¯£¬Á£×ÓµãÈ«¼ÆËãÓò×·×Ù¡£ÔÚ¼ÆËã¿ªÊ¼£¬Ã¿¸öµ¥Ôª·Ö±ðÔÚµ¥ÔªÖÐÐÄÒýÈëÒ»¸öµ¥ÔªµãºÍÒ»¸öÁ£×Óµã£¬¼ÆËãÖÐ¸ù¾ÝËÙ¶È³¡½øÐÐÎ»ÖÃ¸üÐÂ¡£
 
 ÐÅÏ¢µã²¢²»Í¬ÓÚMAC·½·¨ÖÐµÄ±ê¼ÇÁ£×Ó£¬Ò²²»Í¬ÓÚPIC·½·¨ÖÐÐ¯´øÈ«²¿Á÷ÌåÐÅÏ¢µÄÕæÊµÁ£×Ó¡£Ö÷ÒªÓÐÁ½µãÇø±ð£º
 \begin{enumerate}[1.]
