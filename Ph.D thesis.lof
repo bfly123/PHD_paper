@@ -1,13 +1,8 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces 过渡点示意图\cite {shen2014improvement}。}}{20}{figure.1.1}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces 典型爆轰波压力曲线\cite {shepherd2009detonation}}}{23}{figure.1.2}
-\contentsline {figure}{\numberline {1.3}{\ignorespaces 二维胞格结构示意图\cite {shepherd2009detonation}。}}{24}{figure.1.3}
-\contentsline {figure}{\numberline {1.4}{\ignorespaces 一个典型的爆轰波虚假传播计算结果\cite {wang2012high}}}{27}{figure.1.4}
-\contentsline {figure}{\numberline {1.5}{\ignorespaces $2H_2+O_2+7Ar$反应组分摩尔比变化和激波前沿距离间关系\cite {powers2005accurate}}}{29}{figure.1.5}
-\contentsline {figure}{\numberline {1.6}{\ignorespaces $2H_2+O_2+7Ar$反应不同特征值空间尺度和激波前沿距离间关系\cite {powers2005accurate}}}{30}{figure.1.6}
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces 一维界面示意图}}{34}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces 一维界面示意图}}{35}{figure.2.2}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces 界面的1D示意图}}{2}{figure.1.1}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces 不同界面方法1D示意图}}{3}{figure.1.2}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces 不同类型界面方法适应的计算工况2D示意图}}{4}{figure.1.3}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces 多相界面和耗散界面1D示意图}}{4}{figure.1.4}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

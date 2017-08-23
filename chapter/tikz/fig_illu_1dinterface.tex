@@ -1,0 +1,30 @@
+\XeTeXinputencoding "GB2312"
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+	\node (A1) [circle,draw,inner sep=0.5mm]  at (0.5,0){}; 
+	\node (A2) [circle,draw,inner sep=0.5mm]  at (1,0){}; 
+	\node (A3) [circle,draw,inner sep=0.5mm]  at (1.5,0){}; 
+	\node (A4) [circle,draw,inner sep=0.5mm]  at (2,0){}; 
+	\node (A5) [circle,draw,inner sep=0.5mm]  at (2.5,0){}; 
+	\node (A6) [circle,draw,inner sep=0.5mm]  at (3,0){}; 
+	\node (A7) [circle,draw,inner sep=0.5mm]  at (3.5,0){}; 
+	\node (A8) [circle,draw,inner sep=0.5mm]  at (4.,0){}; 
+	\node (A9) [circle,draw,inner sep=0.5mm]  at (4.5,0){}; 
+	\node (A10) [circle,draw,inner sep=0.5mm]  at (5.,0){}; 
+		\coordinate(B1) at (0.5,0.5);
+		\coordinate(B2) at (2.5,0.5);
+		\draw  [line width=1pt, color=black!80] (B1) -- (B2);
+		\draw   [line width=1pt, color=black!80] (B2)-- (2.5,2.5);
+		\draw   [line width=1.3pt, color=black!60,dashed] (2.5,0)-- (2.5,3.5);
+\draw    [line width=1.2pt, color=black!80] (2.5,2.5)--(4.5,2.5);
+\draw  [->,line width=1pt,color=black!60](0,0)--(5.8,0) node [anchor=north] {$x$};
+ \draw [->,line width=1pt,color=black!60](0,0) -- (0,4) node [anchor=east] {$z$};
+ \node at (1.5,1.5){$z=z_1$};
+ \node at (3.5,1.5){$z=z_2$};
+ \node at (2.9,3.){{\scriptsize 界面}};
+\end{tikzpicture}
+\caption{界面的1D示意图}
+\label{fig:illu_1dinterface}
+\end{figure}
+

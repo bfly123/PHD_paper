@@ -4,27 +4,21 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
--                    	chapter/Chapter-Large-Scale-Simulation.tex	/^本章将利用所开发的NUC3d程序进行复杂流动的大规模数值模拟。通过模拟低速泰勒- 格林涡流动，NUC3d程序的正确性和鲁棒性得到验证。在此基础上，针对可压缩均匀各向同性湍流和超声速平板边界层壁面粗糙元素诱导转捩现象进行了直接数值模拟研究。$/;"	s
--CRWENO    	chapter/Chapter-Low-Dissipation-Shock-Capturing-Scheme.tex	/^在接下来的部分，作为一个例子，我们发展了一种七阶混合格式，并对它的精度进行了分析。$/;"	u
-AUSM    	chapter/Chapter-Condensed-Detonation.tex	/^对于双曲守恒问题，需要对对流项进行通量分裂，由于I-G模型中物质的状态方程高度非线性，针对理想气体发展的多种黎曼求解器无法直接使用，我们采用与状态方程无关的AUSM格式求解黎曼问题。$/;"	u
-AUSM-FVS    	chapter/Chapter-Condensed-Detonation.tex	/^传统的基于AUSM的算法主要是基于原始变量在界面上进行插值来构造高精度格式的，这样可能会造成格式精度的损失。另一方面，基于通量的高阶格式更具有直观性。因此，本文针对凝聚炸药爆轰强非线性的状态方程，发展了AUSM-FVS的分裂方法，并利用高阶WENO格式，模拟了LX-17炸药的爆轰现象。$/;"	u
-GPU      	chapter/Chapter-Massive-Parallel-Flow-Solver.tex	/^考虑到寄存器的读取速度要快于共享内存和全局内存，因此除了需要反复更新数据的地方用到共享内存外，所有数据从全局内存中获取后将一直被存储在寄存器中。由于使用到了大量的寄存器，而GPU每一个处理器的寄存器数量是有限的，因此会降低SM的占有率。然而通过比较使用不同的数据存储方式发现，即使在使用共享内存达到100\\%占用率时，其速度仍然要慢于大量使用寄存器时的速度。另一个角度来说，由于双精度数据需要使用到两个32-bit寄存器，在进行大量浮点运算时，难以将寄存器数量降低到实现100\\%占用率的水平。因此与其花费大量时间优化使用共享内存的程序，不如直接使用寄存器。$/;"	u
-GPU        	chapter/Chapter-Massive-Parallel-Flow-Solver.tex	/^计算流体力学（CFD）属于计算密集型领域，Navier-Stokes方程的求解需要进行大量的浮点运算。同时由于流动结构的复杂性，要捕捉足够细致的流场结构需要足够密集的网格。具有实际应用价值的计算甚至需要$10^8$数量级的网格，其计算量是惊人的，普通的计算机难以胜任，必须进行并行计算。考虑到GPU具有极强的并行计算能力，很多学者尝试着将GPU引进到计算流体力学中。Cohen\\cite{cohen2009fast}等实现了双精度的流体计算。Tolke\\cite{tolke2008teraflop}实现了格子波尔兹曼方法在GPU上的加速。Khajeh-Saeed\\cite{khajeh2013direct}使用GPU进行了各项同性湍流直接数值模拟。针对存在激波间断的可压缩流动， Antoniou\\cite{antoniou2010acceleration}在GPU上实现了WENO格式的加速，获得了较大的加速比例。Esfahanian\\cite{esfahanian2013assessment} 实现了一维和二维WENO格式的GPU程序，其一维的加速效果达到惊人的1000倍。为实现大规模的直接数值模拟，Salvadore\\cite{salvadore2013gpu}用多块GPU进行了混合层流动的直接数值模拟。Karantasis\\cite{karantasis2014high}则比较了不同形式并行对GPU计算效率的影响。对于更复杂的结构，Elsen\\cite{elsen2008large}首次在在GPU上实现了有限体积方法对复杂外形超音速流动的计算。Fu\\cite{fu2014multi}在GPU上实现了多种格式的有限体积方法计算，并进行了大量验算。就数值方法而言，以上提到的文献中多采用显示迎风格式进行空间离散。相比于迎风格式，紧致格式具有更高的谱分辨率和低耗散的特点，因此更适合于湍流计算。然而，使用紧致格式时，需要求解代数方程组。在GPU上实现代数方程组的求解并不简单。 Tutkun\\cite{tutkun2012gpu}在GPU上实现了紧致格式并将其用于流动计算中，其计算时间的40\\%花费在代数方程求解上。为提高紧致格式的计算效率，Esfahanian\\cite{esfahanian2014efficient}使用了一种改进的三对角方程求解器，并获得了一定的加速效果，然而其方法受到网格点数的限制。$/;"	u
-GPU                          	chapter/Chapter-Massive-Parallel-Flow-Solver.tex	/^可压缩复杂流动包含了间断和多尺度结构，为了能够准确的模拟各个尺度上的结构及其相互作用，需要使用非常细致的网格。对于复杂的问题，单CPU已经不能够在短时间内完成对大网格数算例的计算，需要开发出能够高效率并行的可压缩流动求解程序。作者在读期间开发了两套针对复杂流场的大规模并行程序。以下依次对程序做一些介绍。$/;"	s
-Ma  2.0                      	chapter/Chapter-Roughness-Induced-Transition.tex	/^计算的总网格数为$(N_x,N_y,N_z)=(1664,96,192)$，采用MPICH并行计算。计算区域被分为468个子区域，采用468个CPU计算。为了提高对小尺度结构的分辨率，在法向和流向都采用了网格加密，其中法向第一层网格高度$\\Delta y_0=0.0001$ 从而$y^{+} \\approx 1$，最后一个网格的尺度为$\\Delta y_0=0.5$，映射函数采用双曲正切函数。流向在不同区域网格数有所不同，在区域连接处采用局部加密的方式确保网格过渡光滑，在$-4<x<0$ 的区域流动主要为层流，因此取网格总数为96；边界层在$0<x<4$内发生失稳和转捩，并最终形成湍流，因此取网格总数为1536；为防止出口边界对边界层计算造成影响，采用缓冲区的方式将湍流完全耗散，缓冲区域$4<x<5$网格数设定为32。 在z 方向，网格为均匀分布。$/;"	s
-Ma  2.9                  	chapter/Chapter-Roughness-Induced-Transition.tex	/^从上面的分析中可以看出，流动的失稳是与流向涡的形成有关的。而流向涡的形成原因主要在于壁面粗糙元素产生的二次流动，而不完全是边界层上抬。边界层通过粗糙区域后，其厚度并没有发生明显的变化，但是二次流动在边界层内形成了更复杂的流动结构。这些流动结构的失稳才是粗糙元素造成转捩的原因，因此文献中通常认为的用边界层厚度变化尺度难以来衡量壁面粗糙元素诱导转捩过程\\cite{bernardini2012compressibility} 。$/;"	s
-N-S              	chapter/Chapter-Introduction-PengJun-PC.tex	/^本章首先介绍可压缩流动的主要特点并给出流动的控制方程；其次，将介绍可压缩流动方程的数值求解方法；在此，回顾现有的可压缩流动高精度数值方法并分析其待改进之处；最后，给出本文主要研究内容。$/;"	s
-NUC3d              	chapter/Chapter-Massive-Parallel-Flow-Solver.tex	/^对于三维可压缩流动，作者开发了一套三维结构网格并行求解器:NUmerical Calculator 3 Dimensional(NUC3d)。本程序采用C++11语言编写，总行数大约2万。$/;"	u
-NUC3d              	chapter/Chapter-Massive-Parallel-Flow-Solver.tex	/^在下一步的开发中将逐步完成化学反应欧拉方程和化学反应Navier-Stokes方程两个派生类的编制。同时还要考虑多块网格中网格坐标系不同的情况，这种情况会增加程序在通信和插值上的复杂度。$/;"	u
-Navier-Stokes    	chapter/Chapter-Low-Dissipation-Shock-Capturing-Scheme.tex	/^图\\ref{chapter3fig:dmr}展示了不同格式所获得解的密度等值线分布。可以看出所有格式都很好的捕捉到了激波。图\\ref{chapter3fig:dmrmg}展示了上卷区域的放大密度云图，可以看出两种紧致格式：CRWNEO格式和HCCS获得了比WENO-Z和WENO7更为丰富的Kelvin-Helmholtz不稳定小尺度结构，并且HCCS对小尺度结构的分辨率要好于CRWENO格式。$/;"	u
-Taylor-Green                	chapter/Chapter-Large-Scale-Simulation.tex	/^对于无粘流动或者雷诺数非常大的流动来说，由于不存在物理上的耗散作用，动能将保持恒定值。而对于拟涡能来说，在拉伸和卷绕作用下，其值将逐渐增大并趋向无穷\\cite{shu2005numerical}。$/;"	u
-chapter  Chapter-Conclusion	Ph.D thesis.tex	/^  \\include{chapter\/Chapter-Condensed-Detonation}$/;"	i
-chapter  Chapter-Condensed-Detonation	Ph.D thesis.tex	/^  \\include{chapter\/Chapter-Large-Scale-Simulation}$/;"	i
+$ tau_5$         cite  shen2011generalized	chapter/Chapter-detector.tex	/^\\section{间断识别方法}$/;"	u
+Average total variation          	chapter/Chapter-detector.tex	/^ 如果$\\tau_5>\\text{min}(IS_0,IS_1,IS_2)$，则模板$S^5$是一个间断模板。$/;"	u
+Biswas   Devine   Flaherty           moment limiter       cite  biswas1994parallel	chapter/Chapter-detector.tex	/^  这里$\\varepsilon$是一个防止分母为0的小系数。$u_{\\text{max}}$和$u_{\\text{min}}$为所有节点在$t^n$时刻$u_j^n$最大值和最小值。在光滑区域有$0\\leqslant \\phi_i\\leqslant 1$和$\\phi_i=O(\\Delta x)$。在间断区域$\\gamma_j<<\\beta_j$，$\\phi_j$趋近于1。因此，本文中我们认为$\\phi_j>(\\Delta x)^2$时单元$I_j$和单元$I_{j+1}$为间断单元。$/;"	u
+DIP                              	chapter/Chapter-Stiff-Reaction.tex	/^\\XeTeXinputencoding "GB2312"$/;"	c
+Dual information preserving method      	chapter/Chapter-Dual-Information-Method.tex	/^\\XeTeXinputencoding "GB2312"$/;"	c
+Euler    	chapter/Chapter-Introduction.tex	/^本文研究涉及四种方程系统，包括可压缩单介质理想气体、理想磁流体、存在界面的多介质流体以及存在化学反应的可压缩多组分气体混合物。下面分别给出具体的方程系统。$/;"	u
+KXRCF           cite  krivodonova2004shock	chapter/Chapter-detector.tex	/^ 其中$m$为公式 \\ref{eq:minmod}中的minmod函数。如果$u_j^{(2),\\text{mod}}\\ne u_j^{(2)}$认为$I_j$为间断单元。$/;"	u
+Multi-WENO      	chapter/Chapter-Multi-WENO.tex	/^\\XeTeXinputencoding "GB2312"$/;"	c
+ODE                 Numerical perturbation  NP      	chapter/Chapter-NP.tex	/^\\XeTeXinputencoding "GB2312"$/;"	c
+Runge-Kutta        	chapter/Chapter-Multi-WENO.tex	/^在本文所有用到$\\varepsilon$的公式中，该系数都是为了防止分母为零，在文章\\cite{jiang1996efficient}中，$\\varepsilon=10^{-6}$，在文章\\cite{henrick2005mapped,borges2008improved}中，$\\varepsilon=10^{-40}$。Eq.(\\ref{alphak})中的$p$作用是增加间断区权重间的差距。$/;"	u
+XS         cite  xu2005anti	chapter/Chapter-detector.tex	/^\\end{equation*}$/;"	u
+chapter  Chapter-Dual-Information-Method	Ph.D thesis.tex	/^  \\include{chapter\/Chapter-MHD}$/;"	i
 chapter  Chapter-Introduction	Ph.D thesis.tex	/^\\mainmatter$/;"	i
-chapter  Chapter-Large-Scale-Simulation	Ph.D thesis.tex	/^  \\include{chapter\/Chapter-Massive-Parallel-Flow-Solver}$/;"	i
-chapter  Chapter-Low-Dissipation-Shock-Capturing-Scheme	Ph.D thesis.tex	/^  \\include{chapter\/Chapter-Introduction}$/;"	i
-chapter  Chapter-Massive-Parallel-Flow-Solver	Ph.D thesis.tex	/^  \\include{chapter\/Chapter-Low-Dissipation-Shock-Capturing-Scheme}$/;"	i
-chapter  abstract	Ph.D thesis.tex	/^\\frontmatter$/;"	i
-chapter  pub	Ph.D thesis.tex	/^  \\nocite{*}$/;"	i
-chapter  resume	Ph.D thesis.tex	/^  \\include{chapter\/pub}$/;"	i
-chapter  thanks	Ph.D thesis.tex	/^  \\include{chapter\/resume}$/;"	i
+chapter  Chapter-MHD	Ph.D thesis.tex	/^  \\include{chapter\/Chapter-Introduction}$/;"	i
+chapter  Chapter-Scale	Ph.D thesis.tex	/^\\renewcommand{\\appendixname}{Appendix~}$/;"	i
+cite  powers2005accurate	chapter/Chapter-Scale.tex	/^我们可以看到反映化学反应的时间尺度的方程 (\\ref{eq:scale_ODE_time}) 和空间尺度的方程 (\\ref{eq:scale_ODE_spatial})非常接近，实际上仅相差一个爆轰波波速$D$。$/;"	s
+minmod       TVB         cite  cockburn1989tvb	chapter/Chapter-detector.tex	/^则认为$[x_j,x_{j+1}]$内存在间断。单元$I_j$（$[x_{j-1\/2},x_{j+1\/2}]$）和单元$I_{j+1}$为间断单元。其中，$\\theta$为问题相关参数，它的选择对识别方法的效果影响很大，本文统一选用$\\theta=0.3$。$/;"	u
+the finite compact scheme  	chapter/Chapter-detector.tex	/^在本章中，我们系统的研究、比较不同间断识别器，包含文\\cite{li2010hybrid,zhu2009adaptive,shen2011generalized}中的识别方法。$/;"	s

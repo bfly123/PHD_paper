@@ -1,0 +1,58 @@
+\XeTeXinputencoding "GB2312"
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+	\node (A1) [circle,draw,inner sep=0.5mm]  at (0.5,0){}; 
+	\node (A2) [circle,draw,inner sep=0.5mm]  at (1,0){}; 
+	\node (A3) [circle,draw,inner sep=0.5mm]  at (1.5,0){}; 
+	\node (A4) [circle,draw,inner sep=0.5mm]  at (2,0){}; 
+	\node (A5) [circle,draw,inner sep=0.5mm]  at (2.5,0){}; 
+	\node (A6) [circle,draw,inner sep=0.5mm]  at (3,0){}; 
+	\node (A7) [circle,draw,inner sep=0.5mm]  at (3.5,0){}; 
+	\node (A8) [circle,draw,inner sep=0.5mm]  at (4.,0){}; 
+	\node (A9) [circle,draw,inner sep=0.5mm]  at (4.5,0){}; 
+	\node (A10) [circle,draw,inner sep=0.5mm]  at (5.,0){}; 
+		\coordinate(B1) at (0.5,0.5);
+		\coordinate(B2) at (2.5,0.5);
+		\draw   [line width=1pt, color=black!80] (0.5,0.5)--(2.,0.5)-- (2.,1.6)--(3.5,1.6)--(3.5,2.5)--(4.5,2.5);
+		\draw   [line width=1.3pt, color=black!60,dashed] (2.,0)-- (2.,3.5);
+		\draw   [line width=1.3pt, color=black!60,dashed] (3.5,0)-- (3.5,3.5);
+\draw  [->,line width=1pt,color=black!60](0,0)--(5.8,0) node [anchor=north] {$x$};
+ \draw [->,line width=1pt,color=black!60](0,0) -- (0,4) node [anchor=east] {$z$};
+ \node at (1.3,1.){$z=z_1$};
+ \node at (2.8,1.){$z=z_2$};
+ \node at (4.5,1.){$z=z_3$};
+ \node at (2.,3.9){{\scriptsize 界面1}};
+ \node at (3.5,3.9){{\scriptsize 界面2}};
+ \node at (2.9,-1) {{\scriptsize (a) 多相界面1D示意图}};
+\end{tikzpicture}
+  \begin{tikzpicture}
+	\node (A1) [circle,draw,inner sep=0.5mm]  at (0.5,0){}; 
+	\node (A2) [circle,draw,inner sep=0.5mm]  at (1,0){}; 
+	\node (A3) [circle,draw,inner sep=0.5mm]  at (1.5,0){}; 
+	\node (A4) [circle,draw,inner sep=0.5mm]  at (2,0){}; 
+	\node (A5) [circle,draw,inner sep=0.5mm]  at (2.5,0){}; 
+	\node (A6) [circle,draw,inner sep=0.5mm]  at (3,0){}; 
+	\node (A7) [circle,draw,inner sep=0.5mm]  at (3.5,0){}; 
+	\node (A8) [circle,draw,inner sep=0.5mm]  at (4.,0){}; 
+	\node (A9) [circle,draw,inner sep=0.5mm]  at (4.5,0){}; 
+	\node (A10) [circle,draw,inner sep=0.5mm]  at (5.,0){}; 
+		\coordinate(B1) at (0.5,0.5);
+		\coordinate(B2) at (2.5,0.5);
+		\draw   [line width=1pt, color=black!80] (0.5,0.5)--(2.5,0.5)-- (3.5,2.5)--(4.5,2.5);
+		\draw   [line width=1.3pt, color=black!60,dashed] (2.5,0)-- (2.5,3.5);
+		\draw   [line width=1.3pt, color=black!60,dashed] (3.5,0)-- (3.5,3.5);
+\draw  [->,line width=1pt,color=black!60](0,0)--(5.8,0) node [anchor=north] {$x$};
+ \draw [->,line width=1pt,color=black!60](0,0) -- (0,4) node [anchor=east] {$z$};
+ \node at (1.3,1.){$z=z_1$};
+ \node at (4.5,1.){$z=z_2$};
+ \node at (3.,3.9){{\scriptsize 界面}};
+ \node at (2.9,-1) {{\scriptsize (b) 耗散界面1D示意图}};
+ \node at (3,2.9) {{\scriptsize $\delta$}};
+ \draw [->, line width=0.6pt,color=black!80](2.5,2.9)--(2.8,2.9);
+ \draw [->, line width=0.6pt,color=black!80] (3.5,2.9)--(3.2,2.9);
+\end{tikzpicture}
+\caption{多相界面和耗散界面1D示意图}
+\label{fig:illu_1ddiffuse_interface}
+\end{figure}
+

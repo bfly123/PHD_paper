@@ -1,36 +1,12 @@
 \let \CTEX@spaceChar \relax 
 \contentsline {chapter}{目录}{i}{chapter*.1}
-\contentsline {chapter}{\numberline {第一章\hspace {0.3em}}引言}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}本文研究的范围及其方程系统}{2}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}单介质Euler方程}{2}{subsection.1.1.1}
-\contentsline {subsection}{\numberline {1.1.2}理想磁流体方程}{3}{subsection.1.1.2}
-\contentsline {subsection}{\numberline {1.1.3}多介质Euler方程}{5}{subsection.1.1.3}
-\contentsline {subsection}{\numberline {1.1.4}高速化学反应Euler方程}{6}{subsection.1.1.4}
-\contentsline {section}{\numberline {1.2}可压缩流中间断问题的理论研究简介}{10}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Euler方程弱解及解存在性的研究}{10}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}黎曼问题和Euler方程近似解}{12}{subsection.1.2.2}
-\contentsline {section}{\numberline {1.3}计算流体力学和数值方法发展}{13}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}计算流体力学简介}{13}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}数值方法的发展}{14}{subsection.1.3.2}
-\contentsline {subsubsection}{\numberline {1.3.2.1}空间离散方法}{14}{subsubsection.1.3.2.1}
-\contentsline {subsubsection}{\numberline {1.3.2.2}近似黎曼求解器}{17}{subsubsection.1.3.2.2}
-\contentsline {subsubsection}{\numberline {1.3.2.3}时间离散方法}{18}{subsubsection.1.3.2.3}
-\contentsline {section}{\numberline {1.4}间断问题数值研究现状和不足}{19}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}激波捕捉格式和激波分辨率}{19}{subsection.1.4.1}
-\contentsline {subsection}{\numberline {1.4.2}物质界面和界面追踪方法}{20}{subsection.1.4.2}
-\contentsline {subsubsection}{\numberline {1.4.2.1}传统界面}{20}{subsubsection.1.4.2.1}
-\contentsline {subsubsection}{\numberline {1.4.2.2}耗散界面}{21}{subsubsection.1.4.2.2}
-\contentsline {subsection}{\numberline {1.4.3}气相爆轰波}{22}{subsection.1.4.3}
-\contentsline {subsubsection}{\numberline {1.4.3.1}爆轰波理论}{23}{subsubsection.1.4.3.1}
-\contentsline {subsubsection}{\numberline {1.4.3.2}源项数值刚性问题的时间方法}{25}{subsubsection.1.4.3.2}
-\contentsline {subsubsection}{\numberline {1.4.3.3}刚性化学反应流动的空间刚性问题}{26}{subsubsection.1.4.3.3}
-\contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{29}{subsubsection.1.4.3.4}
-\contentsline {section}{\numberline {1.5}本文所开展研究内容}{31}{section.1.5}
-\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}双信息保存方法（Dual information preserving method）方法}{33}{chapter.2}
-\contentsline {section}{\numberline {2.1}不同的界面类型和界面方法}{33}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}传统界面}{33}{subsection.2.1.1}
-\contentsline {section}{\numberline {2.2}多相界面和耗散界面}{34}{section.2.2}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{37}{appendix.A}
-\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{37}{section.A.1}
-\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{39}{section.A.2}
-\contentsline {chapter}{参考文献}{41}{appendix*.4}
+\contentsline {chapter}{\numberline {第一章\hspace {0.3em}}双信息保存方法（Dual information preserving method）方法}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}不同的界面类型和界面方法}{1}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}传统界面}{1}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}多相界面和耗散界面}{2}{subsection.1.1.2}
+\contentsline {section}{\numberline {1.2}双信息点方法基本思想}{3}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}单元信息点}{3}{subsection.1.2.1}
+\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}化学反应中相关尺度的探讨}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}化学反应时间尺度分析方程和空间尺度分析方程}{7}{section.2.1}
+\contentsline {section}{\numberline {2.2}尺度分析\cite {powers2005accurate}}{9}{section.2.2}
+\contentsline {chapter}{参考文献}{11}{chapter*.4}

@@ -21,241 +21,37 @@
 \end{equation*}
 
 如图 \ref{fig:illu_1dinterface_method}.d 所示，level set方法将$\phi=0$的位置识别为界面位置。 
-\begin{figure}
-  \centering
-  \begin{tikzpicture}
-	\node (A1) [circle,draw,inner sep=0.5mm]  at (0.5,0){}; 
-	\node (A2) [circle,draw,inner sep=0.5mm]  at (1,0){}; 
-	\node (A3) [circle,draw,inner sep=0.5mm]  at (1.5,0){}; 
-	\node (A4) [circle,draw,inner sep=0.5mm]  at (2,0){}; 
-	\node (A5) [circle,draw,inner sep=0.5mm]  at (2.5,0){}; 
-	\node (A6) [circle,draw,inner sep=0.5mm]  at (3,0){}; 
-	\node (A7) [circle,draw,inner sep=0.5mm]  at (3.5,0){}; 
-	\node (A8) [circle,draw,inner sep=0.5mm]  at (4.,0){}; 
-	\node (A9) [circle,draw,inner sep=0.5mm]  at (4.5,0){}; 
-	\node (A10) [circle,draw,inner sep=0.5mm]  at (5.,0){}; 
-		\coordinate(B1) at (0.5,0.5);
-		\coordinate(B2) at (2.5,0.5);
-		\draw  [line width=1pt, color=black!80] (B1) -- (B2);
-		\draw   [line width=1pt, color=black!80] (B2)-- (2.5,2.5);
-		\draw   [line width=1.3pt, color=black!60,dashed] (2.5,0)-- (2.5,3.5);
-\draw    [line width=1.2pt, color=black!80] (2.5,2.5)--(4.5,2.5);
-\draw  [->,line width=1pt,color=black!60](0,0)--(5.8,0) node [anchor=north] {$x$};
- \draw [->,line width=1pt,color=black!60](0,0) -- (0,4) node [anchor=east] {$z$};
- \node at (1.5,1.5){$z=z_1$};
- \node at (3.5,1.5){$z=z_2$};
- \node at (2.9,3.){{\scriptsize 界面}};
-\end{tikzpicture}
-\caption{一维界面示意图}
-\label{fig:illu_1dinterface}
-\end{figure}
+\input{chapter/tikz/fig_illu_1dinterface.tex}
+\input{chapter/tikz/fig_illu_1dinterface_method.tex}
+\input{chapter/tikz/fig_illu_2dinterface.tex}
+
+这些界面方法明显可以分成两类，一类全计算域计算的界面捕捉方法，如VOF和level set方法，另外一类只对部分区域进行Lagrangian追踪的界面追踪方法，如锋面追踪、MAC方法等。两类方法各有优势，全域计算的方法更适合处理光滑的几何形状，并且易于处理由于由于流体压缩性导致的膨胀过程；Lagrangian局部追踪的方法更易于处理锋利夹角、大变形以及界面破碎等问题。由于各有明显的优势和缺点，有学者尝试将两种类型方法结合发展如level set-粒子方法，VOF-粒子方法等方法。
+
+\subsection{多相界面和耗散界面}
+除经常研究的两相界面外，在工业、化学、生物等很多领域中存在三相甚至更多相物质之间的相互作用，我们可以将这种问题称为多相界面问题。相比两相界面丰富的研究，多相界面的研究无论在理论还是数值方面都很少\cite{kim2005phase}。耗散界面我们在第一章中做过简单介绍，和多界面类似，耗散界面同样也是较难处理的一类界面问题。
+
+传统界面类方法求解多相界面和耗散界面困难的根本原因是由于这些方法都不是针对某一真实的物理量进行求解，如$\gamma$， $ \rho$，而只是从拓扑角度计算界面的运动。这一问题导致传统界面类方法无法直接求解如图 \ref{fig:illu_1ddiffuse_interface} 所示的多相界面和具有界面厚度$\delta$ 的耗散界面。
+
+\input{chapter/tikz/fig_illu_1ddiffuse_interface.tex}
+
+\section{双信息点方法基本思想}
+
+首先我们考虑两个问题，
+\begin{enumerate}[1, ]
+	\item
+界面捕捉类方法由于采用全计算域求解，可以更好的处理界面膨胀 （图 \ref{fig:illu_1ddiffuse_interface}.a ）、界面张力等光滑函数问题；界面追踪方法由于采用拉格朗日运动思想可以更好的保持界面形状、计算界面大变形和破裂等问题。我们能否同时具备两方面的优点？
+\item 传统界面方法都不是直接求解方程 （\ref{eq:interface_mark}）中的和物理相关的量$z$ ，因此较难处理多相界面和耗散界面。界面方法能否针对$z$直接求解？
+\end{enumerate}
+\subsection{单元信息点}
+粒子方法是一种最直观的界面方法，具有优良的Lagrangian特性，但是由于它明显的不足导致学者们更愿意将它当成一种辅助的手段，如用作示踪粒子，或者和其它方法结合，如level set-粒子方法，VOF-粒子方法等，用粒子修正界面的计算结果。粒子方法最大的问题是由于粒子的离散性，难以保证全计算域的覆盖，这样就无法像网格方法一样，随时得到确定位置的信息。
+
+粒子类界面方法目前主要包括早期的Particle-in-cell（PIC）方法和Marker-in-Cell（MAC）方法。PIC方法采用携带有质量的真实粒子模拟流体的运动，根据粒子携带的信息可以判断界面位置，然而，由于真实粒子无法人为的生成和抹去，无法保证全计算域每个网格都含有粒子。Marker-and-cell (MAC)方法采用标记粒子，粒子除位置以外不含有其它信息，是完全的虚拟粒子，增加和减少都不会影响流场的物理性质，但是由于它完全不携带信息，只能通过有粒子和没有粒子判断界面，仍然无法做到覆盖计算域。
+
+这里，我们引入一种新型粒子---{\bf{信息点}}，信息点上携带有对流的物理信息$z$。不同于PIC中的真实粒子，信息点可以看成是对所在物理场的一种映射。其实网格同样是对真实场的一种映射，所以我们可以随时加密网格、减少网格甚至移动网格的位置，尽管这可能影响计算精度，但是并不会改变所研究问题本质。 类比与网格，信息点同样是一种映射，我们可以根据需要增加、减少和移动。
 
 
-\begin{figure}
-  \centering
- \begin{tikzpicture} %front tracking
-	\node (A1) [circle,draw,inner sep=0.3mm]  at (0.3,0){}; 
-	\node (A11) [circle,draw,inner sep=0.3mm] at (0.9,0){}; 
-	\node (A4) [circle,draw,inner sep=0.3mm]  at (1.5,0){}; 
-	\node (A6) [circle,draw,inner sep=0.3mm]  at (2.1,0){}; 
-	\node (A8) [circle,draw,inner sep=0.3mm]  at (2.7,0){}; 
-	\node (A10) [circle,draw,inner sep=0.3mm]  at (3.3,0.0){}; 
-	\node (A2) [circle,draw,inner sep=0.3mm]  at (3.9,0.0){}; 
-
-	\node (C1)  at (0.3,3.){}; 
-	\node (C11) at (0.9,3.){}; 
-	\node (C4)  at (1.5,3.){}; 
-	\node (C6)  at (2.1,3.){}; 
-	\node (C8)  at (2.7,3.){}; 
-	\node (C10) at (3.3,3.){}; 
-	\node (C2) at (3.9,3.){}; 
-
-		\draw  [line width=1pt, color=black!20] (A1) -- (C1);
-		\draw  [line width=1pt, color=black!20] (A4) -- (C4);
-		\draw  [line width=1pt, color=black!20] (A6) -- (C6);
-		\draw  [line width=1pt, color=black!20] (A8) -- (C8);
-		\draw  [line width=1pt, color=black!20] (A10) -- (C10);
-		\draw  [line width=1pt, color=black!20] (A11) -- (C11);
-		\draw  [line width=1pt, color=black!20] (A2) -- (C2);
-
-\node (A10) [circle,draw,inner sep=0.3mm]  at (3.3,0){}; 
-		\coordinate(B1) at (0.3,0.5);
-		\coordinate(B2) at (2.5,0.5);
-		%\draw  [line width=1pt, color=black!80] (B1) -- (B2);
-%		\draw   [line width=1pt, color=black!80] (B2)-- (2.5,2.5);
-		\draw   [line width=1.3pt, color=black!60,dashed] (2.4,0)-- (2.4,2.9);
-
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.4+0.1,1.5)-- (2.4-0.08,1.5+0.1); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.4-0.08,1.5+0.1)--(2.4-0.08,1.5-0.1); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.4-0.08,1.5-0.1)--  (2.4+0.1,1.5);
 
 
-%\draw    [line width=1.2pt, color=black!80] (2.5,2.5)--(4.5,2.5);
-\draw  [->,line width=1pt,color=black!60](0,0)--(4.2,0) node [anchor=north] {$x$};
-% \draw [->,line width=1pt,color=black!60](0,0) -- (0,3) node [anchor=east] {$z$};
- \node at (2.8,2.5){{\scriptsize 界面}};
- \node at (2.,-0.5){\scriptsize{(a) 锋面追踪方法}};
-\end{tikzpicture}
-  \begin{tikzpicture} %MAC
-	\node (A1) [circle,draw,inner sep=0.3mm]  at (0.3,0){}; 
-	\node (A11) [circle,draw,inner sep=0.3mm] at (0.9,0){}; 
-	\node (A4) [circle,draw,inner sep=0.3mm]  at (1.5,0){}; 
-	\node (A6) [circle,draw,inner sep=0.3mm]  at (2.1,0){}; 
-	\node (A8) [circle,draw,inner sep=0.3mm]  at (2.7,0){}; 
-	\node (A10) [circle,draw,inner sep=0.3mm]  at (3.3,0.0){}; 
-	\node (A2) [circle,draw,inner sep=0.3mm]  at (3.9,0.0){}; 
-
-	\node (C1)  at (0.3,3.){}; 
-	\node (C11) at (0.9,3.){}; 
-	\node (C4)  at (1.5,3.){}; 
-	\node (C6)  at (2.1,3.){}; 
-	\node (C8)  at (2.7,3.){}; 
-	\node (C10) at (3.3,3.){}; 
-	\node (C2) at (3.9,3.){}; 
-
-		\draw  [line width=1pt, color=black!20] (A1) -- (C1);
-		\draw  [line width=1pt, color=black!20] (A4) -- (C4);
-		\draw  [line width=1pt, color=black!20] (A6) -- (C6);
-		\draw  [line width=1pt, color=black!20] (A8) -- (C8);
-		\draw  [line width=1pt, color=black!20] (A10) -- (C10);
-		\draw  [line width=1pt, color=black!20] (A11) -- (C11);
-		\draw  [line width=1pt, color=black!20] (A2) -- (C2);
-
-\node (A10) [circle,draw,inner sep=0.3mm]  at (3.3,0){}; 
-		\coordinate(B1) at (0.3,0.5);
-		\coordinate(B2) at (2.5,0.5);
-		%\draw  [line width=1pt, color=black!80] (B1) -- (B2);
-%		\draw   [line width=1pt, color=black!80] (B2)-- (2.5,2.5);
-		\draw   [line width=1.3pt, color=black!60,dashed] (2.1,0)-- (2.1,2.9);
-
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.2+0.05,1.5)-- (2.2-0.04,1.5+0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.2-0.04,1.5+0.05)--(2.2-0.04,1.5-0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.2-0.04,1.5-0.05)--  (2.2+0.05,1.5);
 
 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.6+0.05,1.5)-- (2.6-0.04,1.5+0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.6-0.04,1.5+0.05)--(2.6-0.04,1.5-0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.6-0.04,1.5-0.05)--  (2.6+0.05,1.5);
 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.8+0.05,1.5)-- (2.8-0.04,1.5+0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.8-0.04,1.5+0.05)--(2.8-0.04,1.5-0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.8-0.04,1.5-0.05)--  (2.8+0.05,1.5);
-
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.9+0.05,1.5)-- (2.9-0.04,1.5+0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.9-0.04,1.5+0.05)--(2.9-0.04,1.5-0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (2.9-0.04,1.5-0.05)--  (2.9+0.05,1.5);
-
-
-		\draw[line width=0.8pt, color=blue!60!black!60]  (3.2+0.05,1.5)-- (3.2-0.04,1.5+0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (3.2-0.04,1.5+0.05)--(3.2-0.04,1.5-0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (3.2-0.04,1.5-0.05)--  (3.2+0.05,1.5);
-
-		\draw[line width=0.8pt, color=blue!60!black!60]  (3.7+0.05,1.5)-- (3.7-0.04,1.5+0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (3.7-0.04,1.5+0.05)--(3.7-0.04,1.5-0.05); 
-		\draw[line width=0.8pt, color=blue!60!black!60]  (3.7-0.04,1.5-0.05)--  (3.7+0.05,1.5);
-
-%\draw    [line width=1.2pt, color=black!80] (2.5,2.5)--(4.5,2.5);
-\draw  [->,line width=1pt,color=black!60](0,0)--(4.2,0) node [anchor=north] {$x$};
-% \draw [->,line width=1pt,color=black!60](0,0) -- (0,3) node [anchor=east] {$z$};
- \node at (2.5,2.5){{\scriptsize 界面}};
- \node at (2.,-0.5){\scriptsize{(b) MAC粒子方法}};
-\end{tikzpicture}
-
-  \begin{tikzpicture} %VOF
-	\node (A1) [circle,draw,inner sep=0.3mm]  at (0.3,0){}; 
-	\node (A11) [circle,draw,inner sep=0.3mm] at (0.9,0){}; 
-	\node (A4) [circle,draw,inner sep=0.3mm]  at (1.5,0){}; 
-	\node (A6) [circle,draw,inner sep=0.3mm]  at (2.1,0){}; 
-	\node (A8) [circle,draw,inner sep=0.3mm]  at (2.7,0){}; 
-	\node (A10) [circle,draw,inner sep=0.3mm]  at (3.3,0.0){}; 
-	\node (A2) [circle,draw,inner sep=0.3mm]  at (3.9,0.0){}; 
-
-	\node (C1)  at (0.3,3.){}; 
-	\node (C11) at (0.9,3.){}; 
-	\node (C4)  at (1.5,3.){}; 
-	\node (C6)  at (2.1,3.){}; 
-	\node (C8)  at (2.7,3.){}; 
-	\node (C10) at (3.3,3.){}; 
-	\node (C2) at (3.9,3.){}; 
-
-		\draw  [line width=1pt, color=black!20] (A1) -- (C1);
-		\draw  [line width=1pt, color=black!20] (A4) -- (C4);
-		\draw  [line width=1pt, color=black!20] (A6) -- (C6);
-		\draw  [line width=1pt, color=black!20] (A8) -- (C8);
-		\draw  [line width=1pt, color=black!20] (A10) -- (C10);
-		\draw  [line width=1pt, color=black!20] (A11) -- (C11);
-		\draw  [line width=1pt, color=black!20] (A2) -- (C2);
-
-\node (A10) [circle,draw,inner sep=0.3mm]  at (3.3,0){}; 
-		\coordinate(B1) at (0.3,0.5);
-		\coordinate(B2) at (2.5,0.5);
-		%\draw  [line width=1pt, color=black!80] (B1) -- (B2);
-%		\draw   [line width=1pt, color=black!80] (B2)-- (2.5,2.5);
-		\draw   [line width=1.3pt, color=black!60,dashed] (2.4,0)-- (2.4,2.9);
-		\node at (0.6,1.5){\scriptsize 0};
-		\node at (1.2,1.5){\scriptsize 0};
-		\node at (1.8,1.5){\scriptsize 0};
-		\node at (2.5,1.5){\scriptsize 0.5};
-		\node at (3.0,1.5){\scriptsize 1};
-		\node at (3.6,1.5){\scriptsize 1};
-%\draw    [line width=1.2pt, color=black!80] (2.5,2.5)--(4.5,2.5);
-\draw  [->,line width=1pt,color=black!60](0,0)--(4.2,0) node [anchor=north] {$x$};
-% \draw [->,line width=1pt,color=black!60](0,0) -- (0,3) node [anchor=east] {$z$};
- \node at (2.8,2.5){{\scriptsize 界面}};
- \node at (2.,-0.5){\scriptsize{(c) VOF方法}};
-\end{tikzpicture}
-  \begin{tikzpicture} %level set
-	\node (A1) [circle,draw,inner sep=0.3mm]  at (0.3,0){}; 
-	\node (A11) [circle,draw,inner sep=0.3mm] at (0.9,0){}; 
-	\node (A4) [circle,draw,inner sep=0.3mm]  at (1.5,0){}; 
-	\node (A6) [circle,draw,inner sep=0.3mm]  at (2.1,0){}; 
-	\node (A8) [circle,draw,inner sep=0.3mm]  at (2.7,0){}; 
-	\node (A10) [circle,draw,inner sep=0.3mm]  at (3.3,0.0){}; 
-	\node (A2) [circle,draw,inner sep=0.3mm]  at (3.9,0.0){}; 
-
-	\node (C1)  at (0.3,3.){}; 
-	\node (C11) at (0.9,3.){}; 
-	\node (C4)  at (1.5,3.){}; 
-	\node (C6)  at (2.1,3.){}; 
-	\node (C8)  at (2.7,3.){}; 
-	\node (C10) at (3.3,3.){}; 
-	\node (C2) at (3.9,3.){}; 
-
-%		\draw  [line width=1pt, color=black!20] (A1) -- (C1);
-%		\draw  [line width=1pt, color=black!20] (A4) -- (C4);
-%		\draw  [line width=1pt, color=black!20] (A6) -- (C6);
-%		\draw  [line width=1pt, color=black!20] (A8) -- (C8);
-%		\draw  [line width=1pt, color=black!20] (A10) -- (C10);
-%		\draw  [line width=1pt, color=black!20] (A11) -- (C11);
-%		\draw  [line width=1pt, color=black!20] (A2) -- (C2);
-
-\node (A10) [circle,draw,inner sep=0.3mm]  at (3.3,0){}; 
-		\coordinate(B1) at (0.3,0.5);
-		\coordinate(B2) at (2.5,0.5);
-		%\draw  [line width=1pt, color=black!80] (B1) -- (B2);
-%		\draw   [line width=1pt, color=black!80] (B2)-- (2.5,2.5);
-		\draw   [line width=1.3pt, color=black!60,dashed] (2.1,0)-- (2.1,2.9);
-		\draw   [line width=1.3pt, color=black!60] (2.1,1.5)-- (3.9,2.7);
-		\draw   [line width=1.0pt, color=black!60] (2.1,1.5)-- (0.3,0.3);
-%\draw    [line width=1.2pt, color=black!80] (2.5,2.5)--(4.5,2.5);
-\draw  [->,line width=1pt,color=black!60](0,0)--(4.2,0) node [anchor=north] {$x$};
-\draw  [line width=0.5pt,color=black!60,dashed](0,1.5) --(4.2,1.5);
-\draw  [line width=0.5pt,color=black!60,dashed](0,1.5) --(4.2,1.5);
-
- \draw [->,line width=1pt,color=black!60](0,0) -- (0,3) node [anchor=east] {$\phi$};
- \node at (2.8,2.5){{\scriptsize 界面}};
- \node at (-0.2,1.5) {\scriptsize $0$};
- \node at (2.,-0.5){\scriptsize{(d) level set方法}};
-\end{tikzpicture}
-
-\caption{一维界面示意图}
-\label{fig:illu_1dinterface_method}
-\end{figure}
-
-
-从图中，我们可以看出，这些界面方法明显分成两类，一类全计算域计算的，如VOF和level set方法，另外一类只在计算域内部分区域进行计算，如锋面追踪、MAC方法等。两类方法各有优势，第一类方法更适合处理光滑的几何形状，并且易于处理由于由于流体压缩性导致的膨胀过程；第二类方法在处理含有锋利夹角的形状时以及界面破碎问题时有优势。
-
-\section{多相界面和耗散界面}
-由于上述这些界面方法都不是求解某一真实的物理量，如$\gamma, \rho$，而只是从拓扑角度计算界面的运动。这一问题导致传统界面类方法无法直接用来求解如图  所示的多相界面和具有界面厚度的耗散界面。
-
-%\begin{
