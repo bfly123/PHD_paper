@@ -4,9 +4,12 @@
 \contentsline {section}{\numberline {1.1}不同的界面类型和界面方法}{1}{section.1.1}
 \contentsline {subsection}{\numberline {1.1.1}传统界面}{1}{subsection.1.1.1}
 \contentsline {subsection}{\numberline {1.1.2}多相界面和耗散界面}{2}{subsection.1.1.2}
-\contentsline {section}{\numberline {1.2}双信息点方法基本思想}{3}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}单元信息点}{3}{subsection.1.2.1}
-\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}化学反应中相关尺度的探讨}{7}{chapter.2}
-\contentsline {section}{\numberline {2.1}化学反应时间尺度分析方程和空间尺度分析方程}{7}{section.2.1}
-\contentsline {section}{\numberline {2.2}尺度分析\cite {powers2005accurate}}{9}{section.2.2}
-\contentsline {chapter}{参考文献}{11}{chapter*.4}
+\contentsline {section}{\numberline {1.2}双信息保存方法基本思想}{3}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}信息点}{3}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}单元信息点}{5}{subsection.1.2.2}
+\contentsline {subsubsection}{\numberline {1.2.2.1}单元点的运动和位置更新}{6}{subsubsection.1.2.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2.2}单元内单元点的更新}{6}{subsubsection.1.2.2.2}
+\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}化学反应中相关尺度的探讨}{9}{chapter.2}
+\contentsline {section}{\numberline {2.1}化学反应时间尺度分析方程和空间尺度分析方程}{9}{section.2.1}
+\contentsline {section}{\numberline {2.2}尺度分析\cite {powers2005accurate}}{11}{section.2.2}
+\contentsline {chapter}{参考文献}{13}{chapter*.4}
