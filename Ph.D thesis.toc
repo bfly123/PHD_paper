@@ -15,7 +15,8 @@
 \contentsline {subsubsection}{\numberline {1.2.4.3}耗散界面问题中单元点的消去方法}{11}{subsubsection.1.2.4.3}
 \contentsline {subsubsection}{\numberline {1.2.4.4}耗散界面问题中单元点的生成方法}{11}{subsubsection.1.2.4.4}
 \contentsline {subsection}{\numberline {1.2.5}粒子信息点（粒子点）}{11}{subsection.1.2.5}
-\contentsline {subsection}{\numberline {1.2.6}粒子点的标记}{12}{subsection.1.2.6}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{13}{appendix.A}
-\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{13}{section.A.1}
-\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{15}{section.A.2}
+\contentsline {subsection}{\numberline {1.2.6}粒子点的初始化和运动追踪}{12}{subsection.1.2.6}
+\contentsline {subsection}{\numberline {1.2.7}粒子点对单元点的修正过程}{13}{subsection.1.2.7}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{15}{appendix.A}
+\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{15}{section.A.1}
+\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{17}{section.A.2}
