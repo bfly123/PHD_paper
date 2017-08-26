@@ -1,5 +1,5 @@
 \XeTeXinputencoding "GB2312"
-\chapter{双信息保存方法（Dual information preserving method）方法}
+\chapter{双信息保存（DIP）方法}
 界面作为最为常见的物理现象之一，广泛的存在于
 力学、化学、生物工程、材料科学和计算机图形学等多个学科领域。
 界面的准确模拟对于多相流动、晶体生长、火焰的发展和传播等等很多方面的研究都有重要意义。
@@ -49,31 +49,35 @@
 我们知道网格是对真实流场的离散，这种离散其实是真实流场信息在网格点上的映射，我们可以随时加密网格、减少网格或移动网格，尽管这可能影响计算精度，但是并不会改变所研究问题本质。如图 \ref{fig:illu_1d_mesh_point} 类比于网格点，我们可以引入一套和网格点相似的、携带有对流信息$z$在该空间位置投影的粒子，这种粒子可以根据需要增加、减少和移动。
 我们将这种携带有对流信息的Lagrangian粒子称为{\bf{信息点}}。
 
+本文的方法中同时含有两类信息点，因此将该方法称为双信息保存方法，下文将分别介绍这两类信息点。
+
 \input{chapter/tikz/fig_illu_1d_mesh_point.tex}
 
 \subsection{单元信息点（单元点）}
 对于固定网格方法，网格点位置是确定的，我们每个时刻都能得到确定的空间点上的计算值，并可以通过高阶插值运算得到空间任何点的近似值；对于运动网格，如自适应加密网格，我们也可以人为的控制网格加密规律，避免过分畸形的网格分布和网格形状。然而，粒子点的运动完全是由速度场决定的，所以粒子点的分布具有很高的随意性。MAC方法也遇到相同的困难，某单元原本含有粒子，但是随着流场膨胀，单元不再含有粒子，但这并不代表该单元产生了相变。MAC方法的解决策略是在初始计算时，在相应状态的单元内放置多达16个粒子来避免这种错误的发生。但是这样即增加计算和存储，又不能从根本上避免粒子分布随意性这一问题。
 
-对于信息点可以随时生成和抹去这一特点，我们为什么不构造一个限定在单元内的信息点呢？既可以解决粒子分布问题，又有利于单元上对流值和粒子上对流值的传递。我们将这种每个单元内唯一的信息点，称为单元信息点，简称为{\bf{单元点（cell-point）}}。下面我们将简单的从一维介绍单元点的计算过程。
+对于信息点可以随时生成和抹去这一特点，我们为什么不构造一个限定在单元内的信息点呢？既可以解决粒子分布问题，又有利于单元上对流值和粒子上对流值的传递。我们将这种每个单元内唯一的信息点，称为单元信息点，简称为{\bf{单元点（cell-point）}}。下面我们将简单的从一维介绍采用单元点求解方程 (\ref{eq:interface_mark}) 的步骤。
+\begin{enumerate}
+  \item[一.] {\bf{初始化}}
 
-\subsection{单元点的运动}
-如图 \ref{fig:illu_cell_point} 我们首先将$[i-1/2,i+1/2]$定义为第$i$单元。开始计算时，在每个单元引入一个单元点。由于单元点是和每个单元关联的，所以单元点无需特殊编号进行区分，单元点的位置可以根据在单元内相对坐标$X(i)$给出。
+如图 \ref{fig:illu_cell_point} 我们首先将$[i-1/2,i+1/2]$定义为第$i$单元。开始计算时，在每个单元引入一个单元点。由于单元点是和每个单元关联的，所以单元点无需特殊编号进行区分，单元点的位置可以根据在单元内相对坐标$X(i)$给出，为了简便，下面简写为$X$。
 单元点的初始条件为，
 \begin{equation}
   X(i)=0,\hspace{0.3cm} \hat{z}(i)=z(i)
   \end{equation}
 \input{chapter/tikz/fig_illu_cell_point.tex}
 
+\item[二.]  {\bf{运动追踪}}
+
 单元点的运动速度是由所在的速度场决定的。通常计算中，例如在流体计算中，可以得到的网格点上的速度。然后需要通过插值近似求得粒子点所在位置的速度。理论上可以构造任意高阶的差值，为了简便，我们只采用两个单元的线性差值，以$i$单元的信息点为例
 \begin{equation}
-  \bar{u}_C(i)=(1-|X|)u(i)+|X|u(i+s_x)
+  \bar{u}(i)=(1-|X|)u(i)+|X|u(i+s_x)
   \end{equation}
   其中$s_x=\text{sign}(X)$，通过相对坐标决定是向上游差值还是向下游。
 
-
 当粒子开始运动后我们需要每一步确定$i$单元点是否运动出单元，如果运动出单元新的位置，我们需要确定单元点新的位置。单元点$i$经过$\Delta t$时间内运动到新坐标
 \begin{equation}
-  L=X+\Delta t \bar{u}_C
+  L=X+\Delta t \bar{u}/\Delta x
 \end{equation}
 所在单元$M$为
 \begin{equation}\label{eq:cell_point_M}
@@ -84,41 +88,48 @@
   \hat{X}=L-\text{floor}(L+0.5)
 \end{equation}
 
-\subsection{单元点的更新}
+\item[三.] {\bf{单元点的更新}}
+
+
 为了保证单元和单元点的一一对应，我们需要在每一时间步结束时对单元点进行更新，将含有多余单元点的和不含单元点的单元进行处理。
 
-我们首先考虑这样一个问题，对于图 \ref{fig:illu_case} 中所示的情况，$i$单元点上$z=1$，$i+1$单元点上$z=0$，那么界面究竟是图中哪种分布情况呢？这其实是无法确定的。我们根据所研究的问题是否涉及界面厚度分成无厚度界面和耗散界面两类。
-\subsubsection{无厚度界面问题中单元点的消去方法}
+我们首先考虑这样一个问题，对于图 \ref{fig:illu_case} 中所示的情况，$i$单元点上$z=1$，$i+1$单元点上$z=0$，那么界面究竟是图中哪种分布情况呢？这其实是无法确定的，需要进行统一的规定。根据所研究的问题是否涉及界面厚度分成无厚度界面和耗散界面两类。
+
+\begin{enumerate}[1).] 
+  \item 无厚度界面问题中单元点的消去方法
+
 如果我们研究的是无厚度的传统界面或多相界面时，我们规定界面位于$z$值较小的信息点位置，既图 \ref{fig:illu_case} 中第二种情况。
 
-如果一个单元内有两个甚至多个信息点，如图 \ref{fig:illu_cellpoint_choose}， 根据上面界面位置的规定，首先将$z$较大的单元点消去，如果这之后仍有多个点，在邻居单元中寻找一个$z$值不同的，选择距离$z$值不同单元最近的$p$点作为新的单元点，如果没有不同的，则随意选取。
+如果一个单元内有两个甚至多个信息点，如图 \ref{fig:illu_cellpoint_choose}， 根据上面界面位置的规定，首先将$z$较大的单元点消去，如果这之后仍有多个点，则在邻居单元中寻找一个$z$值不同的，选择距离$z$值不同单元最近的$p$点作为新的单元点，如果没有不同的，则随意选取。
 \input{chapter/tikz/fig_illu_case.tex}
 \input{chapter/tikz/fig_illu_cellpoint_choose.tex}
 
-\subsubsection{无厚度界面问题中单元点的生成方法}
+\item 无厚度界面问题中单元点的生成方法
 
 在$k+1$时间步，对于没有单元点的单元$i$，我们需要在单元中心引入新的单元点，单元点上对流信息$z$可以通过{\bf{回溯生成法}}得到。如图 \ref{fig:illu_cell_point_construct_diffuse}， 回溯生成法的做法如下：
-\begin{enumerate}[1,]
+\begin{enumerate}[i.]
 \item 
-  首先在计算时刻$t_{k+1}$的上一时间步$t_k$，假设我们曾在某一位置引入了一个新的单元点$P$，该点速度为$u'_C$。
+  首先在计算时刻$t_{k+1}$的上一时间步$t_k$，假设我们曾在某一位置引入了一个新的单元点$P$，该点速度为$u'$；
 \item
-  经过时间$\Delta t$，在$k+1$时间步该单元点正好运动到$i$单元中心 $X=0$。
+  经过时间$\Delta t$，在$k+1$时间步该单元点正好运动到$i$单元中心 $X=0$；
 \item 
-  由于我们不知道速度$u'_C$，我们假设$u'_C$为$k+1$时间步$i$单元中心的速度。
+  由于我们不知道速度$u'$，我们假设$u'$为$k+1$时间步$i$单元中心的速度：
   $$u'_C=u^{k+1}(i)$$
 \item 
-  这样我们通过逆速度，根据公式 (\ref{eq:cell_point_M}) 和 (\ref{eq:cell_point_X}) 可以知道$P'_i$在$k$时间步位置$M$和$X$信息。由于$k$时间步一切都是已知的，因此也就可以确定新生成的信息点的准确信息。
+  通过逆速度，根据公式 (\ref{eq:cell_point_M}) 和 (\ref{eq:cell_point_X}) 可以知道$P$在$k$时间步位置。由于$k$时间步是已知的，根据求得的位置就可以知道该单元点输运值，即为$k+1$时刻新生成单元点输运值。
   \end{enumerate}
 
 
 
   \input{chapter/tikz/fig_back_construct.tex}
 
-\subsubsection{耗散界面问题中单元点的消去方法}
+\item 耗散界面问题中单元点的消去方法
+
 如果我们研究的是耗散界面，则选择图 \ref{fig:illu_case} 中第四种情况做为界面真实情况。由于耗散界面存在过渡值，如图 \ref{fig:illu_cellpoint_choose_diffuse} ，如果单元内含有多个单元点，我们采取所有单元点位置和输运值$z$算数平均的形式。
 \input{chapter/tikz/fig_illu_cellpoint_choose_diffuse.tex}
 
-\subsubsection{耗散界面问题中单元点的生成方法}
+\item 耗散界面问题中单元点的生成方法
+
 在耗散界面问题中由于没有清晰的分界面，允许存在一定的耗散，因此我们还可以采用另外一种差值的方法生成单元点。如图 \ref{fig:illu_cell_point_construct_diffuse} 所示，如果单元$i$没有单元点，我们在单元中心生成新的单元点，单元点上的输运值可以采用前后临近单元点加权平均的方式得到，权重反比于到$i$单元中心的距离：
 \begin{equation}
   \hat{z}_i=\frac{\omega_1 \hat{z}_{i-1}+\omega_2 \hat{z}_{i+1}}{\omega_1+\omega_2}
@@ -126,17 +137,28 @@
 其中，$\omega_1=1/L_1$，$\omega_2=1/L_2$。
 
 \input{chapter/tikz/fig_cell_point_construct_diffuse.tex}
+\end{enumerate}
 
 每一时间步，经过单元点运动和更新的计算，我们可以得到每个单元中单元点的位置和输运值，然后将单元点的输运值作为该单元输运值。
 
-\subsection{粒子信息点（粒子点）}
-上文中，我们引入了单元信息点，通过单元信息点可以直接求解方程 (\ref{eq:interface_mark}) ，无论是传统的无厚度界面、多于两相物质的多相界面还是具有界面厚度的耗散界面都可以进行模拟。单元信息点只能算是具备了Lagrangian 粒子一半的特性，尽管它弥补了粒子点不能全域覆盖、无法计算耗散界面等缺点，但由于单元点的更新，新的单元点会不断替代旧的单元点，而新的单元点的生成存在误差，导致对界面结构的保持并不像纯粒子方法那么好，这一点将会在算例中展示。为了改进这一不足，我们引入了另外一套全域追踪的信息点，在每一步对单元点进行修正。将这种全域追踪、具有纯粒子点特性的单元点，称为{\bf{粒子信息点}}，简称为粒子点。
 
-\subsection{粒子点的初始化和运动追踪}
+  \end{enumerate}
+\subsection{粒子信息点（粒子点）}
+上文中，我们引入了单元信息点，通过单元信息点可以直接求解方程 (\ref{eq:interface_mark})，无论是传统的无厚度界面、多于两相物质的多相界面还是具有界面厚度的耗散界面都可以进行模拟。
+
+单元信息点只具备了一半的Lagrangian 特性，尽管它弥补了粒子点不能全域覆盖、无法计算耗散界面等缺点，但由于每步的更新，新的单元点会不断替代旧的单元点，而新的单元点的生成存在误差，导致对界面结构的保持并不像纯粒子方法那么好，这一点将会在算例中展示。为了改进这一不足，我们引入了另外一套全域追踪的信息点，在每一步对单元点进行修正。将这种全域追踪、具有纯粒子点特性的单元点，称为{\bf{粒子信息点}}，简称为粒子点。下面我们给出通过粒子点修正单元点的过程。
+
+\begin{enumerate}
+
+  \item[一.] {\bf 初始化}
+
 初始化时，在每个单元中心引入一个粒子点，由于粒子点是全域追踪的，我们需要为每一个粒子点建立一个无冲突的标记，这里以最开始所在单元作为标记。对于某一标记为$i$的粒子点，我们需要给出两个数组分别记录它所在单元$ip(i)$和单元相对坐标$X_p(i)$。初始化过程和单元点相似
 \begin{equation}
-  ip(i)=i, \hspace{0.3cm} X_p(i)=0,\hspace{0.3cm} \bar{z_p}=z(i)
+  ip(i)=i, \hspace{0.3cm} X_p(i)=0,\hspace{0.3cm} \bar{z}_p=z(i)
   \end{equation}
+
+\item[二.] {\bf 运动追踪}
+
 粒子点的运动和单元点相同，我们首先根据粒子点$i$所在单元$ip$和$X_p$线性插值出粒子点的运动速度
 \begin{equation}
   \bar{u}_p=(1-|X_p|)u(ip)+|X_p|u(ip+s_x)
@@ -153,9 +175,357 @@ $\Delta t$时间后单元点坐标更新为
 \begin{equation}
  X_p=L_x-\text{floor}(L_x+0.5)
 \end{equation}
+\item[三.] {\bf 修正单元点}
 
-\subsection{粒子点对单元点的修正过程}
-在$t_k$时刻，假设我们已经更新了单元点，如果单元$ip$内含有粒子点，我们采用粒子点代替单元点。关于新的单元点更新策略，无论是对于无厚度界面还是耗散界面来说和前面通过单元点更新单元点是完全相同的，只是用粒子点取代原本的单元点。
+在$t_k$时刻，假设我们已经更新了单元点，如果单元$ip$内含有粒子点，我们则采用粒子点重新更新单元点，关于新的单元点更新策略，无论是对于无厚度界面还是对耗散界面来说都和前面通过单元点更新是完全相同的，只是用粒子点取代原本的单元点。
+
+\end{enumerate}
+
+\subsection{边界处理}
+粒子方法的边界条件都很容易实现，下面我们分别介绍几种常用的边界条件的实现。如图 \ref{fig:illu_1d_bound}， 首先假设我们计算从第$0$单元到$Nx$单元，DIP方法由于在计算中可能需要临近网格的信息，因此在左右分别构造一个虚拟网格$-1$和$Nx+1$。
+\input{chapter/tikz/fig_ill_1d_bound.tex}
+\begin{enumerate}
+
+\item[一.] {\bf 周期边界条件}
+
+对于单元点，将$1$单元内单元点直接赋值给$Nx+1$虚拟单元，将$Nx-1$单元内单元点直接赋值给$-1$单元
+\begin{equation}
+  \begin{array}{l}
+	\displaystyle X(-1)=X(Nx-1), \hspace{0.3cm} X(Nx+1)=X(1), \\
+  \displaystyle \bar{z}(-1)=\bar{z}(Nx-1), \hspace{0.3cm} \bar{z}(Nx+1)=\bar{z}(1)
+  \end{array}
+\end{equation}
+对于粒子点，如果有粒子流出，即$ip(i) > Nx$或$ip(i)< 0$，则
+\begin{equation}
+  \begin{array}{l}
+	ip(i)=ip(i)-Nx, \hspace{0.3cm} \text{if} \hspace{0.3cm} ip(i)>Nx\\
+	ip(i)=ip(i)+Nx,  \hspace{0.3cm} \text{if} \hspace{0.3cm}  ip(i)<0
+  \end{array}
+  \end{equation}
+  而$X_p(i)$保持不变。
+\item[二.] {\bf 入流条件}
+
+假设左侧为入流，对于单元点，我们令左侧虚拟单元$-1$中的单元点始终放在单元中心，输运值为入流值。
+
+\begin{equation}
+  X(-1)=0,\hspace{0.3cm} \bar{z}(-1)=z_{\text{in}}
+  \end{equation}
+
+对于粒子点随着流体流入，我们在入流中添加新的粒子点，粒子点的总数会出现浮动，假设粒子点的数量用$N_p$表示，初始时$N_p=Nx$。 当$0$单元中不存在粒子点时，将新的粒子点放置在单元中心，粒子点的输运值为入流输运值，粒子点总数加$1$。
+
+\begin{equation}
+  \left\{
+  \begin{array}{l}
+  N_p=N_p+1\\
+  ip(N_p)=0\\
+  X_p(N_p)=0\\ 
+  \bar{z}_p(N_p)=z_{\text{in}}
+ \end{array} 
+ \right.
+  \hspace{0.3cm} \text{if}\hspace{0.3cm} \text{Mrk}(0)=0
+  \end{equation}
+  其中$\text{Mrk}$ 为单元中粒子点数目标记函数。
+\item[三.] {\bf 出流条件}
+
+  和入流相似，假设右侧为出流条件，对于单元点，我们另虚拟单元$Nx+1$中的单元点始终放在单元中心，输运值为$Nx$单元点输运值。
+
+\begin{equation}
+  X(0)=0,\hspace{0.3cm} \bar{z}(0)=z_{\text{in}}
+  \end{equation}
+对于粒子点，随着流出，粒子点的总数会减少，当有粒子点$ip(i)>Nx$时，我们将它去掉，并调整序号。
+\begin{equation}
+\left\{
+  \begin{array}{l}
+	ip(i)=ip(N_p)\\
+	X_p(i)=X_p(N_p)\\
+ \bar{z}_p(i)=\bar{z}_p(N_p)\\
+ N_p=N_p-1
+ \end{array}
+ \right.
+ \hspace{0.3cm} \text{if} \hspace{0.3cm} ip(i)>Nx
+ \end{equation}
+\item[四.] {\bf 固壁反射条件}
+
+假设图 \ref{fig:illu_case} 中，左边为固壁，对于单元点有边界条件
+\begin{equation}
+  X(0)=0,\hspace{0.3cm} X(-1)=-X(1),\hspace{0.3cm} \bar{z}(-1)=\bar{z}(1)
+\end{equation}
+其中$\bar{z}(0)$不做特殊处理。
+
+对于粒子点有，边界无法穿透，因此如果有粒子穿越边界，我们将它做反射
+
+\begin{equation}
+  \left\{
+  \begin{array}{l}
+  \text{tmp}=ip(i)+X_p\\
+  ip(i)=-\text{floor}(\text{tmp}+0.5)\\
+  X_p(i)=-(\text{tmp}+ip(i))\\
+  \end{array}
+  \right.
+  \hspace{0.3cm} \text{if } \hspace{0.3cm} \text{tmp}<0
+\end{equation}
+\end{enumerate}
+
+
+\subsection{DIP方法一维伪代码}
+为了更清晰的演示DIP方法的求解过程，下面我们给出DIP方法在一维中的伪代码。
+
+\hspace{-0.8cm}\rule [-10pt]{14.3cm}{0.02cm}
+
+\hspace{5cm}\color{black!60!red!80!}双信息点方法伪代码}
+\begin{spacing}{1.0}
+  \newcounter{Lcount}
+  \begin{list}{(\arabic{Lcount})}{\usecounter{Lcount} \setlength{\rightmargin}{\leftmargin}}
+
+%\setlength{\parskip}{0\baselineskip}
+  \addtocounter{Lcount}{-1}
+  {\color{black}
+\small \item {初始化}} 
+  \scriptsize{\color{black!80}
+
+	$X(i)=0$  
+	{ \color{black!60} !第i单元信息点在单元内的坐标，介于-0.5和0.5之间}{ \color{black!80}}
+
+	$\hat{U}(i)=U(i)$
+	{ \color{black!60} !第i单元信息点上函数值}{ \color{black!80}}
+
+	$NI=NX$ 
+	{ \color{black!60} !粒子信息点数目，只和边界的流入流出有关}{ \color{black!80}}
+
+    $I(i)=i$  
+	{ \color{black!60} !第i粒子信息点所在的单元}{ \color{black!80}}
+
+	$X_p(i)=0$
+	{ \color{black!60} !第i粒子信息点所在I单元种的坐标}{ \color{black!80}}
+
+	$U_p(i)=U(i)$
+	{ \color{black!60} !第i粒子信息点上的函数值}{ \color{black!80}}
+
+	\vspace{0.2cm}
+  }
+  { \color{black!60!blue!80}DO}
+  {\color{black!80} $it=1,NT$} {\color{black!60} ! 时间循环}
+
+  {\color{black}
+ \normalsize \item {每时间步开始}}
+  \scriptsize
+
+  { \color{black!80}  
+
+
+$Mrk(i)=0$ 
+{ \color{black!60} !用来标记第i单元中是否有信息点，0为无信息点，1为有单元信息点，2为有粒子信息点}{ \color{black!80}}
+}
+
+\normalsize {\color{black}
+\item  计算单元信息点，粒子信息点}
+ \scriptsize 
+
+ \hspace{0.5cm}{\color{black!60!blue!80}DO} 
+ { \color{black!80} $i=0,NX+1$}
+  { \color{black!60} !推进单元信息点}
+{ \color{black!80}
+
+ \hspace{1.0cm} $s_x=sign(X(i))$
+
+ \hspace{1.0cm}	
+$u_c(i)=(1-|X|)u(i)+|X|u(i+s_x)$
+}
+  { \color{black!60} !插值单位信息点位置的速度}
+  { \color{black!80}
+
+ \hspace{1.0cm}	$
+	L_x=X(i)+u_c(i)\Delta t/ \Delta x,\\
+	$
+
+%%
+ \hspace{1.0cm}
+ $\hat{X}(i)=L_x-floor(L_x+0.5)$
+
+ \hspace{1.0cm}
+	$M(i)=i+floor(L_x+0.5)$
+}
+  { \color{black!60} !i单元信息点移动到$M$单元} {\color{black!80}
+
+
+\hspace{0.5cm}{ \color{black!60!blue!80}END DO}
+
+\vspace{0.2cm}
+
+\normalsize 
+%{\color{black}
+%\item 计算粒子信息点并修正单元信息点}
+ \scriptsize 
+
+\hspace{0.5cm}{\color{black!60!blue!80}DO}
+{ \color{black!80} $i=1,NI$}
+  { \color{black!60} !推进粒子信息点}
+
+  { \color{black!80}
+
+ \hspace{1.0cm} $s_x=sign(X_p(i))$
+
+ \hspace{1.0cm}	
+$u_p(i)=(1-|X_p|)u(I)+|X|u(I+s_x)$
+}
+  { \color{black!60} !插值粒子信息点位置的速度}
+  { \color{black!80}
+
+ \hspace{1.0cm}	$
+	L_x=X_p(i)+u_p(i)\Delta t/ \Delta x,\\
+	$
+
+%%
+ \hspace{1.0cm}
+ ${X_p}(i)=L_x-floor(L_x+0.5)$
+
+ \hspace{1.0cm}
+	$I(i)=I(i)+floor(L_x+0.5)$
+
+}
+
+
+
+\hspace{0.5cm}{ \color{black!60!blue!80}END DO}
+
+\small{调用边界条件1}
+
+\vspace{0.2cm}
+
+ \scriptsize 
+ \hspace{0.5cm}{\color{black!60!blue!80}DO}
+ { \color{black!80} $i=1,NX$}
+  { \color{black!60} !更新单元信息点}
+
+\hspace{1cm} {\color{black!60!blue!80}IF}
+{\color{black!80}( $Mrk(M)=0.or.|X(M)|.ge.|\hat{X}(i)|)$}{ \color{black!60!blue!80}then}
+
+\hspace{1.5cm}
+$X(M)=\hat{X}(i)$
+
+
+\hspace{1.5cm}
+$\hat{U}(M)=\hat{U}(i)$
+  { \color{black!60} !用更接近中心点的信息点作为新的信息点}
+
+\hspace{1.5cm} $Mrk(M)=1$
+
+\hspace{1cm} {\color{black!60!blue!80}ENDIF}
+
+\hspace{0.5cm}{ \color{black!60!blue!80}END DO}
+
+\vspace{0.2cm}
+
+ \hspace{0.5cm}{\color{black!60!blue!80}DO}
+ { \color{black!80} $i=1,NI$}
+
+\hspace{1cm} {\color{black!60!blue!80}IF}
+{\color{black!80}( $Mrk(I(i)) \ne 2.or.|X(I(i))|.ge.|X_p(i)|)$}{ \color{black!60!blue!80}then}
+  { \color{black!60} !用粒子信息点修正单元信息}
+
+{\color{black!80}
+\hspace{1.5cm}
+$X(I(i))=X_p(i)$
+
+\hspace{1.5cm}
+$\hat{U}(I(i))=U_p(i)$
+}
+  { \color{black!60} !用更接近中心点的信息点作为新的信息点}
+
+\hspace{1.5cm} $Mrk(I)=2$
+
+\hspace{1cm} {\color{black!60!blue!80}ENDIF}
+
+\hspace{0.5cm}{ \color{black!60!blue!80}END DO}
+
+
+\normalsize {\color{black}
+
+\small{调用边界条件2}
+
+\vspace{0.2cm}
+
+\item 如果单元$i$没有信息点既 $Mrk(i)=0$}
+ \scriptsize 
+
+\hspace{0.5cm}{\color{black!60!blue!80}DO}
+{ \color{black!80} $i=1,NX$}
+
+\hspace{1cm}{ \color{black!60!blue!80}IF}
+{ \color{black!80}( $Mrk(i)=0$)}{ \color{black!60!blue!80}then}
+{\color{black!80}
+
+\hspace{1.5cm}  $	X(i)=0$,
+  }
+
+%\hspace{1.5cm} {\color{black!60!blue!80}IF}
+%{\color{black!80} ($u(i) >0$)}{ \color{black!60!blue!80}then}
+%{ \color{black!60} !选取速度上游单元信息点函数值作为新的单元函数}
+%
+%\hspace{2.0cm}{\color{black!60!blue!80}DO}
+%{ \color{black!80} $i=0,NX$}
+%
+%\hspace{2.5cm} {\color{black!60!blue!80}IF}
+%{\color{black!80} ($Mrk(i-j)\ne 0)$}{ \color{black!60!blue!80}then} 
+%{ \color{black!60} !寻找最近单元信息点}
+%
+%{\color{black!80}
+%\hspace{3.0cm}
+%$is=j$
+%
+%\hspace{3.0cm}
+%EXIT
+%}
+%
+%\hspace{2.5cm} {\color{black!60!blue!80}END IF
+%
+%\hspace{2.0cm}{\color{black!60!blue!80}END DO}
+%
+{\color{black!80}
+\hspace{1.5cm} $\hat{U}(i)=\hat{U}(i-1)$,
+(IF $1-X(i-1)<1+X(i+1)$) 
+}
+{\color{black!60} !左侧信息点更接近}
+
+%\hspace{2.0cm}{\color{black!60!blue!80}DO}
+%{ \color{black!80} $i=0,NX$}
+%
+%\hspace{2.5cm} {\color{black!60!blue!80}IF}
+%{\color{black!80} ($Mrk(i+j)\ne 0)$}{ \color{black!60!blue!80}then} 
+%
+%{\color{black!80}
+%\hspace{3.0cm}
+%$is=j$
+%
+%\hspace{3.0cm}
+%EXIT
+%}
+%
+%\hspace{2.5cm} {\color{black!60!blue!80}END IF}
+%
+%\hspace{2.0cm}{\color{black!60!blue!80}END DO}
+%
+{\color{black!80}
+\hspace{1.5cm} $\hat{U}(i)=\hat{U}(i+1)$,
+(IF $1-X(i-1)>1+X(i+1)$) 
+{\color{black!60} !右侧信息点更接近}
+
+\hspace{1.0cm} END IF}
+{\color{black!80}
+
+\hspace{1.0cm} $U(i)=\hat{U}(i)$.}
+{\color{black!60} !更新单元 $i$中的函数信息}
+
+\hspace{0.5cm} {\color{black!60!blue!80}  END DO
+
+END DO}{ \color{black!60} !the END}
+}
+\end{list}
+\end{spacing}
+%
+\normalsize  
+
+
 
 
 

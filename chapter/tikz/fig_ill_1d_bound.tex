@@ -1,0 +1,43 @@
+\XeTeXinputencoding "GB2312"
+\begin{figure}[H]
+  \centering
+ \begin{tikzpicture}
+	\node [circle,draw,inner sep=0.5mm] at (1,0){}; 
+\node  [circle,draw,inner sep=0.5mm] at (2,0){};
+\node  [circle, draw,inner sep=0.5mm] at (3,0){};
+\node  [circle, draw,inner sep=0.5mm] at (4,0){};
+\node  [circle, draw,inner sep=0.5mm] at (6,0){};
+\node  [circle, draw,inner sep=0.5mm] at (7,0){};
+\node  [circle, draw,inner sep=0.5mm] at (8,0){};
+\node  [circle, draw,inner sep=0.5mm] at (9,0){};
+
+\draw [line width=1pt, color=black!40,dashed](0.5,-0.3)--(0.5,0.3);
+\draw [line width=1pt, color=black!40,dashed](1.5,-0.3)--(1.5,0.3);
+\draw [line width=1pt, color=black!40](2.5,-0.3)--(2.5,0.3);
+\draw [line width=1pt, color=black!40](3.5,-0.3)--(3.5,0.3);
+\draw [line width=1pt, color=black!40](6.5,-0.3)--(6.5,0.3);
+\draw [line width=1pt, color=black!40](7.5,-0.3)--(7.5,0.3);
+\draw [line width=1pt, color=black!40,dashed](8.5,-0.3)--(8.5,0.3);
+\draw [line width=1pt, color=black!40,dashed](9.5,-0.3)--(9.5,0.3);
+\draw  [line width=1pt,color=black!60,dashed] (4.0,0)--(6.0,0);
+\draw  [line width=1pt,color=black!60](1.5,0)--(4,0);
+\draw  [line width=1pt,color=black!60,dashed](0.5,0)--(2.0,0);
+\draw  [line width=1pt,color=black!60](6.,0)--(8.,0) ;
+\draw  [line width=1pt,color=black!60,dashed](8,0)--(9.5,0) ;
+\draw  [line width=1.2pt,color=black!70](2.0,-0.6)--(2,0.6) ;
+\draw  [line width=1.2pt,color=black!70](8.0,-0.6)--(8,0.6) ;
+\node at (8.0, 0.8) {\scriptsize 右边界};
+\node at (2.0, 0.8) {\scriptsize 左边界};
+
+\node at (1,-0.3) {\scriptsize $-1$};
+\node at (2.2,-0.3) {\scriptsize $0$};
+\node at (3.,-0.3) {\scriptsize $1$};
+\node at (7.,-0.3) {\scriptsize $N\!x\!-\!1$};
+\node at (8.2,-0.3) {\scriptsize $N\!x$};
+\node at (9.,-0.3) {\scriptsize $N\!x\!+\!1$};
+\end{tikzpicture}
+\caption{边界和虚拟网格一维示意图}
+\label{fig:illu_1d_bound}
+\end{figure}
+
+
