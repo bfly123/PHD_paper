@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.24)  26 AUG 2017 19:58
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.24)  27 AUG 2017 22:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4249,19 +4249,7 @@ ose.tex)
 Underfull \vbox (badness 4193) has occurred while \output is active []
 
  [14]
-[15]
-\c@Lcount=\count199
-
-Underfull \hbox (badness 10000) in paragraph at lines 337--340
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 374--377
-
- []
-
-[16]) [17]
+[15] [16]) [17]
 \openout2 = `chapter/Chapter-Scale.aux'.
 
  (./chapter/Chapter-Scale.tex [18
@@ -4278,7 +4266,10 @@ LaTeX Warning: Citation `powers2005accurate' on page 19 undefined on input line
 LaTeX Warning: Citation `strang1988linear' on page 19 undefined on input line 9
 .
 
-[19]
+
+Underfull \vbox (badness 3029) has occurred while \output is active []
+
+ [19]
 
 LaTeX Warning: Citation `powers2005accurate' on page 20 undefined on input line
  100.
@@ -4313,14 +4304,19 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 145.
- ) 
+ )
+(\end occurred inside a group at level 2)
+
+### simple group (level 2) entered at line 280 ({)
+### simple group (level 1) entered at line 110 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 38218 strings out of 495252
- 759585 string characters out of 6180858
- 807285 words of memory out of 5000000
- 40848 multiletter control sequences out of 15000+600000
- 28946 words of font info for 152 fonts, out of 8000000 for 9000
+ 38202 strings out of 495252
+ 759363 string characters out of 6180858
+ 806256 words of memory out of 5000000
+ 40835 multiletter control sequences out of 15000+600000
+ 27206 words of font info for 144 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 70i,13n,79p,10502b,903s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,13n,79p,10502b,943s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on Ph.D thesis.pdf (32 pages).

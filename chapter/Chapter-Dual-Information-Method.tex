@@ -100,7 +100,7 @@
 
 如果我们研究的是无厚度的传统界面或多相界面时，我们规定界面位于$z$值较小的信息点位置，既图 \ref{fig:illu_case} 中第二种情况。
 
-如果一个单元内有两个甚至多个信息点，如图 \ref{fig:illu_cellpoint_choose}， 根据上面界面位置的规定，首先将$z$较大的单元点消去，如果这之后仍有多个点，则在邻居单元中寻找一个$z$值不同的，选择距离$z$值不同单元最近的$p$点作为新的单元点，如果没有不同的，则随意选取。
+如果一个单元内有多个信息点，如图 \ref{fig:illu_cellpoint_choose}， 根据上面界面位置的规定，我们选择输运值$z$较小的单元点。
 \input{chapter/tikz/fig_illu_case.tex}
 \input{chapter/tikz/fig_illu_cellpoint_choose.tex}
 
@@ -272,256 +272,230 @@ $\Delta t$时间后单元点坐标更新为
 
 \hspace{-0.8cm}\rule [-10pt]{14.3cm}{0.02cm}
 
-\hspace{5cm}\color{black!60!red!80!}双信息点方法伪代码}
-\begin{spacing}{1.0}
-  \newcounter{Lcount}
-  \begin{list}{(\arabic{Lcount})}{\usecounter{Lcount} \setlength{\rightmargin}{\leftmargin}}
+\hspace{5cm}\color{black!60!red!80!}双信息点方法伪代码
 
-%\setlength{\parskip}{0\baselineskip}
-  \addtocounter{Lcount}{-1}
-  {\color{black}
-\small \item {初始化}} 
+\setlength{\parskip}{0\baselineskip}
+  \color{black}
+  \hspace{-0.3cm} {\small {初始化}}
   \scriptsize{\color{black!80}
+  \vspace{0.2cm}
 
-	$X(i)=0$  
-	{ \color{black!60} !第i单元信息点在单元内的坐标，介于-0.5和0.5之间}{ \color{black!80}}
+  \hspace{0.2cm} { \color{black!60} !单元点初始化 \color{black!80}}
+ 
+ \hspace{0.3cm}{\color{black!60!blue!80}DO} 
+ { \color{black!80} $i=0,Nx$}
+ \color{black!80}
 
-	$\hat{U}(i)=U(i)$
-	{ \color{black!60} !第i单元信息点上函数值}{ \color{black!80}}
+  \hspace{0.5cm}
+  $\left\{
+	\begin{array}{l}
+	X(i)=0\\
+	\bar{z}(i)=z(i)\\
+	\end{array}
+	\right.
+	$
+  \hspace{2cm} { \color{black!60} !其中$-0.5<X(i)\le 0.5$为单元内坐标}{ \color{black!80}}
 
-	$NI=NX$ 
-	{ \color{black!60} !粒子信息点数目，只和边界的流入流出有关}{ \color{black!80}}
+ \hspace{0.3cm}{\color{black!60!blue!80}ENDDO} 
+ \color{black!80}
 
-    $I(i)=i$  
-	{ \color{black!60} !第i粒子信息点所在的单元}{ \color{black!80}}
+  \vspace{0.2cm}
 
-	$X_p(i)=0$
-	{ \color{black!60} !第i粒子信息点所在I单元种的坐标}{ \color{black!80}}
+  \hspace{0.2cm}
+   { \color{black!60} !粒子点初始化 \color{black!80}}
 
-	$U_p(i)=U(i)$
-	{ \color{black!60} !第i粒子信息点上的函数值}{ \color{black!80}}
+  \hspace{0.2cm} $Np=Nx$  
+	\hspace{2cm}  { \color{black!60} !$Np$为粒子点总数，会因为出流和入流变化}{ \color{black!80}}
 
-	\vspace{0.2cm}
-  }
-  { \color{black!60!blue!80}DO}
-  {\color{black!80} $it=1,NT$} {\color{black!60} ! 时间循环}
+ \hspace{0.3cm}{\color{black!60!blue!80}DO} 
+ { \color{black!80} $i=0,Np$}
+ \color{black!80}
 
-  {\color{black}
- \normalsize \item {每时间步开始}}
+  \hspace{0.5cm}
+  $\left\{
+	\begin{array}{l}
+	 ip(i)=i\\ X_p(i)=0\\\bar{z}_p(i)=z(i)
+	\end{array}
+\right. $
+	\hspace{2cm}  { \color{black!60} !其中$N_p$为粒子点总数，会因为出流和入流变化}{ \color{black!80}}
+
+ \hspace{0.3cm}{\color{black!60!blue!80}ENDDO} 
+ \color{black!80}
+ 
+ \vspace{0.3cm} 
+
+ \hspace{-0.5cm}
+   \color{black!60!blue!80}DO
+  \color{black!80} $it=1,NT$ \color{black!60} ! 时间循环
+  \color{black}
   \scriptsize
 
-  { \color{black!80}  
+   \color{black!80}  
 
+   $\text{Mrk}(i)=0, \hspace{0.3cm}  \text{Mrk}_p(i)=0$ 
+  \hspace{2cm} { \color{black!60} !用来标记第i单元中临时的单元点数量和粒子点数量} \color{black!80}
 
-$Mrk(i)=0$ 
-{ \color{black!60} !用来标记第i单元中是否有信息点，0为无信息点，1为有单元信息点，2为有粒子信息点}{ \color{black!80}}
-}
+\normalsize \color{black}
 
-\normalsize {\color{black}
-\item  计算单元信息点，粒子信息点}
- \scriptsize 
+ \begin{enumerate}[1.]
+\setlength{\parskip}{0\baselineskip}
+\vspace{-0.2cm}
 
- \hspace{0.5cm}{\color{black!60!blue!80}DO} 
- { \color{black!80} $i=0,NX+1$}
-  { \color{black!60} !推进单元信息点}
-{ \color{black!80}
+\small  \item 单元点的运动追踪
+  
+\scriptsize
 
- \hspace{1.0cm} $s_x=sign(X(i))$
+ \color{black!60!blue!80}DO
+  \color{black!80} $i=-1,Nx+1$
+   \color{black!60}
+ \color{black!80}
 
- \hspace{1.0cm}	
-$u_c(i)=(1-|X|)u(i)+|X|u(i+s_x)$
-}
-  { \color{black!60} !插值单位信息点位置的速度}
-  { \color{black!80}
+ \hspace{0.3cm} $s_x=sign(X(i))$
 
- \hspace{1.0cm}	$
-	L_x=X(i)+u_c(i)\Delta t/ \Delta x,\\
+ \hspace{0.3cm}	
+ $\bar{u}(i)=(1-|X|)u(i)+|X|u(i+s_x)$
+ \hspace{2cm}   \color{black!60} ! 速度插值
+   \color{black!80}
+
+ \hspace{0.3cm}	$
+ L_x=X(i)+\bar{u}(i)\Delta t/ \Delta x,
 	$
 
-%%
- \hspace{1.0cm}
- $\hat{X}(i)=L_x-floor(L_x+0.5)$
+  \hspace{0.3cm}
+ $X(i)=L_x-floor(L_x+0.5)$
 
- \hspace{1.0cm}
+ \hspace{0.3cm}
 	$M(i)=i+floor(L_x+0.5)$
-}
-  { \color{black!60} !i单元信息点移动到$M$单元} {\color{black!80}
+\hspace{2cm}   { \color{black!60} ! i单元点移动到$M$单元} {\color{black!80}
 
+\color{black!80}
+\small  \item 单元点的更新
+\scriptsize
 
-\hspace{0.5cm}{ \color{black!60!blue!80}END DO}
+\hspace{0.3cm} \color{black!60!blue!80}IF
+\color{black!80} $\text{Mrk}(M)=0$ \color{black!60!blue!80}THEN
 
-\vspace{0.2cm}
+\color{black!80}
+\hspace{0.6cm} 
+$X'(M)=X(i), \hspace{0.3cm} \bar{z}'(M)=\bar{z}(i)$
 
-\normalsize 
+\hspace{0.3cm} \color{black!60!blue!80}ELSE
+
+\hspace{0.6cm} \color{black!60!blue!80}IF 
+\color{black!80} $\bar{z}(i)<\bar{z}'(M)$  
+\color{black!60!blue!80}THEN
+
+\color{black!80} 
+\hspace{0.9cm} 
+$X'(M)=X(i), \hspace{0.3cm} \bar{z}'(M)=\bar{z}(i)$
+
+\hspace{0.6cm} \color{black!60!blue!80}ENDIF
+\hspace{0.3cm} \color{black!60!blue!80}ENDIF
+
+\hspace{0.3cm}
+\color{black!80} $\text{Mrk}(M)=\text{Mrk}(M)+1$
+
+ \color{black!60!blue!80}END DO
+
+ \color{black!80}
+ 
+
+\small
 %{\color{black}
-%\item 计算粒子信息点并修正单元信息点}
+\item  粒子点的运动追踪
+  
  \scriptsize 
 
-\hspace{0.5cm}{\color{black!60!blue!80}DO}
-{ \color{black!80} $i=1,NI$}
-  { \color{black!60} !推进粒子信息点}
 
-  { \color{black!80}
+\color{black!60!blue!80}DO
+ \color{black!80} $i=0,Np$
 
- \hspace{1.0cm} $s_x=sign(X_p(i))$
+   \color{black!80}
 
- \hspace{1.0cm}	
-$u_p(i)=(1-|X_p|)u(I)+|X|u(I+s_x)$
-}
-  { \color{black!60} !插值粒子信息点位置的速度}
-  { \color{black!80}
+ \hspace{0.3cm} $s_x=sign(X_p(i))$
 
- \hspace{1.0cm}	$
-	L_x=X_p(i)+u_p(i)\Delta t/ \Delta x,\\
+ \hspace{0.3cm}	
+ $\bar{u}_p(i)=(1-|X_p|)u(ip)+|X|u(ip+s_x)$
+ \hspace{1cm}  \color{black!60} ! 速度插值
+   \color{black!80}
+
+
+ \hspace{0.3cm}	$
+ L_x=X_p(i)+\bar{u}_p(i)\Delta t/ \Delta x,
 	$
 
-%%
- \hspace{1.0cm}
+ \hspace{0.3cm}
  ${X_p}(i)=L_x-floor(L_x+0.5)$
 
- \hspace{1.0cm}
-	$I(i)=I(i)+floor(L_x+0.5)$
+ \hspace{0.3cm}
+	$ip(i)=ip(i)+floor(L_x+0.5)$
 
-}
+\small \item 粒子点修正单元点
+
+  \scriptsize
+\hspace{0.3cm} \color{black!60!blue!80}IF
+\color{black!80} $\text{Mrk}_p(ip)=0$ \color{black!60!blue!80}THEN
+
+\color{black!80}
+\hspace{0.6cm} 
+$X'(ip)=X_p(i), \hspace{0.3cm} \bar{z}'(ip)=\bar{z}_p(i)$
+
+\hspace{0.3cm} \color{black!60!blue!80}ELSE
+
+\hspace{0.6cm} \color{black!60!blue!80}IF 
+\color{black!80} $\bar{z}_p(i)<\bar{z}'(ip)$  
+\color{black!60!blue!80}THEN
+
+\color{black!80} 
+\hspace{0.9cm} 
+$X'(ip)=X_p(i), \hspace{0.3cm} \bar{z}'(ip)=\bar{z}_p(i)$
+
+\hspace{0.6cm} \color{black!60!blue!80}ENDIF
+\hspace{0.3cm} \color{black!60!blue!80}ENDIF
 
 
+\hspace{0.3cm}
+\color{black!80} $\text{Mrk}_p(ip)=\text{Mrk}_p(ip)+1$
 
-\hspace{0.5cm}{ \color{black!60!blue!80}END DO}
+ \color{black!60!blue!80}END DO
 
-\small{调用边界条件1}
 
-\vspace{0.2cm}
+   \color{black!80}
+\small \item 在空单元生成单元点
 
  \scriptsize 
- \hspace{0.5cm}{\color{black!60!blue!80}DO}
- { \color{black!80} $i=1,NX$}
-  { \color{black!60} !更新单元信息点}
+\color{black!60!blue!80}DO
+  \color{black!80} $i=0,Nx$
 
-\hspace{1cm} {\color{black!60!blue!80}IF}
-{\color{black!80}( $Mrk(M)=0.or.|X(M)|.ge.|\hat{X}(i)|)$}{ \color{black!60!blue!80}then}
+\hspace{0.3cm} {\color{black!60!blue!80}IF}
+\color{black!80} $\text{Mrk}(i)+\text{Mrk}_p(i)=0$  { \color{black!60!blue!80}THEN}
 
-\hspace{1.5cm}
-$X(M)=\hat{X}(i)$
+\hspace{0.6cm} $Lx=-u(i)\Delta t/\Delta x$
 
+\hspace{0.6cm} $M=i+\text{floor}(Lx+0.5)$
 
-\hspace{1.5cm}
-$\hat{U}(M)=\hat{U}(i)$
-  { \color{black!60} !用更接近中心点的信息点作为新的信息点}
+\hspace{0.6cm} $X'(i)=0$
 
-\hspace{1.5cm} $Mrk(M)=1$
+\hspace{0.6cm} $\hat{z}'(i)=\hat{z}(M)$
 
-\hspace{1cm} {\color{black!60!blue!80}ENDIF}
+\hspace{0.3cm} {\color{black!60!blue!80}ENDIF}
 
-\hspace{0.5cm}{ \color{black!60!blue!80}END DO}
-
-\vspace{0.2cm}
-
- \hspace{0.5cm}{\color{black!60!blue!80}DO}
- { \color{black!80} $i=1,NI$}
-
-\hspace{1cm} {\color{black!60!blue!80}IF}
-{\color{black!80}( $Mrk(I(i)) \ne 2.or.|X(I(i))|.ge.|X_p(i)|)$}{ \color{black!60!blue!80}then}
-  { \color{black!60} !用粒子信息点修正单元信息}
-
-{\color{black!80}
-\hspace{1.5cm}
-$X(I(i))=X_p(i)$
-
-\hspace{1.5cm}
-$\hat{U}(I(i))=U_p(i)$
-}
-  { \color{black!60} !用更接近中心点的信息点作为新的信息点}
-
-\hspace{1.5cm} $Mrk(I)=2$
-
-\hspace{1cm} {\color{black!60!blue!80}ENDIF}
-
-\hspace{0.5cm}{ \color{black!60!blue!80}END DO}
+ \color{black!60!blue!80}END DO}
 
 
-\normalsize {\color{black}
+\color{black!60!blue!80}DO
+  \color{black!80} $i=0,Nx$
 
-\small{调用边界条件2}
+  \hspace{0.3cm}  $\bar{z}(i)=\bar{z}'(i)$
 
-\vspace{0.2cm}
+  \hspace{0.3cm}  $X(i)=X'(i)$
 
-\item 如果单元$i$没有信息点既 $Mrk(i)=0$}
- \scriptsize 
+  \hspace{0.3cm}  $z(i)=\bar{z}(i)$
 
-\hspace{0.5cm}{\color{black!60!blue!80}DO}
-{ \color{black!80} $i=1,NX$}
+ \color{black!60!blue!80}END DO
 
-\hspace{1cm}{ \color{black!60!blue!80}IF}
-{ \color{black!80}( $Mrk(i)=0$)}{ \color{black!60!blue!80}then}
-{\color{black!80}
+\end{enumerate}
 
-\hspace{1.5cm}  $	X(i)=0$,
-  }
-
-%\hspace{1.5cm} {\color{black!60!blue!80}IF}
-%{\color{black!80} ($u(i) >0$)}{ \color{black!60!blue!80}then}
-%{ \color{black!60} !选取速度上游单元信息点函数值作为新的单元函数}
-%
-%\hspace{2.0cm}{\color{black!60!blue!80}DO}
-%{ \color{black!80} $i=0,NX$}
-%
-%\hspace{2.5cm} {\color{black!60!blue!80}IF}
-%{\color{black!80} ($Mrk(i-j)\ne 0)$}{ \color{black!60!blue!80}then} 
-%{ \color{black!60} !寻找最近单元信息点}
-%
-%{\color{black!80}
-%\hspace{3.0cm}
-%$is=j$
-%
-%\hspace{3.0cm}
-%EXIT
-%}
-%
-%\hspace{2.5cm} {\color{black!60!blue!80}END IF
-%
-%\hspace{2.0cm}{\color{black!60!blue!80}END DO}
-%
-{\color{black!80}
-\hspace{1.5cm} $\hat{U}(i)=\hat{U}(i-1)$,
-(IF $1-X(i-1)<1+X(i+1)$) 
-}
-{\color{black!60} !左侧信息点更接近}
-
-%\hspace{2.0cm}{\color{black!60!blue!80}DO}
-%{ \color{black!80} $i=0,NX$}
-%
-%\hspace{2.5cm} {\color{black!60!blue!80}IF}
-%{\color{black!80} ($Mrk(i+j)\ne 0)$}{ \color{black!60!blue!80}then} 
-%
-%{\color{black!80}
-%\hspace{3.0cm}
-%$is=j$
-%
-%\hspace{3.0cm}
-%EXIT
-%}
-%
-%\hspace{2.5cm} {\color{black!60!blue!80}END IF}
-%
-%\hspace{2.0cm}{\color{black!60!blue!80}END DO}
-%
-{\color{black!80}
-\hspace{1.5cm} $\hat{U}(i)=\hat{U}(i+1)$,
-(IF $1-X(i-1)>1+X(i+1)$) 
-{\color{black!60} !右侧信息点更接近}
-
-\hspace{1.0cm} END IF}
-{\color{black!80}
-
-\hspace{1.0cm} $U(i)=\hat{U}(i)$.}
-{\color{black!60} !更新单元 $i$中的函数信息}
-
-\hspace{0.5cm} {\color{black!60!blue!80}  END DO
-
-END DO}{ \color{black!60} !the END}
-}
-\end{list}
-\end{spacing}
 %
 \normalsize  
 
