@@ -239,13 +239,19 @@ $\begin{array}{l}X'(ip)=(X_p(i)+\text{Mrk}_p(ip)X'_p(ip))/(\text{Mrk}_p(ip)+1) \
 $\begin{array}{l} L_x=-u(i)\Delta t/\Delta x\\
 M=i+\text{floor}(L_x+0.5)\\
 X'(i)=0\\
-\hat{z}'(i)=\hat{z}(M)
+\bar{z}'(i)=\bar{z}(M)
 \end{array}
 $
 \hspace{3.cm}    \color{black!60} ! 回溯生成单元点 \color{black!80}
 
 \fbox{
-
+  \hspace{0.3cm}  
+$\begin{array}{l} 
+  L_1=|X'(i+1)+1|\\
+  L_2=|X'(i-1)-1|\\
+ \bar{z}'(i)=(\bar{z}'(i+1)/L_1+\bar{z}'(i-1)/L_2)/(1/L_1+1/L_2)
+\end{array}$
+}
 
 \hspace{0.3cm} {\color{black!60!blue!80}ENDIF}
 

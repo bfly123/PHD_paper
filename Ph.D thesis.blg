@@ -2,155 +2,53 @@ This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Ph.D thesis.aux
 The style file: acm.bst
-A level-1 auxiliary file: chapter/Chapter-Introduction.aux
 A level-1 auxiliary file: chapter/Chapter-Dual-Information-Method.aux
 A level-1 auxiliary file: chapter/Chapter-Scale.aux
-Reallocated field_info (elt_size=4) to 10290 items from 5000.
-Database file #1: bib/mybibfile.bib
-Repeated entry---line 1727 of file bib/mybibfile.bib
- : @book{lee2008detonation
- :                        ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 1769 of file bib/mybibfile.bib
- : @article{toro1994restoration
- :                             ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 2139 of file bib/mybibfile.bib
- : @article{lax1954weak
- :                     ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 2171 of file bib/mybibfile.bib
- : @article{oleinik1957discontinuous
- :                                  ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 2403 of file bib/mybibfile.bib
- : @article{huang2002convergence
- :                              ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 2617 of file bib/mybibfile.bib
- : @article{lax1957hyperbolic
- :                           ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 2921 of file bib/mybibfile.bib
- : @article{schecter1991undercompressive
- :                                      ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 3093 of file bib/mybibfile.bib
- : @article{toro1994restoration
- :                             ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 3271 of file bib/mybibfile.bib
- : @article{zalesak1979fully
- :                          ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 3671 of file bib/mybibfile.bib
- : @article{lax1954weak
- :                     ,
-I'm skipping whatever remains of this entry
-I was expecting an "="---line 4283 of file bib/mybibfile.bib
- :   year={1992},还有其它方法，如连续界面力模型（cotinuum 
- :                                                                        surface force model）\cite{
-I'm skipping whatever remains of this entry
-Repeated entry---line 4289 of file bib/mybibfile.bib
- : @article{de2004front
- :                     ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 4309 of file bib/mybibfile.bib
- : @article{harlow1965numerical
- :                             ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 4369 of file bib/mybibfile.bib
- : @article{tome1994gensmac
- :                         ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 4543 of file bib/mybibfile.bib
- : @article{enright2002hybrid
- :                           ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 5047 of file bib/mybibfile.bib
- : @techreport{von1942theory
- :                          ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 5209 of file bib/mybibfile.bib
- : @book{lee2008detonation
- :                        ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 5303 of file bib/mybibfile.bib
- : @article{balsara2000monotonicity
- :                                 ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 5343 of file bib/mybibfile.bib
- : @article{martin2006bandwidth
- :                             ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 5383 of file bib/mybibfile.bib
- : @article{ren2003characteristic
- :                               ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 5773 of file bib/mybibfile.bib
- : @article{roe1996notes
- :                      ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 5933 of file bib/mybibfile.bib
- : @inproceedings{lombard1983multi
- :                                ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 5947 of file bib/mybibfile.bib
- : @misc{wadaaccurate
- :                   ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 5973 of file bib/mybibfile.bib
- : @article{liou1996sequel
- :                        ,
-I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "van1979towards1"
-Warning--I didn't find a database entry for "anderson1998diffuse"
-Warning--empty journal in freidberg1987ideal
-Warning--empty journal in glimm1970decay
-Warning--empty journal in harten1989eno
-Warning--empty journal in osher1985shock
-Warning--can't use both volume and number fields in smooke1988comparison
-Warning--empty journal in van1973towards
-Warning--empty year in zhacomparative
-You've used 328 entries,
+I found no \bibdata command---while reading file Ph.D thesis.aux
+Warning--I didn't find a database entry for "powers2005accurate"
+Warning--I didn't find a database entry for "evans1957particle"
+Warning--I didn't find a database entry for "harlow1957hydrodynamic"
+Warning--I didn't find a database entry for "kim2005phase"
+Warning--I didn't find a database entry for "strang1988linear"
+You've used 0 entries,
             2253 wiz_defined-function locations,
-            2154 strings with 53976 characters,
-and the built_in function-call counts, 105791 in all, are:
-= -- 10655
-> -- 4371
+            533 strings with 4034 characters,
+and the built_in function-call counts, 18 in all, are:
+= -- 0
+> -- 0
 < -- 0
-+ -- 1907
-- -- 1486
-* -- 8812
-:= -- 17166
-add.period$ -- 982
-call.type$ -- 328
-change.case$ -- 1696
++ -- 0
+- -- 0
+* -- 2
+:= -- 7
+add.period$ -- 0
+call.type$ -- 0
+change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 335
-duplicate$ -- 3376
-empty$ -- 8668
-format.name$ -- 1486
-if$ -- 21625
+cite$ -- 0
+duplicate$ -- 0
+empty$ -- 1
+format.name$ -- 0
+if$ -- 1
 int.to.chr$ -- 0
-int.to.str$ -- 328
-missing$ -- 337
-newline$ -- 1636
-num.names$ -- 656
-pop$ -- 1395
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 3
+num.names$ -- 0
+pop$ -- 0
 preamble$ -- 1
-purify$ -- 1391
+purify$ -- 0
 quote$ -- 0
-skip$ -- 2002
+skip$ -- 1
 stack$ -- 0
-substring$ -- 8250
-swap$ -- 814
+substring$ -- 0
+swap$ -- 0
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1262
-warning$ -- 7
-while$ -- 1197
-width$ -- 331
-write$ -- 3291
-(There were 24 error messages)
+type$ -- 0
+warning$ -- 0
+while$ -- 0
+width$ -- 0
+write$ -- 2
+(There was 1 error message)

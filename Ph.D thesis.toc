@@ -11,6 +11,7 @@
 \contentsline {subsection}{\numberline {1.2.3}粒子信息点（粒子点）}{11}{subsection.1.2.3}
 \contentsline {subsection}{\numberline {1.2.4}边界处理}{13}{subsection.1.2.4}
 \contentsline {subsection}{\numberline {1.2.5}DIP方法一维伪代码}{16}{subsection.1.2.5}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{19}{appendix.A}
-\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{19}{section.A.1}
-\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{21}{section.A.2}
+\contentsline {subsection}{\numberline {1.2.6}二维DIP方法}{17}{subsection.1.2.6}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{21}{appendix.A}
+\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{21}{section.A.1}
+\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{23}{section.A.2}
