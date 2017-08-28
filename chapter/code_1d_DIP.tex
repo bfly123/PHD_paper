@@ -1,0 +1,267 @@
+\XeTeXinputencoding "GB2312"
+\hspace{5cm}\color{black!60!red!80!}双信息点方法伪代码
+
+\setlength{\parskip}{0\baselineskip}
+  \color{black}
+  \hspace{-0.3cm} {\small {初始化}}
+  \scriptsize{\color{black!80}
+  \vspace{0.2cm}
+
+  \hspace{0.2cm} { \color{black!60} !单元点初始化 \color{black!80}}
+ 
+ \hspace{0.3cm}{\color{black!60!blue!80}DO} 
+ { \color{black!80} $i=0,Nx$}
+ \color{black!80}
+
+  \hspace{0.5cm}
+  $
+	\begin{array}{l}
+	X(i)=0\\
+	\bar{z}(i)=z(i)\\
+	\end{array}
+	$
+  \hspace{2cm} { \color{black!60} ! 其中$-0.5<X(i)\le 0.5$为单元内坐标}{ \color{black!80}}
+
+ \hspace{0.3cm}{\color{black!60!blue!80}ENDDO} 
+ \color{black!80}
+
+  \vspace{0.2cm}
+
+  \hspace{0.2cm}
+   { \color{black!60} !粒子点初始化 \color{black!80}}
+
+  \hspace{0.2cm} $Np=Nx$  
+	\hspace{2.8cm}  { \color{black!60} ! $Np$为粒子点总数，会因为出流和入流变化}{ \color{black!80}}
+
+ \hspace{0.3cm}{\color{black!60!blue!80}DO} 
+ { \color{black!80} $i=0,Np$}
+ \color{black!80}
+
+  \hspace{0.5cm}
+  $
+	\begin{array}{l}
+	 ip(i)=i\\ X_p(i)=0\\\bar{z}_p(i)=z(i)
+	\end{array}
+ $
+	\hspace{1.85cm}  { \color{black!60} ! 其中$N_p$为粒子点总数，会因为出流和入流变化}{ \color{black!80}}
+
+ \hspace{0.3cm}{\color{black!60!blue!80}ENDDO} 
+ \color{black!80}
+ 
+ \vspace{0.3cm} 
+
+ \hspace{-0.5cm}
+   \color{black!60!blue!80}DO
+  \color{black!80} $it=1,NT$ \color{black!60} ! 时间循环
+  \color{black}
+  \scriptsize
+
+   \color{black!80}  
+
+   $\begin{array}{l}
+	 \text{Mrk}(i)=0\\  \text{Mrk}_p(i)=0
+	 \end{array}$ 
+  \hspace{2.5cm}  \color{black!60} !用来标记第i单元中临时的单元点数量和粒子点数量 \color{black!80}
+  
+
+\normalsize \color{black}
+
+ \begin{enumerate}[1.]
+\setlength{\parskip}{0\baselineskip}
+\vspace{-0.2cm}
+
+\small  \item 单元点的运动追踪
+  
+\scriptsize
+
+ \color{black!60!blue!80}DO
+  \color{black!80} $i=-1,Nx+1$
+   \color{black!60}
+ \color{black!80}
+
+ \hspace{0.3cm} $s_x=sign(X(i))$
+
+ \hspace{0.3cm}	
+ $\bar{u}(i)=(1-|X|)u(i)+|X|u(i+s_x)$
+ \hspace{2cm}   \color{black!60} ! 速度插值
+   \color{black!80}
+
+ \hspace{0.3cm}	$
+ L_x=X(i)+\bar{u}(i)\Delta t/ \Delta x,
+	$
+
+  \hspace{0.3cm}
+ $X(i)=L_x-floor(L_x+0.5)$
+
+ \hspace{0.3cm}
+	$M(i)=i+floor(L_x+0.5)$
+\hspace{3cm}   { \color{black!60} ! i单元点移动到$M$单元} {\color{black!80}
+
+\color{black!80}
+\small  \item 单元点的更新
+\scriptsize
+
+\hspace{0.3cm} \color{black!60!blue!80}IF
+\color{black!80} $\text{Mrk}(M)=0$ \color{black!60!blue!80}THEN
+
+\color{black!80}
+\hspace{0.6cm} 
+$X'(M)=X(i)$
+
+
+\hspace{0.6cm} 
+$ \bar{z}'(M)=\bar{z}(i)$
+
+\hspace{0.3cm} \color{black!60!blue!80}ELSE
+
+\hspace{0.6cm} \color{black!60!blue!80}IF 
+\color{black!80} $\bar{z}(i)<\bar{z}'(M)$  
+\color{black!60!blue!80}THEN
+
+\color{black!80} 
+\hspace{0.9cm} 
+$\begin{array}{l} X'(M)=X(i)\\
+\bar{z}'(M)=\bar{z}(i)
+\end{array}$
+\hspace{3.8cm}    \color{black!60} ! 多个单元点，选取$z$值小的点 \color{black!80}
+
+\hspace{0.6cm} \color{black!60!blue!80}ENDIF
+
+
+
+\hspace{0.3cm} \color{black!60!blue!80}ENDIF
+
+\color{black!80} 
+\fbox{
+\hspace{-0.1cm} 
+$\begin{array}{l} X'(M)=(X(i)+\text{Mrk}(M)X'(M))/(\text{Mrk}(M)+1)\\
+  \bar{z}'(M)=(\bar{z}(i)+\text{Mrk}(M)\bar{z}'(M)/(\text{Mrk}(M)+1)
+\end{array}$
+\hspace{0.0cm}    \color{black!60} ! 多个单元点，进行平均\color{black!80}
+}
+
+\hspace{0.3cm}
+\color{black!80} $\text{Mrk}(M)=\text{Mrk}(M)+1$
+
+ \color{black!60!blue!80}END DO
+
+ \color{black!80}
+ 
+
+\small
+%{\color{black}
+\item  粒子点的运动追踪
+  
+ \scriptsize 
+
+
+\color{black!60!blue!80}DO
+ \color{black!80} $i=0,Np$
+
+   \color{black!80}
+
+ \hspace{0.3cm} $s_x=sign(X_p(i))$
+
+ \hspace{0.3cm}	
+ $\bar{u}_p(i)=(1-|X_p|)u(ip)+|X|u(ip+s_x)$
+ \hspace{1.6cm}  \color{black!60} ! 速度插值
+   \color{black!80}
+
+
+   \hspace{0.3cm}	$\begin{array}{l}
+ L_x=X_p(i)+\bar{u}_p(i)\Delta t/ \Delta x\\
+ {X_p}(i)=L_x-floor(L_x+0.5)\\
+	ip(i)=ip(i)+floor(L_x+0.5)
+	\end{array}$
+ \hspace{2.5cm}  \color{black!60} ! i粒子点新位置
+   \color{black!80}
+
+\small \item 粒子点修正单元点
+
+  \scriptsize
+\hspace{0.3cm} \color{black!60!blue!80}IF
+\color{black!80} $\text{Mrk}_p(ip)=0$ \color{black!60!blue!80}THEN
+
+\color{black!80}
+\hspace{0.6cm} 
+$X'(ip)=X_p(i)$
+
+\hspace{0.6cm} 
+$ \bar{z}'(ip)=\bar{z}_p(i)$
+
+\hspace{0.3cm} \color{black!60!blue!80}ELSE
+
+\hspace{0.6cm} \color{black!60!blue!80}IF 
+\color{black!80} $\bar{z}_p(i)<\bar{z}'(ip)$  
+\color{black!60!blue!80}THEN
+\color{black!80} 
+
+\hspace{0.9cm} 
+$\begin{array}{l}X'(ip)=X_p(i) \\
+ \bar{z}'(ip)=\bar{z}_p(i)
+ \end{array}
+ $
+\hspace{3.8cm}    \color{black!60} ! 多个粒子点，选取$z$值小的点 \color{black!80}
+
+\hspace{0.6cm} \color{black!60!blue!80}ENDIF
+
+
+
+\hspace{0.3cm} \color{black!60!blue!80}ENDIF
+
+\color{black!80} 
+\fbox{
+\hspace{-0.1cm} 
+$\begin{array}{l}X'(ip)=(X_p(i)+\text{Mrk}_p(ip)X'_p(ip))/(\text{Mrk}_p(ip)+1) \\
+  \bar{z}'(ip)=(\bar{z}_p(i)+\text{Mrk}_p(ip)\bar{z}'_p(ip))/(\text{Mrk}_p(ip)+1)
+ \end{array}
+ $
+\hspace{0.cm}    \color{black!60} ! 多个粒子点，取平均 \color{black!80}
+}
+
+\hspace{0.3cm}
+\color{black!80} $\text{Mrk}_p(ip)=\text{Mrk}_p(ip)+1$
+
+ \color{black!60!blue!80}END DO
+
+
+   \color{black!80}
+\small \item 在空单元生成单元点
+
+ \scriptsize 
+\color{black!60!blue!80}DO
+  \color{black!80} $i=0,Nx$
+
+\hspace{0.3cm} {\color{black!60!blue!80}IF}
+\color{black!80} $\text{Mrk}(i)+\text{Mrk}_p(i)=0$  { \color{black!60!blue!80}THEN}
+
+\hspace{0.6cm}
+$\begin{array}{l} L_x=-u(i)\Delta t/\Delta x\\
+M=i+\text{floor}(L_x+0.5)\\
+X'(i)=0\\
+\hat{z}'(i)=\hat{z}(M)
+\end{array}
+$
+\hspace{3.cm}    \color{black!60} ! 回溯生成单元点 \color{black!80}
+
+\fbox{
+
+
+\hspace{0.3cm} {\color{black!60!blue!80}ENDIF}
+
+ \color{black!60!blue!80}END DO}
+
+
+\color{black!60!blue!80}DO
+  \color{black!80} $i=0,Nx$
+
+  \hspace{0.3cm}  $\bar{z}(i)=\bar{z}'(i)$
+
+  \hspace{0.3cm}  $X(i)=X'(i)$
+
+  \hspace{0.3cm}  $z(i)=\bar{z}(i)$
+
+ \color{black!60!blue!80}END DO
+
+\end{enumerate}
+

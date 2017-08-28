@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.24)  27 AUG 2017 22:21
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  28 AUG 2017 09:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4249,10 +4249,11 @@ ose.tex)
 Underfull \vbox (badness 4193) has occurred while \output is active []
 
  [14]
-[15] [16]) [17]
+[15] (./chapter/code_1d_DIP.tex [16])) [17]
 \openout2 = `chapter/Chapter-Scale.aux'.
 
- (./chapter/Chapter-Scale.tex [18
+ (./chapter/Chapter-Scale.tex
+[18
 
 
 
@@ -4307,12 +4308,12 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 145.
  )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 280 ({)
+### simple group (level 2) entered at line 7 ({)
 ### simple group (level 1) entered at line 110 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 38202 strings out of 495252
- 759363 string characters out of 6180858
+ 38206 strings out of 495252
+ 759428 string characters out of 6180858
  806256 words of memory out of 5000000
  40835 multiletter control sequences out of 15000+600000
  27206 words of font info for 144 fonts, out of 8000000 for 9000
