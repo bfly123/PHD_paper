@@ -1,17 +1,13 @@
 \let \CTEX@spaceChar \relax 
 \contentsline {chapter}{目录}{i}{chapter*.1}
-\contentsline {part}{\hspace {1em}下部分}{1}{part.1}
-\contentsline {chapter}{\numberline {第一章\hspace {0.3em}}双信息保存（DIP）方法}{3}{chapter.1}
-\contentsline {section}{\numberline {1.1}不同的界面类型和界面方法}{3}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}传统界面}{3}{subsection.1.1.1}
-\contentsline {subsection}{\numberline {1.1.2}多相界面和耗散界面}{4}{subsection.1.1.2}
-\contentsline {section}{\numberline {1.2}双信息保存方法基本思想}{5}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}信息点}{5}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}单元信息点（单元点）}{7}{subsection.1.2.2}
-\contentsline {subsection}{\numberline {1.2.3}粒子信息点（粒子点）}{11}{subsection.1.2.3}
-\contentsline {subsection}{\numberline {1.2.4}边界处理}{13}{subsection.1.2.4}
-\contentsline {subsection}{\numberline {1.2.5}DIP方法一维伪代码}{16}{subsection.1.2.5}
-\contentsline {subsection}{\numberline {1.2.6}二维DIP方法}{17}{subsection.1.2.6}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{21}{appendix.A}
-\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{21}{section.A.1}
-\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{23}{section.A.2}
+\contentsline {chapter}{\numberline {第一章\hspace {0.3em}}双信息保存（DIP）方法}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}不同的界面类型和界面方法}{1}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}传统界面}{1}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}多相界面和耗散界面}{2}{subsection.1.1.2}
+\contentsline {section}{\numberline {1.2}双信息保存方法基本思想}{3}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}信息点}{3}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}单元信息点（单元点）}{5}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}粒子信息点（粒子点）}{9}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.4}边界处理}{11}{subsection.1.2.4}
+\contentsline {subsection}{\numberline {1.2.5}DIP方法一维伪代码}{14}{subsection.1.2.5}
+\contentsline {subsection}{\numberline {1.2.6}二维DIP方法}{15}{subsection.1.2.6}

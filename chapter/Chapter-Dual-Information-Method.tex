@@ -125,7 +125,7 @@
   \begin{equation*}
 	M=i+\text{floor}(L_x+0.5)
 \end{equation*}
-  。由于$k$时间步是已知的，根据求得的位置就可以知道该单元输运值，即
+由于$k$时间步是已知的，根据求得的位置就可以知道该单元输运值，即
   \begin{equation*}
 	\bar{z}^{k+1}(i)=\bar{z}^{k}(M)
  \end{equation*}
@@ -318,8 +318,8 @@ $\Delta t$时间后单元点坐标更新为
 \begin{eqnarray}
   \left\{
  \begin{array}{l}
-   \bar{u}(i,j)=(1-|X|)u(i,j)+|X|u(i+s_x,j),\\
-   \bar{v}(i,j)=(1-|Y|)v(i,j)+|Y|v(i,j+s_y),\\
+   \bar{u}(i,j)=(1-|X|)u(i,j)+|X|u(i+s_x,j)\\
+   \bar{v}(i,j)=(1-|Y|)v(i,j)+|Y|v(i,j+s_y)\\
 	\end{array}
 	\right.
 	\end{eqnarray}

@@ -1,0 +1,380 @@
+\XeTeXinputencoding "GB2312"
+\chapter{二维DIP方法伪代码 }\label{chap:2D_DIP}
+
+\large \color{black!60!red!80!}
+  \color{black!80}
+
+\hspace{-1cm}
+\small
+初始化
+\vspace{0.1cm}
+
+\scriptsize
+ \hspace{0.12cm}\color{black!60!blue!80}DO
+  \color{black!80} $i=0,Nx$
+
+\hspace{0.62cm} \color{black!60!blue!80}DO
+ \color{black!80} $j=0,Ny$
+
+\vspace{0.1cm}
+ \hspace{1.1cm}
+  \color{black!80}
+  $
+  \begin{array}{l}
+	X(i,j)=0\\
+	Y(i,j)=0\\
+	\bar{z}(i,j)=z(i,j)\\
+	\end{array}
+	$
+  \hspace{0.8cm}  \color{black!60} !单元点初始化 \color{black!80}
+
+ \hspace{0.62cm}\color{black!60!blue!80}ENDDO
+
+\hspace{0.12cm} \color{black!60!blue!80}ENDDO
+
+\hspace{0.13cm} \color{black!80} $N_px=Nx,\hspace{0.3cm} N_py=Ny$  
+ \hspace{1.0cm}  \color{black!60} !粒子点总数可能变化 \color{black!80}
+
+ \hspace{0.14cm}\color{black!60!blue!80}DO
+  \color{black!80} $i=0,Nx$
+
+\hspace{0.62cm} \color{black!60!blue!80}DO
+ \color{black!80} $j=0,Ny$
+
+\vspace{0.1cm}
+ \hspace{1.1cm}
+$
+  \begin{array}{l}
+	ip(i,j)=i\\
+	jp(i,j)=j\\
+	X_p(i,j)=0\\
+	Y_p(i,j)=0\\
+	\bar{z}_p(i,j)=z(i,j)\\
+	\end{array}
+$
+  \hspace{0.8cm}  \color{black!60} !粒子点初始化 \color{black!80}
+
+ \hspace{0.62cm}\color{black!60!blue!80}ENDDO
+
+\hspace{0.12cm} \color{black!60!blue!80}ENDDO
+
+\vspace{0.1cm}
+
+\hspace{-0.48cm}
+ \color{black!60!blue!80}DO
+\color{black!80} $it=1,it$ \color{black!60} \hspace{3.3cm} ! 时间循环
+  \color{black}
+
+   \color{black!80}
+ \hspace{0.3cm}\color{black!60!blue!80}DO
+  \color{black!80} $i=0,Nx$
+
+\hspace{0.9cm} \color{black!60!blue!80}DO
+ \color{black!80} $j=0,Ny$
+
+ \hspace{1.6cm}
+ $ \begin{array}{l}
+\text{Mrk}(i,j)=0,\\
+\text{Mrk}_p(i,j)=0
+\end{array} $  \color{black!60} \hspace{0.7cm} ! 记录单元内信息点和单元点数
+
+\hspace{0.9cm} {\color{black!60!blue!80}END DO}
+
+\hspace{0.3cm}{ \color{black!60!blue!80}END DO}
+  \begin{enumerate}[1.]
+\setlength{\parskip}{0\baselineskip}
+\small \color{black!80}
+\item  单元点运动追踪
+ \scriptsize 
+
+ \hspace{0.6cm}\color{black!60!blue!80}DO
+  \color{black!80} $i=0,Nx$
+
+\hspace{1.1cm} \color{black!60!blue!80}DO
+ \color{black!80} $j=0,Ny$
+
+\vspace{0.1cm}
+\hspace{1.5cm} $s_x=\text{sign}(X(i,j)), s_y=\text{sign}(Y(i,j))$
+
+ \hspace{1.5cm}	$
+  \begin{array}{l}
+	\bar{u}(i,j)=(1-|X|)u(i,j)+|X|u(i+s_x,j)\\
+	\bar{v}(i,j)=(1-|Y|)v(i,j)+|Y|v(i,j+s_y)\\
+	\end{array}
+ $
+ \hspace{0.3cm}
+   \color{black!60} !插值单元点速度 \color{black!80}
+
+   \vspace{0.1cm}
+
+ \hspace{1.5cm}	$
+  \begin{array}{l}
+	L_x=X(i,j)+\bar{u}(i,j)\Delta t/ \Delta x\\
+	L_y=Y(i,j)+\bar{v}(i,j)\Delta t/ \Delta y\\
+	\end{array}
+  $
+  \hspace{2cm}  \color{black!60} !临时相对坐标变化 \color{black!80}
+
+  \vspace{0.1cm}
+ \hspace{1.5cm}	$
+  \begin{array}{l}
+	M=i+\text{floor}(L_x+0.5),\\
+	N=j+\text{floor}(L_y+0.5).\\
+	X(i,j)=L_x-\text{floor}(L_x+0.5)\\
+	Y(i,j)=L_y-\text{floor}(L_y+0.5)\\
+	\end{array}
+ $
+   \color{black!60} \hspace{1.8cm}
+! 新的所在单元和相对坐标 \color{black!80}
+
+\small \item 单元点的更新
+
+
+  \scriptsize
+\hspace{1.5cm} \color{black!60!blue!80}IF
+\color{black!80} $\text{Mrk}(M,N)=0$ \color{black!60!blue!80}THEN
+
+\vspace{0.1cm}
+
+\color{black!80}
+\hspace{1.9cm} 
+$\begin{array}{l}
+  X'(M,N)=X(i,j)\\
+  Y'(M,N)=Y(i,j)\\
+ \bar{z}'(M,N)=\bar{z}(i,j)
+\end{array} 
+ $
+
+\hspace{1.5cm} \color{black!60!blue!80}ELSE
+
+\hspace{1.9cm} \color{black!60!blue!80}IF 
+\color{black!80} $\bar{z}(i)<\bar{z}'(M)$  
+\color{black!60!blue!80}THEN
+
+\color{black!80}
+\hspace{2.3cm} 
+$\begin{array}{l}
+  X'(M,N)=X(i,j)\\
+  Y'(M,N)=Y(i,j)\\
+ \bar{z}'(M,N)=\bar{z}(i,j)
+\end{array} 
+ $
+ \hspace{1cm}  \color{black!60} ! 多个单元点，选取$z$值小的点 \color{black!80}
+
+\hspace{1.9cm} \color{black!60!blue!80}ENDIF
+
+\hspace{1.5cm} \color{black!60!blue!80}ENDIF
+
+\color{black!80} 
+\fbox{
+\hspace{1.1cm} 
+$\begin{array}{l} X'(M,N)=[X(i,j)+\text{Mrk}(M,N)X'(M,N)]/[\text{Mrk}(M,N)+1]\\
+Y'(M,N)=[Y(i,j)+\text{Mrk}(M,N)Y'(M,N)]/[\text{Mrk}(M,N)+1]\\
+\bar{z}'(M,N)=[\bar{z}(i,j)+\text{Mrk}(M,N)\bar{z}'(M,N)]/[\text{Mrk}(M,N)+1]
+\end{array}$
+\hspace{0.0cm}    \color{black!60} ! 多个单元点，进行平均\color{black!80}
+}
+
+\hspace{1.5cm}
+\color{black!80} $\text{Mrk}(M,N)=\text{Mrk}(M,N)+1$
+
+
+\hspace{1.1cm}
+ \color{black!60!blue!80}END DO
+
+\hspace{0.7cm}
+\color{black!60!blue!80}END DO\color{black!80}
+
+ \small \item 粒子点的运动追踪
+
+   \scriptsize
+ \vspace{0.1cm}
+\hspace{0.7cm}\color{black!60!blue!80}DO
+ \color{black!80} $i=0,N_px$
+
+\hspace{1.1cm}{ \color{black!60!blue!80}DO}
+ \color{black!80} $j=0,N_py$
+
+\vspace{0.1cm}
+\hspace{1.5cm} $s_x=\text{sign}(X_p(i,j)), s_y=\text{sign}(Y_p(i,j))$
+
+ \hspace{1.5cm}	$
+  \begin{array}{l}
+	\bar{u}_p(i,j)=(1-|X_p|)u(ip,jp)+|X_p|u(ip+s_x,J)\\
+	\bar{v}_p(i,j)=(1-|Y_p|)v(ip,jp)+|Y_p|v(ip,jp+s_y)\\
+	\end{array}
+$
+ \hspace{0.5cm}
+  \color{black!60} ! 插值粒子点速度 \color{black!80}
+
+  \vspace{0.1cm}
+
+ \hspace{1.5cm}	$
+  \begin{array}{l}
+	L_x=X_p(i,j)+\bar{u}_p(i,j)\Delta t/ \Delta x\\
+	L_y=Y_p(i,j)+\bar{v}_p(i,j)\Delta t/ \Delta y\\
+	\end{array}
+	$
+  \hspace{2.9cm}  \color{black!60} !临时相对坐标变化 \color{black!80}
+
+  \vspace{0.1cm}
+
+ \hspace{1.5cm}	$
+  \begin{array}{l}
+	ip(i,j)=ip(i,j)+\text{floor}(L_x+0.5)\\
+	jp(i,j)=jp(i,j)+\text{floor}(L_y+0.5)\\
+	X_p(i,j)=L_x-\text{floor}(L_x+0.5)\\
+	Y_p(i,j)=L_y-\text{floor}(L_y+0.5)\\
+	\end{array}
+$
+   \color{black!60} \hspace{2.3cm}
+! 新的所在单元和相对坐标 \color{black!80}
+
+\small \item 粒子点修正单元点
+
+  \scriptsize
+\hspace{1.7cm} \color{black!60!blue!80}IF
+\color{black!80} $\text{Mrk}_p(ip,jp)=0$ \color{black!60!blue!80}THEN
+
+\vspace{0.1cm}
+
+\color{black!80}
+\hspace{2.3cm} 
+$\begin{array}{l}
+  X'(ip,jp)=X_p(i,j)\\
+  Y'(ip,jp)=Y_p(i,j)\\
+ \bar{z}'(ip,jp)=\bar{z}_p(i,j)
+\end{array} 
+ $
+
+\hspace{1.7cm} \color{black!60!blue!80}ELSE
+
+\hspace{2.3cm} \color{black!60!blue!80}IF 
+\color{black!80} $\bar{z}_p(i)<\bar{z}'(ip,jp)$  
+\color{black!60!blue!80}THEN
+
+\color{black!80}
+\hspace{2.7cm} 
+$\begin{array}{l}
+  X'(ip,jp)=X_p(i,j)\\
+  Y'(ip,jp)=Y_p(i,j)\\
+ \bar{z}'(ip,jp)=\bar{z}_p(i,j)
+\end{array} 
+ $
+ \hspace{2.8cm}  \color{black!60} ! 多个粒子点，选取$z$值小的点 \color{black!80}
+
+\hspace{2.3cm} \color{black!60!blue!80}ENDIF
+
+\hspace{1.9cm} \color{black!60!blue!80}ENDIF
+
+\color{black!80} 
+\fbox{
+\hspace{1.3cm} 
+$\begin{array}{l} X'(ip,jp)=[X_p(i,j)+\text{Mrk}_p(ip,jp)X'(ip,jp)]/[\text{Mrk}_p(ip,jp)+1]\\
+Y'(ip,jp)=[Y_p(i,j)+\text{Mrk}_p(ip,jp)Y'(ip,jp)]/[\text{Mrk}_p(ip,jp)+1]\\
+\bar{z}'(ip,jp)=[\bar{z}_p(i,j)+\text{Mrk}_p(ip,jp)\bar{z}'(ip,jp)]/[\text{Mrk}_p(ip,jp)+1]
+\end{array}$
+\hspace{0.0cm}    \color{black!60} ! 多个粒子点，进行平均\color{black!80}
+}
+
+\hspace{1.7cm}
+\color{black!80} $\text{Mrk}_p(ip,jp)=\text{Mrk}_p(ip,jp)+1$
+
+
+\hspace{1.1cm}
+ \color{black!60!blue!80}END DO
+
+\hspace{0.7cm}
+\color{black!60!blue!80}END DO\color{black!80}
+
+
+ \hspace{9.25cm} 
+ \color{black!80}
+
+\vspace{0.1cm}
+  \hspace{1.5cm} \color{black!60!blue!80} END IF 
+
+\hspace{1cm} {\color{black!60!blue!80}END DO
+
+\hspace{0.5cm} END DO}
+
+
+   \color{black!80}
+\small \item 在空单元生成单元点
+
+  \scriptsize \color{black!80}
+
+\hspace{0.7cm}\color{black!60!blue!80}DO
+ \color{black!80} $i=0,Nx$
+
+\hspace{1.1cm}{ \color{black!60!blue!80}DO}
+ \color{black!80} $j=0,Ny$
+
+\hspace{1.5cm} {\color{black!60!blue!80}IF}
+\color{black!80} $\text{Mrk}(i,j)+\text{Mrk}_p(i,j)=0$  { \color{black!60!blue!80}THEN}
+
+\hspace{1.9cm}
+$\begin{array}{l} L_x=-u(i)\Delta t/\Delta x\\
+ L_y=-v(i)\Delta t/\Delta y\\
+M=i+\text{floor}(L_x+0.5)\\
+N=j+\text{floor}(L_y+0.5)\\
+X'(i,j)=0\\
+Y'(i,j)=0\\
+\bar{z}'(i,j)=\bar{z}(M,N)
+\end{array}
+$
+\hspace{3.cm}    \color{black!60} ! 回溯生成单元点 \color{black!80}
+
+\begin{tikzpicture}
+
+  \node[rectangle,draw, line width=0.8pt,text width=50.0em, minimum height=2em]{
+	\hspace{2cm}  $S_1=0,\hspace{0.3cm} S_2=0$\\
+\hspace{2cm} \color{black!60!blue!80}DO \color{black!80}$ i_1=-1,1$ \\
+\hspace{2.5cm} \color{black!60!blue!80}DO \color{black!80} $j_1=-1,1$\\
+\hspace{3.0cm} \color{black!60!blue!80}IF \color{black!80} $Mrk(i+i_1,j+j_1)>0$ 
+\color{black!60!blue!80}THEN  \hspace{1.0cm} \color{black!60} ! 周围单元点进行加权平均 \color{black!80}\\
+ \hspace{3.5cm}\color{black!80}$L=\sqrt{(X'(i+i_1,j+j_1)+i_1)^2+(Y'(i+i_1,j+j_1)+j_1)^2}$\\
+\hspace{3.5cm}\color{black!80}$S_1=S_1+1/L$\\
+\hspace{3.5cm}$S_2=S_2+\bar{z}'(i+i_1,j+j_1)/L$\\
+\hspace{3.0cm} \color{black!60!blue!80}END IF \\
+\hspace{2.5cm} END DO\\
+\hspace{2.0cm} END DO\\
+\hspace{2.0cm}{\color{black!80} $\bar{z}'(i,j)=S_2/S_1$}\\
+
+};
+\end{tikzpicture}
+
+\hspace{1.7cm} \color{black!60!blue!80}ENDIF
+
+\hspace{1.3cm} \color{black!60!blue!80}END DO
+
+\hspace{0.9cm} \color{black!60!blue!80}END DO
+%
+
+\hspace{1.cm}\color{black!60!blue!80}DO
+ \color{black!80} $i=0,Nx$
+
+\hspace{1.3cm}{ \color{black!60!blue!80}DO}
+ \color{black!80} $j=0,Ny$
+
+ \hspace{1.7cm} 
+ $\begin{array}{l} 
+   X(i,j)=X'(i,j)\\
+  Y(i,j)=Y'(i,j)\\
+ \bar{z}(i,j)=\bar{z}'(i,j)
+ \end{array}$
+
+\hspace{1.3cm}{ \color{black!60!blue!80}ENDDO}
+
+\hspace{0.9cm}{ \color{black!60!blue!80}ENDDO}
+
+\hspace{0.4cm}{ \color{black!60!blue!80}ENDDO}
+
+\end{enumerate}
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@Fortran程序地址：\url{https://www.github.com/bfly123/DIP2D}@
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
