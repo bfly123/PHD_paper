@@ -367,6 +367,30 @@ $i_1=-1,1$， $j_1=-1,1$。权重函数反比于距离，
 
 	\end{enumerate}
 
+	\section{数值算例}
+下面我们将通过一维和二维算例验证新方法的表现。
+	\subsection{一维数值算例}
+\begin{enumerate}[1.]
+
+  \item 均匀速度场算例
+  对于均匀速度场，粒子点和单元点是完全重合的，信息点间的距离不会变化，所以也不会出现一个单元存在多个或没有单元点的情况。
+
+  我们首先测试一个在$u=1$的均匀速度场中间断函数的传播问题。初始条件为
+  \begin{equation*}
+	z=\left\{\begin{array}{l}
+	  1,  \hspace{0.5cm}  \text{if} \hspace{0.3cm} x<0.2\\
+	  0,  \hspace{0.5cm}  \text{if} \hspace{0.3cm} x\ge 0.2
+	\end{array}
+	\right.
+	\end{equation*}
+	计算域为$[0,1]$，边界采用周期边界条件。计算采用的网格为$N=20$，计算时间步长为$\Delta t=0.005$，图 \ref{fig:dip_1dcase1} 给出23个时间步后单元点的分布情况。从该算例可以看出，粒子类方法由于追踪的连续性，即便在极其稀疏的网格中，也能对每个信息点上的信息进行准确的追踪。
+
+	\begin{figure}
+	  \centering
+	  \includegraphics[width=13cm]{DIP_1Dlinear1.eps}
+	  \caption{一维线性对流算例，均匀速度场$u=1$，时间步$Nt=23$}
+	  \label{fig:dip_1dcase1}
+	  \end{figure}
 
 
 

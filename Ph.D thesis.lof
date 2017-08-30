@@ -12,3 +12,4 @@
 \contentsline {figure}{\numberline {1.10}{\ignorespaces 耗散界面情况中单元点的消去方法一维示意图}}{10}{figure.1.10}
 \contentsline {figure}{\numberline {1.11}{\ignorespaces 耗散界面问题中单元点的生成方法一维示意图}}{10}{figure.1.11}
 \contentsline {figure}{\numberline {1.12}{\ignorespaces 边界和虚拟网格一维示意图}}{12}{figure.1.12}
+\contentsline {figure}{\numberline {1.13}{\ignorespaces 一维线性对流算例，均匀速度场$u=1$，时间步$Nt=23$}}{18}{figure.1.13}
