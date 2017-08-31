@@ -12,4 +12,10 @@
 \contentsline {figure}{\numberline {1.10}{\ignorespaces 耗散界面情况中单元点的消去方法一维示意图}}{10}{figure.1.10}
 \contentsline {figure}{\numberline {1.11}{\ignorespaces 耗散界面问题中单元点的生成方法一维示意图}}{10}{figure.1.11}
 \contentsline {figure}{\numberline {1.12}{\ignorespaces 边界和虚拟网格一维示意图}}{12}{figure.1.12}
-\contentsline {figure}{\numberline {1.13}{\ignorespaces 一维线性对流算例，均匀速度场$u=1$，时间步$Nt=23$}}{18}{figure.1.13}
+\contentsline {figure}{\numberline {1.13}{\ignorespaces 一维线性对流间断传播算例，均匀速度场$u=1$，时间步$Nt=23$}}{18}{figure.1.13}
+\contentsline {figure}{\numberline {1.14}{\ignorespaces 一维对流方程组合波算例，均匀速度场$u=1$，$T=6$}}{19}{figure.1.14}
+\contentsline {figure}{\numberline {1.15}{\ignorespaces Bugers方程算例，$T=0.4$}}{20}{figure.1.15}
+\contentsline {figure}{\numberline {1.16}{\ignorespaces 二维均匀速度场间断传播算例，$T=0.6$}}{21}{figure.1.16}
+\contentsline {figure}{\numberline {1.17}{\ignorespaces Zalesak圆盘旋转算例$N=200\times 200$网格下计算结果 （$T_1=0$, $T_2=0.25$, $T_3=0.5$, $T_4=0.75$, $T_5=1$ and $T_6=20$），其中黑线为初始条件}}{22}{figure.1.17}
+\contentsline {figure}{\numberline {1.18}{\ignorespaces 界面拉伸算例, $N=200\times 200$， 其中黑线为参考解}}{24}{figure.1.18}
+\contentsline {figure}{\numberline {1.19}{\ignorespaces 多相界面旋转算例, $N=400\times 400$}}{25}{figure.1.19}

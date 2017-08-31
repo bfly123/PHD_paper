@@ -375,7 +375,7 @@ $i_1=-1,1$， $j_1=-1,1$。权重函数反比于距离，
   \item 均匀速度场算例
   对于均匀速度场，粒子点和单元点是完全重合的，信息点间的距离不会变化，所以也不会出现一个单元存在多个或没有单元点的情况。
 
-  我们首先测试一个在$u=1$的均匀速度场中间断函数的传播问题。初始条件为
+ 1).  我们首先测试一个在$u=1$的均匀速度场中间断函数的传播问题。初始条件为
   \begin{equation*}
 	z=\left\{\begin{array}{l}
 	  1,  \hspace{0.5cm}  \text{if} \hspace{0.3cm} x<0.2\\
@@ -388,10 +388,222 @@ $i_1=-1,1$， $j_1=-1,1$。权重函数反比于距离，
 	\begin{figure}
 	  \centering
 	  \includegraphics[width=13cm]{DIP_1Dlinear1.eps}
-	  \caption{一维线性对流算例，均匀速度场$u=1$，时间步$Nt=23$}
+	  \caption{一维线性对流间断传播算例，均匀速度场$u=1$，时间步$Nt=23$}
 	  \label{fig:dip_1dcase1}
 	  \end{figure}
 
+2).  接下来我们研究更复杂波形的传播，初始条件为
+\begin{eqnarray}\label{initialwave}
+ z_0(x)\!=\!\left\{\!
+   \begin{array}{lll} 
+	\! \frac{1}{6} \left( G(x,\beta ,z\!-\!\delta)\! +\! G(x, \beta, z\!+\!\delta)\! +\!4 G(x,\beta, z) \right)\!,\!   &&\! {\!-0.8\! \leqslant\! x\! \leqslant\! -0.6},\\
+	\! 1,                                                                                         \! &&\! {\!-0.4\! \leqslant\! x\! \leqslant\! -0.2},\\
+	\! 1-|10(x-0.1)|,                                                                             \! &&\! {\!0\! \leqslant \! x \! \leqslant \! 0.2},\\
+	\! \frac{1}{6} \left( F(x,\alpha ,a\!-\!\delta)\! +\! F(x, \alpha, a\!+\!\delta)\! +\!4 F(x,\alpha, a) \right)\!,\!&&\! {\!0.4\! \leqslant\! x\! \leqslant\! 0.6},\\
+	 0,                                                                                          \!&&\! otherwise,
+   \end{array}  \right.
+ \end{eqnarray}
+以及
+\begin{eqnarray*}
+  G(x,\beta ,z)=exp(-\beta (x-z)^2),
+\end{eqnarray*}
+\begin{eqnarray*}
+  F(x, \gamma,a)=\sqrt{max(1-\alpha^2(x-a^2),0)}.
+\end{eqnarray*}
+其中 $a=0.5$， $z=-0.7$， $\delta=0.05$ 和 $\beta=log2/36\delta^2$。计算采用$N=200$网格，计算时间为$T=6$。我们将新方法的计算结果、采用了WENO格式的有限差分方法计算结果及参考解进行对比，从图 \ref{fig:DIP_linear2} 可以看出，对于该类线性问题，无论包含强间断的方波还是光滑的波形都能精确地求解。
+
+\begin{figure}
+  \centering
+  \includegraphics[width=12cm]{zuhebo.eps}
+  \caption{一维对流方程组合波算例，均匀速度场$u=1$，$T=6$}
+  \label{fig:DIP_linear2}
+\end{figure}
+
+\item 无粘Burgers方程问题
+
+无粘Burgers方程
+\begin{eqnarray}\label{exburges}
+  \frac{\partial z}{\partial t}+ z \frac{\partial z}{\partial x}=0,\hspace{0.3cm}  z_0(x)=sin(\pi x),\hspace{0.3cm} 0\le x \le 2.
+  \end{eqnarray}
+  速度场为$u=z$，因此该方程是非线性方程，经过一段时间，原本光滑的波形会形成间断。图 \ref{fig:DIP_burgers} 给出DIP方法和WENO格式在$N=200$网格下计算结果对比，我们可以看到对于这种非线性问题，DIP方法同样可以模拟，取得很好的结果。
+
+\begin{figure}
+  \centering
+  \includegraphics[width=12cm]{burges.eps}
+  \caption{Bugers方程算例，$T=0.4$}
+  \label{fig:DIP_burgers}
+\end{figure}
+
+\end{enumerate}
+
+\subsection{二维数值算例}
+二维问题中存在复杂的拓扑变化，因此更适合用来测试界面方法的表现。
+\begin{enumerate}
+  \item 均匀速度场算例
+
+	 该算例采用$u=1$，$V=1$的均匀速度场，计算区域为$[0,1]\times[0,1]$ 初始时刻一个边长为$0.2$的正方形中心位于$(0.2,0.2)$，正方形内$z=1$其它区域$z=0$，计算网格为$10\times 10$，计算时间为$t=0.6$。图 \ref{fig:DIP_move}给出计算结果，从中我们看到，在极其稀疏网格下，DIP方法也能准确计算每一个单元点的运动过程。
 
 
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{DIP_move.eps}
+  \caption{二维均匀速度场间断传播算例，$T=0.6$}
+  \label{fig:DIP_move}
+\end{figure}
 
+\item Zalesak圆盘旋转算例
+  
+Zalesak的圆盘旋转算例\cite{zalesak1979fully} 是一个验证界面方法的经典算例，速度场采用旋转速度场
+
+\begin{eqnarray*}
+ \left\{
+   \begin{array}{lll}
+  v_x(x,y)& = &2\pi y ,\\
+  v_y(x,y)& = &-2 \pi x,\\
+\end{array}
+\right.
+\end{eqnarray*}
+初始条件为
+\begin{eqnarray*}
+  u(x,y)=\left\{
+  \begin{array}{lcl}
+	0,& & \sqrt{x^2+y^2} >0.4,\\
+	0,&  & 0.4<y<0.6 \text{ and } x >0.5,\\
+	1,&  & \text{else}.\\
+	\end{array}
+	\right.
+\end{eqnarray*}
+该问题中计算域为$[0.1]\times[0,1]$，采用$N=200\times 200$ 网格。图 \ref{figdisk200}  给出不同时刻的计算结果（$T_1=0$, $T_2=0.25$, $T_3=0.5$, $T_4=0.75$, $T_5=1$ and $T_6=20$），从图中可以看出，DIP方法可以很好保持圆盘的形状。
+%
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[angle=-90,width=4.5cm]{linear2D0p0N200.eps}};&
+				\node[rectangle]{
+	\includegraphics[angle=-90,width=4.5cm]{linear2D0p25N200.eps}};&
+				\node[rectangle]{
+	\includegraphics[angle=-90,width=4.5cm]{linear2D0p5N200.eps}};\\
+				\node[rectangle]{
+	\includegraphics[angle=-90,width=4.5cm]{linear2D0p75N200.eps}};&
+				\node[rectangle]{
+	\includegraphics[angle=-90,width=4.5cm]{linear2D1p0N200.eps}};&
+				\node[rectangle]{
+	\includegraphics[angle=-90,width=4.5cm]{linear2D20pN200.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{Zalesak圆盘旋转算例$N=200\times 200$网格下计算结果 （$T_1=0$, $T_2=0.25$, $T_3=0.5$, $T_4=0.75$, $T_5=1$ and $T_6=20$），其中黑线为初始条件}
+
+	\label{figdisk200}
+\end{figure}
+
+
+\item 界面拉伸算例
+
+
+我们考虑另一个常见的界面方法测试算例\cite{olsson2005conservative, aulisa2003mixed}，在计算开始，一个半径为0.2的圆圆心位于$(0.5\pi,0.7)$：
+\begin{eqnarray*}
+  u(x,y)=\left\{
+	\begin{array}{lcl}
+	  1, &  & \sqrt{(x-0.5\pi)^2+(y-0.7)^2} \leqslant 0.2,\\
+	  0, &  & \text{else}.\\
+	\end{array}
+	\right.
+\end{eqnarray*}
+速度场为
+\begin{eqnarray*}
+ \left\{
+   \begin{array}{lll}
+	 v_x(x,y)& = & \text{cos}(x-0.5\pi) \text{sin} (y-0.5\pi),\\
+	 v_y(x,y)& = & -\text{sin}(x-0.5\pi) \text{cos} (y-0.5\pi).\\
+\end{array}
+\right.
+\end{eqnarray*}
+在该速度场作用下，界面会被不断拉伸，一般用来验证界面方法对于拓扑变化的适应性，往往我们会在一段时间后采取逆速度场，通过圆是否回复开始的位置来判断方法的守恒性。
+
+图 \ref{fig:DIP_stretch} 中给出了$N=200\times 200$网格下计算结果，分别为$T=\pi$结果和接下来反向运动$\pi$的结果，$T=2\pi$的结果和接下来反向运动$2\pi$的结果，可以看到新方法可以很好的计算界面的拓扑变化，并保持守恒性。
+%我们首先对比只采用单元点和两种粒子同时采用的计算结果，
+
+\begin{figure}
+  \begin{minipage}[t]{0.5\textwidth}
+	\centering
+	\includegraphics[angle=-90,width=7cm]{2Dlinear_case2pi.eps}
+	\centerline{$T=t/2=\pi$.}
+\end{minipage}
+\hfill
+  \begin{minipage}[t]{0.5\textwidth}
+	\centering
+	\includegraphics[angle=-90,width=7cm]{2Dlinear_case2pirotate.eps}
+	\hspace{0.2cm}
+	\centerline{$T=t=2\pi$.}
+\end{minipage}
+\vfill
+\vspace{0.5cm}
+  \begin{minipage}[t]{0.5\textwidth}
+	\centering
+	\includegraphics[angle=-90,width=7cm]{2Dlinear_case24pi.eps}
+	\hspace{0.2cm}
+	\centerline{$T=t/2=4\pi$.}
+\end{minipage}
+\hfill
+  \begin{minipage}[t]{0.5\textwidth}
+	\centering
+	\includegraphics[angle=-90,width=7cm]{2Dlinear_case24pirotate.eps}
+	\hspace{0.2cm}
+	\centerline{$T=t=8\pi$.}
+\end{minipage}
+	\caption{界面拉伸算例, $N=200\times 200$， 其中黑线为参考解}
+	\label{DIP_stretch}
+  \end{figure}
+
+\  \item 多相界面拉伸问题
+
+  前文指出，现有的界面方法在求解含有三相和三相以上物质的问题时较为困难，这里我们构造一个和上一个算例类似的多相界面算例。
+
+
+\item 多相界面问题
+
+  前文指出，现有的界面方法在求解含有三相和三相以上物质的问题时较为困难，这里我们构造一个含有多相分界面的算例，计算域为$[-2,2]\times[-2,2]$，初始条件为
+ \begin{eqnarray*}
+   z_0=\left\{
+\setlength{\arraycolsep}{0.1pt}
+\begin{array}{l}
+  1,\hspace{0.3cm} \text{if} \hspace{0.3cm}  x>y\hspace{0.3cm} \text{and} \hspace{0.3cm}\text{sign}(x)=\text{sign}(y)\hspace{0.3cm} \text{and} \hspace{0.3cm} r\le 3\\
+  2, \hspace{0.3cm} \text{if} \hspace{0.3cm}  x\le y\hspace{0.3cm} \text{and} \hspace{0.3cm}\text{sign}(x)=\text{sign}(y)\hspace{0.3cm} \text{and} \hspace{0.3cm} r\le 3\\
+  3, \hspace{0.3cm} \text{if} \hspace{0.3cm}  |x|<|y|\hspace{0.3cm} \text{and} \hspace{0.3cm}\text{sign}(x)\ne \text{sign}(y)\hspace{0.3cm} \text{and} \hspace{0.3cm} r\le 3\\
+  4, \hspace{0.3cm} \text{if} \hspace{0.3cm}  |x|\ge |y|\hspace{0.3cm} \text{and} \hspace{0.3cm}\text{sign}(x)\ne \text{sign}(y)\hspace{0.3cm} \text{and} \hspace{0.3cm} r\le 3\\
+  0, \hspace{0.3cm} \text{else} 
+  \end{array}
+  \right.
+  \end{eqnarray*}
+  如图\ref{multiDIP}.a 所示，速度场为
+\begin{eqnarray*}
+  \begin{array}{l}
+	u=y*\sqrt{x^2+y^2}\\
+	v=-x*\sqrt{x^2+y^2}\\
+\end{array}
+\end{eqnarray*}
+
+
+\begin{figure}
+  \begin{minipage}[t]{0.5\textwidth}
+	\centering
+	\includegraphics[width=6cm]{DIP_multi2_init.eps}
+	\hspace{0.2cm}
+	\centerline{a. $T=0$}
+\end{minipage}
+\hfill
+  \begin{minipage}[t]{0.5\textwidth}
+	\centering
+	\includegraphics[width=6cm]{DIP_multi2.eps}
+	\hspace{0.2cm}
+	\centerline{b. $T=4$.}
+\end{minipage}
+	\caption{多相界面旋转算例, $N=400\times 400$}
+	\label{fig:multiDIP}
+  \end{figure}
+
+
+\end{enumerate}
