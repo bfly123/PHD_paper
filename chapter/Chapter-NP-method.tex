@@ -1,18 +1,301 @@
 
 \XeTeXinputencoding "GB2312"
-\chapter{刚性ODE方程的数值摄动（NP）方法}
-ODE方程
+\chapter{刚性常微分方程和数值摄动（NP）方法}
+\section{刚性常微分（ODE）方程}
+在各个学科领域都广泛的存在着如下形式的常微分方程
 \begin{equation}\label{eq:ode}
-  \frac{dx}{dt}=f(t,x),x(0)=x_0, (x\in \mathbb{R}^{s},t\leqslant 0).
+  \frac{dx}{dt}=f(t,x),x(0)=x_0, (x\in \mathbb{R}^{s},t\leqslant 0)
 \end{equation}
-是在各个学科领域都极为常见的方程类型，
 对于该类方程的理论及数值研究已经长达两个世纪，随着如Runge-Kutta 等高精度单步格式的提出，该方程基本上已经不存在求解难题。然而却有一个问题是例外，那就是刚性方程(Stiff equation）问题。
 
-刚性方程在ODE数值方法发展中犹如一块乌云，甚至至今连明确的数学定义都没有\cite{wanner1991solving}。学者们给出了刚性方程多种描述，目前接受最为广泛的仍然是1985年Curtiss和Hirschfelder最早给出的描述：刚性方程是指那些采用某些特定的隐式格式求解，尤其是采用BDF格式，会比采用显示格式求解有优势，通常都有极大的优势，的一类方程（`stiff equations are equations where certain implicit method, in particularly BDF, perform better, usually tremendously better, than explicit ones'）。
+刚性方程在ODE数值方法发展中犹如一块乌云，甚至至今连明确的数学定义都没有\cite{wanner1991solving}。学者们给出了刚性方程多种描述，目前受到最广泛接受的仍然是1985年Curtiss和Hirschfelder最早给出的描述：刚性方程是指那些采用某些特定的隐式格式求解，尤其是采用BDF格式，会比采用显示格式求解有优势，通常都有极大的优势，的一类方程（`stiff equations are equations where certain implicit method, in particularly BDF, perform better, usually tremendously better, than explicit ones'）。
 
-刚性方程常见于化学反应、等离子体等学科的数值模拟中。由于没有明确的定义，尽管刚性方程有诸如结果变化剧烈等特点，但仍然很难区分哪些ODE方程是刚性的哪些是非刚性的，刚性方程本身刚性的大小也难以界定，同时，刚性也是会随时间发展变化的。
+刚性和非刚性方程求解起来差别巨大，比如采用显式格式求解刚性ODE方程，需要极小的时间步才能稳定，相反的，如果采用隐式格式求解非刚性ODE方程，又因为复杂的迭代同样会造成计算效率低下。如何能协调这一对矛盾，一直困扰着ODE数值方法的发展。E.Hairer 和G.wanne在关于ODE方程的经典教材\cite{wanner1991solving,hairer1999stiff}中，直接将刚性问题解法和非刚性问题解法分成两册分别讲述，但是由于刚性方程没有明确的定义，很难区分哪些ODE方程是刚性的哪些是非刚性的，同时，刚性也是会随时间发展变化的，刚性方程本身刚性的大小也难以界定。
+例如将在本文第八章中遇到的化学反应ODE方程，在该方程中，由于某些组分的时间尺度很小，存在较大的刚性。但是另一方面，由于刚性所在的区域相对计算区域而言很小，同时，考虑到化学反应方程组特征矩阵巨大，隐式求解会存在着复杂的矩阵运算，计算量并不一定降低，也难以采用高精度的隐式格式等问题，多数学者目前仍更愿意采用显式格式在充分小的时间步内进行求解。
 
-刚性和非刚性方程求解起来差别巨大，比如采用显式格式求解刚性ODE方程，需要极小的时间步才能稳定，相反的，而如果采用隐式格式求解非刚性ODE方程，又因为复杂的迭代同样会造成计算效率低下。如何能协调这一对矛盾，一直困扰着ODE数值方法的发展。E.Hairer 和G.wanne在关于ODE方程的经典教材\cite{wanner1991solving,hairer1999stiff}中，直接将刚性问题解法和非刚性问题解法分成两册分别讲述，但是对于某些方程，如本文第八章中我们遇到的刚性化学反应ODE方程，在该问题中，化学反应ODE方程组中某些组分由于时间尺度小二存在巨大的刚性。考虑到化学反应方程组特征矩阵巨大，隐式求解会存在着复杂的矩阵运算，计算量并不一定降低，另外也难以采用高精度的隐式格式，多数数学者目前仍采用显式格式结合充分小的时间步进行求解。
 
-如前言中所讨论的，目前也有一些格式能兼顾刚性和非刚性的求解要求，例如，线化梯形公式（LT）\cite{wang2012high,zhang2014equilibrium}，该方法具有二阶精度、显式形式和一定程度的刚性稳定性，因而在如化学反应这种即存在刚性和非刚性又由于特征矩阵巨大而难以采用隐式格式求解的方程中得到广泛的应用。尽管这是一条然而，线化梯形公式仅仅具有
+如前言中所讨论的，目前除刚性稳定的隐式格式和刚性不稳定的显式格式外，也有一些格式一定程度上能兼顾刚性和非刚性的求解要求，例如，线化梯形公式（LT）\cite{wang2012high,zhang2014equilibrium}，该方法具有二阶精度、显式形式和一定程度的刚性稳定性，因而在如化学反应这种即存在刚性和非刚性又由于特征矩阵巨大而难以采用隐式格式求解的方程中得到较多的应用。然而，线化梯形公式也仅仅具有二阶精度，在非刚性的区域精度不足，另外，该方法也非绝对的刚性稳定的，刚性过大仍然会出现计算问题。
+
+由上面分析可以看出，如果能找到或者构造一种高精度的、刚性稳定且具有显形式的格式对于处理例如化学反应等可能存在刚性ODE方程的问题，尤为重要。
+在本章中，我们基于Gao 数值摄动的思想\cite{gao2010numerical,zhi2000advances,shen2006high}，构造了针对于ODE方程 (\ref{eq:ode}) 的刚性稳定、高精度且具有显形式的数值摄动格式。并通过理论分析和数值计算验证了该类方法的效果。
+\section{数值摄动方法}
+%摄动方法最早应用在天体力学中，用来计算小天体对大天体的影响，后来成为求解含有小参数微分方程近似解的有效理论工具。
+%摄动方法一般描述为，
+%对于形如$S\varepsilon$的系统，由于含有一个小系数$\varepsilon$，我们无法精确给出该系统的解，但是我们可以求得$\varepsilon=0$时的系统$S_0$的精确解$\bm A_0$，而$S\varepsilon$的解可以表达为幂级数展开的形式$\bm{A}=A_0+\varepsilon \bm A_1+\varepsilon ^2 \bm  A_2+\cdots$的形式。根据$\varepsilon \rightarrow 0$时解的收敛规律，又可以将摄动方法分为正则摄动和奇异摄动理论。
+
+数值摄动方法是Gao 提出和发展的一种通过对低阶格式中的系数进行小参数摄动来构造高阶微分方程数值格式的方法，目前主要用来求解对流-耗散型方程如NS方程，包括摄动有限差分方法\cite{gao1994FDV,shen2005FDV}和摄动有限体积方法\cite{gao2004PFV}。
+
+数值摄动方法的基本过程是：将低阶格式（如一阶迎风格式、二阶中心格式）中的某些系数用网格长度的幂次多项式代替；通过微分方程本身（如对流扩散方程）得到更高阶的微分关系；确定幂次多项式中的参数用来消除重新构造的格式中各阶截断误差。这样就可以得到各阶的数值摄动格式。
+
+下面我们基于相同的思想构造求解方程 (\ref{eq:ode}) 的数值摄动（NP）方法。
+
+对于该方程，一阶显示欧拉格式为
+\begin{equation}\label{frstod}
+  x_{n+1}-x_n=\Delta tf(t,x_n)
+\end{equation}
+我们将它作为构造数值摄动方法的基本格式，对其泰勒展开，可以得到
+\begin{equation}\label{tay}
+  \frac{dx}{dt}=f(t,x)-\frac{1}{2}\Delta t\frac{d^2 x}{dt^2}-O(\Delta t^2).
+\end{equation}
+和对流方程构造数值摄动方法\cite{zhi2000advances,gao2010numerical}相同，我们在方程 (\ref{frstod}) 左侧引入一个摄动多项式$p$，格式变为
+\begin{equation}\label{kfrstod}
+  p(x_{n+1}-x_n)=\Delta tf(t,x_n)
+\end{equation}
+其中的幂次多项式$p$为
+\begin{equation}\label{k}
+  p=1+\sum\limits_{i=1}^{\infty}a_i\Delta t^i.
+\end{equation}
+将公式 (\ref{k}) 带入公式 (\ref{kfrstod}) 并且对其泰勒展开有
+\begin{equation}\label{ep}
+  \frac{dx}{dt}=f(t,x)-\left(\frac{1}{2} \frac{d^2x}{dt^2}+a_1\frac{dx}{dt}\right)\Delta t-\left(\frac{1}{6}\frac{d^3x}{dt^3}+\frac{a_1}{2}\frac{d^2x}{dt^2}+a_2\frac{dx}{dt}\right)\Delta t^2+O\left(\Delta t^4\right)
+  \end{equation}
+  从中可以看出，如果我们令方程右端第二项为零，即
+  \begin{equation}
+	\frac{1}{2} \frac{d^2x}{dt^2}+a_1\frac{dx}{dt}=0
+ \end{equation}
+ 格式 (\ref{kfrstod}) 具有二阶精度。同样的方法，我们可以通过消除右端更多项来构造更高阶格式。公式 (\ref{ep}) 中二阶导数，及其它高阶导数都可以直接通过原方程 （\ref{eq:ode}) 求得：
+\begin{eqnarray*}
+  \frac{dx}{dt}=f
+  \frac{d^2x}{dt^2}=f'_t+f'_xf
+  \cdots
+\end{eqnarray*}
+
+因此，我们可以通过所需要构造的格式精度推导出摄动系数$a_1$，$a_2$，$\cdots$：
+\begin{equation*}\label{a_1xt}
+  a_1=-\frac{f'_t+f'_xf}{2f}
+\end{equation*}
+\begin{equation*}\label{a_2xt}
+  a_2=\frac{-2f(f''_{tt}+2f''_{tx}f+f'_xf'_t+f'_xf'_xf+f''_{xx}f^2)+3(f'_t+f'_xf)^2}{12f^2}
+  \end{equation*}
+\begin{equation*}
+  \cdots
+\end{equation*}
+
+如果$f$仅是$x$的函数，则$a_i$可以简化为
+
+\begin{equation}\label{a_12}
+  a_1=-\frac{f'}{2} \hspace{0.2cm}
+  a_2=\frac{1}{12}f'^2-\frac{1}{6}f''f \hspace{0.2cm}
+	\cdots
+\end{equation}
+
+为了简便，方程 (\ref{eq:ode}) 的$N$阶数值摄动格式可以写为
+\begin{equation}\label{NP}
+x_{n+1}=x_n+\Delta x f(t, x_n)/p_N
+\end{equation}
+其对应的摄动多项式可以记作
+  $$p_N=1+\sum\limits_{i=1}^{N-1}a_i\Delta t^i$$ 
+
+  我们对三阶NP（3NP）格式进行进一步的变形，用来提高它的稳定性，三阶变形
+NP（3TNP）格式的摄动多项式为
+\begin{eqnarray}\label{3TNP}
+  \overline{p}_3=\frac{1+b_1\Delta t+b_2 \Delta t^2}{1-b_2 \Delta t}
+\end{eqnarray}
+其中$\overline{p}_3$应该是$p_3$的二阶近似，有
+\begin{equation}\label{b_12}
+  b_1=a_1-\frac{a_2}{a_1+1} \hspace{0.2cm}
+  b_2=\frac{a_2}{a_1+1}
+  \end{equation}
+新的三阶变形NP格式同样具有三阶精度，且较原有的三阶NP格式稳定区域更大，关于稳定性我们会在下一章分析。
+
+\section{NP格式的稳定性分析}
+在前面刚性方程介绍中，曾提到，对于刚性方程的算法，稳定性是最重要的，因此我们验证一种方法是否适合求解刚性问题，首先要分析它的刚性稳定性\cite{shampine1994numerical}。
+
+对于格式刚性稳定性的分析，首先是格式的线性稳定性，线性稳定性一般通过A稳定性及强A稳定性来判定，关于线性稳定性，我们首先需要给出线性方程：
+\begin{equation}\label{qx}
+  x'=qx, Re(q)<0
+\end{equation}
+
+采用某一方法对方程 (\ref{qx}) 进行离散后可以写成统一的形式
+\begin{equation}\label{Eq.1}
+  x_{n+1}=E(h)x_n 
+\end{equation}
+其中  $h=q\Delta t$。
+
+在 (\ref{Eq.1}) 的基础上，我们可以给出A稳定性和强A稳定性两条定义
+
+\begin{definition}[A-stable]
+  根据 Dahlquist \cite{dahlquist1963special}的分析，关于离散方程 （\ref{Eq.1})  如果对于任何的实部为负的复数$h$都有  $|E(h)|<1$ ，则认为该格式为A稳定的。
+\end{definition}
+
+\begin{definition}[Strong A-stable]
+ 如果一个格式是A-stable的同时又满足 $$\lim \limits_{Re(h) \to -\infty}|E(h)|=0$$，则认为该格式是强A稳定的。
+\end{definition}
+
+在分析NP格式的线性稳定性前，我们先给出一些求解ODE方程常用的格式，尤其是常用在求解化学反应ODE方程中的格式，用来和NP格式进行对比，它们分别是一阶显式欧拉格式（1EE）、一阶隐式欧拉格式（1IE）、二阶线化梯形公式（2LIE）和三阶显式Runge-Kutta（2RK）格式。
+
+(1) 一阶显式欧拉格式
+\begin{eqnarray}
+  x_{n+1}-x_n=\Delta tf(t,x_{n})
+  \end{eqnarray}
+\begin{eqnarray}
+  E^{1EE}(h)=1+h
+  \end{eqnarray}
+
+(2) 一阶隐式欧拉格式
+\begin{eqnarray}
+  x_{n+1}-x_n=\Delta tf(t,x_{n+1})
+  \label{frstrdr}
+\end{eqnarray}
+\begin{eqnarray}
+  E^{\text{1IE}}(h)=\frac{1}{1-h}
+  \end{eqnarray}
+
+  (3) 二阶线化梯形公式 \cite{wang2012high,zhang2014equilibrium}
+\begin{eqnarray}
+  x_{n+1}-x_n=\frac{\Delta tf(t,x_n)}{1-1/2\Delta tf'_x(t,x_n)}
+\end{eqnarray}
+\begin{eqnarray}
+  E^{\text{2LIE}}(h)=\frac{1+\frac{1}{2}h}{1-\frac{1}{2}h}
+  \end{eqnarray}
+  需要注意的是求解线性方程 (\ref{qx})，二阶线化梯形公式具有和二阶NP格式相同的形式。
+
+  (4) 三阶显式Runge-Kutta格式
+\begin{eqnarray}
+  \begin{array}{l}
+  x_{n+1}=x_n+\frac{1}{4}k_1+\frac{3}{4}k_3\\
+  k_1=\Delta tf(t_n,x_n)\\
+  k_2=\Delta tf(t_n+\frac{1}{3} \Delta t,x_n+\frac{1}{3}k_1)\\
+  k_3=\Delta tf(t_n+\frac{2}{3} \Delta t,x_n+\frac{2}{3}k_2)\\
+  \end{array}
+  \end{eqnarray}
+
+\begin{eqnarray}
+  E^{\text{3RK}}(h)=1+h+\frac{1}{2}h^2+\frac{1}{6}h^3
+  \end{eqnarray}
+
+  对于方程 (\ref{qx}),  很容易求得摄动系数为
+$a_1=-\frac{1}{2}q$,
+$a_2=\frac{1}{12}q^2$,
+$\cdots$.
+	因此 NP格式的 $E(h)$函数 分别为
+\begin{eqnarray*}
+  E^{\text{2NP}}(h)&=&\frac{1+\frac{1}{2}h}{1-\frac{1}{2}h}\\
+  E^{\text{3NP}}(h)&=&\frac{1+\frac{1}{2}h+\frac{1}{12}h^2}{1-\frac{1}{2}h+\frac{1}{12}h^2}\\
+  E^{\text{3TNP}}(h)&=&\frac{1+\frac{1}{3}h}{1-\frac{2}{3}h+\frac{1}{6}h^2}\\
+\end{eqnarray*}
+
+图 \ref{fig:linearstable} 给出不同格式在$h$复平面的稳定区域，图中可以看出，一阶隐式欧拉格式、二阶NP格式、三阶NP格式和三阶变形NP格式都是A稳定的，其中变形NP格式较三阶NP格式具有更大的稳定区域。只有三阶变形NP格式和一阶隐式欧拉格式是强A稳定的。
+
+\begin{figure*}[h]\centering
+  \begin{tikzpicture}
+\matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+				  \includegraphics[width=4cm]{1orderexplicit.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=4.cm]{1orderImplicit.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=4.cm]{2orderpertur.eps}};\\
+				\node[rectangle]{
+				  \includegraphics[width=4.cm]{3orderRunge-Kutta.eps}};&
+				  \node[rectangle]{
+					\includegraphics[width=4.cm]{3orderper.eps}};&
+				\node[rectangle]{
+				  \includegraphics[width=4cm]{3orderTNP.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{不同格式在$h$ 复平面上稳定区域}
+	\label{fig:linearstable}
+\end{figure*}
+ 
+\section{不同格式的数值比较}
+由于理论方法的限制，我们仅能比较不同格式的线性稳定性，而求解非线性方程是否稳定，我们只能通过数值的方法进行验证。
+
+\begin{enumerate}
+  \item[算例1).] 首先我们研究如下一个非线性方程\cite{hairer1999stiff} 
+  \begin{equation}\label{eqexample1}
+	\frac{dx}{dt}=f(t,x)=-50(x-\cos t)
+  \end{equation}
+  针对该方程，摄动系数为
+  \begin{equation*}
+	a_1=25-\frac{\sin t_n}{2(x_n-\cos t_n)}, \hspace{0.3cm}
+  a_2=\frac{1}{4} \left(\frac{ \sin t_n}{x-\cos t_n} -50 \right)^2-\frac{\cos t_n -50\sin t_n}{6(x-\cos t_n)}
+\end{equation*}
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+	\node(0,0) [rectangle,inner sep=0](big) 
+	{
+	\includegraphics[width=9cm]{scheme30.eps}};
+\matrix[left =1cm of big,column sep=0mm]
+		{
+				\node[rectangle,inner sep=0](small1)
+				{
+					\includegraphics[width=4.5cm]{explicitEuler.eps}
+				};\\
+				\node[rectangle]{
+					 \includegraphics[width=4.5cm]{rungeKutta.eps}
+				};\\};
+	\end{tikzpicture}
+	\caption{不同格式求解ODE方程  (\ref{eqexample1}) 结果. 参考解为采用$N=3000$网格得到}
+\label{fig:unlinear1}
+\end{figure}
+图 \ref{fig:unlinear1} 给出不同方法的求解结果。可以看到，一阶显式欧拉格式和三阶Runge-Kutta格式正如前面线性分析的结果一样是不稳定的，二阶NP格式也有一个点过冲。只有三阶NP格式、三阶TNP格式和一阶隐式欧拉格式是稳定的，而一阶隐式欧拉格式精度远远不如三阶NP和TNP格式。另外需要注意的是，尽管隐式格式能得到稳定的结果，然而在每一步都需要迭代。
+
+\item[算例2).]方程
+	\begin{equation}
+		\frac{dx}{dt}=f(t,x)=-x^3, x_0=1, t=[0,1]
+	\end{equation}
+	作为第二个算例，该算例存在精确解
+\begin{eqnarray*}
+	  x=\frac{1}{\sqrt{2t+1}}
+\end{eqnarray*}
+同样不难求的摄动系数分别为
+\begin{eqnarray*}
+  a_1=\frac{3x_n^2}{2}, 
+	  a_2=-\frac{x_n^4}{4}
+\end{eqnarray*}
+表 \ref{tab:errorNP} 给出不同方法的误差和计算精度，可以看到，二阶NP格式、三阶NP格式和三阶TNP格式都能达到它们理论精度，而且三阶NP和三阶TNP格式误差要小于三阶RK格式。
+
+\begin{table}[htbp]
+  \small
+  \centering
+\setlength{\belowcaptionskip}{10pt}
+\caption{\small 不同ODE格式精度分析}
+  \begin{tabular}{cccccc}
+	\toprule
+	Scheme        & N       & $L_1$ error  & $L_1$ order & $L_{\infty}$ error & $L_{\infty}$ order \\
+	\midrule
+	1IE&20       &7.7149d-3     &---          &  8.7737d-3         & ---  \\
+				  &40       &3.9062d-3     &0.98         &  4.4879d-3         & 0.97 \\
+           		  &80       &1.9656d-3     &0.99         &  2.2712d-3         & 0.98 \\
+           		  &160      &9.8594d-4     &1.00         &  1.1426d-3         & 0.99 \\
+           		  &320      &4.9377d-4     &1.00         &  5.7304d-4         & 1.00 \\
+	\midrule
+	3RK   &20       &1.3696d-5     &---          &  1.7438d-5         & ---  \\
+		          &40       &1.6161d-6     &3.08         &  2.0646d-6         & 3.08 \\
+   		          &80       &1.9601d-7     &3.04         &  2.5119d-7         & 3.04 \\
+   		          &160      &2.4128d-8     &3.02         &  3.0964d-8         & 3.02 \\
+   		          &320      &2.9924d-9     &3.01         &  3.8433d-9         & 3.01 \\
+	\midrule
+  2NP       &20       &5.0683d-5    &---           &  6.0346d-5         & ---  \\
+      &40       &1.2338d-5    &2.04          &  1.4812d-5         & 2.03 \\
+           	      &80       &3.0414d-6    &2.02          &  3.6679d-6         & 2.01 \\
+           	      &160      &7.5487d-7    &2.01          &  9.1226d-7         & 2.01 \\
+           	      &320      &1.8803d-7    &2.01          &  2.2750d-7         & 2.00 \\
+	\midrule
+3NP         &20       &1.9980d-6    &---           &  2.5388d-6         & ---  \\
+      &40       &2.3999d-7    &3.06          &  3.0629d-7         & 3.05 \\
+                  &80       &2.9376d-8    &3.03          &  3.7628d-8         & 3.03 \\
+                  &160      &3.6325d-9    &3.03          &  4.6607d-9         & 3.01 \\
+                  &320      &4.5143d-10   &3.01          &  5.7972d-10        & 3.01 \\
+	\midrule
+3TNP              &20       &1.8060d-6    &---           &  2.2866d-6         & ---  \\
+                  &40       &2.1766d-7    &3.06          &  2.7702d-7         & 3.05 \\                                     
+                  &80       &2.6685d-8    &3.03          &  3.4085d-8         & 3.02 \\                                                 
+                  &160      &3.3025d-9    &3.01          &  4.2255d-9         & 3.01 \\                                                   
+                  &320      &4.1057d-10   &3.01          &  5.2582d-10        & 3.01 \\                                       
+	\bottomrule
+	\end{tabular}
+\label{tab:errorNP}
+\end{table}
+
+\end{enumerate}
+
+\section{小结}
+本章，我们针对ODE方程可能存在的刚性问题，构造了高精度、刚性稳定且具有显式形式的数值摄动(NP）格式，经过理论分析和数值计算，验证了该类格式，尤其是三阶TNP格式高精度及刚性稳定等性质。再下一章中，我们将会把三阶TNP格式应用在化学反应方程求解中，用来解决化学反应ODE方程中的时间刚性问题。
+
+
 

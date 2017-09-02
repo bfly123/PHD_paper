@@ -23,6 +23,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsmath,bm}
+\usetikzlibrary{shapes.geometric, arrows,matrix,positioning,calc}
+%\usepackage[colorlinks,linkcolor=black,hyperindex,CJKbookmarks,dvipdfm]{hyperref}
 \usepackage{url} 
 % 可选参数：
 % notypeinfo 取消扉页的LaTeX版本信息
@@ -32,6 +34,8 @@
 % dvips 使用 dvips 生成最终的 PS 文档
 % pdftex 使用 pdfLaTeX 生成最终的 PDF 文档
 
+\theoremstyle{plain}\newtheorem{definition}{\sc{Definition}}
+\theoremstyle{defination}\newtheorem{example}{Example}[section]
 % 设置图形文件的搜索路径
 \graphicspath{{chapter/}{figures/}}
 
