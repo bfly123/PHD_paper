@@ -222,7 +222,7 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
 
 \subsection{¶à½éÖÊEuler·½³Ì}
 ½çÃæÎÊÌâÊÇ¶à½éÖÊ¡¢¶àÏàÁ÷ÖÐ×î»ù±¾ÎÊÌâ£¬ÔÚ¶à½éÖÊ¿ÉÑ¹ËõÁ÷ÖÐÍ¬Ñù¾ßÓÐÖØÒªµØÎ»£¬½çÃæ³öÏÖÔÚ´æÔÚÃ÷È··Ö½çÃæµÄÁ÷ÌåÖÐ£¬±¾ÎÄ²ÉÓÃÎÞÏà±ä¡¢ÎÞÀ©É¢µÄ¶à½éÖÊEuler·½³ÌÃèÊöÕâÒ»ÎÊÌâ£¬¸Ã·½³ÌÏµÍ³Ò²ÊÇÃèÊö½çÃæÎÊÌâµÄ×î¼òµ¥ÏµÍ³¡£¶à½éÖÊEuler·½³ÌºÍµ¥½éÖÊ·½³Ì (\ref{eq1_1}) ÏàËÆ£¬Ö»ÊÇÔö¼ÓÒ»¸ö±ê¼Ç²»Í¬½éÖÊµÄ·½³Ì£¬ºÍ½çÃæÏà¹ØµÄ·½³Ì¶à²ÉÓÃ·ÇÊØºãÐÎÊ½£¬
-\begin{eqnarray}
+\begin{eqnarray}\label{eq:multi_interface}
 \left\{
   \begin{array}{l}
 	\displaystyle 	 \frac{\partial \bm{U}}{\partial t} +\frac{\partial \bm{F}}{\partial x}+\frac{\partial \bm{G}}{\partial y}=0\\[2em]
@@ -519,7 +519,7 @@ Euler·½³Ì×ñÑ­Ë«ÇúÊØºãÂÊ£¬¹ØÓÚ·ÇÏßÐÔË«ÇúÊØºãÂÊ·½³ÌµÄÀíÂÛÑÐ¾¿»ù±¾ÉÏÊÇ´Ó¹ãÒåº¯ÊýºÍÈ
 
  ¼ÆËãÁ÷ÌåÁ¦Ñ§³ÉÎªÁË¶ÀÁ¢Ñ§¿ÆÒÔºó£¬ÑÐ¾¿ÖØµãÒ²ÓÐÁËºÜ´óÆ«ÒÆ£¬»ùÓÚÆä¹¤³Ì±³¾°µÄÒªÇó£¬Çø±ðÓÚÊýÑ§ÀíÂÛÑÐ¾¿£¬CFD¾ø´ó²¿·Ö¹¤×÷¶¼¼¯ÖÐÓÚÊýÖµ·½·¨µÄ·¢Õ¹¡¢¹¤³ÌÓ¦ÓÃµÄÍÆ¹ãÒÔ¼°ÒÔCFDÎª¹¤¾ßµÄÎïÀí»úÀíÐÔÑÐ¾¿ÉÏ¡£´Ó70Äê´ú¿ªÊ¼£¬°éËæ×ÅÊýÖµ·½·¨¡¢Ä£ÐÍ·½³Ì¡¢Íø¸ñ»®·ÖÒÔ¼°¼ÆËã»úÈíÓ²¼þÄÜÁ¦²»¶ÏÌáÉý£¬CFDÕæÕýµÃµ½ÁË¹ã·ºÓ¦ÓÃ£¬´Óº½¿Õ¡¢ÆøÏó¡¢´¬²°¡¢»¯¹¤µ½ÌåÓý¡¢¶¯»­µÈµÈ¸÷¸öÁìÓò¶¼ÂýÂýÓÐÁËCFDµÄÉíÓ°¡£1981ÄêµÚÒ»´úÉÌÒµ»¯Èí¼þPHONICS³öÏÖ£¬±êÖ¾×ÅCFD´Ó¿ÆÑÐÏò¹¤³ÌÓ¦ÓÃµÄÑÓÉì¡£½øÈë90Äê´ú£¬Ò»´óÅúÓÅÐãµÄÉÌÒµÈí¼þÓ¿ÏÖ£¬ÈçFLUENT£¬CFX£¬STAR-CDµÈµÈ£¬ÔÚ´Ë»ù´¡ÉÏ£¬CFD¹¤³ÌÊ¦Ò²³ÉÎªÐí¶àÐÐÒµÖÐ²»¿É»òÈ±µÄ½ÇÉ«£¬ÍÆ¶¯×ÅÆäËûÏà¹ØÑ§¿ÆµÄÑÐ¾¿ºÍ¹¤Òµ»¯µÄ·¢Õ¹¡£
 
- \subsection{ÊýÖµ·½·¨µÄ·¢Õ¹}
+ \subsection{ÊýÖµ·½·¨µÄ·¢Õ¹}\label{cap:method_develop}
  Á÷ÌåÁ¦Ñ§·½³ÌµÄÊýÖµ·½·¨´Ó´óµÄ¿ò¼Ü¿ÉÒÔ·ÖÎªÓÐÏÞ²î·Ö·¨¡¢ÓÐÏÞÌå»ý·¨¡¢ÓÐÏÞÔª·¨¡¢±ß½çÔª·¨ºÍÓÐÏÞ·ÖÎö·¨µÈ¡£¸÷¸ö·½·¨¾ßÓÐ²»Í¬µÄÇó½âÇøÓòÀëÉ¢·½Ê½ºÍ¿ØÖÆ·½³ÌÀëÉ¢·½Ê½£¬¾ßÓÐ¸÷×ÔµÄÓÅÈ±µã£¬±¾ÎÄ²ÉÓÃÓÐÏÞ²î·Ö·½·¨¡£
  
  ÓÐÏÞ²î·Ö·½·¨Ê¹ÓÃÓÐÏÞ¸öÍø¸ñ½Úµã´úÌæÁ¬ÐøµÄ¼ÆËãÓò£¬ÒÔÌ©ÀÕ¼¶ÊýÕ¹¿ªµÈ·½·¨£¬½«¿ØÖÆ·½³ÌÖÐµÄµ¼ÊýÓÃ½Úµãº¯ÊýÖµµÄ²îÉÌ´úÌæ½øÐÐÀëÉ¢¡£ÓÐÏÞ²î·Ö·½·¨ÊÇÒ»ÖÖÖ±½Ó½«Î¢·Ö·½³Ì±äÎª´úÊýÎÊÌâµÄÊýÖµ·½·¨£¬Ö±¹ÛÇÒ¼òµ¥£¬·¢Õ¹½ÏÎª³ÉÊì¡£ÏÂÃæ¼òµ¥µÄ»Ø¹ËÊýÖµ·½·¨µÄ·¢Õ¹ºÍÏÖ×´¡£

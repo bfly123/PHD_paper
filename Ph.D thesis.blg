@@ -2,10 +2,16 @@ This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Ph.D thesis.aux
 The style file: acm.bst
+A level-1 auxiliary file: chapter/abstract.aux
 A level-1 auxiliary file: chapter/Chapter-Introduction.aux
+A level-1 auxiliary file: chapter/Chapter-Multi-WENO.aux
+A level-1 auxiliary file: chapter/Chapter-detector.aux
+A level-1 auxiliary file: chapter/Chapter-MHD.aux
 A level-1 auxiliary file: chapter/Chapter-Dual-Information-Method.aux
 A level-1 auxiliary file: chapter/Chapter-NP-method.aux
-Reallocated field_info (elt_size=4) to 10497 items from 5000.
+A level-1 auxiliary file: chapter/Chapter-Scale.aux
+A level-1 auxiliary file: chapter/Chapter-2D-DIP.aux
+Reallocated field_info (elt_size=4) to 11555 items from 5000.
 Database file #1: bib/mybibfile.bib
 Repeated entry---line 1727 of file bib/mybibfile.bib
  : @book{lee2008detonation
@@ -117,8 +123,11 @@ Repeated entry---line 6543 of file bib/mybibfile.bib
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "van1979towards1"
 Warning--I didn't find a database entry for "anderson1998diffuse"
+Warning--I didn't find a database entry for ""
+Warning--I didn't find a database entry for "schulz1993numerical"
+Warning--I didn't find a database entry for "orszag1979small"
+Warning--I didn't find a database entry for "jiang1999high"
 Warning--I didn't find a database entry for "olsson2005conservative"
-Warning--I didn't find a database entry for "gao2010numerical，zhi2000advances"
 Warning--empty journal in freidberg1987ideal
 Warning--empty journal in glimm1970decay
 Warning--empty journal in harten1989eno
@@ -128,7 +137,7 @@ Warning--empty journal in van1973towards
 Warning--empty year in zhacomparative
 You've used 332 entries,
             2253 wiz_defined-function locations,
-            2176 strings with 54631 characters,
+            2187 strings with 54699 characters,
 and the built_in function-call counts, 106981 in all, are:
 = -- 10776
 > -- 4419
