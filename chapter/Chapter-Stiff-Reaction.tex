@@ -1,9 +1,195 @@
 \XeTeXinputencoding "GB2312"
 \chapter{DIP方法在刚性化学反应流动中的应用}
-在爆轰波的计算中，除了如上一章所讨论的常见的ODE方程导致的时间刚性问题外，还可能存在空间刚性问题。
+在爆轰波的计算中，除了可能存在如上一章所讨论的由于ODE方程导致的时间刚性问题外，还可能存在空间刚性问题。
 空间刚性问题并没有严格的定义，通常是指在网格不足时，爆轰波波速或爆轰波结构可能会出现非物理解\cite{colella1986theoretical}。
-\section{空间刚性问题形成的分析}
-1990年 Yee等人发现即便在含源项的线性对流方程 (\ref{eq:linear_source}) 中，也可能存在空间问题。下面我们就在该方程中定性的分析废物理解产生的过程和原因。
+\section{空间刚性问题形成过程分析}
+空间刚性问题的研究主要针对的是求解有化学反应源项的Euler方程系统，即方程组 (\ref{eq1_4})。然而该方程系统由于耦合了流动和反应过程，对于分析问题而言过分复杂。 
+1990年 Yee等人发现即便在含源项的线性对流方程 (\ref{eq:linear_source}) 中，也可能存在空间问题。下面我们就该方程定性的分析非物理解产生的过程和原因。
+\begin{equation}\label{eq:linear_source}
+\frac{\partial z}{\partial t}+  \frac{\partial z}{\partial x}=-\mu z(z-0.5)(z-1) 
+\end{equation}
+对于该类方程，为了便于分析问题和求解，通常采用算子分裂的思想，可以将该方程分裂成对流步和反应ODE步两部分，即
+\begin{equation}\label{eq:A_step}
+  \hspace{-1.2cm} 	\text{对流步（A）:} \hspace{0.3cm}  
+\frac{\partial z}{\partial t}+  \frac{\partial z}{\partial x}=0
+\end{equation}
+\begin{equation}\label{eq:R_step}
+	\text{反应步（R）:} \hspace{0.3cm}  
+	\frac{dz}{dt}=-\mu z(z-0.5)(z-1)
+	\end{equation}
+	然后采用一阶分裂算法
+\begin{eqnarray}
+  Z^{n+1}=R(\Delta t) A (\Delta t)
+\end{eqnarray}
+	或者二阶Strang分裂\cite{strang1968construction}算法
+\begin{eqnarray}
+  Z^{n+1}=A(\frac{\Delta t}{2}R(\Delta t) A (\frac{\Delta t}{2})
+\end{eqnarray}
+进行计算。
+
+方程 (\ref{eq:linear_source}) 中的$\mu$是可调参数，通过上一章可以知道，如果$\mu$很大时候，ODE方程 (\ref{eq:R_step}) 会存在刚性，需要稳定的ODE求解方法，如NP格式，进行求解。这里我们采用一种经过特殊设计的初始条件
+\begin{eqnarray*}
+  z_0(x)=\left\{
+\begin{array}{lcl}
+	1,&  & {x \leqslant 0.3},\\
+	0,&  & {x > 0.3}.
+\end{array} \right.
+\end{eqnarray*}
+由于初始条件中只包含$0$和$1$两个值，因此源项并不激活，在每个位置都应该为$0$。但是在真实的计算中并非如此。我们知道，如果采用离散的数值方法进行计算时，例如采用有限差分方法时，不可避免会引入数值耗散，这样原本如图 (\ref{fig:illu_stiff}).a 的波形会变成图 (\ref{fig:illu_stiff}).b 中所示的情况；如果$\mu$较小时，点$i$和$i+1$的源项在单位时间内产生的影响同样很小，最后结果可能变成如图 (\ref{fig:illu_stiff}).c 中的结果；但是如果$\mu$很大时，相应的错误的源项值同样会很大，ODE过程产生的影响可能会如图 (\ref{fig:ill_stiff}).d 所示，随着时间累计这种错误的源项激活过程就会导致非物理解的出现，也就是前文中所说的空间刚性问题。
+\input{chapter/tikz/fig_illu_stiff.tex}
+
+根据以上定性的分析，我们可以得出结论，对于线性方程 (\ref{eq:linear_source}) 而言，刚性问题是由于对流过程计算中的数值耗散导致的源项错误激发造成的。化学反应流动方程这种非物理解的发生过程会更为复杂，但是根本原因确是相同的，这从接下来方程分析中能得到验证。
+\section{DIP方法在刚性化学反应方程中的应用}
+一维化学反应欧拉方程为
+\begin{equation} \label{ReactionEuler}
+  \frac{\partial \bm{U}}{\partial t}+  \frac{\partial \bm F}{\partial x}=\bm S, 
+ \end{equation}
+ 其中
+\begin{eqnarray*}
+   \bm U=
+   \left(
+   \begin{array}{c}
+	 \rho\\
+	 \rho u\\
+	 E\\
+	\rho  z_1\\
+	 \rho z_2\\
+	 \vdots\\
+	\rho  z_{ns-1}\\
+	 \end{array}
+	 \right)
+ ,
+ \bm F=
+  \left(
+  \begin{array}{c}
+	\rho u\\
+	\rho u^2 + p\\
+	u (E+p)\\
+	\rho u z_1 \\
+	\rho u z_2 \\
+	\vdots\\
+	\rho u z_{ns-1}\\ 
+	\end{array}
+ \right)
+,
+\bm S=
+ \left(
+  \begin{array}{c}
+	0\\
+	0\\
+	0\\
+	\omega_1\\
+	\omega_2\\
+	\vdots\\
+	\omega_{ns-1}
+	\end{array}
+ \right)
+,
+\end{eqnarray*}
+
+根据有无源项，我们可以将方程 (\ref{ReactionEuler}) 写成如下形式
+\begin{equation}\label{star_Eq1}
+  \left\{
+	\begin{array}{l}
+	  \displaystyle  \frac{\partial \bm U_{1}}{\partial t}+\frac{\partial \bm F_{1}}{\partial x}=0,\\[0.5em]
+\displaystyle  \frac{\partial \bm U_{2}}{\partial t}+\frac{\partial \bm F_{2}}{\partial x}=\bm S_1,\\
+ \end{array}
+  \right.
+\end{equation}
+其中
+\begin{eqnarray*}
+   \bm U_{1}=
+   \left(
+   \begin{array}{c}
+	 \rho\\
+	 \rho u\\
+	 E\\
+	 \end{array}
+	 \right)
+ ,
+ \bm F_{1}=
+  \left(
+  \begin{array}{c}
+	\rho u\\
+	\rho u^2 + p\\
+	u (E+p)\\
+	\end{array}
+ \right)
+,
+\end{eqnarray*}
+\begin{eqnarray*}
+\bm U_2 =
+ \left(
+ \begin{array}{c}
+  \rho z_{1}\\
+   \rho z_{2}\\
+   \vdots\\
+   \rho z_{ns-1}\\
+ \end{array}
+ \right)
+,
+\bm F_2 =
+ \left(
+ \begin{array}{c}
+   \rho u z_{1}\\
+   \rho u z_{2}\\
+   \vdots\\
+   \rho u z_{ns-1}\\
+ \end{array}
+ \right)
+,
+\bm S_1=
+\left(
+\begin{array}{c}
+  \omega_{1}\\
+  \omega_{2}\\
+  \vdots\\
+  \omega_{ns-1}\\
+\end{array}
+\right)
+.
+\end{eqnarray*}
+对于方程 (\ref{star_Eq1}) 中第二项可以展开为
+\begin{equation}\label{star_Eq2}
+  \bm Z\frac{\partial \rho}{\partial t}+\bm Z\frac{\partial \rho u}{\partial x}+\rho \frac{\partial \bm Z}{\partial t}+\rho u \frac{\partial \bm Z}{\partial x}=\bm S_1,
+  \end{equation}
+  其中
+$\bm Z=
+ (
+ \begin{array}{cccc}
+    z_{1}, & z_{2},& \cdots, & z_{ns-1}\\
+ \end{array}
+ )^T$.
+将其中的质量守恒方程消去可以得到
+\begin{equation}\label{star_Eq3}
+  \frac{\partial \bm Z}{\partial t}+u\frac{\partial \bm Z}{\partial x}=\bm S_e,
+\end{equation}
+其中
+ $\bm S_e=\bm S_1/\rho=( 
+ \begin{array}{cccc}
+    \omega_{1}/\rho, & \omega_{2}/\rho,& \cdots, & \omega_{ns-1}/\rho\\
+ \end{array}
+ )^T$.
+
+ 可以看到，方程 (\ref{star_Eq3}) 和含源项的线性对流方程 (\ref{eq:linear_source}) 具有完全相同的形式，由此也可以证实，线性性对流方程中的非物理解同样会存在于反应欧拉方程中，这也就是空间刚性的原因。
+
+ 和 (\ref{eq:linear_source}) 中相同，方程(\ref{star_Eq3}) 同样可以算子分裂成对流项和反应项两部分，这样就可以把方程 (\ref{star_Eq1}) 分裂为如下三部分
+ \begin{numcases}{}
+ \frac{\partial \bm U_{1}}{\partial t}+\frac{\partial \bm F_{1}}{\partial x}=0 \label{EulerEquation},
+\\
+\frac{\partial \bm Z}{\partial t}+u\frac{\partial \bm Z}{\partial x}=0,\label{Afrac}\\
+\frac{d\bm Z}{dt}=S_e \label{Rfrac}. 
+\end{numcases}
+
+想要解决刚性问题，有两种方式，一种是限制源项错误的激活过程，如Zhang等人提出的平衡态方法\cite{zhang2014equilibrium}，Bao和Jin提出的随机投影方法\cite{bao2000random,bao2001random,bao2002random}，及Wang等提出的反应步子网格重构方法\cite{wang2012high}等，但是由于源项刚性并非一定存在，因此这些方法都需要一些预先的假设，如刚性前提假设等。另外一种消除刚性的方法是限制数值耗散，如Chu和Shu提出的反耗散WENO格式\cite{chou2007high}和Yee等人提出的非线性限制器方法等\cite{yee2011high}，但是想从Euler方程角度消除耗散几乎是不可能的，虽然减小耗散有利于抑制刚性问题的产生，但是即便很小的耗散也足以导致非物理状态的激发\cite{yee2013spurious}。
+
+然而，完全消除方程 (\ref{ReactionEuler}) 中的耗散完全是没有必要的，从分裂后的方程中可以看到，方程 (\ref{EulerEquation})中是否有耗散在第 \ref{chap:dip} 章，我们构造的DIP界面方法就是针对于无耗散的求解方程 (\ref{eq:A_step}) 提出的，因此我们不需要限制整个Euler方程的耗散，只需要限制
+
+
+
+
+
+
 
 
 

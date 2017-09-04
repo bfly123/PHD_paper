@@ -1,17 +1,6 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces \small 不同格式精度对比，$T=2$}}{42}{table.2.1}
-\contentsline {table}{\numberline {2.2}{\ignorespaces \small 2D线性对流传播方程算例中不同格式计算精度对比，$T=2$}}{48}{table.2.2}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces \small $u=\text {sin}(\pi x)$初始条件下，不同识别方法的计算误差，$T=10$，$\Delta x=0.02$}}{59}{table.3.1}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces \small Alfv\'{e}n波算例不同格式精度对比，$T=5$}}{72}{table.4.1}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces \small 不同ODE格式精度分析}}{109}{table.6.1}
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces \small 不同ODE格式精度分析}}{41}{table.2.1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

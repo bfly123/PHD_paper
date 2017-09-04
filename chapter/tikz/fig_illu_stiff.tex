@@ -1,0 +1,117 @@
+\XeTeXinputencoding "GB2312"
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[domain=1:5]
+	\node (A1) [circle,draw,inner sep=0.5mm]  at (0.5,0){}; 
+	\node (A3) [circle,draw,inner sep=0.5mm]  at (1.5,0){}; 
+	\node (A5) [circle,draw,inner sep=0.5mm]  at (2.5,0){}; 
+	\node (A7) [circle,draw,inner sep=0.5mm]  at (3.5,0){}; 
+	\node (A9) [circle,draw,inner sep=0.5mm]  at (4.5,0){}; 
+	\node (A11) [circle,draw,inner sep=0.5mm]  at (5.5,0){}; 
+     
+	\node (B1) at (0.5,3)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B2) at (1.5,3)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B3)  at (2.5,3)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B4) at (3.5,0.5)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B5) at (4.5,0.5)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B6) at (5.5,0.5)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+
+\draw [line width=1.1pt, color=black!80](0,3)--(B1)--(B2)--(B3)--(B4)--(B5)--(B6)--(5.7,0.5);
+
+\draw  [->,line width=1pt,color=black!60](0,0)--(5.8,0) node [anchor=north] {$x$};
+ \draw [->,line width=1pt,color=black!60](0,0) -- (0,4) node [anchor=east] {$z$};
+ \node at (-0.2,0.5) {\scriptsize $0$};
+ \node at (-0.2,3) {\scriptsize $1$};
+ \node at (2.5,-0.3) {\scriptsize $i$};
+ \node at (3.5,-0.3) {\scriptsize $i+1$};
+ \node at (1.5,-0.3) {\scriptsize $i-1$};
+ \node at (2.0,-1) {\scriptsize (a) 真实情况};
+\end{tikzpicture}
+  \begin{tikzpicture}[domain=1:5]
+	\node (A1) [circle,draw,inner sep=0.5mm]  at (0.5,0){}; 
+	\node (A3) [circle,draw,inner sep=0.5mm]  at (1.5,0){}; 
+	\node (A5) [circle,draw,inner sep=0.5mm]  at (2.5,0){}; 
+	\node (A7) [circle,draw,inner sep=0.5mm]  at (3.5,0){}; 
+	\node (A9) [circle,draw,inner sep=0.5mm]  at (4.5,0){}; 
+	\node (A11) [circle,draw,inner sep=0.5mm]  at (5.5,0){}; 
+     
+	\node (B1) at (0.5,3)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B2) at (1.5,3)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B3)  at (2.5,2.8)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B4) at (3.5,0.6)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B5) at (4.5,0.5)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B6) at (5.5,0.5)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+
+\draw [line width=1.1pt, color=black!80](0,3)--(B1)--(B2)--(B3)--(B4)--(B5)--(B6)--(5.7,0.5);
+
+\draw  [->,line width=1pt,color=black!60](0,0)--(5.8,0) node [anchor=north] {$x$};
+ \draw [->,line width=1pt,color=black!60](0,0) -- (0,4) node [anchor=east] {$z$};
+ \node at (-0.2,0.5) {\scriptsize $0$};
+ \node at (-0.2,3) {\scriptsize $1$};
+ \node at (2.5,-0.3) {\scriptsize $i$};
+ \node at (3.5,-0.3) {\scriptsize $i+1$};
+ \node at (1.5,-0.3) {\scriptsize $i-1$};
+ \node at (2.0,-1) {\scriptsize (b) 由于耗散导致的对流情况};
+\end{tikzpicture}
+
+  \begin{tikzpicture}[domain=1:5]
+	\node (A1) [circle,draw,inner sep=0.5mm]  at (0.5,0){}; 
+	\node (A3) [circle,draw,inner sep=0.5mm]  at (1.5,0){}; 
+	\node (A5) [circle,draw,inner sep=0.5mm]  at (2.5,0){}; 
+	\node (A7) [circle,draw,inner sep=0.5mm]  at (3.5,0){}; 
+	\node (A9) [circle,draw,inner sep=0.5mm]  at (4.5,0){}; 
+	\node (A11) [circle,draw,inner sep=0.5mm]  at (5.5,0){}; 
+     
+	\node (B1) at (0.5,3)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B2) at (1.5,3)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B3)  at (2.5,2.95)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node  at (2.5,2.7)[circle, draw, inner sep=0.5mm]{};
+	\node (B4) at (3.5,0.55)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node  at (3.5,0.7)[circle,draw,inner sep=0.5mm]{};
+	\node (B5) at (4.5,0.5)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B6) at (5.5,0.5)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+
+\draw [line width=1.1pt, color=black!80](0,3)--(B1)--(B2)--(B3)--(B4)--(B5)--(B6)--(5.7,0.5);
+
+\draw  [->,line width=1pt,color=black!60](0,0)--(5.8,0) node [anchor=north] {$x$};
+ \draw [->,line width=1pt,color=black!60](0,0) -- (0,4) node [anchor=east] {$z$};
+ \node at (-0.2,0.5) {\scriptsize $0$};
+ \node at (-0.2,3) {\scriptsize $1$};
+ \node at (2.5,-0.3) {\scriptsize $i$};
+ \node at (3.5,-0.3) {\scriptsize $i+1$};
+ \node at (1.5,-0.3) {\scriptsize $i-1$};
+ \node at (2.0,-1) {\scriptsize (c)耗散导致的源项错误激活情况（源项较小）};
+\end{tikzpicture}
+  \begin{tikzpicture}[domain=1:5]
+	\node (A1) [circle,draw,inner sep=0.5mm]  at (0.5,0){}; 
+	\node (A3) [circle,draw,inner sep=0.5mm]  at (1.5,0){}; 
+	\node (A5) [circle,draw,inner sep=0.5mm]  at (2.5,0){}; 
+	\node (A7) [circle,draw,inner sep=0.5mm]  at (3.5,0){}; 
+	\node (A9) [circle,draw,inner sep=0.5mm]  at (4.5,0){}; 
+	\node (A11) [circle,draw,inner sep=0.5mm]  at (5.5,0){}; 
+     
+	\node (B1) at (0.5,3)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B2) at (1.5,3)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B3)  at (2.5,3.2)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node  at (2.5,2.7)[circle, draw, inner sep=0.5mm]{};
+	\node (B4) at (3.5,0.3)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node  at (3.5,0.7)[circle,draw,inner sep=0.5mm]{};
+	\node (B5) at (4.5,0.5)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+	\node (B6) at (5.5,0.5)[circle,draw,fill=black!60,inner sep=0.5mm]{};
+
+\draw [line width=1.1pt, color=black!80](0,3)--(B1)--(B2)--(B3)--(B4)--(B5)--(B6)--(5.7,0.5);
+
+\draw  [->,line width=1pt,color=black!60](0,0)--(5.8,0) node [anchor=north] {$x$};
+ \draw [->,line width=1pt,color=black!60](0,0) -- (0,4) node [anchor=east] {$z$};
+ \node at (-0.2,0.5) {\scriptsize $0$};
+ \node at (-0.2,3) {\scriptsize $1$};
+ \node at (2.5,-0.3) {\scriptsize $i$};
+ \node at (3.5,-0.3) {\scriptsize $i+1$};
+ \node at (1.5,-0.3) {\scriptsize $i-1$};
+ \node at (2.0,-1) {\scriptsize (d) 耗散导致的源项错误激活情况（源项较大）};
+\end{tikzpicture}
+\caption{界面在单元点间可能的分布情况一维示意图}
+\label{fig:illu_stiff}
+\end{figure}
+
+
