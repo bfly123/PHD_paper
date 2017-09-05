@@ -11,4 +11,5 @@
 \contentsline {figure}{\numberline {2.2}{\ignorespaces 不同格式求解ODE方程 (\ref {eqexample1}) 结果. 参考解为采用$N=3000$网格得到}}{40}{figure.2.2}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces 界面在单元点间可能的分布情况一维示意图}}{45}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces 分裂方法迭代过程流程图}}{47}{figure.3.2}
 \addvspace {10\p@ }

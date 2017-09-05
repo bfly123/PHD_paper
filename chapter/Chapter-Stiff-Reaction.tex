@@ -2,13 +2,13 @@
 \chapter{DIP方法在刚性化学反应流动中的应用}
 在爆轰波的计算中，除了可能存在如上一章所讨论的由于ODE方程导致的时间刚性问题外，还可能存在空间刚性问题。
 空间刚性问题并没有严格的定义，通常是指在网格不足时，爆轰波波速或爆轰波结构可能会出现非物理解\cite{colella1986theoretical}。
-\section{空间刚性问题形成过程分析}
+\section{空间刚性问题形成过程的分析}
 空间刚性问题的研究主要针对的是求解有化学反应源项的Euler方程系统，即方程组 (\ref{eq1_4})。然而该方程系统由于耦合了流动和反应过程，对于分析问题而言过分复杂。 
 1990年 Yee等人发现即便在含源项的线性对流方程 (\ref{eq:linear_source}) 中，也可能存在空间问题。下面我们就该方程定性的分析非物理解产生的过程和原因。
 \begin{equation}\label{eq:linear_source}
 \frac{\partial z}{\partial t}+  \frac{\partial z}{\partial x}=-\mu z(z-0.5)(z-1) 
 \end{equation}
-对于该类方程，为了便于分析问题和求解，通常采用算子分裂的思想，可以将该方程分裂成对流步和反应ODE步两部分，即
+对于方程 (\ref{eq:linear_source})，为了便于分析问题和进行求解，通常采用算子分裂的方法，将该方程分裂成对流步和反应ODE步两部分，即
 \begin{equation}\label{eq:A_step}
   \hspace{-1.2cm} 	\text{对流步（A）:} \hspace{0.3cm}  
 \frac{\partial z}{\partial t}+  \frac{\partial z}{\partial x}=0
@@ -35,11 +35,11 @@
 	0,&  & {x > 0.3}.
 \end{array} \right.
 \end{eqnarray*}
-由于初始条件中只包含$0$和$1$两个值，因此源项并不激活，在每个位置都应该为$0$。但是在真实的计算中并非如此。我们知道，如果采用离散的数值方法进行计算时，例如采用有限差分方法时，不可避免会引入数值耗散，这样原本如图 (\ref{fig:illu_stiff}).a 的波形会变成图 (\ref{fig:illu_stiff}).b 中所示的情况；如果$\mu$较小时，点$i$和$i+1$的源项在单位时间内产生的影响同样很小，最后结果可能变成如图 (\ref{fig:illu_stiff}).c 中的结果；但是如果$\mu$很大时，相应的错误的源项值同样会很大，ODE过程产生的影响可能会如图 (\ref{fig:ill_stiff}).d 所示，随着时间累计这种错误的源项激活过程就会导致非物理解的出现，也就是前文中所说的空间刚性问题。
+由于初始条件中只包含$0$和$1$两个值，因此源项并不激活，在每个位置都应该为$0$。但是在真实的计算中并非如此。我们知道，如果采用离散的数值方法进行计算时，例如采用有限差分方法时，不可避免会引入数值耗散，这样原本如图 (\ref{fig:illu_stiff}).a 的波形会变成图 (\ref{fig:illu_stiff}).b 中所示的情况；如果$\mu$较小时，点$i$和$i+1$的源项在单位时间内产生的影响同样很小，最后结果可能变成如图 (\ref{fig:illu_stiff}).c 中的结果；但是如果$\mu$很大时，相应的错误的源项值同样会很大，ODE过程产生的影响可能会如图 (\ref{fig:illu_stiff}).d 所示，随着时间累计这种错误的源项激活过程就会导致非物理解的出现，也就是前文中所说的空间刚性问题。
 \input{chapter/tikz/fig_illu_stiff.tex}
 
-根据以上定性的分析，我们可以得出结论，对于线性方程 (\ref{eq:linear_source}) 而言，刚性问题是由于对流过程计算中的数值耗散导致的源项错误激发造成的。化学反应流动方程这种非物理解的发生过程会更为复杂，但是根本原因确是相同的，这从接下来方程分析中能得到验证。
-\section{DIP方法在刚性化学反应方程中的应用}
+根据以上定性的分析，我们可以得出这样的结论：对于线性方程 (\ref{eq:linear_source}) 而言，空间刚性问题是由对流过程中的数值耗散导致的源项错误的激发造成的。在化学反应流动方程中这种非物理解的发生过程会更为复杂，但是根本原因应该是相同的，接下来我们就从反应欧拉方程的分析中进行验证。
+\section{求解反应Euler方程的分裂方法}
 一维化学反应欧拉方程为
 \begin{equation} \label{ReactionEuler}
   \frac{\partial \bm{U}}{\partial t}+  \frac{\partial \bm F}{\partial x}=\bm S, 
@@ -171,19 +171,166 @@ $\bm Z=
  \end{array}
  )^T$.
 
- 可以看到，方程 (\ref{star_Eq3}) 和含源项的线性对流方程 (\ref{eq:linear_source}) 具有完全相同的形式，由此也可以证实，线性性对流方程中的非物理解同样会存在于反应欧拉方程中，这也就是空间刚性的原因。
+ 可以看到，方程 (\ref{star_Eq3}) 和含源项的线性对流方程 (\ref{eq:linear_source}) 具有完全相同的形式，由此也可以证实，线性对流方程中的非物理解同样会存在于反应欧拉方程中，因此带来了化学反应方程的刚性问题。
 
  和 (\ref{eq:linear_source}) 中相同，方程(\ref{star_Eq3}) 同样可以算子分裂成对流项和反应项两部分，这样就可以把方程 (\ref{star_Eq1}) 分裂为如下三部分
  \begin{numcases}{}
  \frac{\partial \bm U_{1}}{\partial t}+\frac{\partial \bm F_{1}}{\partial x}=0 \label{EulerEquation},
 \\
 \frac{\partial \bm Z}{\partial t}+u\frac{\partial \bm Z}{\partial x}=0,\label{Afrac}\\
-\frac{d\bm Z}{dt}=S_e \label{Rfrac}. 
+\frac{d\bm Z}{dt}= \bm S_e \label{Rfrac}. 
 \end{numcases}
 
+这里我们并不采用一阶分裂方法或二阶Strang分裂方法，而是通过一种迭代的方式来减少分裂误差，具体的计算过程在流程图 \ref{fig:illu_split} 中给出，其中
+$\hat{\bm U}_1$和 $\hat{\bm Z}$是迭代过程的中间变量，  $E$, $A$ 和$R$分别代表求解方程 (\ref{EulerEquation}) 欧拉方程部分 (\ref{EulerEquation}) 、组分对流部分 (\ref{Afrac}) 和反应ODE部分 (\ref{Rfrac}) 的算子。
+\begin{figure}
+\includegraphics[width=14cm]{illu_iteration_process.png}
+\caption{分裂方法迭代过程流程图}
+\label{fig:illu_split}
+\end{figure}
+\section{DIP方法在反应Euler方程求解中的应用}
 想要解决刚性问题，有两种方式，一种是限制源项错误的激活过程，如Zhang等人提出的平衡态方法\cite{zhang2014equilibrium}，Bao和Jin提出的随机投影方法\cite{bao2000random,bao2001random,bao2002random}，及Wang等提出的反应步子网格重构方法\cite{wang2012high}等，但是由于源项刚性并非一定存在，因此这些方法都需要一些预先的假设，如刚性前提假设等。另外一种消除刚性的方法是限制数值耗散，如Chu和Shu提出的反耗散WENO格式\cite{chou2007high}和Yee等人提出的非线性限制器方法等\cite{yee2011high}，但是想从Euler方程角度消除耗散几乎是不可能的，虽然减小耗散有利于抑制刚性问题的产生，但是即便很小的耗散也足以导致非物理状态的激发\cite{yee2013spurious}。
 
-然而，完全消除方程 (\ref{ReactionEuler}) 中的耗散完全是没有必要的，从分裂后的方程中可以看到，方程 (\ref{EulerEquation})中是否有耗散在第 \ref{chap:dip} 章，我们构造的DIP界面方法就是针对于无耗散的求解方程 (\ref{eq:A_step}) 提出的，因此我们不需要限制整个Euler方程的耗散，只需要限制
+消除方程 (\ref{ReactionEuler}) 中的所有耗散是没有必要的，从分裂后的方程中可以看到，方程 (\ref{EulerEquation})中是否有耗散对源项并没有直接影响，只要限制方程 (\ref{Afrac}) 中的耗散就能避免非物理解的产生，这点和含源项的线性对流方程 (\ref{eq:linear_source}) 是相同的。
+
+方程 (\ref{Afrac}) 恰好是界面运动的控制方程，因此，采用界面方法捕捉或者追踪化学反应界面是一个很直接的想法，难点在于化学反应界面是有厚度的耗散界面，因此很多传统的界面方法都难以应用在该类问题上。
+第 \ref{chap:dip} 章，我们构造的DIP界面方法正是针对于求解方程 (\ref{Afrac}) 提出的，具有处理耗散界面的能力，这里我们就将DIP方法应用在反应Euler方程求解中。
+
+DIP方法应用在反应Euler方程求解中有三点需要注意：1, 源项并不是作用在单元函数值上，而是作用在单元内的单元点和粒子点上；2, 由于 (\ref{Afrac}) 是一个方程组，因此输运值也不再是$z$而是向量$\bm Z$，由于$\bm Z$中每个元素都遵循相同的速度场，因此这里并不需要增加信息点数量。3，反应界面是耗散界面，因此我们应该采用针对于耗散界面的处理方法。这里以粒子点为例，给出需要修正的伪代码 (参照章节 \ref{chap:code_1d}），其中$\bm Z =(z_1,z_2,\cdots,z_{ns-1})^T$，其它如$\bar{\bm Z}$、$\bar{\bm Z}_p$是类似的。
+
+\hspace{-0.8cm}\rule [-10pt]{14.3cm}{0.02cm}
+
+\small
+\hspace{1cm}$\cdots$
+
+\begin{enumerate}
+
+  \small \item[3.]  粒子点的运动追踪
+  
+
+\scriptsize
+\color{black!60!blue!80}DO
+ \color{black!80} $i=0,Np$
+
+ \small \color{black}
+ \hspace{0.9cm} $\cdots$
+
+\color{black}
+\small \item[4.] 粒子点修正单元点
+
+  \scriptsize
+
+\color{black!80} 
+\hspace{-0.1cm} 
+$X'(ip)=(X_p(i)+\text{Mrk}_p(ip)X'_p(ip))/(\text{Mrk}_p(ip)+1)$
+
+
+
+  \hspace{0.3cm} \color{black!60!blue!80}DO
+ \color{black!80} $j=1,Ns-1$
+
+ \hspace{0.6cm} $\bar{z}_j'(ip)=(\bar{z}_{pj}(i)+\text{Mrk}_p(ip)\bar{z}_j'(ip))/(\text{Mrk}_p(ip)+1)
+ $
+
+ \hspace{0.3cm}  \color{black!60!blue!80}ENDDO
+
+\hspace{0.3cm}
+\color{black!80} $\text{Mrk}_p(ip)=\text{Mrk}_p(ip)+1$
+
+ \color{black!60!blue!80}END DO
+
+   \color{black}
+ \small \item[5.] 在空单元生成单元点
+
+ \hspace{0.9cm} $\cdots$
+
+ \small \item[6.] 在粒子点上作用源项
+
+\scriptsize
+\color{black!60!blue!80}DO
+\color{black!80} $i=0,Np$
+
+\hspace{0.3cm}
+\color{black!60!blue!80}DO
+\color{black!80} $j=1,Ns-1$
+
+\hspace{0.6cm} $\bar{z}_p(i)=R(\bar{z}_p(i))$
+
+\hspace{0.3cm} \color{black!60!blue!80}ENDDO
+
+\color{black!60!blue!80}ENDDO
+
+ \hspace{0.9cm} $\cdots$
+
+\end{enumerate}
+\hspace{-0.8cm}\rule [-10pt]{14.3cm}{0.02cm}
+
+\normalsize  
+
+
+\section{NP方法在反应源项ODE求解中的应用}
+由于ODE方程 (\ref{Rfrac}) 可能是刚性的，因此这里我们采用上一章提出的刚性稳定的三阶变形数值摄动(3TNP)格式 (\ref{3TNP})。
+考虑到方程 (\ref{Rfrac}) 中源项形式并不唯一，对应的摄动系数也并不相同，在前言章节\ref{chap:reaction}中，我们给出了本文会应用到的所有反应模型形式， 这里给出本章用到的反应模型源项对应的3TNP格式形式。
+
+\subsection{固定比热比单步总包反应模型}
+单步总包反应采用的源项为
+\begin{equation}
+  S_e=-K(T)z
+\end{equation}
+
+对应的3TNP格式为
+\begin{equation}
+  z_{n+1}=z_n+\Delta t f(t, z_n)/\bar{p}_3
+\end{equation}
+其中
+  $$\overline{p}_3=\frac{1+b_1\Delta t+b_2 \Delta t^2}{1-b_2 \Delta t}$$
+\begin{equation*}
+  b_1=a_1-\frac{a_2}{a_1+1}, \hspace{0.2cm} b_2=\frac{a_2}{a_1+1}
+  \end{equation*}
+$a_1$和$a_2$通过源项求得
+\begin{equation*}
+  a_1=-\frac{1}{2}K(T), \hspace{0.3cm} a_2=\frac{1}{12}K(T)^2
+  \end{equation*}
+
+  \subsection{固定比热比多步反应模型}
+  多步反应模型中$\bm Z$ 和$\bm S_e$都为向量，源项形式为
+\begin{eqnarray*}
+  s_i=\frac{W_i}{\rho} \sum_{k=1}^{nr}{(\mu_{i,k}''-\mu_{i,k}')} K_k \prod_{j}^{ns}{\left( \frac{\rho z_j}{W_j}\right)^{\mu_{j,k}'} },\hspace{0.3cm}  s_1=1,2,\cdots,ns-1
+\end{eqnarray*}
+对应的3TNP格式为
+ \begin{eqnarray*}
+   z_{i,j}^{n+1}=z_{i,j}^n+\frac{1}{\bar{p_i}} \Delta t s_i(z_{i,j}^n), & & i=1,2,\cdots ,ns-1
+\end{eqnarray*}
+其中
+\begin{eqnarray*}
+  \bar{p_i}=\frac{1+b_{i,1}\Delta t+b_{i,2} \Delta t^2}{1-b_{i,2} \Delta t},
+\end{eqnarray*}
+$b_1$和$b_2$同样是向量
+\begin{eqnarray*}
+  b_{i,1}=a_{i,1}-\frac{a_{i,2}}{a_{i,1}+1}, \hspace{0.3cm}
+  b_{i,2}=\frac{a_{i,2}}{a_{i,1}+1},
+\end{eqnarray*}
+$a_1$和$a_2$表达式为
+\begin{eqnarray*}
+  a_{i,1}=-\frac{1}{2} \sum_{j=1}^{ns} \frac{\partial s_i}{\partial z_j}s_j/s_i,
+\end{eqnarray*}
+\begin{eqnarray*}
+  a_{i,2}=-\frac{1}{6} \sum_{j=1}^{ns} \sum_{k=1}^{ns}\left( \frac{\partial^2 s_i}{\partial z_j\partial z_k}s_j s_k+\frac{\partial s_i}{\partial z_j} \frac{\partial s_j}{\partial z_k}s_k \right)/s_i+a_{i,1}^2.
+\end{eqnarray*}
+由于源项形式过于复杂，导数的表达式推导起来过于复杂，这里我们采用数值导数，
+$$ \frac{\partial s_i}{\partial z_j}=\frac{s_i(z_j+\Delta z)-s_i(z_j)}{\Delta z},$$
+其中
+$\Delta z$ 是相对于$z_j$的一个小量，这里选取为
+$$\Delta z= \left\{
+  \begin{array}{lcl}
+  z_j/100, & &  z_j \ne 0,\\
+  0.001, & & z_j= 0.
+\end{array} \right.
+$$
+
+
+
+
 
 
 

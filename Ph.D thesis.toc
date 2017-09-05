@@ -28,11 +28,15 @@
 \contentsline {section}{\numberline {1.5}本文所开展研究内容}{31}{section.1.5}
 \contentsline {chapter}{\numberline {第二章\hspace {0.3em}}刚性常微分方程和数值摄动（NP）方法}{33}{chapter.2}
 \contentsline {section}{\numberline {2.1}刚性常微分（ODE）方程}{33}{section.2.1}
-\contentsline {section}{\numberline {2.2}数值摄动方法}{34}{section.2.2}
+\contentsline {section}{\numberline {2.2}数值摄动（NP）方法}{34}{section.2.2}
 \contentsline {section}{\numberline {2.3}NP格式的稳定性分析}{36}{section.2.3}
 \contentsline {section}{\numberline {2.4}不同格式的数值比较}{39}{section.2.4}
 \contentsline {section}{\numberline {2.5}小结}{41}{section.2.5}
 \contentsline {chapter}{\numberline {第三章\hspace {0.3em}}DIP方法在刚性化学反应流动中的应用}{43}{chapter.3}
-\contentsline {section}{\numberline {3.1}空间刚性问题形成过程分析}{43}{section.3.1}
-\contentsline {section}{\numberline {3.2}DIP方法在刚性化学反应方程中的应用}{44}{section.3.2}
-\contentsline {chapter}{参考文献}{49}{appendix*.4}
+\contentsline {section}{\numberline {3.1}空间刚性问题形成过程的分析}{43}{section.3.1}
+\contentsline {section}{\numberline {3.2}求解反应Euler方程的分裂方法}{44}{section.3.2}
+\contentsline {section}{\numberline {3.3}DIP方法在反应Euler方程求解中的应用}{47}{section.3.3}
+\contentsline {section}{\numberline {3.4}NP方法在反应源项ODE求解中的应用}{49}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}固定比热比单步总包反应模型}{49}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}固定比热比多步反应模型}{50}{subsection.3.4.2}
+\contentsline {chapter}{参考文献}{53}{appendix*.4}

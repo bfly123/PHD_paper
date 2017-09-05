@@ -1,0 +1,42 @@
+\XeTeXinputencoding "GB2312"
+
+ \begin{figure}
+  \centering
+\begin{tikzpicture}% \label{figflowchat} 
+[auto,
+decision/.style={diamond, draw=blue!60, thick, text width=4em,align=flush center,inner sep=2pt},
+block/.style   ={rectangle, draw=blue!60, thick, text width=8em,align=center,minimum height=3em},
+line/.style    ={draw=black!60, thick, -latex,shorten >=2pt},
+begin/.style   ={rectangle, draw=black!70, thick, text width=3.0em,align=center, rounded corners,minimum height=2em},
+end/.style   ={rectangle, draw=black!70, thick, text width=5.0em,align=center, rounded corners,minimum height=2em},
+cloud/.style   ={rectangle, draw=blue!60,minimum height=3em, text width=3.5em, thick},%minimum height=1cm}]
+cloud2/.style   ={rectangle, draw=red,minimum height=3em} ]%minimum height=1cm}]
+\coordinate (input);
+\node [begin,right=0.6cm  of input] (init) {\scriptsize $ U_1 ^ {n}$\\$Z ^ {n}$ };
+\node [cloud,right =0.4cm of init] (pro13) {\scriptsize $\hat{U}_1\!^{0}\!=\!U_1^n$\\ $\hat{Z}^0=\!Z^n$};
+\matrix[right =0.4cm of pro13](pro1){
+  \node [block] (pro12) {\scriptsize  $\hat{U}_1\!^{\!m\!+1}\!=E(\hat{U}_1\!\!^0\!,\!\hat{Z}^m)$};\\
+  \node [block] (pro22) {\scriptsize $\hat{Z}_{1}\!^{m\!+1}\!=A(\hat{U}_1\!^{m\!+\!1}\!,\!\hat{Z}^0)$
+  $\hat{\!Z}^{m\!+1}\!=\!R\!(\hat{U}_1\!^{m\!+\!1}\!,\!\hat{Z}_1\!^{m\!+\!1})$ };\\
+};
+\node [decision,right=0.4cm of pro1] (dec) {\tiny $\hat{U}_1^{m+\!1}\!-\!\hat{U}_1\!^{\!m}$ \\ {\tiny $\hat{Z}^{m+\!1}\!-\!\hat{Z}^{\!m}$} \\[-0.9em] \tiny Convergence?};
+\node [end, right= 0.8cm of dec]   (end) {\scriptsize  ${U_1\!}^{\!n+1}\!=\!\hat{U}_1^{m\!+\!1}$ \\$Z^{n\!+\!1}\!=\!\hat{Z}^{m\!+\!1}$};
+ 
+
+\begin{scope}[every path/.style=line]
+\path           (init)    --    (pro13);
+\path           (pro13)     --    (pro1);
+\path           (pro1)     --    (dec);
+\path           (dec)     --  node [midway] {\tiny Yes} (end);
+\path           (dec)     -- node [near start]  {\tiny No} (9.15,1.7)-|  (5,1.0);
+\end{scope}
+
+\draw[draw=black!60,line width=1pt] (2.25,-1.5) rectangle (10.4,2);
+
+\end{tikzpicture} 
+\caption{新的分裂方法迭代过程流程图}
+\label{fig:illu_split} 
+
+\end{figure} 
+
+
