@@ -22,7 +22,7 @@ Jiang和Shu\cite{jiang1996efficient}分析了Liu\cite{liu1994weighted}引入的光滑因子
   \frac{\partial u}{\partial t}+\frac{\partial f(u)}{\partial x}=0,
 \end{equation}
 LF方法给出的正负通量为
-\begin{equation}
+\begin{equation} \label{eq:LF}
   f^\pm (u)=f(u)\pm \lambda_{max} u,
 \end{equation}
 其中$\lambda_{max}$是雅克比矩阵$\frac{\partial f}{\partial u}$的当地最大特征值。
@@ -32,7 +32,7 @@ LF方法给出的正负通量为
   \frac{du_i(t)}{dt}=-\frac{1}{\Delta x}(h_{i+1/2}-h_{i-1/2}),
 \end{equation}
 其中$h_{i+1/2}=h^+_{i+1/2}+h^-_{i+1/2}$。本文中，我们仅构造 $h^+_{i+1/2}$ 通量。为了简便文中省略掉了上标 '+'，$h^-_{i+1/2}$的构造遵从同样的规律。
-\subsection{加权基本无振荡/WENO格式\cite{jiang2001weighted,henrick2005mapped,borges2008improved}}
+\subsection{加权基本无振荡/WENO格式\cite{jiang2001weighted,henrick2005mapped,borges2008improved}} \label{chap:WENO}
 五阶WENO格式的通量构造为
 \begin{equation}
 h_{i+1/2}=\sum_{k=0}^{2}\omega_kq_k,

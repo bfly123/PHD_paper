@@ -1,9 +1,9 @@
 \XeTeXinputencoding "GB2312"
 \chapter{DIP·½·¨ÔÚ¸ÕĞÔ»¯Ñ§·´Ó¦Á÷¶¯ÖĞµÄÓ¦ÓÃ}
-ÔÚ±¬ºä²¨µÄ¼ÆËãÖĞ£¬³ıÁË¿ÉÄÜ´æÔÚÈçÉÏÒ»ÕÂËùÌÖÂÛµÄÓÉÓÚODE·½³Ìµ¼ÖÂµÄÊ±¼ä¸ÕĞÔÎÊÌâÍâ£¬»¹¿ÉÄÜ´æÔÚ¿Õ¼ä¸ÕĞÔÎÊÌâ¡£
-¿Õ¼ä¸ÕĞÔÎÊÌâ²¢Ã»ÓĞÑÏ¸ñµÄ¶¨Òå£¬Í¨³£ÊÇÖ¸ÔÚÍø¸ñ²»×ãÊ±£¬±¬ºä²¨²¨ËÙ»ò±¬ºä²¨½á¹¹¿ÉÄÜ»á³öÏÖ·ÇÎïÀí½â\cite{colella1986theoretical}¡£
+ÔÚ±¬ºä²¨µÄ¼ÆËãÖĞ£¬³ıÁË¿ÉÄÜ´æÔÚÈçÉÏÒ»ÕÂËùÌÖÂÛµÄÓÉÓÚODE·½³Ì¸ÕĞÔËùµ¼ÖÂµÄÊ±¼äÇó½âÎÊÌâÍâ£¬»¹¿ÉÄÜ´æÔÚ¿Õ¼ä¸ÕĞÔÎÊÌâ¡£
+¿Õ¼ä¸ÕĞÔÎÊÌâ²¢Ã»ÓĞÑÏ¸ñµÄ¶¨Òå£¬Í¨³£ÊÇÖ¸ÔÚÍø¸ñ²»×ãÊ±£¬±¬ºä²¨²¨ËÙ»ò±¬ºä²¨½á¹¹¿ÉÄÜ»á³öÏÖ·ÇÎïÀí½âÏÖÏó\cite{colella1986theoretical}¡£
 \section{¿Õ¼ä¸ÕĞÔÎÊÌâĞÎ³É¹ı³ÌµÄ·ÖÎö}
-¿Õ¼ä¸ÕĞÔÎÊÌâµÄÑĞ¾¿Ö÷ÒªÕë¶ÔµÄÊÇÇó½âÓĞ»¯Ñ§·´Ó¦Ô´ÏîµÄEuler·½³ÌÏµÍ³£¬¼´·½³Ì×é (\ref{eq1_4})¡£È»¶ø¸Ã·½³ÌÏµÍ³ÓÉÓÚñîºÏÁËÁ÷¶¯ºÍ·´Ó¦¹ı³Ì£¬¶ÔÓÚ·ÖÎöÎÊÌâ¶øÑÔ¹ı·Ö¸´ÔÓ¡£ 
+¿Õ¼ä¸ÕĞÔÎÊÌâµÄÑĞ¾¿Ö÷ÒªÕë¶ÔµÄÊÇÓĞ»¯Ñ§·´Ó¦Ô´ÏîµÄEuler·½³ÌÏµÍ³£¬¼´·½³Ì×é (\ref{eq1_4})¡£È»¶ø¸Ã·½³ÌÏµÍ³ÓÉÓÚñîºÏÁËÁ÷¶¯ºÍ·´Ó¦¹ı³Ì£¬¶ÔÓÚ·ÖÎöÎÊÌâ¶øÑÔ¹ı·Ö¸´ÔÓ¡£ 
 1990Äê YeeµÈÈË·¢ÏÖ¼´±ãÔÚº¬Ô´ÏîµÄÏßĞÔ¶ÔÁ÷·½³Ì (\ref{eq:linear_source}) ÖĞ£¬Ò²¿ÉÄÜ´æÔÚ¿Õ¼äÎÊÌâ¡£ÏÂÃæÎÒÃÇ¾Í¸Ã·½³Ì¶¨ĞÔµÄ·ÖÎö·ÇÎïÀí½â²úÉúµÄ¹ı³ÌºÍÔ­Òò¡£
 \begin{equation}\label{eq:linear_source}
 \frac{\partial z}{\partial t}+  \frac{\partial z}{\partial x}=-\mu z(z-0.5)(z-1) 
@@ -23,7 +23,7 @@
 \end{eqnarray}
 	»òÕß¶ş½×Strang·ÖÁÑ\cite{strang1968construction}Ëã·¨
 \begin{eqnarray}
-  Z^{n+1}=A(\frac{\Delta t}{2}R(\Delta t) A (\frac{\Delta t}{2})
+  Z^{n+1}=A(\frac{\Delta t}{2})R(\Delta t) A (\frac{\Delta t}{2})
 \end{eqnarray}
 ½øĞĞ¼ÆËã¡£
 
@@ -31,14 +31,14 @@
 \begin{eqnarray*}
   z_0(x)=\left\{
 \begin{array}{lcl}
-	1,&  & {x \leqslant 0.3},\\
-	0,&  & {x > 0.3}.
+	1,&  & {x \leqslant 0.3}\\
+	0,&  & {x > 0.3}
 \end{array} \right.
 \end{eqnarray*}
 ÓÉÓÚ³õÊ¼Ìõ¼şÖĞÖ»°üº¬$0$ºÍ$1$Á½¸öÖµ£¬Òò´ËÔ´Ïî²¢²»¼¤»î£¬ÔÚÃ¿¸öÎ»ÖÃ¶¼Ó¦¸ÃÎª$0$¡£µ«ÊÇÔÚÕæÊµµÄ¼ÆËãÖĞ²¢·ÇÈç´Ë¡£ÎÒÃÇÖªµÀ£¬Èç¹û²ÉÓÃÀëÉ¢µÄÊıÖµ·½·¨½øĞĞ¼ÆËãÊ±£¬ÀıÈç²ÉÓÃÓĞÏŞ²î·Ö·½·¨Ê±£¬²»¿É±ÜÃâ»áÒıÈëÊıÖµºÄÉ¢£¬ÕâÑùÔ­±¾ÈçÍ¼ (\ref{fig:illu_stiff}).a µÄ²¨ĞÎ»á±ä³ÉÍ¼ (\ref{fig:illu_stiff}).b ÖĞËùÊ¾µÄÇé¿ö£»Èç¹û$\mu$½ÏĞ¡Ê±£¬µã$i$ºÍ$i+1$µÄÔ´ÏîÔÚµ¥Î»Ê±¼äÄÚ²úÉúµÄÓ°ÏìÍ¬ÑùºÜĞ¡£¬×îºó½á¹û¿ÉÄÜ±ä³ÉÈçÍ¼ (\ref{fig:illu_stiff}).c ÖĞµÄ½á¹û£»µ«ÊÇÈç¹û$\mu$ºÜ´óÊ±£¬ÏàÓ¦µÄ´íÎóµÄÔ´ÏîÖµÍ¬Ñù»áºÜ´ó£¬ODE¹ı³Ì²úÉúµÄÓ°Ïì¿ÉÄÜ»áÈçÍ¼ (\ref{fig:illu_stiff}).d ËùÊ¾£¬Ëæ×ÅÊ±¼äÀÛ¼ÆÕâÖÖ´íÎóµÄÔ´Ïî¼¤»î¹ı³Ì¾Í»áµ¼ÖÂ·ÇÎïÀí½âµÄ³öÏÖ£¬Ò²¾ÍÊÇÇ°ÎÄÖĞËùËµµÄ¿Õ¼ä¸ÕĞÔÎÊÌâ¡£
-\input{chapter/tikz/fig_illu_stiff.tex}
 
-¸ù¾İÒÔÉÏ¶¨ĞÔµÄ·ÖÎö£¬ÎÒÃÇ¿ÉÒÔµÃ³öÕâÑùµÄ½áÂÛ£º¶ÔÓÚÏßĞÔ·½³Ì (\ref{eq:linear_source}) ¶øÑÔ£¬¿Õ¼ä¸ÕĞÔÎÊÌâÊÇÓÉ¶ÔÁ÷¹ı³ÌÖĞµÄÊıÖµºÄÉ¢µ¼ÖÂµÄÔ´Ïî´íÎóµÄ¼¤·¢Ôì³ÉµÄ¡£ÔÚ»¯Ñ§·´Ó¦Á÷¶¯·½³ÌÖĞÕâÖÖ·ÇÎïÀí½âµÄ·¢Éú¹ı³Ì»á¸üÎª¸´ÔÓ£¬µ«ÊÇ¸ù±¾Ô­ÒòÓ¦¸ÃÊÇÏàÍ¬µÄ£¬½ÓÏÂÀ´ÎÒÃÇ¾Í´Ó·´Ó¦Å·À­·½³ÌµÄ·ÖÎöÖĞ½øĞĞÑéÖ¤¡£
+¸ù¾İÒÔÉÏ¶¨ĞÔµÄ·ÖÎö£¬ÎÒÃÇ¿ÉÒÔµÃ³öÕâÑùµÄ½áÂÛ£º¶ÔÓÚÏßĞÔ·½³Ì (\ref{eq:linear_source}) ¶øÑÔ£¬¿Õ¼ä¸ÕĞÔÎÊÌâÊÇÓÉ¶ÔÁ÷¹ı³ÌÖĞµÄÊıÖµºÄÉ¢µ¼ÖÂµÄÔ´Ïî´íÎó¼¤·¢Ôì³ÉµÄ¡£ÔÚ»¯Ñ§·´Ó¦Á÷¶¯·½³ÌÖĞÕâÖÖ·ÇÎïÀí½âµÄ²úÉú¹ı³Ì»á¸üÎª¸´ÔÓ£¬µ«ÊÇ¸ù±¾Ô­ÒòÊÇÏàÍ¬µÄ£¬¹ØÓÚÕâÒ»µã£¬½ÓÏÂÀ´ÎÒÃÇ½«ÔÚ·´Ó¦Å·À­·½³ÌµÄ·ÖÎöÖĞµÃµ½ÑéÖ¤¡£
+
 \section{Çó½â·´Ó¦Euler·½³ÌµÄ·ÖÁÑ·½·¨}
 Ò»Î¬»¯Ñ§·´Ó¦Å·À­·½³ÌÎª
 \begin{equation} \label{ReactionEuler}
@@ -86,7 +86,8 @@
  \right)
 ,
 \end{eqnarray*}
-
+\input{chapter/tikz/fig_illu_stiff.tex}
+\normalsize
 ¸ù¾İÓĞÎŞÔ´Ïî£¬ÎÒÃÇ¿ÉÒÔ½«·½³Ì (\ref{ReactionEuler}) Ğ´³ÉÈçÏÂĞÎÊ½
 \begin{equation}\label{star_Eq1}
   \left\{
@@ -171,7 +172,7 @@ $\bm Z=
  \end{array}
  )^T$.
 
- ¿ÉÒÔ¿´µ½£¬·½³Ì (\ref{star_Eq3}) ºÍº¬Ô´ÏîµÄÏßĞÔ¶ÔÁ÷·½³Ì (\ref{eq:linear_source}) ¾ßÓĞÍêÈ«ÏàÍ¬µÄĞÎÊ½£¬ÓÉ´ËÒ²¿ÉÒÔÖ¤Êµ£¬ÏßĞÔ¶ÔÁ÷·½³ÌÖĞµÄ·ÇÎïÀí½âÍ¬Ñù»á´æÔÚÓÚ·´Ó¦Å·À­·½³ÌÖĞ£¬Òò´Ë´øÀ´ÁË»¯Ñ§·´Ó¦·½³ÌµÄ¸ÕĞÔÎÊÌâ¡£
+ ¿ÉÒÔ¿´µ½£¬·½³Ì (\ref{star_Eq3}) ºÍº¬Ô´ÏîµÄÏßĞÔ¶ÔÁ÷·½³Ì (\ref{eq:linear_source}) ¾ßÓĞÍêÈ«ÏàÍ¬µÄĞÎÊ½£¬ÓÉ´ËÒ²¿ÉÒÔÖ¤Êµ£¬ÏßĞÔ¶ÔÁ÷·½³ÌÖĞµÄ·ÇÎïÀí½âÍ¬Ñù»á´æÔÚÓÚ·´Ó¦Å·À­·½³ÌÖĞ£¬ÓÉ´Ë´øÀ´»¯Ñ§·´Ó¦·½³ÌÖĞµÄ¸ÕĞÔÎÊÌâ¡£
 
  ºÍ (\ref{eq:linear_source}) ÖĞÏàÍ¬£¬·½³Ì(\ref{star_Eq3}) Í¬Ñù¿ÉÒÔËã×Ó·ÖÁÑ³É¶ÔÁ÷ÏîºÍ·´Ó¦ÏîÁ½²¿·Ö£¬ÕâÑù¾Í¿ÉÒÔ°Ñ·½³Ì (\ref{star_Eq1}) ·ÖÁÑÎªÈçÏÂÈı²¿·Ö
  \begin{numcases}{}
@@ -221,12 +222,11 @@ DIP·½·¨Ó¦ÓÃÔÚ·´Ó¦Euler·½³ÌÇó½âÖĞÓĞÈıµãĞèÒª×¢Òâ£º1, Ô´Ïî²¢²»ÊÇ×÷ÓÃÔÚµ¥Ôªº¯ÊıÖµÉÏ£
   \scriptsize
 
 \color{black!80} 
+
 \hspace{-0.1cm} 
 $X'(ip)=(X_p(i)+\text{Mrk}_p(ip)X'_p(ip))/(\text{Mrk}_p(ip)+1)$
 
-
-
-  \hspace{0.3cm} \color{black!60!blue!80}DO
+ \hspace{0.3cm} \color{black!60!blue!80}DO
  \color{black!80} $j=1,Ns-1$
 
  \hspace{0.6cm} $\bar{z}_j'(ip)=(\bar{z}_{pj}(i)+\text{Mrk}_p(ip)\bar{z}_j'(ip))/(\text{Mrk}_p(ip)+1)
@@ -317,7 +317,7 @@ $a_1$ºÍ$a_2$±í´ïÊ½Îª
 \begin{eqnarray*}
   a_{i,2}=-\frac{1}{6} \sum_{j=1}^{ns} \sum_{k=1}^{ns}\left( \frac{\partial^2 s_i}{\partial z_j\partial z_k}s_j s_k+\frac{\partial s_i}{\partial z_j} \frac{\partial s_j}{\partial z_k}s_k \right)/s_i+a_{i,1}^2.
 \end{eqnarray*}
-ÓÉÓÚÔ´ÏîĞÎÊ½¹ıÓÚ¸´ÔÓ£¬µ¼ÊıµÄ±í´ïÊ½ÍÆµ¼ÆğÀ´¹ıÓÚ¸´ÔÓ£¬ÕâÀïÎÒÃÇ²ÉÓÃÊıÖµµ¼Êı£¬
+ÓÉÓÚÔ´ÏîĞÎÊ½¹ıÓÚ¸´ÔÓ£¬µ¼ÊıµÄ±í´ïÊ½ÍÆµ¼ÆğÀ´±È½ÏÀ§ÄÑ£¬ÕâÀïÎÒÃÇ²ÉÓÃÊıÖµµ¼Êı£¬
 $$ \frac{\partial s_i}{\partial z_j}=\frac{s_i(z_j+\Delta z)-s_i(z_j)}{\Delta z},$$
 ÆäÖĞ
 $\Delta z$ ÊÇÏà¶ÔÓÚ$z_j$µÄÒ»¸öĞ¡Á¿£¬ÕâÀïÑ¡È¡Îª
@@ -327,13 +327,696 @@ $$\Delta z= \left\{
   0.001, & & z_j= 0.
 \end{array} \right.
 $$
+\section{ÊıÖµËãÀı}
+±¾ÕÂµÄ¼ÆËãÖĞ£¬ÎÒÃÇ²ÉÓÃĞÂµÄ·ÖÀë·½·¨½«·½³Ì·ÖÁÑ³ÉÈı²¿·Ö£¬ÔÚEuler²¿·Ö (\ref{EulerEquation}) ÎÒÃÇ²ÉÓÃLF·ÖÁÑ·½·¨ (\ref{eq:LF})¡¢Îå½×WENO¿Õ¼äÀëÉ¢¸ñÊ½ (ÕÂ½Ú \ref{chap:WENO}) ºÍÈı½×Runge-KuttaÊ±¼äÀëÉ¢¸ñÊ½ (\ref{eq:RK3})£»ÔÚ×é·Ö¶ÔÁ÷²½ (\ref{Afrac}) ²ÉÓÃDIP·½·¨£»ÔÚ·´Ó¦²½²ÉÓÃ3TNP¸ñÊ½¡£×÷Îª¶ÔÕÕ£¬ÎÒÃÇ²ÉÓÃ\cite{zhang2014equilibrium,bao2000random,wang2012high}µÈÒıÎÄÖĞ³£ÓÃµÄ·ÖÁÑ·½·¨£¬½«·½³Ì (\ref{ReactionEuler}) Ëã×Ó·ÖÁÑ³ÉÈçÏÂÁ½²¿·Ö
+\begin{equation} \label{star_1}
+  \frac{\partial U}{\partial t}+\frac{\partial F}{\partial x}=0, 
+\end{equation}
+\begin{equation}
+  \frac{d U}{d t}=S, 
+\end{equation}
+ÔÚ¶ÔÁ÷²¿·ÖÍ¬Ñù²ÉÓÃLF·½·¨¡¢Îå½×WENO¸ñÊ½ºÍÈı½×Runge-Kutta·½·¨£»ÔÚ·´Ó¦²½²ÉÓÃ3TNP¸ñÊ½¡£ÎªÁË¼ò±ã£¬ÔÚ¼ÆËãÖĞ½«ÕâÖÖ·½·¨³Æ×÷´«Í³·½·¨£¬²¢ÔÚÍ¼ÖĞÓÃWENO±ê¼Ç¡£
+
+\subsection{ÏßĞÔ¶ÔÁ÷·½³ÌËãÀı}
+Ç°ÎÄÖĞ£¬ÎÒÃÇÔø²ÉÓÃº¬Ô´ÏîµÄÏßĞÔ¶ÔÁ÷·½³Ì (\ref{eq:linear_source}) ·ÖÎöÁË¿Õ¼ä¸ÕĞÔ²úÉúµÄÔ­Òò£¬ÕâÀïÎÒÃÇÍ¨¹ıÊıÖµ·½·¨ÑéÖ¤ĞÂµÄ·½·¨ÊÇ·ñ¿ÉÒÔÈçÉèÏëµÄ½â¾öÕâÒ»ÎÊÌâ¡£
+
+ÏÂÃæ·Ö±ğ¼ÆËã$\mu=10$ºÍ$\mu=10000$Á½¸öËãÀı£¬¼ÆËãÊ±¼äÎª$T=0.3$£¬¼ÆËãÍø¸ñÎª$N=200$£¬¶ÔÓÚ³õÊ¼Ìõ¼ş
+\begin{eqnarray*}
+  u_0(x)=\left\{
+\begin{array}{lcl}
+	1,&  & {x \leqslant 0.3},\\
+	0,&  & {x > 0.3}.
+\end{array} \right.
+\end{eqnarray*}
+ÓĞ¾«È·½â
+\begin{eqnarray*}
+  u_0(x)=\left\{
+\begin{array}{lcl}
+	1,&  & {x \leqslant t+0.3},\\
+	0,&  & {x > t+0.3}.
+\end{array} \right.
+\end{eqnarray*}
+Í¼ \ref{fig:linear_stiff_result} ÖĞ×óÍ¼Îª$\mu$ÖµºÜĞ¡Çé¿öµÄ¼ÆËã½á¹û£¬´ÓÍ¼ÖĞ¿ÉÒÔ¿´µ½£¬ÔÚ¼ä¶Ï´¦£¬²ÉÓÃÁË´«Í³·½·¨²»¿É±ÜÃâµÄ»á´æÔÚºÄÉ¢£¬Òò´Ë»áµ¼ÖÂÔ´Ïî³öÏÖ´íÎóµÄ¼¤·¢£¬µ«ÊÇÓÉÓÚÔ´Ïî½ÏĞ¡£¬ÕâÖÖ¼¤·¢ºÜÎ¢Èõ£¬ÇÒ²»»áÀÛ¼Æ£¬ÕâÖÖÇé¿öÎÒÃÇ¿ÉÒÔ³ÆÆäÎª·Ç¸ÕĞÔÇé¿ö¡£ÓÒÍ¼ÖĞ¸ø³öÁË$\mu$ÖµºÜ´óÇé¿öÏÂµÄ¼ÆËã½á¹û£¬¿ÉÒÔ¿´µ½£¬²ÉÓÃ´«Í³¸ñÊ½»áµ¼ÖÂ´íÎóµÄ¼ÆËã½á¹û£¬±íÃ÷ÔÚ$\mu$Öµ½Ï´óÊ±£¬Ô´ÏîµÄ´íÎó¼¤·¢½ÏÑÏÖØ£¬ÇÒËæ×ÅÊ±¼ä»áÀÛ¼Æ£¬¿ÉÒÔ½«ÕâÖÖÇé¿ö³ÆÎª¸ÕĞÔÇé¿ö¡£ ¶ø²ÉÓÃĞÂµÄ·½·¨£¬ÓÉÓÚ²»´æÔÚºÄÉ¢µãµÄ³öÏÖ£¬Òò´Ë²»»á´æÔÚÔ´ÏîµÄ´íÎó¼¤·¢£¬ÎŞÂÛ¶ÔÓÚ¸ÕĞÔÇé¿ö£¬»¹ÊÇ·Ç¸ÕĞÔÇé¿ö¶¼ÄÜ×¼È·¼ÆËã¼ä¶ÏµÄ´«²¥¡£
+
+\begin{figure}
+\centering
+\includegraphics[width=7cm]{nostiff.eps}
+\includegraphics[width=7cm]{stiff.eps}
+\caption{º¬Ô´ÏîÏßĞÔ¶ÔÁ÷·½³ÌËãÀı, $t=0.3$. ×óÍ¼: $\mu=10$ÎŞ¸ÕĞÔÇé¿ö; ÓÒ: $\mu=10000$¸ÕĞÔ¹¤¿ö.}
+\label{fig:linear_stiff_result}
+\end{figure}
+\subsection{µ¥²½×Ü°ü·´Ó¦Ä£ĞÍËãÀı}
+
+\begin{example}\label{exp53}%[C-J detonation wave(Heaviside case)]
+\end{example}
+ÎÒÃÇ¿¼ÂÇÒ»¸ö³ôÑõ·Ö½âµÄChapman-Jouguet (C-J) ±¬ºäËãÀı\cite{colella1986theoretical,wang2012high,bao2000random,ben1989generalized}£¬¸ÃËãÀıÖĞ²ÉÓÃArrheniusÔ´Ïî (\ref{eq:arrhenius})£¬ËùÓÃµ½µÄ³£²ÎÊıÎª
+\begin{eqnarray*}
+  (\gamma, q_0, K_0,T_{\text{ign}})= (1.4,0.5196 \times 10^{10}, 0.5825\times 10^{10},0.1155 \times 10^{10}).
+\end{eqnarray*}
+³õÊ¼Ìõ¼ş°üº¬×ó²àµÄÒÑÈ¼ÆøÌåºÍÓÒ²àµÄÎ´È»ÆøÌå£º
+\begin{eqnarray*}
+  (\rho, u,p,z)=\left\{
+	\begin{array}{lcl}
+	  (\rho_b,u_b,p_b,0), &  & x\leqslant 0.005,\\
+	  (\rho_0,u_0,p_0,1),          &  & x>    0.005,
+   \end{array}\right.
+\end{eqnarray*}
+ÆäÖĞ
+$\rho_0=1.201\times 10^{-3}$£¬ $p_0=8.321 \times 10^5$ ÒÔ¼°$u_0=0$. ³õÊ¼Ò×È¼ÆøÌå×´Ì¬£¬ÓÉC-J¹ØÏµµÃµ½\cite{colella1986theoretical,chorin1977random,colella1982glimm,courant1999supersonic}
+
+\begin{equation}\label{eqcjstate}
+  \begin{array}{lcl}
+  p_b   &= & -b+(b^2-c)^{1/2},\\
+  \rho_b&= & \rho_u[p_b(\gamma+1)-p_u]/(\gamma p_b),\\
+  S_{cj}&= & [\rho_0 u_0+(\gamma p_b \rho_b)^{1/2}]/\rho_0,\\
+  u_b   &= & S_{cj} -(\gamma p_b/\rho_b)^{1/2},\\
+  b     &= & -p_u- \rho_u q_0 (\gamma-1),\\
+  c     &=&  p_u^2+2(\gamma -1) p_u \rho_u q_0/ (\gamma+1),
+  \end{array}
+\end{equation}
+ÆäÖĞ $S_{cj}$ ÊÇ±¬ºä²¨²¨ËÙ¡£ 
+
+¸ÃÎÊÌâÑ¡ÓÃµÄ¼ÆËãÇøÓòÎª$[0,0.005]$¡£²Î¿¼½â``exact''ÊÇ²ÉÓÃ´«Í³·½·¨ÔÚ$\Delta x=5\times 10^{-6}$ (¼È$N=10000$) µÄ½¨ÒéÍø¸ñÏÂ¼ÆËãµÃµ½µÄ£¬ÕâÒ»Íø¸ñ³ß¶È¿ÉÒÔÍêÈ«Çó½â¸ÃÎÊÌâ\cite{ colella1986theoretical, bao2000random,ben1989generalized}¡£
+
+Í¼ \ref{fig53n50} ºÍÍ¼ \ref{fig53n300} ¸ø³ö$t=3\times 10^{-7}$Ê±¿Ì²ÉÓÃ $N=50$ ºÍ $N=300$Íø¸ñÏÂµÄ¼ÆËã½á¹û£¬Í¼ÖĞ¿ÉÒÔ¿´µ½£¬ĞÂµÄ·½·¨¼´±ãÔÚ¼«ÎªÏ¡ÊèµÄÍø¸ñÏÂÒ²ÄÜºÜºÃµÄ²¶×½±¬ºä²¨µÄ´«²¥£¬¶ø´«Í³·½·¨²»¿ÉÒÔ±ÜÃâµÄ´æÔÚĞé¼ÙµÄÎïÀí½â¡£ 
+
+KotovµÈÈË\cite{kotov2012spurious}Ö¸³öĞé¼Ù½âÊÇ·ñ´æÔÚÊÜµ½CFLÊıµÄÑÏÖØÓ°Ïì£¬ÁíÍâ£¬Ôö¼Ó¸ÕĞÔÏµÊıÍ¬Ñù»áÓ°Ïìµ½·ÇÎïÀíµÄ²úÉú¡£ÎªÁËÑéÖ¤ĞÂ·½·¨ÔÚÕâÁ½¸öÎÊÌâÖĞ±íÏÖ£¬ÎÒÃÇ½«$K_0$Ôö¼Óµ½$100K_0$£¬²ÉÓÃ$N=300$Íø¸ñ¡£´ÓÍ¼ \ref{fig53CFL}ÖĞ¿ÉÒÔ¿´µ½£¬²ÉÓÃÁËĞÂ·½·¨£¬CFLÊı¶Ô½á¹ûµÄÓ°ÏìºÜÇáÎ¢£¬¼¸ºõ¿ÉÒÔºöÂÔ¡£
+
+ÔÚ¸ÃËãÀıÖĞ£¬ÎÒÃÇ»¹²âÊÔÍ¼\ref{fig:illu_split}ÖĞµÄµü´ú¹ı³Ì£¬Ã¿Ò»µü´ú²½µÄÎó²îÍ¨¹ı
+$$
+\text{error}=\max\limits_{1\le i \le N}{|u_i^{n,m+1}-u_i^{n,m}|}.
+$$
+½øĞĞ¶ÈÁ¿¡£
+ 
+Îó²îµÄÊÕÁ²ÇúÏßÔÚÍ¼ \ref{iteration_speed} ÖĞ¸ø³ö£¬´ÓÖĞ¿ÉÒÔ¿´µ½£¬µü´ú¹ı³Ì¶ÔÓÚ¼õĞ¡Îó²îÊÇ¼«ÎªÓĞĞ§µÄ¡£ÓÉÓÚµÚÒ»²½ÖĞµü´úÎó²î¾ÍÒÑ¾­×ã¹»Ğ¡ÁË£¬Òò´Ë¿¼ÂÇµ½¼ÆËãĞ§ÂÊ£¬ÔÚ¸ÃÀà¸ÕĞÔÎÊÌâµÄÇó½âÖĞÎÒÃÇÖ»²ÉÓÃÒ»²½µü´ú¹ı³Ì¡£
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase2N50P.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase2N50T.eps}};\\
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase2N50D.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase2N50Z.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{Numerical results of Example \ref{exp53}, $T=3\times 10^{-7}$, $N=50$.} 
+	\label{fig53n50}
+\end{figure}
 
 
+\begin{figure*}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase2N300P.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase2N300T.eps}};\\
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase2N300D.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase2N300Z.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{Numerical results of Example \ref{exp53}, $T=3\times 10^{-7}$, $N=300$.} 
+	\label{fig53n300}
+\end{figure*}
+%
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm](up)
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase2CFLP.eps}};&
+				\node[rectangle]{
+				  \includegraphics[width=8cm]{single1DCase2CFLZ.eps}};\\
+				};
+	\end{tikzpicture}
+	\caption{Numerical results of Example \ref{exp53} with $100/\epsilon$, $T=3\times 10^{-7}$, $N=300$.} 
+	\label{fig53CFL}
+\end{figure}
+%
+\begin{figure}
+  \centering
+
+	\includegraphics[width=10cm]{iteration_speed.eps}
+
+	\caption{Convergence history of Example \ref{exp53}. } 
+	\label{iteration_speed}
+\end{figure}
 
 
+\begin{example}\label{exp52} %[C-J detonation wave Arrhenius case]
+\end{example}
+¸ÃËãÀıÊÇÁíÍâÒ»¸öC-J ±¬ºäËãÀı\cite{wang2012high,helzel2000modified,tosatto2008numerical}£¬²ÉÓÃHeaviside Ô´Ïî (\ref{eq:heaviside}) ¡£¸ÃËãÀıÖĞÓÃµ½µÄ³£²ÎÊıÎª
+\begin{eqnarray*}
+  (\gamma, q_0, K_0,T_{\text{ign}})= (1.4,25,16418,25).
+\end{eqnarray*}
+³õÊ¼Ìõ¼şÎª
+\begin{eqnarray*}
+  (\rho, u,p,z)=\left\{
+	\begin{array}{lcl}
+	  (\rho_b,u_b,p_b,0), &  & x\leqslant 10,\\
+	  (1,0,1,1),          &  & x>    10.
+   \end{array}\right.
+\end{eqnarray*}
+ÒÑÈ¼×´Ì¬Í¬Ñù¿ÉÒÔÍ¨¹ı·½³Ì (\ref{eqcjstate}) ÇóµÃ¡£
 
+Í¼ \ref{fig52n50} ºÍÍ¼ \ref{fig52n300} ¸ø³ö $N=50$ and $N=300$ ÏÂ¼ÆËã½á¹û¡£²Î¿¼½â ``exact'' ÊÇÍ¨¹ı´«Í³·½·¨ÔÚ$N=10,000$Íø¸ñÏÂ¼ÆËãµÃµ½¡£%
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase1N50P.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase1N50T.eps}};\\
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase1N50D.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase1N50Z.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp52} ¼ÆËã½á¹û, $T=1.8$, $N=50$.} 
+	\label{fig52n50}
+\end{figure}
 
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase1N300P.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase1N300T.eps}};\\
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase1N300D.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase1N300Z.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp52} ¼ÆËã½á¹û, $T=1.8$, $N=300$.} 
+	\label{fig52n300}
+\end{figure}
 
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm](up)
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase1CFLP.eps}};&
+				\node[rectangle]{
+				  \includegraphics[width=8cm]{single1DCase1CFLZ.eps}};\\
+				};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp52}¼ÆËã½á¹û£¬$100K_0$,  $T=1.8$, $N=300$.} 
+	\label{fig52CFL}
+\end{figure}
+%
+
+\begin{example} \label{exp54}%[A detonation interacting with a rarefaction wave] \label{exp54}
+\end{example}
+
+¸ÃËãÀıÎÒÃÇÑĞ¾¿Ò»¸öÓµÓĞ¸ü¸´ÔÓ²¨ÏµµÄÎÊÌâ\cite{ wang2012high, zhang2014equilibrium,bao2001random, hwang2000numerical}¡£
+¸ÃËãÀı²ÉÓÃ Heaviside Ô´ÏîÄ£ĞÍ
+\begin{eqnarray*}
+  (\gamma, q_0, 1/\epsilon,T_{\text{ign}})= (1.2,50,230.75,3).
+\end{eqnarray*}
+³õÊ¼Ìõ¼şÎª
+\begin{eqnarray*}
+  (\rho, u,p,z)=\left\{
+	\begin{array}{lcl}
+	  (2,4,40,0), &  & x\leqslant 10,\\
+	  (3.64282,6.2489.54.8244,0),          &  &10< x \leqslant 20,\\
+	  (1,0,1,1),                           &  &x>20.
+   \end{array}\right.
+\end{eqnarray*}
+
+ ½âÖĞ°üº¬Ò»µÀÓÒĞĞÇ¿±¬ºä²¨£¬Ò»µÀÓÒĞĞÏ¡Êè²¨£¬Ò»µÀÓÒĞĞ½Ó´¥¼ä¶Ï ºÍÒ»µÀ×óĞĞÏ¡Êè²¨¡£²Î¿¼½âÊÇÍ¨¹ı$N=10,000$Íø¸ñÇóµÃµÄ¡£ Í¼ \ref{fig54n50} ºÍÍ¼ \ref{fig54n300} ¸ø³ö $T=8$ Ê±¿Ì $N=50$ºÍ$N=300$ Íø¸ñÏÂµÄ¼ÆËã½á¹û (²ÉÓÃ $100/\epsilon $)¡£  
+¿ÉÒÔ¿´µ½£¬ĞÂµÄ·½·¨¼´±ãÔÚ¸üÑÏÖØµÄ¸ÕĞÔÎÊÌâÖĞÒ²¿ÉÒÔºÜºÃµÄ²¶×½Á÷³¡ÖĞµÄ¸÷ÖÖ²¨Ïµ£¬ ÎÒÃÇ×¢Òâµ½£¬²ÉÓÃÁË´«Í³·½·¨£¬±¬ºä²¨ÒÑ¾­´«³öÁËÓÒ²à±ß½ç¡£
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase3N50P.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase3N50T.eps}};\\
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase3N50D.eps}};&
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase3N50Z.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp54} ¼ÆËã½á¹û, $T=8$, $N=50$.} 
+	\label{fig54n50}
+\end{figure}
+
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase3N300P.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{single1DCase3N300T.eps}};\\
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{single1DCase3N300D.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{single1DCase3N300Z.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp54} ¼ÆËã½á¹û (²ÉÓÃ$100/\epsilon$), $T=8$,  $N=300$.} 
+	\label{fig54n300}
+\end{figure}
+
+\begin{example}\label{exp55}%[A detonation interacting with an oscillatory profile(Heaviside case)]
+ \end{example}
+ ¸ÃÕÂ½Ú×îºóÒ»¸öÒ»Î¬ËãÀı¼ÆËãµÄÊÇ±¬ºä²¨ºÍÒ»¸ö²¨¶¯²¨ĞÎ¼äµÄ×÷ÓÃ\cite{ wang2012high,bao2000random}£¬¸ÃËãÀı²ÉÓÃ Heaviside Ô´ÏîÄ£ĞÍ£¬ÓÃµ½µÄ²ÎÊıÎª
+\begin{eqnarray*}
+  (\gamma, q_0, 1/\epsilon,T_{\text{ign}})= (1.2,50,1000,3).
+\end{eqnarray*}
+
+³õÊ¼Ìõ¼şÎª
+\begin{eqnarray*}
+  (\rho, u,p,z)=\left\{
+	\begin{array}{lcl}
+	  (1.79463,3.0151,21.53134,0), &  & x\leqslant \frac{\pi}{2},\\
+	  (3.64282,6.2489.54.8244,0),          &  &x > \frac{\pi}{2}.
+   \end{array}\right.
+\end{eqnarray*}
+
+ÏàÍ¬µÄ£¬ÎÒÃÇ²ÉÓÃ $N=10,000$ µÄ½á¹û×÷Îª²Î¿¼½â¡£
+Í¼ \ref{fig55} ¸ø³ö $t=\pi/2$ Ê±¿Ì $N=300$ Íø¸ñÏÂµÄ¼ÆËã½á¹û£¬ ¿ÉÒÔ¿´µ½´«Í³·½·¨²¢²»ÄÜºÜºÃµÄ²¶×½±¬ºä²¨²¨Ãæ£¬¶øĞÂµÄ·½·¨ÔÚ¹â»¬ÇøºÍ¼ä¶ÏÇø¶¼ÓĞºÜºÃµÄ½á¹û¡£  
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single1DCase4N300P.eps}};&
+				\node[rectangle]{             
+	\includegraphics[width=8cm]{single1DCase4N300T.eps}};\\
+				\node[rectangle]{             
+	\includegraphics[width=8cm]{single1DCase4N300D.eps}};&
+				\node[rectangle]{             
+	\includegraphics[width=8cm]{single1DCase4N300Z.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp55} ¼ÆËã½á¹û, $T=\pi/2$, $N=300$.} 
+	\label{fig55}
+\end{figure}
+
+\begin{example}\label{exp56}%[A 2D detonation wave]
+\end{example}
+ÏÂÃæ¿¼ÂÇÒ»¸ö¶şÎ¬±¬ºä²¨ËãÀı\cite{wang2012high,zhang2014equilibrium,bao2000random}£¬Ò»µÀ±¬ºä²¨ÔÚ¾ØĞÎÇøÓò´Ó×óÏòÓÒ´«²¥¡£¸ÃËãÀıÖĞÎÒÃÇ²ÉÓÃArrheniusÔ´ÏîÄ£ĞÍ£¬ $\gamma, q_0, K_0, T_{ign}$µÈ²ÎÊıºÍËãÀı\ref{exp53}ÖĞÏàÍ¬¡£ ³õÊ¼Ìõ¼şÎª
+\begin{eqnarray*}
+  (\rho, u,v,p,z)=\left\{
+	\begin{array}{lcl}
+	  (\rho_b,u_b,0,p_b,0), &  & x\leqslant \xi (y),\\
+	  (1.201\times 10^{-3},0,0,8.321\times 10^5,1),          &  &x > \xi(y),
+   \end{array}\right.
+\end{eqnarray*}
+\begin{eqnarray*}
+  \xi(y)=\left\{
+	\begin{array}{lcl}
+	  0.004,   &  & |y-0.0025| \geqslant 0.001,\\
+	  0.005-|y-0.0025|,  &   &  |y-0.0025|< 0.001.
+	 \end{array} \right.
+\end{eqnarray*}
+ÆäÖĞ $\rho_b$, $u_b$ ºÍ $p_b$ ¶¼ÊÇÍ¨¹ı·½³Ì (\ref{eqcjstate}) ¼ÆËãµÃµ½¡£ 
+
+²Î¿¼½âÊÇ²ÉÓÃ´«Í³·½·¨ÔÚ $N=2000\times 400$Íø¸ñÏÂ¼ÆËãµÃµ½µÄ¡£ Í¼ \ref{fig56n2000} ¸ø³ö³õÊ¼Ê±¿ÌºÍ×îÖÕÊ±¿Ì($t=1.4\times 10^{-7}$) µÄ²Î¿¼½á¹û¡£Í¼ \ref{fig56n50} ¸ø³ö²ÉÓÃĞÂ·½·¨ÔÚÍø¸ñ $N=150\times50$ ºÍ Íø¸ñ $N=600 \times200$ ÏÂÊ±¿Ì $T=0$, $T_1=0.28\times 10^{-7}$, $T_2=0.7\times 10^{-7}$, $T_3=1.12\times 10^{-7}$ºÍ $T_4=1.4\times 10^{-7}$ µÄ¼ÆËã½á¹û¡£¿ÉÒÔ¿´µ½£¬ÔÚ²»Í¬Íø¸ñ¾«¶ÈÏÂ£¬±¬ºä²¨µÄÎ»ÖÃ¶¼ÎÇºÏµÄºÜºÃ£¬¼´±ãÔÚ×î´Ö²ÚµÄÍø¸ñÏÂ£¬ÈÔÈ»¿ÉÒÔÇó½â³öÁ÷³¡ÖĞµÄ½á¹¹¡£ÎÒÃÇÔÚÍ¼ \ref{fig56line} ÖĞ¸ø³ö´«Í³·½·¨ºÍĞÂµÄ·½·¨ÔÚÍø¸ñ$N=600\times 200$ ÏÂÏß$y=0.005$ÉÏµÄ¼ÆËã½á¹û£¬ĞÂ·½·¨¼ÆËã½á¹û¿ÉÒÔºÜºÃµÄÎÇºÏÓÚ²Î¿¼½â£¬¶ø´«Í³¸ñÊ½µÄ¼ÆËã½á¹û±íÏÖ³öºÍÒ»Î¬ËãÀıÖĞÏàËÆµÄ·ÇÎïÀíÎÊÌâ¡£ 
+
+\begin{figure}
+  \centering
+\includegraphics[angle=-90,width=13cm]{single2DCase1ExactInitial.eps}
+\includegraphics[angle=-90,width=13cm]{single2DCase1ExactFinal.eps}
+\caption{ËãÀı \ref{exp56}ÃÜ¶ÈµÈÖµÏßÍ¼£¬´«Í³·½·¨£¬ $T=0$ ºÍ$T=1.4\times 10^{-7}$, $N=2000\times 400$.}
+\label{fig56n2000}
+\end{figure}
+%
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix%[column sep=0mm, row sep=0mm]
+		{
+
+				\node{
+	\includegraphics[angle=-90, width=8cm]{2DsingleCase1N50T0.eps}};&
+				\node{              
+	\includegraphics[angle=-90,width=8cm]{2DsingleCase1N600T0.eps}};\\
+				\node{
+	\includegraphics[angle=-90,width=8cm]{2DsingleCase1N50T1.eps}};&
+				\node{              
+	\includegraphics[angle=-90,width=8cm]{2DsingleCase1N600T1.eps}};\\
+				\node{
+	\includegraphics[angle=-90,width=8cm]{2DsingleCase1N50T2.eps}};&
+				\node{              
+	\includegraphics[angle=-90,width=8cm]{2DsingleCase1N600T2.eps}};\\
+				\node{
+	\includegraphics[angle=-90,width=8cm]{2DsingleCase1N50T3.eps}};&
+				\node{              
+	\includegraphics[angle=-90,width=8cm]{2DsingleCase1N600T3.eps}};\\
+				\node{
+	\includegraphics[angle=-90,width=8cm]{2DsingleCase1N50T4.eps}};&
+				\node{              
+	\includegraphics[angle=-90,width=8cm]{2DsingleCase1N600T4.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp56}£¬ĞÂµÄ·½·¨ÔÚÊ±¿Ì $0$, $0.25\times 10^{-7}$, $0.7\times 10^{-7}$, $1.12\times 10^{-7}$ ºÍ $1.4\times 10^{-7}$ µÄ¼ÆËã½á¹û¡£ ×ó²à£º $N=150\times50$£¬  ÓÒ²à£º $N=600\times200$¡£}
+	\label{fig56n50}
+\end{figure}
+
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single2DCase1LineP.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{single2DCase1LineZ.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ ËãÀı\ref{exp56}£¬²»Í¬·½·¨ÔÚÏß $y=0.0025$ ÉÏµÄ¼ÆËã½á¹û£¬$T=1.4\times 10^{-7}$ }
+	\label{fig56line}
+\end{figure}
+
+\begin{example}\label{exp57}%[A 2D detonation wave with radial symmetry]
+\end{example}
+½ÓÏÂÀ´¿¼ÂÇÁíÍâÒ»¸öÔÚÎÄÏ× \cite{helzel2000modified,bao2001random} ÖĞ·ÖÎö¹ıµÄ¶şÎ¬ÎÊÌâ¡£¸ÃÎÊÌâ²ÉÓÃHeaviside Ô´ÏîÄ£ĞÍ£¬ÓÃµ½µÄ²ÎÊıÎª
+\begin{eqnarray*}
+  (\gamma, q_0, K_0,T_{\text{ign}})= (1.2,50, 1000,2).
+\end{eqnarray*}
+³õÊ¼Ìõ¼şÎª
+\begin{eqnarray*}
+  (\rho, u,v,p,z)=\left\{
+	\begin{array}{lcl}
+	  (1.79463,10x/r,10y/r,21.53134,0), &  & r\leqslant 10,\\
+	  (1,0,0,1,1),          &  &r >10, 
+   \end{array}\right.
+\end{eqnarray*}
+ÆäÖĞ
+\begin{eqnarray*}
+  r=\sqrt{x^2+y^2}.
+\end{eqnarray*}
+¸ÃÎÊÌâÇó½âÒ»¸öÔÚ¾ØĞÎÇøÓò¶Ô³Æ´«²¥µÄÔ²Ãæ±¬ºä²¨¡£ ²Î¿¼½â ``exact'' ÊÇ²ÉÓÃ´«Í³·½·¨ÔÚ $N=1000\times 500$ µÄ¼ÓÃÜÍø¸ñÏÂ¼ÆËãµÃµ½µÄ¡£
+Í¼ \ref{fig57} ¸ø³ö²ÉÓÃ$N=200\times 100$ Íø¸ñ·Ö±ğÔÚÊ±¿Ì $T_1=0$, $T_2=1$, $T_3=3$ ºÍ $T_4=5$ µÄ±¬ºä²¨²¨ÃæÎ»ÖÃ½á¹û¡£¿ÉÒÔ¿´µ½ĞÂµÄ·½·¨¿ÉÒÔ×¼È·µÄ²¶×½±¬ºä²¨ÃæÎ»ÖÃ¡£
+Í¼ \ref{fig57line} ¸ø³ö $T=5$ Ê±¿ÌµÄ½á¹û¶Ô±È¡£¿ÉÒÔ¿´µ½£¬ĞÂ·½·¨µÄ¼ÆËã½á¹ûÎŞÂÛÊÇÑ¹Á¦¡¢ÃÜ¶È¡¢ÎÂ¶È¡¢»¹ÊÇ×é·ÖÖÊÁ¿·ÖÊı¶¼ÄÜºÜºÃµÄÎÇºÏÓÚ²Î¿¼½â£¬¶ø´«Í³·½·¨ÓÉÓÚÊıÖµ¸ÕĞÔÎÊÌâ£¬µ¼ÖÂÖÊÁ¿·ÖÊıÇúÏß³öÏÖÁËÍêÈ«²»Í¬µÄ±íÏÖ¡£  
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[angle=-90,width=7cm]{single2DCase2WL.eps}};&
+				\node[rectangle]{              
+	\includegraphics[angle=-90,width=7cm]{single2DCase2MT.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ ËãÀı \ref{exp57}ÔÚ$z=0.5$ ÉÏµÄÖÊÁ¿·ÖÊıÇúÏß}
+	\label{fig57}
+\end{figure}
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{single2DCase2LineP.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{single2DCase2LineT.eps}};\\
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{single2DCase2LineD.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{single2DCase2LineZ.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp57} ¶Ô½ÇÏßÉÏ¼ÆËã½á¹û¶Ô±È£¬ $T=5$}
+	\label{fig57line}
+\end{figure}
+
+\subsection{¹Ì¶¨±ÈÈÈ±È¶à×é·ÖÄ£ĞÍËãÀı}
+¡£ÔÚÉÏÒ»Ğ¡½ÚµÄ×Ü°ü·´Ó¦Ä£ĞÍ¼ÆËãÖĞ£¬ÓÉÓÚ·´Ó¦ËÙÂÊÊÇºã¶¨µÄ£¬Òò´ËÔÚ¸ÕĞÔÎÊÌâÖĞ£¬½Ï´óµÄ·´Ó¦ËÙ¶Èµ¼ÖÂÕû¸ö·´Ó¦ÇøÓò¶¼±»Ñ¹Ëõµ½¼¤²¨ÇøÓò£¬ÎŞ·¨Ê¶±ğ£¬ÕâÔÚÉÏÃæËùÓĞµÄËãÀıÖĞ¶¼ÄÜ¿´³ö¡£Òò´Ë£¬¶ÔÓÚ²ÉÓÃÁË×Ü°ü·´Ó¦Ä£ĞÍµÄ¸ÕĞÔÎÊÌâ£¬ÉõÖÁ¿ÉÒÔ²ÉÓÃÎŞºñ¶ÈµÄ½çÃæÄ£ĞÍ½øĞĞ×·×Ù¡£
+
+ÎÒÃÇÔÚÕÂ½Ú \ref{chap:multi_com} ÖĞ¸ø³öÁË¹Ì¶¨±ÈÈÈ±È¶à×é·Ö·´Ó¦Ä£ĞÍµÄÏà¹Ø¹«Ê½£¬¹«Ê½ (\ref{eq:reaction_rate}) ÖĞ¿ÉÒÔ¿´³ö£¬¶à²½·´Ó¦Ä£ĞÍÖĞµÄ·´Ó¦ËÙ¶ÈÊÇËæ×Å×é·Ö±ä»¯¶ø±ä»¯µÄ£¬Òò´Ë¼´±ãÔÚ¿Õ¼ä¸ÕĞÔÎÊÌâÖĞ£¬·´Ó¦ÇøÒ»°ãÒ²Í¬Ê±´æÔÚ·Ç¸ÕĞÔµÄÇøÓò¡£ÕâÖÖ¸ü¸´ÔÓµÄÇé¿ö£¬µ¼ÖÂ·´Ó¦ÇøÓĞÃ÷ÏÔµÄºñ¶È£¬ÎŞºñ¶ÈµÄ½çÃæÄ£ĞÍ²»ÔÙÄÜÇó½âÕâÀàÎÊÌâ£¬Ô¤ÏÈ¸ÕĞÔ¼ÙÉèµÄ·½·¨Ò²²»ÔÙÊÊÓÃÓÚÕâĞ©ÎÊÌâ¡£ÏÂÃæÎÒÃÇÍ¨¹ıËãÀı¸üºÃµÄÕ¹Ê¾¶à×é·ÖµÄ¸ÕĞÔÎÊÌâÌØµãÒÔ¼°ĞÂ·½·¨µÄ±íÏÖ¡£
+\begin{example}\label{exp58}
+\end{example}
+
+µÚÒ»¸ö¶à×é·ÖËãÀıÔÚÎÄÏ×\cite{bao2002random,zhang2014equilibrium}ÖĞÓĞ¹ı½Ï¶àµÄÑĞ¾¿£¬¸ÃÎÊÌâ²ÉÓÃÒ»¸ö¼«Îª¼òµ¥µÄ·´Ó¦Ä£ĞÍ
+\begin{eqnarray*}
+  2\text{H}_2+\text{O}_2 \xrightarrow{} 2\text{H}_2\text{O}.
+\end{eqnarray*}
+
+¼ÆËã²ÉÓÃHeaviside Ä£ĞÍ£¬ÓÃµ½µÄ²ÎÊıÎª
+\begin{eqnarray*}
+  (\gamma,T_{\text{ign}}, 1/\epsilon, q_{\text{H}_2},q_{\text{O}_2},q_{\text{H}_2\text{O}},W_{\text{H}_2},W_{\text{O}_2},W_{\text{H}_2\text{O}})= (1.4,2,10^6, 100,0,0,2,32,18).
+\end{eqnarray*}
+³õÊ¼Ìõ¼şÎª
+\begin{eqnarray*}
+  (\rho, u,p,z_{\text{H}_2\text{O}},z_{\text{O}_2},z_{\text{H}_2\text{O}})=\left\{
+	\begin{array}{lcl}
+	  (2,8,20,0,0,1), &  &0\leqslant x\leqslant 2.5,\\
+	  (1,0,1,1/9,8/9,0),          &  & 2.5<x\leqslant 50.  
+   \end{array}\right.
+\end{eqnarray*}
+²Î¿¼½âÊÇ²ÉÓÃ´«Í³·½·¨ÔÚ $N=10,000$ Íø¸ñÏÂ¼ÆËãµÃµ½¡£ ²ÉÓÃ $N=200$ Íø¸ñ ÔÚ $T=4$ Ê±¿ÌµÄ¼ÆËã½á¹û Õ¹Ê¾ÔÚÍ¼ \ref{fig58} ÖĞ¡£¿ÉÒÔ¿´µ½£¬ ²»ÂÛ´«Í³·½·¨»¹ÊÇĞÂµÄ·½·¨¶¼ÄÜºÜºÃµÄ²¶×½±¬ºä²¨µÄ´«²¥£¬Õâ¿ÉÄÜÊÇÓÉÓÚ²ÉÓÃµÄ¸ß¾«¶È¿Õ¼ä·ÖÁÑ¸ñÊ½Ôì³ÉÊıÖµºÄÉ¢²»×ãÒÔµ¼ÖÂ·ÇÎïÀí½âµÄ³öÏÖ¡£È»¶ø£¬µ±ÎÒÃÇÈçÎÄÏ×\cite{zhang2014equilibrium}ÖĞ£¬½«   
+ $q_{\text{H}_2}$ ´Ó100 Ôö´óµ½300Ê±£¬²ÉÓÃÁË´«Í³·½·¨µÄ½á¹û ( Í¼ \ref{fig58m}) ÖĞÓÖ³öÏÖ·ÇÎïÀí½á¹¹£¬¶øĞÂµÄ·½·¨ÈÔÈ»ÄÜºÜºÃµÄ¼ÆËã±¬ºä²¨¡£  
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{MultiCase1WENO1.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase1WENO2.eps}};\\
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase1Present1.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase1Present2.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp58} ¼ÆËã½á¹û, $T=4$£¬ $N=200$¡£ÉÏ£º´«Í³·½·¨£» ÏÂ: ĞÂ·½·¨}
+	\label{fig58}
+\end{figure}
+
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{MultiCase1NewP.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase1NewT.eps}};\\
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase1NewD.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase1NewZ.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp58} ²ÉÓÃ $k_{\text{H}_2}=300$ µÄ¼ÆËã½á¹û£¬ $T=4$£¬ $N = 200$}
+	\label{fig58m}
+\end{figure}
+
+\begin{example}\label{exp59}
+  \end{example}
+µÚ¶ş¸ö¶à×é·ÖËãÀı³öÓÚÎÄÏ×\cite{bao2002random}£¬·´Ó¦Ä£ĞÍÎª
+\begin{eqnarray*}
+  \text{CH}_4 +2\text{O}_2 \xrightarrow{} \text{CO}_2 +2\text{H}_2\text{O}.
+\end{eqnarray*}
+ËùÓÃµ½µÄ·´Ó¦²ÎÊıÈçÏÂ
+\begin{eqnarray*}
+  (\gamma,T_{\text{ign}}, 1/\epsilon, q_{\text{CH}_4},q_{\text{O}_2},q_{\text{CO}_2},q_{\text{H}_2\text{O}})=(1.4,2,500, 100,0,0),
+ \end{eqnarray*}
+\begin{eqnarray*}
+  (W_{\text{CH}_4},W_{\text{O}_2},W_{\text{CO}_2},W_{\text{H}_2\text{O}})= (16,32,44,18).
+\end{eqnarray*}
+³õÊ¼Ìõ¼şÎª
+\begin{eqnarray*}
+  (\rho, u,p,z_{\text{CH}_4},z_{\text{O}_2},z_{\text{CO}_2}, z_{\text{H}_2\text{O}})=\left\{
+	\begin{array}{lcl}
+	  (2,10,40,0.325,0,0,0.675), &  & x\leqslant 2.5,\\
+	  (1,0,1,0.1,0.4,0.6,0),          &  & x>   2.5. 
+   \end{array}\right.
+\end{eqnarray*}
+¸ÃÎÊÌâÓÉÒ»µÀ±¬ºä²¨ºÍ½ôËæÆäºóµÄ½Ó´¥¼ä¶ÏºÍ¼¤²¨¹¹³É¡£
+²Î¿¼½â ``exact''²ÉÓÃ $N=10,000$ Íø¸ñÇóµÃ¡£ Í¼ \ref{fig59} ¸ø³ö $N=200$Íø¸ñÔÚÊ±¿Ì $T=3$ µÄ¼ÆËã½á¹û¡£ ´ÓÍ¼ÖĞ¿ÉÒÔ¿´µ½£¬²ÉÓÃĞÂ·½·¨µÄ¼ÆËã½á¹ûºÍ²Î¿¼½âÎÇºÏµÄºÜºÃ£¬¶ø´«Í³·½·¨µÄ½á¹ûÖĞµÄ±¬ºä²¨²¨ËÙÃ÷ÏÔ¿ìÓÚ²Î¿¼½â¡£
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{MultiCase2P.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase2T.eps}};\\
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase2Z.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase2Z2.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı\ref{exp59}¼ÆËã½á¹û, $T=3$, $N = 200$}
+	\label{fig59}
+\end{figure}
+
+\begin{example}\label{exp510}
+\end{example}
+
+×îºóÒ»¸öÒ»Î¬¶à×é·ÖËãÀıÍ¬ÑùÒıÓÚÎÄÏ×\cite{bao2002random}¡£·´Ó¦Ä£ĞÍ°üº¬Îå¸ö×é·ÖºÍÁ½¸ö·´Ó¦
+\begin{eqnarray*}
+  \text{H}_2+\text{O}_2 \xrightarrow{}2\text{OH}, \hspace{0.5cm}  2\text{OH}+\text{H}_2\xrightarrow{}2\text{H}_2\text{O}.
+\end{eqnarray*}
+ÆäÖĞ×é·Ö $\text{N}_2$ ×÷Îª»º³å¼Á¡£ 
+ ÎÄÏ× \cite{bao2002random} ÖĞ²ÉÓÃµÄ²ÎÊıÎª 
+\begin{eqnarray*}
+  (\gamma,T_{\text{ign}}, 1/\epsilon_1, 1/\epsilon_2)=(1.4,2,10,10^5,2\times10^4),
+\end{eqnarray*}
+\begin{eqnarray*}
+  (q_{\text{H}_2},q_{\text{O}_2},q_{\text{OH}},q_{\text{H}_2\text{O}},q_{\text{N}_2})=(0,0,-20,-100,0),
+\end{eqnarray*}
+\begin{eqnarray*}
+  (W_{\text{H}_2},W_{\text{O}_2},W_{\text{OH}},W_{\text{H}_2\text{O}},W_{\text{N}_2})=(2,32,17,18,28).
+\end{eqnarray*}
+³õÊ¼Ìõ¼şÎª
+\begin{eqnarray*}
+  (\!\rho, u,p,z_{\text{H}_2},z_{\text{O}_2},z_{\text{OH}}, z_{\text{H}_2\text{O}},z_{\text{N}_2}\!)\!=\!\left\{
+	\begin{array}{lcl}
+	 \! (2,10,40,0,0,0.17,0.63,0.2)\!,\! &  &\! x\!\leqslant\! 0.5,\\
+	 \! (1,0,1,0.08,0.72,0,0,0.2)\!,    \!     \! &  &\! x>  \! 0.5. 
+   \end{array}\right.
+\end{eqnarray*}
+
+¼ÆËãÓòÎÒÃÇ²ÉÓÃ $[0,50]$¡£²Î¿¼½â  ``exact'' ²ÉÓÃ $N=10,000$ Íø¸ñµÃµ½¡£ Í¼ \ref{fig510} ¸ø³öÑ¹Á¦¡¢ÎÂ¶È¡¢$\text{O}_2$ ºÍ $\text{OH}$ µÄÖÊÁ¿·ÖÊı¡£
+¿ÉÒÔ¿´µ½£¬²ÉÓÃÎÄÏ× \cite{bao2002random} ÖĞµÄ²ÎÊı£¬Á½ÖÖ·½·¨¶¼ÄÜµÄµ½ÕıÈ·µÄ½á¹û£¬µ«ÊÇ´«Í³·½·¨»á²úÉú¸ü¶àµÄÕñµ´¡£
+
+Èç¹ûÎÒÃÇÑ¡ÓÃÎÄÏ× \cite{zhang2014equilibrium}ÖĞµÄ²ÎÊı£¬²ÉÓÃÒ»¸ö¸üĞ¡µÄµã»ğÎÂ¶È£¬¸ÕĞÔ»áÔöÇ¿£¬Òò¶ø¸üÈİÒ×µÃµ½¸ÕĞÔµÄ½á¹û¡£Í¼ \ref{fig510m} ¸ø³ö²ÉÓÃÁË $T_{\text{ign}}=1.5$ ºÍ $q_{\text{H}_2}=-50$ µÄ½á¹û£¬ÔÚÕâÖÖÇé¿öÏÂ, ´«Í³Çó½â·½·¨»áµÄµ½Ò»¸ö·ÖÁÑµÄ¼ä¶ÏÃæºÍ¸ü¿ìµÄ±¬ºä²¨²¨ËÙ£¬¶ø´«Í³·½·¨ÈÔÄÜ×¼È·µÄÇó½â¡£
+
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{MultiCase3WENO1.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase3WENO2.eps}};\\
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase3Present1.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase3Present2.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp510}¼ÆËã½á¹û£¬ $T=3$£¬ $N = 200$¡£ÉÏ: ´«Í³·½·¨£» ÏÂ: ĞÂ·½·¨}
+	\label{fig510}
+\end{figure}
+
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{MultiCase3P.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase3T.eps}};\\
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase3Z1.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{MultiCase3Z3.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp510} ²ÉÓÃ $T_{\text{ign}}=1.5$ ºÍ $q_{\text{H}_2}=-50$ µÄ¼ÆËã½á¹û¡£ $T=3$£¬ $N=200$}
+	\label{fig510m}
+\end{figure}
+
+\begin{example}\label{exp511}
+\end{example}
+×îºó£¬ÎÒÃÇÑĞ¾¿Ò»¸ö¶şÎ¬ËãÀı£¬ ¸ÃËãÀıÒıÓÚÎÄÏ×\cite{bao2002random}£¬ ÓÃµ½µÄËùÓĞ³£Êı¶¼ºÍËãÀı \ref{exp510} ÖĞÏàÍ¬¡£ ³õÊ¼Ìõ¼şÎª
+
+\begin{eqnarray*}
+  (\!\rho,\! u,\!v,\!p,\!z_{\text{H}_2},\!z_{\text{O}_2},\!z_{\text{OH}},\! z_{\text{H}_2\text{O}},\!z_{\text{N}_2}\!)\!=\!\left\{
+	\begin{array}{lcl}
+	 \! (\!2,10,0,40,0,0,0.17,0.63,0.2\!),\! &  &\! x\!\leqslant\! \xi(y),\\
+	 \! (\!1,0,1,0.08,0.72,0,0,0.2\!),         \! &  &\! x\!>\!   \xi(y), 
+   \end{array}\right.
+\end{eqnarray*}
+ÆäÖĞ
+\begin{eqnarray*}
+  \xi(y)=\left\{
+	\begin{array}{lcl}
+	  12.5-|y-12.5|,   &  & |y-12.5| \geqslant 7.5,\\
+	  5,  &   &  |y-0.0025|<7.5. 
+	 \end{array} \right.
+\end{eqnarray*}
+
+¼ÆËãÇøÓòÎª $[0,150]\times[0,25]$. 
+Í¼ \ref{fig511} ¸ø³öĞÂ·½·¨ÔÚÍø¸ñ $N=300\times50$ ÏÂ£¬Ê±¿Ì $T_1=0, T_2=2, T_3=4, T_4=6$ ºÍ $T_5=8$ µÄ¼ÆËã½á¹û¡£ ÎªÁË±ãÓÚ±È½Ï£¬ ´«Í³·½·¨ÔÚÍø¸ñ$N=1500\times 250$ ÏÂµÄ½á¹ûÍ¬ÑùÊ±¿ÌµÄ½á¹ûÍ¬ÑùÕ¹Ê¾ÔÚ¸ÃÍ¼ÖĞ¡£¿ÉÒÔ¿´³ö£¬¼´±ã²ÉÓÃÁË½ÏÏ¡ÊèµÄÍø¸ñ£¬ĞÂ·½·¨ÈÔÈ»ÄÜÇó½âÁ÷³¡ÖĞËùÓĞµÄ½á¹¹¡£Í¼ \ref{fig511line} ¸ø³ö½ØÈ¡Ïß $y=12.5$ ÉÏµÄ½áËã½á¹û£¬Í¨¹ı¶Ô±È¿ÉÒÔ¿´µ½£¬ ĞÂµÄ·½·¨½áËã½á¹ûºÍ²Î¿¼½âÎÇºÏµÄ·Ç³£ºÃ¡£
+
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix%[column sep=0mm, row sep=0mm]
+		{
+				\node{
+	\includegraphics[angle=-90,width=8cm]{Multi2DT0.eps}};&
+				\node{              
+	\includegraphics[angle=-90,width=8cm]{Multi2DT0re.eps}};\\
+				\node{
+	\includegraphics[angle=-90,width=8cm]{Multi2DT2.eps}};&
+				\node{              
+	\includegraphics[angle=-90,width=8cm]{Multi2DT2re.eps}};\\
+				\node{
+	\includegraphics[angle=-90,width=8cm]{Multi2DT4.eps}};&
+				\node{              
+	\includegraphics[angle=-90,width=8cm]{Multi2DT4re.eps}};\\
+				\node{
+	\includegraphics[angle=-90,width=8cm]{Multi2DT6.eps}};&
+				\node{              
+	\includegraphics[angle=-90,width=8cm]{Multi2DT6re.eps}};\\
+				\node{
+	\includegraphics[angle=-90,width=8cm]{Multi2DT8.eps}};&
+				\node{              
+	\includegraphics[angle=-90,width=8cm]{Multi2DT8re.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp511} ÔÚÊ±¿Ì  $T_1=0, T_2=2, T_3=4, T_4=6$ ºÍ $T_5=8$ µÄÃÜ¶ÈµÈÖµÏßÍ¼¡£ ×ó£º ĞÂ·½·¨, $N=300\times50$¡£ÓÒ£º ´«Í³·½·¨£¬ $N=1500\times250$.}
+	\label{fig511}
+\end{figure}
+
+\begin{figure}%\label{1}
+	\centering
+	\begin{tikzpicture}
+    \matrix[column sep=0mm, row sep=0mm]
+		{
+				\node[rectangle]{
+	\includegraphics[width=8cm]{Multi2DLine2.eps}};&
+				\node[rectangle]{              
+	\includegraphics[width=8cm]{Multi2DLine1.eps}};\\
+		};
+	\end{tikzpicture}
+	\caption{ËãÀı \ref{exp511} ÖĞÔÚÏß $y=12.5$ ÉÏµÄ¼ÆËã½á¹û£¬ $T=8$£¬ $N = 300\times50$}
+	\label{fig511line}
+\end{figure}
+
+\section{Ğ¡½á}
+
+Ê×ÏÈ£¬ÔÚ±¾ÕÂÖĞÎÒÃÇ·ÖÎöÁË»¯Ñ§·´Ó¦Á÷ÖĞ¿Õ¼ä¸ÕĞÔ²úÉúµÄÔ­Òò¡£È»ºó£¬ÎÒÃÇÌá³öÒ»ÖÖĞÂĞÍµÄ·ÖÁÑ·½·¨£¬½«·´Ó¦Euler·½³Ì·ÖÁÑÎªEuler²¿·Ö¡¢×é·Ö¶ÔÁ÷²¿·ÖºÍ·´Ó¦²¿·Ö¡£Õë¶ÔÓÚ×é·Ö¶ÔÁ÷²½ÖĞÊıÖµºÄÉ¢¶ÔĞé¼ÙÎïÀí½â²úÉúµÄ¾ö¶¨ĞÔ×÷ÓÃ£¬ÎÒÃÇ½«µÚ\ref{chap:dip}ÖĞÌá³öDIP·½·¨Ó¦ÓÃÔÚ¸Ã·½³ÌÇó½âÖĞ£¬½áºÏ¸ß¾«¶ÈµÄEuler·½³ÌÇó½â·½·¨ºÍÎÈ¶¨µÄ·´Ó¦²½ODE·½³Ì3TNPÇó½â·½·¨¿ÉÒÔºÜºÃµÄÇó½â·´Ó¦Euler·½³Ì£¬±ÜÃâ·ÇÎïÀí½á¹ûµÄ²úÉú¡£ËãÀıÏÔÊ¾£¬¼´±ãÔÚ¸ü¼«¶ËµÄÇé¿öÏÂ£¬Èç¸üÏ¡ÊèµÄÍø¸ñ»ò¸ü´óµÄÔ´Ïî¸ÕĞÔ£¬ĞÂµÄ·½·¨ÈÔÈ»ÄÜµÃµ½ÁîÈËÂúÒâµÄ½á¹û¡£
 
 
 

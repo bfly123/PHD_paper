@@ -289,6 +289,12 @@
 \newblock Random choice solution of hyperbolic systems.
 \newblock {\em Journal of Computational Physics 22}, 4 (1976), 517--533.
 
+\bibitem{chou2007high}
+{\sc Chou, C.-S., and Shu, C.-W.}
+\newblock High order residual distribution conservative finite difference weno
+  schemes for convection--diffusion steady state problems on non-smooth meshes.
+\newblock {\em Journal of Computational Physics 224}, 2 (2007), 992--1020.
+
 \bibitem{cocchi1997riemann}
 {\sc Cocchi, J.-P., and Saurel, R.}
 \newblock A riemann problem based method for the resolution of compressible
@@ -1461,6 +1467,11 @@
 \newblock Flux vector splitting of the inviscid gasdynamic equations with
   application to finite-difference methods.
 \newblock {\em Journal of computational physics 40}, 2 (1981), 263--293.
+
+\bibitem{strang1968construction}
+{\sc Strang, G.}
+\newblock On the construction and comparison of difference schemes.
+\newblock {\em SIAM Journal on Numerical Analysis 5}, 3 (1968), 506--517.
 
 \bibitem{sussman2003second}
 {\sc Sussman, M.}

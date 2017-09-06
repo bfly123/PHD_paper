@@ -361,34 +361,34 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
   \omega_1=-K(T)\rho z,
 \end{equation}
 其中$K$为反应率可以通过Arrhenius率
-\begin{eqnarray*}
+\begin{eqnarray}\label{eq:arrhenius}
   K(T)=K_0 e^{-T_{ign}/T}
-\end{eqnarray*}
+\end{eqnarray}
 或者如下Heaviside率求得
-\begin{eqnarray*}
+\begin{eqnarray}\label{eq:heaviside}
   K(T)=\left\{ 
   \begin{array}{lcl}
 	 1/\epsilon, &  & T \geqslant T_{ign},\\
 	 0,          &  & T <         T_{ign},
 	 \end{array}
 	 \right.
-\end{eqnarray*}
+\end{eqnarray}
 其中$K_0$是反应率常数，$T_{ign}$是燃点和$\epsilon$是反应时间。状态方程为
 \begin{eqnarray*}
   p=(\gamma- 1)\left(E-\frac{1}{2}\rho(u^2+v^2)-\frac{1}{2}\rho u^2-q_0 \rho z \right).
 \end{eqnarray*}
 其中$q_0$为反应热。
 
-\noindent \textbf{固定比热比多步反应模型}
+\noindent \textbf{固定比热比多步反应模型}\label{chap:multi_com}
 
 对于固定比热比多步反应模型，考虑有$ns$组分的可逆反应
 \begin{equation}\label{eq1_7}
   \sum_{i=1}^{ns}\mu_{i,j}'\chi_i \leftrightarrow \sum_{i=1}^{ns}\mu_{i,j}''\chi_i \hspace{1cm} (j=1,\cdots,nr)
 \end{equation}
 其中$nr$为反应方程数，化学计量数$\mu$为整数，$\chi_i$代表第i组分，上标$'$ 正方向反应化学计量数，$''$代表反方向反应化学计量数。$i$组分反应率可以写成
-\begin{eqnarray*}
+\begin{eqnarray}\label{eq:reaction_rate}
   \omega_i={W_i}\sum_{k=1}^{nr}{(\mu_{i,k}''-\mu_{i,k}')} K_k \prod_{j}^{ns}{\left( \frac{\rho z_j}{W_j}\right)^{\mu_{j,k}'} },
-\end{eqnarray*}
+\end{eqnarray}
 其中$nr$为反应数，$W_i$为i组分的摩尔质量，反应率$K_i$采用Heaviside形式
 \begin{eqnarray*}
   K_i(T)=\left\{
