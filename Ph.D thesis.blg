@@ -2,10 +2,17 @@ This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Ph.D thesis.aux
 The style file: acm.bst
+A level-1 auxiliary file: chapter/abstract.aux
 A level-1 auxiliary file: chapter/Chapter-Introduction.aux
+A level-1 auxiliary file: chapter/Chapter-Multi-WENO.aux
+A level-1 auxiliary file: chapter/Chapter-detector.aux
+A level-1 auxiliary file: chapter/Chapter-MHD.aux
+A level-1 auxiliary file: chapter/Chapter-Dual-Information-Method.aux
 A level-1 auxiliary file: chapter/Chapter-NP-method.aux
 A level-1 auxiliary file: chapter/Chapter-Stiff-Reaction.aux
-Reallocated field_info (elt_size=4) to 10589 items from 5000.
+A level-1 auxiliary file: chapter/Chapter-Scale.aux
+A level-1 auxiliary file: chapter/Chapter-2D-DIP.aux
+Reallocated field_info (elt_size=4) to 11785 items from 5000.
 Database file #1: bib/mybibfile.bib
 Repeated entry---line 1727 of file bib/mybibfile.bib
  : @book{lee2008detonation
@@ -111,12 +118,18 @@ Repeated entry---line 6523 of file bib/mybibfile.bib
  : @article{hairer1999stiff
  :                         ,
 I'm skipping whatever remains of this entry
+Repeated entry---line 6583 of file bib/mybibfile.bib
+ : @article{colella1986theoretical
+ :                                ,
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "van1979towards1"
 Warning--I didn't find a database entry for "anderson1998diffuse"
+Warning--I didn't find a database entry for ""
+Warning--I didn't find a database entry for "schulz1993numerical"
+Warning--I didn't find a database entry for "orszag1979small"
+Warning--I didn't find a database entry for "jiang1999high"
+Warning--I didn't find a database entry for "olsson2005conservative"
 Warning--I didn't find a database entry for "ben1989generalized"
-Warning--I didn't find a database entry for "chorin1977random"
-Warning--I didn't find a database entry for "colella1982glimm"
-Warning--I didn't find a database entry for "courant1999supersonic"
 Warning--empty journal in freidberg1987ideal
 Warning--empty journal in glimm1970decay
 Warning--empty journal in harten1989eno
@@ -124,45 +137,45 @@ Warning--empty journal in osher1985shock
 Warning--can't use both volume and number fields in smooke1988comparison
 Warning--empty journal in van1973towards
 Warning--empty year in zhacomparative
-You've used 334 entries,
+You've used 336 entries,
             2253 wiz_defined-function locations,
-            2190 strings with 54845 characters,
-and the built_in function-call counts, 107605 in all, are:
-= -- 10842
-> -- 4438
+            2205 strings with 55220 characters,
+and the built_in function-call counts, 108146 in all, are:
+= -- 10895
+> -- 4457
 < -- 0
-+ -- 1935
-- -- 1508
-* -- 8970
-:= -- 17461
-add.period$ -- 1000
-call.type$ -- 334
-change.case$ -- 1725
++ -- 1943
+- -- 1514
+* -- 9010
+:= -- 17551
+add.period$ -- 1006
+call.type$ -- 336
+change.case$ -- 1733
 chr.to.int$ -- 0
-cite$ -- 341
-duplicate$ -- 3430
-empty$ -- 8821
-format.name$ -- 1508
-if$ -- 21994
+cite$ -- 343
+duplicate$ -- 3451
+empty$ -- 8870
+format.name$ -- 1514
+if$ -- 22106
 int.to.chr$ -- 0
-int.to.str$ -- 334
-missing$ -- 343
-newline$ -- 1666
-num.names$ -- 668
-pop$ -- 1413
+int.to.str$ -- 336
+missing$ -- 346
+newline$ -- 1676
+num.names$ -- 672
+pop$ -- 1423
 preamble$ -- 1
-purify$ -- 1414
+purify$ -- 1421
 quote$ -- 0
-skip$ -- 2032
+skip$ -- 2044
 stack$ -- 0
-substring$ -- 8402
-swap$ -- 826
+substring$ -- 8434
+swap$ -- 830
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1286
+type$ -- 1292
 warning$ -- 7
-while$ -- 1219
-width$ -- 337
-write$ -- 3350
-(There were 26 error messages)
+while$ -- 1225
+width$ -- 339
+write$ -- 3371
+(There were 27 error messages)

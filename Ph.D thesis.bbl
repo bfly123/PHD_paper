@@ -312,6 +312,12 @@
 \newblock Nonlinearly stable compact schemes for shock calculations.
 \newblock {\em SIAM Journal on Numerical Analysis 31}, 3 (1994), 607--627.
 
+\bibitem{colella1982glimm}
+{\sc Colella, P.}
+\newblock Glimm's method for gas dynamics.
+\newblock {\em SIAM Journal on Scientific and Statistical Computing 3}, 1
+  (1982), 76--110.
+
 \bibitem{colella1986theoretical}
 {\sc Colella, P., Majda, A., and Roytburd, V.}
 \newblock Theoretical and numerical structure for reacting shock waves.
@@ -334,6 +340,11 @@
 \newblock {\"U}ber die partiellen differenzengleichungen der mathematischen
   physik.
 \newblock {\em Mathematische annalen 100}, 1 (1928), 32--74.
+
+\bibitem{courant1999supersonic}
+{\sc Courant, R., and Friedrichs, K.~O.}
+\newblock {\em Supersonic flow and shock waves}, vol.~21.
+\newblock Springer Science \& Business Media, 1999.
 
 \bibitem{crandall1980method}
 {\sc Crandall, M., and Majda, A.}
