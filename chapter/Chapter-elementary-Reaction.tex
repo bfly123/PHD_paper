@@ -12,4 +12,84 @@
 针对于以上的各种问题，我们在前言\ref{chap:elemete_intro}中有更详细的介绍。考虑到无论是固定比热比的多步反应模型，还是基元反应模型，方程并没有本质变化，只是源项形式有所区别，而遇到的空间问题归根结底也都是由于网格不足和方法中的数值耗散造成的。因此，我们将上一章提出的求解方法应用在基元反应模型爆轰求解中。
 
 \section{基元反应模型中的热力学参数}
-在前言\ref{chap:reaction}中，我们给出了基元反应模型的源项形式和状态方程，但是在基元反应模型中，每种组分的热力学属性并不相同，这导致了整体的热力学状态的变化，而每种组分的热力学属性通常由实验和拟合得到，本文采用JANAF给出
+在前言\ref{chap:reaction}中，我们给出了基元反应模型的源项形式和状态方程，但是在基元反应模型中，每种组分的热力学属性并不相同，这导致了整体的热力学状态的变化，而每种组分的热力学属性通常由实验和拟合得到，本文采用JANAF\cite{stull1971janaf}给出数据和拟合公式。
+
+摩尔热容为
+\begin{equation}label{eq:C}
+  \frac{C_{p,i}}{R_u}=a_{1,i}+a_{2,i}T+a_{3,i}T^2+a_{4,i}T^3+a_{5,i}T^4
+\end{equation}
+摩尔焓和摩尔熵都可以通过摩尔热容积分得到
+\begin{equation}\label{eq:H}
+  \begin{array}{l}
+  H_i(T)=H_i^f+\inf_0^T C_{pi}(s)ds\\
+  S_i(T)=S_i^f+\inf_0^T \frac{C_{pi}(s)}{T}ds\\
+  \end{array}
+\end{equation}
+将方程 (\ref{eq:C}) 带入 (\ref{eq:H}) 可以得到摩尔焓
+\begin{equation}
+  \frac{H_{p,i}}{R_uT}=a_{1,i}+\frac{a_{2,i}}{2}T+a_{3,i}T^2+a_{4,i}T^3+a_{5,i}T^4
+  \end{equation}
+同理，可以得到摩尔熵
+\begin{equation}
+  \frac{H_{p,i}}{R_uT}=a_{1,i}\text{ln}T+a_{2,i}T+\frac{a_{3,i}}{2}T^2+\frac{a_{4,i}}{3}T^3+\frac{a_{5,i}}{4}T^4+a_{7,i}
+  \end{equation}
+  不同的拟合参数$a_1~a_7$可参见附录\ref{chap:parameter}。
+
+  \section{温度求解方法}
+ 对于热完全气体混合物，温度并不存在显式的表达式，通常都需要采用迭代方法求解状态方程求得。对于混合气体，总能为
+  \begin{equation}
+	E=-p+\frac{1}{2}(u^2+v^2)+\rho h
+\end{equation}
+将上式与公式 (\ref{eq1_6}) 联立，可以得到一个新的函数
+\begin{equation}
+  f(T)=-E+\frac{1}{2}\rho u^2+\rho h(T)-\rho R T
+\end{equation}
+问题转换成求解$f(T)=0$，本文采用牛顿迭代法进行求解。
+
+由于采用分裂方法 (章节 \ref{chap:split})，对流过程和反应过程是独立的，因此化学反应过程可以看成是一个定容过程\cite{schultz2000validation}。这样在反应步求解温度时可以不需要迭代过程，进一步简化。根据定容假设，化学反应过程中内能保持不变，即
+\begin{equation}
+  \left\{
+  \begin{array}{l}
+	\frac{de}{dt}=0\\
+	frac{d\rho_i}{dt}=\omega_i
+	\end{array}
+	\right.
+\end{equation}
+内能是温度和质量分数的函数：
+\begin{equation}
+  e=e(T,z)=\sum_{i=1}^{ns}z_ie_i(T)
+\end{equation}
+对内能进行微分有
+
+\begin{eqnarray}
+  \begin{split}
+	 de&=\sum_{i=1}^{ns}e_i dz_i +dT\sum_{i=1}^{ns}z_i\frac{de_i(T)}{dT}\\
+ &= \sum_{i=1}^{ns}e_idz_i+dT\sum_{i=1}^{ns}z_ic_{v,i}
+ \end{split}
+  \end{eqnarray}
+上式可以简化为
+\begin{equation}
+  de=\sum_{i=1}^{ns}e_idy_i+c_vdT
+\end{equation}
+将${de}/{dt}=0$带入上式
+\begin{equation}
+  c_v\frac{dT}{dt}=-\sum_{i=1}^{ns}e_i\frac{dy_i}{dt}=-\sum_{i=1}^{ns}e_i\frac{\omega_i}{\rho}
+\end{equation}
+最后可得到
+\begin{equation}\label{eq:dT}
+  \frac{dT}{dt}=-\frac{1}{c_v}\sum_{i=1}^{ns}e_i\frac{\omega_i}{\rho},\hspace{0.3cm} c_v=\sum_{i=1}^{ns}z_ic_{v,i}
+\end{equation}
+利用公式 (\ref{eq:dT}) 可以显式的求出下一步时间的温度，无需采用迭代。但是这里要特别注意的是，定容假设只适用在反应步的计算中，而在对流步计算中，我们仍然需要迭代过程求解温度。
+
+\section{数值算例}
+本节中，我们将上一章构造的数值方法应用在氢氧爆轰的基元反应模型化学反应流动方程求解中。以下的算例采用9组分 $H_2$，$O_2$，$O$，$H$，$OH$，$HO_2$，$H_2O_2$，$H_2O$和$Ar$，21反应的BW氢氧爆轰模型\cite{balakrishnan1994turbulent}，具体参数见表 \ref{tab:HO}。
+\input{chapter/HO_table.tex}
+\subsection{新方法有效性的验证}
+为了验证新方法的有效性，我们选用四种不同的
+
+	
+
+
+
+
+

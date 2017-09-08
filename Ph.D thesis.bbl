@@ -82,6 +82,12 @@
 \newblock {\em Shock wave-boundary-layer interactions}, vol.~32.
 \newblock Cambridge University Press, 2011.
 
+\bibitem{balakrishnan1994turbulent}
+{\sc Balakrishnan, G., and Williams, F.}
+\newblock Turbulent combustion regimes for hypersonic propulsion employing
+  hydrogen-air diffusion flames.
+\newblock {\em Journal of Propulsion and Power 10}, 3 (1994), 434--436.
+
 \bibitem{balbas2004non}
 {\sc Balb{\'a}s, J., Tadmor, E., and Wu, C.-C.}
 \newblock Non-oscillatory central schemes for one-and two-dimensional mhd
@@ -1327,6 +1333,10 @@
 \newblock {\em Journal of Dynamics and Differential Equations 3}, 2 (1991),
   199--271.
 
+\bibitem{schultz2000validation}
+{\sc Schultz, E., and Shepherd, J.}
+\newblock Validation of detailed reaction mechanisms for detonation simulation.
+
 \bibitem{schulz1993classification}
 {\sc Schulz-Rinne, C.~W.}
 \newblock Classification of the riemann problem for two-dimensional gas
@@ -1483,6 +1493,11 @@
 {\sc Strang, G.}
 \newblock On the construction and comparison of difference schemes.
 \newblock {\em SIAM Journal on Numerical Analysis 5}, 3 (1968), 506--517.
+
+\bibitem{stull1971janaf}
+{\sc Stull, D.~R., and Prophet, H.}
+\newblock Janaf thermochemical tables.
+\newblock Tech. rep., National Standard Reference Data System, 1971.
 
 \bibitem{sussman2003second}
 {\sc Sussman, M.}

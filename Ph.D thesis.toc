@@ -29,8 +29,13 @@
 \contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{29}{subsubsection.1.4.3.4}
 \contentsline {section}{\numberline {1.5}本文所开展研究内容}{31}{section.1.5}
 \contentsline {chapter}{\numberline {第二章\hspace {0.3em}}双信息保存方法在基元反应模型爆轰中的应用}{33}{chapter.2}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{35}{appendix.A}
-\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{35}{section.A.1}
-\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{37}{section.A.2}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} B\hspace {0.3em}}二维DIP方法伪代码 }{39}{appendix.B}
-\contentsline {chapter}{参考文献}{43}{appendix*.6}
+\contentsline {section}{\numberline {2.1}基元反应模型中的热力学参数}{33}{section.2.1}
+\contentsline {section}{\numberline {2.2}温度求解方法}{34}{section.2.2}
+\contentsline {section}{\numberline {2.3}数值算例}{36}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}新方法有效性的验证}{36}{subsection.2.3.1}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{37}{appendix.A}
+\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{37}{section.A.1}
+\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{39}{section.A.2}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} B\hspace {0.3em}}二维DIP方法伪代码 }{41}{appendix.B}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} C\hspace {0.3em}}化学反应不同组分热力学拟合参数}{45}{appendix.C}
+\contentsline {chapter}{参考文献}{47}{appendix*.6}

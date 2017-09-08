@@ -399,16 +399,16 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
  & & i=1,2,\cdots , nr
  \end{eqnarray*}
  状态方程为
-\begin{eqnarray*}
+ \begin{eqnarray}\label{state_const_gama}
   p=(\gamma- 1)\left(E-\frac{1}{2}\rho(u^2+v^2)-\frac{1}{2}\rho u^2-q_1 \rho z_1 -q_2\rho z_2 - \cdots -q_{ns}\rho z_{ns} \right).
-\end{eqnarray*}
+\end{eqnarray}
 其中$q_i$为i组分反应热。
 
 \noindent \textbf{多步基元反应模型}
 
 根据物理问题不同和对计算精准度要求不同，模拟可能需要了解详细的化学反应动力学过程，基元反应模型就是针对这样的要求提出的，这里的基元反应就是指反应物微粒（原子、分子、离子和自由基等）一步实现的化学变化。区别于多步简化模型，基元反应模型中的混合物各种热力学参数如焓、熵和比热比等会随着温度变化而改变。基元反应模型研究的气体对象为理想气体方程控制下的的热完全气体（$T<4000K$）。关于量热完全气体（Calorically perfect/Perfect）、热完全气体(Thermally perfect/Semi-perfect)、理想气体(Ideal)和真实气体（Imperfect）的详细概念可以参照\cite{anderson2010fundamentals}。
 
-我们同样可以采用公式（\ref{eq1_7}）来代表所有基元反应，其中$ns$代表所有反应物和三体的数目。第i组分的质量生成率为
+我们同样可以采用公式（\ref{eq1_7}）来代表所有基元反应，其中$ns$代表所有反应物和三体的数目。第$i$组分的质量生成率为
 \begin{equation}
   \omega_i=W_i\sum_{k=1}^{nr}(\nu_{k,i}''-\nu_{k,i}')\left\{ K_{f,k}(T)\prod_{j=1}^{ns}\gamma_j^{\nu_{b,k}'}-K_{b,j}(T)\prod_{j=1}^{ns}\gamma_j^{\nu_{k,j}''}\right\}
 \end{equation}
@@ -426,7 +426,7 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f.$$
 \end{equation}
 $S_k$和$H_k$为k组分的摩尔熵和焓，具体表达见正文。
 
-热完全气体混合物遵从道尔顿分压定律，混合气体压力等于各组分压力之和，而各组分气体仍然满足热完全气体假设。混合气体状态方程为
+热完全气体混合物遵从道尔顿分压定律，混合气体压力等于各组分压力之和，而各组分气体仍然满足热完全气体假设。混合气体的理想气体方程为
 \begin{equation}\label{eq1_6}
   p=\rho R T=\sum_{i=1}^{ns}\rho_i R_i T=\sum_{i=1}^{ns}z_i \rho_i T=\rho\frac{R_u}{\bar{W}}T
 \end{equation}

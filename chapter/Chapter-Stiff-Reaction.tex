@@ -39,7 +39,7 @@
 
 根据以上定性的分析，我们可以得出这样的结论：对于线性方程 (\ref{eq:linear_source}) 而言，空间刚性问题是由对流过程中的数值耗散导致的源项错误激发造成的。在化学反应流动方程中这种非物理解的产生过程会更为复杂，但是根本原因是相同的，关于这一点，接下来我们将在反应欧拉方程的分析中得到验证。
 
-\section{求解反应Euler方程的分裂方法}
+\section{求解反应Euler方程的分裂方法}\label{chap:split}
 一维化学反应欧拉方程为
 \begin{equation} \label{ReactionEuler}
   \frac{\partial \bm{U}}{\partial t}+  \frac{\partial \bm F}{\partial x}=\bm S
