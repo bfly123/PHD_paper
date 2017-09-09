@@ -31,11 +31,23 @@
 \contentsline {chapter}{\numberline {第二章\hspace {0.3em}}双信息保存方法在基元反应模型爆轰中的应用}{33}{chapter.2}
 \contentsline {section}{\numberline {2.1}基元反应模型中的热力学参数}{33}{section.2.1}
 \contentsline {section}{\numberline {2.2}温度求解方法}{34}{section.2.2}
-\contentsline {section}{\numberline {2.3}数值算例}{36}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}新方法有效性的验证}{36}{subsection.2.3.1}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{37}{appendix.A}
-\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{37}{section.A.1}
-\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{39}{section.A.2}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} B\hspace {0.3em}}二维DIP方法伪代码 }{41}{appendix.B}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} C\hspace {0.3em}}化学反应不同组分热力学拟合参数}{45}{appendix.C}
-\contentsline {chapter}{参考文献}{47}{appendix*.6}
+\contentsline {section}{\numberline {2.3}组分守恒性}{36}{section.2.3}
+\contentsline {section}{\numberline {2.4}数值算例}{36}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}新方法有效性的验证}{37}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}新方法和传统方法的比较}{39}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}在更稀疏网格下的验证}{40}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}新方法和传统方法在计算效率方面的比较}{40}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}DIP方法解偶带来对流步效率变化}{40}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}摄动方法带来的源项ODE方程求解效率变化}{42}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}定容假设对温度求解的简化及结果对比}{42}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}总体节省时间}{44}{subsection.2.5.4}
+\contentsline {section}{\numberline {2.6}二维爆轰}{44}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}爆轰波胞格结构}{44}{subsection.2.6.1}
+\contentsline {subsubsection}{\numberline {2.6.1.1}$2H_2+O_2+7Ar$($6.67KPa,298K$)}{44}{subsubsection.2.6.1.1}
+\contentsline {subsubsection}{\numberline {2.6.1.2}$2H_2+O_2+Ar$($8KPa,300K$)}{44}{subsubsection.2.6.1.2}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{55}{appendix.A}
+\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{55}{section.A.1}
+\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{57}{section.A.2}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} B\hspace {0.3em}}二维DIP方法伪代码 }{59}{appendix.B}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} C\hspace {0.3em}}化学反应不同组分热力学拟合参数}{63}{appendix.C}
+\contentsline {chapter}{参考文献}{65}{appendix*.6}
