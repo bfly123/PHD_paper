@@ -326,13 +326,13 @@ $$\Delta z= \left\{
   0.001, & & z_j= 0
 \end{array} \right.
 $$
-\section{数值算例}
+\section{数值算例}\label{chap:stiff_example}
 本章的计算中，我们采用新的分离方法将方程分裂成三部分，在Euler部分 (\ref{EulerEquation}) 我们采用LF分裂方法 (\ref{eq:LF})、五阶WENO空间离散格式 (章节 \ref{chap:WENO}) 和三阶Runge-Kutta时间离散格式 (\ref{eq:RK3})；在组分对流步 (\ref{Afrac}) 采用DIP方法；在反应步采用3TNP格式。作为对照，我们采用\cite{zhang2014equilibrium,bao2000random,wang2012high}等引文中常用的分裂方法，将方程 (\ref{ReactionEuler}) 算子分裂成如下两部分
 \begin{equation} \label{star_1}
-  \frac{\partial U}{\partial t}+\frac{\partial F}{\partial x}=0, 
+  \frac{\partial {\bm U}}{\partial t}+\frac{\partial {\bm F}}{\partial x}=0, 
 \end{equation}
 \begin{equation}
-  \frac{d U}{d t}=S, 
+  \frac{d \bm U}{d t}=\bm S, 
 \end{equation}
 在对流部分同样采用LF方法、五阶WENO格式和三阶Runge-Kutta方法；在反应步采用3TNP格式。为了简便，在以下的算例中，我们将这种方法称作传统方法，在图中用``WENO5''进行标记。
 

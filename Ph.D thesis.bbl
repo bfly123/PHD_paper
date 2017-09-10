@@ -7,6 +7,10 @@
 \newblock In {\em AIAA 30th Plasmadynamics and Lasers Conference, AIAA Paper,
   Norfolk, VA\/} (1999), pp.~99--3613.
 
+\bibitem{akbar1997mach}
+{\sc Akbar, R.}
+\newblock Mach reflection of gaseous detonations.
+
 \bibitem{allaire2002five}
 {\sc Allaire, G., Clerc, S., and Kokh, S.}
 \newblock A five-equation model for the simulation of interfaces between
@@ -142,6 +146,12 @@
 {\sc Biswas, R., Devine, K.~D., and Flaherty, J.~E.}
 \newblock Parallel, adaptive finite element methods for conservation laws.
 \newblock {\em Applied Numerical Mathematics 14}, 1-3 (1994), 255--283.
+
+\bibitem{bollinger1964experimental}
+{\sc Bollinger, L.~E.}
+\newblock Experimental detonation velocities and induction distances in
+  hydrogen-air mixtures.
+\newblock {\em AIAA Journal 2}, 1 (1964), 131--133.
 
 \bibitem{bonometti2007interface}
 {\sc Bonometti, T., and Magnaudet, J.}
@@ -399,6 +409,12 @@
   multi-fluid flows with free surfaces.
 \newblock {\em Journal of Computational Physics 198}, 2 (2004), 469--499.
 
+\bibitem{deiterding2005high}
+{\sc Deiterding, R., and Bader, G.}
+\newblock High-resolution simulation of detonations with detailed chemistry.
+\newblock In {\em Analysis and Numerics for Conservation Laws}. Springer, 2005,
+  pp.~69--91.
+
 \bibitem{deng1997compact}
 {\sc Deng, X., and Maekawa, H.}
 \newblock Compact high-order accurate nonlinear schemes.
@@ -447,6 +463,17 @@
   chemistry.
 \newblock {\em Journal of Thermophysics and Heat Transfer 6}, 2 (1992),
   208--216.
+
+\bibitem{eckett2000numerical}
+{\sc Eckett, C.~A.}
+\newblock {\em Numerical and analytical studies of the dynamics of gaseous
+  detonations}.
+\newblock PhD thesis, Citeseer, 2000.
+
+\bibitem{edwards1984propagation}
+{\sc Edwards, D., Walker, J., and Nettleton, M.}
+\newblock On the propagation of detonation waves along wedges.
+\newblock {\em Archivum Combustionis 4\/} (1984), 197--209.
 
 \bibitem{edwards1997low}
 {\sc Edwards, J.~R.}
@@ -600,6 +627,18 @@
 {\sc G.Strang}.
 \newblock {\em Linear Algebra and its Applications, 3rd ed.}
 \newblock Fort Worth, TX: Harcourt Brace Jovanovich, 1988.
+
+\bibitem{guirao1989summary}
+{\sc Guirao, C., Knystautas, R., and Lee, J.}
+\newblock {\em A summary of hydrogen-air detonation experiments}.
+\newblock Division of Systems Research, Office of Nuclear Regulatory Research,
+  US Nuclear Regulatory Commission, 1989.
+
+\bibitem{guo2007cellular}
+{\sc Guo, C., Wang, C., Xu, S., and Zhang, H.}
+\newblock Cellular pattern evolution in gaseous detonation diffraction in a
+  90-branched channel.
+\newblock {\em Combustion and flame 148}, 3 (2007), 89--99.
 
 \bibitem{gurski2004hllc}
 {\sc Gurski, K.~F.}
@@ -755,6 +794,12 @@
 {\sc Hu, X.~Y., and Khoo, B.~C.}
 \newblock An interface interaction method for compressible multifluids.
 \newblock {\em Journal of Computational Physics 198}, 1 (2004), 35--64.
+
+\bibitem{hu2003numerical}
+{\sc Hu, X.-Y., Zhang, D.-L., and Jiang, Z.-L.}
+\newblock Numerical simulation of gaseous detonation with detailed chemical
+  reaction model.
+\newblock {\em Acta Aerodynamica Sinica 21}, 1 (2003), 59--66.
 
 \bibitem{huang2002convergence}
 {\sc Huang, F., and Wang, Z.}
@@ -1045,12 +1090,24 @@
 \newblock Weighted essentially non-oscillatory schemes.
 \newblock {\em Journal of computational physics 115}, 1 (1994), 200--212.
 
+\bibitem{liu2008reconsideration}
+{\sc Liu, Y., and Jiang, Z.}
+\newblock Reconsideration on the role of the specific heat ratio in arrhenius
+  law applications.
+\newblock {\em Acta Mechanica Sinica 24}, 3 (2008), 261--266.
+
 \bibitem{lombard1983multi}
 {\sc Lombard, C., Bardina, J., Venkatapathy, E., and Oliger, J.}
 \newblock Multi-dimensional formulation of cscm-an upwind flux difference
   eigenvector split method for the compressible navier-stokes equations.
 \newblock In {\em 6th Computational Fluid Dynamics Conference\/} (1983),
   pp.~649--664.
+
+\bibitem{lv2013development}
+{\sc Lv, Y., and Ihme, M.}
+\newblock Development of discontinuous galerkin method for detonation and
+  supersonic combustion.
+\newblock {\em AIAA Paper 688\/} (2013), 2013.
 
 \bibitem{maccormackupwind}
 {\sc MacCormack, R.}
@@ -1178,6 +1235,13 @@
   problem for a quasi-linear equation.
 \newblock {\em Uspekhi Matematicheskikh Nauk 14}, 2 (1959), 165--170.
 
+\bibitem{oran1998numerical}
+{\sc Oran, E.~S., Weber, J.~W., Stefaniw, E.~I., Lefebvre, M.~H., and Anderson,
+  J.~D.}
+\newblock A numerical study of a two-dimensional h 2-o 2-ar detonation using a
+  detailed chemical reaction model.
+\newblock {\em Combustion and Flame 113}, 1 (1998), 147--163.
+
 \bibitem{osher1985shock}
 {\sc Osher, S.}
 \newblock Shock modelling in transonic and supersonic flow.
@@ -1303,6 +1367,13 @@
 {\sc Roe, P.~L., and Balsara, D.~S.}
 \newblock Notes on the eigensystem of magnetohydrodynamics.
 \newblock {\em SIAM Journal on Applied Mathematics 56}, 1 (1996), 57--67.
+
+\bibitem{roy2004pulse}
+{\sc Roy, G., Frolov, S., Borisov, A., and Netzer, D.}
+\newblock Pulse detonation propulsion: challenges, current status, and future
+  perspective.
+\newblock {\em Progress in Energy and Combustion Science 30}, 6 (2004),
+  545--672.
 
 \bibitem{rubin1967difference}
 {\sc Rubin, E.~L., and Burstein, S.~Z.}
@@ -1571,6 +1642,12 @@
   magnetohydrodynamics codes.
 \newblock {\em Journal of Computational Physics 161}, 2 (2000), 605--652.
 
+\bibitem{trotsyuk1999numerical}
+{\sc Trotsyuk, A.}
+\newblock Numerical simulation of the structure of two-dimensional gaseous
+  detonation of an h2-o2-ar mixture.
+\newblock {\em Combustion, Explosion and Shock Waves 35}, 5 (1999), 549--558.
+
 \bibitem{tryggvason2001front}
 {\sc Tryggvason, G., Bunner, B., Esmaeeli, A., Juric, D., Al-Rawahi, N.,
   Tauber, W., Han, J., Nas, S., and Jan, Y.-J.}
@@ -1642,6 +1719,17 @@
 \newblock A real ghost fluid method for the simulation of multimedium
   compressible flow.
 \newblock {\em SIAM Journal on Scientific Computing 28}, 1 (2006), 278--302.
+
+\bibitem{wang2008gaseous}
+{\sc Wang, C., Xu, S., and Guo, C.}
+\newblock Gaseous detonation propagation in a bifurcated tube.
+\newblock {\em Journal of Fluid Mechanics 599\/} (2008), 81--110.
+
+\bibitem{wang2006numerical}
+{\sc Wang, C., Zhang, D.-l., and Jiang, Z.-l.}
+\newblock Numerical investigation of detonation sweeping on an interface of
+  inert gas and its decoupling.
+\newblock {\em Explosion and Shock Waves 26}, 6 (2006), 556.
 
 \bibitem{wang2015high}
 {\sc Wang, W., Shu, C.-W., Yee, H., Kotov, D.~V., and Sj{\"o}green, B.}
@@ -1890,6 +1978,10 @@
 \newblock 旋转爆轰自持机理的数值研究.
 \newblock {\em 弹道学报 23}, 1 (2011), 1--4.
 
+\bibitem{张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究}
+{\sc 张薇, 刘云峰, 姜宗林, et~al.}
+\newblock 气相爆轰波胞格尺度与点火延迟时间关系研究.
+
 \bibitem{杨瑞芳2007非齐次双曲型守恒律组的粘性解与弱解的研究}
 {\sc 杨瑞芳}.
 \newblock {\em 非齐次双曲型守恒律组的粘性解与弱解的研究}.
@@ -1930,6 +2022,11 @@
 {\sc 肖伟}.
 \newblock {\em 气体动力学中压差方程双对称结构 Riemann 问题}.
 \newblock PhD thesis, 上海大学, 2012.
+
+\bibitem{胡宗民2004爆轰波在弯管内传播过程数值分析}
+{\sc 胡宗民, 牟乾辉, 张德良, and 姜宗林}.
+\newblock 爆轰波在弯管内传播过程数值分析.
+\newblock {\em 计算物理 21}, 5 (2004), 408--414.
 
 \bibitem{赖耕2010二维可压流体}
 {\sc 赖耕}.

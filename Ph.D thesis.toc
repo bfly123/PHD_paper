@@ -28,26 +28,97 @@
 \contentsline {subsubsection}{\numberline {1.4.3.3}刚性化学反应流动的空间刚性问题}{26}{subsubsection.1.4.3.3}
 \contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{29}{subsubsection.1.4.3.4}
 \contentsline {section}{\numberline {1.5}本文所开展研究内容}{31}{section.1.5}
-\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}双信息保存方法在基元反应模型爆轰中的应用}{33}{chapter.2}
-\contentsline {section}{\numberline {2.1}基元反应模型中的热力学参数}{33}{section.2.1}
-\contentsline {section}{\numberline {2.2}温度求解方法}{34}{section.2.2}
-\contentsline {section}{\numberline {2.3}组分守恒性}{36}{section.2.3}
-\contentsline {section}{\numberline {2.4}数值算例}{36}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}新方法有效性的验证}{37}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}新方法和传统方法的比较}{39}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}在更稀疏网格下的验证}{40}{subsection.2.4.3}
-\contentsline {section}{\numberline {2.5}新方法和传统方法在计算效率方面的比较}{40}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}DIP方法解偶带来对流步效率变化}{40}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}摄动方法带来的源项ODE方程求解效率变化}{42}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}定容假设对温度求解的简化及结果对比}{42}{subsection.2.5.3}
-\contentsline {subsection}{\numberline {2.5.4}总体节省时间}{44}{subsection.2.5.4}
-\contentsline {section}{\numberline {2.6}二维爆轰}{44}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}爆轰波胞格结构}{44}{subsection.2.6.1}
-\contentsline {subsubsection}{\numberline {2.6.1.1}$2H_2+O_2+7Ar$($6.67KPa,298K$)}{44}{subsubsection.2.6.1.1}
-\contentsline {subsubsection}{\numberline {2.6.1.2}$2H_2+O_2+Ar$($8KPa,300K$)}{44}{subsubsection.2.6.1.2}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{55}{appendix.A}
-\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{55}{section.A.1}
-\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{57}{section.A.2}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} B\hspace {0.3em}}二维DIP方法伪代码 }{59}{appendix.B}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} C\hspace {0.3em}}化学反应不同组分热力学拟合参数}{63}{appendix.C}
-\contentsline {chapter}{参考文献}{65}{appendix*.6}
+\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}多步加权基本无振荡（Multi-WENO）格式}{33}{chapter.2}
+\contentsline {section}{\numberline {2.1}本章涉及的数值方法}{34}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Lax-Friedrichs（LF）通量分裂方法和空间半离散}{34}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}加权基本无振荡/WENO格式\cite {jiang2001weighted,henrick2005mapped,borges2008improved}}{35}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Runge-Kutta时间方法}{37}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}过渡点精度分析}{37}{section.2.2}
+\contentsline {section}{\numberline {2.3}WENO格式的多步加权方法}{39}{section.2.3}
+\contentsline {section}{\numberline {2.4}数值算例}{41}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}线性对流算例}{41}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}非线性对流算例}{44}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}一维激波管算例}{44}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}二维对流传播方程}{48}{subsection.2.4.4}
+\contentsline {subsection}{\numberline {2.4.5}二维变系数线性对流守恒方程算例}{48}{subsection.2.4.5}
+\contentsline {subsection}{\numberline {2.4.6}二维激波/涡相互作用算例}{49}{subsection.2.4.6}
+\contentsline {subsection}{\numberline {2.4.7}激波/剪切层相互作用算例}{50}{subsection.2.4.7}
+\contentsline {section}{\numberline {2.5}小结}{51}{section.2.5}
+\contentsline {chapter}{\numberline {第三章\hspace {0.3em}}间断识别方法比较研究}{53}{chapter.3}
+\contentsline {section}{\numberline {3.1}有限紧致格式（the finite compact scheme）}{53}{section.3.1}
+\contentsline {section}{\numberline {3.2}间断识别方法}{55}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}$\tau _5$识别方法\cite {shen2011generalized}}{55}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}平均总变差（Average total variation）识别方法}{56}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}基于minmod函数的TVB识别方法\cite {cockburn1989tvb}}{56}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}XS识别方法\cite {xu2005anti}}{57}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}Biswas，Devine和Flaherty动量限制（moment limiter）方法\cite {biswas1994parallel}（BDF）}{58}{subsection.3.2.5}
+\contentsline {subsection}{\numberline {3.2.6}KXRCF间断识别器\cite {krivodonova2004shock}}{58}{subsection.3.2.6}
+\contentsline {section}{\numberline {3.3}数值算例}{59}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}线性对流算例}{59}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}一维激波管算例}{60}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}二维算例}{61}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}小结}{63}{section.3.4}
+\contentsline {chapter}{\numberline {第四章\hspace {0.3em}}有限紧致格式在理想磁流体中的应用}{67}{chapter.4}
+\contentsline {section}{\numberline {4.1}数值方法}{68}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}E-CUSP近似李曼求解器\cite {shen2012cusp}}{68}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}控制输运（Constrained Transport/CT）方法\cite {balsara1999staggered}}{70}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}数值算例}{71}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}二维旋转偏振Alfv\'{e}n波\cite {toth2000b}}{71}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Orzag-Tang MHD湍流算例}{72}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}小结}{73}{section.4.3}
+\contentsline {chapter}{\numberline {第五章\hspace {0.3em}}双信息保存（DIP）方法}{75}{chapter.5}
+\contentsline {section}{\numberline {5.1}不同的界面类型和界面方法}{75}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}传统界面}{75}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}多相界面和耗散界面}{76}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}双信息保存方法基本思想}{76}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}信息点}{77}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}单元信息点（单元点）}{79}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}粒子信息点（粒子点）}{83}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}边界处理}{85}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.5}DIP方法一维伪代码}{88}{subsection.5.2.5}
+\contentsline {subsection}{\numberline {5.2.6}二维DIP方法}{89}{subsection.5.2.6}
+\contentsline {section}{\numberline {5.3}数值算例}{91}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}一维数值算例}{91}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}二维数值算例}{93}{subsection.5.3.2}
+\contentsline {section}{\numberline {5.4}小结}{97}{section.5.4}
+\contentsline {chapter}{\numberline {第六章\hspace {0.3em}}刚性常微分方程和数值摄动（NP）方法}{101}{chapter.6}
+\contentsline {section}{\numberline {6.1}刚性常微分（ODE）方程}{101}{section.6.1}
+\contentsline {section}{\numberline {6.2}数值摄动（NP）方法}{102}{section.6.2}
+\contentsline {section}{\numberline {6.3}NP格式的稳定性分析}{104}{section.6.3}
+\contentsline {section}{\numberline {6.4}不同格式的数值比较}{106}{section.6.4}
+\contentsline {section}{\numberline {6.5}小结}{108}{section.6.5}
+\contentsline {chapter}{\numberline {第七章\hspace {0.3em}}DIP方法在刚性化学反应流动中的应用}{111}{chapter.7}
+\contentsline {section}{\numberline {7.1}空间刚性问题形成过程的分析}{111}{section.7.1}
+\contentsline {section}{\numberline {7.2}求解反应Euler方程的分裂方法}{112}{section.7.2}
+\contentsline {section}{\numberline {7.3}DIP方法在反应Euler方程求解中的应用}{115}{section.7.3}
+\contentsline {section}{\numberline {7.4}NP方法在反应源项ODE求解中的应用}{117}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}固定比热比单步总包反应模型}{117}{subsection.7.4.1}
+\contentsline {subsection}{\numberline {7.4.2}固定比热比多步反应模型}{118}{subsection.7.4.2}
+\contentsline {section}{\numberline {7.5}数值算例}{119}{section.7.5}
+\contentsline {subsection}{\numberline {7.5.1}线性对流方程算例}{119}{subsection.7.5.1}
+\contentsline {subsection}{\numberline {7.5.2}单步总包反应模型算例}{120}{subsection.7.5.2}
+\contentsline {subsection}{\numberline {7.5.3}固定比热比多组分模型算例}{131}{subsection.7.5.3}
+\contentsline {section}{\numberline {7.6}小结}{137}{section.7.6}
+\contentsline {chapter}{\numberline {第八章\hspace {0.3em}}双信息保存方法在基元反应模型爆轰中的应用}{141}{chapter.8}
+\contentsline {section}{\numberline {8.1}基元反应模型中的热力学参数}{141}{section.8.1}
+\contentsline {section}{\numberline {8.2}温度求解方法}{142}{section.8.2}
+\contentsline {section}{\numberline {8.3}数值算例}{144}{section.8.3}
+\contentsline {subsection}{\numberline {8.3.1}新方法有效性的验证}{144}{subsection.8.3.1}
+\contentsline {subsection}{\numberline {8.3.2}新方法和传统方法在组分守恒性方面的比较}{148}{subsection.8.3.2}
+\contentsline {subsection}{\numberline {8.3.3}新方法和传统方法在计算精度方面的比较}{150}{subsection.8.3.3}
+\contentsline {subsection}{\numberline {8.3.4}新方法和传统方法在计算效率方面的比较}{150}{subsection.8.3.4}
+\contentsline {subsubsection}{\numberline {8.3.4.1}DIP方法对对流过程效率的影响}{151}{subsubsection.8.3.4.1}
+\contentsline {subsubsection}{\numberline {8.3.4.2}摄动方法对ODE方程求解效率的影响}{152}{subsubsection.8.3.4.2}
+\contentsline {subsubsection}{\numberline {8.3.4.3}定容假设对温度求解的简化}{152}{subsubsection.8.3.4.3}
+\contentsline {subsection}{\numberline {8.3.5}二维爆轰}{152}{subsection.8.3.5}
+\contentsline {subsubsection}{\numberline {8.3.5.1}爆轰波胞格结构}{153}{subsubsection.8.3.5.1}
+\contentsline {section}{\numberline {8.4}小结}{153}{section.8.4}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{161}{appendix.A}
+\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{161}{section.A.1}
+\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{163}{section.A.2}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} B\hspace {0.3em}}二维DIP方法伪代码 }{165}{appendix.B}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} C\hspace {0.3em}}化学反应不同组分热力学拟合参数}{169}{appendix.C}
+\contentsline {chapter}{参考文献}{171}{appendix*.6}
+\contentsline {chapter}{发表文章目录}{207}{appendix*.7}
+\contentsline {chapter}{简\CTEX@spaceChar \CTEX@spaceChar 历}{209}{appendix*.8}
+\contentsline {chapter}{致\CTEX@spaceChar \CTEX@spaceChar 谢}{211}{appendix*.9}

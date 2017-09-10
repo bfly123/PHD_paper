@@ -4,15 +4,15 @@
 \chapter{双信息保存方法在基元反应模型爆轰中的应用}
 上一章我们探讨了在固定比热比的总包反应模型和多步反应模型中的空间刚性问题。如果计算需要更准确的模拟化学反应动力学过程时，我们一般采用基元反应模型进行模拟。在应用了基元反应模型的化学反应的计算中，通常不会出现上一章所遇到的非物理解，但是问题并没有因此变得简单，基元反应模型求解中会遇到更多的难点：
 \begin{enumerate}[1.]
-  \item 首先不同组分间的空间尺度相差很大，如果网格不足，空间尺度较小的组分就难以准确计算，想要达到完全求解具有最小空间尺度的组分是极为困难的。关于尺度问题见附录\ref{chap:scale}。
-  \item 采用差分格式计算组分对流过程时，由于数值耗散和源项的作用，并不能保证组分的守恒。这体现在，如果方程是超定的，所求解组分质量分数之和不能保持不变，这将在下文中进行较详细分析。
+  \item 首先不同组分间的空间尺度相差很大，如果网格不足，空间尺度较小的组分就难以准确计算，想要达到完全求解具有最小空间尺度的组分是极为困难的。关于尺度问题见附录 \ref{chap:scale}。
+  \item 采用差分格式计算组分对流过程时，由于数值耗散和源项的作用，并不能保证组分的守恒。
   \item 基元反应模型中的源项ODE方程时间刚性问题比上一章采用简单反应模型时更为严重。
 \end{enumerate}
 
-针对于以上的各种问题，我们在前言\ref{chap:elemete_intro}中有更详细的介绍。考虑到无论是固定比热比的多步反应模型，还是基元反应模型，方程并没有本质变化，只是源项形式有所区别，而遇到的空间问题归根结底也都是由于网格不足和方法中的数值耗散造成的。因此，我们将上一章提出的求解方法应用在基元反应模型爆轰求解中。
+针对于以上的各种问题，我们在前言 \ref{chap:elemete_intro} 中有更详细的介绍。考虑到无论是固定比热比的多步反应模型，还是基元反应模型，方程并没有本质变化，只是源项形式有所区别，而遇到的空间问题归根结底也都是由于网格不足和方法中的数值耗散造成的。因此，我们将上一章提出的求解方法应用在基元反应模型爆轰求解中。
 
 \section{基元反应模型中的热力学参数}
-在前言\ref{chap:reaction}中，我们给出了基元反应模型的源项形式和状态方程，但是在基元反应模型中，每种组分的热力学属性并不相同，这导致了整体的热力学状态的变化，而每种组分的热力学属性通常由实验和拟合得到，本文采用JANAF\cite{stull1971janaf}给出数据和拟合公式。
+在前言 \ref{chap:reaction} 中，我们给出了基元反应模型的源项形式和状态方程，但是在基元反应模型中，每种组分的热力学属性并不相同，这导致了整体的热力学状态的变化，而每种组分的热力学属性通常由实验和拟合得到，本文采用JANAF\cite{stull1971janaf}给出数据和拟合公式。
 
 摩尔热容为
 \begin{equation}\label{eq:C}
@@ -21,7 +21,7 @@
 摩尔焓和摩尔熵都可以通过摩尔热容积分得到
 \begin{equation}\label{eq:H}
   \begin{array}{l}
-  H_i(T)=H_i^f+\int_0^T C_{pi}(s)ds\\
+	H_i(T)=H_i^f+\int_0^T C_{pi}(s)ds\\[2em]
   S_i(T)=S_i^f+\int_0^T \frac{C_{pi}(s)}{T}ds\\
   \end{array}
 \end{equation}
@@ -35,7 +35,7 @@
   \end{equation}
   不同的拟合参数$a_1~a_7$可参见附录 \ref{chap:parameter}。
 
-  \section{温度求解方法}
+  \section{温度求解方法}\label{chap:temperature}
  对于热完全气体混合物，温度并不存在显式的表达式，通常都需要采用迭代方法求解状态方程求得。对于混合气体，总能为
   \begin{equation}
 	E=-p+\frac{1}{2}(u^2+v^2)+\rho h
@@ -50,8 +50,8 @@
 \begin{equation}
   \left\{
   \begin{array}{l}
-	\frac{de}{dt}=0\\
-	frac{d\rho_i}{dt}=\omega_i
+	\displaystyle 	\frac{de}{dt}=0\\[2em]
+	\displaystyle \frac{d\rho_i}{dt}=\omega_i
 	\end{array}
 	\right.
 \end{equation}
@@ -80,16 +80,16 @@
   \frac{dT}{dt}=-\frac{1}{c_v}\sum_{i=1}^{ns}e_i\frac{\omega_i}{\rho},\hspace{0.3cm} c_v=\sum_{i=1}^{ns}z_ic_{v,i}
 \end{equation}
 利用公式 (\ref{eq:dT}) 可以显式的求出下一步时间的温度，无需采用迭代。但是这里要特别注意的是，定容假设只适用在反应步的计算中，而在对流步计算中，我们仍然需要迭代过程求解温度。
-\section{组分守恒性}
-对于$ns$ 组分的反应求解，由于
-$$z_1+z_2+\cdots +z_{ns}=1$$
-为了避免超定问题，我们通常只求解$ns-1$个方程，而由于所有组分的质量生成率$\omega_i$之和也应该为0才能保证质量的守恒。
-
+%\subsection{组分守恒性}
+%对于$ns$ 组分的反应进行求解，由于
+%$$z_1+z_2+\cdots +z_{ns}=1$$
+%为了避免超定问题，我们通常只求解$ns-1$个方程，而由于所有组分的质量生成率$\omega_i$之和也应该为0才能保证质量的守恒。
+%
 \section{数值算例}
-本节中，我们将上一章构造的数值方法应用在氢氧爆轰的基元反应模型化学反应流动方程求解中。以下的算例采用9组分 $H_2$，$O_2$，$O$，$H$，$OH$，$HO_2$，$H_2O_2$，$H_2O$和$Ar$，21反应的BW氢氧爆轰模型\cite{balakrishnan1994turbulent}，具体参数见表 \ref{tab:HO}。
+本节中，我们将上一章构造的数值方法应用在氢氧爆轰的基元反应模型化学反应流动方程求解中。以下的算例采用9组分 H$_2$，O$_2$，O，H，OH，HO$_2$，H$_2$O$_2$，H$_2$O和Ar，21反应的BW氢氧爆轰模型\cite{balakrishnan1994turbulent}，具体参数见表 \ref{tab:HO}。
 \input{chapter/HO_table.tex}
 \subsection{新方法有效性的验证}
-为了验证新方法的有效性，本阶计算四种不同比例氢氧爆轰工况的一维算例，并将计算结果和理论值及实验值进行对比。计算初始状态为计算区域充满H$_2$，O$_2$ 和$Ar$混合物。计算域长度$L$根据每个算例稳定所需时间和波速不同而有所变化，计算域左边采用固壁边界条件，右侧采用出流边界条件，在固壁端有一小段高温、高压区域点火，迅速引爆混合气体。点火区参数为$P_\text{ign}=28.0p_0$、$\rho_\text{ign}=5.0d0$ 和 $T_\text{ign}=13.0T_0$。
+为了验证新方法的有效性，本小节中分别计算四种不同工况下的氢氧爆轰一维算例，并将计算结果和理论值及实验值进行对比。计算域长为$L$，左边采用固壁条件，右侧采用出流条件。最开始整个区域充满了H$_2$，O$_2$ 和Ar混合物，在固壁端设置有一小段高温、高压点火区域，短时间内迅速引爆混合气体，产生右行的爆轰波。点火区参数为$P_\text{ign}=28.0P_0$、$\rho_\text{ign}=5.0\rho_0$ 和 $T_\text{ign}=13.0T_0$。
 
 由于$C-J$理论解和试验结果大约仅有$10\%$左右的误差\cite{guirao1989summary}，我们可以用C-J理论的波速作为理论参考，
 C-J理论需求解下面的五方程系统得到波速和波后参数
@@ -104,7 +104,7 @@ C-J理论需求解下面的五方程系统得到波速和波后参数
 \end{equation}
 其中$e=h+p/\rho+u^2/2$。
 
-同时我们可以通过ZND理论根据C-J波速求解稳定后最大压力---冯纽曼尖压力值$p_N$，求解公式为
+同时我们可以通过ZND理论，根据C-J波速求解稳定后最大压力---冯纽曼尖压力值$P_N$，求解公式为
 
 \begin{equation}
   P_N=2\frac{\rho_0 {D_j}^2}{\gamma+1}
@@ -117,14 +117,13 @@ C-J理论需求解下面的五方程系统得到波速和波后参数
 
 2H$_2$+O$_2$($P_0=20KPa,T_0=298K$)
 
-首先研究没有Ar气的 2H$_2$+O$_2$工况\cite{trotsyuk1999numerical,wang2006numerical}，计算区域为$[0,2m]$，计算时长为$T=700\mu s$，采用$N=8,000$的网格。图 \ref{fig:side:a} 和图 \ref{fig:side:b} 给出了压力随时间发展的计算结果和局部放大图，图  \ref{fig:side:c} 给出爆轰波速度随时间变化曲线。如文献\cite{guirao1989summary}所讨论，该算例压强和波速并不能稳定收敛，而是波动的，波速平均值为$D_j=2750m/s$ 和试验结果\cite{bollinger1964experimental,akbar1997mach} 及理论参考解都很相近。由ZND理论计算求得的冯纽曼尖$P_N=610KPa$，而计算得到的压强最大值介于$600KPa-700KPa$之间,也能较好的符合。从图  \ref{fig:side:d} 可以看到该算例中温度可以收敛到稳定值$T=3390K$。
+首先研究不含稀释剂的 2H$_2$+O$_2$工况\cite{trotsyuk1999numerical,wang2006numerical}，计算区域为$[0,2m]$，计算时长为$T=700\mu s$，采用$N=8,000$的网格。图 \ref{fig:HOcase1}.a 和图 \ref{fig:HOcase1}.b 给出了压力随时间发展的计算结果和局部放大图，图  \ref{fig:HOcase1}.c 给出爆轰波速度随时间变化曲线。如文献\cite{guirao1989summary}所讨论，该算例压强和波速并不能稳定收敛，而是波动的，波速平均值为$D_j=2750m/s$ 和试验结果\cite{bollinger1964experimental,akbar1997mach} 及理论参考解都很相近。由ZND理论计算求得的冯纽曼尖$P_N=610KPa$，而计算得到的压强最大值介于$600KPa-700KPa$之间,也能较好的符合。从图  \ref{fig:HOcase1}.d 可以看到该算例中温度可以收敛到稳定值$T=3390K$。
 
 \begin{figure}
   %\centering
   \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{HO2.eps}
 					\centerline{a:压力随时间变化图}
-				  \label{fig:side:a}
  \end{minipage}
  \hfill
  \begin{minipage}[t]{0.5\textwidth}
@@ -132,35 +131,32 @@ C-J理论需求解下面的五方程系统得到波速和波后参数
 			%	  \label{fig:side:a}
 				  \includegraphics[width=6cm]{HO22.eps}
 				  \centerline{b:压力随时间变化放大图}
-				  \label{fig:side:b}
 				\end{minipage}
 \vfill
  \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{speed_HO.eps}
 				  \centerline{c:波速随时间变化图}
-				  \label{fig:side:c}
 				  \end{minipage}
 \hfill
  \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{HO2_T.eps}
 				  \centerline{d:温度曲线随时间变化图}
-				  \label{fig:side:d}
 				\end{minipage}
-  \caption{$2H_2+O_2$算例计算结果}
+  \caption{2H$_2$+O$_2$算例计算结果}
+		 \label{fig:HOcase1}
 			  \end{figure}
 \begin{example}
   \end{example}
 
 2H$_2$+O$_2$+Ar($P_0=16KPa,T_0=298K$)
 
-有较多人对该初始条件的氢氧爆轰进行过研究\cite{oran1998numerical,胡宗民2004爆轰波在弯管内传播过程数值分析,lv2013development,deiterding2005high,eckett2000numerical}。我们采用文献\cite{edwards1984propagation,guo2007cellular}中给出的理论波速和实验波速作为参考。计算域为$[0,4m]$，计算时长为$T=1,600\mu s$。该计算采用$N=12,000$的网格量。图 \ref{fig:2:a} 和图 \ref{fig:2:b} 给出压力曲线随时间的发展，最大压力经过计算开始的振荡后，稳定升高。在爆轰波传播到2m时 ($1000\mu s$）压力曲线尚未达到峰值，因此需要给出更长时间的结果。图 \ref{speed_H2O2Ar} 给出速度发展曲线，可以看到速度趋势虽然收敛，但仍有较大的波动。平均波速介于实验波速和理论参考波速之间，较为合理，$P_N $略低于ZND得到的理论值。从图 \ref{fig:2:d} 中可以看到，该算例温度稳定在$3260K$。
+有较多学者对该算例进行过研究\cite{oran1998numerical,胡宗民2004爆轰波在弯管内传播过程数值分析,lv2013development,deiterding2005high,eckett2000numerical}。该算例计算域为$[0,4m]$，计算时长为$T=1,600\mu s$。该计算采用$N=12,000$的网格量。采用文献\cite{edwards1984propagation,guo2007cellular}中给出的理论波速和实验波速作为参考。图 \ref{fig:HOcase2}.a 和图 \ref{fig:HOcase2}.b 给出压力曲线随时间的发展，最大压力经过计算开始的振荡后，稳定升高。在爆轰波传播到$2m$时 ($1000\mu s$）压力曲线尚未达到峰值，因此需要给出更长时间的结果。图 \ref{fig:HOcase2}.c 给出速度发展曲线，可以看到速度趋势虽然收敛，但仍有较大的波动。平均波速介于实验波速和理论参考波速之间，较为合理，$P_N $略低于ZND得到的理论值。从图 \ref{fig:HOcase2}.d 中可以看到，该算例温度稳定在$3260K$。
 
 \begin{figure}
   %\centering
   \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{H2O2Ar.eps}
 					\centerline{a:压力随时间变化图}
-				  \label{fig:2:a}
  \end{minipage}
  \hfill
  \begin{minipage}[t]{0.5\textwidth}
@@ -168,21 +164,19 @@ C-J理论需求解下面的五方程系统得到波速和波后参数
 			%	  \label{fig:side:a}
 				  \includegraphics[width=6cm]{H2O2Ar_2.eps}
 				  \centerline{b:压力随时间变化放大图}
-				  \label{fig:2:b}
 				\end{minipage}
 \vfill
  \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{speed_H2O2Ar.eps}
 				  \centerline{c:波速随时间变化图}
-				  \label{fig:2:c}
 				  \end{minipage}
 \hfill
  \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{H2O2Ar_T.eps}
 				  \centerline{d:温度曲线随时间变化图}
-				  \label{fig:2:d}
 				\end{minipage}
   \caption{$2H_2+O_2+Ar$算例计算结果}
+  \label{fig:HOcase2}
 			  \end{figure}
 %
 			  \begin{example}
@@ -190,14 +184,13 @@ C-J理论需求解下面的五方程系统得到波速和波后参数
 
 2H$_2$+O$_2$+7Ar($P_0=6.67KPa,T_0=298K$)
 
-在文献\cite{oran1998numerical,wang2008gaseous,hu2003numerical}均有该工况较详细的计算结果。计算区域选取为$[0,3m]$，计算时间$T=1,800\mu s$，我们采用$N=12,000$网格量。文献\cite{eckett2000numerical}中给出的实验波速为$1550m/s$。图 \ref{fig:3:a} 和图 \ref{fig:3:b} 给出压力发展曲线和速度曲线，从中可以看到，大约在$500\mu s$后速度平均值区域稳定，呈现有规律振荡的结果，平均速度在$1550m/s$，压力曲线呈现出规律的结果，峰值也不再变化，并和理论峰值接近。图 \ref{fig:3:c} 给出温度曲线随时间演变图，可以看到温度收敛到$T=2600K$附近。最后在图 \ref{fig:3:d} 中给出了最终时刻的组分曲线。
+在文献\cite{oran1998numerical,wang2008gaseous,hu2003numerical}中有关于该算例的详细计算结果。计算区域选取为$[0,3m]$，计算时间$T=1800\mu s$，计算采用$N=12,000$网格量。文献\cite{eckett2000numerical}中给出的实验波速为$1550m/s$。图 \ref{fig:HOcase3}.a 和图 \ref{fig:HOcase3}.b 给出压力发展曲线和速度曲线，从中可以看到，大约在$500\mu s$后速度呈现有规律的振荡，平均速度在$1550m/s$，压力曲线同样呈现出规律的结果，峰值不再变化，且和理论峰值接近。图 \ref{fig:HOcase3}.c 给出温度曲线随时间演变情况，可以看到温度收敛到$T=2600K$附近。最后在图 \ref{fig:HOcase3}.d 中给出了最终时刻的组分曲线。
 
 \begin{figure}
   %\centering
   \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{H2O27Ar_P.eps}
 					\centerline{a:压力随时间变化图}
-				  \label{fig:3:a}
  \end{minipage}
  \hfill
  \begin{minipage}[t]{0.5\textwidth}
@@ -205,21 +198,19 @@ C-J理论需求解下面的五方程系统得到波速和波后参数
 			%	  \label{fig:side:a}
 				  \includegraphics[width=6cm]{H2O27Ar_Z.eps}
 				  \centerline{b: $T=1,800\mu s$组分曲线}
-				  \label{fig:3:b}
 				\end{minipage}
 \vfill
  \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{H2O27Ar_speed.eps}
 				  \centerline{c:波速随时间变化图}
-				  \label{fig:3:c}
 				  \end{minipage}
 \hfill
  \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{H2O27Ar_T.eps}
 				  \centerline{d:温度曲线随时间变化图}
-				  \label{fig:3:d}
 				\end{minipage}
-  \caption{$2H_2+O_2+7Ar$算例计算结果}
+  \caption{2H$_2$+O$_2$+7Ar算例计算结果}
+  \label{fig:HOcase3}
 			  \end{figure}
 
 			  \begin{example}
@@ -227,14 +218,13 @@ C-J理论需求解下面的五方程系统得到波速和波后参数
 
 2H$_2$+O$_2$+10.33Ar($P_0=20KPa,T_0=298K$) 
 
-在文献\cite{guo2007cellular}中给出了该计算条件下的实验结果，平均实验波速为$1557m/s$，通过 $C-J$理论得出的参考波速为$1548ms$。我们采用$[0,3m]$的计算区域和$N=1,200$的网格量，计算时间为$T=1,800\mu s$。图 \ref{fig:4:a}、图 \ref{fig:4:b} 和图 \ref{fig:4:c} 给出压力，速度和温度发展曲线，可以看出，计算时间少于$1500\mu s$ 并不能真正达到收敛的结果，最后的计算速度收敛在$1551m/s$和实验值及理论值都极为接近。最大压力值收敛在$450KPa$，温度收敛在$2700K$。在图 \ref{fig:4:d} 中我们给出最终时刻的组分分布曲线。
+在文献\cite{guo2007cellular}中给出了该条件下的实验结果，平均实验波速为$1557m/s$，通过 C-J理论得出的参考波速为$1548ms$。我们采用$[0,3m]$的计算区域和$N=1,2000$的网格量，计算时间为$T=1800\mu s$。图 \ref{fig:HOcase4}.a、图 \ref{fig:HOcase4}.b 和图 \ref{fig:HOcase4}.c 分别给出压力，速度和温度发展曲线，可以看出，计算时间少于$1500\mu s$时并不能达到收敛的结果，最后的计算速度收敛在$1551m/s$和实验值及理论值都极为接近。最大压力值收敛在$450KPa$，温度收敛在$2700K$。在图 \ref{fig:HOcase4}.d 中我们给出最终时刻的组分分布曲线。
 
 \begin{figure}
   %\centering
   \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{H2O21033Ar_P.eps}
 			\centerline{a:压力随时间变化图}
-				  \label{fig:4:a}
  \end{minipage}
  \hfill
  \begin{minipage}[t]{0.5\textwidth}
@@ -242,26 +232,23 @@ C-J理论需求解下面的五方程系统得到波速和波后参数
 			%	  \label{fig:side:a}
 				  \includegraphics[width=6cm]{H2O21033Ar_speed.eps}
 				  \centerline{b: $T=1,800\mu s$组分曲线}
-				  \label{fig:4:b}
 				\end{minipage}
 \vfill
  \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{H2O21033Ar_T.eps}
 				  \centerline{c:波速随时间变化图}
-				  \label{fig:4:c}
 				  \end{minipage}
 \hfill
  \begin{minipage}[t]{0.5\textwidth}
 				  \includegraphics[width=6cm]{H2O21033Ar_Z.eps}
 				  \centerline{d:温度曲线随时间变化图}
-				  \label{fig:4:d}
 				\end{minipage}
-  \caption{$2H_2+O_2+10.33Ar$算例计算结果}
+  \caption{2H$_2$+O$_2$+10.33Ar算例计算结果}
+  \label{fig:HOcase4}
 			  \end{figure}
 
-最后我们将以上的四种计算条件下的计算波速、实验波速和理论波速，以及计算所得的最大压力和理论最大压力进行对比，并汇总在表 \ref{table1} 中。
+最后我们将以上的四种计算条件下的计算波速、实验波速和理论波速，以及计算所得的最大压力和理论最大压力进行对比，并汇总在表 \ref{table_compare_exp} 中。
 
-  
 \begin{table}[htbp]
   \centering
 \setlength{\belowcaptionskip}{10pt}
@@ -269,7 +256,7 @@ C-J理论需求解下面的五方程系统得到波速和波后参数
 \scriptsize
   \begin{tabular}{ccccc}
 	\toprule
-	          组分      &  $2H_2+O_2$ & $2H_2+O_2+Ar$ & $2H_2+O_2+7Ar$ &   $2H_2+O_2+10.33Ar$  \\
+	          组分      &  2H$_2$+O$_2$ & 2H$_2$+O$_2$+Ar & 2H$_2$+O$_2$+7Ar &   2H$_2$+O$_2$+10.33Ar  \\
 
 %	\midrule
 	  压强$KPa$   & 20&16&6.67&20     \\ 
@@ -284,20 +271,22 @@ C-J理论需求解下面的五方程系统得到波速和波后参数
 
 	\bottomrule
 	\end{tabular}
-\label{table1}
+\label{table_compare_exp}
 \end{table}
 
 \normalsize
-\subsection{新方法和传统方法的比较}
-在该小节中我们选上小节中第四个算例，采用相同的网格$N=1,2000$和计算时间$T=1,200\mu s$，对新方法和直接WENO方法进行比较。
-图\ref{compare_WENO_1}-\ref{compare_WENO_3}给出压力、密度、温度、波速变化以及组分及其放大曲线对比，可以看到速度收敛到相同的结果，压力峰值、密度和温度在爆轰波区域也几乎相同，由此也验证了新方法求解化学反应的有效性。从$H2O$组分和$O_2$组分放大图可以看到，传统高精度方法存在间断前后的振荡，甚至出现组分的负值，而应用了新的方法，计算结果中并无此类现象出现。然后，我们研究稀释剂$Ar$的变化，该组分并不在反应中求解，而是通过
+\subsection{新方法和传统方法在组分守恒性方面的比较}
+在该小节中我们选上小节中第四个算例，采用相同的网格$N=12000$和计算时间$T=1200\mu s$，对新方法和直接WENO方法进行比较。
+图 \ref{compare_WENO_1}、 图 \ref{compare_WENO_2} 和图 \ref{compare_WENO_3} 分别给出压力、密度、温度、波速变化和组分的对比结果，可以看到最终爆轰波速收敛到了相同的结果，压力峰值、密度和温度也几乎相同，由此也验证了新方法求解化学反应的有效性。从H$_2$O组分和O$_2$组分曲线放大图可以看到，传统高精度方法存在间断前后的振荡，甚至出现组分的负值，而应用了新的方法，计算结果中并无此类现象出现。
+
+然后，我们研究稀释剂Ar的变化，该组分并不在反应中求解，而是通过
 $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
-求得。由于稀释剂并不参加化学反应，理论上应该不存在变化，然而传统格式的数值振荡和源项计算误差等原因会造成稀释剂有较大变化。图 \ref{compare_WENO_3}  中给出的$Ar$的组分曲线表明传统格式约$1.5\%$左右的误差，相比于我们采用的精细的网格，以及格式本身的高精度特性，误差已经较大了。而新方法中$Ar$的最大误差不足$10^{-6}$。
+求得。由于稀释剂并不参加化学反应，理论上应该不存在变化，然而传统格式的数值振荡和源项误差等原因会造成稀释剂有较大变化。图 \ref{compare_WENO_3}  中给出的Ar的组分曲线显示，传统格式约$1.5\%$左右的误差，相比于我们采用的精细的网格，以及格式本身的高精度特性，误差已经较大。而新方法中Ar的最大误差不足$10^{-6}$。
 
 \begin{figure}
   %\centering
   \begin{minipage}[t]{0.5\textwidth}
-				  \includegraphics[width=7cm]{compare_WENO_P.eps}
+				  \includegraphics[width=6cm]{compare_WENO_P.eps}
 					\centerline{a:压力曲线对比}
 %				  \label{fig:compare:a}
  \end{minipage}
@@ -305,7 +294,7 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
  \begin{minipage}[t]{0.5\textwidth}
 			%	  \caption{fig1}
 			%	  \label{fig:side:a}
-				  \includegraphics[width=7cm]{compare_WENO_D.eps}
+				  \includegraphics[width=6cm]{compare_WENO_D.eps}
 				  \centerline{b:密度曲线对比} 
 %				  \label{fig:4:b}
 				\end{minipage}
@@ -317,11 +306,11 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 				  \end{minipage}
 \hfill
  \begin{minipage}[t]{0.5\textwidth}
-				  \includegraphics[width=7cm]{compare_WENO_H2.eps}
-				  \centerline{d:$H_2$组分曲线对比}
+				  \includegraphics[width=6cm]{compare_WENO_H2.eps}
+				  \centerline{d:H$_2$组分曲线对比}
 %				  \label{fig:4:d}
 				\end{minipage}
-  \caption{$2H_2+O_2+10.33Ar$算例对比结果}
+  \caption{2H$_2$+O$_2$+10.33Ar算例对比结果}
   \label{compare_WENO_1}
 			  \end{figure}
 
@@ -329,58 +318,60 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 			  \begin{figure}
   %\centering
   \begin{minipage}[t]{0.5\textwidth}
-				  \includegraphics[width=7cm]{compare_WENO_O2.eps}
-					\centerline{a:$O_2$组分曲线对比}
+				  \includegraphics[width=6cm]{compare_WENO_O2.eps}
+					\centerline{a:O$_2$组分曲线对比}
 %				  \label{fig:compare:a}
  \end{minipage}
  \hfill
  \begin{minipage}[t]{0.5\textwidth}
 			%	  \caption{fig1}
 			%	  \label{fig:side:a}
-				  \includegraphics[width=7cm]{compare_WENO_H2O.eps}
+				  \includegraphics[width=6cm]{compare_WENO_H2O.eps}
 
-				  \centerline{b:$H_2O$组分曲线对比} 
+				  \centerline{b:H$_2$O组分曲线对比} 
 %				  \label{fig:4:b}
 				\end{minipage}
 \vfill
   \begin{minipage}[t]{0.5\textwidth}
-				  \includegraphics[width=7cm]{compare_WENO_O2_2.eps}
-					\centerline{c:$O_2$组分放大曲线对比}
+				  \includegraphics[width=6cm]{compare_WENO_O2_2.eps}
+					\centerline{c:O$_2$组分放大曲线对比}
 %				  \label{fig:compare:a}
  \end{minipage}
  \hfill
  \begin{minipage}[t]{0.5\textwidth}
 			%	  \caption{fig1}
 			%	  \label{fig:side:a}
-				  \includegraphics[width=7cm]{compare_WENO_H2O_2.eps}
-				  \centerline{d:$H_2O$组分放大曲线对比} 
+				  \includegraphics[width=6cm]{compare_WENO_H2O_2.eps}
+				  \centerline{d:H$_2$O组分放大曲线对比} 
 %				  \label{fig:4:b}
 				\end{minipage}
-  \caption{$2H_2+O_2+10.33Ar$算例对比结果2}
+  \caption{2H$_2$+O$_2$+10.33Ar算例对比结果2}
   \label{compare_WENO_2}
 \end{figure}
 
 \begin{figure}
   \begin{minipage}[t]{0.5\textwidth}
-				  \includegraphics[width=7cm]{compare_WENO_Ar.eps}
-					\centerline{c:$Ar$组分曲线对比}
+				  \includegraphics[width=6cm]{compare_WENO_Ar.eps}
+					\centerline{c:Ar组分曲线对比}
 %				  \label{fig:compare:a}
  \end{minipage}
  \hfill
  \begin{minipage}[t]{0.5\textwidth}
 			%	  \caption{fig1}
 			%	  \label{fig:side:a}
-				  \includegraphics[width=7cm]{compare_speed.eps}
+				  \includegraphics[width=6cm]{compare_speed.eps}
 				  \centerline{d:速度发展曲线对比} 
 %				  \label{fig:4:b}
 				\end{minipage}
-  \caption{$2H_2+O_2+10.33Ar$算例对比结果3}
+  \caption{2H$_2$+O$_2$+10.33Ar算例对比结果3}
   \label{compare_WENO_3}
 \end{figure}
 
-\subsection{在更稀疏网格下的验证}
-由于通常我们能采用的计算网格会远少于这一网格量，尤其在更高维度计算中的应用，首先我们验证上面的计算结果是否达到网格收敛，
-我们采用$N=6000$网格量和$N=12000$网格量下计算结果对比，图\ref{fig_grid_convergence}给出计算结果，我们可以看到在该网格量下，计算结果已经收敛。因此这一网格量下的计算结果可以作为在稀疏网格计算结果的参考。
+\subsection{新方法和传统方法在计算精度方面的比较}
+由于通常计算中，尤其在高维度问题的计算中，能采用的网格尺度会远大于上面计算用到的网格尺度，因此在这里我们验证在稀疏网格下新方法的效果。
+
+首先我们验证上面的计算结果是否达到网格收敛，以便选用合理的参考解。
+这里采用$N=6000$网格量和$N=12000$网格量进行对比，图 \ref{fig_grid_convergence} 给出两种网格下的计算结果，可以看到在$N=6000$网格下，计算结果已经收敛。因此将这一网格量下的计算结果作为参考解。
 
 			  \begin{figure}
   %\centering
@@ -415,7 +406,7 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
   \label{fig_grid_convergence}
 \end{figure}
 
-下面我们在更稀疏的网格$N=600$下，对比采用直接WENO方法和新方法的计算结果，图.\ref{fig_gird_600}和\ref{fig_grid_600_2}给出压力、温度等物理量曲线及放大对比，可以看到即便不考虑组分的守恒性，在稀疏网格下新方法仍能比直接WENO方法达到更好的精度效果。
+下面我们在网格$N=600$下，对比新方法和传统方法的计算结果，图 \ref{fig_grid_600} 和图 \ref{fig_grid_600_2} 分别给出压力、温度等物理量的对比，可以看到，新方法比传统方法具有好的精度效果。
 
 			  \begin{figure}
   %\centering
@@ -469,21 +460,24 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
   \label{fig_grid_600_2}
 \end{figure}
 
-  \section{新方法和传统方法在计算效率方面的比较}
-  本节我们分别研究 1, DIP方法解偶带来的对流步求解效率变化，2,摄动方法带来的源项ODE方程求解效率变化，3,采用定容燃烧假设无需迭代求解温度带来的简化在效率方面的体现。
+  \subsection{新方法和传统方法在计算效率方面的比较}
+  
+  本小节我们分别研究：
 
-  我们采用$2H_2+O_2+10.33Ar$ 算例，计算网格选用$N=12000$，用以对比各个过程计算所用时间。
-  \subsection{DIP方法解偶带来对流步效率变化}
-  对于传统方法，对流步统一求解，采用LF分裂，五阶WENO格式重构，时间采用三阶Runge-Kutta方法，方程如下
+  1, DIP方法对对流过程效率的影响，2, 摄动方法对源项ODE方程求解效率的影响，3, 采用定容燃烧假设对效率方面的影响。
 
-传统对流过程（过程1)：
+  我们采用2H$_2$+O$_2$+10.33Ar 算例，计算网格选用$N=12,000$。
+
+  \subsubsection{DIP方法对对流过程效率的影响}
+  对于传统方法 (章节 \ref{chap:stiff_example})，对流过程为
+（过程1)：
 \begin{equation} \label{ReactionEuler}
-  \frac{\partial U}{\partial t}+  \frac{\partial F}{\partial x}=0, 
+  \frac{\partial \bm U}{\partial t}+  \frac{\partial\bm  F}{\partial x}=0 
  \end{equation}
 
 其中
 \begin{eqnarray*}
-   U=
+   \bm U=
    \left(
    \begin{array}{c}
 	 \rho\\
@@ -496,7 +490,7 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 	 \end{array}
 	 \right)
 ,
- F=
+ \bm F=
   \left(
   \begin{array}{c}
 	\rho u\\
@@ -507,20 +501,19 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 	\rho z_{ns-1}\\
 	\end{array}
  \right)
- .
  \end{eqnarray*}
 
-应用了DIP解偶方法的对流过程分为欧拉对流过程和组分对流过程。
+应用了DIP方法，对流过程分为欧拉对流过程和组分对流过程两部分：
 
-欧拉对流过程(过程2)：
+欧拉对流过程(过程2)
 \begin{equation} \label{ReactionEuler}
-  \frac{\partial U_1}{\partial t}+  \frac{\partial F_1}{\partial x}=0, 
+  \frac{\partial \bm U_1}{\partial t}+  \frac{\partial \bm F_1}{\partial x}=0 
  \end{equation}
 
 
 其中
 \begin{eqnarray*}
-   U_1=
+   \bm U_1=
    \left(
    \begin{array}{c}
 	 \rho\\
@@ -529,7 +522,7 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 	 \end{array}
 	 \right)
 ,
- F_{1}=
+ \bm F_{1}=
   \left(
   \begin{array}{c}
 	\rho u\\
@@ -537,30 +530,18 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 	u (E+p)\\
 	\end{array}
  \right)
- .
  \end{eqnarray*}
 
 组分对流过程(过程3):
 \begin{equation}
-  \frac{\partial Z}{\partial t}+ u\frac{\partial Z}{\partial x}=0, 
+  \frac{\partial \bm Z}{\partial t}+ u\frac{\partial \bm Z}{\partial x}=0
  \end{equation}
 
 
 其中
-\begin{eqnarray*}
-   Z=
-   \left(
-   \begin{array}{c}
-	 z_1\\
-	 z_2\\
-	 \vdots\\
-	 z_{ns-1}\\
+ $ \bm Z=(z_1,z_2,\cdots,z_{ns-1})^T$。
 
-	 \end{array}
-	 \right)
- \end{eqnarray*}
-
- 表\ref{tab2}给出个过程所需要时间(20个循环)，可以看到尽管过程3需要求解20个方程，通过DIP方法，所需要的时间相比于过程1 几乎可以忽略。由于传统求解过程本身所占时间较多，该算例通过解偶可以节约$28.8\%$对流时间。显而易见的,随着反应复杂，这种简化会更加明显。
+ 表 \ref{tab2} 给出上面三个过程分别所需要的时间(20个循环)，可以看到尽管过程3需要求解20个方程，所需要的时间相比于过程1来说几乎可以忽略，但是由于过程2求解过程所占时间较多，最后新方法在对流过程中可以节约$28.8\%$的时间。显而易见的,随着反应复杂和对流方程增多，效率的改善会更加明显。
 
 \begin{table}[htbp]
   \centering
@@ -579,31 +560,13 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 \label{tab2}
 \end{table}
 
-\subsection{摄动方法带来的源项ODE方程求解效率变化}
-我们对比三阶摄动格式在该算例中所用时间和一阶欧拉格式所用时间，由于稳定问题，该算例中我们通常采用多子步迭代的方法，采用多达80步左右的子时间步才能稳定计算，而采用三阶摄动格式，只需要1到2步既可达到稳定高精度求解。我们计算了20步的一阶欧拉格式，用时$1232ms$，用单步三阶摄动格式，用时$912ms$，由于不同时刻稳定所需要欧拉格式的子时间步并不相同，我们用40步子步的欧拉格式和单步的三阶摄动格式进行比较，应用三阶摄动格式可以提高反应时间约$62\%$左右。
+\subsubsection{摄动方法对ODE方程求解效率的影响}
+下面我们对比三阶TNP格式和一阶欧拉格式求解反应ODE方程的效率。  经过对比，我们发现1步三阶TNP格式所需时间（912ms)和20步一阶欧拉格式所用时间（1232ms）相当。但是考虑到对于刚性ODE方程，例如在该算例中，我们通常需要多达80步左右的子时间步才能稳定计算，而采用三阶摄动格式，只需要1到2步既可达到稳定高精度求解。因此采用了3TNP格式，计算效率仍然有大幅度提高。
 
-进一步我们通过测试$2H2+O2+10.33Ar$算例，来验证两种时间格式计算量的变化。为了计算效率，统一采用解偶的DIP方法。计算的物理时间为$t=40ms$。网格为$N=6000$，计算域为$L=2m$。采用三阶摄动格式计算总时间为$24042s$，而采用一阶欧拉格式总时间为$48503s$，提高总效率约百分之五十。图\ref{ODE_order} 给出计算最终时刻不同时间格式的压力曲线，图.\ref{fraction_1st}和图.\ref{fraction_3rd}分别给出一阶欧拉格式和三阶摄动格式计算的除缓冲剂$Ar$外组分曲线，可以看到，无论激波位置还是压力峰值及组分曲线等都无太大差别，说明不同ODE时间格式对于爆轰波的计算影响不大，然而高阶摄动格式在效率方面却有显著优势。
+\subsubsection{定容假设对温度求解的简化}
+由于算子分裂过程，化学反应和流动过程分别独立求解，因此化学反应实为一个定容燃烧过程\cite{schultz2000validation}，这样可以对温度求解过程进行简化 （章节 \ref{chap:temperature}）。对于该算例，同样求解20个反应子步，如果采用迭代过程求解温度用时为292ms，不采用迭代过程用时157ms。 
 
-\begin{figure}
-  \centering
-  \includegraphics[width=8cm]{ODE_order.eps}
- \label{ODE_order}
- \caption{不同ODE时间格式在爆轰波计算中的结果对比}
-  \end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=8cm]{fraction_1st.eps};\\
-  \includegraphics[width=8cm]{fraction_3rd.eps};
- \label{fraction_order}
-  \caption{不同ODE时间格式在爆轰波计算中的组分曲线对比，上：一阶欧拉格式，下：三阶摄动格式}
-  \end{figure}
-
-\subsection{定容假设对温度求解的简化及结果对比}
-由于算子分裂过程，化学反应和流动过程分别独立求解，因此化学反应实为一个定容燃烧过程\cite{schultz2000validation}，这样可以对温度求解做进一步简化，采用迭代的方法求解20步, 采用迭代解法用时292，不采用迭代用时157，该步节省时间46\%。 
-
-\subsection{总体节省时间}
-
+最后综合上面三部分，表 \ref{tab3}  给出总体效率的改善情况。
 
 \begin{table}[htbp]
   \centering
@@ -611,7 +574,7 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 \caption{\small 各种简化过程带来的时间节省}
   \begin{tabular}{ccccc}
 	\toprule
-	      &  DIP对流步     &  NP反应步 &  定容假设  & 总计  \\
+	      &  DIP对流步     &  TNP反应步 &  定容假设  & 总计  \\
 	\midrule
     相对提升& 28.8\%&  66\% & 46\% & --\\     
 	总体提升& 3.2\%& 64.2\%  &6.1\% & 65.7\% \\ 
@@ -622,40 +585,48 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 \label{tab3}
 \end{table}
 
-
-\section{二维爆轰}
-该小结中我们计算一些更为复杂的二维爆轰工况，计算流场结构并探讨物理机理，用以验证新方法在化学反应计算中的可靠性。
-\subsection{爆轰波胞格结构}
-预混爆轰的一个最重要的特点是其内在不稳定性，这种不稳定性会导致爆轰波的三维结构和非定常传播的性质。图.\ref{cellular1} 和图.\ref{cellular2} 显示了爆轰波的最主要的特征，图.\ref{cellular1}给出了爆轰管上喷出的烟线痕迹\cite{soloukhin1966shock}，图.\ref{cellular2} 给出了一系列压力面的空间上的发展\cite{roy1999gaseous}。可以看到将三波点的运动轨迹会构成胞格结构。这一结构的长度尺寸和高度尺寸都和燃烧机理及反应物息息相关\cite{roy2004pulse}。
-胞格结构通常都比图.\ref{cellular1}中更复杂，有些胞格内还会存在子结构，而有些胞格则会非常规则，有些爆轰甚至会存在三维结构\cite{roy1999gaseous}，该文献中给出了在矩形截面管道中的详细的爆轰波结构测量，包括二维和三维的爆轰结构发展演示图。
-目前尚没有理论可以确定胞格尺寸和气体性质间的物理关系\cite{张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究}，各类爆轰胞格尺寸都需要通过实验测量。
+\subsection{二维爆轰}
+在本章的最后我们计算两个二维爆轰算例，用以验证新方法在化学反应计算中的可靠性。
+\subsubsection{爆轰波胞格结构}
+预混爆轰的一个最重要的特点是其内在不稳定性，这种不稳定性会导致爆轰波的三维结构和非定常传播的性质，在前言 \ref{chap:detonation} 中有对胞格结构简单的介绍。胞格结构的长度尺寸和高度尺寸都和燃烧机理及反应物息息相关\cite{roy2004pulse}。
+然而，目前尚没有理论可以确定胞格尺寸和气体性质间的物理关系\cite{张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究}，各类爆轰胞格尺寸都需要通过实验测量。
 
 爆轰波胞格结构的数值模拟从20世纪80年代后期才开始展开,数值模拟中的主要难点包括，1，所需网格尺度过小导致计算量太大，2，需要模拟爆轰波中的细微结构，因此对格式的精度要求同样很高。目前为止，数值模拟结果都无法和实验结果进行定量比较，计算得到的胞格尺度都偏小，对于胞格需要进一步定量化研究\cite{liu2008reconsideration}。
-下面我们通过计算几例二维直管氢氧爆轰工况来对胞格的形成和发展进行分析。
 
-\subsubsection{$2H_2+O_2+7Ar$($6.67KPa,298K$)}
-低压的$H_2,O_2,Ar$爆轰具有极多的研究，包括丰富的实验研究\cite{lefebvre1995analysis,oran1998numerical,sharpe2001transverse}，和数值模拟\cite{hu2004cellular,hu2005structure,li2013additive,wang2010new}，该工况中我们计算
+下面我们计算
+文献\cite{王昌建2005直管内胞格爆轰的基元反应数值研究}给出的胞格结构研究算例，该算例采用
+和上节中第二个反应条件相似的条件，即 2H$_2$+O$_2$+Ar($8KPa,300K$)。如图 \ref{cellular2}，在文献 \cite{roy1999gaseous}，中给出该条件下的计算结果和实验结果，实验结果中胞格并不是十分规则，胞格的长度、长宽比分别为8.2cm 和0.58。
 
-\subsubsection{$2H_2+O_2+Ar$($8KPa,300K$)}
-文献\cite{王昌建2005直管内胞格爆轰的基元反应数值研究}有对该工况的详细研究和讨论，
 
 \begin{figure}
-  \centering
-  \includegraphics[width=8cm]{cellular.png}
-  \caption{$2CO+O_2$爆轰烟迹\cite{soloukhin1966shock}}
-  \label{cellular1}
-\end{figure}
+	\centering
+  \includegraphics[width=12cm]{cellular2.png}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=8cm]{cellular2.png}
-  \caption{$2H_2+O_2+7Ar$爆轰压力发展，其中胞格长度约为$77mm$, 胞格长宽比约为0.61. 其中黑线给出三波点运动路径\cite{roy1999gaseous}.}
+					\centerline{a:实验结果}
+
+%				  \label{fig:compare:a}
+			%	  \caption{fig1}
+			%	  \label{fig:side:a}
+  \includegraphics[width=12cm]{cellular1.png}
+
+				  \centerline{b:数值结果} 
+  \caption{2H$_2$+O$_2$+Ar爆轰实验结果和数值结果\cite{王昌建2005直管内胞格爆轰的基元反应数值研究}}
   \label{cellular2}
+			  \end{figure}
+
+
+计算条件采用$6cm\times 80cm$ 长管，为了更快的激发爆轰波的不稳定性，在$37.5cm$处有一块很小的密度扰动区域，该区域密度为周围的两倍，其它条件不变。 计算采用$90\times 1200$的网格，图 \ref{cellular_exp} 给出压力最大值点既三波点的运动轨迹，可以看到，采用新方法能清晰的捕捉到胞格结构。和实验相似，数值结果中的胞格同样不规则，平均长度为8.7cm，平均长宽比为0.5，都和实验结果较为接近。
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=12cm]{2d_multi_gama.eps}
+  \caption{2H$_2$+O$_2$+Ar爆轰数值结果}
+  \label{cellular_exp}
 \end{figure}
 
 
-
-
-
+\section{小结}
+本章中，我们将上一章中构造的基于DIP方法、数值摄动方法和分裂方法的新方法应用在采用了基元反应模型的爆轰波数值模拟中。算例结果表明：新方法可以避免传统方法中的组分曲线的振荡，保证组分的守恒性；在稀疏网格下能较传统方法更准确的计算爆轰波；同时新方法在效率方面同样具有显著的优势。最后我们将新方法应用在爆轰波胞格结构计算中，可以看到，即便采用了很稀疏的网格，也能较准确的捕捉出胞格的特征量，如胞格平均长度和胞格长宽比等。
 
 
