@@ -1,5 +1,9 @@
 \begin{thebibliography}{100}
 
+\bibitem{H1999Low}
+Low-dissipative high-order shock-capturing methods using characteristic-based
+  filters.
+
 \bibitem{agarwal1999comparative}
 {\sc Agarwal, R., Augustinus, J., and Halt, D.}
 \newblock A comparative study of advection upwind split (ausm) and
@@ -1461,6 +1465,12 @@
 \newblock Improvement of weighted essentially non-oscillatory schemes near
   discontinuities.
 \newblock {\em Computers \& Fluids 96\/} (2014), 1--9.
+
+\bibitem{Shen2009High}
+{\sc Shen, Y., Zha, G., and Chen, X.}
+\newblock High order conservative differencing for viscous terms and the
+  application to vortex-induced vibration flows.
+\newblock {\em Journal of Computational Physics 228}, 22 (2009), 8283--8300.
 
 \bibitem{shen2012cusp}
 {\sc Shen, Y., Zha, G., and Huerta, M.~A.}
