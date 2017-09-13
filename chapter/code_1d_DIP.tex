@@ -1,5 +1,5 @@
 \XeTeXinputencoding "GB2312"
-\hspace{5cm}\color{black!60!red!80!}一维双信息保存方法（DIP）伪代码
+\hspace{2cm}\color{black!60!red!80!}一维双信息保存方法（DIP）伪代码
 
 \setlength{\parskip}{0\baselineskip}
   \color{black}
@@ -79,7 +79,7 @@
    \color{black!60}
  \color{black!80}
 
- \hspace{0.3cm} $s_x=sign(X(i))$
+ \hspace{0.3cm} $s_x=\text{sign}(X(i))$
 
  \hspace{0.3cm}	
  $\bar{u}(i)=(1-|X|)u(i)+|X|u(i+s_x)$
@@ -91,10 +91,10 @@
 	$
 
   \hspace{0.3cm}
- $X(i)=L_x-floor(L_x+0.5)$
+  $X(i)=L_x-\text{floor}(L_x+0.5)$
 
  \hspace{0.3cm}
-	$M(i)=i+floor(L_x+0.5)$
+ $M(i)=i+\text{floor}(L_x+0.5)$
 \hspace{3cm}   { \color{black!60} ! i单元点移动到$M$单元} {\color{black!80}
 
 \color{black!80}
@@ -160,7 +160,7 @@ $\begin{array}{l} X'(M)=(X(i)+\text{Mrk}(M)X'(M))/(\text{Mrk}(M)+1)\\
 
    \color{black!80}
 
- \hspace{0.3cm} $s_x=sign(X_p(i))$
+   \hspace{0.3cm} $s_x=\text{sign}(X_p(i))$
 
  \hspace{0.3cm}	
  $\bar{u}_p(i)=(1-|X_p|)u(ip)+|X|u(ip+s_x)$
@@ -170,8 +170,8 @@ $\begin{array}{l} X'(M)=(X(i)+\text{Mrk}(M)X'(M))/(\text{Mrk}(M)+1)\\
 
    \hspace{0.3cm}	$\begin{array}{l}
  L_x=X_p(i)+\bar{u}_p(i)\Delta t/ \Delta x\\
- {X_p}(i)=L_x-floor(L_x+0.5)\\
-	ip(i)=ip(i)+floor(L_x+0.5)
+ {X_p}(i)=L_x-\text{floor}(L_x+0.5)\\
+ ip(i)=ip(i)+\text{floor}(L_x+0.5)
 	\end{array}$
  \hspace{2.5cm}  \color{black!60} ! i粒子点新位置
    \color{black!80}

@@ -1,9 +1,9 @@
 
 \XeTeXinputencoding "GB2312"
 \chapter{有限紧致格式在理想磁流体中的应用} \label{chap:MHD}
-如前文章节 \ref{chap:Intro_MHD} 中所述，理想磁流体（MHD）方程尽管是模拟磁流体的最简单自恰系统，但是由于电磁场和流场的耦合作用，仍然较Euler方程更为复杂，包括更多的波速、更复杂的特征值系统、非严格双曲特性和更丰富的流场结构等。
+如前文小节 \ref{chap:Intro_MHD} 中所述，理想磁流体（MHD）方程尽管是模拟磁流体的最简单自恰系统，但是由于电磁场和流场的耦合作用，仍然较Euler方程更为复杂，包括更多的波速、更复杂的特征值系统、非严格双曲特性和更丰富的流场结构等。
 
-由于理想磁流体方程和Euler方程的相似性，很多的流体力学高精度的数值方法都被推广到MHD方程求解中。如Yee等人提出的高精度低耗散滤波格式\cite{yee2007development}。Balbas\cite{balbas2004non}发展的求解一维和二维MHD方程的高分辨率、无振荡中心格式。Gaitonde\cite{gaitonde1999development}将紧致差分格式和滤波器结合，应用在三维理想磁流体方程求解中。 考虑到无论是中心格式还是紧致格式在求解激波时都需要做特殊的处理的难点，Shen等人\cite{shen2012cusp}将高精度WENO格式推广在MHD方程求解中。然而，如第 \ref{sep:detector} 章中所述，WENO格式尽管具有高精度和稳定捕捉激波的优点，但是相比中心格式和紧致格式而言，对于高频短波的分辨能力较差。对于这一不足，杂交格式是一个较好的解决思路（前言\ref{cap:spatial_method}和第\ref{sep:detector}章中），由于结合了线性格式的高精度、低耗散特性和激波捕捉格式的稳定性，杂交格式理论上应该更适合MHD方程的求解。
+由于理想磁流体方程和Euler方程的相似性，很多的流体力学高精度的数值方法都被推广到MHD方程求解中。如Yee等人提出的高精度低耗散滤波格式\cite{yee2007development}。Balbas\cite{balbas2004non}发展的求解一维和二维MHD方程的高分辨率、无振荡中心格式。Gaitonde\cite{gaitonde1999development}将紧致差分格式和滤波器结合，应用在三维理想磁流体方程求解中。 考虑到无论是中心格式还是紧致格式在求解激波时都需要做特殊的处理的难点，Shen等人\cite{shen2012cusp}将高精度WENO格式推广在MHD方程求解中。然而，如第\ref{sep:detector}章中所述，WENO格式尽管具有高精度和稳定捕捉激波的优点，但是相比中心格式和紧致格式而言，对于高频短波的分辨能力较差。对于这一不足，杂交格式是一个较好的解决思路（前言 \ref{cap:spatial_methoda} 和第\ref{sep:detector}章中），由于结合了线性格式的高精度、低耗散特性和激波捕捉格式的稳定性，杂交格式理论上应该更适合MHD方程的求解。
 
 另一方面，由于MHD特征系统的复杂性，发展适合MHD方程的近似黎曼求解器是另外一项更具有挑战性的工作。关于MHD求解的早期工作中，很多常见的通量差分分裂方法都被发展到MHD求解中，如Roe求解器\cite{brio1988upwind,roe1996notes,dai1994approximate}、HLL求解器\cite{janhunen2000positive}和HLLC求解器\cite{gurski2004hllc,honkkila2007hllc,miyoshi2005multi}等。由于MHD方程对于特征变量并不是一次齐次的，因此不能直接采用流通矢量方法，MacCormack通过引入额外变量$\tilde{a}$ \cite{maccormack2010non,maccormackupwind}将\cite{lombard1983multi}中的方法推广到MHD求解中。然而，由于流通矢量分裂方法基于特征值和特征向量运算，在MHD方程中，该类方法会异常复杂。
 
@@ -15,7 +15,7 @@ Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，H
 
 
 \section{数值方法}
-本章空间离散采用有限紧致格式 （章节\ref{sep:compact})，时间离散采用三阶Runge-Kutta格式，分裂方法采用E-CUSP格式。
+本章空间离散采用有限紧致格式 （章节 \ref{sep:compact})，时间离散采用三阶Runge-Kutta格式（章节 \ref{chap:RK}），分裂方法采用E-CUSP格式。
 \subsection{E-CUSP近似李曼求解器\cite{shen2012cusp}} E-CUSP格式的构造基于特征分析\cite{zha1993numerical,zha1999numerical,zhacomparative} ，
 对于控制方程 (\ref{eq1_2})，E-CUSP格式基本思想是将通量$\bm{F}$分裂分对流通量$\bm{F}^C$和压力通量$\bm{F}^P$，
 \begin{equation}
@@ -38,7 +38,7 @@ Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，H
 	\end{array}
 	\right)
 \end{equation}
-通量$\bm{F}^C$特征值为$(u,u,u,u,u)$，代表对流过程，通量$\bm{F}^P$特征值为$(0,0,0,-a,a)$，代表延声速向各个方向传播的压力波。根据它们的不同特征，Zha et al.\cite{zha1993numerical,zha1999numerical,zhacomparative}建议对于对流项采取迎风重构，对于压力项在亚声速区采用同时考虑上游和下游的重构方式。
+通量$\bm{F}^C$特征值为$(u,u,u,u,u)$，代表对流过程，通量$\bm{F}^P$特征值为$(0,0,0,-a,a)$，代表延声速向各个方向传播的压力波。根据它们的不同特征，Zha等人\cite{zha1993numerical,zha1999numerical,zhacomparative}建议对于对流项采取迎风重构，对于压力项在亚声速区采用同时考虑上游和下游的重构方式。
 
 理想磁流体的特征系统含有三个不同的特征波速---快波$c_f$、慢波$c_s$和中速Alfv\'{e}n波，异常复杂，目前尚没有和流体力学方程$\bm{F}^P$项对应的精确的通量公式。然而由于磁流体方程有和流体力学方程相似的波动特性，E-CUSP的基本思想也可以推广到求解MHD方程中来。
 
@@ -111,7 +111,7 @@ Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，H
 \end{array}
 \end{equation}
 
-在文章\cite{han2009accurate}中，马赫数是通过快波波速来定义的$M=\frac{u}{c_f}$，意味着$M_{L,R}$可以定义为$M_{L,R}=\frac{u_{L,R}}{c_{f_{1/2}}}$。然而，公式 (\ref{eq:ecusp_E})中的压力项不再是由单个波速决定的，如何计算相对波速$M_{L,R}$仍然是个待解决的问题。Shang\cite{shang2001recent}指出在高频和低频波，快波波速和声波相同，但是对于中频波，快波波速明显要高于声波波速。在\cite{shen2012cusp}中，采用的是声波和快波波速平均的形式
+在文章\cite{han2009accurate}中，马赫数是通过快波波速来定义的$M=\frac{u}{c_f}$，意味着$M_{L,R}$可以定义为$M_{L,R}=\frac{u_{L,R}}{c_{f_{1/2}}}$。然而，公式 (\ref{eq:ecusp_E}) 中的压力项不再是由单个波速决定的，如何计算相对波速$M_{L,R}$仍然是个待解决的问题。Shang\cite{shang2001recent}指出在高频和低频波，快波波速和声波相同，但是对于中频波，快波波速明显要高于声波波速。在\cite{shen2012cusp}中，采用的是声波和快波波速平均的形式
 \begin{equation}
 M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \end{equation}
@@ -131,31 +131,30 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \begin{equation}
   \bm{E} =-\bm{V}\times \bm{B}
 \end{equation}
-
 在控制输运方法中，
-，磁场强度$\bm{B}$沿区域边缘取平均值$\bm{B}$, 方程 \ref{eq:BE} 的半离散形式:
+磁场强度$\bm{B}$沿区域边缘取平均值$\bm{B}$。 方程 (\ref{eq:BE}) 的半离散形式为:
   \begin{equation}
 	\begin{array}{l}
-	  \displaystyle \frac{d}{dt}\overline{B}_{x_{\!i\!-\!1\!/\!2,j,k}}\!=\!-\frac{E_{z_{i\!-\!1\!/\!2,j\!+\!1\!/\!2,k}}\!-\!E_{z_{i\!-\!1\!/\!2.j\!-\!1\!/\!2,k}}}{\delta y}\!+\!\frac{E_{z_{i\!-\!1\!/\!2,j,k\!+\!1\!/\!2}}\!-\!E_{z_{i\!-\!1\!/\!2,j,k\!-\!1\!/\!2}}}{\delta z},\\[0.5em]
-	  \displaystyle \frac{d}{dt}\overline{{B}}_{x_{i,j,k\!-\!1\!/\!2}}\!=\!-\frac{{E}_{z_{i\!+\!1\!/\!2,j,k\!-\!1\!/\!2}}\!-\!{E}_{z_{i\!-\!1\!/\!2,j\!-\!1\!/\!2,k}}}{\delta x}\!+\!\frac{{E}_{z_{i\!-\!1\!/\!2,j,k\!+\!1\!/\!2}}\!-\!{E}_{z_{i\!-\!1\!/\!2,j,k\!-\!1\!/\!2}}}{\delta y},\\[0.5em]
-	  \displaystyle \frac{d}{dt}\overline{{B}}_{x_{i,j\!-\!1\!/\!2,k}}\!=\!-\frac{{E}_{z_{i\!+\!1\!/\!2,j\!-\!1\!/\!2,k}}\!-\!{E}_{z_{i\!-\!1\!/\!2.j\!-\!1\!/\!2,k}}}{\delta x}\!+\!\frac{{E}_{z_{i,j\!-\!1\!/\!2,k\!+\!1\!/\!2}}\!-\!{E}_{z_{i,j\!-\!1\!/\!2,k\!-\!1\!/\!2}}}{\delta z},
+	  \displaystyle \frac{d}{dt}\overline{B}_{x_{\!i\!-\!1\!/\!2,j,k}}\!=\!-\frac{E_{z_{i\!-\!1\!/\!2,j\!+\!1\!/\!2,k}}\!-\!E_{z_{i\!-\!1\!/\!2.j\!-\!1\!/\!2,k}}}{\delta y}\!+\!\frac{E_{z_{i\!-\!1\!/\!2,j,k\!+\!1\!/\!2}}\!-\!E_{z_{i\!-\!1\!/\!2,j,k\!-\!1\!/\!2}}}{\delta z}\\[0.5em]
+	  \displaystyle \frac{d}{dt}\overline{{B}}_{x_{i,j,k\!-\!1\!/\!2}}\!=\!-\frac{{E}_{z_{i\!+\!1\!/\!2,j,k\!-\!1\!/\!2}}\!-\!{E}_{z_{i\!-\!1\!/\!2,j\!-\!1\!/\!2,k}}}{\delta x}\!+\!\frac{{E}_{z_{i\!-\!1\!/\!2,j,k\!+\!1\!/\!2}}\!-\!{E}_{z_{i\!-\!1\!/\!2,j,k\!-\!1\!/\!2}}}{\delta y}\\[0.5em]
+	  \displaystyle \frac{d}{dt}\overline{{B}}_{x_{i,j\!-\!1\!/\!2,k}}\!=\!-\frac{{E}_{z_{i\!+\!1\!/\!2,j\!-\!1\!/\!2,k}}\!-\!{E}_{z_{i\!-\!1\!/\!2.j\!-\!1\!/\!2,k}}}{\delta x}\!+\!\frac{{E}_{z_{i,j\!-\!1\!/\!2,k\!+\!1\!/\!2}}\!-\!{E}_{z_{i,j\!-\!1\!/\!2,k\!-\!1\!/\!2}}}{\delta z}
 	\end{array}
 	\end{equation}
 	其中，
 	\begin{equation*}
 	  \begin{array}{l}
-		{E}_{x_{i,j+1/2,k+1/2}}\!=\!\frac{1}{4}({H}_{7i,j,k+1/2}\!+\!{H}_{7i,j+1,k+1/2}\!-\!{G}_{8i,j+1/2,k}\!-\!{G}_{8i,j+1/2,k+1}),\\
-		{E}_{y_{i+1/2,j,k+1/2}}\!=\!\frac{1}{4}({F}_{8i+1/2,j,k}\!+\!{F}_{8i+1/2,j,k+1}\!-\!{H}_{6i,j,k+1/2}-{H}_{6i+1,j,k+1/2}),\\
-		{E}_{z_{i+1/2,j+1/2,k}}\!=\frac{1}{4}({G}_{6i,j+1/2,k}+{G}_{6i+1,j+1/2,k}\!-\!{F}_{7i+1/2,j,k}\!-\!{F}_{7i+1/2,j+1,k}),
+		{E}_{x_{i,j+1/2,k+1/2}}\!=\!\frac{1}{4}({H}_{7i,j,k+1/2}\!+\!{H}_{7i,j+1,k+1/2}\!-\!{G}_{8i,j+1/2,k}\!-\!{G}_{8i,j+1/2,k+1})\\
+		{E}_{y_{i+1/2,j,k+1/2}}\!=\!\frac{1}{4}({F}_{8i+1/2,j,k}\!+\!{F}_{8i+1/2,j,k+1}\!-\!{H}_{6i,j,k+1/2}-{H}_{6i+1,j,k+1/2})\\
+		{E}_{z_{i+1/2,j+1/2,k}}\!=\frac{1}{4}({G}_{6i,j+1/2,k}+{G}_{6i+1,j+1/2,k}\!-\!{F}_{7i+1/2,j,k}\!-\!{F}_{7i+1/2,j+1,k})
 		\end{array}
 	  \end{equation*}
   $F_n$,$G_n$,$H_n$ ($n=6,7,8$) 是三维空间的第n通量。
   二维情况下，通量可简化为:
 	  \begin{equation*}
 		\begin{array}{l}
-		\displaystyle  E_{x_{i,j+1/2}}=-G_{8i,j+1/2},\\
-		\displaystyle E_{y_{i+1/2,j}}=F_{8i+1/2,j},\\
-		\displaystyle E_{z_{i+1/2,j+1/2}}=\frac{1}{4}(G_{6i,j+1/2}+G_{6i+1,j+1/2}-F_{7i+1/2,j}-F_{7i+1/2,j+1}),
+		\displaystyle  E_{x_{i,j+1/2}}=-G_{8i,j+1/2}\\
+		\displaystyle E_{y_{i+1/2,j}}=F_{8i+1/2,j}\\
+		\displaystyle E_{z_{i+1/2,j+1/2}}=\frac{1}{4}(G_{6i,j+1/2}+G_{6i+1,j+1/2}-F_{7i+1/2,j}-F_{7i+1/2,j+1})
 		\end{array}
 	\end{equation*}
 	由于$\overline{\bm{B}}$是$\bm{B}$在计算区域的平均值，因此需要对能量进行如下修正:
@@ -175,13 +174,13 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \end{equation*}
 其中$B_{\perp}=B_y\text{cos}\alpha -B_x\text{sin}\alpha$，$B_{\parallel}=B_x\text{cos}\alpha +B_y \text{sin}\alpha$，$\gamma=5/3$。
 
-表 \ref{tab:alfven_wave} 给出$t=5$时刻，$B_{\perp}$的$L_\infty$误差和$L_1$误差，可以看到，采用了有限紧致格式计算结果和WENO-Z格式计算结果相比，误差均小了一个量级左右，其中$L_1$精度接近六阶。因此，有限紧致格式对于提高MHD算例光滑区域精度是极为有效的。
+表 \ref{tab:alfven_wave} 给出$t=5$时刻，$B_{\perp}$的$L_1$和$L_\infty$误差，可以看到，采用了有限紧致格式的计算结果和WENO-Z格式的计算结果相比，误差均小了一个量级左右，其中$L_1$精度接近六阶。因此，有限紧致格式对于提高MHD算例光滑区域精度是极为有效的。
 
 \begin{table}[htbp]
   \small
   \centering
 \setlength{\belowcaptionskip}{10pt}
-\caption{\small Alfv\'{e}n波算例不同格式精度对比，$T=5$}
+\caption{\small Alfv\'{e}n波算例，不同格式精度对比，$T=5$}
   \begin{tabular}{cccccc}
 	\toprule
 	Scheme        & $N_x\times N_y$       & $L_1$ error  & $L_1$ order & $L_{\infty}$ error & $L_{\infty}$ order \\
@@ -200,7 +199,7 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \end{table}
 
 \subsection{Orzag-Tang MHD湍流算例} 
-由于Orzag-Tang 湍流算例\cite{orszag1979small}具有MHD湍流的诸多重要特点，比如随着涡的发展，存在很多激波间的相互作用，该问题已成为验证MHD数值方法的一个标准算例\cite{balsara1999staggered,jiang1999high,balbas2004non,han2009accurate}。
+由于Orzag-Tang 湍流算例\cite{orszag1979small}具有MHD湍流的诸多重要特点，比如随着涡的发展，存在很多激波间的相互作用，该问题已成为验证MHD数值方法的一个标准算例\cite{jiang1999high,Balsara1999A,balbas2004non,han2009accurate}。
 
 该问题初始条件为：
 \begin{equation*}
@@ -214,19 +213,19 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
   \centering
   \includegraphics[width=5cm]{tang_WENO.png}
   \includegraphics[width=5cm]{tang_FC.png}
-\caption{Orzag-Tang 湍流算例不同格式密度等值线对比}
+\caption{Orzag-Tang 湍流算例，不同格式计算结果，密度等值线}
 \label{fig:tang}
 \end{figure}
 
 \begin{figure}
   \centering
   \includegraphics[width=8cm]{tang_line.png}
-  \caption{Orzag-Tang 湍流算例延$y=1$线上密度对比}
+  \caption{Orzag-Tang 湍流算例，不同格式在线$y=1$上计算结果，密度}
   \label{fig:tang_line}
 \end{figure}
 
 \section{小结}
-本章中，我们将有限紧致格式推广到了MHD方程求解中，由于该格式结合了紧致格式的特性，因此具有较WENO-Z格式更低的耗散、更高的精度。通过和无需复杂的特征运算的E-CUSP分裂方法和保证磁场$\nabla \cdot \bm{B}=0$的控制输运方法结合，有限紧致格式可以稳定、高精度的求解理想磁流体问题。通过数值算例，新方法的有效性和鲁棒性得到了验证。
+本章中，我们将有限紧致格式推广到了MHD方程求解中，由于该格式结合了紧致格式的特性，因此具有较WENO-Z格式更低的耗散、更高的精度。通过和无需复杂的特征运算的E-CUSP分裂方法和保证磁场$\nabla \cdot \bm{B}=0$的控制输运方法结合，有限紧致格式可以稳定、高精度的求解理想磁流体问题。新方法的有效性和鲁棒性得到了数值算例的验证。
 
 
 

@@ -5,7 +5,9 @@ The style file: acm.bst
 A level-1 auxiliary file: chapter/abstract.aux
 A level-1 auxiliary file: chapter/Chapter-Introduction.aux
 A level-1 auxiliary file: chapter/Chapter-Multi-WENO.aux
-Reallocated field_info (elt_size=4) to 10313 items from 5000.
+A level-1 auxiliary file: chapter/Chapter-detector.aux
+A level-1 auxiliary file: chapter/Chapter-MHD.aux
+Reallocated field_info (elt_size=4) to 11233 items from 5000.
 Database file #1: bib/mybibfile.bib
 Repeated entry---line 1727 of file bib/mybibfile.bib
  : @book{lee2008detonation
@@ -103,32 +105,26 @@ Repeated entry---line 5973 of file bib/mybibfile.bib
  : @article{liou1996sequel
  :                        ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 6509 of file bib/mybibfile.bib
+Repeated entry---line 6489 of file bib/mybibfile.bib
  : @book{shampine1994numerical
  :                            ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 6523 of file bib/mybibfile.bib
+Repeated entry---line 6503 of file bib/mybibfile.bib
  : @article{hairer1999stiff
  :                         ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 6583 of file bib/mybibfile.bib
+Repeated entry---line 6563 of file bib/mybibfile.bib
  : @article{colella1986theoretical
  :                                ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 6889 of file bib/mybibfile.bib
+Repeated entry---line 6869 of file bib/mybibfile.bib
  : @article{oran1998numerical
  :                           ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 7001 of file bib/mybibfile.bib
- :   
- :   author={H.C Yee and N.D Sandham and M.J Djomehri},
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "balsara1999staggered"
 Warning--I didn't find a database entry for "van1979towards1"
 Warning--I didn't find a database entry for "anderson1998diffuse"
-Warning--to sort, need author or key in H1999Low
-Warning--empty author in H1999Low
-Warning--empty journal in H1999Low
+Warning--I didn't find a database entry for "jiang1999high"
 Warning--empty journal in akbar1997mach
 Warning--empty journal in freidberg1987ideal
 Warning--empty journal in glimm1970decay
@@ -139,45 +135,45 @@ Warning--can't use both volume and number fields in smooke1988comparison
 Warning--empty journal in van1973towards
 Warning--empty year in zhacomparative
 Warning--empty journal in 张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究
-You've used 358 entries,
+You've used 359 entries,
             2253 wiz_defined-function locations,
-            2291 strings with 58401 characters,
-and the built_in function-call counts, 114862 in all, are:
-= -- 11562
-> -- 4775
+            2304 strings with 58690 characters,
+and the built_in function-call counts, 115319 in all, are:
+= -- 11601
+> -- 4803
 < -- 0
-+ -- 2077
-- -- 1624
-* -- 9559
-:= -- 18679
-add.period$ -- 1068
-call.type$ -- 358
-change.case$ -- 1852
++ -- 2088
+- -- 1634
+* -- 9595
+:= -- 18762
+add.period$ -- 1073
+call.type$ -- 359
+change.case$ -- 1859
 chr.to.int$ -- 0
-cite$ -- 371
-duplicate$ -- 3662
-empty$ -- 9383
-format.name$ -- 1624
-if$ -- 23459
+cite$ -- 369
+duplicate$ -- 3677
+empty$ -- 9420
+format.name$ -- 1634
+if$ -- 23555
 int.to.chr$ -- 0
-int.to.str$ -- 358
-missing$ -- 367
-newline$ -- 1781
-num.names$ -- 714
-pop$ -- 1522
+int.to.str$ -- 359
+missing$ -- 369
+newline$ -- 1788
+num.names$ -- 718
+pop$ -- 1530
 preamble$ -- 1
-purify$ -- 1519
+purify$ -- 1526
 quote$ -- 0
-skip$ -- 2167
+skip$ -- 2174
 stack$ -- 0
-substring$ -- 8878
-swap$ -- 874
+substring$ -- 8900
+swap$ -- 878
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1378
-warning$ -- 13
-while$ -- 1295
-width$ -- 361
-write$ -- 3581
-(There were 29 error messages)
+type$ -- 1380
+warning$ -- 10
+while$ -- 1299
+width$ -- 362
+write$ -- 3596
+(There were 28 error messages)

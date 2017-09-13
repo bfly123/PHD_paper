@@ -1,21 +1,21 @@
 \XeTeXinputencoding "GB2312"
 \chapter{间断识别方法比较研究}\label{sep:detector}
-为了能更准确的模拟可压缩流中复杂的激波和其它流场结构相互作用，如激波/边界层、激波/涡等，需要数值方法既能高分辨率的捕捉激波又能高精度低耗散的求解光滑区的小尺度结构\cite{pirozzoli2011numerical}。在上一章中，我们提出了多步加权的思想，并构造了多步加权五阶WENO格式，进一步改善了WENO格式在间断附近的表现，从算例中我们也能看出WENO格式可以求解各种和强间断相关的问题所表现出的准确性和鲁棒性。
+在流场中，除了激波以外还会存在更多的光滑区域，在光滑区域中同样存在复杂的流场结构，尤其是一些容易被耗散掉的小尺度结构。这就需要数值方法既能高分辨率的捕捉激波又能高精度、低耗散的求解流场的光滑区域\cite{pirozzoli2011numerical}。在上一章中，我们提出了多步加权的思想，并构造了五阶多步加权WENO格式，新方法进一步改善了WENO格式在间断附近区域的表现，提高了对激波的分辨能力。
 
-尽管WENO格式在理论上可以构造到任意阶精度\cite{jiang1996efficient,balsara2000monotonicity,gerolymos2009very}，然而近些年研究发现，在求解短波时，尤其在可压缩湍流的计算中\cite{zhang2008development}WENO格式会存在过度的耗散以至掩盖了真实的物理黏性，造成计算的不准确。为了避免这一问题，学者们发展了一系列杂交格式（hybrid method），如WENO-紧致格式\cite{pirozzoli2002conservative,ren2003characteristic,zhou2007new,shen2011generalized}，WENO-中心格式和WENO-迎风格式等，在光滑区采用高精度低耗散格式，在间断区采用WENO类激波捕捉格式。对于杂交格式，最为关键的问题是准确的识别激波。
+尽管WENO格式在理论上可以构造到任意阶精度\cite{jiang1996efficient,balsara2000monotonicity,gerolymos2009very}，然而近些年研究发现，在可压缩湍流的计算中\cite{zhang2008development}，WENO格式中的耗散仍然过大，会掩盖掉真实的物理黏性，造成对短波的分辨不足。为了避免这一问题，学者们发展了一系列杂交格式（hybrid method），如WENO-紧致格式\cite{pirozzoli2002conservative,ren2003characteristic,zhou2007new,shen2011generalized}，WENO-中心格式和WENO-迎风格式等。杂交格式主要是思想就是在光滑区采用高精度低耗散格式，在间断区采用WENO类激波捕捉格式，其中最关键的问题是准确的识别激波。
 
-最近，Li和Qiu\cite{li2010hybrid}在WENO-迎风格式中比较了多种间断识别方法，并且通过算例证明杂交格式比起WENO格式更为高效。Shen和Zha在有限紧致的工作\cite{shen2011generalized}中构造了一种基于WENO-Z格式光滑因子提出的激波识别方法。该识别方法无人为的或和问题相关的自由参数，有效性在文\cite{shen2011generalized}中得到了验证。
+最近，Li和Qiu\cite{li2010hybrid}在WENO-迎风格式中比较了多种间断识别方法。Shen和Zha在有限紧致格式的工作\cite{shen2011generalized}中发展了一种基于WENO-Z格式$\tau_5$系数的激波识别方法。该识别方法无人为的或和问题相关的自由参数，有效性在文\cite{shen2011generalized}中得到了验证。
 
-在本章中，我们系统的研究、比较不同间断识别器，包含文\cite{li2010hybrid,zhu2009adaptive,shen2011generalized}中的识别方法。
+在本章中，我们通过算例比较研究不同的间断识别方法\cite{li2010hybrid,zhu2009adaptive,shen2011generalized}，对它们进行评测，并从中找出最为有效的方法。
 
-\section{有限紧致格式（the finite compact scheme）}\label{sep:compact}
-本文将各种识别方法应用在有限紧致格式\cite{shen2011generalized}来验证它们的表现。有限紧致格式（the finite compact scheme）是一种结合了WENO格式和紧致格式的杂交格式，有限紧致格式将间断看成流场的内边界，进而将流场分成有限个光滑区域。有限紧致格式具体的构造思想为：
+\section{有限紧致格式（The finite compact scheme）}\label{sep:compact}
+本文将各种识别方法应用在有限紧致格式\cite{shen2011generalized}中，通过数值算例来验证它们的表现。有限紧致格式（the finite compact scheme）是一种结合了WENO格式和紧致格式的杂交格式，该格式将间断当成流场的内边界，进而将流场分成有限个光滑区域。有限紧致格式具体的构造思想为：
 \begin{enumerate}[(1)]
-\item 首先通过间断识别方法识别出间断区域，该区域包括边界都采用WENO格式构造通量。
-\item 将介于两个间断区域之间（或者介于边界和间断区域之间）的光滑节点定义为紧致模板，并采用紧致格式构造紧致模板上的通量。
+\item 首先通过间断识别方法识别出间断区域，该区域和边界都采用WENO格式构造通量。
+\item 将介于两个间断区域之间（或者介于边界和间断区域之间）的节点定义为紧致模板，并采用紧致格式构造通量。
 \end{enumerate}
 
-注意在第(2)步，第(1)步中构造的间断区域模板通量将自动的作为内边界。
+注意在第(1)步中构造的间断模板将自动的作为构造紧致模板的内边界。
 \begin{figure}
   \centering
   \includegraphics[width=12cm]{illu_finite_compact.png}
@@ -33,40 +33,40 @@
 
 	\hspace{0.6cm}	$\text{start}\_\text{point}(M)=1$ {\color{black!70}  !第M光滑区域的起始点}
 
-		\hspace{0.6cm}{\color{black!60!blue!80}Do} $i=1,N-1$  {\color{black!70} !对模板$S_i$采用间断识别方法}
+		\hspace{0.7cm}{\color{black!60!blue!80}DO} $i=1,N-1$  {\color{black!70} !对模板$S_i$采用间断识别方法}
 
-	\hspace{0.8cm} {\color{black!60!blue!80} IF}($S_i$是间断模板） {\color{black!60!blue!80}THEN}
+	\hspace{1.0cm} {\color{black!60!blue!80} IF}  ($S_i$是间断模板） {\color{black!60!blue!80}THEN}
 
-	\hspace{1.0cm}   $\text{end}\_\text{point}(M)=i$  {\color{black!70}!第M光滑区域的终止点}
+	\hspace{1.4cm}   $\text{end}\_\text{point}(M)=i$  {\color{black!70}!第M光滑区域的终止点}
 
-	\hspace{1.0cm} $M=M+1$
+	\hspace{1.4cm} $M=M+1$
 
-	\hspace{1.0cm} $\text{start}\_\text{point}=i+1$
+	\hspace{1.4cm} $\text{start}\_\text{point}=i+1$
 
-	\hspace{1.0cm} 采用激波捕捉格式计算$h_{i+1/2}$:
+	\hspace{1.4cm} 采用激波捕捉格式计算$h_{i+1/2}$:
 
-	\hspace{1.2cm} $h_{i+1/2}=\sum_{k=0}^2 \omega_k\hat{f}^k(x_{i+1/2})$
+	\hspace{0.1cm} $$h_{i+1/2}=\sum_{k=0}^2 \omega_k\hat{f}^k(x_{i+1/2})$$
 	
-		\hspace{0.8cm} {\color{black!60!blue!80}END IF}
+		\hspace{1.0cm} {\color{black!60!blue!80}END IF}
 
 			\hspace{0.6cm}{\color {black!60!blue!80}END DO}
 
 			\hspace{0.6cm}$\text{end}\_\text{point}(M)=N$
-		  \item[第2]步: \hspace{0.15cm} {\color{black!60!blue!80} DO} $k=1,M$  {\color{black!70}!采用紧致格式计算第k紧致模板（光滑区域）}
+		  \item[第2]步: \hspace{0.15cm} {\color{black!60!blue!80} DO} $k=1,M$  {\color{black!70}!采用紧致格式计算第$k$紧致模板（光滑区域）}
 
-			\hspace{0.9cm}			{\color{black!60!blue!80}DO} $i=\text{start}\_\text{point}(k),\text{end}\_\text{point}(k)-1$
+			\hspace{1.5cm}			{\color{black!60!blue!80}DO} $i=\text{start}\_\text{point}(k),\text{end}\_\text{point}(k)-1$
 
-			\hspace{1.3cm}计算紧致格式右端项$d_{i+1/2}$
+			\hspace{1.9cm}计算紧致格式右端项$d_{i+1/2}$
 
-			\hspace{0.9cm} {\color{black!60!blue!80}END DO}
+			\hspace{1.5cm} {\color{black!60!blue!80}END DO}
 
-			\hspace{0.9cm} 求解三对角紧致格式：
+			\hspace{1.5cm} 求解三对角紧致格式：
 
-			\hspace{1.1cm} $\alpha h_{i-1/2}+\gamma h_{i+1/2}+\beta h_{i+3/2}=d_{i+1/2}$
+			\hspace{1.8cm} $\alpha h_{i-1/2}+\gamma h_{i+1/2}+\beta h_{i+3/2}=d_{i+1/2}$
 
-			\hspace{0.9cm} 其中，$i=\text{start}\_\text{point}(k),\cdots, \text{end}\_\text{point}(k)-1$
+			\hspace{1.5cm} 其中，$i=\text{start}\_\text{point}(k),\cdots, \text{end}\_\text{point}(k)-1$
 
-			\hspace{0.6cm} {\color{black!60!blue!80}ENDDO}
+			\hspace{0.8cm} {\color{black!60!blue!80}ENDDO}
 
 		\end{enumerate}
 
@@ -76,12 +76,12 @@
 
 \section{间断识别方法}
 \subsection{$\tau_5$识别方法\cite{shen2011generalized}}
-在\cite{shen2011generalized} 有限紧致格式采用的是Shen和Zha提出的一种基于WENO-Z格式光滑度量因子的间断识别方法。为了简便本文称其为SZ识别方法。
+在有限紧致格式\cite{shen2011generalized}中采用的是一种基于WENO-Z格式中$\tau_5$系数构造的识别方法。为了简便本文称其为SZ识别方法。
 
-Borges等人\cite{borges2008improved} 在WENO-Z构造中中引入了一个$\tau_5$系数，如公式 (\ref{eq:tau_5})中所示。Shen和Zha\cite{shen2011generalized}指出，$\tau_5$具有如下重要的性质：
+Borges等人\cite{borges2008improved} 在WENO-Z构造中引入了一个$\tau_5$系数，如公式 (\ref{eq:tau5})中所示。Shen和Zha\cite{shen2011generalized}指出，$\tau_5$具有如下重要的性质：
 \begin{enumerate}
-  \item[(1)] 在模板$S^5=(x_{i-2},x_{i-1},\cdots,x_{i+2})$上，如果不存在间断，则$\tau_5<<IS_k$（$k=0,1,2$）。
-  \item[(2)] 如果在$S^5$模板上存在间断但是在子模板$S_k^3$上光滑，则对于光滑子模板有$IS_k<<\tau_5$。
+  \item[(1)] 在模板$S^5=(x_{i-2},x_{i-1},\cdots,x_{i+2})$上，如果不存在间断，则$\tau_5\gg IS_k$（$k=0,1,2$）。
+  \item[(2)] 如果在模板$S^5$上存在间断但在子模板$S_k^3$上光滑，则对于光滑子模板有$IS_k\gg  \tau_5$。
   \item[(3)] $\tau_5\leq \text{max}(IS_0,IS_1,IS_2)$。
 \end{enumerate}
 根据这些性质可以得到如下的间断判别方法：
@@ -98,23 +98,22 @@ Borges等人\cite{borges2008improved} 在WENO-Z构造中中引入了一个$\tau_5$系数，如公
 \begin{equation*}
   |u_{j+1}^n-u_j^n|\geq \theta \frac{TV}{N}
 \end{equation*}
-则认为$[x_j,x_{j+1}]$内存在间断。单元$I_j$（$[x_{j-1/2},x_{j+1/2}]$）和单元$I_{j+1}$为间断单元。其中，$\theta$为问题相关参数，它的选择对识别方法的效果影响很大，本文统一选用$\theta=0.3$。
+则认为区间$[x_j,x_{j+1}]$ 内存在间断。单元$I_j$（$[x_{j-1/2},x_{j+1/2}]$）和单元$I_{j+1}$为间断单元。其中，$\theta$为问题相关参数，它的选择对识别方法的效果影响很大，本文统一选用$\theta=0.3$。
 
 \subsection{基于minmod函数的TVB识别方法\cite{cockburn1989tvb}}
-为了便于表达，\cite{li2010hybrid}中在单元$I_j$上给出了一个二次多项式$P_2(x)$
+为了便于表达，我们首先在单元$I_j$上给出了一个二次多项式$P_2(x)$\cite{li2010hybrid}
   \begin{equation}
 	P_2(x)=u_j^{(0)}+u_j^{(1)}\frac{x-x_j}{\Delta x}+u_j^{(2)}\left[\left(\frac{x-x_j}{\Delta x}\right)^2-\frac{1}{12}\right]
  \end{equation}
  其中$I_j$为$x\in [x_{i-1/2},x_{j+1/2}]$。
  在单元点上有
  \begin{equation*}
-   P_2(x_k)=u_k^n, \hspace{0.3cm} k=j-1.j.j+1
+   P_2(x_k)=u_k^n, \hspace{0.3cm} k=j-1,j,j+1
 \end{equation*}
 由此可以得到
 \begin{equation*}
   u_j^{(0)}=\frac{1}{24}(u_{j-1}^n+22u_j^n+u_{j+1}^n),\hspace{0.2cm} u_j^{(1)}=\frac{1}{2}(u_{j+1}^n-u_{j-1}^n),\hspace{0.2cm} u_j^{(2)}=\frac{1}{2}(u_{j-1}^n-2u_j^n+u_{j+1}^n
   \end{equation*}
-
   在TVB识别方法中，首先定义
   \begin{equation*}
 	\widetilde{u}_j=P_2(x_{j+1/2})-u_j^{(0)}, \hspace{0.2cm} \widetilde{\widetilde u}_j=-P_2(x_{j-1/2})+u_j^{(0)}
@@ -122,32 +121,33 @@ Borges等人\cite{borges2008improved} 在WENO-Z构造中中引入了一个$\tau_5$系数，如公
 然后通过minmod函数进行修正
 \begin{equation*}
   \begin{array}{l}
-  \widetilde{u}_j^{(\text{mod})}=\widetilde{m}(\widetilde{u}_j,u_{j+1}^{(0)}-u_j^{(0)},u_j^{(0)}-u_{j-1}^{(0)})$,\\
-  \widetilde{\widetilde{u}}_j^{(\text{mod})}=\widetilde{m}(\widetilde{\widetilde{u}}_j,u_{j+1}^{(0)}-u_j^{(0)},u_j^{(0)}-u_{j-1}^{(0)})$.\\
+  \widetilde{u}_j^{(\text{mod})}=\widetilde{m}(\widetilde{u}_j,u_{j+1}^{(0)}-u_j^{(0)},u_j^{(0)}-u_{j-1}^{(0)})\\
+  \widetilde{\widetilde{u}}_j^{(\text{mod})}=\widetilde{m}(\widetilde{\widetilde{u}}_j,u_{j+1}^{(0)}-u_j^{(0)},u_j^{(0)}-u_{j-1}^{(0)})\\
   \end{array}
 \end{equation*}
 其中$\widetilde{m}$为
 \begin{equation*}
   \widetilde{m}(a_1,a_2,\cdots,a_n)=\left\{
 	\begin{array}{ll}
-	  a_1 & \text{if} \hspace{0.2cm} |a_1|\leq M(\Delta x)^2,\\
-	  m(a_1,a_2,\cdots,a_n)& \text{otherwise},\\
+	  a_1 & \text{if} \hspace{0.2cm} |a_1|\leq M(\Delta x)^2\\
+	  m(a_1,a_2,\cdots,a_n)& \text{otherwise}\\
 	  \end{array}
 \end{equation*}
 minmod函数$m$为
+
 \begin{equation}\label{eq:minmod}
   m(a_1.a_2,\cdots,a_n)=\left\{
 	\begin{array}{ll}
-	  s\cdot \text{min}\limits_{1\leqslant j \leqslant n} |a_j| &  \text{if} \hspace{0.2cm} \text{sign}(a_1)=\text{sign}(a_2)=\cdots=\text{sign}(a_n)=s,\\
-	  0& \text{otherwise}.\\
+	  s\cdot \min \limits_{1\leqslant j \leqslant n} |a_j| &  \text{if} \hspace{0.2cm} \text{sign}(a_1)=\text{sign}(a_2)=\cdots=\text{sign}(a_n)=s\\
+	  0& \text{otherwise}\\
 	  \end{array}
 	  \right.
   \end{equation}
   如果$\widetilde{u}_j^{(\text{mod})}\ne \widetilde{u}_j$或 $\widetilde{\widetilde{u}}_j^{(\text{mod})}\ne \widetilde{\widetilde{u}}_j$则认为单元$I_j$为问题单元。
 
-  其中$M$为TVB识别方法中的一个问题相关参数，同样难以很好的给出，本文中我们采用\cite{cockburn1989tvb}中$M$为初始解光滑区域的二阶导数最大值成正比的设定：
+  其中$M$为TVB识别方法中的一个问题相关参数，同样难以很好的给出，本文中我们采用\cite{cockburn1989tvb}中给出的$M$：
   \begin{equation*}
-	M=\frac{2}{3}\text{max}\limits_{J}|u_{xx}^0|
+	M=\frac{2}{3}\max \limits_{J}|u_{xx}^0|
 \end{equation*}
 \subsection{XS识别方法\cite{xu2005anti}}
 Xu和Shu在文章\cite{xu2005anti}中引入了一个强间断判别方法，该方法中定义了一个$\phi_j$函数
@@ -156,29 +156,29 @@ Xu和Shu在文章\cite{xu2005anti}中引入了一个强间断判别方法，该方法中定义了一个$\ph
 \end{equation*}
 其中
 \begin{equation*}
-  \alpha_j=(u_j^n-u_{j-1}^n)^2+\varepsilon, \hspace{0.2cm} \beta_j=\left(\frac{\alpha_j}{\alpha_{j-1}}+\frac{\alpha_{j+1}}{\alpha_{j+2}}\right)^2,\hspace{0.2cm} \gamma_j=\frac{(u_{text{max}}-u_{\text{min})^2}}{\alpha_j}
+  \alpha_j=(u_j^n-u_{j-1}^n)^2+\varepsilon, \hspace{0.2cm} \beta_j=\left(\frac{\alpha_j}{\alpha_{j-1}}+\frac{\alpha_{j+1}}{\alpha_{j+2}}\right)^2,\hspace{0.2cm} \gamma_j=\frac{(u_{\text{max}}-u_{\text{min}})^2}{\alpha_j}
   \end{equation*}
-  这里$\varepsilon$是一个防止分母为0的小系数。$u_{\text{max}}$和$u_{\text{min}}$为所有节点在$t^n$时刻$u_j^n$最大值和最小值。在光滑区域有$0\leqslant \phi_i\leqslant 1$和$\phi_i=O(\Delta x)$。在间断区域$\gamma_j<<\beta_j$，$\phi_j$趋近于1。因此，本文中我们认为$\phi_j>(\Delta x)^2$时单元$I_j$和单元$I_{j+1}$为间断单元。
+  这里$\varepsilon$是一个防止分母为0的小系数。$u_{\text{max}}$和$u_{\text{min}}$为所有节点在$t^n$时刻，$u_j^n$的最大值和最小值。在光滑区域有$0\leqslant \phi_i\leqslant 1$和$\phi_i=O(\Delta x)$。在间断区域$\gamma_j\gg \beta_j$，$\phi_j$趋近于1。因此，我们认为$\phi_j>(\Delta x)^2$时单元$I_j$和单元$I_{j+1}$为间断单元。
   \subsection{Biswas，Devine和Flaherty动量限制（moment limiter）方法\cite{biswas1994parallel}（BDF）}
   该方法中定义
   \begin{equation*}
-	u_j^{(l),\text{mod}}=\frac{1}{2l-1}m\left\left( (2l-1)u_j^{(l)},u_{j+1}^{(l-1)}-u_j^{(l-1)}, u_j^{(l-1)}-u_{j-1}^{(l-1)} \right), \hspace{0.2cm} l=1, 2 
+	u_j^{(l),\text{mod}}=\frac{1}{2l-1}m\left( (2l-1)u_j^{(l)},u_{j+1}^{(l-1)}-u_j^{(l-1)}, u_j^{(l-1)}-u_{j-1}^{(l-1)} \right), \hspace{0.2cm} l=1, 2 
  \end{equation*}
- 其中$m$为公式 \ref{eq:minmod}中的minmod函数。如果$u_j^{(2),\text{mod}}\ne u_j^{(2)}$认为$I_j$为间断单元。
+ 其中$m$为公式 (\ref{eq:minmod}) 中的minmod函数。如果$u_j^{(2),\text{mod}}\ne u_j^{(2)}$认为$I_j$为间断单元。
  \subsection{KXRCF间断识别器\cite{krivodonova2004shock}}
  KXRCF间断识别方法将单元$I_j$的边界分为入流边界$\partial I_j^+$和出流边界$\partial I_j^-$两部分，如果
  \begin{equation}\label{eq:kxrcf}
-   \frac{\left| \int_{\partial I_j^_} (u^h|_{I_j}-u^h|_{I_{n_J}})ds \right|}{h_j^{\frac{k+1}{2}}|\partial I_j^-|\left\|u^h|_{I_j}\right\|}\ll 1
+   \frac{\left| \int_{\partial I_j^-} (u^h|_{I_j}-u^h|_{I_{n_J}})ds \right|}{h_j^{\frac{k+1}{2}}|\partial I_j^-|\left\|u^h|_{I_j}\right\|}\ll 1
 \end{equation}
-则认为$I_j$单元为间断单元。这里$h_j$定义为单元$I_j$的半径，$I_{n_J}$为单元$I_j$出流边界$\partial I_j^-$的邻居单元。本文中上面公式\ref{eq:kxrcf}可以简化为
+则认为$I_j$单元为间断单元。这里$h_j$定义为单元$I_j$的半径，$I_{n_J}$为单元$I_j$出流边界$\partial I_j^-$的邻居单元。在结构网格，上面公式 (\ref{eq:kxrcf})  可以简化为
 \begin{equation*}
   \frac{u^h(-\frac{1}{2})|_j-u^h(\frac{1}{2})|_{j-1}|}{(\Delta x)^{3/2}\sqrt{\int _{-1/2}^{1/2}[u^h(x)|_j}^2 dx} \gg 1
 \end{equation*}
 其中
 \begin{equation*}
   \begin{array}{l}
-	\displaystyle u^h(-\frac{1}{2})|_j=u_j^{(0)}-\frac{1}{2}u_j^{(1)}+\frac{1}{6}u_j^{(2)},\\[2em]
-	\displaystyle u^h(\frac{1}{2})|_{j-1}=u_{j-1}^{(0)}+\frac{1}{2}u_{j-1}^{(1)}+\frac{1}{6}u_{j-1}^{(2)},\\[2em]
+	\displaystyle u^h(-\frac{1}{2})|_j=u_j^{(0)}-\frac{1}{2}u_j^{(1)}+\frac{1}{6}u_j^{(2)}\\[2em]
+	\displaystyle u^h(\frac{1}{2})|_{j-1}=u_{j-1}^{(0)}+\frac{1}{2}u_{j-1}^{(1)}+\frac{1}{6}u_{j-1}^{(2)}\\[2em]
 	\displaystyle \int_{-1/2}^{1/2}[u^h(x)|_j]^2dx=a^2+\frac{b^2}{12}+\frac{c^2}{80}+\frac{ac}{6}\\
 \end{array}
 \end{equation*}
@@ -190,17 +190,15 @@ $a$，$b$，$c$分别为
 \section{数值算例}
 本文采用和上一章相同的LF通量分裂方法（章节 \ref{chap:LF}）和三阶Runge-Kutta时间方法（章节 \ref{chap:RK}）。
 \subsection{线性对流算例}
-该算例和算例 \ref{numexp:linear} 类似，分别测试一个组合波算例一个光滑正弦函数算例。控制方程为 (\ref{eq:linear})
+该算例和算例 \ref{numexp:linear} 类似，分别测试一个组合波算例和一个光滑正弦函数算例。控制方程同样采用 (\ref{eq:linear})。
 \begin{enumerate}[1.]
   \item 初始条件
 \begin{equation*}
   u_0(x)=\text{sin}(\pi x)
 \end{equation*}
 
-该算例是完全光滑的，如果一个间断识别方法完全准确，结果应该无限接近紧致格式的计算结果。反之，识别的越不准确，会有越多的点当成间断点计算，也就越接近WENO-Z的结果。通过该算例我们可以验证不同间断识别方法对于光滑区误识别的问题。在表\ref{tab:detector}中我们给出了WENO-Z格式、紧致格式、结合了不同识别方法的有限紧致格式结果的$L_\infty$误差。从中我们可以看到，只有TVB、KXRCF和SZ识别方法的计算结果明显区别于WENO-Z格式，而SZ识别方法结果和紧致格式相同。
+该算例的解是完全光滑的，如果间断识别方法完全准确，结果应该无限接近紧致格式的计算结果。反之，识别的越不准确，会有越多的点被当成间断点计算，也就越接近WENO-Z的结果。通过该算例我们可以验证不同间断识别方法对于光滑区误识别的问题。在表 \ref{tab:detector} 中我们给出了WENO-Z格式、紧致格式和结合了不同识别方法的有限紧致格式计算结果的$L_\infty$误差。从中我们可以看到，只有TVB、KXRCF和SZ识别方法的计算结果明显区别于WENO-Z格式，而SZ识别方法结果和紧致格式相同。
    
-
-
 \begin{table}[htbp]
   \small
   \centering
@@ -218,9 +216,11 @@ $a$，$b$，$c$分别为
 	\end{tabular}
 \label{tab:detector}
 \end{table}
-\item 组合波算例 初始条件为\ref{eq:linear3}，该算例中包含高斯波、方波、三角波和椭圆波，用来验证识别方法对于间断问题的识别能力，如果将间断误识别为光滑区域会引起数值振荡甚至发散。
+\item 组合波算例 
+  
+  初始条件在公式 (\ref{eq:linear3}) 中给出，该算例中包含高斯波、方波、三角波和椭圆波，用来验证识别方法对于不同间断波形的识别能力，如果将间断误识别为光滑区域会引起数值振荡甚至发散。
 
-  图 \ref{fig:detector_linear} 给出结合了不同识别方法的有限紧致格式（FC）在$t=8$时刻的计算结果及局部放大图，我们可以看到除了ATV方法，其它识别方法都能得到无振荡的计算结果。在高斯波、方波和三角波部分，SZ识别方法具有最好的结果，接下来是TVB识别方法。在椭圆波部分，KXRCF具有最好的结果，接下来是SZ识别方法。总体来说，SZ识别方法具有最好的精度效果。
+  \hspace{0.5cm}  图 \ref{fig:detector_linear} 给出结合了不同识别方法的有限紧致格式（FC）在$t=8$时刻的计算结果及局部放大图，我们可以看到除了ATV方法，其它识别方法都能得到无振荡的计算结果。在高斯波、方波和三角波部分，SZ识别方法具有最好的结果，接下来是TVB识别方法。在椭圆波部分，KXRCF具有最好的结果，接下来是SZ识别方法。总体来说，SZ识别方法具有最好的精度效果。
   \begin{figure}
 	\centering
 	\includegraphics[width=12cm]{detector_linear_multi.eps}
@@ -230,9 +230,12 @@ $a$，$b$，$c$分别为
 
  \end{enumerate}
  \subsection{一维激波管算例}
- 该部分采用和章节 \ref{chap:1d_shock}相同的一维欧拉方程 (\ref{eq:1d_euler})，Lax激波管算例、Shu-osher激波管算例及冲击波相互作用算例。
+
+ 该部分采用和章节 \ref{chap:1d_shock} 相同的一维欧拉方程 (\ref{eq:1d_euler})，Lax激波管算例、Shu-osher激波管算例及冲击波相互作用算例。
+
  \begin{enumerate}[1.]
  \item Lax激波管算例
+
    图 \ref{fig:detector_lax} 给出有限紧致格式结合不同识别方法在$N=200$网格下的计算结果和局部放大图，可以看到ATV、TVB和KXRCF识别方法的结果都存在振荡，其中KXRCF振荡最为剧烈，SZ识别方法具有最好的结果，BDF方法也有不错的效果。
 
    \begin{figure}
@@ -243,6 +246,7 @@ $a$，$b$，$c$分别为
 	 \end{figure}
 
 	 \item Shu-Osher激波管算例
+
 	   图 \ref{fig:detector_shuo} 中给出不同识别方法在$N=200$网格下计算结果和局部放大对比，总体来讲SZ识别方法在所有区域都有很好的表现，TVB识别方法也具有较好的效果，KXRCF识别方法和BDF识别方法分别在波峰和波谷表现良好。
 
    \begin{figure}
@@ -252,6 +256,7 @@ $a$，$b$，$c$分别为
 	 \label{fig:detector_shuo}
 	 \end{figure}
    \item 冲击波相互作用算例	
+
  图 \ref{fig:detector_two_blast} 给出$N=200$网格$t=0.038$时刻的计算结果，通过三个区域放大图可以看到，在波峰SZ识别方法和ATV识别方法具有最好的表现，接下来是TVB识别方法。在波谷KXRCF具有最好的效果，在大梯度的光滑区域，仍然是SZ识别方法计算效果最准确。 
 	 
  
@@ -264,11 +269,12 @@ $a$，$b$，$c$分别为
 \end{enumerate}
 
 \subsection{二维算例}
+
 接下来我们考虑二维Euler方程 (\ref{eq1_1}) 算例。
 \begin{enumerate}[1.]
   \item 二维黎曼问题算例
 
-	在前言 \ref{chap:riemann} 中我们曾讨论过二维黎曼问题研究现状。由于该类问题具有简单的二维结构，学者们经常用它们做数值测试算例。我们知道，二维黎曼问题有多达19种，其中某些在数值计算中较为常用\cite{schulz1993numerical}。我们选取其中一种，初始条件为
+	在前言 \ref{chap:riemann} 中我们曾讨论过二维黎曼问题研究现状。由于该类问题具有简单的二维结构，学者们经常用它们做数值测试算例。我们知道，二维黎曼问题有多达19种，其中某些情况在数值计算中较为常用\cite{schulz1993classification}。我们选取其中一种，采用的初始条件为
 	\begin{equation*}
 	  (\rho,u,v,p)=\left\{
 		\begin{array}{ll}
@@ -279,7 +285,7 @@ $a$，$b$，$c$分别为
 		\end{array}
 		\right.
 		\end{equation*}
-		计算时间为$t=0.8$，图 \ref{fig:detector_gasdynamics} 给出有限紧致格式结合不同识别方法的计算结果和局部方法图，计算网格为$400\times 400$，对比算例为采用WENO格式分别在$400\times 400$和加密的$800\times 800$网格下计算结果。可以看到，采用了SZ识别方法可以获得最为精细的计算结果，识别出更多的小尺度结构，其中TVB识别方法的结果也较WENO-Z要好，而使用了KXRCF和BDF识别方法，计算结果较纯粹的WENO-Z并没有太大的改善，使用了ATV和XS识别方法的结果由于振荡，甚至比采用纯粹的WENO-Z格式效果更差。
+		计算时间为$t=0.8$，图 \ref{fig:detector_gasdynamics} 给出有限紧致格式结合不同识别方法的计算结果和局部方法图。计算网格为$400\times 400$。对比算例为采用WENO格式分别在$400\times 400$和加密的$800\times 800$网格下计算结果。可以看到，采用了SZ识别方法可以获得最为精细的计算结果，识别出更多的小尺度结构；TVB识别方法的结果也较WENO-Z要好；而使用了KXRCF和BDF识别方法，计算结果较纯粹的WENO-Z并没有太大的改善；使用了ATV和XS识别方法的结果由于振荡，甚至比采用纯粹的WENO-Z格式效果更差。
 
 		\begin{figure}
 		  \centering
@@ -304,12 +310,12 @@ $a$，$b$，$c$分别为
 				\includegraphics[width=7cm]{detector_gasdynamics_WENO_800.eps}};\\
 			  };
 			\end{tikzpicture}
-		  \caption{二维黎曼问题密度等值线，不同识别方法对比，$t=0.8$}
+		  \caption{二维黎曼问题，采用不同识别方法计算结果，密度等值线图，$t=0.8$}
 		  \label{fig:detector_gasdynamics}
 		\end{figure}
 	\item 双马赫反射问题
 
-双马赫反射问题是另外一个经常用来验证数值方法的二维算例\cite{woodward1984numerical}，在该问题中，一道和壁面有一定夹角的强激波从水平方向扫过壁面。计算区域采用$[0,4]\times[0,1]$的矩形区域，下边界$\frac{1}{6}\leqslant x\leqslant 6$采用壁面反射条件，初始时，一道马赫数为10的激波和水平$60^\circ$安置在$x=\frac{1}{6},y=0$，在$0<x<\frac{1}{6}$区域采用准确的激波后条件。上边界通过马赫数为10的激波条件实时计算得到。左右边界分别采用入流和出流条件。波前采用$\rho=1.4$，$p=1$。计算时间为$t=0.2$，该算例中我们只采用上面算例中无振荡的四中激波识别方法。图 \ref{fig:detector_doublemach}  给出了密度结果及放大图。从中我们可以看到SZ识别方法具有最好的表现。
+双马赫反射问题是另外一个经常用来验证数值方法的二维算例\cite{woodward1984numerical}，在该问题中，一道和壁面有一定夹角的强激波从水平方向扫过壁面。计算区域采用$[0,4]\times[0,1]$的矩形区域，下边界$\frac{1}{6}\leqslant x\leqslant 6$采用壁面反射条件，初始时，一道马赫数为10的激波和水平$60^\circ$安置在$x=\frac{1}{6}$，$y=0$。在$0<x<\frac{1}{6}$区域采用准确的激波后条件。上边界通过马赫数为10的激波条件实时计算得到。左右边界分别采用入流和出流条件。波条件为$\rho=1.4$，$p=1$。计算时间为$t=0.2$，该算例中我们只采用上面算例中无振荡的四中激波识别方法。图 \ref{fig:detector_doublemach}  给出了密度结果及放大图。从中我们可以看到SZ识别方法具有最好的表现。
 
 		\begin{figure}
 		  \centering
@@ -323,7 +329,7 @@ $a$，$b$，$c$分别为
 
 			\includegraphics[width=13cm]{detector_doublemach_SZ.eps}
 
-		  \caption{双马赫反射问题不同识别方法对比，密度等值线图，$t=0.2$}
+		  \caption{双马赫反射问题，采用不同识别方法的计算结果，密度等值线图，$t=0.2$}
 		  \label{fig:detector_doublemach}
 		  \vspace{-10pt}
 		\end{figure}
@@ -331,6 +337,6 @@ $a$，$b$，$c$分别为
 \end{enumerate}
 
 \section{小结}
-本章中，我们将一些常用的间断识别方法加入有限紧致格式中，对它们的表现进行了一系列的数值比较。最终我们认为基于WENO-Z格式$\tau_5$参数的SZ识别方法最为准确有效。当然，其它的一些识别方法，如TVB、KXRCF和BDF，都能保证格式无振荡的性质，但是并不能在每个算例中都有足够精确的表现。由于SZ识别方法的有效性，我们可以进一步将它结合进其它杂交格式中，或将采用了SZ识别方法的有限紧致格式应用在更复杂流场问题求解中，如下一章中的理想磁流体流动高精度稳定求解。
+本章中，我们将一些常用的间断识别方法加入有限紧致格式中，通过一系列的数值方法，对它们的表现进行了比较。最终我们认为基于$\tau_5$参数的SZ识别方法最为准确有效。当然，其它的一些识别方法，如TVB、KXRCF和BDF，都能保证格式无振荡的性质，但是并不能在每个算例中都有足够精确的表现。由于SZ识别方法的有效性，我们可以进一步将它结合进其它杂交格式中，或将采用了SZ识别方法的有限紧致格式应用在更复杂流场问题求解中，如应用在下一章中的理想磁流体方程中。
 
 

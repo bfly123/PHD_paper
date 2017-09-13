@@ -1,9 +1,5 @@
 \begin{thebibliography}{100}
 
-\bibitem{H1999Low}
-Low-dissipative high-order shock-capturing methods using characteristic-based
-  filters.
-
 \bibitem{agarwal1999comparative}
 {\sc Agarwal, R., Augustinus, J., and Halt, D.}
 \newblock A comparative study of advection upwind split (ausm) and
@@ -108,11 +104,11 @@ Low-dissipative high-order shock-capturing methods using characteristic-based
   with increasingly high order of accuracy.
 \newblock {\em Journal of Computational Physics 160}, 2 (2000), 405--452.
 
-\bibitem{balsara1999staggered}
+\bibitem{Balsara1999A}
 {\sc Balsara, D.~S., and Spicer, D.~S.}
-\newblock A staggered mesh algorithm using high order godunov fluxes to ensure
-  solenoidal magnetic fields in magnetohydrodynamic simulations.
-\newblock {\em Journal of Computational Physics 149}, 2 (1999), 270--292.
+\newblock {\em A Staggered Mesh Algorithm Using High Order Godunov Fluxes to
+  Ensure Solenoidal Magnetic Fields in Magnetohydrodynamic Simulations}.
+\newblock Academic Press Professional, Inc., 1999.
 
 \bibitem{bao2000random}
 {\sc Bao, W., and Jin, S.}
@@ -1246,6 +1242,12 @@ Low-dissipative high-order shock-capturing methods using characteristic-based
   detailed chemical reaction model.
 \newblock {\em Combustion and Flame 113}, 1 (1998), 147--163.
 
+\bibitem{orszag1979small}
+{\sc Orszag, S.~A., and Tang, C.~M.}
+\newblock Small-scale structure of two-dimensional magnetohydrodynamic
+  turbulence.
+\newblock {\em Journal of Fluid Mechanics 90}, 1 (1979), 129--143.
+
 \bibitem{osher1985shock}
 {\sc Osher, S.}
 \newblock Shock modelling in transonic and supersonic flow.
@@ -1808,6 +1810,12 @@ Low-dissipative high-order shock-capturing methods using characteristic-based
 \newblock Spurious behavior of shock-capturing methods by the fractional step
   approach: Problems containing stiff source terms and discontinuities.
 \newblock {\em Journal of Computational Physics 241\/} (2013), 266--291.
+
+\bibitem{H1999Low}
+{\sc Yee, H., Sandham, N., and Djomehri, M.}
+\newblock Low-dissipative high-order shock-capturing methods using
+  characteristic-based filters.
+\newblock {\em Journal of Computational Physics 150}, 1 (1999), 199--238.
 
 \bibitem{yee2007development}
 {\sc Yee, H., and Sj{\"o}green, B.}
