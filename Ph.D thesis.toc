@@ -27,25 +27,9 @@
 \contentsline {subsubsection}{\numberline {1.4.3.3}刚性化学反应流动的空间刚性问题}{25}{subsubsection.1.4.3.3}
 \contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{27}{subsubsection.1.4.3.4}
 \contentsline {section}{\numberline {1.5}本文所开展研究内容}{29}{section.1.5}
-\contentsline {part}{\hspace {1em}上部分}{31}{part.1}
-\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}双信息保存（DIP）方法}{33}{chapter.2}
-\contentsline {section}{\numberline {2.1}不同的界面类型和界面方法}{33}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}传统界面}{33}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}多相界面和耗散界面}{34}{subsection.2.1.2}
-\contentsline {section}{\numberline {2.2}双信息保存方法基本思想}{35}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}信息点}{35}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}单元信息点（单元点）}{37}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}粒子信息点（粒子点）}{42}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}边界处理}{44}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}DIP方法一维伪代码}{46}{subsection.2.2.5}
-\contentsline {subsection}{\numberline {2.2.6}二维DIP方法}{48}{subsection.2.2.6}
-\contentsline {section}{\numberline {2.3}数值算例}{49}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}一维数值算例}{49}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}二维数值算例}{52}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}小结}{56}{section.2.4}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{59}{appendix.A}
-\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{59}{section.A.1}
-\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{61}{section.A.2}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} B\hspace {0.3em}}二维DIP方法伪代码 }{63}{appendix.B}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} C\hspace {0.3em}}化学反应不同组分热力学拟合参数}{67}{appendix.C}
-\contentsline {chapter}{参考文献}{69}{appendix*.6}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{33}{appendix.A}
+\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{33}{section.A.1}
+\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{35}{section.A.2}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} B\hspace {0.3em}}二维DIP方法伪代码 }{37}{appendix.B}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} C\hspace {0.3em}}化学反应不同组分热力学拟合参数}{41}{appendix.C}
+\contentsline {chapter}{参考文献}{43}{appendix*.6}

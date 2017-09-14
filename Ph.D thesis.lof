@@ -8,27 +8,6 @@
 \contentsline {figure}{\numberline {1.4}{\ignorespaces $2H_2+O_2+7Ar$反应组分摩尔比变化和激波前沿距离间关系\cite {powers2005accurate}}}{28}{figure.1.4}
 \contentsline {figure}{\numberline {1.5}{\ignorespaces $2H_2+O_2+7Ar$反应不同特征值空间尺度和激波前沿距离间关系\cite {powers2005accurate}}}{28}{figure.1.5}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces 界面的一维示意图}}{34}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces 不同界面方法一维示意图}}{35}{figure.2.2}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces 不同类型界面方法适合求解的工况二维示意图}}{36}{figure.2.3}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces 多相界面和耗散界面一维示意图}}{36}{figure.2.4}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces 信息点和网格节点类比一维示意图}}{37}{figure.2.5}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces 单元信息点一维示意图}}{38}{figure.2.6}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces 界面在单元点间可能的分布情况一维示意图}}{40}{figure.2.7}
-\contentsline {figure}{\numberline {2.8}{\ignorespaces 无厚度界面情况中单元点的消去方法一维示意图}}{40}{figure.2.8}
-\contentsline {figure}{\numberline {2.9}{\ignorespaces 单元点的回溯生成法一维示意图}}{41}{figure.2.9}
-\contentsline {figure}{\numberline {2.10}{\ignorespaces 耗散界面情况中单元点的消去方法一维示意图}}{42}{figure.2.10}
-\contentsline {figure}{\numberline {2.11}{\ignorespaces 耗散界面问题中单元点的生成方法一维示意图}}{42}{figure.2.11}
-\contentsline {figure}{\numberline {2.12}{\ignorespaces 边界和虚拟网格一维示意图}}{44}{figure.2.12}
-\contentsline {figure}{\numberline {2.13}{\ignorespaces 一维线性对流间断传播算例，均匀速度场$u=1$，时间步$Nt=23$}}{50}{figure.2.13}
-\contentsline {figure}{\numberline {2.14}{\ignorespaces 一维对流方程组合波算例，均匀速度场$u=1$，$T=6$}}{51}{figure.2.14}
-\contentsline {figure}{\numberline {2.15}{\ignorespaces Bugers方程算例，$T=0.4$}}{52}{figure.2.15}
-\contentsline {figure}{\numberline {2.16}{\ignorespaces 二维均匀速度场间断传播算例，$T=0.6$}}{53}{figure.2.16}
-\contentsline {figure}{\numberline {2.17}{\ignorespaces Zalesak圆盘旋转算例$N=200\times 200$网格下计算结果 （$T_1=0$, $T_2=0.25$, $T_3=0.5$, $T_4=0.75$, $T_5=1$ and $T_6=20$），其中黑线为初始条件}}{54}{figure.2.17}
-\contentsline {figure}{\numberline {2.18}{\ignorespaces 界面拉伸算例, $N=200\times 200$， 其中黑线为参考解}}{57}{figure.2.18}
-\contentsline {figure}{\numberline {2.19}{\ignorespaces 多相界面拉伸算例, $N=400\times 400$}}{58}{figure.2.19}
-\contentsline {figure}{\numberline {2.20}{\ignorespaces 多相界面旋转算例, $N=400\times 400$}}{58}{figure.2.20}
-\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
