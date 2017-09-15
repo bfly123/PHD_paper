@@ -7,7 +7,9 @@
 
 \XeTeXinputencoding "GB2312"
 \documentclass{CASthesis}
+
 %\usepackage{xeCJK}
+\usepackage{xpatch}
 \usepackage{ccmap}
 \usepackage{multirow}
 \usepackage{booktabs}
@@ -36,17 +38,24 @@
 % dvips 使用 dvips 生成最终的 PS 文档
 % pdftex 使用 pdfLaTeX 生成最终的 PDF 文档
 
-\theoremstyle{plain}\newtheorem{definition}{\sc{Definition}}
+\theoremstyle{plain}\newtheorem{definition}{\sc{定义}}
 \theoremstyle{defination}\newtheorem{example}{Example}[chapter]
 % 设置图形文件的搜索路径
 \graphicspath{{chapter/}{figures/}}
 
 % 取消链接的颜色（黑白打印时）
 %\hypersetup{colorlinks=false}
-
+\CTEXsetup[name={, },number={}]{part}
+%\makeatletter
+%\xpatchcmd{\part}
+%{\if@openright\cleardoublepage\else\clearpage\fi}{\par\relax}{}{}
+%\xpatchcmd{\@endpart}
+%{\vfil\newpage\if@twoside\if@openright\null\thispagestyle{empty}\newpage\fi\fi\if@tempswa\twocolumn\fi}{\par\relax}{}{}
+%\makeatother
+%
 % 小节标题靠左对齐
 %\CTEXsetup[format+={\flushleft}]{section}
-\CTEXsetup[name={, },number={}]{part}
+
 
 \begin{document}
 
@@ -111,15 +120,15 @@
   \include{chapter/Chapter-Introduction}
 %\part{上部分}
 \input{chapter/Part_I.tex}
-  \include{chapter/Chapter-Multi-WENO}
-  \include{chapter/Chapter-detector}
-  \include{chapter/Chapter-MHD}
-% \part{下部分}
+%  \include{chapter/Chapter-Multi-WENO}
+%  \include{chapter/Chapter-detector}
+%  \include{chapter/Chapter-MHD}
+%% \part{下部分}
 \input{chapter/Part_II.tex}
  \include{chapter/Chapter-Dual-Information-Method}
   \include{chapter/Chapter-NP-method}
-  \include{chapter/Chapter-Stiff-Reaction}
-  \include{chapter/Chapter-elementary-Reaction}
+%  \include{chapter/Chapter-Stiff-Reaction}
+%  \include{chapter/Chapter-elementary-Reaction}
 %%}
 %  \include{chapter/Chapter-Conclusion}
 %

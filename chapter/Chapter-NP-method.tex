@@ -1,6 +1,7 @@
 
 \XeTeXinputencoding "GB2312"
 \chapter{刚性常微分方程和数值摄动（NP）方法}\label{chap:NPmethod}
+在本文第\ref{chap:stiff_reaction}、\ref{chap:element_reaction}章中，会遇到求解刚性ODE方程的问题。在前言 \ref{chap:time_stiff} 中曾对时间刚性问题进行过分析和探讨。采用分裂方法，时间刚性集中体现在ODE方程求解中，是一个较为独立的数学问题，因此，在本章中我们预先分析该问题，并设计相应的数值方法进行处理，在后面的章节中将不做过多的探讨。
 \section{刚性常微分（ODE）方程}
 在各个学科领域都广泛的存在着如下形式的常微分方程
 \begin{equation}\label{eq:ode}
@@ -10,14 +11,14 @@
 
 刚性方程在ODE数值方法发展中犹如一块乌云，甚至至今连明确的数学定义都没有\cite{wanner1991solving}。学者们给出了刚性方程多种描述，目前接受最广泛的仍然是1985年Curtiss和Hirschfelder最早给出的描述：刚性方程是指那些采用某些特定的隐式格式求解，尤其是采用BDF格式，会比采用显示格式求解有优势，通常都有极大的优势，的一类方程（`stiff equations are equations where certain implicit method, in particularly BDF, perform better, usually tremendously better, than explicit ones'）。
 
-刚性和非刚性方程求解起来差别巨大，比如采用显式格式求解刚性ODE方程，需要极小的时间步才能稳定，相反的，如果采用隐式格式求解非刚性ODE方程，又因为复杂的迭代同样会造成计算效率低下。如何能协调这一对矛盾，一直困扰着ODE数值方法的发展。E.Hairer 和G.Wanne在关于ODE方程的经典教材\cite{wanner1991solving,hairer1999stiff}中，直接将刚性问题解法和非刚性问题解法分成两册分别讲述，但是由于刚性方程没有明确的定义，很难区分哪些ODE方程是刚性的哪些是非刚性的，同时，刚性也是会随时间发展变化的，刚性方程本身刚性的大小也难以界定。
-例如将在本文第八章中遇到的化学反应ODE方程，在该方程中，由于某些组分的时间尺度很小，存在较大的刚性。但是另一方面，由于刚性所在的区域相对计算区域而言很小，同时，考虑到化学反应方程组特征矩阵巨大，隐式求解会存在着复杂的矩阵运算，计算量并不一定降低，也难以采用高精度的隐式格式等问题，多数学者目前仍更愿意采用显式格式在充分小的时间步内进行求解。
+刚性和非刚性方程求解起来差别巨大，比如采用显式格式求解刚性ODE方程，需要极小的时间步才能稳定，相反的，如果采用隐式格式求解非刚性ODE方程，又因为复杂的迭代同样会造成计算效率低下。如何能协调这一对矛盾，一直困扰着ODE数值方法的发展。E.Hairer 和G.Wanne在关于ODE方程的经典教材\cite{wanner1991solving,hairer1999stiff}中，直接将刚性问题解法和非刚性问题解法分成两册分别讲述，但是由于刚性方程没有明确的定义，很难区分哪些ODE方程是刚性的哪些是非刚性的，同时，刚性也是会随时间发展变化的，刚性方程本身刚性的大小也难以界定。因此。即便对于存在刚性的方程也不一定采用隐式格式进行求解。
+例如对于化学反应ODE方程，其中某些组分的时间尺度很小，存在较大的刚性。但是另一方面，刚性所在的区域相对计算区域而言很小，另外考虑到化学反应方程组特征矩阵巨大，隐式求解会存在着复杂的矩阵运算，计算量并不一定降低，也难以采用高精度的隐式格式等问题，多数学者目前仍更愿意采用显式格式在充分小的时间步内进行求解。
 
 
 如前言中所讨论的，目前除刚性稳定的隐式格式和刚性不稳定的显式格式外，也有一些格式一定程度上能兼顾刚性和非刚性的求解要求，例如，线化梯形公式（LT）\cite{wang2012high,zhang2014equilibrium}，该方法具有二阶精度、显式形式和一定程度的刚性稳定性，因而在如化学反应这种即存在刚性和非刚性又由于特征矩阵巨大而难以采用隐式格式求解的方程中得到较多的应用。然而，线化梯形公式也仅仅具有二阶精度，在非刚性的区域精度不足，另外，该方法也非绝对的刚性稳定的，刚性过大仍然会出现计算问题。
 
 由上面分析可以看出，如果能找到或者构造一种高精度的、刚性稳定且具有显形式的格式对于处理例如化学反应等可能存在刚性ODE方程的问题，尤为重要。
-在本章中，我们基于Gao 数值摄动的思想\cite{gao2010numerical,zhi2000advances,shen2006high}，构造了针对于ODE方程 (\ref{eq:ode}) 的刚性稳定、高精度且具有显形式的数值摄动格式。并通过理论分析和数值计算验证了该类方法的效果。
+在本章中，我们基于Gao 数值摄动的思想\cite{gao2010numerical,zhi2000advances,shen2006high}，构造了针对于ODE方程 (\ref{eq:ode}) 的的数值摄动格式。并通过理论分析和数值计算验证了该类方法的效果。
 \section{数值摄动（NP）方法}
 %摄动方法最早应用在天体力学中，用来计算小天体对大天体的影响，后来成为求解含有小参数微分方程近似解的有效理论工具。
 %摄动方法一般描述为，
@@ -35,7 +36,7 @@
 \end{equation}
 我们将它作为构造数值摄动方法的基本格式，对其泰勒展开，可以得到
 \begin{equation}\label{tay}
-  \frac{dx}{dt}=f(t,x)-\frac{1}{2}\Delta t\frac{d^2 x}{dt^2}-O(\Delta t^2).
+  \frac{dx}{dt}=f(t,x)-\frac{1}{2}\Delta t\frac{d^2 x}{dt^2}-O(\Delta t^2)
 \end{equation}
 和对流方程构造数值摄动方法\cite{zhi2000advances,gao2010numerical}相同，我们在方程 (\ref{frstod}) 左侧引入一个摄动多项式$p$，格式变为
 \begin{equation}\label{kfrstod}
@@ -43,7 +44,7 @@
 \end{equation}
 其中的幂次多项式$p$为
 \begin{equation}\label{k}
-  p=1+\sum\limits_{i=1}^{\infty}a_i\Delta t^i.
+  p=1+\sum\limits_{i=1}^{\infty}a_i\Delta t^i
 \end{equation}
 将公式 (\ref{k}) 带入公式 (\ref{kfrstod}) 并且对其泰勒展开有
 \begin{equation}\label{ep}
@@ -53,14 +54,14 @@
   \begin{equation}
 	\frac{1}{2} \frac{d^2x}{dt^2}+a_1\frac{dx}{dt}=0
  \end{equation}
- 格式 (\ref{kfrstod}) 具有二阶精度。同样的方法，我们可以通过消除右端更多项来构造更高阶格式。公式 (\ref{ep}) 中二阶导数，及其它高阶导数都可以直接通过原方程 （\ref{eq:ode}) 求得：
+ 格式 (\ref{kfrstod}) 具有二阶精度。同样的方法，我们可以通过消除右端更多项来构造更高阶格式。公式 (\ref{ep}) 中二阶导数，及其它高阶导数都可以直接通过原方程 （\ref{eq:ode}) 求得，
 \begin{eqnarray*}
   \frac{dx}{dt}=f
   \frac{d^2x}{dt^2}=f'_t+f'_xf
   \cdots
 \end{eqnarray*}
 
-因此，我们可以通过所需要构造的格式精度推导出摄动系数$a_1$，$a_2$，$\cdots$：
+因此，我们可以通过所需要构造的格式精度推导出摄动系数$a_1$，$a_2$，$\cdots$，
 \begin{equation*}\label{a_1xt}
   a_1=-\frac{f'_t+f'_xf}{2f}
 \end{equation*}
@@ -79,7 +80,7 @@
 	\cdots
 \end{equation}
 
-为了简便，方程 (\ref{eq:ode}) 的$N$阶数值摄动格式可以写为
+方程 (\ref{eq:ode}) 的$N$阶数值摄动格式可以写为
 \begin{equation}\label{NP}
 x_{n+1}=x_n+\Delta x f(t, x_n)/p_N
 \end{equation}
@@ -93,43 +94,42 @@ NP（3TNP）格式的摄动多项式为
 \end{eqnarray}
 其中$\overline{p}_3$应该是$p_3$的二阶近似，有
 \begin{equation}\label{b_12}
-  b_1=a_1-\frac{a_2}{a_1+1} \hspace{0.2cm}
+  b_1=a_1-\frac{a_2}{a_1+1}, \hspace{0.2cm}
   b_2=\frac{a_2}{a_1+1}
   \end{equation}
-新的三阶变形NP格式同样具有三阶精度，且较原有的三阶NP格式稳定区域更大，关于稳定性我们会在下一章分析。
+新的三阶变形NP格式同样具有三阶精度，且较原有的三阶NP格式更稳定，关于稳定性将在下一节进行分析。
 
 \section{NP格式的稳定性分析}
 在前面刚性方程介绍中，曾提到，对于刚性方程的算法，稳定性是最重要的，因此我们验证一种方法是否适合求解刚性问题，首先要分析它的刚性稳定性\cite{shampine1994numerical}。
 
-对于格式刚性稳定性的分析，首先是格式的线性稳定性，线性稳定性一般通过A稳定性及强A稳定性来判定，关于线性稳定性，我们首先需要给出线性方程：
+对于格式刚性稳定性的分析，首先要分析其线性稳定性，线性稳定性一般通过A稳定性及强A稳定性来判定，关于线性稳定性，我们将在下面的线性方程 (\ref{qx}) 中进行分析，
 \begin{equation}\label{qx}
   x'=qx, Re(q)<0
 \end{equation}
 
-采用某一方法对方程 (\ref{qx}) 进行离散后可以写成统一的形式
-\begin{equation}\label{Eq.1}
+采用某一方法对方程 (\ref{qx}) 离散后可以统一写成：
+\begin{equation}\label{Eq:1}
   x_{n+1}=E(h)x_n 
 \end{equation}
 其中  $h=q\Delta t$。
+在 (\ref{Eq:1}) 的基础上，我们可以给出A稳定性和强A稳定性的定义：
 
-在 (\ref{Eq.1}) 的基础上，我们可以给出A稳定性和强A稳定性两条定义
-
-\begin{definition}[A-stable]
+\begin{definition}[A稳定]
   根据 Dahlquist \cite{dahlquist1963special}的分析，关于离散方程 （\ref{Eq.1})  如果对于任何的实部为负的复数$h$都有  $|E(h)|<1$ ，则认为该格式为A稳定的。
 \end{definition}
 
-\begin{definition}[Strong A-stable]
- 如果一个格式是A-stable的同时又满足 $$\lim \limits_{Re(h) \to -\infty}|E(h)|=0$$，则认为该格式是强A稳定的。
+\begin{definition}[强A稳定]
+  如果一个格式是A稳定的同时又满足 $\lim \limits_{Re(h) \to -\infty}{}|E(h)|=0$，则认为该格式是强A稳定的。
 \end{definition}
 
-在分析NP格式的线性稳定性前，我们先给出一些求解ODE方程常用的格式，尤其是常用在求解化学反应ODE方程中的格式，用来和NP格式进行对比，它们分别是一阶显式欧拉格式（1EE）、一阶隐式欧拉格式（1IE）、二阶线化梯形公式（2LIE）和三阶显式Runge-Kutta（2RK）格式。
+在分析NP格式的线性稳定性前，我们先给出一些求解ODE方程常用的格式，尤其是常用在求解化学反应ODE方程中的格式，用来和NP格式进行对比，它们分别是一阶显式欧拉格式（1EE）、一阶隐式欧拉格式（1IE）、二阶线化梯形公式（2LIE）和三阶显式Runge-Kutta（3RK）格式。
 
 (1) 一阶显式欧拉格式
 \begin{eqnarray}
   x_{n+1}-x_n=\Delta tf(t,x_{n})
   \end{eqnarray}
 \begin{eqnarray}
-  E^{1EE}(h)=1+h
+  E^{\text{1EE}}(h)=1+h
   \end{eqnarray}
 
 (2) 一阶隐式欧拉格式
@@ -148,7 +148,7 @@ NP（3TNP）格式的摄动多项式为
 \begin{eqnarray}
   E^{\text{2LIE}}(h)=\frac{1+\frac{1}{2}h}{1-\frac{1}{2}h}
   \end{eqnarray}
-  需要注意的是求解线性方程 (\ref{qx})，二阶线化梯形公式具有和二阶NP格式相同的形式。
+  需要注意的是求解线性方程 (\ref{qx})时，二阶线化梯形公式具有和二阶NP格式相同的形式。
 
   (4) 三阶显式Runge-Kutta格式
 \begin{eqnarray}
@@ -203,7 +203,7 @@ $\cdots$.
 由于理论方法的限制，我们仅能比较不同格式的线性稳定性，而求解非线性方程是否稳定，我们只能通过数值的方法进行验证。
 
 \begin{enumerate}
-  \item[算例1).] 首先我们研究如下一个非线性方程\cite{hairer1999stiff} 
+  \item[算例1).] 首先我们研究如下方程\cite{hairer1999stiff} 
   \begin{equation}\label{eqexample1}
 	\frac{dx}{dt}=f(t,x)=-50(x-\cos t)
   \end{equation}
@@ -242,9 +242,9 @@ $\cdots$.
 \begin{eqnarray*}
 	  x=\frac{1}{\sqrt{2t+1}}
 \end{eqnarray*}
-同样不难求的摄动系数分别为
+同样不难求得摄动系数为
 \begin{eqnarray*}
-  a_1=\frac{3x_n^2}{2}, 
+  a_1=\frac{3x_n^2}{2}, \hspace{0.3cm}
 	  a_2=-\frac{x_n^4}{4}
 \end{eqnarray*}
 表 \ref{tab:errorNP} 给出不同方法的误差和计算精度，可以看到，二阶NP格式、三阶NP格式和三阶TNP格式都能达到它们理论精度，而且三阶NP和三阶TNP格式误差要小于三阶RK格式。
@@ -295,7 +295,7 @@ $\cdots$.
 \end{enumerate}
 
 \section{小结}
-本章，我们针对ODE方程可能存在的刚性问题，构造了高精度、刚性稳定且具有显式形式的数值摄动(NP）格式，经过理论分析和数值计算，验证了该类格式，尤其是三阶TNP格式高精度及刚性稳定等性质。再下一章中，我们将会把三阶TNP格式应用在化学反应方程求解中，用来解决化学反应ODE方程中的时间刚性问题。
+本章，我们针对ODE方程可能存在的刚性问题，构造了高精度、刚性稳定且具有显式形式的数值摄动(NP）格式，经过理论分析和数值计算，验证了该类格式，尤其是三阶TNP格式的刚性稳定性。再下面章节中，我们将会把三阶TNP格式应用在化学反应方程求解中，用来解决化学反应ODE方程中的时间刚性问题。
 
 
 
