@@ -7,7 +7,15 @@ A level-1 auxiliary file: chapter/Chapter-Introduction.aux
 A level-1 auxiliary file: chapter/Chapter-Multi-WENO.aux
 A level-1 auxiliary file: chapter/Chapter-detector.aux
 A level-1 auxiliary file: chapter/Chapter-MHD.aux
-Reallocated field_info (elt_size=4) to 11233 items from 5000.
+A level-1 auxiliary file: chapter/Chapter-Dual-Information-Method.aux
+A level-1 auxiliary file: chapter/Chapter-NP-method.aux
+A level-1 auxiliary file: chapter/Chapter-Stiff-Reaction.aux
+A level-1 auxiliary file: chapter/Chapter-elementary-Reaction.aux
+A level-1 auxiliary file: chapter/Chapter-Scale.aux
+A level-1 auxiliary file: chapter/Chapter-2D-DIP.aux
+A level-1 auxiliary file: chapter/Chapter-Element-Parameter.aux
+A level-1 auxiliary file: chapter/Chapter_Conclution.aux
+Reallocated field_info (elt_size=4) to 12222 items from 5000.
 Database file #1: bib/mybibfile.bib
 Repeated entry---line 1727 of file bib/mybibfile.bib
  : @book{lee2008detonation
@@ -121,10 +129,12 @@ Repeated entry---line 6869 of file bib/mybibfile.bib
  : @article{oran1998numerical
  :                           ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "balsara1999staggered"
 Warning--I didn't find a database entry for "van1979towards1"
 Warning--I didn't find a database entry for "anderson1998diffuse"
+Warning--I didn't find a database entry for "balsara1999staggered"
 Warning--I didn't find a database entry for "jiang1999high"
+Warning--I didn't find a database entry for "ben1989generalized"
+Warning--I didn't find a database entry for "roy1999gaseous"
 Warning--empty journal in akbar1997mach
 Warning--empty journal in freidberg1987ideal
 Warning--empty journal in glimm1970decay
@@ -135,45 +145,45 @@ Warning--can't use both volume and number fields in smooke1988comparison
 Warning--empty journal in van1973towards
 Warning--empty year in zhacomparative
 Warning--empty journal in 张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究
-You've used 359 entries,
+You've used 360 entries,
             2253 wiz_defined-function locations,
-            2304 strings with 58690 characters,
-and the built_in function-call counts, 115319 in all, are:
-= -- 11601
-> -- 4803
+            2318 strings with 59097 characters,
+and the built_in function-call counts, 115645 in all, are:
+= -- 11635
+> -- 4815
 < -- 0
-+ -- 2088
-- -- 1634
-* -- 9595
-:= -- 18762
-add.period$ -- 1073
-call.type$ -- 359
-change.case$ -- 1859
++ -- 2094
+- -- 1638
+* -- 9624
+:= -- 18814
+add.period$ -- 1076
+call.type$ -- 360
+change.case$ -- 1864
 chr.to.int$ -- 0
-cite$ -- 369
-duplicate$ -- 3677
-empty$ -- 9420
-format.name$ -- 1634
-if$ -- 23555
+cite$ -- 370
+duplicate$ -- 3686
+empty$ -- 9447
+format.name$ -- 1638
+if$ -- 23621
 int.to.chr$ -- 0
-int.to.str$ -- 359
-missing$ -- 369
-newline$ -- 1788
-num.names$ -- 718
-pop$ -- 1530
+int.to.str$ -- 360
+missing$ -- 370
+newline$ -- 1793
+num.names$ -- 720
+pop$ -- 1533
 preamble$ -- 1
-purify$ -- 1526
+purify$ -- 1530
 quote$ -- 0
-skip$ -- 2174
+skip$ -- 2179
 stack$ -- 0
-substring$ -- 8900
-swap$ -- 878
+substring$ -- 8931
+swap$ -- 880
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1380
+type$ -- 1384
 warning$ -- 10
-while$ -- 1299
-width$ -- 362
-write$ -- 3596
+while$ -- 1303
+width$ -- 363
+write$ -- 3606
 (There were 28 error messages)

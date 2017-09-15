@@ -1235,6 +1235,11 @@
   problem for a quasi-linear equation.
 \newblock {\em Uspekhi Matematicheskikh Nauk 14}, 2 (1959), 165--170.
 
+\bibitem{olsson2005conservative}
+{\sc Olsson, E., and Kreiss, G.}
+\newblock A conservative level set method for two phase flow.
+\newblock {\em Journal of computational physics 210}, 1 (2005), 225--246.
+
 \bibitem{oran1998numerical}
 {\sc Oran, E.~S., Weber, J.~W., Stefaniw, E.~I., Lefebvre, M.~H., and Anderson,
   J.~D.}

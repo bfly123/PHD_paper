@@ -8,9 +8,9 @@
 \end{equation}
 对于该类方程的理论及数值研究已经长达两个世纪，随着如Runge-Kutta 等高精度单步格式的提出，该方程基本上已经不存在求解难题。然而却有一个问题是例外，那就是刚性方程(Stiff equation）问题。
 
-刚性方程在ODE数值方法发展中犹如一块乌云，甚至至今连明确的数学定义都没有\cite{wanner1991solving}。学者们给出了刚性方程多种描述，目前受到最广泛接受的仍然是1985年Curtiss和Hirschfelder最早给出的描述：刚性方程是指那些采用某些特定的隐式格式求解，尤其是采用BDF格式，会比采用显示格式求解有优势，通常都有极大的优势，的一类方程（`stiff equations are equations where certain implicit method, in particularly BDF, perform better, usually tremendously better, than explicit ones'）。
+刚性方程在ODE数值方法发展中犹如一块乌云，甚至至今连明确的数学定义都没有\cite{wanner1991solving}。学者们给出了刚性方程多种描述，目前接受最广泛的仍然是1985年Curtiss和Hirschfelder最早给出的描述：刚性方程是指那些采用某些特定的隐式格式求解，尤其是采用BDF格式，会比采用显示格式求解有优势，通常都有极大的优势，的一类方程（`stiff equations are equations where certain implicit method, in particularly BDF, perform better, usually tremendously better, than explicit ones'）。
 
-刚性和非刚性方程求解起来差别巨大，比如采用显式格式求解刚性ODE方程，需要极小的时间步才能稳定，相反的，如果采用隐式格式求解非刚性ODE方程，又因为复杂的迭代同样会造成计算效率低下。如何能协调这一对矛盾，一直困扰着ODE数值方法的发展。E.Hairer 和G.wanne在关于ODE方程的经典教材\cite{wanner1991solving,hairer1999stiff}中，直接将刚性问题解法和非刚性问题解法分成两册分别讲述，但是由于刚性方程没有明确的定义，很难区分哪些ODE方程是刚性的哪些是非刚性的，同时，刚性也是会随时间发展变化的，刚性方程本身刚性的大小也难以界定。
+刚性和非刚性方程求解起来差别巨大，比如采用显式格式求解刚性ODE方程，需要极小的时间步才能稳定，相反的，如果采用隐式格式求解非刚性ODE方程，又因为复杂的迭代同样会造成计算效率低下。如何能协调这一对矛盾，一直困扰着ODE数值方法的发展。E.Hairer 和G.Wanne在关于ODE方程的经典教材\cite{wanner1991solving,hairer1999stiff}中，直接将刚性问题解法和非刚性问题解法分成两册分别讲述，但是由于刚性方程没有明确的定义，很难区分哪些ODE方程是刚性的哪些是非刚性的，同时，刚性也是会随时间发展变化的，刚性方程本身刚性的大小也难以界定。
 例如将在本文第八章中遇到的化学反应ODE方程，在该方程中，由于某些组分的时间尺度很小，存在较大的刚性。但是另一方面，由于刚性所在的区域相对计算区域而言很小，同时，考虑到化学反应方程组特征矩阵巨大，隐式求解会存在着复杂的矩阵运算，计算量并不一定降低，也难以采用高精度的隐式格式等问题，多数学者目前仍更愿意采用显式格式在充分小的时间步内进行求解。
 
 
