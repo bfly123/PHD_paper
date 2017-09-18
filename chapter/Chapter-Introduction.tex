@@ -536,7 +536,7 @@ Euler·½³Ì×ñÑ­Ë«ÇúÊØºãÂÊ£¬¹ØÓÚ·ÇÏßÐÔË«ÇúÊØºãÂÊ·½³ÌµÄÀíÂÛÑÐ¾¿»ù±¾ÉÏÊÇ´Ó¹ãÒåº¯ÊýºÍÈ
 
 ¾¡¹ÜGodunov¶¨Àí½«ÏßÐÔ·½·¨µÄÎÈ¶¨ÐÔºÍÒ»½×¸ñÊ½½ô½ôµÄ°ó¶¨£¬µ«ÊÇÔÚÎ÷·½Ñ§ÊõÈ¦£¬¸ÃÑÐ¾¿²¢Ã»ÓÐµÃµ½×ã¹»µÄÖØÊÓ£¬60ºÍ70Äê´ú£¬Ñ§ÕßÃÇÈÔÈ»ÊÔÍ¼¹¹ÔìÁËÒ»ÏµÁÐ¸ü¸ß½×µÄ¸ñÊ½¡£P.D.LaxºÍB.Wendroff\cite{lax1960systems}ÔÚ1960ÄêºÏ×÷¹¹ÔìÁË¶þ½×²î·Ö¸ñÊ½--- Lax-Wendroff¸ñÊ½£¬¾¡¹Ü¸Ã¸ñÊ½ÓÉÓÚºÄÉ¢²»×ã»áµ¼ÖÂ¼ÆËã¼¤²¨Ê±³öÏÖÑÏÖØµÄÕñµ´£¬µ«ÊÇÈÔÈ»¾ßÓÐÉîÔ¶Ó°Ïì¡£Lax-Wendroff¸ñÊ½ºÍËüµÄÒ»ÏµÁÐ¶þ½×¡¢Èý½×¸Ä½ø¸ñÊ½\cite{rubin1967difference,maccormack1969effect,rusanov1970difference,burstein1970third}Ö÷µ¼ÁË¶ÔÁ÷·½³ÌÑÐ¾¿ÁìÓò³¬¹ýÁË10ÄêÖ®¾Ã¡£
 
-Ö±µ½70Äê´ú£¬²ÅÓÐÈË¿ªÊ¼ÒâÊ¶µ½Godunov¶¨ÀíµÄÖØÒªÐÔ²¢ÊÔÍ¼½«Æä±Ü¿ª£¬ÕâÖ®ºó²»µ½Ò»ÄêÊ±¼ä£¬¾Í³öÏÖÁËÁ½ÖÖÎÞÕñµ´µÄ¸ß¾«¶È¶ÔÁ÷¸ñÊ½£¬·Ö±ðÊÇBorisºÍBookÌá³öµÄÍ¨Á¿ÐÞÕýÊäÔË·½·¨£¨Flux-Corrected Transport/FCT£©·½·¨ºÍ½ÓÏÂÀ´Van LeerÌá³öµÄMUSCL£¨Monotone Upstream Scheme for Conservation Laws£©¸ñÊ½¡£FCT·½·¨ÒÀÈ»²ÉÓÃLax-Wendroff·½·¨ÀàËÆµÄÔ¤¹À-Ð£Õý½á¹¹£¬µÚÒ»²½²ÉÓÃÒ»½×¸ñÊ½Ô¤¹ÀÊ±¼ä·¢Õ¹ºóµÄ½â£¬È»ºóÔÚÐ£Õý²½Í¨¹ý·´À©É¢µÄ·½Ê½ÒÆ³ý´óÁ¿µÄºÄÉ¢Îó²î£¬´ïµ½¶þ½×»òÈý½×¾«¶È¡£ÔÚµÚ¶þ²½£¬ÐÞÕýµÄÍ¨Á¿»áºÍÁÙÊ±½â½øÐÐ±È½Ï£¬²¢ÇÒÔÚÐèÒªµÄµØ·½½øÐÐÏÞÖÆ£¬±£Ö¤Ã»ÓÐÐÂµÄ¼«Öµµã³öÏÖÒ²Ã»ÓÐ¼«ÖµÔö¼Ó¡£ÆäÖÐµÄ¶Ô±È¹ý³ÌÈÃ¸Ã·½·¨³ÉÎª·ÇÏßÐÔ·½·¨¡£¾­¹ý1973Äêµ½1979ÄêµÄ·¢Õ¹\cite{boris1973flux,book1975flux,boris1976flux,zalesak1979fully}£¬FCT·½·¨µÃµ½½Ï¹ã·ºµÄÓ¦ÓÃ£¬µ«ÊÇÆä²¢Ã»ÓÐ¶ÔºóÆÚµÄGodunovÐÍ¸ß¾«¶È¸ñÊ½·¢Õ¹Æðµ½Ì«´óÓ°Ïì¡£Í¬Ê±ÆÚ£¬Van LeerÈÏÎªÕñµ´ÊÇÓÉÓÚ·Çµ¥µ÷²åÖµÒýÆðµÄ£¬Ëû¼Ì³ÐÁËGodunov·½·¨µÄÌØµã£¬½«µ¥ÔªÄÚµÄ³£Öµ·Ö²¼±äÎªÏßÐÔ·Ö²¼»ò¶þ´Î·Ö²¼£¬È»ºó·ÇÏßÐÔÏÞÖÆ·Ö²¼º¯ÊýµÄÒ»½×ºÍ¶þ½×µ¼ÊýÖµ£¬ÒÔ´ËµÃµ½¶þ½×¾«¶ÈµÄÎÈ¶¨MUSCL¸ñÊ½\cite{van1973towards,van1974towards,van1977towards,van1979towards1,van1979towards}¡£MUSCLÀà¸ñÊ½ÔÚ80Äê´ú¼ÌÐø·¢Õ¹²¢³ÉÎªµ±Ê±×îÎªÁ÷ÐÐµÄ¸ñÊ½¡£FCT·½·¨ºÍMUSCL¸ñÊ½ËäÈ»ÏàÈ¥ÉõÔ¶£¬µ«ÊÇËüÃÇ¶¼ÊÇÍ¨¹ý·½·¨ÖÐµÄ·ÇÏßÐÔÐÔÖÊÀ´·ÀÖ¹¼ÆËãÖÐ´óÌÝ¶È´øÀ´µÄÊýÖµÕñµ´£¬ÔÚ¶ÔÁ÷·½·¨½ÓÏÂÀ´µÄ·¢Õ¹ÖÐÒ»Ö±±£´æÁËÕâÒ»ÌØµã¡£
+Ö±µ½70Äê´ú£¬²ÅÓÐÈË¿ªÊ¼ÒâÊ¶µ½Godunov¶¨ÀíµÄÖØÒªÐÔ²¢ÊÔÍ¼½«Æä±Ü¿ª£¬ÕâÖ®ºó²»µ½Ò»ÄêÊ±¼ä£¬¾Í³öÏÖÁËÁ½ÖÖÎÞÕñµ´µÄ¸ß¾«¶È¶ÔÁ÷¸ñÊ½£¬·Ö±ðÊÇBorisºÍBookÌá³öµÄÍ¨Á¿ÐÞÕýÊäÔË·½·¨£¨Flux-Corrected Transport/FCT£©·½·¨ºÍ½ÓÏÂÀ´Van LeerÌá³öµÄMUSCL£¨Monotone Upstream Scheme for Conservation Laws£©¸ñÊ½¡£FCT·½·¨ÒÀÈ»²ÉÓÃLax-Wendroff·½·¨ÀàËÆµÄÔ¤¹À-Ð£Õý½á¹¹£¬µÚÒ»²½²ÉÓÃÒ»½×¸ñÊ½Ô¤¹ÀÊ±¼ä·¢Õ¹ºóµÄ½â£¬È»ºóÔÚÐ£Õý²½Í¨¹ý·´À©É¢µÄ·½Ê½ÒÆ³ý´óÁ¿µÄºÄÉ¢Îó²î£¬´ïµ½¶þ½×»òÈý½×¾«¶È¡£ÔÚµÚ¶þ²½£¬ÐÞÕýµÄÍ¨Á¿»áºÍÁÙÊ±½â½øÐÐ±È½Ï£¬²¢ÇÒÔÚÐèÒªµÄµØ·½½øÐÐÏÞÖÆ£¬±£Ö¤Ã»ÓÐÐÂµÄ¼«Öµµã³öÏÖÒ²Ã»ÓÐ¼«ÖµÔö¼Ó¡£ÆäÖÐµÄ¶Ô±È¹ý³ÌÈÃ¸Ã·½·¨³ÉÎª·ÇÏßÐÔ·½·¨¡£¾­¹ý1973Äêµ½1979ÄêµÄ·¢Õ¹\cite{boris1973flux,book1975flux,boris1976flux,zalesak1979fully}£¬FCT·½·¨µÃµ½½Ï¹ã·ºµÄÓ¦ÓÃ£¬µ«ÊÇÆä²¢Ã»ÓÐ¶ÔºóÆÚµÄGodunovÐÍ¸ß¾«¶È¸ñÊ½·¢Õ¹Æðµ½Ì«´óÓ°Ïì¡£Í¬Ê±ÆÚ£¬Van LeerÈÏÎªÕñµ´ÊÇÓÉÓÚ·Çµ¥µ÷²åÖµÒýÆðµÄ£¬Ëû¼Ì³ÐÁËGodunov·½·¨µÄÌØµã£¬½«µ¥ÔªÄÚµÄ³£Öµ·Ö²¼±äÎªÏßÐÔ·Ö²¼»ò¶þ´Î·Ö²¼£¬È»ºó·ÇÏßÐÔÏÞÖÆ·Ö²¼º¯ÊýµÄÒ»½×ºÍ¶þ½×µ¼ÊýÖµ£¬ÒÔ´ËµÃµ½¶þ½×¾«¶ÈµÄÎÈ¶¨MUSCL¸ñÊ½\cite{van1973towards,van1974towards,van1977towards,van1979towards}¡£MUSCLÀà¸ñÊ½ÔÚ80Äê´ú¼ÌÐø·¢Õ¹²¢³ÉÎªµ±Ê±×îÎªÁ÷ÐÐµÄ¸ñÊ½¡£FCT·½·¨ºÍMUSCL¸ñÊ½ËäÈ»ÏàÈ¥ÉõÔ¶£¬µ«ÊÇËüÃÇ¶¼ÊÇÍ¨¹ý·½·¨ÖÐµÄ·ÇÏßÐÔÐÔÖÊÀ´·ÀÖ¹¼ÆËãÖÐ´óÌÝ¶È´øÀ´µÄÊýÖµÕñµ´£¬ÔÚ¶ÔÁ÷·½·¨½ÓÏÂÀ´µÄ·¢Õ¹ÖÐÒ»Ö±±£´æÁËÕâÒ»ÌØµã¡£
 
 Í¬Ò»Ê±ÆÚ£¬HartenÔÚICASE×ö·ÃÎÊÑ§Õß£¬ÔÚÕâÀïËûÊÜµ½Roe¹ØÓÚÓ­·ç¸ñÊ½¹¤×÷µÄÓ°Ïì\cite{harten1997upstream}£¬Ëû¿¼ÂÇµ½ÎÞÕñµ´²åÖµÖ»ÊÊÓÃÔÚÒ»Î¬¿Õ¼ä£¬ËùÒÔ²¢²»Ì«½ÓÊÜÎÞÕñµ´²åÖµµÄ¸ÅÄî¡£Êµ¼ÊÉÏ£¬Ëû¸ü¶àµÄÊÜµ½GlimmºÍLax¹ØÓÚÒ»Î¬±êÁ¿ÊØºã·½³Ì½âµÄ×Ü±ä²îÊÇ²»ÔöµÄÕâÒ»ÑÐ¾¿½á¹ûÆô·¢\cite{lax1970decay}¡£Í¨¹ý·ÖÎö£¬HartenÒýÈëÀëÉ¢·½³ÌµÄ×Ü±ä²î×÷ÎªÆäÕñµ´ÐÔÖÊµÄ¶ÈÁ¿\cite{harten1983high,goodman1985accuracy}£¬×Ü±ä²îÍ¬Ñù¿ÉÒÔÓ¦ÓÃÔÚ¸ü¸ßÎ³¶ÈÇó½âÉÏ¡£ÓÉ´Ë£¬HartenÌá³öÁË×Ü±ä²î²»Ôö£¨Total-Variation-Diminishing/TVD£©·½·¨£¬²¢ÍÆµ¼³ö±£Ö¤TVDÐÔÖÊµÄ³ä·ÖÌõ¼þ¡£Ö®ºóÑ§ÕßÃÇÖ¤Ã÷ÁËTVDÐÔÖÊÔÚÏßÐÔ·½³ÌÖÐ¿ÉÒÔÍÆµ¼³öµ¥µ÷²åÖµÌõ¼þ¡£ÔÚµ±Ê±£¬TVD·½·¨Ñ¸ËÙ³ÉÎªÁË¸ß¾«¶ÈÓ­·ç¸ñÊ½µÄ´úÃû´Ê¡£
 
@@ -597,7 +597,7 @@ VOF·½·¨\cite{hirt1981volume,youngs1982time,lafaurie1994modelling}Ò²ÊôÓÚÅ·À­¼¼Êõµ
 ÕûÌåÀ´½²£¬½çÃæ×·×Ù·½·¨¸üÖ±¹Û£¬ÔÚ´¦Àí½çÃæµÄÈÚºÏºÍÆÆÁÑÊ±ÓÐÆäÓÅÊÆ£»½çÃæ²¶×½·½·¨¸üÒ×ÓÚÊµÏÖ£¬ÔÚ´¦Àí½çÃæ°éËæÁ÷³¡Ñ¹Ëõ»òÅòÕÍÊ±ÓÐÓÅÊÆ\cite{li2008hybrid}¡£
 ½«ÕâÁ½Àà·½·¨½áºÏ£¬±ÜÃâËüÃÇ¸÷×ÔµÄÈ±ÏÝÊÇÄ¿Ç°Ò»¸ö±È½ÏÁ÷ÐÐµÄË¼Â·£¬ÆäÖÐÓ¦ÓÃ×î¶àµÄÊÇºÍÁ£×ÓÀà·½·¨Ïà½áºÏ£¬±ÈÈç¾ßÓÐÁ£×Ó·½·¨µÄÊØºãÐÔºÍLevel Set·½·¨µÄ¹â»¬ÐÔµÄÁ£×Ó-Ë®Æ½¼¯£¨Particle Level Set£©·½·¨\cite{enright2002hybrid,enright2005fast}¡£È»¶øÕâÖÖ½áºÏ¼´Ôö¼ÓÁË·½·¨ÊµÏÖµÄÄÑ¶È£¬ÔÚ¸´ÔÓÎÊÌâÊ±Ò²²¢²»ÄÇÃ´×àÐ§¡£
 \subsubsection{ºÄÉ¢½çÃæ}\label{chap:intro_diffusive_interface}
-Í¨³£µÄ½çÃæ·½·¨¶¼²»¿¼ÂÇ½çÃæºñ¶È£¬È»¶ø£¬ÔÚÑÐ¾¿Ä³Ð©ÎïÀíÎÊÌâ£¬ÈçÑÐ¾¿ÎïÖÊ¼äµÄÀ©É¢¡¢Ïà±ä£¨ÓÈÆä¶ÔÓÚÈýÏàµãÁ÷Ìå»ìºÏÎï£©\cite{huang1969diffuse,jamet2001second}¡¢¾§ÌåÉú³¤\cite{collins1985diffuse}¼°»¯Ñ§·´Ó¦µÈÊ±£¬½çÃæºñ¶È¶¼ÊÇÖÁ¹ØÖØÒª¡£ÕâÒ»ÀàÎÞ·¨ºöÂÔºñ¶ÈµÄ½çÃæÀàÐÍ±»³ÆÎªºÄÉ¢½çÃæ£¨diffuse interface£©\cite{anderson1998diffuse}¡£
+Í¨³£µÄ½çÃæ·½·¨¶¼²»¿¼ÂÇ½çÃæºñ¶È£¬È»¶ø£¬ÔÚÑÐ¾¿Ä³Ð©ÎïÀíÎÊÌâ£¬ÈçÑÐ¾¿ÎïÖÊ¼äµÄÀ©É¢¡¢Ïà±ä£¨ÓÈÆä¶ÔÓÚÈýÏàµãÁ÷Ìå»ìºÏÎï£©\cite{huang1969diffuse,jamet2001second}¡¢¾§ÌåÉú³¤\cite{collins1985diffuse}¼°»¯Ñ§·´Ó¦µÈÊ±£¬½çÃæºñ¶È¶¼ÊÇÖÁ¹ØÖØÒª¡£ÕâÒ»ÀàÎÞ·¨ºöÂÔºñ¶ÈµÄ½çÃæÀàÐÍ±»³ÆÎªºÄÉ¢½çÃæ£¨diffuse interface£©\cite{anderson1997diffuse}¡£
 
 ¶ÔÓÚºÄÉ¢½çÃæ£¬Ñ§ÕßÖ÷Òª²ÉÓÃCahn-Hilliard·½³Ì\cite{elliott1986cahn,yue2010sharp}½øÐÐÄ£Äâ¡£Ä£Äâ¹ý¶É½çÃæµÄ·½·¨Ö÷ÒªÓÐÈçÏÂ¼¸ÖÖ\cite{jacqmin1999calculation}£¬·æÃæ×·×Ù·½·¨\cite{unverdi1992front}ÔÚ½çÃæÁ½²à²ÉÓÃ¹â»¬µÄ·Ö²¼£¬¿ÉÒÔ×·×ÙºÄÉ¢½çÃæ£¬È»¶øÕâÖÖ½çÃæºñ¶ÈÖ÷ÒªÊÇÓÉÊýÖµºÄÉ¢Ôì³É£¬²¢·Ç¿É¿ØµÄ¡£DuµÈÈË\cite{du2005retrieving,wang2008modelling}²ÉÓÃÈýÌõlevel setÏßµÄ·½·¨À´×·×ÙºÄÉ¢½çÃæ£¬ÕâÖÖ·½Ê½²¢²»ÄÜµÃµ½½çÃæÄÚÕæÊµµÄ·Ö²¼£¬Ö»ÄÜÓ¦ÓÃÔÚ½çÃæºñ¶È±ä»¯²»´óµÄÇé¿öÖÐ¡£»¹ÓÐÆäËü·½·¨£¬ÈçÁ¬Ðø½çÃæÁ¦Ä£ÐÍ£¨cotinuum surface force model£©\cite{brackbill1992continuum}¡¢Ïà³¡Ä£ÐÍ£¨phase-field£©\cite{anderson1997diffuse,antanovskii1995phase}µÈ¡£
 

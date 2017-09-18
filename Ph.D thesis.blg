@@ -7,15 +7,24 @@ A level-1 auxiliary file: chapter/Chapter-Introduction.aux
 A level-1 auxiliary file: chapter/Chapter-Multi-WENO.aux
 A level-1 auxiliary file: chapter/Chapter-detector.aux
 A level-1 auxiliary file: chapter/Chapter-MHD.aux
+Case mismatch error between cite keys Balsara1999A and balsara1999A
+---line 46 of file chapter/Chapter-MHD.aux
+ : \citation{jiang1999high,Balsara1999A
+ :                                     ,balbas2004non,han2009accurate}
+I'm skipping whatever remains of this command
 A level-1 auxiliary file: chapter/Chapter-Dual-Information-Method.aux
 A level-1 auxiliary file: chapter/Chapter-NP-method.aux
 A level-1 auxiliary file: chapter/Chapter-Stiff-Reaction.aux
 A level-1 auxiliary file: chapter/Chapter-elementary-Reaction.aux
+A level-1 auxiliary file: chapter/Chapter-Conclusion.aux
 A level-1 auxiliary file: chapter/Chapter-Scale.aux
 A level-1 auxiliary file: chapter/Chapter-2D-DIP.aux
 A level-1 auxiliary file: chapter/Chapter-Element-Parameter.aux
 A level-1 auxiliary file: chapter/Chapter_Conclution.aux
-Reallocated field_info (elt_size=4) to 12222 items from 5000.
+A level-1 auxiliary file: chapter/pub.aux
+A level-1 auxiliary file: chapter/resume.aux
+A level-1 auxiliary file: chapter/thanks.aux
+Reallocated field_info (elt_size=4) to 12176 items from 5000.
 Database file #1: bib/mybibfile.bib
 Repeated entry---line 1727 of file bib/mybibfile.bib
  : @book{lee2008detonation
@@ -53,88 +62,83 @@ Repeated entry---line 3271 of file bib/mybibfile.bib
  : @article{zalesak1979fully
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 3671 of file bib/mybibfile.bib
+Repeated entry---line 3669 of file bib/mybibfile.bib
  : @article{lax1954weak
  :                     ,
 I'm skipping whatever remains of this entry
-I was expecting an "="---line 4283 of file bib/mybibfile.bib
+I was expecting an "="---line 4281 of file bib/mybibfile.bib
  :   year={1992},还有其它方法，如连续界面力模型（cotinuum 
  :                                                                        surface force model）\cite{
 I'm skipping whatever remains of this entry
-Repeated entry---line 4289 of file bib/mybibfile.bib
+Repeated entry---line 4287 of file bib/mybibfile.bib
  : @article{de2004front
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 4309 of file bib/mybibfile.bib
+Repeated entry---line 4307 of file bib/mybibfile.bib
  : @article{harlow1965numerical
  :                             ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 4369 of file bib/mybibfile.bib
+Repeated entry---line 4367 of file bib/mybibfile.bib
  : @article{tome1994gensmac
  :                         ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 4543 of file bib/mybibfile.bib
+Repeated entry---line 4541 of file bib/mybibfile.bib
  : @article{enright2002hybrid
  :                           ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 5047 of file bib/mybibfile.bib
+Repeated entry---line 5045 of file bib/mybibfile.bib
  : @techreport{von1942theory
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 5209 of file bib/mybibfile.bib
+Repeated entry---line 5207 of file bib/mybibfile.bib
  : @book{lee2008detonation
  :                        ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 5303 of file bib/mybibfile.bib
+Repeated entry---line 5301 of file bib/mybibfile.bib
  : @article{balsara2000monotonicity
  :                                 ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 5343 of file bib/mybibfile.bib
+Repeated entry---line 5341 of file bib/mybibfile.bib
  : @article{martin2006bandwidth
  :                             ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 5383 of file bib/mybibfile.bib
+Repeated entry---line 5381 of file bib/mybibfile.bib
  : @article{ren2003characteristic
  :                               ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 5773 of file bib/mybibfile.bib
+Repeated entry---line 5771 of file bib/mybibfile.bib
  : @article{roe1996notes
  :                      ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 5933 of file bib/mybibfile.bib
+Repeated entry---line 5931 of file bib/mybibfile.bib
  : @inproceedings{lombard1983multi
  :                                ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 5947 of file bib/mybibfile.bib
+Repeated entry---line 5945 of file bib/mybibfile.bib
  : @misc{wadaaccurate
  :                   ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 5973 of file bib/mybibfile.bib
+Repeated entry---line 5971 of file bib/mybibfile.bib
  : @article{liou1996sequel
  :                        ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 6489 of file bib/mybibfile.bib
+Repeated entry---line 6487 of file bib/mybibfile.bib
  : @book{shampine1994numerical
  :                            ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 6503 of file bib/mybibfile.bib
+Repeated entry---line 6501 of file bib/mybibfile.bib
  : @article{hairer1999stiff
  :                         ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 6563 of file bib/mybibfile.bib
+Repeated entry---line 6561 of file bib/mybibfile.bib
  : @article{colella1986theoretical
  :                                ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 6869 of file bib/mybibfile.bib
+Repeated entry---line 6867 of file bib/mybibfile.bib
  : @article{oran1998numerical
  :                           ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "van1979towards1"
-Warning--I didn't find a database entry for "anderson1998diffuse"
 Warning--I didn't find a database entry for "balsara1999staggered"
-Warning--I didn't find a database entry for "jiang1999high"
-Warning--I didn't find a database entry for "ben1989generalized"
-Warning--I didn't find a database entry for "roy1999gaseous"
 Warning--empty journal in akbar1997mach
 Warning--empty journal in freidberg1987ideal
 Warning--empty journal in glimm1970decay
@@ -145,45 +149,45 @@ Warning--can't use both volume and number fields in smooke1988comparison
 Warning--empty journal in van1973towards
 Warning--empty year in zhacomparative
 Warning--empty journal in 张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究
-You've used 360 entries,
+You've used 363 entries,
             2253 wiz_defined-function locations,
-            2318 strings with 59097 characters,
-and the built_in function-call counts, 115645 in all, are:
-= -- 11635
-> -- 4815
+            2328 strings with 59502 characters,
+and the built_in function-call counts, 116552 in all, are:
+= -- 11727
+> -- 4856
 < -- 0
-+ -- 2094
-- -- 1638
-* -- 9624
-:= -- 18814
-add.period$ -- 1076
-call.type$ -- 360
-change.case$ -- 1864
++ -- 2113
+- -- 1652
+* -- 9698
+:= -- 18969
+add.period$ -- 1085
+call.type$ -- 363
+change.case$ -- 1881
 chr.to.int$ -- 0
-cite$ -- 370
-duplicate$ -- 3686
-empty$ -- 9447
-format.name$ -- 1638
-if$ -- 23621
+cite$ -- 373
+duplicate$ -- 3713
+empty$ -- 9516
+format.name$ -- 1652
+if$ -- 23801
 int.to.chr$ -- 0
-int.to.str$ -- 360
-missing$ -- 370
-newline$ -- 1793
-num.names$ -- 720
-pop$ -- 1533
+int.to.str$ -- 363
+missing$ -- 372
+newline$ -- 1808
+num.names$ -- 726
+pop$ -- 1544
 preamble$ -- 1
-purify$ -- 1530
+purify$ -- 1543
 quote$ -- 0
-skip$ -- 2179
+skip$ -- 2194
 stack$ -- 0
-substring$ -- 8931
-swap$ -- 880
+substring$ -- 8995
+swap$ -- 885
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1384
+type$ -- 1396
 warning$ -- 10
-while$ -- 1303
-width$ -- 363
-write$ -- 3606
-(There were 28 error messages)
+while$ -- 1313
+width$ -- 366
+write$ -- 3637
+(There were 29 error messages)

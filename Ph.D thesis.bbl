@@ -104,7 +104,7 @@
   with increasingly high order of accuracy.
 \newblock {\em Journal of Computational Physics 160}, 2 (2000), 405--452.
 
-\bibitem{Balsara1999A}
+\bibitem{balsara1999A}
 {\sc Balsara, D.~S., and Spicer, D.~S.}
 \newblock {\em A Staggered Mesh Algorithm Using High Order Godunov Fluxes to
   Ensure Solenoidal Magnetic Fields in Magnetohydrodynamic Simulations}.
@@ -131,6 +131,11 @@
 {\sc Batten, P., Clarke, N., Lambert, C., and Causon, D.~M.}
 \newblock On the choice of wavespeeds for the hllc riemann solver.
 \newblock {\em SIAM Journal on Scientific Computing 18}, 6 (1997), 1553--1570.
+
+\bibitem{ben1989generalized}
+{\sc Ben-Artzi, M.}
+\newblock The generalized riemann problem for reactive flows.
+\newblock {\em Journal of Computational physics 81}, 1 (1989), 70--101.
 
 \bibitem{bergant2006water}
 {\sc Bergant, A., Simpson, A.~R., and Tijsseling, A.~S.}
@@ -853,6 +858,12 @@
 \newblock Efficient implementation of weighted eno schemes.
 \newblock {\em Journal of computational physics 126}, 1 (1996), 202--228.
 
+\bibitem{jiang1999high}
+{\sc Jiang, G.-S., and Wu, C.-c.}
+\newblock A high-order weno finite difference scheme for the equations of ideal
+  magnetohydrodynamics.
+\newblock {\em Journal of Computational Physics 150}, 2 (1999), 561--594.
+
 \bibitem{jiang2001weighted}
 {\sc Jiang, L., Shan, H., and Liu, C.}
 \newblock Weighted compact scheme for shock capturing.
@@ -1385,6 +1396,11 @@
   perspective.
 \newblock {\em Progress in Energy and Combustion Science 30}, 6 (2004),
   545--672.
+
+\bibitem{roy1999gaseous}
+{\sc Roy, G.~D., Frolov, S.~M., Kailasanath, K., and Smirnov, N.~N.}
+\newblock Gaseous and heterogeneous detonations: science to applications.
+\newblock Tech. rep., DTIC Document, 1999.
 
 \bibitem{rubin1967difference}
 {\sc Rubin, E.~L., and Burstein, S.~Z.}

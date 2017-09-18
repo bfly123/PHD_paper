@@ -3,10 +3,27 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces \small 不同格式精度对比，$T=2$}}{44}{table.2.1}
+\contentsline {table}{\numberline {2.2}{\ignorespaces \small 2D线性对流传播方程算例中不同格式计算精度对比，$T=2$}}{54}{table.2.2}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces \small 不同ODE格式精度分析}}{73}{table.3.1}
+\contentsline {table}{\numberline {3.1}{\ignorespaces \small $u=\text {sin}(\pi x)$初始条件下，不同识别方法的计算误差，$T=10$，$\Delta x=0.02$}}{69}{table.3.1}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces \small Alfv\'{e}n波算例，不同格式精度对比，$T=5$}}{82}{table.4.1}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces \small 不同ODE格式精度分析}}{123}{table.6.1}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {8.1}{\ignorespaces \small 不同ODE格式精度分析}}{158}{table.8.1}
+\contentsline {table}{\numberline {8.3}{\ignorespaces \small 不同条件下理论值、计算值和实验值对比}}{163}{table.8.3}
+\contentsline {table}{\numberline {8.4}{\ignorespaces \small 对流不通过程所需时间(20次循环)}}{166}{table.8.4}
+\contentsline {table}{\numberline {8.5}{\ignorespaces \small 各种简化过程带来的时间节省}}{166}{table.8.5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {C.1}{\ignorespaces \small 不同ODE格式精度分析}}{84}{table.C.1}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {C.1}{\ignorespaces \small 不同ODE格式精度分析}}{186}{table.C.1}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
 \addvspace {10\p@ }

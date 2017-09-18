@@ -1,7 +1,7 @@
 
 \XeTeXinputencoding "GB2312"
 \chapter{刚性常微分方程和数值摄动（NP）方法}\label{chap:NPmethod}
-在本文第\ref{chap:stiff_reaction}、\ref{chap:element_reaction}章中，会遇到求解刚性ODE方程的问题。在前言 \ref{chap:time_stiff} 中曾对时间刚性问题进行过分析和探讨。采用分裂方法，时间刚性集中体现在ODE方程求解中，是一个较为独立的数学问题，因此，在本章中我们预先分析该问题，并设计相应的数值方法进行处理，在后面的章节中将不做过多的探讨。
+在本文第\ref{chap:stiff_reaction}、\ref{chap:element_reaction}章中，会遇到求解刚性ODE方程的问题。在前言 \ref{chap:timemethod} 中曾对时间刚性问题进行过分析和探讨。采用分裂方法，时间刚性集中体现在ODE方程求解中，是一个较为独立的数学问题，因此，在本章中我们预先分析该问题，并设计相应的数值方法进行处理，在后面的章节中将不做过多的探讨。
 \section{刚性常微分（ODE）方程}
 在各个学科领域都广泛的存在着如下形式的常微分方程
 \begin{equation}\label{eq:ode}
@@ -115,7 +115,7 @@ NP（3TNP）格式的摄动多项式为
 在 (\ref{Eq:1}) 的基础上，我们可以给出A稳定性和强A稳定性的定义：
 
 \begin{definition}[A稳定]
-  根据 Dahlquist \cite{dahlquist1963special}的分析，关于离散方程 （\ref{Eq.1})  如果对于任何的实部为负的复数$h$都有  $|E(h)|<1$ ，则认为该格式为A稳定的。
+  根据 Dahlquist \cite{dahlquist1963special}的分析，关于离散方程 （\ref{Eq:1})  如果对于任何的实部为负的复数$h$都有  $|E(h)|<1$ ，则认为该格式为A稳定的。
 \end{definition}
 
 \begin{definition}[强A稳定]

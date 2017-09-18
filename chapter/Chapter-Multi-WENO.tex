@@ -9,7 +9,7 @@ Jiang和Shu\cite{jiang1996efficient}分析了Liu\cite{liu1994weighted}引入的光滑因子
 
 由于解在过渡区仍然是光滑的，理论上，该点的半点通量可以达到四阶精度。换言之，可以通过四个点的光滑模板来构造一个四阶半点通量。在\cite{shen2014improvement}工作中，Shen和Zha引入了两个四阶的通量和一个判断相邻两个四阶通量光滑/间断的判别器来提高过渡点精度。Shen等人在更早的工作中\cite{shen2001fifth}，指出Jiang和Shu的经典的光滑因子$IS_K$在极值点不能满足$\beta_k=D(1+O(\Delta^2))$条件，并提出一种逐阶的重构方法来满足上述条件。但是这一方法在极值点并不满足五阶收敛的充分必要条件\cite{henrick2005mapped}。
 
-本章我们基于\cite{shen2014improvement}的分析，构造了一种新形式的WENO方法。该方法结合了Hentick的映射函数、WENO-Z格式以及多步加权的构造方法。新方法的优点主要是提高了WENO格式在近激波区域的精度。数值算例显示该方法比前文提到的各种五阶WENO格式耗散都要低。
+本章我们基于\cite{shen2014improvement}的分析，构造了一种新形式的WENO方法。该方法结合了Henrick的映射函数、WENO-Z格式以及多步加权的构造方法。新方法的优点主要是提高了WENO格式在近激波区域的精度。数值算例显示该方法比前文提到的各种五阶WENO格式耗散都要低。
 
 \section{本章涉及的数值方法}
 本节中，我们将给出本章涉及到的数值方法的具体表达，后文中也会经常应用到这些方法。
@@ -105,7 +105,7 @@ WENO-M格式过$g_k(\omega)$生成新的权重，该格式可以在极值点达到五阶收敛精度。
   \frac{du}{dt}=L(u)
 \end{equation}
 三阶TVD Runge-Kutta格式具体表达如下：
-\begin{equation}
+\begin{equation}\label{eq:RK3}
   \left\{
 	\begin{array}{l}
 	  \displaystyle u^{(1)}=u^n+\Delta t L(u^n)\\[0.7em]
