@@ -29,7 +29,7 @@ Joel Smoller.
 \newblock New York: Springer-Verlag, 1994.
 
 \bibitem{应隆安1991双曲型守恒律方程及其差分方法}
-应隆安 and 滕振寰.
+应隆安，滕振寰.
 \newblock {\em 双曲型守恒律方程及其差分方法}.
 \newblock 北京: 科学出版社, 1991.
 
@@ -62,7 +62,7 @@ Nathaniel Hildebrand, Anubhav Dwivedi, Prakash Shrestha, Joseph~W Nichols,
 \newblock In {\em APS Division of Fluid Dynamics Meeting Abstracts}, 2016.
 
 \bibitem{nichols2016stability}
-Joseph~W Nichols, Johan Larsson, Matteo Bernardini, and Sergio Pirozzoli.
+Joseph~W Nichols, Johan Larsson, Matteo Bernardini, et~al.
 \newblock Stability and modal analysis of shock/boundary layer interactions.
 \newblock {\em Theoretical and Computational Fluid Dynamics}, pages 1--18,
   2016.
@@ -193,9 +193,8 @@ Wildon Fickett and William~C Davis.
 \bibitem{bussing1996pulse}
 Thomas Bussing and George Pappas.
 \newblock Pulse detonation engine theory and concepts.
-\newblock {\em Developments in high-speed-vehicle propulsion systems(A 97-15029
-  02-07), Reston, VA, American Institute of Aeronautics and Astronautics,
-  Inc.(Progress in Astronautics and Aeronautics.}, 165:421--472, 1996.
+\newblock {\em Developments in high-speed-vehicle propulsion systems},
+  165:421--472, 1996.
 
 \bibitem{bussing1994introduction}
 T~Bussing and George Pappas.
@@ -213,14 +212,14 @@ Roger Ch{\'e}ret.
 \newblock Springer Science \& Business Media, 2012.
 
 \bibitem{童秉纲1990气体动力学}
-童秉纲, 孔祥言, 邓国华, et~al.
+童秉纲，孔祥言，邓国华等.
 \newblock {\em 气体动力学}.
 \newblock 高等教育出版社, 1990.
 
 \bibitem{freidberg1987ideal}
 Jeffrey~P Freidberg.
-\newblock Ideal magnetohydrodynamics.
-\newblock 1987.
+\newblock {\em Ideal magnetohydrodynamics}.
+\newblock Plenum Press, New York, NY, 1987.
 
 \bibitem{mikevs2013pre}
 Josef Mike{\v{s}}, Sergey Stepanov, and Marek Jukl.
@@ -276,7 +275,7 @@ Olga~Arsen'evna Oleinik.
 \newblock {\em Uspekhi Matematicheskikh Nauk}, 12(3):3--73, 1957.
 
 \bibitem{oleinik1957uniqueness}
-Olga~Arsen'evna Oleinik.
+Olga~Arsen\'evna Oleinik.
 \newblock On the uniqueness of the generalized solution of the cauchy problem
   for a non-linear system of equations occurring in mechanics.
 \newblock {\em Uspekhi Matematicheskikh Nauk}, 12(6):169--176, 1957.
@@ -473,7 +472,7 @@ Ephraim~L Rubin and Samuel~Z Burstein.
 \newblock {\em Journal of Computational Physics}, 2(2):178--196, 1967.
 
 \bibitem{maccormack1969effect}
-RW~MACCORMACK.
+RW~Maccormack.
 \newblock The effect of viscosity in hypervelocity impact cratering.
 \newblock {\em AIAA Paper No. 69-354}, 1969.
 
@@ -514,7 +513,8 @@ Steven~T Zalesak.
 Bram Van~Leer.
 \newblock Towards the ultimate conservative difference scheme i. the quest of
   monotonicity.
-\newblock pages 163--168, 1973.
+\newblock In {\em Proceedings of the Third International Conference on
+  Numerical Methods in Fluid Mechanics}, pages 163--168. Springer, 1973.
 
 \bibitem{van1974towards}
 Bram Van~Leer.
@@ -615,9 +615,7 @@ Shuhai Zhang, Shufen Jiang, and Chi-Wang Shu.
 \newblock {\em Journal of Computational Physics}, 227(15):7294--7321, 2008.
 
 \bibitem{johnsen2010assessment}
-Eric Johnsen, Johan Larsson, Ankit~V Bhagatwala, William~H Cabot, Parviz Moin,
-  Britton~J Olson, Pradeep~S Rawat, Santhosh~K Shankar, Bj{\"o}rn Sj{\"o}green,
-  HC~Yee, et~al.
+Eric Johnsen, Johan Larsson, Ankit~V Bhagatwala, et~al.
 \newblock Assessment of high-resolution methods for numerical simulations of
   compressible turbulence with shock waves.
 \newblock {\em Journal of Computational Physics}, 229(4):1213--1237, 2010.
@@ -681,7 +679,7 @@ Sergio Pirozzoli.
 \newblock {\em Journal of Computational Physics}, 178(1):81--117, 2002.
 
 \bibitem{ren2003characteristic}
-Yu-Xin Ren, Hanxin Zhang, et~al.
+Yu-Xin Ren and Hanxin Zhang.
 \newblock A characteristic-wise hybrid compact-weno scheme for solving
   hyperbolic conservation laws.
 \newblock {\em Journal of Computational Physics}, 192(2):365--386, 2003.
@@ -811,8 +809,7 @@ Yi-qing Shen, Ru-quan Wang, and Hong-zhi Liao.
 \newblock {\em Journal of Computational Mathematics}, pages 531--538, 2001.
 
 \bibitem{tryggvason2001front}
-Gr{\'e}tar Tryggvason, Bernard Bunner, Asghar Esmaeeli, Damir Juric,
-  N~Al-Rawahi, W~Tauber, J~Han, S~Nas, and Y-J Jan.
+Gr{\'e}tar Tryggvason, Bernard Bunner, Asghar Esmaeeli, et~al.
 \newblock A front-tracking method for the computations of multiphase flow.
 \newblock {\em Journal of Computational Physics}, 169(2):708--759, 2001.
 
@@ -829,8 +826,7 @@ Salih~Ozen Unverdi and Gr{\'e}tar Tryggvason.
 \newblock {\em Journal of computational physics}, 100(1):25--37, 1992.
 
 \bibitem{de2004front}
-FS~De~Sousa, N~Mangiavacchi, LG~Nonato, A~Castelo, MF~Tom{\'e}, VG~Ferreira,
-  JA~Cuminato, and S~McKee.
+FS~De~Sousa, N~Mangiavacchi, LG~Nonato, et~al.
 \newblock A front-tracking/front-capturing method for the simulation of 3d
   multi-fluid flows with free surfaces.
 \newblock {\em Journal of Computational Physics}, 198(2):469--499, 2004.
@@ -854,7 +850,7 @@ Seungwon Shin and Damir Juric.
 \newblock {\em Journal of Computational Physics}, 180(2):427--470, 2002.
 
 \bibitem{harlow1965numerical}
-Francis~H Harlow, J~Eddie Welch, et~al.
+Francis~H Harlow and J~Eddie Welch.
 \newblock Numerical calculation of time-dependent viscous incompressible flow
   of fluid with free surface.
 \newblock {\em Physics of fluids}, 8(12):2182, 1965.
@@ -920,8 +916,7 @@ David~L Youngs.
 \newblock {\em Numerical methods for fluid dynamics}, 24(2):273--285, 1982.
 
 \bibitem{lafaurie1994modelling}
-Bruno Lafaurie, Carlo Nardone, Ruben Scardovelli, St{\'e}phane Zaleski, and
-  Gianluigi Zanetti.
+Bruno Lafaurie, Carlo Nardone, Ruben Scardovelli, et~al.
 \newblock Modelling merging and fragmentation in multiphase flows with surfer.
 \newblock {\em Journal of Computational Physics}, 113(1):134--147, 1994.
 
@@ -938,7 +933,7 @@ Zhaorui Li, Farhad~A Jaberi, and Tom~IP Shih.
   56(12):2271--2300, 2008.
 
 \bibitem{enright2002hybrid}
-Douglas Enright, Ronald Fedkiw, Joel Ferziger, and Ian Mitchell.
+Douglas Enright, Ronald Fedkiw, Joel Ferziger, and others Mitchell.
 \newblock A hybrid particle level set method for improved interface capturing.
 \newblock {\em Journal of Computational physics}, 183(1):83--116, 2002.
 
@@ -1041,17 +1036,17 @@ James~A Fay.
 \newblock {\em The Physics of Fluids}, 2(3):283--289, 1959.
 
 \bibitem{王昌建2005直管内胞格爆轰的基元反应数值研究}
-王昌建 and 徐胜利.
+王昌建，徐胜利.
 \newblock 直管内胞格爆轰的基元反应数值研究.
 \newblock {\em 爆炸與衝擊}, 25(5):405--416, 2005.
 
 \bibitem{姜宗林2012气相爆轰物理的若干研究进展}
-姜宗林, 滕宏辉, and 刘云峰.
+姜宗林，滕宏辉，刘云峰.
 \newblock 气相爆轰物理的若干研究进展.
 \newblock {\em 力学进展}, 42(2):129--140, 2012.
 
 \bibitem{张旭东2011旋转爆轰自持机理的数值研究}
-张旭东, 范宝春, 潘振华, and 归明月.
+张旭东，范宝春，潘振华等.
 \newblock 旋转爆轰自持机理的数值研究.
 \newblock {\em 弹道学报}, 23(1):1--4, 2011.
 
@@ -1061,7 +1056,7 @@ Fedor~A Bykovskii, Sergey~A Zhdan, and Evgenii~F Vedernikov.
 \newblock {\em Journal of Propulsion and Power}, 22(6):1204, 2006.
 
 \bibitem{潘振华2014t}
-潘振华, 范宝春, and 归明月.
+潘振华，范宝春， 归明月.
 \newblock T 型管内流动气体中爆轰绕射过程的数值模拟.
 \newblock {\em 爆炸与冲击}, 34(6):709--715, 2014.
 
@@ -1189,17 +1184,17 @@ Shih-Hung Chang.
 
 \bibitem{harten1989eno}
 Ami Harten.
-\newblock Eno schemes with subcell resolution.[essentially nonoscillatory.
-\newblock 1989.
+\newblock Eno schemes with subcell resolution.
+\newblock {\em Journal of Computational Physics}, 83(1):148--184, 1989.
 
 \bibitem{wang2015high}
-Wei Wang, Chi-Wang Shu, HC~Yee, Dmitry~V Kotov, and Bj{\"o}rn Sj{\"o}green.
+Wei Wang, Chi-Wang Shu, HC~Yee, et~al.
 \newblock High order finite difference methods with subcell resolution for
   stiff multispecies discontinuity capturing.
 \newblock {\em Communications in Computational Physics}, 17(02):317--336, 2015.
 
 \bibitem{yee2013spurious}
-HC~Yee, Dmitry~V Kotov, Wei Wang, and Chi-Wang Shu.
+HC~Yee, Dmitry~V Kotov, Wei Wang, et~al.
 \newblock Spurious behavior of shock-capturing methods by the fractional step
   approach: Problems containing stiff source terms and discontinuities.
 \newblock {\em Journal of Computational Physics}, 241:266--291, 2013.
@@ -1266,8 +1261,7 @@ Hua Ji, Fue-Sang Lien, and Eugene Yee.
 \newblock {\em Journal of Computational Physics}, 229(23):8981--8993, 2010.
 
 \bibitem{calder2000high}
-Alan~C Calder, Bruce~C Curtis, LJ~Dursi, Bruce Fryxell, P~MacNeice, K~Olson,
-  P~Ricker, R~Rosner, FX~Timmes, HM~Tufo, et~al.
+Alan~C Calder, LJ~Curtis, Bruce C~Dursi, et~al.
 \newblock High performance reactive fluid flow simulations using adaptive mesh
   refinement on thousands of processors.
 \newblock In {\em Proceedings of the 2000 ACM/IEEE conference on
@@ -1354,7 +1348,7 @@ BD~Nichols and CW~Hirt.
 \newblock {\em Journal of Computational Physics}, 8(3):434--448, 1971.
 
 \bibitem{halow1965numerical}
-Welch~JE Harlow~F.
+Harlow F and Welch JE.
 \newblock Numerical calculation of time-dependent viscous incompressible flow
   of fluid with a free surface.
 \newblock {\em Phys Fluids}, 8(218):2--9, 1965.
@@ -1420,7 +1414,7 @@ Luca Tosatto and Luigi Vigevano.
 \newblock {\em Journal of Computational Physics}, 227(4):2317--2343, 2008.
 
 \bibitem{kotov2012spurious}
-DV~Kotov, HC~Yee, W~Wang, and CW~Shu.
+DV~Kotov, HC~Yee, W~Wang, et~al.
 \newblock On spurious numerics in solving reactive equations.
 \newblock {\em Proceedings of the ASTRONUM-2012, The Big Island, Hawaii}, pages
   24--28, 2012.
@@ -1436,7 +1430,7 @@ Francis~H Harlow.
 \newblock {\em Journal of the ACM (JACM)}, 4(2):137--142, 1957.
 
 \bibitem{welch1965mac}
-J~Eddie Welch, Francis~Harvey Harlow, John~P Shannon, and Bart~J Daly.
+J~Eddie Welch, Francis~Harvey Harlow, John~P Shannon, et~al.
 \newblock The mac method-a computing technique for solving viscous,
   incompressible, transient fluid-flow problems involving free surfaces.
 \newblock Technical report, Los Alamos Scientific Lab., Univ. of California, N.
@@ -1465,13 +1459,13 @@ Christiane Helzel, Randall~J Leveque, and Gerald Warnecke.
   detonation waves.
 \newblock {\em SIAM Journal on Scientific Computing}, 22(4):1489--1510, 2000.
 
-\bibitem{artzi1989generalized}
-M~Ben Artzi.
-\newblock The generalized riemann's problem for reactive flows.
-\newblock {\em Preprint}, 1989.
+\bibitem{artizi1989generalized}
+Matania Ben-Artzi.
+\newblock The generalized riemann problem for reactive flows.
+\newblock {\em Journal of Computational physics}, 81(1):70--101, 1989.
 
 \bibitem{hwang2000numerical}
-P~Hwang, RP~Fedkiw, B~Merriman, TD~Aslam, AR~Karagozian, and SJ~Osher.
+P~Hwang, RP~Fedkiw, B~Merriman, et~al.
 \newblock Numerical resolution of pulsating detonation waves.
 \newblock {\em DCJ}, 2:1, 2000.
 
@@ -1503,7 +1497,7 @@ Stanley Osher and Ronald Fedkiw.
 \newblock Springer Science \& Business Media, 2006.
 
 \bibitem{fedkiw1999non}
-Ronald~P Fedkiw, Tariq Aslam, Barry Merriman, and Stanley Osher.
+Ronald~P Fedkiw, Tariq Aslam, Barry Merriman, et~al.
 \newblock A non-oscillatory eulerian approach to interfaces in multimaterial
   flows (the ghost fluid method).
 \newblock {\em Journal of computational physics}, 152(2):457--492, 1999.
@@ -1515,7 +1509,7 @@ CW~Wang, TG~Liu, and BC~Khoo.
 \newblock {\em SIAM Journal on Scientific Computing}, 28(1):278--302, 2006.
 
 \bibitem{batten1997choice}
-Paul Batten, Nicholas Clarke, Claire Lambert, and Derek~M Causon.
+Paul Batten, Nicholas Clarke, Claire Lambert, et~al.
 \newblock On the choice of wavespeeds for the hllc riemann solver.
 \newblock {\em SIAM Journal on Scientific Computing}, 18(6):1553--1570, 1997.
 
@@ -1537,7 +1531,7 @@ Xiang~Yu Hu and Boo~Cheong Khoo.
 \newblock {\em Journal of Computational Physics}, 198(1):35--64, 2004.
 
 \bibitem{hu2006conservative}
-XY~Hu, BC~Khoo, Nikolaus~A Adams, and FL~Huang.
+XY~Hu, BC~Khoo, Nikolaus~A Adams, et~al.
 \newblock A conservative interface method for compressible flows.
 \newblock {\em Journal of Computational Physics}, 219(2):553--578, 2006.
 
@@ -1553,12 +1547,12 @@ James~Edward Pilliod and Elbridge~Gerry Puckett.
 \newblock PhD thesis, 南京航空航天大学, 2014.
 
 \bibitem{glimm1999simple}
-James Glimm, John~W Grove, XL~Li, and N~Zhao.
+James Glimm, John~W Grove, XL~Li, et~al.
 \newblock Simple front tracking.
 \newblock {\em Contemporary Mathematics}, 238(2):133--149, 1999.
 
 \bibitem{赵宁2001rm}
-赵宁, 余彦, and 唐维军.
+赵宁，余彦，唐维军.
 \newblock Rm 不稳定性数值模拟方法.
 \newblock {\em 计算数学}, 2001.
 
@@ -1569,7 +1563,7 @@ Stephen~F Davis.
 \newblock {\em Applied Numerical Mathematics}, 10(6):447--472, 1992.
 
 \bibitem{张德良2010计算流体力学教程}
-张德良 et~al.
+张德良.
 \newblock {\em 计算流体力学教程}.
 \newblock 高等教育出版社, 2010.
 
@@ -1691,7 +1685,7 @@ Sergio Pirozzoli.
 \newblock {\em Annual review of fluid mechanics}, 43:163--194, 2011.
 
 \bibitem{zhou2007new}
-Qiang Zhou, Zhaohui Yao, Feng He, and MY~Shen.
+Qiang Zhou, Zhaohui Yao, Feng He, et~al.
 \newblock A new family of high-order compact upwind difference schemes with
   good spectral resolution.
 \newblock {\em Journal of Computational Physics}, 227(2):1306--1339, 2007.
@@ -1803,7 +1797,7 @@ Takahiro Miyoshi and Kanya Kusano.
 \newblock {\em Journal of Computational Physics}, 208(1):315--344, 2005.
 
 \bibitem{lombard1983multi}
-CK~Lombard, J~Bardina, E~Venkatapathy, and J~Oliger.
+CK~Lombard, J~Bardina, E~Venkatapathy, et~al.
 \newblock Multi-dimensional formulation of cscm-an upwind flux difference
   eigenvector split method for the compressible navier-stokes equations.
 \newblock In {\em 6th Computational Fluid Dynamics Conference}, pages 649--664,
@@ -1880,8 +1874,7 @@ JS~Shang.
 \newblock {\em Progress in Aerospace Sciences}, 37(1):1--20, 2001.
 
 \bibitem{powell1999solution}
-Kenneth~G Powell, Philip~L Roe, Timur~J Linde, Tamas~I Gombosi, and Darren~L
-  De~Zeeuw.
+Kenneth~G Powell, Philip~L Roe, Timur~J Linde, et~al.
 \newblock A solution-adaptive upwind scheme for ideal magnetohydrodynamics.
 \newblock {\em Journal of Computational Physics}, 154(2):284--309, 1999.
 
@@ -1909,12 +1902,12 @@ Junseok Kim and John Lowengrub.
   1994.
 
 \bibitem{shen2005FDV}
-申义庆, 高智, and 杨顶辉.
+申义庆，~高智， 杨顶辉.
 \newblock 一阶双曲方程的摄动有限差分格式.
 \newblock {\em 计算物理}, 22(6):650--656, 2005.
 
 \bibitem{gao2004PFV}
-高智 and 柏威.
+高智，柏威.
 \newblock 对流扩散方程的摄动有限体积 (pfv) 方法及讨论.
 \newblock {\em 力学学报}, 36(1):88--92, 2004.
 
@@ -1988,7 +1981,7 @@ Elaine~S Oran, James~W Weber, Eliza~I Stefaniw, Michel~H Lefebvre, and John~D
 \newblock {\em Combustion and Flame}, 113(1):147--163, 1998.
 
 \bibitem{胡宗民2004爆轰波在弯管内传播过程数值分析}
-胡宗民, 牟乾辉, 张德良, and 姜宗林.
+胡宗民，牟乾辉，张德良等.
 \newblock 爆轰波在弯管内传播过程数值分析.
 \newblock {\em 计算物理}, 21(5):408--414, 2004.
 
@@ -2016,7 +2009,7 @@ DH~Edwards, JR~Walker, and MA~Nettleton.
 \newblock {\em Archivum Combustionis}, 4:197--209, 1984.
 
 \bibitem{guo2007cellular}
-Changming Guo, Changjian Wang, Shengli Xu, and Hanhong Zhang.
+Changming Guo, Changjian Wang, Shengli Xu, et~al.
 \newblock Cellular pattern evolution in gaseous detonation diffraction in a
   90-branched channel.
 \newblock {\em Combustion and flame}, 148(3):89--99, 2007.
@@ -2039,14 +2032,14 @@ Yunfeng Liu and Zonglin Jiang.
 \newblock {\em Acta Mechanica Sinica}, 24(3):261--266, 2008.
 
 \bibitem{roy2004pulse}
-GD~Roy, SM~Frolov, AA~Borisov, and DW~Netzer.
+GD~Roy, SM~Frolov, AA~Borisov, et~al.
 \newblock Pulse detonation propulsion: challenges, current status, and future
   perspective.
 \newblock {\em Progress in Energy and Combustion Science}, 30(6):545--672,
   2004.
 
 \bibitem{张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究}
-张薇, 刘云峰, 姜宗林, et~al.
+张薇，刘云峰，姜宗林等.
 \newblock 气相爆轰波胞格尺度与点火延迟时间关系研究.
 \newblock 2014.
 
@@ -2080,7 +2073,7 @@ Elin Olsson and Gunilla Kreiss.
 \newblock {\em Journal of computational physics}, 210(1):225--246, 2005.
 
 \bibitem{roy1999gaseous}
-Gabriel~D Roy, Sergei~M Frolov, Kazhikathra Kailasanath, and Nicolay~N Smirnov.
+Gabriel~D Roy, Sergei~M Frolov, Kazhikathra Kailasanath, et~al.
 \newblock Gaseous and heterogeneous detonations: science to applications.
 \newblock Technical report, DTIC Document, 1999.
 
