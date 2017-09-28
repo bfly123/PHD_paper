@@ -18,10 +18,10 @@
 ±¾ÎÄÑÐ¾¿Éæ¼°ÈýÖÖÎïÖÊ×´Ì¬£¬·Ö±ðÎª¿ÉÑ¹ËõÀíÏëÆøÌå¡¢ÀíÏë´ÅÁ÷ÌåºÍ´æÔÚ»¯Ñ§·´Ó¦µÄ¿ÉÑ¹Ëõ¶à×é·ÖÆøÌå»ìºÏÎï£¬ÏÂÃæ¼òµ¥½éÉÜÏàÓ¦µÄ¿ØÖÆ·½³ÌÏµÍ³¡£
 
 \subsection{Euler·½³Ì}\label{chap:2d_Euler}
-ÑÐ¾¿¸÷ÖÖ³£¼û¿ÉÑ¹ËõÁ÷¶¯ÎÊÌâÊ±£¬ÎÒÃÇ³£²ÉÓÃÎÞð¤¡¢ÎÞµ¼ÈÈµÄEuler·½³Ì£¬ËüÊÇNavier-Stocks(NS)·½³ÌµÄ¼ò»¯·½³Ì£¬¼ÈÊÇNS·½³Ì·Ö²ã´ÎÇó½âµÄÒ»²ã£¬Ò²ÄÜÂú×ãºÜ¶àÎïÀíÎÊÌâµÄÇó½âÒªÇó£¬Í¬Ê±£¬Euler·½³ÌÑÐ¾¿Ò²ÊÇÆäËüÈç´ÅÁ÷Ìå¼°»¯Ñ§·´Ó¦Á÷µÈ¸´ÔÓ·½³ÌÏµÍ³ÑÐ¾¿µÄ»ù´¡¡£¶þÎ¬ÊØºãÐÍEuler·½³ÌÈçÏÂ£º
+ÑÐ¾¿¸÷ÖÖ³£¼û¿ÉÑ¹ËõÁ÷¶¯ÎÊÌâÊ±£¬ÎÒÃÇ³£²ÉÓÃÎÞð¤¡¢ÎÞµ¼ÈÈµÄEuler·½³Ì£¬ËüÊÇNavier-Stocks(NS)·½³ÌµÄ¼ò»¯·½³Ì£¬¼ÈÊÇNS·½³Ì·Ö²ã´ÎÇó½âµÄÒ»²ã£¬Ò²ÄÜÂú×ãºÜ¶àÎïÀíÎÊÌâµÄÇó½âÒªÇó£¬Í¬Ê±£¬Euler·½³ÌÑÐ¾¿Ò²ÊÇÆäËüÈç´ÅÁ÷Ìå¼°»¯Ñ§·´Ó¦Á÷µÈ¸´ÔÓ·½³ÌÏµÍ³ÑÐ¾¿µÄ»ù´¡¡£ÈýÎ¬ÊØºãÐÍEuler·½³ÌÈçÏÂ£º
 
 \begin{equation}\label{eq1_1}
-  \frac{\partial \bm{U}}{\partial t} +\frac{\partial \bm{F}}{\partial x}+\frac{\partial \bm{G}}{\partial y}=0
+  \frac{\partial \bm{U}}{\partial t} +\frac{\partial \bm{F}}{\partial x}+\frac{\partial \bm{G}}{\partial y}+\frac{\partial \bm{H}}{\partial z}=0
   \end{equation}
 ÆäÖÐ
 \begin{eqnarray*}
@@ -30,6 +30,7 @@
 	\rho\\
 	\rho u\\
 	\rho v \\
+	\rho w \\
 	E\\
 	\end{array}
 	\right)
@@ -39,6 +40,7 @@
 	\rho u\\
 	\rho u^2+p\\
 	\rho uv \\
+	\rho uw \\
 	u(E+p)\\
 	\end{array}
 	\right)
@@ -48,13 +50,24 @@
 	\rho v\\
 	\rho uv\\
 	\rho v^2+p \\
+	\rho wv\\
 	v(E+p)\\
 	\end{array}
 	\right)
+,
+	\bm{H}=\left(
+  \begin{array}{l}
+	\rho w\\
+	\rho uw\\
+	\rho wv\\
+	\rho w^2+p \\
+	w(E+p)\\
+	\end{array}
+	\right)
 \end{eqnarray*}
-ÆäÖÐ$\rho$ ÎªÃÜ¶È£¬$u$Îªx·½ÏòËÙ¶È£¬$v$Îªy·½ÏòËÙ¶È£¬$p$ÊÇÁ÷ÌåµÄÑ¹Á¦£¬$E$ÊÇ×ÜÄÜÁ¿£¬¶ÔÓÚÀíÏëÆøÌåÓÐÈçÏÂÐÎÊ½×´Ì¬·½³Ì
+ÆäÖÐ$\rho$ ÎªÃÜ¶È£¬$u$Îªx·½ÏòËÙ¶È£¬$v$Îªy·½ÏòËÙ¶È£¬ $w$Îªz·½ÏòËÙ¶È£¬$p$ÊÇÁ÷ÌåµÄÑ¹Á¦£¬$E$ÊÇ×ÜÄÜÁ¿£¬¶ÔÓÚÀíÏëÆøÌåÓÐÈçÏÂÐÎÊ½×´Ì¬·½³Ì
 \begin{equation}\label{state1}
-  p=(\gamma-1)[E-\frac{1}{2}\rho(u^2+v^2)]
+  p=(\gamma-1)[E-\frac{1}{2}\rho(u^2+v^2+w^2)]
 \end{equation}
 ÆäÖÐ$\gamma$Îª±ÈÈÈ±È¡£
 
@@ -401,7 +414,7 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f$$
 
 \noindent \textbf{¶à²½»ùÔª·´Ó¦Ä£ÐÍ}
 
-¸ù¾ÝÎïÀíÎÊÌâ²»Í¬ºÍ¶Ô¼ÆËã¾«×¼¶ÈÒªÇó²»Í¬£¬Ä£Äâ¿ÉÄÜÐèÒªÁË½âÏêÏ¸µÄ»¯Ñ§·´Ó¦¶¯Á¦Ñ§¹ý³Ì£¬»ùÔª·´Ó¦Ä£ÐÍ¾ÍÊÇÕë¶ÔÕâÑùµÄÒªÇóÌá³öµÄ£¬ÕâÀïµÄ»ùÔª·´Ó¦¾ÍÊÇÖ¸·´Ó¦ÎïÎ¢Á££¨Ô­×Ó¡¢·Ö×Ó¡¢Àë×ÓºÍ×ÔÓÉ»ùµÈ£©Ò»²½ÊµÏÖµÄ»¯Ñ§±ä»¯¡£Çø±ðÓÚ¶à²½¼ò»¯Ä£ÐÍ£¬»ùÔª·´Ó¦Ä£ÐÍÖÐµÄ»ìºÏÎï¸÷ÖÖÈÈÁ¦Ñ§²ÎÊýÈçìÊ¡¢ìØºÍ±ÈÈÈ±ÈµÈ»áËæ×ÅÎÂ¶È±ä»¯¶ø¸Ä±ä¡£»ùÔª·´Ó¦Ä£ÐÍÑÐ¾¿µÄÆøÌå¶ÔÏóÎªÀíÏëÆøÌå·½³Ì¿ØÖÆÏÂµÄµÄÈÈÍêÈ«ÆøÌå£¨$T<4000K$£©¡£¹ØÓÚÁ¿ÈÈÍêÈ«ÆøÌå£¨Calorically perfect/Perfect£©¡¢ÈÈÍêÈ«ÆøÌå(Thermally perfect/Semi-perfect)¡¢ÀíÏëÆøÌå(Ideal)ºÍÕæÊµÆøÌå£¨Imperfect£©µÄÏêÏ¸¸ÅÄî¿ÉÒÔ²ÎÕÕ\cite{anderson2010fundamentals}¡£
+¸ù¾ÝÎïÀíÎÊÌâ²»Í¬ºÍ¶Ô¼ÆËã¾«×¼¶ÈÒªÇó²»Í¬£¬Ä£Äâ¿ÉÄÜÐèÒªÁË½âÏêÏ¸µÄ»¯Ñ§·´Ó¦¶¯Á¦Ñ§¹ý³Ì£¬»ùÔª·´Ó¦Ä£ÐÍ¾ÍÊÇÕë¶ÔÕâÑùµÄÒªÇóÌá³öµÄ£¬ÕâÀïµÄ»ùÔª·´Ó¦¾ÍÊÇÖ¸·´Ó¦ÎïÎ¢Á££¨Ô­×Ó¡¢·Ö×Ó¡¢Àë×ÓºÍ×ÔÓÉ»ùµÈ£©Ò»²½ÊµÏÖµÄ»¯Ñ§±ä»¯¡£Çø±ðÓÚ¶à²½¼ò»¯Ä£ÐÍ£¬»ùÔª·´Ó¦Ä£ÐÍÖÐ»ìºÏÎïµÄ¸÷ÖÖÈÈÁ¦Ñ§²ÎÊýÈçìÊ¡¢ìØºÍ±ÈÈÈ±ÈµÈ»áËæ×ÅÎÂ¶È±ä»¯¶ø¸Ä±ä¡£»ùÔª·´Ó¦Ä£ÐÍÑÐ¾¿µÄÆøÌå¶ÔÏóÎªÀíÏëÆøÌå·½³Ì¿ØÖÆÏÂµÄµÄÈÈÍêÈ«ÆøÌå£¨$T<4000K$£©¡£¹ØÓÚÁ¿ÈÈÍêÈ«ÆøÌå£¨Calorically perfect/Perfect£©¡¢ÈÈÍêÈ«ÆøÌå(Thermally perfect/Semi-perfect)¡¢ÀíÏëÆøÌå(Ideal)ºÍÕæÊµÆøÌå£¨Imperfect£©µÄÏêÏ¸¸ÅÄî¿ÉÒÔ²ÎÕÕ\cite{anderson2010fundamentals}¡£
 
 ÎÒÃÇÍ¬Ñù¿ÉÒÔ²ÉÓÃ¹«Ê½£¨\ref{eq1_7}£©À´´ú±íËùÓÐ»ùÔª·´Ó¦£¬ÆäÖÐ$ns$´ú±íËùÓÐ·´Ó¦ÎïºÍÈýÌåµÄÊýÄ¿¡£µÚ$i$×é·ÖµÄÖÊÁ¿Éú³ÉÂÊÎª
 \begin{equation}
@@ -411,7 +424,7 @@ $$\lambda_{1,2,3,4,5,6,7}=u-c_f,u-c_a,u-c_s,u,u+c_s,u+c_a,u+c_f$$
 \begin{equation}
   K_{f,k}=A_k T^{b_j}\text{exp}\left(-\frac{E_{a,k}}{R_u T}\right)
 \end{equation}
-²ÎÊý$A_k$,$b_k$ºÍ$E_{a,k}$·Ö±ðÎªµÚk¸ö»ùÔª·´Ó¦µÄÖ¸Ç°Òò×Ó¡¢ÎÂ¶ÈÏµÊýºÍ»î»¯ÄÜ¡£Äæ·´Ó¦ËÙÂÊ³£Êý$K_{b,k}$¿ÉÒÔÍ¨¹ýÏÂÃæ·½Ê½ÇóµÃ
+²ÎÊý$A_k$,$b_k$ºÍ$E_{a,k}$·Ö±ðÎªµÚ$k$¸ö»ùÔª·´Ó¦µÄÖ¸Ç°Òò×Ó¡¢ÎÂ¶ÈÏµÊýºÍ»î»¯ÄÜ¡£Äæ·´Ó¦ËÙÂÊ³£Êý$K_{b,k}$¿ÉÒÔÍ¨¹ýÏÂÃæ·½Ê½ÇóµÃ
 \begin{equation}
   K_{b,k}=\frac{K_{f,k}}{K_{c,k}},K_{c,k}=K_{p,k}\left(\frac{p_{\text{atm}}}{R_uT}\right)^{\sum_{i=1}^{ns}(\nu_{i,k}''-\nu_{i,k}')}
 \end{equation}
@@ -452,7 +465,6 @@ Euler·½³Ì×ñÑ­Ë«ÇúÊØºãÂÉ£¬¹ØÓÚ·ÇÏßÐÔË«ÇúÊØºãÂÉ·½³ÌµÄÀíÂÛÑÐ¾¿»ù±¾ÉÏÊÇ´Ó¹ãÒåº¯ÊýºÍÈ
   u_t+\nabla_x f(u)=0,
 \end{equation}
 ÆäÖÐ$t\in R_+$£¬$x\in R^d$£¬$d\geq 1$£¬$u=u(t,x) \in R^n$£¬$n\geq 1$£¬$f(u)=(f_i^j(u))_{n\times d}$ÊÇ$n\times d$µÄ¾ØÕó¡£
-
 Èõ½â¿ÉÒÔ¶¨ÒåÎª\cite{Àµ¸û2010¶þÎ¬¿ÉÑ¹Á÷Ìå}£º
 
 Èç¹û¿É²âÏòÁ¿º¯Êý$u=(u^1,\cdots,u^n): \Omega \subset R_+ \times R_x^d \to R^n$Âú×ã
@@ -476,7 +488,7 @@ Euler·½³Ì×ñÑ­Ë«ÇúÊØºãÂÉ£¬¹ØÓÚ·ÇÏßÐÔË«ÇúÊØºãÂÉ·½³ÌµÄÀíÂÛÑÐ¾¿»ù±¾ÉÏÊÇ´Ó¹ãÒåº¯ÊýºÍÈ
 	 \end{array}
 	 \right.
 \end{equation*}
-ÆäÖÐ£¬$p=p_0\rho^\gamma$¡£µ«ÊÇÎÒÃÇÖªµÀ£¬¾¡¹ÜÔÚÎÞð¤¡¢ÎÞ´«ÈÈÁ÷ÌåÖÐ£¬Á÷Ìå´©¹ý¼¤²¨Ò²²¢²»ÊÇµÈìØ¹ý³Ì¡£Ä¿Ç°²¹³¥ÁÐ½ôÀíÂÛÖ»ÄÜÊÊÓÃÓÚÑÏ¸ñË«Çú$2\times2$·½³Ì×é
+ÆäÖÐ£¬$p=p_0\rho^\gamma$¡£µ«ÊÇÎÒÃÇÖªµÀ£¬¾¡¹ÜÔÚÎÞð¤¡¢ÎÞ´«ÈÈÁ÷ÌåÖÐ£¬Á÷Ìå´©¹ý¼¤²¨Ò²²¢²»ÊÇµÈìØ¹ý³Ì¡£Ä¿Ç°²¹³¥ÁÐ½ôÀíÂÛÖ»ÄÜÊÊÓÃÓÚÑÏ¸ñË«ÇúµÄ$2\times2$·½³Ì×é
 \begin{equation*}
  \left\{
 	\begin{array}{l}
@@ -485,11 +497,11 @@ Euler·½³Ì×ñÑ­Ë«ÇúÊØºãÂÉ£¬¹ØÓÚ·ÇÏßÐÔË«ÇúÊØºãÂÉ·½³ÌµÄÀíÂÛÑÐ¾¿»ù±¾ÉÏÊÇ´Ó¹ãÒåº¯ÊýºÍÈ
 	 \end{array}
 	 \right. 
 \end{equation*}
-¶ÔÓÚ¸ßÎ¬ÎÊÌâ£¬Ä¿Ç°ÊÇÊýÑ§ÉÏµÄÒ»¸öÈÈµãÎÊÌâ£¬µ±È»Ò²ÊÇÄÑµã£¬ÉÐÈ±·¦³ä·ÖµÄÀíÂÛ½á¹û\cite{sheng2002two,tan1994two,pang2016global}¡£
+¸ßÎ¬ÎÊÌâµÄÀíÂÛÑÐ¾¿£¬Ä¿Ç°ÊÇÊýÑ§ÉÏµÄÈÈµãºÍÄÑµã£¬ÉÐÈ±·¦³ä·ÖµÄÀíÂÛ½á¹û\cite{sheng2002two,tan1994two,pang2016global}¡£
 
 \subsection{ÀèÂüÎÊÌâºÍEuler·½³Ì½üËÆ½â}\label{chap:riemann}
 
-¾¡¹ÜÅ·À­·½³Ì½âµÄ´æÔÚÐÔÔÚÊýÑ§ÉÏÈÔÈ±·¦×ã¹»µÄÖ¤Ã÷£¬µ«ÊÇÅ·À­·½³ÌµÄ½üËÆ½âÔÚºÜ¶àÊýÑ§¡¢ÎïÀíºÍ¹¤³ÌÁìÓò¶¼ÌØ±ðÖØÒª¡£×îÔç¿ÉÒÔ×·ËÝµ½1858Äê£¬²®¶÷¹þµÂ$\cdot$ÀèÂü\cite{riemann1860fortpflanzung}ÔÚÑÐ¾¿¼¤²¨¹ÜÎÊÌâÊ±£¬£¬Í¨¹ýÉè¶¨³õÖµÎªÈÎÒâ¼ä¶ÏÖµµÄ½×Ô¾º¯Êý£º
+¾¡¹ÜÅ·À­·½³Ì½âµÄ´æÔÚÐÔÔÚÊýÑ§ÉÏÈÔÈ±·¦×ã¹»µÄÖ¤Ã÷£¬µ«ÊÇÅ·À­·½³ÌµÄ½üËÆ½âÔÚºÜ¶àÊýÑ§¡¢ÎïÀíºÍ¹¤³ÌÁìÓò¶¼ÌØ±ðÖØÒª¡£×îÔç¿ÉÒÔ×·ËÝµ½1858Äê£¬²®¶÷¹þµÂ$\cdot$ÀèÂü\cite{riemann1860fortpflanzung}ÔÚÑÐ¾¿¼¤²¨¹ÜÎÊÌâÊ±£¬Í¨¹ýÉè¶¨³õÖµÎªÈÎÒâ¼ä¶ÏÖµµÄ½×Ô¾º¯Êý£º
 \begin{equation*}
   U=\left\{
 	\begin{array}{l}
@@ -498,9 +510,9 @@ Euler·½³Ì×ñÑ­Ë«ÇúÊØºãÂÉ£¬¹ØÓÚ·ÇÏßÐÔË«ÇúÊØºãÂÉ·½³ÌµÄÀíÂÛÑÐ¾¿»ù±¾ÉÏÊÇ´Ó¹ãÒåº¯ÊýºÍÈ
 	\end{array}
 \right.
 \end{equation*}
-¹¹ÔìÁËEuler·½³ÌÔÚÒ»×éÌØÊâ³õÖµÌõ¼þÏÂµÄÀíÂÛ½â¡£¸ú¾Ý³õÊ¼¼ä¶Ï²»Í¬£¬ÀèÂü¹¹Ôì³öÁËËÄÀà½â£¬ÓÉÏòÇ°¡¢ÏòºóÏ¡Êè²¨ºÍÏòÇ°¡¢Ïòºó¼¤²¨×é³É£¬²¢ÀûÓÃÏàÆ½Ãæ·ÖÎö·½·¨¸ø³öÁËÅÐ±ðÌõ¼þ¡£¸ÃÀà³õÖµÎÊÌâ£¨CauchyÎÊÌâ£©±»³ÆÎªÀèÂüÎÊÌâ¡£¸ÃÎÊÌâÔÚÇó½âÄâÏßÐÔË«Çú·½³ÌÓÈÆäÔÚÇó½â¿ÕÆø¶¯Á¦Ñ§·½³ÌÖÐÆðµ½ÁËµÚÒ»¿é»ùÊ¯µÄ×÷ÓÃ\cite{gelfand1963some}£¬²¢ÇÒ¿ª´´ÁËÎ¢·Ö·½³Ì¹ãÒå½â¸ÅÄî¼°ÏàÆ½Ãæ·ÖÎö·½·¨Ö®ÏÈºÓ£¬¾ßÓÐ¼«´óµÄ³¬Ç°ÐÔ¡£1957ÄêLax\cite{lax1957hyperbolic,lax1960hyperbolic,lax1971shock}¶ÔÒ»Î¬ÀèÂü½â´æÔÚÐÔºÍÎ¨Ò»ÐÔ¸ø³öÁËÖ¤Ã÷¡£ÖÁ´Ë£¬Ò»Î¬ÀèÂüÎÊÌâµÃµ½³¹µ×½â¾ö£¬ËüµÄÀíÂÛ½âÓÉ³å»÷²¨£¬ÖÐÐÄÏ¡Êè²¨ºÍ½Ó´¥¼ä¶ÏÈýÀà»ù±¾²¨¹¹³É¡£
+¹¹ÔìÁËEuler·½³ÌÔÚ¸ÃÀàÌØÊâ³õÖµÌõ¼þÏÂµÄÀíÂÛ½â¡£¸ù¾Ý³õÊ¼¼ä¶Ï²»Í¬£¬ÀèÂü¹¹Ôì³öÁËËÄÀà½â£¬ÓÉÏòÇ°¡¢ÏòºóÏ¡Êè²¨ºÍÏòÇ°¡¢Ïòºó¼¤²¨×é³É£¬²¢ÀûÓÃÏàÆ½Ãæ·ÖÎö·½·¨¸ø³öÁËÅÐ±ðÌõ¼þ¡£¸ÃÀà³õÖµÎÊÌâ£¨CauchyÎÊÌâ£©±»³ÆÎªÀèÂüÎÊÌâ¡£¸ÃÎÊÌâÔÚÇó½âÄâÏßÐÔË«Çú·½³ÌÓÈÆäÔÚÇó½â¿ÕÆø¶¯Á¦Ñ§·½³ÌÖÐÆðµ½ÁËµÚÒ»¿é»ùÊ¯µÄ×÷ÓÃ\cite{gelfand1963some}£¬²¢ÇÒ¿ª´´ÁËÎ¢·Ö·½³Ì¹ãÒå½â¸ÅÄî¼°ÏàÆ½Ãæ·ÖÎö·½·¨Ö®ÏÈºÓ£¬¾ßÓÐ¼«´óµÄ³¬Ç°ÐÔ¡£1957ÄêLax\cite{lax1957hyperbolic,lax1960hyperbolic,lax1971shock}¶ÔÒ»Î¬ÀèÂü½â´æÔÚÐÔºÍÎ¨Ò»ÐÔ¸ø³öÁËÖ¤Ã÷¡£ÖÁ´Ë£¬Ò»Î¬ÀèÂüÎÊÌâµÃµ½³¹µ×½â¾ö£¬ËüµÄÀíÂÛ½âÓÉ³å»÷²¨£¬ÖÐÐÄÏ¡Êè²¨ºÍ½Ó´¥¼ä¶ÏÈýÀà»ù±¾²¨¹¹³É¡£
 
-¸ßÎ¬µÄÀèÂüÎÊÌâ£¬Èç¶þÎ¬ÀèÂüÎÊÌâ£¬ÓÉÓÚ¸´ÔÓÐÔ£¬Ö±µ½80Äê´ú£¬²ÅÓÐÑ§Õß½øÐÐÑÐ¾¿¡£1985Äê£¬ÕÅÍ¬ºÍÖ£Óñçô·ÖÎö×î¼ò¶þÎ¬Ä£ÐÍÀèÂüÎÊÌâ£¬³ÉÎª¶þÎ¬ÀèÂüÎÊÌâµÄÒ»¸öÊµÖÊÐÔÍ»ÆÆ¡£1990ÄêËûÃÇÔÚÎÄÏ×\cite{zhang1990conjecture}ÖÐ¸ø³öÒ»Ì×·ÖÎöºÍ²ÂÏë£¬ËûÃÇ¼ÙÉè³õÊ¼¼ä¶ÏÏßÔÚ$t>0$ Ê±·¢³öÒ»µÀÆ½Ãæ»ù±¾²¨£¬ÕâÑùËÄµÀ²¨Ïà»¥×÷ÓÃ»áÐÎ³É16Àà²»Í¬ÎÊÌâ¡£Ëæ×ÅÊýÖµ¼ÆËãµÄ·¢Õ¹£¬SchulzºÍCarsten\cite{schulz1993classification}£¬Chang\cite{chang19952,chang20002}µÈ£¬LaxºÍLiu\cite{lax1998solution}¶ÔÕâÒ»²ÂÏë½øÐÐÁËÊýÖµÄ£Äâ£¬²¢×îÖÕ½«¶þÎ¬ÀèÂüÎÊÌâÍêÉÆÎª19Àà¡£Ä¿Ç°ÎªÖ¹£¬ÉÐÃ»ÓÐÒ»ÀàÇé¿ö±»ÍêÉÆÖ¤Ã÷\cite{Ð¤Î°2012ÆøÌå¶¯Á¦Ñ§ÖÐÑ¹²î·½³ÌË«¶Ô³Æ½á¹¹}¡£
+¸ßÎ¬µÄÀèÂüÎÊÌâ£¬Èç¶þÎ¬ÀèÂüÎÊÌâ£¬ÓÉÓÚ¸´ÔÓÐÔ£¬Ö±µ½80Äê´ú£¬²ÅÓÐÑ§Õß¿ªÊ¼½øÐÐÑÐ¾¿¡£1985Äê£¬ÕÅÍ¬ºÍÖ£Óñçô·ÖÎöÁË×î¼ò¶þÎ¬Ä£ÐÍÀèÂüÎÊÌâ£¬³ÉÎª¶þÎ¬ÀèÂüÎÊÌâµÄÒ»¸öÊµÖÊÐÔÍ»ÆÆ¡£1990ÄêËûÃÇÔÚÎÄÏ×\cite{zhang1990conjecture}ÖÐ¸ø³öÒ»Ì×·ÖÎöºÍ²ÂÏë£¬ËûÃÇ¼ÙÉè³õÊ¼¼ä¶ÏÏßÔÚ$t>0$ Ê±·¢³öÒ»µÀÆ½Ãæ»ù±¾²¨£¬ÕâÑùËÄµÀ²¨Ïà»¥×÷ÓÃ»áÐÎ³É16Àà²»Í¬ÎÊÌâ¡£Ëæ×ÅÊýÖµ¼ÆËãµÄ·¢Õ¹£¬SchulzºÍCarsten\cite{schulz1993classification}£¬Chang\cite{chang19952,chang20002}µÈ£¬LaxºÍLiu\cite{lax1998solution}¶ÔÕâÒ»²ÂÏë½øÐÐÁËÊýÖµÄ£Äâ£¬²¢×îÖÕ½«¶þÎ¬ÀèÂüÎÊÌâÍêÉÆÎª19Àà¡£Ä¿Ç°ÎªÖ¹£¬ÉÐÃ»ÓÐÒ»ÀàÇé¿öµÃµ½ÍêÉÆµÄÖ¤Ã÷\cite{Ð¤Î°2012ÆøÌå¶¯Á¦Ñ§ÖÐÑ¹²î·½³ÌË«¶Ô³Æ½á¹¹}¡£
 
 
  ÀèÂüÎÊÌâµÄÖØÒªÒâÒå²¢²»½öÔÚÓÚËü´æÔÚÀíÂÛ½â£¬¸üÖØÒªµÄÊÇËüÊÇ¹¹Ôì¸üÒ»°ã³õÖµÎÊÌâ½üËÆ½âµÄ»ù´¡£¬Í¨¹ý½«Ò»°ãµÄ³õÖµÀëÉ¢³ÉÓÐÏÞ¸öÀèÂüÎÊÌâ,È»ºó²ÉÓÃÆ´½ÓµÄ·½Ê½µÃµ½ÏÂÒ»Ê±¿ÌÖµµÄ·Ö²¼£¬ÒÔ´ËÀ´ÍÆ½øÊ±¼äµÄ·¢Õ¹£¬Ê¹µÃ½üËÆÇó½âÒ»°ã³õÖµEuler·½³ÌÄËÖÁËùÓÐ·ÇÏßÐÔ¶ÔÁ÷·½³Ì³ÉÎª¿ÉÄÜ¡£ 
@@ -512,14 +524,14 @@ Euler·½³Ì×ñÑ­Ë«ÇúÊØºãÂÉ£¬¹ØÓÚ·ÇÏßÐÔË«ÇúÊØºãÂÉ·½³ÌµÄÀíÂÛÑÐ¾¿»ù±¾ÉÏÊÇ´Ó¹ãÒåº¯ÊýºÍÈ
  
  Ñ§ÕßÃÇÆÕ±é½«1922ÄêLewis Fry Richardson ²ÉÓÃÊýÖµ·½·¨Ô¤²âÌìÆøµÄ¹¤×÷\cite{richardson2007weather}×÷ÎªCFD¿ªÊ¼µÄ±êÖ¾¡£µ«ÊÇÊµ¼ÊÉÏÕýÈçÎÒÃÇÔÚÉÏÒ»½ÚËù½éÉÜµÄ£¬ÔçÔÚ´ËÖ®Ç°£¬Ïà¹ØÀíÂÛ¹¤×÷ÒÑ¾­¿ªÊ¼£¬°üÀ¨ÕâÖ®ºóµÄ´óÁ¿´ËÀà¹¤×÷£¬¶¼¿ÉÒÔ±»»®¹éÔÚÊýÑ§·¶Î§ÄÚ£¬ÎÒÃÇµ±È»Ò²¿ÉÒÔ³ÆËüÃÇÎªCFDµÄÔçÆÚÀíÂÛÑÐ¾¿¡£Èç1928Äê£¬Coutant¡¢Friedrichs ºÍLewy\cite{courant1928partiellen}Ìá³öÓÐÏÞ²î·Ö·½·¨Çó½âÆ«Î¢·Ö·½³ÌÊ±ÊÕÁ²µÄ±ØÒªÌõ¼þ---Courant-Friedrichs-Lewy(CFL) Ìõ¼þµÈ¡£
 
-¼ÆËãÁ÷ÌåÁ¦Ñ§£¬Ïà¹ØµÄÑÐ¾¿ÖØµãÒ²ÓÐÁËºÜ´óÆ«ÒÆ£¬»ùÓÚÆä¹¤³Ì±³¾°µÄÒªÇó£¬Çø±ðÓÚÊýÑ§ÀíÂÛÑÐ¾¿£¬CFD¾ø´ó²¿·Ö¹¤×÷¶¼¼¯ÖÐÓÚÊýÖµ·½·¨µÄ·¢Õ¹¡¢¹¤³ÌÓ¦ÓÃµÄÍÆ¹ãÒÔ¼°ÒÔCFDÎª¹¤¾ßµÄÎïÀí»úÀíÐÔÑÐ¾¿ÉÏ¡£´Ó70Äê´ú¿ªÊ¼£¬°éËæ×ÅÊýÖµ·½·¨¡¢Ä£ÐÍ·½³Ì¡¢Íø¸ñ»®·ÖÒÔ¼°¼ÆËã»úÈíÓ²¼þÄÜÁ¦²»¶ÏÌáÉý£¬CFDÕæÕýµÃµ½ÁË¹ã·ºÓ¦ÓÃ£¬´Óº½¿Õ¡¢ÆøÏó¡¢´¬²°¡¢»¯¹¤µ½ÌåÓý¡¢¶¯»­µÈµÈ¸÷¸öÁìÓò¶¼ÂýÂýÓÐÁËCFDµÄÉíÓ°¡£1981ÄêµÚÒ»´úÉÌÒµ»¯Èí¼þPHONICS³öÏÖ£¬±êÖ¾×ÅCFD´Ó¿ÆÑÐÏò¹¤³ÌÓ¦ÓÃµÄÑÓÉì¡£½øÈë90Äê´ú£¬Ò»´óÅúÓÅÐãµÄÉÌÒµÈí¼þÓ¿ÏÖ£¬ÈçFLUENT£¬CFX£¬STAR-CDµÈµÈ£¬ÔÚ´Ë»ù´¡ÉÏ£¬CFD¹¤³ÌÊ¦Ò²³ÉÎªÐí¶àÐÐÒµÖÐ²»¿É»òÈ±µÄ½ÇÉ«£¬ÍÆ¶¯×ÅÆäËûÏà¹ØÑ§¿ÆµÄÑÐ¾¿ºÍ¹¤Òµ»¯µÄ·¢Õ¹¡£
+¼ÆËãÁ÷ÌåÁ¦Ñ§³öÏÖºó£¬Ïà¹ØµÄÑÐ¾¿ÖØµãÓÐÁËºÜ´óÆ«ÒÆ£¬»ùÓÚÆä¹¤³Ì±³¾°µÄÒªÇó£¬Çø±ðÓÚÊýÑ§ÀíÂÛÑÐ¾¿£¬CFD¾ø´ó²¿·Ö¹¤×÷¶¼¼¯ÖÐÓÚÊýÖµ·½·¨µÄ·¢Õ¹¡¢¹¤³ÌÓ¦ÓÃµÄÍÆ¹ãÒÔ¼°ÒÔCFDÎª¹¤¾ßµÄÎïÀí»úÀíÐÔÑÐ¾¿ÉÏ¡£´Ó70Äê´ú¿ªÊ¼£¬°éËæ×ÅÊýÖµ·½·¨¡¢Ä£ÐÍ·½³Ì¡¢Íø¸ñ»®·ÖÒÔ¼°¼ÆËã»úÈíÓ²¼þÄÜÁ¦²»¶ÏÌáÉý£¬CFDÕæÕýµÃµ½ÁË¹ã·ºÓ¦ÓÃ£¬´Óº½¿Õ¡¢ÆøÏó¡¢´¬²°¡¢»¯¹¤µ½ÌåÓý¡¢¶¯»­µÈµÈ¸÷¸öÁìÓò¶¼ÂýÂýÓÐÁËCFDµÄÉíÓ°¡£1981ÄêµÚÒ»´úÉÌÒµ»¯Èí¼þPHONICS³öÏÖ£¬±êÖ¾×ÅCFD´Ó¿ÆÑÐÏò¹¤³ÌÓ¦ÓÃµÄÑÓÉì¡£½øÈë90Äê´ú£¬Ò»´óÅúÓÅÐãµÄÉÌÒµÈí¼þÓ¿ÏÖ£¬ÈçFLUENT£¬CFX£¬STAR-CDµÈµÈ£¬ÔÚ´Ë»ù´¡ÉÏ£¬CFD¹¤³ÌÊ¦Ò²³ÉÎªÐí¶àÐÐÒµÖÐ²»¿É»òÈ±µÄ½ÇÉ«£¬ÍÆ¶¯×ÅÆäËûÏà¹ØÑ§¿ÆµÄÑÐ¾¿ºÍ¹¤Òµ»¯µÄ·¢Õ¹¡£
 
  \subsection{ÊýÖµ·½·¨µÄ·¢Õ¹}\label{cap:method_develop}
  Á÷ÌåÁ¦Ñ§·½³ÌµÄÊýÖµ·½·¨´Ó´óµÄ¿ò¼Ü¿ÉÒÔ·ÖÎªÓÐÏÞ²î·Ö·¨¡¢ÓÐÏÞÌå»ý·¨¡¢ÓÐÏÞÔª·¨¡¢±ß½çÔª·¨ºÍÓÐÏÞ·ÖÎö·¨µÈ¡£¸÷¸ö·½·¨¾ßÓÐ²»Í¬µÄÇó½âÇøÓòÀëÉ¢·½Ê½ºÍ¿ØÖÆ·½³ÌÀëÉ¢·½Ê½£¬¾ßÓÐ¸÷×ÔµÄÓÅÈ±µã£¬±¾ÎÄ²ÉÓÃÓÐÏÞ²î·Ö·½·¨¡£
  
  ÓÐÏÞ²î·Ö·½·¨Ê¹ÓÃÓÐÏÞ¸öÍø¸ñ½Úµã´úÌæÁ¬ÐøµÄ¼ÆËãÓò£¬ÒÔÌ©ÀÕ¼¶ÊýÕ¹¿ªµÈ·½·¨£¬½«¿ØÖÆ·½³ÌÖÐµÄµ¼ÊýÓÃ½Úµãº¯ÊýÖµµÄ²îÉÌ´úÌæ½øÐÐÀëÉ¢¡£ÓÐÏÞ²î·Ö·½·¨ÊÇÒ»ÖÖÖ±½Ó½«Î¢·Ö·½³Ì±äÎª´úÊýÎÊÌâµÄÊýÖµ·½·¨£¬Ö±¹ÛÇÒ¼òµ¥£¬·¢Õ¹½ÏÎª³ÉÊì¡£ÏÂÃæ¼òµ¥µÄ»Ø¹ËÊýÖµ·½·¨µÄ·¢Õ¹ºÍÏÖ×´¡£
  
-1959Äê£¬Godunov\cite{godunov1959difference}Ê×ÏÈ²ÉÓÃÊýÖµ·½·¨Çó½â·ÇÏßÐÔÆ«Î¢·Ö·½³Ì£¬ÎÄÖÐËûÖ¤Ã÷£¬Òª±£³Ö·½³ÌµÄ½âÊÇµ¥µ÷µÄ£¬ÄÇÃ´ÏßÐÔ¶ÔÁ÷µÄÀëÉ¢¸ñÊ½×î¶àÖ»ÓÐÒ»½×¾«¶È£¬Í¬Ê±ËûÈÏÎªÒ»½×Ó­·ç¸ñÊ½ÔÚÄ³ÖÖÒâÒåÉÏÊÇ×îºÃµÄ£¬²¢ÇÒ¸ø³öÁËÈçºÎ½«Ó­·ç¸ñÊ½Ó¦ÓÃÔÚ·ÇÏßÐÔÊØºã·½³ÌÏµÍ³µÄ·½·¨¡£ÔÚGodunovµÄ·½·¨ÖÐ£¬ÔÚÃ¿Ò»¸öÊ±¿Ì£¬Ã¿¸ö¼ÆËãµ¥Ôªµ±³ÉÒ»¸öÖµ£¬¾­¹ýÒ»¸öºÜ¶ÌÊ±¼äºó£¬ÔÚµ¥Ôª½»½çÃæÇó½âÀèÂüÎÊÌâ
+1959Äê£¬Godunov\cite{godunov1959difference}Ê×ÏÈ²ÉÓÃÊýÖµ·½·¨Çó½â·ÇÏßÐÔÆ«Î¢·Ö·½³Ì£¬ÎÄÖÐËûÖ¤Ã÷£¬Òª±£³Ö·½³ÌµÄ½âÊÇµ¥µ÷µÄ£¬ÄÇÃ´ÏßÐÔ¶ÔÁ÷·½³ÌµÄÀëÉ¢¸ñÊ½×î¶àÖ»ÓÐÒ»½×¾«¶È£¬Í¬Ê±ËûÈÏÎªÒ»½×Ó­·ç¸ñÊ½ÔÚÄ³ÖÖÒâÒåÉÏÊÇ×îºÃµÄ£¬²¢ÇÒ¸ø³öÁËÈçºÎ½«Ó­·ç¸ñÊ½Ó¦ÓÃÔÚ·ÇÏßÐÔÊØºã·½³ÌÏµÍ³µÄ·½·¨¡£ÔÚGodunovµÄ·½·¨ÖÐ£¬ÔÚÃ¿Ò»¸öÊ±¿Ì£¬Ã¿¸ö¼ÆËãµ¥Ôªµ±³ÉÒ»¸öÖµ£¬¾­¹ýÒ»¸öºÜ¶ÌÊ±¼äºó£¬ÔÚµ¥Ôª½»½çÃæÇó½âÀèÂüÎÊÌâ
 \begin{equation}
   U_0(x)=\left\{ 
 	\begin{array}{l}
@@ -528,7 +540,7 @@ Euler·½³Ì×ñÑ­Ë«ÇúÊØºãÂÉ£¬¹ØÓÚ·ÇÏßÐÔË«ÇúÊØºãÂÉ·½³ÌµÄÀíÂÛÑÐ¾¿»ù±¾ÉÏÊÇ´Ó¹ãÒåº¯ÊýºÍÈ
 	\end{array}
  \right.
  \end{equation}
-ÔÚ¸ÃÊ±¼ä²½½áÊøÊ±½øÐÐµ¥ÔªÆ½¾ù£¬¿ÉÒÔµÃµ½ÐÂµÄ·Ö¶ÎµÄ·Ö²¼£¬ÒÔ´ËÍÆ½ø·½³ÌµÄ·¢Õ¹¡£Godunov·½·¨ÕûÌå¾ßÓÐÒ»½×¾«¶È£¬´¦Àí¼ä¶ÏÊ±Ò²ÄÜµÃµ½ÎÈ¶¨µÄ¼ÆËã½á¹û¡£
+ÔÚ¸ÃÊ±¼ä²½½áÊøÊ±½øÐÐµ¥ÔªÆ½¾ù£¬¿ÉÒÔµÃµ½ÐÂµÄ·Ö¶Î·Ö²¼£¬ÒÔ´ËÍÆ½ø·½³ÌµÄ·¢Õ¹¡£Godunov·½·¨ÕûÌå¾ßÓÐÒ»½×¾«¶È£¬´¦Àí¼ä¶ÏÊ±Ò²ÄÜµÃµ½ÎÈ¶¨µÄ¼ÆËã½á¹û¡£
 
 ´ÓGodunovÖ®ºóÊýÖµ·½·¨µÄÑÐ¾¿±äµÃ¸üÎªÇåÎú£¬Ö÷Òª°üÀ¨½üËÆÀèÂüÇó½âÆ÷¡¢¿Õ¼äÀëÉ¢·½·¨ºÍÊ±¼äÀëÉ¢·½·¨µÈ¡£
 
@@ -538,89 +550,89 @@ Euler·½³Ì×ñÑ­Ë«ÇúÊØºãÂÉ£¬¹ØÓÚ·ÇÏßÐÔË«ÇúÊØºãÂÉ·½³ÌµÄÀíÂÛÑÐ¾¿»ù±¾ÉÏÊÇ´Ó¹ãÒåº¯ÊýºÍÈ
 
 Ö±µ½70Äê´ú£¬²ÅÓÐÈËÒâÊ¶µ½ÏëÒª¹¹Ôì¸ß½×ÎÈ¶¨¸ñÊ½£¬¾Í±ØÐëÍ¨¹ý·ÇÏßÐÔ·½Ê½À´±Ü¿ªGodunov¶¨ÀíµÄÏÞ¶¨¡£ÕâÐ©¹¤×÷°üÀ¨£ºBorisºÍBookÌá³öµÄÍ¨Á¿ÐÞÕýÊäÔË·½·¨£¨Flux-Corrected Transport/FCT£©·½·¨ºÍVan LeerÌá³öµÄMUSCL£¨Monotone Upstream Scheme for Conservation Laws£©¸ñÊ½¡£FCT·½·¨ÒÀÈ»²ÉÓÃLax-Wendroff·½·¨ÀàËÆµÄÔ¤¹À-Ð£Õý½á¹¹£¬µÚÒ»²½²ÉÓÃÒ»½×¸ñÊ½Ô¤¹ÀÊ±¼ä·¢Õ¹ºóµÄ½â£¬È»ºóÔÚÐ£Õý²½Í¨¹ý·´À©É¢µÄ·½Ê½ÒÆ³ý´óÁ¿µÄºÄÉ¢Îó²î£¬´ïµ½¶þ½×»òÈý½×¾«¶È¡£ÔÚµÚ¶þ²½£¬ÐÞÕýµÄÍ¨Á¿»áºÍÁÙÊ±½â½øÐÐ±È½Ï£¬²¢ÇÒÔÚÐèÒªµÄµØ·½½øÐÐÏÞÖÆ£¬±£Ö¤Ã»ÓÐÐÂµÄ¼«Öµµã³öÏÖÒ²Ã»ÓÐ¼«ÖµÔö¼Ó¡£ÆäÖÐµÄ¶Ô±È¹ý³ÌÈÃ¸Ã·½·¨³ÉÎª·ÇÏßÐÔ·½·¨¡£¾­¹ý1973Äêµ½1979ÄêµÄ·¢Õ¹\cite{boris1973flux,book1975flux,boris1976flux,zalesak1979fully}£¬FCT·½·¨µÃµ½½Ï¹ã·ºµÄÓ¦ÓÃ£¬µ«ÊÇÆä²¢Ã»ÓÐ¶ÔºóÆÚµÄGodunovÐÍ¸ß¾«¶È¸ñÊ½·¢Õ¹Æðµ½Ì«´óÓ°Ïì¡£Í¬Ê±ÆÚ£¬Van LeerÈÏÎªÕñµ´ÊÇÓÉÓÚ·Çµ¥µ÷²åÖµÒýÆðµÄ£¬Ëû¼Ì³ÐÁËGodunov·½·¨µÄÌØµã£¬½«µ¥ÔªÄÚµÄ³£Öµ·Ö²¼±äÎªÏßÐÔ·Ö²¼»ò¶þ´Î·Ö²¼£¬È»ºó·ÇÏßÐÔÏÞÖÆ·Ö²¼º¯ÊýµÄÒ»½×ºÍ¶þ½×µ¼ÊýÖµ£¬ÒÔ´ËµÃµ½¶þ½×¾«¶ÈµÄÎÈ¶¨MUSCL¸ñÊ½\cite{van1973towards,van1974towards,van1977towards,van1979towards}¡£MUSCLÀà¸ñÊ½ÔÚ80Äê´ú¼ÌÐø·¢Õ¹²¢³ÉÎªµ±Ê±×îÎªÁ÷ÐÐµÄ¸ñÊ½¡£ËäÈ»FCT·½·¨ºÍMUSCL¸ñÊ½¹¹Ôì·½·¨²¢²»ÏàÍ¬£¬µ«ÊÇËüÃÇ¶¼ÊÇÍ¨¹ý·½·¨ÖÐµÄ·ÇÏßÐÔÐÔÖÊÀ´·ÀÖ¹¼ÆËãÖÐ´óÌÝ¶È´øÀ´µÄÊýÖµÕñµ´£¬ÔÚ¿Õ¼äÀëÉ¢·½·¨½ÓÏÂÀ´µÄ·¢Õ¹ÖÐÒ»Ö±±£´æÁËÕâÒ»ÌØµã¡£
 
-Í¬Ò»Ê±ÆÚ£¬HartenÊÜµ½Roe¹ØÓÚÓ­·ç¸ñÊ½¹¤×÷\cite{harten1997upstream}µÄÓ°Ïì£¬ºÍGlimmºÍLax¹ØÓÚÒ»Î¬±êÁ¿ÊØºã·½³Ì½âµÄ×Ü±ä²îÊÇ²»ÔöÕâÒ»ÑÐ¾¿½á¹ûÆô·¢\cite{lax1970decay}¡£Í¨¹ý·ÖÎö£¬HartenÒýÈëÀëÉ¢·½³ÌµÄ×Ü±ä²î×÷ÎªÆäÕñµ´ÐÔÖÊµÄ¶ÈÁ¿\cite{harten1983high,goodman1985accuracy}£¬×Ü±ä²îÍ¬Ñù¿ÉÒÔÓ¦ÓÃÔÚ¸ü¸ßÎ³¶ÈÇó½âÉÏ¡£ÓÉ´Ë£¬HartenÌá³öÁË×Ü±ä²î²»Ôö£¨Total-Variation-Diminishing/TVD£©·½·¨£¬²¢ÍÆµ¼³ö±£Ö¤TVDÐÔÖÊµÄ³ä·ÖÌõ¼þ¡£Ö®ºóÑ§ÕßÃÇÖ¤Ã÷ÁËTVDÐÔÖÊÔÚÏßÐÔ·½³ÌÖÐ¿ÉÒÔÍÆµ¼³öµ¥µ÷²åÖµÌõ¼þ¡£ÔÚµ±Ê±£¬TVD·½·¨Ñ¸ËÙµÃµ½¹ã·ºÓ¦ÓÃºÍ·¢Õ¹¡£
+Í¬Ò»Ê±ÆÚ£¬HartenÊÜµ½Roe¹ØÓÚÓ­·ç¸ñÊ½¹¤×÷\cite{harten1997upstream}µÄÓ°ÏìºÍGlimmºÍLax¹ØÓÚÒ»Î¬±êÁ¿ÊØºã·½³Ì½âµÄ×Ü±ä²îÊÇ²»ÔöÕâÒ»ÑÐ¾¿½á¹ûÆô·¢\cite{lax1970decay}£¬Í¨¹ý·ÖÎö£¬HartenÒýÈëÀëÉ¢·½³ÌµÄ×Ü±ä²î×÷ÎªÆäÕñµ´ÐÔÖÊµÄ¶ÈÁ¿\cite{harten1983high,goodman1985accuracy}£¬×Ü±ä²îÍ¬Ñù¿ÉÒÔÓ¦ÓÃÔÚ¸ü¸ßÎ³¶ÈÇó½âÉÏ¡£ÓÉ´Ë£¬HartenÌá³öÁË×Ü±ä²î²»Ôö£¨Total-Variation-Diminishing/TVD£©·½·¨£¬²¢ÍÆµ¼³ö±£Ö¤TVDÐÔÖÊµÄ³ä·ÖÌõ¼þ¡£Ö®ºóÑ§ÕßÃÇÖ¤Ã÷ÁËTVDÐÔÖÊÔÚÏßÐÔ·½³ÌÖÐ¿ÉÒÔÍÆµ¼³öµ¥µ÷²åÖµÌõ¼þ¡£ÔÚµ±Ê±£¬TVD·½·¨Ñ¸ËÙµÃµ½¹ã·ºÓ¦ÓÃ¡£
 
 Ëæ×ÅËã·¨ÑÐ¾¿µÄ·¢Õ¹£¬TVDÀà¸ñÊ½±©Â¶³öÁËËüÃÇ¹ÌÓÐµÄ²»×ã£¬ÈçÎÞ·¨Çø·Ö¼¤²¨ºÍ¹â»¬µÄ¼«Öµµã£¬µ¼ÖÂ¼«Öµµã¾«¶È¹ýµÍ¡£ÔÚ²»¾ÃÖ®ºó£¬GoodmanºÍLeVeque\cite{goodman1985accuracy}ÈÏÎªTVDÐÔÖÊÔÚ¸ßÎ¬ÀëÉ¢ÖÐ¹ýÓÚÑÏ¸ñ£¬µ¼ÖÂ¸ßÎ¬TVD¶ÔÁ÷¸ñÊ½¾«¶È²»»á¸ßÓÚÒ»½×¡£Harten Òò´ËÖØÐÂÉóÊÓÁËÎÞÕñµ´²åÖµ·½ÃæµÄ¹¤×÷£¬²¢ºÍOsherµÈÈËºÏ×÷Ìá³öÁË»ù±¾ÎÞÕñµ´£¨Essentially Non-Oscillatory/ENO£©¸ñÊ½\cite{harten1986some,harten1987uniformly}¡£ENO¸ñÊ½µÄ»ù±¾Ë¼ÏëÊÇÔÚ¹¹Ôì²åÖµ¶àÏîÊ½Ê±²ÉÓÃ×ÔÊÊÓ¦Ñ¡È¡×î¹â»¬²åÖµÄ£°åµÄ·½Ê½À´±ÜÃâÒýÈëÊýÖµÕñµ´¡£ENO¸ñÊ½²»ÔÙÂú×ãTVDÐÔÖÊ£¬ÔÊÐí×Ü±ä²îÓÐÎ¢Ð¡µÄÔö¼Ó£¬µ«ÊÇÈÔÐèÂú×ã×Ü±ä²îÓÐ½ç£¨Total-Variation-Bounded/TVB£©¡£ 
 
 ENO¸ñÊ½µ¥Ò»Ñ¡È¡Ä£°åµÄ²ßÂÔËäÈ»ÄÜ¹»´ïµ½ÎÞÕñµ´µÄÄ¿µÄ£¬È»ºó´æÔÚ¹ý¶àµÄ¹â»¬ÇøÄ£°åµÄÀË·Ñ¡£1994ÄêLiuµÈÈË\cite{liu1994weighted}Ìá³öÁË¼ÓÈ¨µÄË¼Ïë£¬½«ENOµÄËùÓÐ×ÓÄ£°å½øÐÐÍ¹×éºÏ¼ÓÈ¨È¡´úÔ­ÓÐµÄÑ¡È¡×î¹â»¬µÄÄ£°åµÄ·½·¨£¬ÒÔ´ËÀ´´ïµ½¹â»¬ÇøµÄ¸ß¾«¶È²¢±£³Ö¼ä¶ÏÇøÓò¾ßÓÐENOµÄÐÔÖÊ¡£¸ÃÎÄÕÂÖÐ¹¹ÔìÁË×îÔçµÄÈý½×ÓÐÏÞÌå»ýWENO¸ñÊ½¡£Ëæºó£¬1996ÄêJiangºÍShu\cite{shu1988efficient}¹¹ÔìÁË¾­µäµÄÎå½×WENO¸ñÊ½²¢¸ø³öÁË¹â»¬Òò×ÓºÍ·ÇÏßÐÔÈ¨ÖØ¹¹ÔìµÄ»ù±¾¿ò¼Ü¡£
 
-2000Äêºó£¬ÒÔWENO¸ñÊ½Îª´ú±íµÄ¸ß¾«¶È¼¤²¨²¶×½¸ñÊ½Ó¦ÓÃ¸üÎª¹ã·º£¬WENO±¾ÉíÒ²ÔÚ²»¶ÏµØ·¢Õ¹ºÍÍêÉÆÖÐ¡£2005Äê£¬Henrick\cite{henrick2005mapped}Ö¸³öJiangºÍShuËù¹¹ÔìµÄ¾­µäµÄÎå½×WENO¸ñÊ½£¨WENO-JS£©ÔÚµ¼ÊýÎªÁãµÄ¼«Öµµã´ï²»µ½ÀíÏë¾«¶È¡£Ëû¹¹ÔìÁËÒ»¸öÓ³Éäº¯ÊýÀ´Ê¹¼«Öµµã´ïµ½ÀíÏë¾«¶È£¨WENO-M£©£¬ÔÚ2008Äê£¬BorgesµÈÈË½¨Òé²ÉÓÃÎåµãÄ£°åÀ´¹¹Ôì¸ß½×µÄ¹â»¬Òò×Ó£¬²¢·¢Õ¹ÁËWENO-Z¸ñÊ½¡£ÁíÒ»·½Ãæ£¬¸ü¸ß½×µÄWENO¸ñÊ½Ò²µÃµ½·¢Õ¹£¬ÈçÆß½×¡¢¾Å½×ÉõÖÁÊ®Ò»½×WENO\cite{balsara2000monotonicity,gerolymos2009very}ÒÔ¼°ÖÐÐÄÐÍWENO¸ñÊ½µÈ\cite{levy2000compact,martin2006bandwidth}¡£
+2000Äêºó£¬ÒÔWENO¸ñÊ½Îª´ú±íµÄ¸ß¾«¶È¼¤²¨²¶×½¸ñÊ½Ó¦ÓÃ¸üÎª¹ã·º£¬WENO±¾ÉíÒ²ÔÚ²»¶ÏµØ·¢Õ¹ºÍÍêÉÆÖÐ¡£2005Äê£¬Henrick\cite{henrick2005mapped}Ö¸³öJiangºÍShuËù¹¹ÔìµÄ¾­µäµÄÎå½×WENO¸ñÊ½£¨WENO-JS£©ÔÚµ¼ÊýÎªÁãµÄ¼«Öµµã´ï²»µ½ÀíÏë¾«¶È¡£Ëû¹¹ÔìÁËÒ»¸öÓ³Éäº¯ÊýÀ´Ê¹¼«Öµµã´ïµ½ÀíÏë¾«¶È£¨WENO-M£©£¬ÔÚ2008Äê£¬BorgesµÈÈË½¨Òé²ÉÓÃÎåµãÄ£°åÀ´¹¹Ôì¸ß½×µÄ¹â»¬Òò×Ó£¬²¢·¢Õ¹ÁËWENO-Z¸ñÊ½¡£ÁíÒ»·½Ãæ£¬¸ü¸ß½×µÄWENO¸ñÊ½Ò²µÃµ½·¢Õ¹£¬ÈçÆß½×¡¢¾Å½×ÉõÖÁÊ®Ò»½×WENO¸ñÊ½\cite{balsara2000monotonicity,gerolymos2009very}ÒÔ¼°ÖÐÐÄÐÍWENO¸ñÊ½µÈ\cite{levy2000compact,martin2006bandwidth}¡£
 
 ´ÓÒÔÉÏ»Ø¹Ë¿ÉÒÔ¿´³ö£¬¿Õ¼ä¸ñÊ½µÄÑÐ¾¿Ö÷Òª¹Ø×¢µãÊÇÔÚ±£Ö¤¼ä¶ÏÎÈ¶¨ÏÂÌá¸ß¹â»¬ÇøÓòµÄ¾«¶È¡£È»¶ø£¬±£Ö¤ÎÈ¶¨ÐÔ£¬Ò»¶¨ÊýÖµºÄÉ¢ÊÇ²»¿É±ÜÃâµÄ£¬Òò´ËÐ­µ÷¡¢´¦ÀíÕâÒ»¶ÔÃ¬¶ÜÊÇ¸ñÊ½ÑÐ¾¿·¢Õ¹µÄÖØµã¡£¾¡¹ÜÍ¨¹ý¹¹Ôì¸ü¸ß½×µÄWENO¸ñÊ½¿ÉÒÔÌá¸ß¹â»¬ÇøÓòµÄ¾«¶È£¬µ«ÔÚ¼ÆËãÈç¿ÉÑ¹ËõÍÄÁ÷µÈÎÊÌâÊ±£¬ºÄÉ¢ÈÔÈ»¿ÉÄÜ¹ý´óÄÑÒÔ²¶×½Ð¡³ß¶ÈµÄ¸ßÆµ²¨\cite{zhang2008development,johnsen2010assessment}¡£ÁíÍâ£¬ÓëÏßÐÔ¸ñÊ½Ïà±È£¬WENO¸ñÊ½¼ÆËãÁ¿ÈÔÈ»½Ï´ó£¬½µµÍÁËÕûÌåµÄ¼ÆËãÐ§ÂÊ¡£
 
-Ä¿Ç°Ìá¸ß¹â»¬Çø¾«¶ÈÖ÷ÒªÓÐÁ½ÖÖ·½·¨£¬Ò»ÖÖ·½·¨ÊÇ½è¼øÓÐ½üËÆÆ×·½·¨·Ö±æÌØÐÔµÄ½ôÖÂ¸ñÊ½\cite{lele1992compact}µÄÓÅµã£¬¹¹Ôì½ôÖÂÖØ¹¹WENO£¨CRWENO£©¸ñÊ½; ÁíÒ»ÖÖ·½·¨ÊÇ½áºÏ¸ß¾«¶ÈÏßÐÔ¸ñÊ½¹¹ÔìÔÓ½»¸ñÊ½»ò³Æ»ìºÏ¸ñÊ½£¨Hybrid Scheme£©¡£CRWENO¸ñÊ½µÄË¼ÏëÊÇ½«µÍ½×½ôÖÂÄ£°å×öWENO¸ñÊ½µÄ·ÇÏßÐÔ¼ÓÈ¨ÖØ¹¹µÃµ½¼¤²¨ÎÈ¶¨µÄ¸ß½×½ôÖÂ¸ñÊ½£¬Õâ²¿·Ö¹¤×÷Ö÷Òª¼ûÓÚÎÄÏ×\cite{jiang2001weighted,ghosh2014weighted,deng1997compact}µÈ¡£ÑÐ¾¿±íÃ÷CRWENOºÍ´«Í³WENO¸ñÊ½Ïà±È£¬µÄÈ·¾ßÓÐ¸üºÃµÄÐ¡³ß¶È·Ö±æÄÜÁ¦\cite{zhang2008development}¡£ÖµµÃÒ»ÌáµÄÊÇ£¬2015ÄêPengºÍShen\cite{peng2015improvement}ÔÚShenµÈÈË\cite{shen2014improvement,shen2014multistep}µÄ¶à²½¼ÓÈ¨WENOË¼Ïë»ù´¡ÉÏ£¬¹¹ÔìÁË¶à²½¼ÓÈ¨µÄCRWENO¸ñÊ½£¬¸Ã¸ñÊ½»ùÓÚ½ôÖÂ¸ñÊ½µÄÒþÊ½ÌØÐÔ£¬Í¨¹ý¸ÄÉÆ¼ä¶Ï¸½½ü¹ý¶Éµã¾«¶ÈÀ´¸ÄÉÆÈ«¾Ö¾«¶È£¬È¡µÃÁËÁ¼ºÃµÄÐ§¹û¡£ÔÓ½»¸ñÊ½ºÍCRWENO¸ñÊ½Ïà±È£¬ÓÉÓÚËüË¼Ïë¼òµ¥£¬ÓÐ·á¸»µÄÑ¡Ôñ£¬Òò´ËÓ¦ÓÃºÍÑÐ¾¿¶¼¸üÎª¹ã·º¡£ÔÓ½»¸ñÊ½²ÉÓÃ¼ä¶ÏÊ¶±ð·½·¨À´Çø·Ö¹â»¬ÇøÓòºÍ¼ä¶ÏÇøÓò£¬È»ºó²ÉÓÃ¼¤²¨²¶×½¸ñÊ½ºÍÆäËûµÍºÄÉ¢¡¢¼ÆËãÁ¿Ð¡µÄÏßÐÔ¸ñÊ½ÔÚ²»Í¬ÇøÓòÇó½â£¬´ïµ½¼æ¹ËÁ½ÕßÓÅµãµÄÄ¿µÄ¡£³£ÓÃµÄÔÓ½»¸ñÊ½ÓÐ»ìºÏÖÐÐÄ-WENO¸ñÊ½\cite{hill2004hybrid,kim2005high}£¬»ìºÏ½ôÖÂ-WENO¸ñÊ½\cite{pirozzoli2002conservative,ren2003characteristic}¡¢»ìºÏÆ×·½·¨-WENO¸ñÊ½\cite{costa2007multi}µÈ¡£ÓÉÓÚ¼ä¶ÏÊ¶±ð·½·¨ÔÚÔÓ½»¸ñÊ½ÖÐÖÁ¹ØÖØÒª£¬·¢Õ¹¼ä¶ÏÊ¶±ðÆ÷Ò²ÊÇÔÓ½»¸ñÊ½ÑÐ¾¿µÄÒ»¸öÈÈÃÅÁìÓò¡£2006ÄêShenºÍZha\cite{shen2011generalized}ÒÔWENO-JSºÍWENO-Z¸ñÊ½µÄ¹â»¬Òò×ÓÎª»ù´¡£¬Ìá³öÁËÒ»ÖÖÎÞ²ÎÊýµÄ¼ä¶ÏÊ¶±ð·½·¨£¬²¢ÇÒ¹¹ÔìÁËÓÐÏÞ½ôÖÂ¸ñÊ½¡£
+Ä¿Ç°Ìá¸ß¹â»¬Çø¾«¶ÈÖ÷ÒªÓÐÁ½ÖÖ·½·¨£¬Ò»ÖÖ·½·¨ÊÇ½è¼øÓÐ½üËÆÆ×·½·¨·Ö±æÌØÐÔµÄ½ôÖÂ¸ñÊ½\cite{lele1992compact}µÄÓÅµã£¬¹¹Ôì½ôÖÂÖØ¹¹WENO£¨CRWENO£©¸ñÊ½; ÁíÒ»ÖÖ·½·¨ÊÇ½áºÏ¸ß¾«¶ÈÏßÐÔ¸ñÊ½¹¹ÔìÔÓ½»¸ñÊ½»ò³Æ»ìºÏ¸ñÊ½£¨Hybrid Scheme£©¡£CRWENO¸ñÊ½µÄË¼ÏëÊÇ½«µÍ½×½ôÖÂÄ£°å×öWENO¸ñÊ½µÄ·ÇÏßÐÔ¼ÓÈ¨ÖØ¹¹µÃµ½¼¤²¨ÎÈ¶¨µÄ¸ß½×½ôÖÂ¸ñÊ½£¬Õâ²¿·Ö¹¤×÷Ö÷Òª¼ûÓÚÎÄÏ×\cite{jiang2001weighted,ghosh2014weighted,deng1997compact}µÈ¡£ÑÐ¾¿±íÃ÷CRWENOºÍ´«Í³WENO¸ñÊ½Ïà±È£¬µÄÈ·¾ßÓÐ¸üºÃµÄÐ¡³ß¶È·Ö±æÄÜÁ¦\cite{zhang2008development}¡£ÖµµÃÒ»ÌáµÄÊÇ£¬2015ÄêPengºÍShen\cite{peng2015improvement}ÔÚShenµÈÈË\cite{shen2014improvement,shen2014multistep}µÄ¶à²½¼ÓÈ¨WENOË¼Ïë»ù´¡ÉÏ£¬¹¹ÔìÁË¶à²½¼ÓÈ¨µÄCRWENO¸ñÊ½£¬¸Ã¸ñÊ½»ùÓÚ½ôÖÂ¸ñÊ½µÄÒþÊ½ÌØÐÔ£¬Í¨¹ý¸ÄÉÆ¼ä¶Ï¸½½ü¹ý¶Éµã¾«¶ÈÀ´¸ÄÉÆÈ«¾Ö¾«¶È£¬È¡µÃÁËÁ¼ºÃµÄÐ§¹û¡£ÔÓ½»¸ñÊ½ºÍCRWENO¸ñÊ½Ïà±È£¬ÓÉÓÚËüË¼Ïë¼òµ¥£¬ÓÐ·á¸»µÄÑ¡Ôñ£¬Òò´ËÓ¦ÓÃºÍÑÐ¾¿¶¼¸üÎª¹ã·º¡£ÔÓ½»¸ñÊ½²ÉÓÃ¼ä¶ÏÊ¶±ð·½·¨À´Çø·Ö¹â»¬ÇøÓòºÍ¼ä¶ÏÇøÓò£¬È»ºó²ÉÓÃ¼¤²¨²¶×½¸ñÊ½ºÍÆäËûµÍºÄÉ¢¡¢¼ÆËãÁ¿Ð¡µÄÏßÐÔ¸ñÊ½ÔÚ²»Í¬ÇøÓòÇó½â£¬´ïµ½¼æ¹ËÁ½ÕßÓÅµãµÄÄ¿µÄ¡£³£ÓÃµÄÔÓ½»¸ñÊ½ÓÐ»ìºÏÖÐÐÄ-WENO¸ñÊ½\cite{hill2004hybrid,kim2005high}£¬»ìºÏ½ôÖÂ-WENO¸ñÊ½\cite{pirozzoli2002conservative,ren2003characteristic}¡¢»ìºÏÆ×·½·¨-WENO¸ñÊ½\cite{costa2007multi}µÈ¡£ÓÉÓÚ¼ä¶ÏÊ¶±ð·½·¨ÔÚÔÓ½»¸ñÊ½ÖÐÖÁ¹ØÖØÒª£¬·¢Õ¹¼ä¶ÏÊ¶±ð·½·¨Ò²ÊÇÔÓ½»¸ñÊ½ÑÐ¾¿µÄÒ»¸öÈÈÃÅÁìÓò¡£2006ÄêShenºÍZha\cite{shen2011generalized}ÒÔWENO-JSºÍWENO-Z¸ñÊ½µÄ¹â»¬Òò×ÓÎª»ù´¡£¬Ìá³öÁËÒ»ÖÖÎÞ²ÎÊýµÄ¼ä¶ÏÊ¶±ð·½·¨£¬²¢ÇÒ¹¹ÔìÁËÓÐÏÞ½ôÖÂ¸ñÊ½¡£
 
 
 \subsubsection{½üËÆÀèÂüÇó½âÆ÷}\label{riemann_solver}
 ½üËÆÀèÂüÇó½âÆ÷µÄ·¢Õ¹ÊÇºÍ¿Õ¼äÀëÉ¢·½·¨Í¬²½½øÐÐµÄ¡£ÀèÂüÇó½âÆ÷µÄ×÷ÓÃÊÇÎªÁË½â¾ö·ÇÏßÐÔ·½³ÌÏßÐÔ»¯½üËÆµÄÎÊÌâ¡£
-ÔÚGodunovµÈµÄÔçÆÚ¹¤×÷ÖÐ£¬Ñ§ÕßÃÇ²ÉÓÃ»ùÓÚÀíÂÛ½âµÄ``¾«È·ÀèÂüÇó½âÆ÷''£¬µ«ÊÇÕâ¹ýÓÚºÄ·Ñ¼ÆËãÁ¿£¬²¢ÇÒºÍ½üËÆÀèÂüÇó½âÆ÷±ÈÒ²²¢Ã»ÓÐÓÅÊÆ¡£Òò´Ë£¬·¢Õ¹ÀèÂüÎÊÌâµÄÊýÖµ½â»ò³ÆÎª``½üËÆÀèÂüÇó½âÆ÷''³ÉÎªCFDËã·¨ÑÐ¾¿µÄÁíÒ»´óÖ÷Òª·½Ãæ¡£ÓÉÓÚÀèÂüÇó½âÆ÷Ö÷Òª¹¤×÷¾ÍÊÇ½«·ÇÏßÐÔ·½³Ì·ÖÁÑÎªÕýÏò´«²¥ºÍ¸ºÏò´«²¥µÄ²¨£¬ÒÔ±ãÓÚ²ÉÓÃÓ­·ç¸ñÊ½£¬ËùÒÔÒ²½«Æä³ÆÎª·ÖÁÑ·½·¨¡£·ÖÁÑ·½·¨²¢Ã»ÓÐºÍ¿Õ¼äÀëÉ¢·½·¨ÀàËÆµÄÇåÎúµÄÊ±¼äÂöÂç£¬ÖÖÀàÒ²±È½Ï·±¶à£¬¾ßÌå¿ÉÒÔ·ÖÎªÍ¨Á¿²î·Ö·ÖÁÑ£¨flux-difference splitting£©¡¢Á÷Í¨Ê¸Á¿·ÖÁÑ£¨flux-vector splitting£©¡¢ÌØÕ÷ÖØ¹¹·½·¨ºÍ¶ÔÁ÷Ó­·ç·ÖÀëÑ¹Á¦£¨Advection upstream splitting method/AUSM£©µÈ¡£
+ÔÚÔçÆÚ£¬Ñ§ÕßÃÇ²ÉÓÃ»ùÓÚÀíÂÛ½âµÄ``¾«È·ÀèÂüÇó½âÆ÷''£¬µ«ÊÇÕâ¹ýÓÚºÄ·Ñ¼ÆËãÁ¿£¬²¢ÇÒºÍ½üËÆÀèÂüÇó½âÆ÷±ÈÒ²²¢Ã»ÓÐÓÅÊÆ¡£Òò´Ë£¬·¢Õ¹ÀèÂüÎÊÌâµÄÊýÖµ½â»ò³ÆÎª``½üËÆÀèÂüÇó½âÆ÷''³ÉÎªCFDËã·¨ÑÐ¾¿µÄÁíÒ»´óÖ÷Òª·½Ãæ¡£ËüµÄÖ÷Òª×÷ÓÃÊÇ½«·ÇÏßÐÔ·½³Ì·ÖÁÑÎªÕýÏò´«²¥ºÍ¸ºÏò´«²¥µÄ²¨£¬ÒÔ±ãÓÚ²ÉÓÃÓ­·ç¸ñÊ½¡£½üËÆÀèÂüÇó½âÆ÷µÄ·¢Õ¹²¢Ã»ÓÐºÍ¿Õ¼äÀëÉ¢·½·¨ÀàËÆµÄÇåÎúµÄÊ±¼äÂöÂç£¬ÖÖÀàÒ²±È½Ï·±¶à£¬¾ßÌå¿ÉÒÔ·ÖÎªÍ¨Á¿²î·Ö·ÖÁÑ£¨flux-difference splitting£©¡¢Á÷Í¨Ê¸Á¿·ÖÁÑ£¨flux-vector splitting£©¡¢ÌØÕ÷ÖØ¹¹·½·¨ºÍ¶ÔÁ÷Ó­·ç·ÖÀëÑ¹Á¦£¨Advection upstream splitting method/AUSM£©µÈ¡£
 
-Í¨Á¿²î·Ö·ÖÁÑ·½·¨»ùÓÚ¶Ô¾«È·ÀèÂüÇó½âÆ÷µÄÄ£Äâ£¬¸ÃÀà·½·¨ÓÖ³ÆÎªGodunovÀà·½·¨£¬Èç×î¾­µäÒ²×îÎª³£ÓÃµÄ»ùÓÚµ±µØJacobian¾ØÕóÏß»¯µÄRoeÇó½âÆ÷\cite{roe1981approximate}¡¢»ùÓÚ¼òµ¥²¨·Ö½âµÄOsherÇó½âÆ÷\cite{osher1982upwind}¡¢»ùÓÚÁ½²¨¼ÙÉèµÄHLLÇó½âÆ÷\cite{harten1983upstream}ÒÔ¼°¿ÉÒÔÄ£Äâ½Ó´¥¼ä¶ÏµÄ»ùÓÚÈý²¨¼ÙÉèµÄHLLCÇó½âÆ÷\cite{toro1994restoration}¡¢ÐèÒªµü´úµÄË«¼¤²¨½üËÆÀèÂüÇó½âÆ÷\cite{liu2005ghost}ºÍÎªÁË±ÜÃâºìÓñÏÖÏó¶øÌá³öµÄÐý×ª»ìºÏÇó½âÆ÷µÈ¡£
+Í¨Á¿²î·Ö·ÖÁÑ·½·¨£¨FDS£©»ùÓÚ¶Ô¾«È·ÀèÂüÇó½âÆ÷µÄÄ£Äâ£¬¸ÃÀà·½·¨ÓÖ³ÆÎªGodunovÀà·½·¨£¬Èç³£ÓÃµÄ»ùÓÚJacobian¾ØÕóÏß»¯µÄRoeÇó½âÆ÷\cite{roe1981approximate}¡¢»ùÓÚ¼òµ¥²¨·Ö½âµÄOsherÇó½âÆ÷\cite{osher1982upwind}¡¢»ùÓÚÁ½²¨¼ÙÉèµÄHLLÇó½âÆ÷\cite{harten1983upstream}ÒÔ¼°¿ÉÒÔÄ£Äâ½Ó´¥¼ä¶ÏµÄ»ùÓÚÈý²¨¼ÙÉèµÄHLLCÇó½âÆ÷\cite{toro1994restoration}ºÍÐèÒªµü´úµÄË«¼¤²¨½üËÆÀèÂüÇó½âÆ÷\cite{liu2005ghost}µÈ¡£
 
-Á÷Í¨Ê¸Á¿·ÖÁÑ·½·¨»ùÓÚÎÞÅö×²Boltzmann·½³Ì£¬Òò´Ë¸ÃÀà·½·¨Ò²³ÆÎªBoltzmannÀà·½·¨\cite{harten1997upstream}£¬Á÷Í¨Ê¸Á¿·ÖÁÑ·½·¨½«ÏàÁÚµ¥Ôª¼äµÄ·Ö²¼º¯Êý½øÐÐÄ¨Æ½£¬Òò´Ë½ÏÍ¨Á¿²î·Ö·ÖÁÑÓÐ½Ï´óµÄÎó²î£¬µ«ÊÇÓÉÓÚËüÃÇÍ¨³£ÐÎÊ½¼òµ¥¡¢Ò×ÓÚÊµÏÖ£¬ËùÒÔÈÔÈ»ÓÐ½Ï¶àµÄÓ¦ÓÃ¡£³£ÓÃµÄÁ÷Í¨Ê¸Á¿·ÖÁÑ·½·¨ÓÐLax-Friedrichs£¨LF£©·ÖÁÑ\cite{lax1954weak}£¬Steger-Warming£¨SW£©·ÖÁÑ\cite{steger1981flux}ºÍVan-Leer·ÖÁÑ\cite{van1982flux}µÈ¡£
+Á÷Í¨Ê¸Á¿·ÖÁÑ·½·¨£¨FVS£©»ùÓÚÎÞÅö×²Boltzmann·½³Ì£¬Òò´Ë¸ÃÀà·½·¨Ò²³ÆÎªBoltzmannÀà·½·¨\cite{harten1997upstream}£¬Á÷Í¨Ê¸Á¿·ÖÁÑ·½·¨½«ÏàÁÚµ¥Ôª¼äµÄ·Ö²¼º¯Êý½øÐÐÆ½¾ù£¬Òò´Ë½ÏÍ¨Á¿²î·Ö·ÖÁÑÓÐ½Ï´óµÄÎó²î£¬µ«ÊÇÓÉÓÚËüÃÇÐÎÊ½¼òµ¥¡¢Ò×ÓÚÊµÏÖ£¬ËùÒÔÈÔÈ»ÓÐ½Ï¶àµÄÓ¦ÓÃ¡£³£ÓÃµÄÁ÷Í¨Ê¸Á¿·ÖÁÑ·½·¨ÓÐLax-Friedrichs£¨LF£©·ÖÁÑ\cite{lax1954weak}£¬Steger-Warming£¨SW£©·ÖÁÑ\cite{steger1981flux}ºÍVan-Leer·ÖÁÑ\cite{van1982flux}µÈ¡£
 
 ÌØÕ÷·ÖÁÑ·½·¨£¨ÌØÕ÷ÖØ¹¹·½·¨£©²»Í¬ÓÚÔÚÎïÀí¿Õ¼ä½øÐÐ·ÖÁÑµÄFDSºÍFVS·½·¨£¬ËüµÄËùÓÐ·ÖÁÑºÍÖØ¹¹¶¼ÔÚÌØÕ÷¿Õ¼ä½øÐÐ¡£ÔÚÌØÕ÷¿Õ¼äÇóµÃµ¼ÊýµÄ½üËÆºóÔÙ±ä»»»ØÎïÀí¿Õ¼ä¡£¸ÃÀà·½·¨¾ßÓÐ×îºÃµÄÇó½âÖÊÁ¿£¬ÑÏ¸ñ±£Ö¤ÁË¾Ö²¿ÌØÕ÷·½Ïò£¬È»¶øÓÉÓÚÆä¹ý´óµÄ¾ØÕóÔËËã£¬Ä¿Ç°½ö³£ÓÃÔÚÒ»Î¬ÎÊÌâµÄÇó½âÖÐ¡£ËùÓÐÁ÷Í¨Ê¸Á¿·ÖÁÑµÄ·ÖÁÑ·½·¨¶¼¿ÉÒÔÓ¦ÓÃÔÚÌØÕ÷·ÖÁÑÖÐ¡£
 
-¶ÔÁ÷Ó­·ç·ÖÀëÑ¹Á¦·½·¨ÊÇ´ÓVan Leer·ÖÁÑ·½·¨·¢Õ¹¶øÀ´µÄ£¬ËüÃÇ½«ÎÞÕ³Í¨Á¿·ÖÁÑÎªÓëÌØÕ÷ËÙ¶ÈÏà¹ØµÄ¶ÔÁ÷ÏîºÍÓëÌØÕ÷ÉùËÙÏà¹ØµÄÑ¹Á¦Ïî£¬½øÐÐ·Ö±ð´¦Àí¡£¸ÃÀà·½·¨¼æ¾ßÁËFVSºÍFDSµÄÒ»Ð©ÓÅÊÆ£¬¾ßÓÐFVSµÄ¼òµ¥ÐÔºÍÐ§ÂÊ£¬ÓÖ¾ßÓÐFVSµÄ¾«×¼ÐÔ£¬×ÔLiouÔÚ1993Äê\cite{liou1993new}Ìá³öÒÔÀ´¾ÍµÃµ½ÁË¹ã·ºµÄ¹Ø×¢ºÍ·¢Õ¹¡£Ä¿Ç°Ó¦ÓÃ½ÏÎª¹ã·ºµÄÓÐ¿ÉÒÔ±ÜÃâ''Carbuncle''ÏÖÏóµÄAUSM+¸ñÊ½\cite{liou1996sequel,liou2006sequel}¡¢¼¤²¨¼ÆËãÎÈ¶¨µÄAUSMDV¸ñÊ½\cite{wadaaccurate}£¬ÒÔ¼°½áºÏÁËËüÃÇÓÅµãµÄAUSMPW\cite{kim1998improvement}ºÍAUSMPW+\cite{kim2001methods}¸ñÊ½¡£ÒÔÉÏÕâÐ©·½·¨ÓÉÓÚ½«×ÜìÊ´ÓÄÜÁ¿·½³Ì·Ö³ö£¬ËùÒÔÒ²¿ÉÒÔÍ³³ÆÎªH-CUSP£¨Total enthalpy convective upwind and split pressure£©·½·¨£¬È»¶ø´ÓÌØÕ÷ÖµÏµÍ³¿´µÄ»°£¬×ÜìÊ²¢²»ÄÜÑØ×Å´«²¥·½Ïò±£³ÖÊØºã\cite{zha2005low,zha2005low}£¬¶ø×ÜÄÜÈ´±£³ÖÊØºã£¬¾Ý´ËZhaÌá³öÁËÔÚ¶ÔÁ÷ÏîÊ¹ÓÃ×ÜÄÜµÄE-CUSP¸ñÊ½\cite{zha1993numerical,zha1999numerical,zha2008calculation}£¬¸Ã¸ñÊ½Í¬Ñù¾ßÓÐµÍºÄÉ¢¶øÇÒ¸üÎªÎÈ¶¨¡£
+¶ÔÁ÷Ó­·ç·ÖÀëÑ¹Á¦·½·¨ÊÇ´ÓVan Leer·ÖÁÑ·½·¨·¢Õ¹¶øÀ´µÄ£¬ËüÃÇ½«ÎÞÕ³Í¨Á¿·ÖÁÑÎªÓë¶ÔÁ÷ËÙ¶ÈÏà¹ØµÄ¶ÔÁ÷ÏîºÍÓëÉùËÙÏà¹ØµÄÑ¹Á¦Ïî£¬½øÐÐ·Ö±ð´¦Àí¡£¸ÃÀà·½·¨¼æ¾ßÁËFVSºÍFDSµÄÒ»Ð©ÓÅÊÆ£¬¾ßÓÐFVSµÄ¼òµ¥ÐÔºÍÐ§ÂÊ£¬ÓÖ¾ßÓÐFDSµÄ¾«×¼ÐÔ£¬×ÔLiouÔÚ1993Äê\cite{liou1993new}Ìá³öÒÔÀ´¾ÍµÃµ½ÁË¹ã·ºµÄ¹Ø×¢ºÍ·¢Õ¹¡£Ä¿Ç°Ó¦ÓÃ½ÏÎª¹ã·ºµÄÓÐ¿ÉÒÔ±ÜÃâ''Carbuncle''ÏÖÏóµÄAUSM+¸ñÊ½\cite{liou1996sequel,liou2006sequel}¡¢¼¤²¨¼ÆËãÎÈ¶¨µÄAUSMDV¸ñÊ½\cite{wadaaccurate}£¬ÒÔ¼°½áºÏÁËËüÃÇÓÅµãµÄAUSMPW\cite{kim1998improvement}ºÍAUSMPW+\cite{kim2001methods}¸ñÊ½¡£ÒÔÉÏÕâÐ©·½·¨ÓÉÓÚ½«×ÜìÊ´ÓÄÜÁ¿·½³Ì·Ö³ö£¬ËùÒÔÒ²¿ÉÒÔÍ³³ÆÎªH-CUSP£¨Total enthalpy convective upwind and split pressure£©·½·¨£¬È»¶ø´ÓÌØÕ÷ÖµÏµÍ³¿´µÄ»°£¬×ÜìÊ²¢²»ÄÜÑØ×Å´«²¥·½Ïò±£³ÖÊØºã\cite{zha2005low,zha2005low}£¬¶ø×ÜÄÜÈ´±£³ÖÊØºã£¬¾Ý´ËZhaÌá³öÁËÔÚ¶ÔÁ÷ÏîÊ¹ÓÃ×ÜÄÜµÄE-CUSP¸ñÊ½\cite{zha1993numerical,zha1999numerical,zha2008calculation}£¬¸Ã¸ñÊ½Í¬Ñù¾ßÓÐµÍºÄÉ¢¶øÇÒ¸üÎªÎÈ¶¨¡£
 
 \subsubsection{Ê±¼äÀëÉ¢·½·¨}\label{chap:timemethod}
 ÔÚGodunovÀà·½·¨ÍÆ¹ã¿ªÖ®Ç°µÄ60-70Äê´ú£¬Ñ§ÕßÃÇÍùÍù½«Ê±¼äºÍ¿Õ¼äÍ³Ò»ÀëÉ¢£¬Èçµ±Ê±¾­µäµÄLax-Wendroff¸ñÊ½µÈ£¬Ê±¼äºÍ¿Õ¼ä¾«¶ÈÒ²ÐèÒªÍ³Ò»·ÖÎö¡£Ëæ×ÅGodunovÀà·½·¨ÆÕ¼°£¬ÓÉÓÚËüÃÇÊôÓÚ°ëÀëÉ¢·½·¨£¬Ê±¼äÀëÉ¢ºÍ¿Õ¼äÀëÉ¢ÐèÒª¶ÀÁ¢½øÐÐ£¬Òò´Ë¶ÔÁ÷·½³ÌµÄÊ±¼äÀëÉ¢·½·¨Ò²µÃµ½·¢Õ¹¡£
 
 Ê±¼äÀëÉ¢·½·¨ÆäÊµÊÇÒ»¸ö¼«Îª¹ÅÀÏµÄÎÊÌâ£¬ËüÃÇ»ù±¾ÉÏ¶¼ÊÇÀ´Ô´ÓÚ20ÊÀ¼ÍÒÔÇ°¶ÔÈçÏÂµÄ³£Î¢·Ö·½³ÌµÄÇó½â£¬
 \begin{equation}
-  \frac{dx}{dt}=f(t,x),x(0)=x_0,
+  \frac{dx}{dt}=f(t,x),x(0)=x_0
 \end{equation}
 Èç×îÔçµÄÒ»½×Euler·½·¨£¨1768Äê£©¡£1895ÄêRungeºÍ1900ÄêHeun³¢ÊÔÔÚEuler·½·¨ÖÐÔö¼Ó×ÓÊ±¼ä²½£¬1901ÄêKutta×îÖÕ¸ø³öÁËÏÔÊ½Runge-Kutta·½·¨µÄÒ»°ãÐÎÊ½¡£ÒþÊ½·½·¨µÄ·¢Õ¹Í¬Ñù¿ÉÒÔ×·ËÝµ½Á½¸öÊÀ¼ÍÇ°£¬1824Äê£¬CauchyÎªÁË½øÐÐÎó²î¹À¼Æ£¬ÔÚEuler·½·¨ÖÐÒýÈëÖÐ¼ä±äÁ¿£¬¼ä½ÓµÄ¹¹ÔìÁËÒþÊ½Euler¸ñÊ½¡£µ«ÊÇÖ±µ½1955Äê²ÅÓÉHammerºÍHollingsworthÔÚRadau¸ñÊ½»ù´¡ÉÏ¹¹ÔìÁËµÚÒ»¸ö¶þ½×µÄÒþÊ½Runge-KuttaÀà¸ñÊ½\cite{hammer1955trapezoidal}¡£
 
 Runge-Kutta¸ñÊ½²¢²»µ¥Ö¸Ò»ÖÖ¸ñÊ½£¬¶øÊÇÒ»ÏµÁÐµÄ×Ü³Æ£¬ÈçÈý½×Runge-Kutta¾Í¿ÉÒÔÓÐÎÞÊýÖÖÏµÊý×éºÏ¡£1988Äê£¬Shu\cite{shu1988total}¸ù¾Ý¶ÔÁ÷·½³Ì½âµÄTVDÐÔÖÊ£¬¸ø³öÁËÒ»×éÈý½×Runge-KuttaµÄÏµÊý×éºÏ£¬¸Ã¸ñÊ½±»³ÆÎªTVD Runge-Kutta¸ñÊ½¡£TVD Runge-Kutta¸ñÊ½ÔÚ¶ÔÁ÷·½³ÌÊýÖµÄ£ÄâÖÐµÃµ½ÁË¹ã·ºµÄÓ¦ÓÃ¡£
 \section{¼ä¶ÏÎÊÌâÊýÖµÑÐ¾¿ÏÖ×´ºÍ²»×ã}
-ÔÚ1.2½ÚÎÒÃÇÁýÍ³µÄ»Ø¹ËÁËÒ»°ãÁ÷ÌåÁ¦Ñ§µÄÊýÖµ·½·¨£¬Í¨¹ýÕâÐ©ÂöÂçÐÔµÄ½éÉÜ£¬ÎÒÃÇ´ÓEuler·½³Ì½Ç¶ÈÁË½âÁËÁ÷ÌåÁ¦Ñ§ÊýÖµ·½·¨µÄ·¢Õ¹¹ý³Ì£¬µ«ÊÇÕâÐ©½éÉÜÔ¶Ã»ÓÐ´¥¼°µ½±¾ÎÄËùÒª¹Ø×¢µÄ¼ä¶ÏÎÊÌâ¡£±¾Ð¡½á½«·Ö±ð½éÉÜºÍ×Ü½áºÍ¼¤²¨¡¢ÎïÖÊ½çÃæÒÔ¼°±¬ºä²¨Ïà¹ØµÄÑÐ¾¿Ç°ÑØ¡£
+ÔÚ1.2½ÚÎÒÃÇ¼òµ¥µÄ»Ø¹ËÁËÒ»°ãÁ÷ÌåÁ¦Ñ§µÄÊýÖµ·½·¨£¬Í¨¹ýÕâÐ©ÂöÂçÐÔµÄ½éÉÜ£¬ÎÒÃÇ´ÓEuler·½³Ì½Ç¶È½éÉÜÁËÁ÷ÌåÁ¦Ñ§ÊýÖµ·½·¨µÄ·¢Õ¹¹ý³Ì£¬µ«ÊÇÕâÐ©½éÉÜ½ÏÉÙÉæ¼°µ½±¾ÎÄËùÒª¹Ø×¢µÄ¼ä¶ÏÎÊÌâ¡£±¾Ð¡½á½«·Ö±ð½éÉÜºÍ×Ü½áºÍ¼¤²¨¡¢ÎïÖÊ½çÃæÒÔ¼°±¬ºä²¨Ïà¹ØµÄÑÐ¾¿Ç°ÑØ¡£
 \subsection{¼¤²¨²¶×½¸ñÊ½ºÍ¼¤²¨·Ö±æÂÊ}\label{cap:transition}
 ÔÚGodunovÇó½âÌåÏµÖÐ£¬ÊýÖµÎÈ¶¨ÐÔÒ»Ö±ÊÇ´¦ÔÚµÚÒ»Î»µÄ¡£ÎÞÂÛÊÇÔçÆÚµÄÎÞÕñµ´²åÖµ¡¢×Ü±ä²î²»Ôö»¹ÊÇÏÖÔÚWENO¸ñÊ½µÄ»ù±¾ÎÞÕñµ´Ë¼ÏëµÄÌá³ö£¬¶¼ÊÇÎªÁË±£Ö¤¼ÆËãµÄÎÈ¶¨ÐÔ¡£ÔÚ±£Ö¤ÎÈ¶¨ÐÔ»ù´¡ÉÏ£¬¸Ä½øWENO¸ñÊ½µÄÖ÷Òª¹¤×÷¼¯ÖÐÔÚÌá¸ß¹â»¬ÇøÓòµÄ¾«¶È£¬ÓÈÆä¹Ø×¢·ÇÏßÐÔÈ¨ÖØÈÝÒ×³öÎÊÌâµÄ¼«Öµµã¡£¶ÔÓÚ¼¤²¨£¬¾¡¹Ü¹â»¬ÇøÓò¾«¶ÈÌá¸ßµÄÈ·ÄÜ¸ÄÉÆ¼¤²¨µÄ·Ö±æÐ§¹û£¬µ«ÊÇÕâÖ»ÊÇ¸ß¾«¶È´øÀ´µÄ¼ä½Ó×÷ÓÃ¡£ºÜÉÙÓÐÈËÍ¨¹ý¸ÄÉÆ¼¤²¨ÇøÓò»ò¸½½üÇøÓò¾«¶ÈÀ´Ö±½ÓÌá¸ß¼¤²¨µÄ·Ö±æÂÊ¡£
 
-2014Äê£¬ShenºÍZha\cite{shen2014improvement}·ÖÎöÁËÏÖ´æµÄÎå½×WENO¸ñÊ½£¬·¢ÏÖÔÚÁ¬½Ó¹â»¬ÇøºÍ¼ä¶ÏÇøµÄ¹ý¶Éµã£¬´«Í³WENO¸ñÊ½Ö»ÓÐÒ»½×¾«¶È£¬¼¤²¨·Ö±æÂÊ²»×ã¿ÉÄÜ¶ÔÄ£ÄâÈç¼¤²¨ÒýÆðµÄ·ÖÀëÁ÷¡¢¼¤²¨/ÍÄÁ÷Ïà»¥×÷ÓÃµÈÎÊÌâµÄ×¼È·ÐÔ²úÉúÓ°Ïì¡£¸ÃÎÄÕÂÔÚÁ½¸öÁÙ½üËÄ½×Ä£°åÉÏ¹¹ÔìÁËÁ½¸öËÄ½×Í¨Á¿ºÍÒ»¸ö¼ä¶ÏÊ¶±ð·½·¨À´Ìá¸ß¹ý¶Éµã¾«¶È¡£ÔÚ¸üÔçµÄ¹¤×÷ÖÐ\cite{shen2001fifth}£¬ShenµÈÈËÔøÌá³ö¶à²½¼ÓÈ¨ÖØ¹¹µÄË¼Ïë£¬²¢ÊÔÍ¼ÓÃÀ´½â¾ö´«Í³WENO-JS¸ñÊ½µÄ¹â»¬Òò×ÓÔÚ¼«Öµµã²»Âú×ã$\beta_k=D(1+O(\Delta x^2))$µÄÎÊÌâ¡£¾¡¹Ü¸Ã·½·¨²¢²»Âú×ã¼«ÖµµãÎå½×ÊÕÁ²µÄ³ä·Ö±ØÒªÌõ¼þ\cite{henrick2005mapped}£¬µ«ÊÇ¶à²½¼ÓÈ¨ÖØ¹¹µÄË¼ÏëÈÔÈ»ÓÐÖØÒªµÄÒâÒå¡£
+2014Äê£¬ShenºÍZha\cite{shen2014improvement}·ÖÎöÁËÏÖ´æµÄÎå½×WENO¸ñÊ½£¬·¢ÏÖÔÚÁ¬½Ó¹â»¬ÇøºÍ¼ä¶ÏÇøµÄ¹ý¶Éµã£¬´«Í³WENO¸ñÊ½Ö»ÓÐÈý½×¾«¶È£¬¼¤²¨·Ö±æÂÊ²»×ã¿ÉÄÜ¶ÔÄ£ÄâÈç¼¤²¨ÒýÆðµÄ·ÖÀëÁ÷¡¢¼¤²¨/ÍÄÁ÷Ïà»¥×÷ÓÃµÈÎÊÌâµÄ×¼È·ÐÔ²úÉúÓ°Ïì¡£¸ÃÎÄÕÂÔÚÁ½¸öÁÚ½üËÄ½×Ä£°åÉÏ¹¹ÔìÁËÁ½¸öËÄ½×Í¨Á¿ºÍÒ»¸ö¼ä¶ÏÊ¶±ð·½·¨À´Ìá¸ß¹ý¶Éµã¾«¶È¡£ÔÚ¸üÔçµÄ¹¤×÷ÖÐ\cite{shen2001fifth}£¬ShenµÈÈËÔøÌá³ö¶à²½¼ÓÈ¨ÖØ¹¹µÄË¼Ïë£¬²¢ÊÔÍ¼ÓÃÀ´½â¾ö´«Í³WENO-JS¸ñÊ½µÄ¹â»¬Òò×ÓÔÚ¼«Öµµã²»Âú×ã$\beta_k=D(1+O(\Delta x^2))$µÄÎÊÌâ¡£¾¡¹Ü¸Ã·½·¨²¢²»Âú×ã¼«ÖµµãÎå½×ÊÕÁ²µÄ³ä·Ö±ØÒªÌõ¼þ\cite{henrick2005mapped}£¬µ«ÊÇ¶à²½¼ÓÈ¨ÖØ¹¹µÄË¼ÏëÈÔÈ»ÓÐÖØÒªµÄÒâÒå¡£
 
 ±¾ÎÄ»ùÓÚ\cite{shen2014improvement}µÄÑÐ¾¿£¬¸ø³öÁËÒ»ÖÖÐÂÐÍµÄWENO¸ñÊ½¹¹Ôì·½·¨£¬¸Ã·½·¨½áºÏÁËHenrickµÄÓ³Éäº¯Êý£¬²¢Í¨¹ýÖð½×¹¹ÔìµÄ·½·¨À´Ìá¸ßWENO-ZÔÚ¹ý¶Éµã¾«¶È¡¢½µµÍºÄÉ¢£¬½ø¶ø¸ÄÉÆ¶ÔÓÚ¼¤²¨µÄ·Ö±æÂÊ¡£
 
 \subsection{ÎïÖÊ½çÃæºÍ½çÃæ×·×Ù·½·¨}\label{cap:interface}
-ÔÚÎïÀíÉÏ£¬½çÃæÒ»°ã¶¨ÒåÎª²»Í¬ÎïÖÊ»òÎïÖÊ²»Í¬ÎïÀí×´Ì¬¼ä·Ö½çÃæ¡£¸ù¾ÝÊÇ·ñ¿¼ÂÇ½çÃæºñ¶È£¬¿ÉÒÔ½«½çÃæ·ÖÎª´«Í³½çÃæºÍºÄÉ¢½çÃæÁ½Àà¡£
+ÔÚÎïÀíÉÏ£¬½çÃæÒ»°ã¶¨ÒåÎª²»Í¬ÎïÖÊ»òÎïÖÊ²»Í¬ÎïÀí×´Ì¬¼äµÄ·Ö½çÃæ¡£¸ù¾ÝÊÇ·ñ¿¼ÂÇ½çÃæºñ¶È£¬¿ÉÒÔ½«½çÃæ·ÖÎª´«Í³½çÃæºÍºÄÉ¢½çÃæÁ½Àà¡£
 \subsubsection{´«Í³½çÃæ}
 ÀíÂÛÉÏ½çÃæÊÇ´æÔÚÒ»¶¨ºñ¶ÈµÄ£¬µ«ÔÚÕæÊµºñ¶ÈÍ¨³£Ö»ÓÐ·Ö×ÓµÄÁ¿¼¶£¬ÔÚ¾ø´ó¶àÊýÄ£ÄâÖÐ£¬ÎÒÃÇ½«½çÃæµ±³ÉÃ»ÓÐºñ¶ÈµÄ¼¸ºÎ·Ö½çÃæ£¬Í¬Ê±ºöÂÔ¿ç¹ý½çÃæµÄÀ©É¢×÷ÓÃ¡£
 
 ÎÒÃÇÖªµÀ£¬ÊýÖµºÄÉ¢»áÄ¨Æ½Ô­±¾ÇåÎúµÄ·Ö½çÃæ£¬Èç¹ûÏëÒªµÃµ½×¼È·µÄ½çÃæÎ»ÖÃ¾ÍÐèÒªÊ¹ÓÃ½çÃæ·½·¨»ò³ÆÎª½çÃæÄ£ÐÍ¡£¾¡¹ÜÄ¿Ç°½çÃæ·½·¨ÓÐ¶àÖÖ·ÖÀà·½Ê½\cite{tryggvason2001front}£¬µ«ÊÇ¶àÊýÑ§Õß¶¼½«Æä·ÖÎª½çÃæ×·×Ù·½·¨ºÍ½çÃæ²¶×½·½·¨Á½Àà\cite{bonometti2007interface}¡£
 
-½çÃæ×·×Ù·½·¨ÊÇ½èÖúÀ­¸ñÀÊÈÕ¼¼Êõ£¬²ÉÓÃÔË¶¯Íø¸ñ»ò±ê¼ÇÁ£×ÓÀ´ÊµÊ±¸ú×Ù½çÃæÎ»ÖÃµÄ±ä»¯¡£Èç·æÃæ×·×Ù£¨Front-tracking£©·½·¨\cite{unverdi1992front,de2004front,tryggvason2001front}ºÍ±ê¼Ç£¨Marker£©\cite{popinet1999front}·½·¨¾ÍÊÇÍ¨¹ýÒýÈëµÚ¶þÌ×ÒÆ¶¯Íø¸ñÀ´¸ß×¼È·¶ÈµÄ¸ø³ö½çÃæÎ»ÖÃºÍÇúÂÊ¡£¸ÃÀà·½·¨µÄÄÑµãÔÚÓÚ¶Ô½çÃæÆÆËéºÍºÏ²¢µÄÄ£Äâ½ÏÎª¸´ÔÓ\cite{torres2000point,shin2002modeling}¡£Particle-in-Cell£¨PIC£©·½·¨\cite{harlow1965numerical,brackbill1988flip}ºÍMarker-and-Cell£¨MAC£©·½·¨\cite{tome1994gensmac,mckee2008mac,tome2001gensmac3d,yoon2009unstructured}ÊÇÍ¨¹ýÔÚ½çÃæ¸½½üÒýÈëÀ­¸ñÀÊÈÕÁ£×Ó£¬È»ºó×·×ÙÁ£×ÓµÄÔË¶¯À´¸ú×Ù½çÃæÎ»ÖÃ¡£Á£×ÓÀà·½·¨ÊÇ×îÎª¹ÅÀÏµÄ½çÃæ·½·¨\cite{mckee2008mac}£¬Ä¿Ç°Ó¦ÓÃ½ÏÎªÓÐÏÞ£¬¾¿ÆäÔ­Òò£¬¼ÆËãÁ¿ºÍ´æ´¢Á¿¹ý´óÊÇÁ£×ÓÀà·½·¨µÄÒ»¸öÏÞÖÆ£¬ÔÚÁ÷³¡Ñ¹ËõºÍÅòÕÍµÄÊ±ºòÁ£×ÓµãµÄ¹ÜÀíÊÇÁíÍâÒ»¸öÄÑµã\cite{unverdi1992front}£¬³ý´ËÖ®Íâ£¬Á£×ÓÀà·½·¨»¹ÄÑÒÔ¸ø³ö×¼È·µÄ¼¸ºÎ½çÃæÏß£¨Ãæ£©¡£
+½çÃæ×·×Ù·½·¨ÊÇ½èÖúÀ­¸ñÀÊÈÕ¼¼Êõ£¬²ÉÓÃÔË¶¯Íø¸ñ»ò±ê¼ÇÁ£×ÓÀ´ÊµÊ±¸ú×Ù½çÃæÎ»ÖÃµÄ±ä»¯¡£Èç·æÃæ×·×Ù£¨Front-tracking£©·½·¨\cite{unverdi1992front,de2004front,tryggvason2001front}ºÍ±ê¼Ç£¨Marker£©\cite{popinet1999front}·½·¨¾ÍÊÇÍ¨¹ýÒýÈëµÚ¶þÌ×ÒÆ¶¯Íø¸ñÀ´¸ß×¼È·¶ÈµÄ¸ø³ö½çÃæÎ»ÖÃºÍÇúÂÊ¡£¸ÃÀà·½·¨µÄÄÑµãÔÚÓÚ¶Ô½çÃæÆÆËéºÍºÏ²¢µÄÄ£Äâ½ÏÎª¸´ÔÓ\cite{torres2000point,shin2002modeling}¡£ Particle-in-Cell£¨PIC£©·½·¨\cite{harlow1965numerical,brackbill1988flip}ºÍMarker-and-Cell£¨MAC£©·½·¨\cite{tome1994gensmac,mckee2008mac,tome2001gensmac3d,yoon2009unstructured}ÊÇÍ¨¹ýÔÚ½çÃæ¸½½üÒýÈëÀ­¸ñÀÊÈÕÁ£×Ó£¬È»ºó×·×ÙÁ£×ÓµÄÔË¶¯À´¸ú×Ù½çÃæÎ»ÖÃ¡£Á£×ÓÀà·½·¨ÊÇ×îÎª¹ÅÀÏµÄ½çÃæ·½·¨\cite{mckee2008mac}£¬Ä¿Ç°Ó¦ÓÃ½ÏÎªÓÐÏÞ£¬¾¿ÆäÔ­Òò£¬¼ÆËãÁ¿ºÍ´æ´¢Á¿¹ý´óÊÇÁ£×ÓÀà·½·¨µÄÒ»¸öÏÞÖÆ£¬ÔÚÁ÷³¡Ñ¹ËõºÍÅòÕÍµÄÊ±ºòÁ£×ÓµãµÄ¹ÜÀíÊÇÁíÍâÒ»¸öÄÑµã\cite{unverdi1992front}£¬³ý´ËÖ®Íâ£¬Á£×ÓÀà·½·¨»¹ÄÑÒÔ¸ø³ö×¼È·µÄ¼¸ºÎ½çÃæÏß£¨Ãæ£©¡£
 
 ÁíÒ»Àà½çÃæ·½·¨ÊÇ»ùÓÚÅ·À­¼¼Êõ£¬¸ÃÀà·½·¨ÔÚÅ·À­Íø¸ñÄÚÒýÈë½çÃæ·½³ÌÀ´¶¨Òå½çÃæµÄÎ»ÖÃ¡£×îµäÐÍµÄ·½·¨µ±ÊôË®Æ½¼¯£¨Level Set£©·½·¨ºÍÁ÷ÌåÌå»ý·ÖÊý£¨Volume of Fluid/VOF£©·¨¡£Level Set·½·¨\cite{osher1988fronts,sussman1994level,sethian1999level}²ÉÓÃÒ»¸ö¹â»¬µÄ¾àÀëº¯Êý×÷Îª½çÃæº¯Êý£¬ÓÃ¸Ãº¯ÊýÎªÁãµÄÎ»ÖÃÀ´¶¨Òå½çÃæ¡£×Ô´Ólevel set·½·¨Ìá³öºó£¬ÓÉÓÚËüÓÅÃÀµÄÊýÑ§ÀíÂÛ¡¢Æ¯ÁÁµÄ¼ÆËã½á¹û£¬Level Set·½·¨µÃµ½¼«Îª¹ã·ºµÄ·¢Õ¹ºÍÓ¦ÓÃ¡£µ±È»£¬Level SetÒ²ÓÐÖî¶à²»×ã£¬ÈçÂ³°ôÐÔ²î£¬ÖØÐÂ³õÊ¼»¯¼ÆËãÁ¿´ó£¬ºÄÉ¢´óµÈ£¬ÓÈÆä±»Ñ§ÕßÃÇÚ¸²¡µÄÊÇËüµÄÊØºãÐÔ½ÏÆäËü½çÃæ·½·¨¶¼Òª¸ü²î¡£
 VOF·½·¨\cite{hirt1981volume,youngs1982time,lafaurie1994modelling}Ò²ÊôÓÚÅ·À­¼¼ÊõµÄ¿ò¼Ü£¬¸Ã·½·¨ÔÚÃ¿¸öµ¥Ôª¼äÒýÈëÒ»¸ö´ú±íÄ³Ò»ÏàÁ÷ÌåµÄÌå»ý·ÖÊý£¬µ±Ìå»ý·ÖÊý½éÓÚ0ºÍ1Ö®¼äÊ±ÈÏÎª¸Ãµ¥Ôª°üº¬½çÃæ£¬½«½çÃæµÄÔË¶¯×ª»¯ÎªÌå»ý·ÖÊýµÄ±ä»¯¡£²»Í¬ÓÚLevel Set·½·¨£¬VOF·½·¨¾ßÓÐ¾«È·µÄÊØºãÐÔ¡£¸Ã·½·¨ÄÑµãÔÚÓÚÃ¿Ò»²½ÐèÒªÓÐÐ§µÄ½çÃæÖØ¹¹·½·¨£¬½çÃæÖØ¹¹¾ö¶¨ÓÚµ±µØµÄÌå»ý·ÖÊýºÍÌÝ¶È·½Ïò£¬½çÃæ¿ÉÒÔÍ¨¹ý·Ö¶ÎÏßÐÔ²åÖµµÃµ½\cite{scardovelli1999direct}£¬µ«¸Ã¹ý³ÌÄ¿Ç°ÈÔÈ»¹ý·Ö¸´ÔÓÒ²ÄÑÒÔÈ¡µÃÔ¤ÏëµÄÐ§¹û¡£
 
 ÕûÌåÀ´½²£¬½çÃæ×·×Ù·½·¨¸üÖ±¹Û£¬ÔÚ´¦Àí½çÃæµÄÈÚºÏºÍÆÆÁÑÊ±ÓÐÆäÓÅÊÆ£»½çÃæ²¶×½·½·¨¸üÒ×ÓÚÊµÏÖ£¬ÔÚ´¦Àí½çÃæ°éËæÁ÷³¡Ñ¹Ëõ»òÅòÕÍÊ±ÓÐÓÅÊÆ\cite{li2008hybrid}¡£
-½«ÕâÁ½Àà·½·¨½áºÏ£¬±ÜÃâËüÃÇ¸÷×ÔµÄÈ±ÏÝÊÇÄ¿Ç°Ò»¸ö±È½ÏÁ÷ÐÐµÄË¼Â·£¬ÆäÖÐÓ¦ÓÃ×î¶àµÄÊÇºÍÁ£×ÓÀà·½·¨Ïà½áºÏ£¬±ÈÈç¾ßÓÐÁ£×Ó·½·¨µÄÊØºãÐÔºÍLevel Set·½·¨µÄ¹â»¬ÐÔµÄÁ£×Ó-Ë®Æ½¼¯£¨Particle Level Set£©·½·¨\cite{enright2002hybrid,enright2005fast}¡£È»¶øÕâÖÖ½áºÏ¼´Ôö¼ÓÁË·½·¨ÊµÏÖµÄÄÑ¶È£¬ÔÚ¸´ÔÓÎÊÌâÊ±Ò²²¢²»ÄÇÃ´×àÐ§¡£
+½«ÕâÁ½Àà·½·¨½áºÏ£¬±ÜÃâËüÃÇ¸÷×ÔµÄÈ±ÏÝÊÇÄ¿Ç°Ò»¸ö±È½ÏÁ÷ÐÐµÄË¼Â·£¬ÆäÖÐÓ¦ÓÃ×î¶àµÄÊÇºÍÁ£×ÓÀà·½·¨Ïà½áºÏ£¬±ÈÈç¾ßÓÐÁ£×Ó·½·¨µÄÊØºãÐÔºÍLevel Set·½·¨µÄ¹â»¬ÐÔµÄÁ£×Ó-Ë®Æ½¼¯£¨Particle Level Set£©·½·¨\cite{enright2002hybrid,enright2005fast}¡£È»¶øÕâÖÖ½áºÏ¼ÈÔö¼ÓÁË·½·¨ÊµÏÖµÄÄÑ¶È£¬ÔÚ¸´ÔÓÎÊÌâÊ±Ò²²¢²»ÄÇÃ´×àÐ§¡£
 \subsubsection{ºÄÉ¢½çÃæ}\label{chap:intro_diffusive_interface}
 Í¨³£µÄ½çÃæ·½·¨¶¼²»¿¼ÂÇ½çÃæºñ¶È£¬È»¶ø£¬ÔÚÑÐ¾¿Ä³Ð©ÎïÀíÎÊÌâ£¬ÈçÑÐ¾¿ÎïÖÊ¼äµÄÀ©É¢¡¢Ïà±ä£¨ÓÈÆä¶ÔÓÚÈýÏàµãÁ÷Ìå»ìºÏÎï£©\cite{huang1969diffuse,jamet2001second}¡¢¾§ÌåÉú³¤\cite{collins1985diffuse}¼°»¯Ñ§·´Ó¦µÈÊ±£¬½çÃæºñ¶È¶¼ÊÇÖÁ¹ØÖØÒª¡£ÕâÒ»ÀàÎÞ·¨ºöÂÔºñ¶ÈµÄ½çÃæÀàÐÍ±»³ÆÎªºÄÉ¢½çÃæ£¨diffuse interface£©\cite{anderson1997diffuse}¡£
 
-¶ÔÓÚºÄÉ¢½çÃæ£¬Ñ§ÕßÖ÷Òª²ÉÓÃCahn-Hilliard·½³Ì\cite{elliott1986cahn,yue2010sharp}½øÐÐÄ£Äâ¡£Ä£Äâ¹ý¶É½çÃæµÄ·½·¨Ö÷ÒªÓÐÈçÏÂ¼¸ÖÖ\cite{jacqmin1999calculation}£¬·æÃæ×·×Ù·½·¨\cite{unverdi1992front}ÔÚ½çÃæÁ½²à²ÉÓÃ¹â»¬µÄ·Ö²¼£¬¿ÉÒÔ×·×ÙºÄÉ¢½çÃæ£¬È»¶øÕâÖÖ½çÃæºñ¶ÈÖ÷ÒªÊÇÓÉÊýÖµºÄÉ¢Ôì³É£¬²¢·Ç¿É¿ØµÄ¡£DuµÈÈË\cite{du2005retrieving,wang2008modelling}²ÉÓÃÈýÌõlevel setÏßµÄ·½·¨À´×·×ÙºÄÉ¢½çÃæ£¬ÕâÖÖ·½Ê½²¢²»ÄÜµÃµ½½çÃæÄÚÕæÊµµÄ·Ö²¼£¬Ö»ÄÜÓ¦ÓÃÔÚ½çÃæºñ¶È±ä»¯²»´óµÄÇé¿öÖÐ¡£»¹ÓÐÆäËü·½·¨£¬ÈçÁ¬Ðø½çÃæÁ¦Ä£ÐÍ£¨cotinuum surface force model£©\cite{brackbill1992continuum}¡¢Ïà³¡Ä£ÐÍ£¨phase-field£©\cite{anderson1997diffuse,antanovskii1995phase}µÈ¡£
+¶ÔÓÚºÄÉ¢½çÃæ£¬Ñ§ÕßÖ÷Òª²ÉÓÃCahn-Hilliard·½³Ì\cite{elliott1986cahn,yue2010sharp}½øÐÐÄ£Äâ¡£Ä£Äâ¹ý¶É½çÃæµÄ·½·¨Ö÷ÒªÓÐÈçÏÂ¼¸ÖÖ\cite{jacqmin1999calculation}£¬·æÃæ×·×Ù·½·¨\cite{unverdi1992front}ÔÚ½çÃæÁ½²à²ÉÓÃ¹â»¬µÄ·Ö²¼£¬¿ÉÒÔ×·×ÙºÄÉ¢½çÃæ£¬È»¶øÕâÖÖ½çÃæºñ¶ÈÖ÷ÒªÊÇÓÉÊýÖµºÄÉ¢Ôì³É£¬²¢·Ç¿É¿ØµÄ¡£DuµÈÈË\cite{du2005retrieving,wang2008modelling}²ÉÓÃÈýÌõlevel setÏßµÄ·½·¨À´×·×ÙºÄÉ¢½çÃæ£¬ÕâÖÖ·½Ê½²¢²»ÄÜµÃµ½½çÃæÄÚÕæÊµµÄ·Ö²¼£¬Ö»ÄÜÓ¦ÓÃÔÚ½çÃæºñ¶È±ä»¯²»´óµÄÇé¿öÖÐ¡£»¹ÓÐÆäËü·½·¨£¬ÈçÁ¬Ðø½çÃæÁ¦Ä£ÐÍ£¨coutinuum surface force model£©\cite{brackbill1992continuum}¡¢Ïà³¡Ä£ÐÍ£¨phase-field£©\cite{anderson1997diffuse,antanovskii1995phase}µÈ¡£
 
 ±¾ÎÄÌá³öÒ»ÖÖ»ùÓÚÅ·À­Íø¸ñ£¬¾ßÓÐ½çÃæ×·×ÙË¼ÏëµÄÁ£×Ó·½·¨---Ë«ÐÅÏ¢±£´æ·½·¨£¨Dual information preseving method/DIP£©¡£¸Ã·½·¨¼È¿ÉÒÔÓÃÀ´×·×Ù´«Í³½çÃæÒ²¿ÉÒÔ×·×ÙºÄÉ¢½çÃæ£¬Ä£Äâ½çÃæºñ¶È±ä»¯¡£DIP·½·¨Ö±½ÓÓÃÀ´Çó½â¶ÔÁ÷·½³Ì
   \begin{equation}
 	\frac{\partial z}{\partial t}+u\frac{\partial z}{\partial x}+v\frac{\partial z}{\partial y}=0
 \end{equation}
-ÔÚ¸Ã·½·¨ÖÐ£¬ÒýÈëÁ½ÀàÀ­¸ñÀÊÈÕÐÅÏ¢µã£¬·Ö±ð³ÆÎªµ¥Ôªµã£¨Cell-Point£©ºÍÁ£×Óµã£¨Particle-Point£©ÐÅÏ¢µã£¬µ¥ÔªµãÏÞ¶¨ÔÚµ¥ÔªÄÚÔË¶¯£¬Á£×ÓµãÈ«¼ÆËãÓò×·×Ù¡£ÔÚ¼ÆËã¿ªÊ¼£¬Ã¿¸öµ¥Ôª·Ö±ðÔÚµ¥ÔªÖÐÐÄÒýÈëÒ»¸öµ¥ÔªµãºÍÒ»¸öÁ£×Óµã£¬¼ÆËãÖÐ¸ù¾ÝËÙ¶È³¡½øÐÐÎ»ÖÃ¸üÐÂ¡£ µ¥Ôªµã¸ºÔðµ¥ÔªºÍÐÅÏ¢µã¼ä´«µÝÐÅÏ¢£¬Á£×ÓµãÍ¨¹ýÐÞÕýµ¥Ôªµã´ïµ½Î¬³Ö½çÃæ³¤Ê±¼ä¼ÆËãµÄÊØºãÐÔ¡£
+ÔÚ¸Ã·½·¨ÖÐ£¬ÒýÈëÁ½ÀàÀ­¸ñÀÊÈÕÐÅÏ¢µã£¬·Ö±ð³ÆÎªµ¥Ôª£¨ÐÅÏ¢£©µã£¨Cell-Point£©ºÍÁ£×Ó£¨ÐÅÏ¢£©µã£¨Particle-Point£©£¬µ¥ÔªµãÏÞ¶¨ÔÚµ¥ÔªÄÚÔË¶¯£¬Á£×ÓµãÈ«¼ÆËãÓò×·×Ù¡£ÔÚ¼ÆËã¿ªÊ¼£¬Ã¿¸öµ¥Ôª·Ö±ðÔÚµ¥ÔªÖÐÐÄÒýÈëÒ»¸öµ¥ÔªµãºÍÒ»¸öÁ£×Óµã£¬¼ÆËãÖÐ¸ù¾ÝËÙ¶È³¡½øÐÐÎ»ÖÃ¸üÐÂ¡£ µ¥Ôªµã¸ºÔðµ¥ÔªºÍÐÅÏ¢µã¼ä´«µÝÐÅÏ¢£¬Á£×ÓµãÍ¨¹ýÐÞÕýµ¥Ôªµã´ïµ½Î¬³Ö½çÃæ³¤Ê±¼ä¼ÆËãµÄÊØºãÐÔ¡£
 
 ÐÅÏ¢µã²¢²»Í¬ÓÚMAC·½·¨ÖÐµÄ±ê¼ÇÁ£×Ó£¬Ò²²»Í¬ÓÚPIC·½·¨ÖÐÐ¯´øÈ«²¿Á÷ÌåÐÅÏ¢µÄÕæÊµÁ£×Ó¡£Ö÷ÒªÓÐÁ½µãÇø±ð£º
 \begin{enumerate}[1.]
 	\item
-ÐÅÏ¢µã¼ÈÊÇÐéÄâÀý×Ó£¬ÓÖÍ¬Ê±Ð¯´øÓÐÎ»ÖÃÐÅÏ¢ºÍ¶ÔÁ÷ÐÅÏ¢$z$¡£ÓÉÓÚµ¥ÔªµãÊÇÐéÄâµÄ£¬ËùÒÔÔÚÃ¿Ò»²½ÎÒÃÇ¶¼¿ÉÒÔËæÊ±Éú³É»òÄ¨È¥£»ÐÅÏ¢µãÉÏÐ¯´øÓÐ¶ÔÁ÷ÐÅÏ¢$z$ÓÖ¿ÉÒÔÓÃÀ´¸üÐÂµ±µØ½ÚµãÉÏµÄ¶ÔÁ÷Öµ¡£
+ÐÅÏ¢µã¼ÈÊÇÐéÄâÁ£×Ó£¬ÓÖÍ¬Ê±Ð¯´øÓÐÎ»ÖÃÐÅÏ¢ºÍ¶ÔÁ÷ÐÅÏ¢$z$¡£ÓÉÓÚÐÅÏ¢µãÊÇÐéÄâµÄ£¬ËùÒÔÔÚÃ¿Ò»²½ÎÒÃÇ¶¼¿ÉÒÔËæÊ±Éú³É»òÄ¨È¥£»ÐÅÏ¢µãÉÏÐ¯´øÓÐ¶ÔÁ÷ÐÅÏ¢$z$ÓÖ¿ÉÒÔÓÃÀ´¸üÐÂµ±µØ½ÚµãÉÏµÄ¶ÔÁ÷Öµ¡£
 \item
-ÐÅÏ¢µãÊÇ²¼ÖÃÔÚÈ«¼ÆËãÓòµÄ£¬²¢²»ÊÇÍ¨¹ý×·×ÙÐÅÏ¢µãÀ´´ïµ½×·×Ù½çÃæµÄÄ¿µÄ£¬¶øÊÇÍ¨¹ýÁ£×ÓµãÉÏµÄ¶ÔÁ÷ÐÅÏ¢$z$À´²¶×½³ö½çÃæµÄÎ»ÖÃ¡¢ÇúÂÊµÈ¸÷ÖÖÐÅÏ¢¡£
+ÐÅÏ¢µãÊÇ²¼ÖÃÔÚÈ«¼ÆËãÓòµÄ£¬²¢²»ÊÇÍ¨¹ý×·×ÙÐÅÏ¢µãÀ´´ïµ½×·×Ù½çÃæµÄÄ¿µÄ£¬¶øÊÇÍ¨¹ýÐÅÏ¢µãÉÏµÄ¶ÔÁ÷ÐÅÏ¢$z$À´²¶×½³ö½çÃæµÄÎ»ÖÃ¡¢ÇúÂÊµÈ¸÷ÖÖÐÅÏ¢¡£
 \end{enumerate}
 ¸Ã²¿·Ö¹¤×÷ÎÒÃÇ½«ÔÚµÚÎåÕÂ½øÐÐÏêÏ¸Ì½ÌÖ¡£
 \subsection{ÆøÏà±¬ºä²¨}
-	±¬ºä²¨ÊÇ¸ßËÙ»¯Ñ§·´Ó¦Á÷ºÍ±¬Õ¨ÖÐ³£¼ûµÄÒ»Àà¼ä¶ÏÎÊÌâ£¬±¬ºä²¨µÄ´«²¥ÊÇÎïÀí»¯Ñ§Ç¿ñîºÏ¹ý³Ì£¬ÊÇ¼¤²¨ºÍ·´Ó¦½çÃæÏà»¥×÷ÓÃµÄ½á¹û¡£Ëæ×Å±¬ºä²¨´«¹ý£¬²¨ºó·´Ó¦ÎïËæ¼´·¢Éú¸ßËÙµÄ»¯Ñ§·´Ó¦ÐÎ³É·´Ó¦½çÃæ£¬ÔÚ·´Ó¦½çÃæÖÐÐÎ³É¸ßÎÂ¡¢¸ßÑ¹±¬ºä²úÎï²¢ÊÍ·Å´óÁ¿»¯Ñ§·´Ó¦ÈÈÓÃÒÔÎ¬³ÖÍÆµ½¼¤²¨µÄ´«²¥£¬ÕâÖÖ¼¤²¨ºÍ·´Ó¦½çÃæñîºÏÔÚÒ»ÆðÔË¶¯µÄ¹ý³Ì³ÆÎª×Ô³Ö±¬ºä¡£±¬ºä¹ý³Ì¸ù¾Ý·´Ó¦Îï×´Ì¬¿ÉÒÔ·ÖÎªÆøÏà¡¢ÒºÏàºÍ¹ÌÏà±¬ºä£¬ËüÃÇ±¾ÖÊÉÏÊÇÒ»ÖÂµÄ£¬µ«ÊÇÆøÏà±¬ºäÓÉÓÚ±¾Éí»úÀí×îÎª¼òµ¥£¬ÑÐ¾¿Ò²×îÎª·á¸»£¬±¾ÎÄÖ»Éæ¼°ÆøÏà±¬ºä·½ÃæµÄÑÐ¾¿¹¤×÷¡£
+	±¬ºä²¨ÊÇ¸ßËÙ»¯Ñ§·´Ó¦Á÷ºÍ±¬Õ¨ÖÐ³£¼ûµÄÒ»Àà¼ä¶ÏÎÊÌâ£¬±¬ºä²¨µÄ´«²¥ÊÇÎïÀí»¯Ñ§Ç¿ñîºÏ¹ý³Ì£¬ÊÇ¼¤²¨ºÍ·´Ó¦½çÃæÏà»¥×÷ÓÃµÄ½á¹û¡£Ëæ×Å±¬ºä²¨´«¹ý£¬²¨ºó·´Ó¦ÎïËæ¼´·¢Éú¸ßËÙµÄ»¯Ñ§·´Ó¦ÐÎ³É·´Ó¦½çÃæ£¬ÔÚ·´Ó¦½çÃæÖÐÐÎ³É¸ßÎÂ¡¢¸ßÑ¹±¬ºä²úÎï²¢ÊÍ·Å´óÁ¿»¯Ñ§·´Ó¦ÈÈÓÃÒÔÍÆ¶¯¼¤²¨µÄÔË¶¯£¬ÕâÖÖ¼¤²¨ºÍ·´Ó¦½çÃæñîºÏÔÚÒ»ÆðÔË¶¯µÄ¹ý³Ì³ÆÎª×Ô³Ö±¬ºä¡£±¬ºä¹ý³Ì¸ù¾Ý·´Ó¦Îï×´Ì¬¿ÉÒÔ·ÖÎªÆøÏà¡¢ÒºÏàºÍ¹ÌÏà±¬ºä£¬ËüÃÇ±¾ÖÊÉÏÊÇÒ»ÖÂµÄ£¬µ«ÊÇÆøÏà±¬ºäÓÉÓÚ±¾Éí»úÀí×îÎª¼òµ¥£¬ÑÐ¾¿Ò²×îÎª·á¸»£¬±¾ÎÄÖ»Éæ¼°ÆøÏà±¬ºä·½ÃæµÄÑÐ¾¿¹¤×÷¡£
 	\subsubsection{±¬ºä²¨ÀíÂÛ}\label{chap:detonation}
 ¹ØÓÚ±¬ºä²¨µÄÀíÂÛ°üÀ¨×îÔçÆÚµÄÆ½ºâ±¬ºä Chapman-Jouguet(C-J)\cite{chapman1899vi,jouguet1905propagation} ÀíÂÛÒÔ¼° ZND ÀíÂÛ¡£
 
-C-J ÀíÂÛ½«±¬ºä²¨Ä£Äâ³ÉÒ»Î¬ÎÈÌ¬µÄÃ»ÓÐºñ¶ÈµÄÇ¿¼ä¶Ï£¬·´Ó¦½çÃæ¿ÉÒÔ¿´³É´«Í³ÎÞºñ¶È½çÃæÇÒºÍ¼¤²¨ÈÚºÏÔÚÒ»ÆðÔË¶¯¡£ÔÚ·´Ó¦½çÃæÖÐ£¬·´Ó¦ÈÈµÄÊÍ·ÅÊÇË²¼äÍê³É£¬Í¨¹ý±¬ºä²¨Ç°ºóÊØºã¹ØÏµÊ½¡¢ÄÜÁ¿·½³ÌºÍ±¬ºä²¨ÎÈ¶¨´«²¥µÄC-JÌõ¼þµÃµ½²¨ºó×´Ì¬¡£C-JÀíÂÛÖÐËùÓÐ×´Ì¬¶¼ÊÇÊÇÆ½ºâÌ¬£¬¶ÔÓ¦µÄÄ£ÐÍÎªÎÞÏÞËÙÂÊ·´Ó¦Ä£ÐÍ£¬Òò´ËÎÞ·¨¿¼ÂÇ±¬ºä²¨½á¹¹£¬Ò²²»ÄÜ½âÊÍ´«²¥»úÀí¡£
+C-J ÀíÂÛ½«±¬ºä²¨Ä£Äâ³ÉÒ»Î¬ÎÈÌ¬µÄÃ»ÓÐºñ¶ÈµÄÇ¿¼ä¶Ï£¬·´Ó¦½çÃæ¿ÉÒÔ¿´³É´«Í³ÎÞºñ¶È½çÃæÇÒºÍ¼¤²¨ÈÚºÏÔÚÒ»ÆðÔË¶¯¡£ÔÚ·´Ó¦½çÃæÖÐ£¬·´Ó¦ÈÈµÄÊÍ·ÅÊÇË²¼äÍê³É£¬Í¨¹ý±¬ºä²¨Ç°ºóÊØºã¹ØÏµÊ½¡¢ÄÜÁ¿·½³ÌºÍ±¬ºä²¨ÎÈ¶¨´«²¥µÄC-JÌõ¼þµÃµ½²¨ºó×´Ì¬¡£C-JÀíÂÛÖÐËùÓÐ×´Ì¬¶¼ÊÇÆ½ºâÌ¬£¬¶ÔÓ¦µÄÄ£ÐÍÎªÎÞÏÞËÙÂÊ·´Ó¦Ä£ÐÍ£¬Òò´ËÎÞ·¨¿¼ÂÇ±¬ºä²¨½á¹¹£¬Ò²²»ÄÜ½âÊÍ´«²¥»úÀí¡£
 
 Ö±µ½ÉÏÊÀ¼Í40Äê´ú£¬
 Zeldovich\cite{zeldovich1940theory}, Doring\cite{doring1943detonation}ºÍ Von Neumann\cite{von1942theory}¶ÔC-JÀíÂÛ½øÐÐ¸Ä½øÌá³öZNDÀíÂÛ¡£ZNDÀíÂÛÖÐ£¬±¬ºä²¨ÓÉÇ°µ¼¼¤²¨ºÍ±»¼¤²¨ÓÕµ¼µÄ·´Ó¦Çø×é³É£¬Ç°µ¼¼¤²¨Ìá¹©Ò»¸ö¾øÈÈÑ¹Ëõ¹ý³Ì£¬µ¼ÖÂ·´Ó¦ÎïÎÂ¶È¡¢Ñ¹Á¦Éý¸ß£¬·Ö×Ó»î»¯£¬Õâ¸ö½×¶Î³ÆÎªÓÕµ¼½×¶Î¡£ÓÕµ¼½×¶Î¹ýºó»¯Ñ§·´Ó¦¿ªÊ¼£¬ÈÈÁ¿´óÁ¿ÊÍ·Å£¬²úÉúÏòºóÅòÕÍ×÷ÓÃ£¬ÇýÊ¹±¬ºä²¨´«²¥¡£Í¼ \ref{ZNDexp} ÊÇÒ»¸öµäÐÍ±¬ºä²¨Ñ¹Á¦ÇúÏß£¬ÔÚÇ°µ¼¼¤²¨¹ýºóÑ¹Á¦Í»Ô½µ½$p_N$£¨³ÆÎªVon Neumann·å£©£¬Ëæ×Å·´Ó¦½øÐÐ£¬Ñ¹Á¦¼±¾çÏÂ½µ£¬ÔÚ·´Ó¦ÖÕÁË£¬Ñ¹Á¦½µÖÁ$p_{CJ}$£¬¾­¹ýC-JÃæ£¬±¬ºä²úÎï½øÈëµÈìØÅòÕÍµÄTaylorÅòÕÍÇø¡£
@@ -645,7 +657,7 @@ ZNDÀíÂÛ¼ÙÉè·´Ó¦Á÷¶¯ÊÇÒ»Î¬¾ùÔÈÇÒ²»¿ÉÄæµÄ£¬²¢¼ÙÉè·´Ó¦ÇøµÄÃ¿Ò»¸ö¶ÏÃæ¶¼´¦ÔÚÈÈÁ¦Ñ§Æ½º
   \label{Cellular_exp}
 \end{figure}
 
-Ä¿Ç°£¬ÓÉÓÚÀíÂÛ·ÖÎöÎÞ·¨½âÊÍ²»ÎÈ¶¨ÐÔºÍ¿Õ¼ä½á¹¹µÈÎÊÌâ£¬±¬ºä²¨µÄÊýÖµÄ£Äâ±äµÃ¸ü¼ÓÖ÷Á÷£¬ÓÈÆäÊÇ²ÉÓÃÄÜ·´Ó³»¯Ñ§¶¯Á¦Ñ§Ï¸½ÚµÄ»ùÔª·´Ó¦Ä£ÐÍ½øÐÐ¼ÆËã£¬¿ÉÒÔ¶¨ÐÔÓë¶¨Á¿µÄÔÙÏÖ±¬ºä²¨µÄ°û¸ñ\cite{Íõ²ý½¨2005Ö±¹ÜÄÚ°û¸ñ±¬ºäµÄ»ùÔª·´Ó¦ÊýÖµÑÐ¾¿,½ª×ÚÁÖ2012ÆøÏà±¬ºäÎïÀíµÄÈô¸ÉÑÐ¾¿½øÕ¹}¡¢Ðý×ª±¬ºä\cite{ÕÅÐñ¶«2011Ðý×ª±¬ºä×Ô³Ö»úÀíµÄÊýÖµÑÐ¾¿,bykovskii2006continuous}¡¢Ï¨»ðÇø\cite{ÅËÕñ»ª2014t}ÒÔ¼°ÆäËüµÄÒ»Î¬»ò¸ßÎ¬µÄ²»ÎÈ¶¨ÏÖÏóµÈ¡£¾¡¹ÜÊýÖµÄ£Äâ¾ßÓÐ±ãÓÚÊµÏÖ£¬¿ÉÒÔÄ£Äâ¸´ÔÓ¹¤¿öµÈÓÅµã£¬È»¶øÔÚ±¬ºäµÄ¼ÆËãÖÐÈÔÈ»ÓÐÒ»Ð©ÎÊÌâºÍÄÑµã£¬ÆäÖÐ±È½ÏÏÔÖøµÄÊÇ»¯Ñ§·´Ó¦Ê±¼ä³ß¶ÈºÍ¿Õ¼ä³ß¶È¹ýÐ¡µÄÎÊÌâ£¬³ß¶ÈÎªÏµÍ³ÌØÕ÷µÄÒ»ÖÖ¶ÈÁ¿£¬ÏêÏ¸µÄ½âÊÍ¼û¸½Â¼ \ref{chap:scale}¡£Ê±¼ä³ß¶È¹ýÐ¡£¬»áµ¼ÖÂÔ´Ïî´æÔÚÊ±¼ä¸ÕÐÔ£¬ÐèÒª¸üÐ¡µÄÊ±¼ä²½»òÊÇ¸üÎÈ¶¨µÄÊ±¼ä·½·¨½øÐÐÇó½â¡£¿Õ¼ä³ß¶È¹ýÐ¡£¬¿ÉÄÜµ¼ÖÂ¿Õ¼ä¸ÕÐÔÎÊÌâ£¬²úÉú·ÇÎïÀíµÄ¼ÆËã½á¹û¡£ÔÚ²ÉÓÃ»ùÔª·´Ó¦Ä£ÐÍµÄ±¬ºä²¨Ä£ÄâÖÐ£¬¿Õ¼ä³ß¶È¹ýÐ¡»¹¿ÉÄÜÒýÆð×é·ÖÊØºãÐÔÎÊÌâºÍ±¬ºäÖÐ½á¹¹¼ÆËã²»×¼È·µÈÎÊÌâ¡£
+Ä¿Ç°£¬ÓÉÓÚÀíÂÛ·ÖÎöÎÞ·¨½âÊÍ²»ÎÈ¶¨ÐÔºÍ¿Õ¼ä½á¹¹µÈÎÊÌâ£¬ÊýÖµÄ£ÄâÒÑ³ÉÎªÑÐ¾¿±¬ºä²¨µÄÖØÒªÊÖ¶Î£¬ÓÈÆäÊÇ²ÉÓÃÄÜ·´Ó³»¯Ñ§¶¯Á¦Ñ§Ï¸½ÚµÄ»ùÔª·´Ó¦Ä£ÐÍ½øÐÐ¼ÆËã£¬¿ÉÒÔ¶¨ÐÔÓë¶¨Á¿µÄÔÙÏÖ±¬ºä²¨µÄ°û¸ñ\cite{Íõ²ý½¨2005Ö±¹ÜÄÚ°û¸ñ±¬ºäµÄ»ùÔª·´Ó¦ÊýÖµÑÐ¾¿,½ª×ÚÁÖ2012ÆøÏà±¬ºäÎïÀíµÄÈô¸ÉÑÐ¾¿½øÕ¹}¡¢Ðý×ª±¬ºä\cite{ÕÅÐñ¶«2011Ðý×ª±¬ºä×Ô³Ö»úÀíµÄÊýÖµÑÐ¾¿,bykovskii2006continuous}¡¢Ï¨»ðÇø\cite{ÅËÕñ»ª2014t}ÒÔ¼°ÆäËüµÄÒ»Î¬»ò¸ßÎ¬µÄ²»ÎÈ¶¨ÏÖÏóµÈ¡£¾¡¹ÜÊýÖµÄ£Äâ¾ßÓÐ±ãÓÚÊµÏÖ£¬¿ÉÒÔÄ£Äâ¸´ÔÓ¹¤¿öµÈÓÅµã£¬È»¶øÔÚ±¬ºäµÄ¼ÆËãÖÐÈÔÈ»ÓÐÒ»Ð©ÎÊÌâºÍÄÑµã£¬ÆäÖÐ±È½ÏÏÔÖøµÄÊÇ»¯Ñ§·´Ó¦Ê±¼ä³ß¶ÈºÍ¿Õ¼ä³ß¶È¹ýÐ¡µÄÎÊÌâ£¬³ß¶ÈÎªÏµÍ³ÌØÕ÷µÄÒ»ÖÖ¶ÈÁ¿£¬ÏêÏ¸µÄ½âÊÍ¼û¸½Â¼ \ref{chap:scale}¡£Ê±¼ä³ß¶È¹ýÐ¡£¬»áµ¼ÖÂÔ´Ïî´æÔÚÊ±¼ä¸ÕÐÔ£¬ÐèÒª¸üÐ¡µÄÊ±¼ä²½»òÊÇ¸üÎÈ¶¨µÄÊ±¼ä·½·¨½øÐÐÇó½â¡£¿Õ¼ä³ß¶È¹ýÐ¡£¬¿ÉÄÜµ¼ÖÂ¿Õ¼ä¸ÕÐÔÎÊÌâ£¬²úÉú·ÇÎïÀíµÄ¼ÆËã½á¹û¡£ÔÚ²ÉÓÃ»ùÔª·´Ó¦Ä£ÐÍµÄ±¬ºä²¨Ä£ÄâÖÐ£¬¿Õ¼ä³ß¶È¹ýÐ¡»¹¿ÉÄÜÒýÆð×é·ÖÊØºãÐÔÎÊÌâºÍ±¬ºäÖÐ½á¹¹¼ÆËã²»×¼È·µÈÎÊÌâ¡£
 %
 %ÎÒÃÇÎªÁË×¼È·µÄÄ£Äâ·´Ó¦¶¯Á¦Ñ§¹ý³Ì£¬Í¨³£»á²ÉÓÃ¼ÆËã¡£»ùÔª·´Ó¦Ä£ÐÍÖÐ´æÔÚ¸´ÔÓµÄÖÐ¼ä²úÎï£¬¸Ã²¿·ÖÔÚ¿ØÖÆ·½³ÌÕÂ½ÚÖÐÓÐ¼òµ¥ÃèÊö¡£¶ÔÓÚÉÏÎÄËù½²µÄ¿Õ¼ä¸ÕÐÔÎÊÌâ£¬Ò»°ãÖ»³öÏÖÔÚ½Ï¼òµ¥µÄ»¯Ñ§·´Ó¦¶¯Á¦Ñ§Ä£ÐÍ»òÊÇ¼«ÎªÑÏ¿ÁµÄÌõ¼þÏÂ£¬ÔÚ»ùÔª·´Ó¦Ä£ÐÍÇó½âÖÐ²¢²»ÊÇ³£¼ûÏÖÏó¡£
 %%
@@ -653,7 +665,7 @@ ZNDÀíÂÛ¼ÙÉè·´Ó¦Á÷¶¯ÊÇÒ»Î¬¾ùÔÈÇÒ²»¿ÉÄæµÄ£¬²¢¼ÙÉè·´Ó¦ÇøµÄÃ¿Ò»¸ö¶ÏÃæ¶¼´¦ÔÚÈÈÁ¦Ñ§Æ½º
 \subsubsection{Ô´ÏîÊýÖµ¸ÕÐÔÎÊÌâµÄÊ±¼ä·½·¨}\label{cap:time_stiff}
 ÔÚ¸ßËÙ»¯Ñ§·´Ó¦Á÷µÄÄ£ÄâÖÐ£¬¾­³£»áÓöµ½»¯Ñ§·´Ó¦Ô´Ïî´æÔÚ¸ÕÐÔµÄÎÊÌâ£¬ÕâÖÖ¸ÕÐÔÌåÏÖÎª·´Ó¦Ê±¼ä³ß¶ÈÔ¶Ð¡ÓÚÁ÷¶¯Ëù²ÉÓÃµÄÊ±¼ä²½³¤¡£ÀýÈç£¬ºÜ¶àÈ¼ÉÕ·´Ó¦¾«È·¼ÆËãËùÐèµÄÊ±¼ä²½Òª¾«È·µ½ÄÉÃëµÄÁ¿¼¶\cite{najm1998semi,smooke1988comparison}£¬ÔÚÕæÊµ¼ÆËãÖÐ£¬ÓÉÓÚ¼ÆËãÄÜÁ¦µÄÏÞÖÆ£¬ÎÒÃÇÎÞ·¨½«×ÜÌåµÄÊ±¼ä²½³¤ËõÐ¡µ½¸ÃÁ¿¼¶¡£Èç¹û²ÉÓÃºÍ¶ÔÁ÷¹ý³ÌÍ³Ò»µÄÊ±¼ä·½·¨¶ø²»×öÌØÊâ´¦Àí£¬Èç²ÉÓÃ×î³£ÓÃµÄÏÔÊ½µÄRunge-Kutta¸ñÊ½Ê±£¬¿ÉÄÜ»áÔì³É¼ÆËã²»×¼È·»ò´æÔÚ½ÏÎªÑÏÖØµÄÊýÖµÕñµ´ÉõÖÁ·¢É¢¡£
 
-¶ÔÓÚÊ±¼ä³ß¶È²îÒì´øÀ´µÄÇó½âÎÊÌâ£¬Ä¿Ç°Ö÷ÒªÓÐÁ½ÖÖ½â¾ö·½·¨¡£Ò»ÖÖ·½·¨²ÉÓÃÔ´ÏîµãÒþ£¨Point implicit£©\cite{eberhardt1992diagonal}»òÕßÈ«ÒþÊ½µÄ·½Ê½\cite{fan2012fully} ÕûÌåÇó½â£¬ÕâÖÖ·½·¨³ÆÎªñîºÏ·½·¨¡£ÁíÒ»ÖÖ·½·¨Í¨¹ýËã×Ó·ÖÁÑ½«Ô´Ïî·ÖÁÑ³öÀ´£¬È»ºó²ÉÓÃ¶ÀÁ¢µÄÊ±¼ä·½·¨ºÍÊ±¼ä²½³¤½øÐÐ´¦Àí£¬ÕâÖÖ·½·¨Í¨³£³ÆÎª½âñîµÄ·½·¨ñîºÏ·½·¨µÄÖ÷ÒªÓÅµãÔÚÓÚ±ÜÃâ½âñîÎó²î¡£È»¶ø¸ÃÀà·½·¨ÐèÒªÇó½â´óÐÍ¾ØÕó£¬Ëæ×Å·´Ó¦Ä£ÐÍ¸´ÔÓ£¬¾ØÕóÒ²»á¸ü¼Ó¸´ÔÓ¡£ÁíÍâñîºÏ·½·¨ÓÉÓÚÎªÁË¼ò»¯¾ØÕóÔËËã»áÒýÈëÒ»ÏµÁÐµÄ½üËÆ£¬½á¹ûÉÏñîºÏ·½·¨ºÍ½âñî·½·¨±È²¢²»ÄÜÌåÏÖ³öÌ«¶àµÄÓÅÊÆ\cite{knio1999semi}£¬Òò´Ë£¬Ä¿Ç°¸ü¶àÑ§Õß¶¼²ÉÓÃ½âñî·½·¨¡£
+¶ÔÓÚÊ±¼ä³ß¶È²îÒì´øÀ´µÄÇó½âÎÊÌâ£¬Ä¿Ç°Ö÷ÒªÓÐÁ½ÖÖ½â¾ö·½·¨¡£Ò»ÖÖ·½·¨²ÉÓÃÔ´ÏîµãÒþ£¨Point implicit£©\cite{eberhardt1992diagonal}»òÕßÈ«ÒþÊ½µÄ·½Ê½\cite{fan2012fully} ÕûÌåÇó½â£¬ÕâÖÖ·½·¨³ÆÎªñîºÏ·½·¨¡£ÁíÒ»ÖÖ·½·¨Í¨¹ýËã×Ó·ÖÁÑ½«Ô´Ïî·ÖÁÑ³öÀ´£¬È»ºó²ÉÓÃ¶ÀÁ¢µÄÊ±¼ä·½·¨ºÍÊ±¼ä²½³¤½øÐÐ´¦Àí£¬ÕâÖÖ·½·¨Í¨³£³ÆÎª½âñîµÄ·½·¨¡£ñîºÏ·½·¨µÄÖ÷ÒªÓÅµãÔÚÓÚ±ÜÃâ½âñîÎó²î¡£È»¶ø¸ÃÀà·½·¨ÐèÒªÇó½â´óÐÍ¾ØÕó£¬Ëæ×Å·´Ó¦Ä£ÐÍ¸´ÔÓ£¬¾ØÕóÒ²»á¸ü¼Ó¸´ÔÓ¡£ÁíÍâñîºÏ·½·¨ÓÉÓÚÎªÁË¼ò»¯¾ØÕóÔËËã»áÒýÈëÒ»ÏµÁÐµÄ½üËÆ£¬½á¹ûÉÏñîºÏ·½·¨ºÍ½âñî·½·¨±È²¢²»ÄÜÌåÏÖ³öÌ«¶àµÄÓÅÊÆ\cite{knio1999semi}£¬Òò´Ë£¬Ä¿Ç°¸ü¶àÑ§Õß¶¼²ÉÓÃ½âñî·½·¨¡£
 
 ½âñî·½·¨Í¨¹ýËã×Ó·ÖÁÑ£¬½«»¯Ñ§·´Ó¦Á÷¶¯·½³ÌÔÚÊ±¼ä²½ÄÚ½âñî³É¶ÔÁ÷ºÍ·´Ó¦Á½¸ö×Ó²½£¬È»ºó·Ö±ð²ÉÓÃÓë¸÷×ÔµÄÌØÕ÷Ê±¼ä³ß¶ÈÏàÆ¥ÅäµÄÊ±¼ä²½³¤½øÐÐ¼ÆËã¡£ÕâÑù´¦ÀíÓÉÓÚ½ÏÎªÁé»î£¬Ò²±È½Ï·ûºÏÎïÀíÖ±¹Û£¬Òò¶øµÃµ½¹ã·ºµÄÓ¦ÓÃ\cite{mcrae1982numerical,leveque1992numerical,mclachlan2002splitting}¡£·ÖÁÑ·½·¨Í¨³£²ÉÓÃStrang·ÖÁÑ£¬¼ÈÄÜÓÐ¶þ½×µÄ¾«¶È,ÓÖ¿ÉÒÔ¼õÐ¡·´Ó¦²½Ê±¼ä²½³¤£¬µ«ÊÇÒ²ÓÐÑ§ÕßÖ¸³öStrang·ÖÁÑÔÚ¼ÆËã¼ä¶ÏÎÊÌâÊ±Ö»ÓÐÒ»½×¾«¶È£¬ÇÒÃ»ÓÐÒ»½×·ÖÁÑ·½·¨×¼È·\cite{crandall1980method}¡£
 
@@ -661,20 +673,20 @@ ZNDÀíÂÛ¼ÙÉè·´Ó¦Á÷¶¯ÊÇÒ»Î¬¾ùÔÈÇÒ²»¿ÉÄæµÄ£¬²¢¼ÙÉè·´Ó¦ÇøµÄÃ¿Ò»¸ö¶ÏÃæ¶¼´¦ÔÚÈÈÁ¦Ñ§Æ½º
 \begin{equation}\label{ode}
   \frac{dz}{dt}=f(t,z),z(0)=z_0, (z\in \mathbb{R}^{s},t\leqslant 0).
 \end{equation}
-¹ØÓÚ¸Ã·½³Ì·Ç¸ÕÐÔÇé¿öµÄÑÐ¾¿ÔçÔÚ80Äê´ú¾ÍÒÑ¾­ÒÑ¾­½ÏÎª³ÉÊì\cite{haier1987solving,wanner1991solving}£¬×îÎªÖøÃûºÍ³£ÓÃµÄµ±Êôµ¥²½µÄRunge-Kutta¸ñÊ½£¬°üÀ¨¸÷ÀàÏÔÊ½RKºÍÒþÊ½RK¸ñÊ½£¬¶øÇÒÍ¬Ñù¿ÉÒÔÓ¦ÓÃÔÚÈç¶ÔÁ÷·½³ÌÇó½âÖÐ£¬ÕâÔÚÇ°ÎÄ¶ÔÁ÷·½³ÌÊ±¼ä·½·¨ÖÐÓÐÖ¸³ö£¬²»ÔÙ×¸Êö¡£
+¹ØÓÚ¸Ã·½³Ì·Ç¸ÕÐÔÇé¿öµÄÑÐ¾¿ÔçÔÚ80Äê´ú¾ÍÒÑ¾­½ÏÎª³ÉÊì\cite{haier1987solving,wanner1991solving}£¬×îÎªÖøÃûºÍ³£ÓÃµÄµ±Êôµ¥²½µÄRunge-Kutta¸ñÊ½£¬°üÀ¨¸÷ÀàÏÔÊ½RKºÍÒþÊ½RK¸ñÊ½£¬¶øÇÒÍ¬Ñù¿ÉÒÔÓ¦ÓÃÔÚÈç¶ÔÁ÷·½³ÌÇó½âÖÐ£¬ÕâÔÚÇ°ÎÄ¶ÔÁ÷·½³ÌÊ±¼ä·½·¨ÖÐÓÐÖ¸³ö£¬²»ÔÙ×¸Êö¡£
 
 ¶ø¶ÔÓÚ¸ÕÐÔODE·½³Ì£¬Ä¿Ç°Ö÷ÒªÓÐ¼õÐ¡Ê±¼ä²½³¤ºÍ²ÉÓÃÒþÊ½¸ñÊ½Á½ÖÖ·½·¨¡£
 µÚÒ»Àà·½·¨¿ÉÒÔ²ÉÓÃ¸ÕÐÔ²»ÎÈ¶¨¸ñÊ½£¬ÈçÒ»½×ÏÔÊ½Euler¸ñÊ½£¬ÔÚÃ¿Ò»¸ö¶ÔÁ÷²½²ÉÓÃºÜ¶àµÄ×ÓÊ±¼ä²½½øÐÐ¼ÆËã£¬Ê±¼ä²½³¤µÄÑ¡È¡¿ÉÒÔ²ÉÓÃ¹Ì¶¨²½³¤»ò×ÔÊÊÓ¦²½³¤Á½ÖÖ·½Ê½¡£²ÉÓÃ¹Ì¶¨²½³¤ÐèÒªÔ¤Éè²½³¤£¬²¢ÇÒ²»ÄÜËæ×Å¸ÕÐÔµÄ±ä»¯²ÉÓÃ×î½ÚÔ¼¼ÆËã³É±¾µÄ²½³¤¡£²ÉÓÃ×ÔÊÊÓ¦²½³¤\cite{johnson1988error}±ÜÃâÁË¹Ì¶¨²½³¤µÄÒ»ÏµÁÐÎÊÌâ£¬µ«ÊÇÔÚ¼ÆËã¸ÕÐÔ²»Ç¿µÄÎÊÌâÉÏÊ±ÓÉÓÚ²ÉÓÃµÄ¸ñÊ½¾«¶È²»×ã¿ÉÄÜ»á´æÔÚ¹ý´óµÄÎó²î¡£
 
-ÒþÊ½Àà¸ñÊ½Í¨³£¾ßÓÐ½ÏºÃµÄ¸ÕÐÔÎÈ¶¨ÐÔ\cite{najm1998semi}£¬¿ÉÒÔ¹¹ÔìÈÎÒâ½×¸ß¾«¶ÈµÄ¸ÕÐÔÎÈ¶¨µÄÒþÊ½¸ñÊ½£¬È»¶ø£¬²ÉÓÃÒþÊ½¸ñÊ½ÐèÒª½øÐÐ´óÁ¿µÄÊÕÁ²µü´úºÍ¾ØÕóÔËËã£¬ÔÚÇó½âÐÎÊ½¼òµ¥¡¢·½³Ì½Ï¶àµÄODE·½³Ì×éÖÐÏÊÓÐÓ¦ÓÃ¡£
+ÒþÊ½Àà¸ñÊ½Í¨³£¾ßÓÐ½ÏºÃµÄÎÈ¶¨ÐÔ\cite{najm1998semi}£¬¾¡¹Ü¿ÉÒÔ¹¹ÔìÈÎÒâ½×¸ß¾«¶ÈµÄ¸ÕÐÔÎÈ¶¨µÄÒþÊ½¸ñÊ½£¬È»¶ø£¬²ÉÓÃÒþÊ½¸ñÊ½ÐèÒª½øÐÐ´óÁ¿µÄÊÕÁ²µü´úºÍ¾ØÕóÔËËã£¬ÔÚÇó½âÐÎÊ½¼òµ¥¡¢·½³Ì½Ï¶àµÄODE·½³Ì×éÖÐÏÊÓÐÓ¦ÓÃ¡£
 
-³ýÉÏÊöÁ½Àà³£¼û·½·¨Íâ£¬Ò²ÓÐ¼«ÎªÏ¡ÉÙµÄ¾ßÓÐÏÔÐÎÊ½µÄ¸ÕÐÔÎÈ¶¨¸ñÊ½¼æ¾ßÁ½ÕßµÄÓÐµã£¬ÈçÄ¿Ç°½ÏÎª³£ÓÃµÄÏß»¯ÌÝÐÎ¹«Ê½£¨linearised Trapezoidal method/LT£©\cite{zhang2014equilibrium,wang2012high}£¬¸Ã·½·¨¾ßÓÐ¶þ½×¾«¶È£¬ÇÒÔÚÒ»¶¨³Ì¶ÈÉÏ¸ÕÐÔÎÈ¶¨£¬Í¨³£¶¼²»ÐèÒª½øÐÐµü´ú¡£µ«ÊÇÏß»¯ÌÝÐÎ¹«Ê½Ò²½öÓÐ¶þ½×¾«¶È£¬Ïà±ÈÓÚ¶ÔÁ÷²½µÄÈý½×¡¢ËÄ½×Runge-KuttaÊ±¼ä¾«¶È£¬ÕâÔ¶Ô¶ÊÇ²»¹»µÄ¡£ÁíÍâ£¬Ïß»¯ÌÝÐÎ¹«Ê½Ò²²¢·Ç¾ø¶ÔÎÈ¶¨µÄ£¬ÔÚµÀ¸ÕÐÔ¸üÇ¿µÄ¼ÆËãÖÐ£¬ÈÔ¿ÉÄÜ±ÀÀ£¡£
+³ýÉÏÊöÁ½Àà³£¼û·½·¨Íâ£¬Ò²ÓÐÒ»Ð©·½·¨¼æ¾ßÏÔÐÎÊ½ºÍÎÈ¶¨Çó½â¸ÕÐÔ·½³ÌÁ½·½ÃæµÄÓÅµã£¬ÈçÄ¿Ç°½ÏÎª³£ÓÃµÄÏß»¯ÌÝÐÎ¹«Ê½£¨linearised Trapezoidal method/LT£©\cite{zhang2014equilibrium,wang2012high}£¬¸Ã·½·¨¾ßÓÐ¶þ½×¾«¶È£¬ÇÒÔÚÒ»¶¨³Ì¶ÈÉÏ¸ÕÐÔÎÈ¶¨£¬Í¨³£¶¼²»ÐèÒª½øÐÐµü´ú¡£µ«ÊÇÏß»¯ÌÝÐÎ¹«Ê½Ò²½öÓÐ¶þ½×¾«¶È£¬Ïà±ÈÓÚ¶ÔÁ÷²½µÄÈý½×¡¢ËÄ½×Runge-KuttaÊ±¼ä¾«¶È£¬ÕâÔ¶Ô¶ÊÇ²»¹»µÄ¡£ÁíÍâ£¬Ïß»¯ÌÝÐÎ¹«Ê½Ò²²¢·Ç¾ø¶ÔÎÈ¶¨µÄ£¬ÔÚ¸ÕÐÔ¸üÇ¿µÄ¼ÆËãÖÐ£¬ÈÔ¿ÉÄÜ´æÔÚÊýÖµÕñµ´£¬ÉõÖÁµÃµ½·¢É¢µÄ½á¹û¡£
 
 ÔÚ±¾ÎÄÖÐµÄµÚ \ref{chap:NPmethod} ÕÂÖÐ£¬»ùÓÚÊýÖµÉã¶¯µÄË¼Ïë\cite{zhi2000advances,gao2010numerical,yu2016development}£¬¹¹ÔìÁËÕë¶ÔÓÚÇó½âODE·½³ÌµÄÈý½×Éã¶¯¸ñÊ½£¬¸Ã¸ñÊ½¾ßÓÐÏÔÊ½ÐÎÊ½Òò´ËÎÞÐèµü´ú£¬¾ßÓÐºÜºÃµÄ¸ÕÐÔÎÈ¶¨ÐÔ£¬·Ç³£ÊÊºÏÓÃÀ´Çó½â¸ÕÐÔODE·½³Ì£¨×é£©¡£
 
 \subsubsection{¸ÕÐÔ»¯Ñ§·´Ó¦Á÷¶¯µÄ¿Õ¼ä¸ÕÐÔÎÊÌâ}
 
-ÉÏÃæÎÒÃÇ½éÉÜÁËÔ´Ïî¸ÕÐÔ´øÀ´µÄÊ±¼ä³ß¶ÈÎÊÌâ£¬¸ÃÎÊÌâ¿ÉÒÔÍ¨¹ýËã×Ó·ÖÁÑ½áºÏÓÐÐ§µÄODEÇó½â·½·¨À´±ÜÃâ¡£µ«ÊÇÈç¹ûÎÊÌâÖÐµÄ¸ÕÐÔ½øÒ»²½¼Ó´ó£¬ÕâÖÖÓ°Ïì»áÔÚ¿Õ¼äÇó½âÉÏÒ²ÓÐËùÌåÏÖ¡£×î¾ßÓÐ´ú±íÐÔµÄÎÊÌâÊÇÄ£Äâ¸ßËÙ»¯Ñ§·´Ó¦Á÷Ê±±¬ºä²¨µÄÐé¼Ù´«²¥ÎÊÌâ¡£ÕâÒ»ÎÊÌâ×îÔçÔÚ³öÏÖÔÚColella1986ÄêµÄÑÐ¾¿\cite{colella1986theoretical}ÖÐ¡£ËûÔÚÊýÖµÄ£Äâ·´Ó¦Å·À­·½³ÌÊ±·¢ÏÖ£¬Èç¹û´æÔÚ¼ä¶Ï£¬Èç±¬ºä²¨£¬¼ÆËã½á¹ûÖÐ¾­³£³öÏÖ´íÎóµÄ²¨ËÙºÍ½á¹¹¡£1990Äê£¬LeVequeºÍYee·¢ÏÖ¼´±ãÔÚº¬Ô´ÏîµÄÏßÐÔ²¨¶¯·½³ÌÖÐÒ²¿ÉÄÜ´æÔÚÏàËÆµÄ¼ä¶ÏÐé¼Ù´«²¥ÎÊÌâ¡£ÕâÒ»ÎÊÌâÔÚ½ÓÏÂÀ´¶þÊ®ÄêÊ±¼äÄÚÊÜµ½¹ã·ºµÄ¹Ø×¢ºÍÑÐ¾¿\cite{bao2000random,bao2001random,bao2002random,wang2012high,zhang2014equilibrium,chang1989application}¡£Í¼ \ref{stiff_exp} ¸ø³öÒ»×éµäÐÍµÄ±¬ºä²¨Ðé¼Ù´«²¥µÄ¼ÆËã½á¹û¡£ÕâÒ»ÀàÔ´Ïî¸ÕÐÔ»áµ¼ÖÂ±¬ºä²¨¿Õ¼äÇó½âÎÊÌâµÄÁ÷¶¯ÓÖ±»³ÆÎª¸ÕÐÔ»¯Ñ§·´Ó¦Á÷£¨Stiff reacting flow£©¡£
+ÉÏÃæÎÒÃÇ½éÉÜÁËÔ´Ïî¸ÕÐÔ´øÀ´µÄÊ±¼ä³ß¶ÈÎÊÌâ£¬¸ÃÎÊÌâ¿ÉÒÔÍ¨¹ýËã×Ó·ÖÁÑ½áºÏÓÐÐ§µÄODEÇó½â·½·¨À´±ÜÃâ¡£µ«ÊÇÈç¹ûÎÊÌâÖÐµÄ¸ÕÐÔ½øÒ»²½¼Ó´ó£¬ÕâÖÖÓ°Ïì»áÔÚ¿Õ¼äÇó½âÉÏÒ²ÓÐËùÌåÏÖ¡£×î¾ßÓÐ´ú±íÐÔµÄÎÊÌâÊÇÄ£Äâ¸ßËÙ»¯Ñ§·´Ó¦Á÷Ê±±¬ºä²¨µÄÐé¼Ù´«²¥ÎÊÌâ¡£ÕâÒ»ÎÊÌâ×îÔçÔÚ³öÏÖÔÚ1986ÄêColellaµÄÑÐ¾¿\cite{colella1986theoretical}ÖÐ¡£ËûÔÚÊýÖµÄ£Äâ·´Ó¦Å·À­·½³ÌÊ±·¢ÏÖ£¬Èç¹û´æÔÚ¼ä¶Ï£¬Èç±¬ºä²¨£¬¼ÆËã½á¹ûÖÐ¾­³£³öÏÖ´íÎóµÄ²¨ËÙºÍ½á¹¹¡£1990Äê£¬LeVequeºÍYee·¢ÏÖ¼´±ãÔÚº¬Ô´ÏîµÄÏßÐÔ²¨¶¯·½³ÌÖÐÒ²¿ÉÄÜ´æÔÚÏàËÆµÄ¼ä¶ÏÐé¼Ù´«²¥ÎÊÌâ¡£ÕâÒ»ÎÊÌâÔÚ½ÓÏÂÀ´¶þÊ®ÄêÊ±¼äÄÚÊÜµ½¹ã·ºµÄ¹Ø×¢ºÍÑÐ¾¿\cite{bao2000random,bao2001random,bao2002random,wang2012high,zhang2014equilibrium,chang1989application}¡£Í¼ \ref{stiff_exp} ¸ø³öÒ»×éµäÐÍµÄ±¬ºä²¨Ðé¼Ù´«²¥µÄ¼ÆËã½á¹û¡£ÕâÒ»ÀàÔ´Ïî¸ÕÐÔ»áµ¼ÖÂ±¬ºä²¨¿Õ¼äÇó½âÎÊÌâµÄÁ÷¶¯ÓÖ±»³ÆÎª¸ÕÐÔ»¯Ñ§·´Ó¦Á÷£¨Stiff reacting flow£©¡£
 
 \begin{figure}
   \centering
@@ -696,19 +708,19 @@ ZNDÀíÂÛ¼ÙÉè·´Ó¦Á÷¶¯ÊÇÒ»Î¬¾ùÔÈÇÒ²»¿ÉÄæµÄ£¬²¢¼ÙÉè·´Ó¦ÇøµÄÃ¿Ò»¸ö¶ÏÃæ¶¼´¦ÔÚÈÈÁ¦Ñ§Æ½º
 	\end{figure}
 
 
-¸ÕÐÔ»¯Ñ§·´Ó¦Á÷²úÉú¸ù±¾Ô­ÒòÊÇÓÉÓÚ¼«¿ìµÄ·´Ó¦ËÙ¶ÈÔì³É¿Õ¼äÉÏµÄ·´Ó¦ÇøÓò¼È·´Ó¦½çÃæÒ²¼«ÎªÏÁÕ­¡£Èç¹û²ÉÓÃ´ïµ½Ð¡ÓÚ·´Ó¦ÇøÓò³ß¶ÈµÄ¿Õ¼äÍø¸ñÀ´ÊýÖµÄ£Äâ×ÔÈ»¿ÉÒÔ±ÜÃâËùÓÐµÄ¿Õ¼ä¸ÕÐÔÎÊÌâ£¬ÕâÖÖÇó½âÍ¨³£³ÆÎªÍêÈ«Çó½â£¨fully resolved£©¡£È»¶øÕâ¸ö³ß¶ÈÍùÍùÊÇ´ï²»µ½µÄ£¬ÀýÈç£¬ÔÚÉÐ²»´æÔÚ¿Õ¼ä¸ÕÐÔµÄÇâÑõ±¬ºäÇó½âÖÐ£¬×îÀíÏëµÄÇó½â³ß¶ÈÒÑ¾­´ïµ½$10^{-7}m$Á¿¼¶\cite{powers2005accurate}£¬¸ÕÐÔ»¯Ñ§·´Ó¦Á÷µÄÍêÈ«Çó½â³ß¶È¿ÉÄÜ»á¸üÐ¡¡£Òò´Ë£¬ÎÒÃÇÒ»°ãÖ»ÄÜ²ÉÓÃÍø¸ñ³ß¶ÈÔ¶´óÓÚ·´Ó¦½çÃæºñ¶ÈµÄÍø¸ñ½øÐÐÇó½â£¬ÕâÖÖÇó½â³ÆÎª²»ÍêÈ«Çó½â£¨Underresolved£©\cite{bao2000random}¡£
+¸ÕÐÔ»¯Ñ§·´Ó¦Á÷²úÉú¸ù±¾Ô­ÒòÊÇÓÉÓÚ¼«¿ìµÄ·´Ó¦ËÙ¶ÈÔì³É¿Õ¼äÉÏµÄ·´Ó¦ÇøÓò¼´·´Ó¦½çÃæÒ²¼«ÎªÏÁÕ­¡£Èç¹û²ÉÓÃ´ïµ½Ð¡ÓÚ·´Ó¦ÇøÓò³ß¶ÈµÄ¿Õ¼äÍø¸ñÀ´ÊýÖµÄ£Äâ×ÔÈ»¿ÉÒÔ±ÜÃâËùÓÐµÄ¿Õ¼ä¸ÕÐÔÎÊÌâ£¬ÕâÖÖÇó½âÍ¨³£³ÆÎªÍêÈ«Çó½â£¨fully resolved£©¡£È»¶øÕâ¸ö³ß¶ÈÍùÍùÊÇ´ï²»µ½µÄ£¬ÀýÈç£¬ÔÚÉÐ²»´æÔÚ¿Õ¼ä¸ÕÐÔµÄÇâÑõ±¬ºäÇó½âÖÐ£¬×îÀíÏëµÄÇó½â³ß¶ÈÒÑ¾­´ïµ½$10^{-7}m$Á¿¼¶\cite{powers2005accurate}£¬¸ÕÐÔ»¯Ñ§·´Ó¦Á÷µÄÍêÈ«Çó½â³ß¶È¿ÉÄÜ»á¸üÐ¡¡£Í¨³£Çé¿öÏÂ£¬Ö»ÄÜ²ÉÓÃÍø¸ñ³ß¶ÈÔ¶´óÓÚ·´Ó¦½çÃæºñ¶ÈµÄÍø¸ñ½øÐÐÇó½â£¬ÕâÖÖÇó½â³ÆÎª²»ÍêÈ«Çó½â£¨Underresolved£©\cite{bao2000random}¡£
 ÔÚ²»ÍêÈ«Çó½âÇé¿öÏÂ£¬Èç¹û²»²ÉÓÃÌØÊâµÄ·½·¨£¬ÎÒÃÇ½«ÎÞ·¨ÔÚÍø¸ñÄÚ×·×Ù·´Ó¦µÄ´«²¥¡£¸ñÊ½µÄºÄÉ¢²»¿É±ÜÃâ»áÄ¨Æ½×é·ÖºÍÎÂ¶ÈÇúÏß£¬Ôì³É²¿·Ö·´Ó¦ÔÚ¼¤²¨Ç°µÄ´íÎó¼¤»î£¬ÕâÖÖ¼¤»î»á²úÉú·ÇÎïÀíµÄ×´Ì¬¡£¸Ã×´Ì¬Ëæ×Å¼ÆËãÀÛ»ý¾Í»áÔì³ÉÐé¼Ù´«²¥ÏÖÏó¡£¹ØÓÚ¸ÃÎÊÌâ£¬ÔÚÕýÎÄÖÐ»áÓÐ¸üÏêÏ¸µÄ·ÖÎö¡£
 
-2012ÄêWang\cite{wang2012high}¶ÔÕâ20Äê¹ØÓÚ±ÜÃâ¸ÕÐÔ»¯Ñ§·´Ó¦Á÷ÖÐÐé¼Ù´«²¥ÏÖÏóµÄÑÐ¾¿½øÐÐÁË»Ø¹Ë¡£BaoºÍJinÔÚ¸ÕÐÔÁ÷¼ÙÉèÏÂ£¬ÔÚÔ´ÏîÖÐ·¢Õ¹ÁËÒ»ÖÖËæ»úÍ¶Ó°µÄ·½·¨À´²¶×½±¬ºä²¨\cite{bao2000random,bao2001random,bao2002random}£¬µ«ÊÇ¸ÃÀà·½·¨ÎÞ·¨Ó¦ÓÃÔÚÎÞ¸ÕÐÔÎÊÌâÖÐ¡£ZhangµÈÈËÌá³öÁËÒ»ÖÖÆ½ºâÌ¬µÄ·½·¨£¨ESM£©\cite{zhang2014equilibrium} À´ÒÖÖÆÐé¼Ù×´Ì¬µÄ²úÉú£¬È»¶ø¸Ã·½·¨ÊÇºÍ¿Õ¼ä¸ñÊ½Ïà¹ØµÄ£¬ÄÑÒÔÍÆ¹ãµ½¸ß½×¸ñÊ½£¬³ý´ËÖ®Íâ¸Ã·½·¨×î´óµÄÎÊÌâÊÇ£¬¶ÔÓÚ¸´ÔÓµÄ»¯Ñ§·´Ó¦£¬ÍùÍùÃ»·¨Ô¤ÏÈÖªµÀÆ½ºâÌ¬¡£Chang»ùÓÚHartenENO×ÓÍø¸ñÖØ¹¹µÄË¼Ïë\cite{harten1989eno}£¬·¢Õ¹ÁË¶ÔÁ÷²½µÄÓÐÏÞÌå»ýENO·½·¨\cite{chang1989application}£¬WangµÈÈË\cite{wang2012high,wang2015high}Ìá³öÁË½áºÏÁË·´Ó¦²½×ÓÍø¸ñÖØ¹¹Ë¼ÏëµÄ¸ß½×ÓÐÏÞ²î·Ö¸ñÊ½¡£È»¶ø£¬YeeµÈÈË2013ÄêÖ¸³ö\cite{yee2013spurious}£¬×ÓÍø¸ñÖØ¹¹·½·¨ºÍËûÃÇ×Ô¼ºÌá³öµÄ·ÇÏßÐÔÏÞÖÆÆ÷·½·¨\cite{yee2011high}£¬Ö»ÄÜÔÚÒ»¶¨Ï¡ÊèµÄÍø¸ñºÍÊÊ¶ÈµÄÔ´Ïî¸ÕÐÔÇé¿öÏÂÍÆ³Ù·ÇÎïÀí´«²¥ÏÖÏóµÄ³öÏÖ£¬µ«ÊÇËæ×ÅÍø¸ñÏ¡Êè»òÊÇ¸ÕÐÔ½øÒ»²½¼ÓÇ¿£¬Ðé¼Ù´«²¥ÏÖÏóÈÔÈ»»á³öÏÖ¡£
+ÎÄ\cite{wang2012high}¶Ô½ü20Äê¹ØÓÚ±ÜÃâ¸ÕÐÔ»¯Ñ§·´Ó¦Á÷ÖÐÐé¼Ù´«²¥ÏÖÏóµÄÑÐ¾¿½øÐÐÁË»Ø¹Ë¡£BaoºÍJinÔÚ¸ÕÐÔÁ÷¼ÙÉèÏÂ£¬ÔÚÔ´ÏîÖÐ·¢Õ¹ÁËÒ»ÖÖËæ»úÍ¶Ó°µÄ·½·¨À´²¶×½±¬ºä²¨\cite{bao2000random,bao2001random,bao2002random}£¬µ«ÊÇ¸ÃÀà·½·¨ÎÞ·¨Ó¦ÓÃÔÚÎÞ¸ÕÐÔÎÊÌâÖÐ¡£ZhangµÈÈËÌá³öÁËÒ»ÖÖÆ½ºâÌ¬µÄ·½·¨£¨ESM£©\cite{zhang2014equilibrium} À´ÒÖÖÆÐé¼Ù×´Ì¬µÄ²úÉú£¬È»¶ø¸Ã·½·¨ÊÇºÍ¿Õ¼ä¸ñÊ½Ïà¹ØµÄ£¬ÄÑÒÔÍÆ¹ãµ½¸ß½×¸ñÊ½£¬³ý´ËÖ®Íâ¸Ã·½·¨×î´óµÄÎÊÌâÊÇ£¬¶ÔÓÚ¸´ÔÓµÄ»¯Ñ§·´Ó¦£¬ÍùÍùÃ»·¨Ô¤ÏÈÖªµÀÆ½ºâÌ¬¡£Chang»ùÓÚHartenµÄENOÑÇ¸ñ×ÓÖØ¹¹µÄË¼Ïë\cite{harten1989eno}£¬·¢Õ¹ÁË¶ÔÁ÷²½µÄÓÐÏÞÌå»ýENO·½·¨\cite{chang1989application}£¬WangµÈÈË\cite{wang2012high,wang2015high}Ìá³öÁË½áºÏÁË·´Ó¦²½ÑÇ¸ñ×ÓÖØ¹¹Ë¼ÏëµÄ¸ß½×ÓÐÏÞ²î·Ö¸ñÊ½¡£È»¶ø£¬YeeµÈÈË2013ÄêÖ¸³ö\cite{yee2013spurious}£¬ÑÇ¸ñ×ÓÖØ¹¹·½·¨ºÍËûÃÇ×Ô¼ºÌá³öµÄ·ÇÏßÐÔÏÞÖÆÆ÷·½·¨\cite{yee2011high}£¬Ö»ÄÜÔÚÒ»¶¨Ï¡ÊèµÄÍø¸ñºÍÊÊ¶ÈµÄÔ´Ïî¸ÕÐÔÇé¿öÏÂÍÆ³Ù·ÇÎïÀí´«²¥ÏÖÏóµÄ³öÏÖ£¬µ«ÊÇËæ×ÅÍø¸ñ³ß¶È±ä»¯»òÊÇ¸ÕÐÔ½øÒ»²½¼ÓÇ¿£¬Ðé¼Ù´«²¥ÏÖÏóÈÔÈ»»á³öÏÖ¡£
 
 ÀíÂÛÉÏ£¬»¯Ñ§·´Ó¦½çÃæ×÷Îª½çÃæÎÊÌâµÄÒ»Àà£¬¿ÉÒÔÓ¦ÓÃÉÏÎÄËùÁÐµÄ¸÷ÖÖ½çÃæ·½·¨½øÐÐÄ£Äâ¡£ÈçVOF·½·¨¡¢Level set·½·¨ÒÔ¼°·æÃæ×·×Ù·½·¨µÈ¶¼ÔøÓÃÀ´×·×ÙÔ¤»ì»ðÑæÃæ\cite{poinsot1992study,moureau2009level}¡£Ò²ÓÐÈË³¢ÊÔ²ÉÓÃ×·×Ù¼¤²¨ÃæµÄ·½·¨À´ÒÖÖÆÐé¼Ù´«²¥ÕâÒ»·ÇÎïÀíÏÖÏó\cite{nguyen2002fully}¡£È»¶ø£¬³ý¼«ÉÙÊýµÄ¿ÉÒÔ²ÉÓÃC-JÄ£ÐÍµÄÎÊÌâÍâ£¬·´Ó¦Ãæ¶¼ÊÇÓÐÒ»¶¨ºñ¶ÈºÍÄÚ²¿½á¹¹µÄ£¬Òò´ËÖ»ÄÜ²ÉÓÃºÄÉ¢½çÃæÄ£ÐÍ½øÐÐÄ£Äâ¡£
 
-½üÐ©Äê£¬ÓÐÈË³¢ÊÔ²ÉÓÃ½áºÏÁËÀ­¸ñÀÊÈÕÁ£×ÓºÍÅ·À­±³¾°Íø¸ñµÄÀ­¸ñÀÊÈÕ-Å·À­£¨Lagrangian-Euler/LE£©·½·¨À´Çó½âÏßÐÔ¶ÔÁ÷-À©É¢·½³Ì\cite{smolianski2007fast,moresi2003lagrangian,dong2012trajectory,liu2016efficient}£¬È¡µÃÁË½ÏºÃµÄÐ§¹û¡£LEÀà·½·¨»ù±¾Ë¼ÏëÊÇ²ÉÓÃÊÊµ±µÄËã×Ó·ÖÁÑ¼¼Êõ½«Ä£ÐÍ·½³Ì·Ö³É²»Í¬µÄ²¿·Ö£¬È»ºóÑ¡ÓÃÅ·À­·½·¨»òÊÇÀ­¸ñÀÊÈÕ·½·¨À´¶ÔÓ¦Çó½â\cite{liu2016efficient}¡£2007ÄêShipilovaµÈÈË\cite{shipilova2007particle}³¢ÊÔÓÃÒ»ÖÖLE·½·¨£¨PTM·½·¨£©Çó½â¶ÔÁ÷-À©É¢-·´Ó¦·½³Ì£¬ÊýÖµ½á¹ûÏÔÊ½PTM·½·¨¼´±ãÔÚºÜÏ¡ÊèµÄÍø¸ñÏÂÒ²¿ÉÒÔÓÐÐ§µÄÒÖÖÆÊýÖµÕñµ´¡£ÕâÖÖLEµÄË¼Ïë²¢²»ÐÂÓ±£¬Êµ¼ÊÉÏËùÓÐ½çÃæ×·×ÙÀà½çÃæ·½·¨¶¼ÊÇ²ÉÓÃµÄÍ¬ÑùµÄË¼Ïë£¬Ö»ÊÇËûÃÇ½ö½«À­¸ñÀÊÈÕÁ£×Ó»òÍø¸ñÓÃÀ´×·×Ù½çÃæ£¬µ±Ê±²¢Ã»ÓÐÈË½«ÕâÖÖË¼ÏëÓÃÀ´Ö±½ÓÇó½â·½³Ì±¾Éí¡£Ä¿Ç°£¬ÕâÖÖLE·½·¨½öÓÃÀ´Çó½â¼òµ¥µÄ·½³Ì¡¢·½³Ì×é£¬ÉÐÃ»ÓÐÈË²ÉÓÃÀàËÆµÄË¼ÏëÇó½â»¯Ñ§·´Ó¦·½³ÌÏµÍ³¡£
+½üÐ©Äê£¬ÓÐÈË³¢ÊÔ²ÉÓÃ½áºÏÁËÀ­¸ñÀÊÈÕÁ£×ÓºÍÅ·À­±³¾°Íø¸ñµÄÀ­¸ñÀÊÈÕ-Å·À­£¨Lagrangian-Euler/LE£©·½·¨À´Çó½âÏßÐÔ¶ÔÁ÷-À©É¢·½³Ì\cite{smolianski2007fast,moresi2003lagrangian,dong2012trajectory,liu2016efficient}£¬È¡µÃÁË½ÏºÃµÄÐ§¹û¡£LEÀà·½·¨»ù±¾Ë¼ÏëÊÇ²ÉÓÃÊÊµ±µÄËã×Ó·ÖÁÑ¼¼Êõ½«Ä£ÐÍ·½³Ì·Ö³É²»Í¬µÄ²¿·Ö£¬È»ºóÑ¡ÓÃÅ·À­·½·¨»òÊÇÀ­¸ñÀÊÈÕ·½·¨À´¶ÔÓ¦Çó½â\cite{liu2016efficient}¡£2007ÄêShipilovaµÈÈË\cite{shipilova2007particle}³¢ÊÔÓÃÒ»ÖÖLE·½·¨£¨PTM·½·¨£©Çó½â¶ÔÁ÷-À©É¢-·´Ó¦·½³Ì£¬ÊýÖµ½á¹ûÏÔÊ¾PTM·½·¨¼´±ãÔÚºÜÏ¡ÊèµÄÍø¸ñÏÂÒ²¿ÉÒÔÓÐÐ§µÄÒÖÖÆÊýÖµÕñµ´¡£ÕâÖÖLEµÄË¼Ïë²¢²»ÐÂÓ±£¬Êµ¼ÊÉÏËùÓÐ½çÃæ×·×ÙÀà½çÃæ·½·¨¶¼ÊÇ²ÉÓÃµÄÍ¬ÑùµÄË¼Ïë£¬Ö»ÊÇËûÃÇ½ö½«À­¸ñÀÊÈÕÁ£×Ó»òÍø¸ñÓÃÀ´×·×Ù½çÃæ£¬µ±Ê±²¢Ã»ÓÐÈË½«ÕâÖÖË¼ÏëÓÃÀ´Ö±½ÓÇó½â·½³Ì±¾Éí¡£Ä¿Ç°£¬ÕâÖÖLE·½·¨½öÓÃÀ´Çó½â¼òµ¥µÄ·½³Ì¡¢·½³Ì×é£¬ÉÐÃ»ÓÐÈË²ÉÓÃÀàËÆµÄË¼ÏëÇó½â»¯Ñ§·´Ó¦·½³ÌÏµÍ³¡£
 
-ÔÚÂÛÎÄÖÐµÚ \ref{chap:stiff_reaction} ÕÂÖÐ£¬ÎÒÃÇ²ÉÓÃËã×Ó·ÖÁÑ·½·¨£¬½«»¯Ñ§·´Ó¦Å·À­·½³Ì·ÖÁÑÎªEuler·½³ÌºÍ×é·Ö·½³Ì£¬È»ºóÔÙ½«×é·Ö·½³Ì½øÒ»²½·ÖÁÑÎª×é·Ö¶ÔÁ÷·½³ÌºÍ·´Ó¦ODE·½³Ì£¬×é·Ö¶ÔÁ÷·½³Ì²ÉÓÃDIP·½·¨Çó½â¡£ÓÉÓÚDIP·½·¨¿ÉÒÔÎÞºÄÉ¢µÄ²¶×½·´Ó¦½çÃæµÄÔË¶¯£¬Òò´Ë±ÜÃâµ¼ÖÂÔ´Ïî´íÎó¼¤»îµÄÊýÖµºÄÉ¢²ú¡£¸Ã²¿·Ö¹¤×÷ÔÚÕýÎÄÖÐ»áÓÐ¸üÏêÏ¸½éÉÜ¡£
+ÔÚÂÛÎÄÖÐµÚ \ref{chap:stiff_reaction} ÕÂÖÐ£¬ÎÒÃÇ²ÉÓÃËã×Ó·ÖÁÑ·½·¨£¬½«»¯Ñ§·´Ó¦Å·À­·½³Ì·ÖÁÑÎªEuler·½³ÌºÍ×é·Ö·½³Ì£¬È»ºóÔÙ½«×é·Ö·½³Ì½øÒ»²½·ÖÁÑÎª×é·Ö¶ÔÁ÷·½³ÌºÍ·´Ó¦ODE·½³Ì£¬×é·Ö¶ÔÁ÷·½³Ì²ÉÓÃDIP·½·¨Çó½â¡£ÓÉÓÚDIP·½·¨¿ÉÒÔÎÞºÄÉ¢µÄ²¶×½·´Ó¦½çÃæµÄÔË¶¯£¬Òò´Ë±ÜÃâµ¼ÖÂÔ´Ïî´íÎó¼¤»îµÄÊýÖµºÄÉ¢²úÉú¡£¸Ã²¿·Ö¹¤×÷ÔÚÕýÎÄÖÐ»áÓÐ¸üÏêÏ¸½éÉÜ¡£
 
 \subsubsection{»ùÔª·´Ó¦Ä£ÐÍÏÂ±¬ºä²¨µÄÊýÖµÄ£Äâ} \label{chap:elemete_intro}
-¿Õ¼ä¸ÕÐÔÎÊÌâÒ»°ãÖ»³öÏÖÔÚ×Ü°ü·´Ó¦µÄµ¥·½³ÌÄ£ÐÍºÍ½ÏÎª¼òµ¥µÄ¶à²½·´Ó¦Ä£ÐÍÖÐ»òÊÇ¸üÎªÑÏ¿ÁµÄ·´Ó¦Ìõ¼þÏÂ¡£ÎªÁË¸ü×¼È·µÄÄ£Äâ·´Ó¦¶¯Á¦Ñ§¹ý³Ì£¬ÎÒÃÇÍ¨³£»á²ÉÓÃÄÜ·´Ó³»¯Ñ§¶¯Á¦Ñ§Ï¸½ÚµÄ»ùÔª·´Ó¦Ä£ÐÍ½øÐÐ¼ÆËã¡£»ùÔª·´Ó¦Ä£ÐÍµÄÇó½âÖÐ£¬¿Õ¼ä¸ÕÐÔÎÊÌâÔÚ²¢²»ÊÇ³£¼ûÏÖÏó£¬µ«ÊÇÆäÖÐÈÔ´æÔÚ¿Õ¼ä·Ö±æÂÊ²»×ãµÈÎÊÌâ¡£Êµ¼ÊÉÏ£¬Ã¿ÖÖ×é·ÖµÄ·´Ó¦ÂÊÏà²îºÜ´ó£¬Í¼ \ref{length_rate} ¸ø³öÇâÑõ±¬ºä¹ý³Ì²»Í¬×é·Ö±ä»¯ºÍÓÕµ¼¼¤²¨Ç°ÑØ¾àÀëµÄ¶ÔÊýÇúÏß£¬¿ÉÒÔ¿´µ½ÔÚ¾àÀëÓÕµ¼¼¤²¨ $10^{-4}cm$×óÓÒ£¬Ä³Ð©ÇúÏßÈç$OH$¾Í¿ªÊ¼±ä»¯£»¶ÔÓÚ¾ø´ó¶àÊý×é·Ö¶¼ÔÚ¾àÀëÓÕµ¼¼¤²¨ $10^{-4}cm$ºÍ$10^{-2}cm$Ö®¼ä³öÏÖ±ä»¯£»µ½ÁË$x \approx 10^{-2}cm$ ºóËùÓÐ×é·Ö¶¼»áÓÐ¾çÁÒ±ä»¯¡£Í¼ \ref{length_optimal}ÊÇÍ¨¹ýÌØÕ÷·ÖÎö¸ø³öµÄ»¯Ñ§·´Ó¦¸÷×é·Ö¿Õ¼ä³ß¶ÈºÍ¼¤²¨Ç°ÑØ¾àÀëÖ®¼äµÄ¹ØÏµ£¬´ÓÖÐÒ²¿ÉÒÔ¿´³ö£¬Í¬Ò»¿Õ¼äÎ»ÖÃ²»Í¬×é·Ö¿Õ¼ä³ß¶ÈÖ®¼ä²îÒì¡¢Í¬Ò»×é·Ö²»Í¬¿Õ¼äÎ»ÖÃ¿Õ¼ä³ß¶ÈÍ¬Ñù´æÔÚ¾Þ´ó²îÒì¡£
+¿Õ¼ä¸ÕÐÔÎÊÌâÒ»°ãÖ»³öÏÖÔÚ×Ü°ü·´Ó¦µÄµ¥·½³ÌÄ£ÐÍºÍ½ÏÎª¼òµ¥µÄ¶à²½·´Ó¦Ä£ÐÍÖÐ»òÊÇ¸üÎªÑÏ¿ÁµÄ·´Ó¦Ìõ¼þÏÂ¡£ÎªÁË¸ü×¼È·µÄÄ£Äâ·´Ó¦¶¯Á¦Ñ§¹ý³Ì£¬ÎÒÃÇÍ¨³£»á²ÉÓÃÄÜ·´Ó³»¯Ñ§¶¯Á¦Ñ§Ï¸½ÚµÄ»ùÔª·´Ó¦Ä£ÐÍ½øÐÐ¼ÆËã¡£»ùÔª·´Ó¦Ä£ÐÍµÄÇó½âÖÐ£¬¿Õ¼ä¸ÕÐÔÎÊÌâÔÚ²¢²»ÊÇ³£¼ûÏÖÏó£¬µ«ÊÇÆäÖÐÈÔ´æÔÚ¿Õ¼ä·Ö±æÂÊ²»×ãµÈÎÊÌâ¡£Êµ¼ÊÉÏ£¬Ã¿ÖÖ×é·ÖµÄ·´Ó¦ÂÊÏà²îºÜ´ó£¬Í¼ \ref{length_rate} ¸ø³öÇâÑõ±¬ºä¹ý³Ì²»Í¬×é·Ö±ä»¯ºÍÓÕµ¼¼¤²¨Ç°ÑØ¾àÀëµÄ¶ÔÊýÇúÏß£¬¿ÉÒÔ¿´µ½ÔÚ¾àÀëÓÕµ¼¼¤²¨ $10^{-4}cm$×óÓÒ£¬Ä³Ð©ÇúÏßÈç$OH$¾Í¿ªÊ¼±ä»¯£»¶ÔÓÚ¾ø´ó¶àÊý×é·Ö¶¼ÔÚ¾àÀëÓÕµ¼¼¤²¨ $10^{-4}cm$ºÍ$10^{-2}cm$Ö®¼ä³öÏÖ±ä»¯£»µ½ÁË$x \approx 10^{-2}cm$ ºóËùÓÐ×é·Ö¶¼»áÓÐ¾çÁÒ±ä»¯¡£Í¼ \ref{length_optimal}ÊÇÍ¨¹ýÌØÕ÷·ÖÎö¸ø³öµÄ»¯Ñ§·´Ó¦¸÷×é·Ö¿Õ¼ä³ß¶ÈºÍ¼¤²¨Ç°ÑØ¾àÀëÖ®¼äµÄ¹ØÏµ£¬´ÓÖÐÒ²¿ÉÒÔ¿´³ö£¬Í¬Ò»¿Õ¼äÎ»ÖÃ²»Í¬×é·Ö¿Õ¼ä³ß¶ÈÖ®¼ä´æÔÚ²îÒì¡¢Í¬Ò»×é·Ö²»Í¬¿Õ¼äÎ»ÖÃ¿Õ¼ä³ß¶ÈÍ¬Ñù´æÔÚ¾Þ´ó²îÒì¡£
 
 \begin{figure}
   \centering
@@ -724,7 +736,7 @@ ZNDÀíÂÛ¼ÙÉè·´Ó¦Á÷¶¯ÊÇÒ»Î¬¾ùÔÈÇÒ²»¿ÉÄæµÄ£¬²¢¼ÙÉè·´Ó¦ÇøµÄÃ¿Ò»¸ö¶ÏÃæ¶¼´¦ÔÚÈÈÁ¦Ñ§Æ½º
   \label{length_optimal}
 \end{figure}
 
-¶ÔÓÚ±¬ºä¿Õ¼ä³ß¶ÈÎÊÌâ£¬Ä¿Ç°³ý¼ÓÃÜÍø¸ñÍâ£¬²¢Ã»ÓÐÆäËüÌØ±ðÍêÉÆµÄ½â¾ö°ì·¨¡£Èç×ÔÊÊÓ¦Íø¸ñ¼ÓÃÜ¼¼Êõ¿ÉÒÔÍ¨¹ýÔÚ²»Í¬¿Õ¼ä³ß¶ÈµÄÇøÓòÊµÊ±²ÉÓÃ²»Í¬´óÐ¡µÄÍø¸ñ£¬ËÆºõ·Ç³£ÊÊºÏ±¬ºä²¨µÄ¼ÆËã\cite{ji2010new,calder2000high}£¬µ«ÊÇÄ¿Ç°¸ÃÀà¼¼ÊõÔÚ±¬ºä¼ÆËãÈÔÓÐºÜ¶àÀ§ÄÑ£¬Òò´ËÒ²²¢²»³£ÓÃ¡£ÔÚ¹Ì¶¨Íø¸ñºÍÓÐÏÞµÄ¼ÆËã×ÊÔ´ÏÂ£¬ÏëÒª´ïµ½ÍêÈ«Çó½âÃ¿Ò»¿Õ¼ä³ß¶È¼¸ºõÊÇ²»¿ÉÄÜµÄ£¬ÆäÖÐ¿Õ¼ä³ß¶È½ÏÐ¡µÄ×é·ÖÇúÏß»áÓÉÓÚÍø¸ñ·Ö±æÂÊ²»×ãµ¼ÖÂµÄ¹ý¶ÈºÄÉ¢¶øÄ¨Æ½¡¢¶ÔÓ¦µÄ·´Ó¦ÇøÀ­³¤¡£±¬ºä²¨ºÍ¼¤²¨²»Í¬£¬ºÄÉ¢¶ÔÓÚ¼¤²¨¶øÑÔ²¢²»ÄÜ¸Ä±ä¼¤²¨Ç°ºó×´Ì¬£¬µ«ÊÇ±¬ºä²¨×é·Ö¼ÆËã²»×¼È·»áµ¼ÖÂ²»¾«È·µÄ»¯Ñ§·´Ó¦½á¹û£¬µÃµ½´íÎóµÄ·´Ó¦²úÎï£¬½ø¶øÓ°ÏìÕûÌåµÄ½á¹û¡£¶Ô´Ë£¬Powers\cite{powers2005accurate}µÈÈË×Ü½á³öÈýµã£º
+¶ÔÓÚ±¬ºä¿Õ¼ä³ß¶ÈÎÊÌâ£¬Ä¿Ç°³ý¼ÓÃÜÍø¸ñÍâ£¬²¢Ã»ÓÐÆäËüÌØ±ðÍêÉÆµÄ½â¾ö°ì·¨¡£Èç×ÔÊÊÓ¦Íø¸ñ¼ÓÃÜ¼¼Êõ¿ÉÒÔÍ¨¹ýÔÚ²»Í¬¿Õ¼ä³ß¶ÈµÄÇøÓòÊµÊ±²ÉÓÃ²»Í¬´óÐ¡µÄÍø¸ñ£¬ËÆºõ·Ç³£ÊÊºÏ±¬ºä²¨µÄ¼ÆËã\cite{ji2010new,calder2000high}£¬µ«ÊÇÄ¿Ç°¸ÃÀà¼¼ÊõÔÚ±¬ºä¼ÆËãÈÔÓÐºÜ¶àÀ§ÄÑ£¬Òò´Ë»¹ÓÐ´ý½øÒ»²½µÄ·¢Õ¹¡£ÔÚ¹Ì¶¨Íø¸ñºÍÓÐÏÞµÄ¼ÆËã×ÊÔ´ÏÂ£¬ÏëÒª´ïµ½ÍêÈ«Çó½âÃ¿Ò»¿Õ¼ä³ß¶È¼¸ºõÊÇ²»¿ÉÄÜµÄ£¬ÆäÖÐ¿Õ¼ä³ß¶È½ÏÐ¡µÄ×é·ÖÇúÏß»áÓÉÓÚÍø¸ñ·Ö±æÂÊ²»×ãµ¼ÖÂµÄ¹ý¶ÈºÄÉ¢¶øÄ¨Æ½¡¢¶ÔÓ¦µÄ·´Ó¦ÇøÀ­³¤¡£±¬ºä²¨ºÍ¼¤²¨²»Í¬£¬ºÄÉ¢¶ÔÓÚ¼¤²¨¶øÑÔ²¢²»ÄÜ¸Ä±ä¼¤²¨Ç°ºó×´Ì¬£¬µ«ÊÇ±¬ºä²¨×é·Ö¼ÆËã²»×¼È·»áµ¼ÖÂ²»¾«È·µÄ»¯Ñ§·´Ó¦½á¹û£¬µÃµ½´íÎóµÄ·´Ó¦²úÎï£¬½ø¶øÓ°ÏìÕûÌåµÄ½á¹û¡£¶Ô´Ë£¬Powers\cite{powers2005accurate}µÈÈË×Ü½á³öÈýµã£º
 \begin{enumerate}[1)]
   \item 
 	ÏëÒª×¼È·Ô¤²âÓÕµ¼Çø³ß¶ÈÐèÒª¶ÔÒýÆðÕâÒ»Ç¿·ÇÏßÐÔÏÖÏóµÄÎïÀíÎÊÌâÔÚÇ¡µ±µÄ³ß¶ÈºÏÀíµÄÇó½â¡£µ«ÊÇÄ¿Ç°Ã»ÓÐ·¢ÏÖÈÎºÎÎÄÏ×¶ÔÓÕµ¼Çø³ß¶È×ö¹ýÍø¸ñÊÕÁ²·ÖÎö£¬ËùÒÔºÜÄÑËµÕâÐ©ÎïÀíÎÊÌâÊÇ·ñ±»ºÏÀíÇó½âÁË¡£
@@ -734,22 +746,22 @@ ZNDÀíÂÛ¼ÙÉè·´Ó¦Á÷¶¯ÊÇÒ»Î¬¾ùÔÈÇÒ²»¿ÉÄæµÄ£¬²¢¼ÙÉè·´Ó¦ÇøµÄÃ¿Ò»¸ö¶ÏÃæ¶¼´¦ÔÚÈÈÁ¦Ñ§Æ½º
 	ÔÚ·Ç¶¨³£µÄ¼ÆËãÖÐ£¬ÈÎºÎË²Ì¬±¬ºä²¨µÄ¸ß²¨Êø²¨³¤Ó¦¸ÃºÍ¶¨³£½á¹¹ÖÐµÄ×î¼ÑÌØÕ÷³ß¶ÈÔÚÍ¬Ò»Á¿¼¶¡£ÔÚÈÎºÎÇé¿öÏÂ£¬ÓÈÆäÊÇÔÚ·ÇÎÈ¶¨ÎÊÌâÖÐ£¬ÏëÒªÍêÈ«²¶×½·Ç¶¨³£¶¯Á¦Ñ§¹ý³Ì£¬ËùÓÃµÄ³¤¶È³ß¶ÈÐèÒªµÈÓÚ»òÕßÐ¡ÓÚ×î¼Ñ¶¨³£¿Õ¼ä³ß¶È¡£
 \end{enumerate}
 
-ºÍ¸ÕÐÔ»¯Ñ§·´Ó¦Á÷ÎÊÌâÏàËÆ£¬ÎÒÃÇÎÞ·¨²ÉÓÃÅ·À­·½·¨ÔÚ²»ÍêÈ«Çó½âÏÂ×¼È·¼ÆËã»¯Ñ§·´Ó¦×é·Ö£¬µ«ÊÇÎÒÃÇ¿ÉÒÔÍ¨¹ýÀ­¸ñÀÊÈÕ-Å·À­µÄË¼Ïë½øÐÐ¼ÆËãÀ´Ïû³ýÓÉÓÚÍø¸ñ²»×ã²úÉúµÄÊýÖµºÄÉ¢µÄÓ°Ïì¡£»ùÓÚÕâÑùµÄ¿¼ÂÇ£¬ÔÚµÚ¾ÅÕÂ£¬ÎÒÃÇ½«DIP·½·¨ÍÆ¹ãµ½»ùÔª·´Ó¦Ä£ÐÍÏÂµÄ±¬ºä²¨Ä£ÄâÖÐ£¬½áºÏËã×Ó·ÖÁÑ·½·¨½«·½³Ì·ÖÁÑÎªEuler·½³Ì²¿·Ö¡¢×é·Ö¶ÔÁ÷²¿·ÖºÍÔ´Ïî²¿·Ö£¬Õë¶ÔÃ¿Ò»²¿·ÖµÄÌØÕ÷·Ö±ð²ÉÓÃÅ·À­ÌåÏµµÄ¸ß¾«¶È·½·¨¡¢À­¸ñÀÊÈÕÌåÏµµÄDIP·½·¨ºÍÊýÖµÉã¶¯·½·¨½øÐÐÇó½â¡£ÊýÖµ½á¹û±íÃ÷ÐÂµÄ·½·¨ÄÜ×¼È·µÄ¼ÆËãÈç±¬ºä²¨ËÙµÈÎÊÌâ£¬²¢ÇÒÏà±ÈÓÚ´«Í³·½·¨£¬ÐÂ·½·¨¾ßÓÐ¸üºÃµÄ×é·ÖÊØºãÐÔºÍÎÈ¶¨ÐÔ£¬¸ü¸ßµÄ¼ÆËã¾«¶È¡£
+ºÍ¸ÕÐÔ»¯Ñ§·´Ó¦Á÷ÎÊÌâÏàËÆ£¬ÎÒÃÇÎÞ·¨²ÉÓÃÅ·À­·½·¨ÔÚ²»ÍêÈ«Çó½âÏÂ×¼È·¼ÆËã»¯Ñ§·´Ó¦×é·Ö£¬µ«ÊÇÎÒÃÇ¿ÉÒÔÍ¨¹ýÀ­¸ñÀÊÈÕ-Å·À­µÄË¼Ïë½øÐÐ¼ÆËãÀ´Ïû³ýÓÉÓÚÍø¸ñ²»×ã²úÉúµÄÊýÖµºÄÉ¢µÄÓ°Ïì¡£»ùÓÚÕâÑùµÄ¿¼ÂÇ£¬ÔÚµÚ¾ÅÕÂ£¬ÎÒÃÇ½«DIP·½·¨ÍÆ¹ãµ½»ùÓÚ»ùÔª·´Ó¦Ä£ÐÍµÄ±¬ºä²¨Ä£ÄâÖÐ£¬¼´½áºÏËã×Ó·ÖÁÑ·½·¨½«·½³Ì·ÖÁÑÎªEuler·½³Ì²¿·Ö¡¢×é·Ö¶ÔÁ÷²¿·ÖºÍÔ´Ïî²¿·Ö£¬Õë¶ÔÃ¿Ò»²¿·ÖµÄÌØÕ÷·Ö±ð²ÉÓÃÅ·À­ÌåÏµµÄ¸ß¾«¶È·½·¨¡¢À­¸ñÀÊÈÕÌåÏµµÄDIP·½·¨ºÍÊýÖµÉã¶¯·½·¨½øÐÐÇó½â¡£ÊýÖµ½á¹û±íÃ÷ÐÂµÄ·½·¨ÄÜ×¼È·µÄ¼ÆËãÈç±¬ºä²¨ËÙµÈÎÊÌâ£¬²¢ÇÒÏà±ÈÓÚ´«Í³·½·¨£¬ÐÂ·½·¨¾ßÓÐ¸üºÃµÄ×é·ÖÊØºãÐÔºÍÎÈ¶¨ÐÔ£¬¸ü¸ßµÄ¼ÆËã¾«¶È¡£
 %¹ØÓÚ·ÇÏßÐÔË«ÇúÊØºã·½³ÌµÄÀíÂÛ½øÕ¹²¢²»ÏÔÖø£¬ÓÉÓÚ½âµÄ²»Á¬ÐøÐÔ£¬¾ø´ó¶àÊý±ê×¼Î¢·Ö¹¤¾ß²»ÄÜÊ¹ÓÃ£¬·ºº¯·ÖÎöÒ²Í¬Ñù²»×àÐ§£¬Ò²Í¬ÑùÎÞ·¨Ê¹ÓÃ
 
 \section{±¾ÎÄËù¿ªÕ¹ÑÐ¾¿ÄÚÈÝ}
-±¾ÎÄ·Ö³ÉÉÏÏÂÁ½²¿·Ö£¬µÚÒ»²¿·ÖÖ÷ÒªÑÐ¾¿¼¤²¨ÎÊÌâÏà¹ØµÄ·½·¨£¬°üÀ¨£º
+´ÓÑÐ¾¿ÄÚÈÝÉÏ±¾ÎÄ¿ÉÒÔ·Ö³ÉÁ½²¿·Ö£¬µÚÒ»²¿·Ö°üÀ¨\ref{chap:multiWENO}¡¢\ref{sep:detector}¡¢\ref{chap:MHD}ÕÂÖ÷ÒªÑÐ¾¿¼¤²¨ÎÊÌâÏà¹ØµÄ·½·¨£¬ÆäÖÐ£º
 \begin{enumerate}[1)]
-  \item ÔÚµÚ \ref{chap:multiWENO} ÕÂÖÐ£¬Õë¶Ô¼ä¶Ï¸½½ü¹ý¶Éµã½µ½×ÎÊÌâ£¬ÎÒÃÇÌá³öÒ»ÖÖ¶à²½¼ÓÈ¨µÄË¼Ïë£¬²¢¹¹ÔìÁËÎå½×¶à²½¼ÓÈ¨WENO¸ñÊ½£¬½á¹ûÏÔÊ¾ÐÂ¸ñÊ½ÔÚ¼¤²¨¸½½üÇøÓòµÄ¾«¶ÈµÃµ½½Ï´óÌá¸ß¡£
-  \item ÔÚµÚ \ref{sep:detector} ÕÂÖÐ£¬Õë¶Ô»ìºÏ¸ñÊ½µÄ¹Ø¼üÎÊÌâ---¼ä¶ÏÊ¶±ð£¬ÎÒÃÇ¶Ô±ÈÁËÏÖ´æµÄ´ó²¿·ÖÊ¶±ð·½·¨£¬ÈÏÎª»ùÓÚ$\tau_5$º¯ÊýµÄSZÊ¶±ð·½·¨ÎÞÈËÎª²ÎÊý£¬·½±ãÊ¹ÓÃ£¬ÇÒÓÐ½ÏºÃµÄ±íÏÖ£¬ÊÇ±¾ÎÄ×îÍÆ¼öµÄÊ¶±ð·½·¨¡£
-  \item  ÔÚµÚ \ref{chap:MHD} ÕÂ£¬ÎÒÃÇ½«²ÉÓÃÁËSZÊ¶±ð·½·¨µÄÔÓ½»¸ñÊ½---ÓÐÏÞ½ôÖÂ¸ñÊ½ÍÆ¹ãµ½ÀíÏë´ÅÁ÷ÌåÇó½âÖÐ£¬¿¼ÂÇµ½´ÅÁ÷Ìå·½³ÌÓÐ¸´ÔÓµÄÌØÕ÷ÖµÏµÍ³ºÍ²¨Ïµ£¬±¾ÎÄ½áºÏÎÞÐèÌØÕ÷ÏµÍ³Çó½âµÄE-CUSPÀà¸ñÊ½£¬¿ÉÒÔ¸ß¾«¶ÈµÍºÄÉ¢µÄÇó½âÀíÏë´ÅÁ÷Ìå·½³Ì¡£
+  \item ÔÚµÚ\ref{chap:multiWENO}ÕÂÖÐ£¬Õë¶Ô¼ä¶Ï¸½½ü¹ý¶Éµã½µ½×ÎÊÌâ£¬ÎÒÃÇÌá³öÒ»ÖÖ¶à²½¼ÓÈ¨µÄË¼Ïë£¬²¢¹¹ÔìÁËÎå½×¶à²½¼ÓÈ¨WENO¸ñÊ½£¬½á¹ûÏÔÊ¾ÐÂ¸ñÊ½ÔÚ¼¤²¨¸½½üÇøÓòµÄ¾«¶ÈµÃµ½½Ï´óÌá¸ß¡£
+  \item ÔÚµÚ\ref{sep:detector}ÕÂÖÐ£¬Õë¶Ô»ìºÏ¸ñÊ½µÄ¹Ø¼üÎÊÌâ---¼ä¶ÏÊ¶±ð£¬ÎÒÃÇ¶Ô±ÈÁËÏÖ´æµÄ´ó²¿·ÖÊ¶±ð·½·¨£¬ÈÏÎª»ùÓÚ$\tau_5$º¯ÊýµÄSZÊ¶±ð·½·¨ÎÞÈËÎª²ÎÊý£¬·½±ãÊ¹ÓÃ£¬ÇÒÓÐ½ÏºÃµÄ±íÏÖ£¬ÊÇ±¾ÎÄ×îÍÆ¼öµÄÊ¶±ð·½·¨¡£
+  \item  ÔÚµÚ\ref{chap:MHD}ÕÂ£¬ÎÒÃÇ½«²ÉÓÃÁËSZÊ¶±ð·½·¨µÄÔÓ½»¸ñÊ½---ÓÐÏÞ½ôÖÂ¸ñÊ½ÍÆ¹ãµ½ÀíÏë´ÅÁ÷ÌåÇó½âÖÐ£¬¿¼ÂÇµ½´ÅÁ÷Ìå·½³ÌÓÐ¸´ÔÓµÄÌØÕ÷ÖµÏµÍ³ºÍ²¨Ïµ£¬±¾ÎÄ½áºÏÎÞÐèÌØÕ÷ÏµÍ³Çó½âµÄE-CUSPÀà¸ñÊ½£¬¿ÉÒÔ¸ß¾«¶ÈµÍºÄÉ¢µÄÇó½âÀíÏë´ÅÁ÷Ìå·½³Ì¡£
 	\end{enumerate}
-±¾ÎÄÏÂ²¿·ÖÖ÷ÒªÑÐ¾¿½çÃæ·½·¨¼°ºÄÉ¢½çÃæÎÊÌâ¡£½áºÏÉÏ²¿·ÖµÄ¼¤²¨·½·¨£¬ÔÚÏÂ²¿·ÖÖÐ£¬±¾ÎÄÌá³öÁËÒ»Ì×Çó½â±¬ºäÕâÒ»Àà¼¤²¨/»¯Ñ§·´Ó¦£¨ºÄÉ¢½çÃæ£©Ç¿Ïà»¥×÷ÓÃÎÊÌâµÄÐÂ·½·¨:
-\begin{enumerate}[1)]
+	µÚ¶þ²¿·Ö°üÀ¨µÚ\ref{chap:dip}¡¢\ref{chap:NPmethod}¡¢\ref{chap:stiff_reaction}¡¢\ref{chap:element}ÕÂÖÐÖ÷ÒªÑÐ¾¿½çÃæ·½·¨¼°ºÄÉ¢½çÃæÎÊÌâ¡£½áºÏµÚÒ»²¿·ÖµÄ¼¤²¨·½·¨£¬¸Ã²¿·ÖÌá³öÁËÒ»Ì×Çó½â±¬ºäÕâÒ»Àà¼¤²¨/»¯Ñ§·´Ó¦£¨ºÄÉ¢½çÃæ£©Ç¿Ïà»¥×÷ÓÃÎÊÌâµÄÐÂ·½·¨:
+\begin{enumerate}[4)]
   \item ÓÉÓÚ´«Í³½çÃæ·½·¨´æÔÚÄÑÒÔ´¦ÀíºÄÉ¢½çÃæµÈÎÊÌâ£¬ ÔÚµÚ \ref{chap:dip} ÕÂÖÐ£¬±¾ÎÄÌá³öÒ»ÖÖ»ùÓÚÅ·À­±³¾°Íø¸ñµÄÀ­¸ñÀÊÈÕÁ£×ÓÀà·½·¨---Ë«ÐÅÏ¢±£´æ·½·¨¡£
 %\item ±¾ÎÄ½áºÏ±ÜÃâ½çÃæ¸½½üÕñµ´µÄÐéÄâÁ÷Ìå·½·¨£¬½«Ë«ÐÅÏ¢±£´æ·½·¨Ó¦ÓÃÔÚÁ½ÏàÁ÷½çÃæÎÊÌâÇó½âÖÐ£¬È¡µÃÁË½ÏºÃµÄ½á¹û¡£  
   \item  ÔÚµÚ \ref{chap:NPmethod} ÕÂÖÐ£¬ Õë¶Ô»¯Ñ§·´Ó¦Á÷¶¯·½³ÌÖÐµÄ·´Ó¦Ô´ÏîODE·½³ÌÊ±¼ä¸ÕÐÔ£¬±¾ÎÄ»ùÓÚÊýÖµÉã¶¯Ë¼Ïë£¬¹¹ÔìÁËÒ»ÏµÁÐ¸ß½×¡¢ÏÔÊ½ÇÒÎÈ¶¨µÄµ¥²½ÊýÖµÉã¶¯·½·¨£¬¿ÉÒÔ½ÏºÃµÄ±ÜÃâÊ±¼ä¸ÕÐÔÔì³ÉµÄODEÇó½âÀ§ÄÑ¡£
-  \item  ÔÚ¸ÕÐÔ»¯Ñ§·´Ó¦Á÷Çó½âÖÐ£¬ÓÉÓÚ±¬ºä²¨¸½½üµÄÊýÖµºÄÉ¢»á²úÉú±¬ºä²¨Ðé¼Ù´«²¥ÕâÒ»·ÇÎïÀíÏÖÏó£¬ÔÚµÚ \ref{chap:stiff_reaction} ÕÂ£¬±¾ÎÄÌá³öÒ»ÖÖÐÂÐÍµÄÇó½â·´Ó¦Euler·½³ÌµÄ·ÖÁÑ·½·¨£¬¸Ã·½·¨½áºÏÁË¸ß¾«¶ÈµÄ¼¤²¨²¶×½¸ñÊ½¡¢DIP·½·¨ºÍÊýÖµÉã¶¯·½·¨¡£ÐÂ·½·¨Í¨¹ýDIP·½·¨Çó½âºÄÉ¢½çÃæ£¬ÒÖÖÆ×é·Ö¶ÔÁ÷·½³ÌÖÐµÄºÄÉ¢À´±ÜÃâÊýÖµ¸ÕÐÔÎÊÌâµÄ²úÉú¡£
-  \item ÔÚÓ¦ÓÃÁË»ùÔª·´Ó¦Ä£ÐÍµÄ»¯Ñ§·´Ó¦Çó½âÖÐ£¬ÓÉÓÚ×é·ÝÖ®¼ä¿Õ¼ä³ß¶ÈÏà²îºÜ´ó£¬¾­³£Óöµ½×é·ÖÊØºãÐÔ²»ºÃ¡¢×é·ÖÇúÏßÕñµ´µÈÎÊÌâ¡£±¾ÎÄ½«µÚ \ref{chap:stiff_reaction} ÕÂÖÐ¹¹ÔìµÄÐÂµÄ·´Ó¦Euler·½³Ì1Çó½â·½·¨Ó¦ÓÃÔÚ²ÉÓÃ»ùÔª·´Ó¦Ä£ÐÍµÄ±¬ºäÇó½âÖÐ£¬Í¨¹ýDIP·½·¨µÄLagrangianÌØÐÔ£¬ÐÂ·½·¨¿ÉÒÔµÍºÄÉ¢¡¢ÎÈ¶¨µÄÇó½â×é·Ö¶ÔÁ÷¹ý³Ì£¬±ÜÃâ×é·ÖÕñµ´µÄ·¢Éú£¬±£³Ö×é·ÖµÄÊØºãÐÔ¡£
+  \item  ÔÚ¸ÕÐÔ»¯Ñ§·´Ó¦Á÷Çó½âÖÐ£¬ÓÉÓÚ±¬ºä²¨¸½½üµÄÊýÖµºÄÉ¢»á²úÉú±¬ºä²¨Ðé¼Ù´«²¥ÕâÒ»·ÇÎïÀíÏÖÏó£¬ÔÚµÚ\ref{chap:stiff_reaction}ÕÂ£¬Ìá³öÒ»ÖÖÐÂÐÍµÄÇó½â·´Ó¦Euler·½³ÌµÄ·ÖÁÑ·½·¨£¬¸Ã·½·¨½áºÏÁË¸ß¾«¶ÈµÄ¼¤²¨²¶×½¸ñÊ½¡¢DIP·½·¨ºÍÊýÖµÉã¶¯·½·¨¡£ÐÂ·½·¨Í¨¹ýDIP·½·¨Çó½âºÄÉ¢½çÃæ£¬ÒÖÖÆ×é·Ö¶ÔÁ÷·½³ÌÖÐµÄºÄÉ¢À´±ÜÃâÊýÖµ¸ÕÐÔÎÊÌâµÄ²úÉú¡£
+  \item ÔÚÓ¦ÓÃÁË»ùÔª·´Ó¦Ä£ÐÍµÄ»¯Ñ§·´Ó¦Çó½âÖÐ£¬ÓÉÓÚ×é·ÖÖ®¼ä¿Õ¼ä³ß¶ÈÏà²îºÜ´ó£¬¾­³£Óöµ½×é·ÖÊØºãÐÔ²»ºÃ¡¢×é·ÖÇúÏßÕñµ´µÈÎÊÌâ¡£±¾ÎÄ½«µÚ\ref{chap:stiff_reaction}ÕÂÖÐ¹¹ÔìµÄÐÂµÄ·´Ó¦Euler·½³ÌÇó½â·½·¨Ó¦ÓÃÔÚ²ÉÓÃ»ùÔª·´Ó¦Ä£ÐÍµÄ±¬ºäÇó½âÖÐ£¬Í¨¹ýDIP·½·¨µÄLagrangianÌØÐÔ£¬ÐÂ·½·¨¿ÉÒÔµÍºÄÉ¢¡¢ÎÈ¶¨µÄÇó½â×é·Ö¶ÔÁ÷¹ý³Ì£¬±ÜÃâ×é·ÖÕñµ´µÄ·¢Éú£¬±£³Ö×é·ÖµÄÊØºãÐÔ¡£
 \end{enumerate}
       
