@@ -130,7 +130,7 @@ $$S_{(i-1)-1/2}^5=(x_{i-4},x_{i-3},\cdots,x_i)$$
 是光滑模板。因此，$h_{(i-1)-1/2}$通过WENO-Z或者WENO-JS格式可以得到一个五阶通量。然而对于模板$$S_{(i-1)+1/2}^5=(x_{i-3},x_{i-2},\cdots,x_{i+1})$$
 由于在子模板$S_2^3=(x_{i-1},x_i,x_{i+1})$上存在间断，所以无论采用了WENO-Z还是WENO-JS总有
 \begin{equation*}
-  IS_2>>IS_0,IS_1
+  IS_2\gg IS_0,IS_1
 \end{equation*}
 在计算通量$h_{(i-1)+1/2}$时有
 \begin{equation*}

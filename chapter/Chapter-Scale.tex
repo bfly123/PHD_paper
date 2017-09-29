@@ -8,21 +8,18 @@
 \section{化学反应时间尺度分析方程和空间尺度分析方程}
 除了对尺度概念简单的字面理解，在研究中，每种尺度都应该有更明确的数学定义。为了便于理解全文，下面对空间尺度和时间尺度进行简单的分析和解释，更准确、详细的理论工作请参阅\cite{powers2005accurate,strang1988linear}。
 
-各种尺度的分析都是针对如下形式ODE方程展开的。
+各种尺度的分析都是针对如下形式的ODE方程：
 \begin{equation}\label{eq:scale_ODE}
   \frac{dY_i}{dx}=f_i(Y_1,Y_2,\cdots,Y_n)
 \end{equation}
 
-对于化学反应时间尺度分析，采用反应ODE方程
+对于化学反应时间尺度的分析，通常采用反应ODE方程
 \begin{equation}\label{eq:scale_ODE_time}
   \frac{dz_i}{dt}=\frac{\omega_i}{\rho_i},  \hspace{0.3cm} i=1,\cdots,ns-1
   \end{equation}
-
-明显满足方程 (\ref{eq:scale_ODE}) 的形式，
+该方程明显满足方程 (\ref{eq:scale_ODE}) 的形式。
 
 对于化学反应的空间尺度分析，我们需要对反应Euler方程做一些特殊的处理，以一维反应Euler方程为例
-
-
 \begin{equation}\label{eq1_4}
   \frac{\partial U}{\partial t} +\frac{\partial F}{\partial x}=S
   \end{equation}
@@ -86,7 +83,7 @@ S=
 	\rho u=\rho_0 D
 \end{equation}
 \begin{equation}
- \rho u^2+p=\rho_9 D^2+p_0
+ \rho u^2+p=\rho_0 D^2+p_0
 \end{equation}
 \begin{equation}
 E+p=E_0+p_0  
@@ -95,21 +92,21 @@ E+p=E_0+p_0
   \frac{dz_i}{dx}=\frac{\omega_i}{\rho_i D}, \hspace{0.3cm} i=1,\cdots,ns-1
 \end{equation}
 
-我们可以看到反映化学反应的时间尺度的方程 (\ref{eq:scale_ODE_time}) 和空间尺度的方程 (\ref{eq:scale_ODE_spatial})非常接近，实际上仅相差一个爆轰波波速$D$。
+可以看出反映化学反应的时间尺度的方程 (\ref{eq:scale_ODE_time}) 和空间尺度的方程 (\ref{eq:scale_ODE_spatial})非常接近，实际上仅相差一个爆轰波波速$D$。
 
 \section{尺度分析\cite{powers2005accurate}}
 
-我们对方程 (\ref{eq:scale_ODE_time}）进行经典的特征分析，为了方便我们将方程写为
+对方程 (\ref{eq:scale_ODE_time}）进行经典的特征分析，为了方便将方程写为
 \begin{equation*}
   \frac{d \boldsymbol{y} }{dx}=\boldsymbol{f}(\boldsymbol{y})
 \end{equation*}
-其中${\boldsymbol{y}} =(Y_1,\cdots,Y_n)$，${\boldsymbol{f}}=(f_1,\cdots,f_n)$。然后，我们在点$(x,{\boldsymbol{y}} )= (x^*, \boldsymbol{y} ^*)$进行线化处理
+其中${\boldsymbol{y}} =(Y_1,\cdots,Y_n)$，${\boldsymbol{f}}=(f_1,\cdots,f_n)$。然后，在点$(x,{\boldsymbol{y}} )= (x^*, \boldsymbol{y} ^*)$进行线化处理
 \begin{equation}\label{eq:scale_linear}
   \frac{d\boldsymbol{y} }{dx}=\boldsymbol{J}\cdot (\boldsymbol{y}-\boldsymbol{y}^*)+\boldsymbol{b}, \hspace{0.3cm} {\boldsymbol{y}} (x^*)=\boldsymbol{y} ^* 
 \end{equation}
 其中$\boldsymbol{J}=\partial f_i/\partial Y_j|_{y=y^*}$，而$\boldsymbol{b}$为一个常数向量。
 
-然后我们定义一个新量$\zeta =\boldsymbol{y}-\boldsymbol{y}^*+\boldsymbol{J}^{-1}\cdot \boldsymbol{b}$，方程 (\ref{eq:scale_linear})变为
+定义一个新量$\zeta =\boldsymbol{y}-\boldsymbol{y}^*+\boldsymbol{J}^{-1}\cdot \boldsymbol{b}$，方程 (\ref{eq:scale_linear})变为
 \begin{equation}
   \frac{d\zeta}{dx}=\boldsymbol{J}\cdot \zeta, \hspace{0.3cm} \zeta(x^*)=\boldsymbol{J}\cdot \boldsymbol{b}
   \end{equation}
@@ -120,13 +117,13 @@ E+p=E_0+p_0
   \begin{equation}
 	\omega (x)=e^{\Lambda (x-x^*)} \cdot \boldsymbol{P}^{-1}\cdot \boldsymbol{J}^{-1}\cdot \boldsymbol{b}
  \end{equation}
- 第i项的当地$x=x^*$特征尺度可以定义为
+ 第$i$项的当地（$x=x^*$）特征尺度可以定义为
  \begin{equation}
-   l_i=1/|\text{Re}(\lambda_i)|,
+   l_i=1/|\text{Re}(\lambda_i)|
 \end{equation}
 
-对于方程 (\ref{eq:scale_ODE_spatial}) 可以认为$l_i$为$i$组分的当地空间尺度$\mathcal{L}_i$，对于方程 (\ref{eq:scale_ODE_time}) 可以认为其为当地时间尺度$\mathcal{T} _i$。同样我们可以定义，所有组分当地最小特征尺度为当地最佳空间尺度$\mathcal{L}^{\text{local}}$和当地最佳时间尺度$\mathcal{T}^{\text{local}}$。对于组分$i$，全局最小的特征尺度可以定义为该组分的最佳空间尺度$\mathcal{L}^{\text{global}}_i$和最佳时间尺度$\mathcal{T}^{\text{global}}_i$。根据方程 (\ref{eq:scale_ODE_time})和 （\ref{eq:scale_ODE_spatial})关系我们可以推知$\mathcal{L}^{\text{global}}_i \propto D \mathcal{T}^{\text{global}}_i$。
-由此我们也可以看出时间尺度和空间尺度间复杂的相关性。
+对于方程 (\ref{eq:scale_ODE_spatial}) 可以认为$l_i$为$i$组分的当地空间尺度$\mathcal{L}_i$，对于方程 (\ref{eq:scale_ODE_time}) 可以认为其为当地时间尺度$\mathcal{T} _i$。同样我们可以定义，所有组分当地最小特征尺度为当地最佳空间尺度$\mathcal{L}^{\text{local}}$和当地最佳时间尺度$\mathcal{T}^{\text{local}}$。对于组分$i$，全局最小的特征尺度可以定义为该组分的最佳空间尺度$\mathcal{L}^{\text{global}}_i$和最佳时间尺度$\mathcal{T}^{\text{global}}_i$。根据方程 (\ref{eq:scale_ODE_time})和 （\ref{eq:scale_ODE_spatial})关系可以推知$\mathcal{L}^{\text{global}}_i \propto D \mathcal{T}^{\text{global}}_i$。
+由此也可以看出时间尺度和空间尺度间复杂的相关性。
 
 
 
