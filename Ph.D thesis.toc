@@ -27,7 +27,7 @@
 \contentsline {subsubsection}{\numberline {1.4.3.3}刚性化学反应流动的空间刚性问题}{24}{subsubsection.1.4.3.3}
 \contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{26}{subsubsection.1.4.3.4}
 \contentsline {section}{\numberline {1.5}本文所开展研究内容}{28}{section.1.5}
-\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}多步加权基本无振荡（Multi-WENO）格式}{31}{chapter.2}
+\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}多步加权基本无振荡（Multistep WENO）格式}{31}{chapter.2}
 \contentsline {section}{\numberline {2.1}本章涉及的数值方法}{32}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Lax-Friedrichs（LF）通量分裂方法和空间半离散}{32}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}加权基本无振荡/WENO格式\cite {jiang2001weighted,henrick2005mapped,borges2008improved}}{33}{subsection.2.1.2}

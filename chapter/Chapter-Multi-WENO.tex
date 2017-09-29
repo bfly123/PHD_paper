@@ -1,25 +1,29 @@
 
 \XeTeXinputencoding "GB2312"
-\chapter{多步加权基本无振荡（Multi-WENO）格式}\label{chap:multiWENO}
-加权基本无振荡格式（WENO）自1994年由Liu\cite{liu1994weighted}提出以来，在这20年里已得到十分广泛的应用。WENO格式基本思想是将ENO格式\cite{harten1987uniformly}的最光子滑模板用所有子模板的凸组合重构代替。在WENO格式构造中，子模板权重函数的选取对格式的精度和无振荡特性的保持都十分重要。
+\chapter{多步加权基本无振荡（Multistep WENO）格式}\label{chap:multiWENO}
+加权基本无振荡格式（WENO）自1994年由Liu等人\cite{liu1994weighted}提出，以及Jiang和Shu\cite{jiang1996efficient}改进以来，在这20年里已得到十分广泛的应用。WENO格式基本思想是将ENO格式\cite{harten1987uniformly}的最光滑子模板用所有子模板的凸组合重构代替。在WENO格式构造中，子模板权重函数的计算对格式的精度和无振荡特性的保持都十分重要。
 
-Jiang和Shu\cite{jiang1996efficient}分析了Liu\cite{liu1994weighted}引入的光滑因子，认为采用该光滑因子构造的权重函数只能让$r$阶ENO格式收敛到一个$r+1$阶WENO格式，他们在该文中，构造了一个经典的五阶WENO格式，并给出了构造光滑因子和权重函数的一般框架。2005年Henrick等人\cite{henrick2005mapped}指出，Jiang和Shu提出的光滑度量因子不能提高WENO格式在一阶导数为零的极值点精度，他们在该文章中构造了一个映射函数来得到极值点的最优精度。2008年，Borges等人\cite{borges2008improved}建议采用整体的五点模板来推导光滑因子取代Jiang和Shu经典的光滑因子。另一方面，学者们构造了一系列高于五阶的WENO格式\cite{balsara2000monotonicity,gerolymos2009very,wang2001optimized}。如Martin等人\cite{martin2006bandwidth}提出的$2r$阶精度的对称型WENO格式，可以达到更低耗散的效果。
+Jiang和Shu\cite{jiang1996efficient}分析了Liu等人\cite{liu1994weighted}引入的光滑因子，认为采用该光滑因子构造的权重函数只能让$r$阶ENO格式收敛到一个$r+1$阶WENO格式，他们在该文中，构造了一个经典的五阶WENO格式，并给出了构造光滑因子和权重函数的一般框架。2005年Henrick等人\cite{henrick2005mapped}指出，Jiang和Shu提出的光滑度量因子不能提高WENO格式在一阶导数为零的极值点精度，他们在该文章中构造了一个映射函数来得到极值点的最优精度。2008年，Borges等人\cite{borges2008improved}提出采用整体的五点模板来构造光滑因子取代Jiang和Shu经典的光滑因子。另一方面，学者们构造了一系列高于五阶的WENO格式\cite{balsara2000monotonicity,gerolymos2009very,wang2001optimized}。如Martin等人\cite{martin2006bandwidth}提出的$2r$阶精度的对称型WENO格式，可以达到更低耗散的效果。
 
-上面提到的WENO格式都是通过$r$阶精度的ENO格式来设计光滑区域到达$2r-1$或$2r$阶精度的WENO格式，它们的目的都是提高光滑区的精度，尤其是极值点（$f'_i=0$）的精度。但是，对于含有间断的问题，上述的方法在连接光滑区和间断区的过渡点，并不能达到理想精度。例如，Shen和Zha\cite{shen2014improvement}分析了现存的各种五阶WENO格式，发现这些格式在过渡点半点精度只有三阶。这一缺点可能会影响五阶格式的整体表现，如在模拟激波诱导的分离流时或在模拟激波/湍流相互作用时。
+上面提到的WENO格式都是通过$r$阶精度的ENO格式来设计光滑区域到达$2r-1$或$2r$阶精度的WENO格式，它们的目的都是提高光滑区的精度，尤其是极值点（$f'_i=0$）的精度。但是，对于含有间断的问题，上述的方法在连接光滑区和间断区的过渡点，并不能达到理想精度。例如，Shen和Zha\cite{shen2014improvement}分析了各种五阶WENO格式，发现这些格式在过渡点精度只有三阶。这一缺点会影响五阶格式的整体表现，如在模拟激波诱导的分离流时或在模拟激波/湍流相互作用时。
 
-由于解在过渡区仍然是光滑的，理论上，该点的半点通量可以达到四阶精度。换言之，可以通过四个点的光滑模板来构造一个四阶半点通量。在\cite{shen2014improvement}工作中，Shen和Zha引入了两个四阶的通量和一个判断相邻两个四阶通量光滑/间断的判别器来提高过渡点精度。Shen等人在更早的工作中\cite{shen2001fifth}，指出Jiang和Shu的经典的光滑因子$IS_K$在极值点不能满足$\beta_k=D(1+O(\Delta^2))$条件，并提出一种逐阶的重构方法来满足上述条件。但是这一方法在极值点并不满足五阶收敛的充分必要条件\cite{henrick2005mapped}。
+由于解在过渡区仍然是光滑的，理论上，该点的半点通量可以达到。换言之，可以通过四个点的光滑模板来构造一个四阶通量。在\cite{shen2014improvement}工作中，Shen和Zha引入了两个四阶的通量和一个判断通量光滑/间断的判别器来提高过渡点精度。Shen等人在更早的工作中\cite{shen2001fifth}，指出Jiang和Shu的经典的光滑因子$IS_K$在极值点不能满足$\beta_k=D(1+O(\Delta^2))$条件，并提出一种逐阶的重构方法来满足上述条件。但是这一方法在极值点并不满足五阶收敛的充分必要条件\cite{henrick2005mapped}。
 
-本章我们基于\cite{shen2014improvement}的分析，构造了一种新形式的WENO方法。该方法结合了Henrick的映射函数、WENO-Z格式以及多步加权的构造方法。新方法的优点主要是提高了WENO格式在近激波区域的精度。数值算例显示该方法比前文提到的各种五阶WENO格式耗散都要低。
-
+本章我们基于\cite{shen2014improvement}的分析，
+提出了多步加权的思想，并结合WENO-Z格式及映射函数，给出了一个新的多步加权五阶WENO格式。该格式通过提高过渡点的精度，从而改进了近激波区域的计算精度，为研究激波/复杂流动干扰问题（如激波/边界层干扰引起的分离与再附、激波/涡干扰等）的研究提供了一个有效的数值方法。
 \section{本章涉及的数值方法}
-本节中，我们将给出本章涉及到的数值方法的具体表达，后文中也会经常应用到这些方法。
+本节中，我们将给出本章涉及到的数值方法的具体表达形式，后文中也会经常应用到这些方法。
 
 \subsection{Lax-Friedrichs（LF）通量分裂方法和空间半离散}\label{chap:LF}
-引言\ref{riemann_solver} 中介绍了各类近似黎曼求解器，在流通矢量分裂方法中，LF分裂方法是形式最为简单、最为常用的一种\cite{ren2003characteristic,borges2008improved,balsara2000monotonicity}，具有较好的稳定性。
+引言\ref{riemann_solver} 中介绍了各类近似黎曼求解器，在流通矢量分裂方法中，LF分裂方法形式最为简单，具有很好的稳定性，因此较为常用\cite{ren2003characteristic,borges2008improved,balsara2000monotonicity}。
 
-对于双曲率方程，为了实现迎风性，流通矢量方法通常将通量函数表达为正负通量之和的形式，以一维方程为例：
+对于双曲律方程，为了实现迎风性，流通矢量方法通常将通量函数表达为正负通量之和的形式，以一维方程为例：
 \begin{equation}\label{eq21}
   \frac{\partial u}{\partial t}+\frac{\partial f(u)}{\partial x}=0
+\end{equation}
+可以将通量$f(u)$分裂为正负通量的和的形式
+\begin{equation}
+  f(u)=\frac{1}{2}(f^+(u) +f^-(u))
 \end{equation}
 LF方法给出的正负通量为
 \begin{equation} \label{eq:LF}
@@ -27,11 +31,11 @@ LF方法给出的正负通量为
 \end{equation}
 其中$\lambda_{max}$是雅克比矩阵$\frac{\partial f}{\partial u}$的当地最大特征值。
 
-采用Godunov方法可以实现空间和时间的独立离散，所以Godunov方法通常也称为半离散方法。方程（\ref{eq21}）的空间半离散形式为
+方程（\ref{eq21}）的空间半离散形式为
 \begin{equation}
   \frac{du_i(t)}{dt}=-\frac{1}{\Delta x}(h_{i+1/2}-h_{i-1/2})
 \end{equation}
-其中$h_{i+1/2}=h^+_{i+1/2}+h^-_{i+1/2}$。本文中，我们仅构造 $h^+_{i+1/2}$ 通量，为了简便，文中省略掉了上标 '+'，$h^-_{i+1/2}$的构造遵从同样的规律。
+其中$h_{i+1/2}=h^+_{i+1/2}+h^-_{i+1/2}$。本文中，我们仅构造 $h^+_{i+1/2}$ 通量，为了简便，文中省略掉了上标 '+'，$h^-_{i+1/2}$的构造遵从相似的规律。
 \subsection{加权基本无振荡/WENO格式\cite{jiang2001weighted,henrick2005mapped,borges2008improved}} \label{chap:WENO}
 五阶WENO格式的通量为
 \begin{equation}

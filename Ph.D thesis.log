@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.24)  29 SEP 2017 15:48
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.24)  29 SEP 2017 18:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4522,24 +4522,19 @@ ne 765.
 
 ]
 第二章
-[31]
+[31] [32]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 35.
+(hyperref)                removing `\@ifnextchar' on input line 39.
 
 
-Underfull \vbox (badness 4819) has occurred while \output is active []
-
- [32]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4660) has occurred while \output is active []
 
  [33]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [34]
+[34]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 118.
+(hyperref)                removing `\@ifnextchar' on input line 122.
 
 File: figures/transition_point.png Graphic file (type QTm)
 <use  "figures/transition_point.png" > [35]
@@ -4549,7 +4544,7 @@ Underfull \vbox (badness 5189) has occurred while \output is active []
 File: figures/chap_multi_fig1.png Graphic file (type QTm)
 
 <use  "figures/chap_multi_fig1.png" > [37] [38]
-Overfull \hbox (4.37408pt too wide) in paragraph at lines 281--282
+Overfull \hbox (4.37408pt too wide) in paragraph at lines 285--286
 []\EU1/FandolSong-Regular(0)/m/n/12.045 要 说 明 的 是，|  计 算 公 式 \EU1/lmr/m/n/12.04
 5 ([][]2.18[][]) \EU1/FandolSong-Regular(0)/m/n/12.045 和 公 式 \EU1/lmr/m/n/12.04
 5 ([][]2.19[][]) \EU1/FandolSong-Regular(0)/m/n/12.045 比 起 计 算 \EU1/lmr/m/n/12.
@@ -4589,7 +4584,7 @@ File: figures/chap_multi_fig7.png Graphic file (type QTm)
 File: figures/chap_multi_fig8.png Graphic file (type QTm)
  <use  "figures/chap_multi_fig8.png" >
 [46]
-Overfull \hbox (6.14027pt too wide) in paragraph at lines 478--480
+Overfull \hbox (6.14027pt too wide) in paragraph at lines 482--484
 \EU1/FandolSong-Regular(0)/m/n/12.045 这 一 算 例 模 拟 的 是 一 道 马 赫 数 为 \EU1/lmr/m/n/
 12.045 3 \EU1/FandolSong-Regular(0)/m/n/12.045 的 激 波 和 正 弦 熵 波 间 的 相 互 作 用 过 程 
 \EU1/lmr/m/n/12.045 [[][]284[][]]\EU1/FandolSong-Regular(0)/m/n/12.045 。|
