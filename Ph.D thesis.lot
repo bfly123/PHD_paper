@@ -3,13 +3,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces \small 不同格式精度对比，$T=2$}}{40}{table.2.1}
-\contentsline {table}{\numberline {2.2}{\ignorespaces \small 2D线性对流传播方程算例中不同格式计算精度对比，$T=2$}}{50}{table.2.2}
+\contentsline {table}{\numberline {2.1}{\ignorespaces \small $u_0(x)=\text {sin}(\pi x)$初始条件下，不同识别方法的计算误差，$T=10$，$\Delta x=0.02$}}{38}{table.2.1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {C.1}{\ignorespaces \small 不同ODE格式精度分析}}{70}{table.C.1}
+\contentsline {table}{\numberline {C.1}{\ignorespaces \small 不同ODE格式精度分析}}{56}{table.C.1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

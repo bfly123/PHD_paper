@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.24)  29 SEP 2017 18:55
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.24)  4 OCT 2017 12:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4514,128 +4514,270 @@ LaTeX Warning: Reference `chap:stiff_reaction' on page 29 undefined on input li
 ne 765.
 
 ) [29]
-\openout2 = `chapter/Chapter-Multi-WENO.aux'.
+\openout2 = `chapter/Chapter-detector.aux'.
 
- (./chapter/Chapter-Multi-WENO.tex [30
+ (./chapter/Chapter-detector.tex [30
 
 
 
 ]
 第二章
-[31] [32]
+[31]
+File: figures/illu_finite_compact.png Graphic file (type QTm)
+ <use  "figures/illu_finite_compact.png" >
+
+LaTeX Warning: Reference `fig:illu_compact' on page 32 undefined on input line 
+26.
+
+[32]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 39.
+(hyperref)                removing `\@ifnextchar' on input line 79.
 
+[33]
 
-Underfull \vbox (badness 4660) has occurred while \output is active []
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@ifnextchar' on input line 104.
 
- [33]
 [34]
+! Missing \right. inserted.
+<inserted text> 
+                \right .
+l.136 \end{equation*}
+                     
+? 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 122.
-
-File: figures/transition_point.png Graphic file (type QTm)
-<use  "figures/transition_point.png" > [35]
-Underfull \vbox (badness 5189) has occurred while \output is active []
-
- [36]
-File: figures/chap_multi_fig1.png Graphic file (type QTm)
-
-<use  "figures/chap_multi_fig1.png" > [37] [38]
-Overfull \hbox (4.37408pt too wide) in paragraph at lines 285--286
-[]\EU1/FandolSong-Regular(0)/m/n/12.045 要 说 明 的 是，|  计 算 公 式 \EU1/lmr/m/n/12.04
-5 ([][]2.18[][]) \EU1/FandolSong-Regular(0)/m/n/12.045 和 公 式 \EU1/lmr/m/n/12.04
-5 ([][]2.19[][]) \EU1/FandolSong-Regular(0)/m/n/12.045 比 起 计 算 \EU1/lmr/m/n/12.
-045 WENO-Z \EU1/FandolSong-Regular(0)/m/n/12.045 或 者 \EU1/lmr/m/n/12.045 WENO-
- []
+(hyperref)                removing `\@ifnextchar' on input line 154.
 
 
-Underfull \vbox (badness 7851) has occurred while \output is active []
-
- [39]
-Missing character: There is no （ in font [lmroman12-regular]:mapping=tex-text!
-
-[40]
-File: figures/chap2_fig1.png Graphic file (type QTm)
- <use  "figures/chap2_fig1.png" >
-File: figures/chap2_fig2.png Graphic file (type QTm)
- <use  "figures/chap2_fig2.png" >
-File: figures/chap_multi_fig2.png Graphic file (type QTm)
-
-<use  "figures/chap_multi_fig2.png" >
-File: figures/chap_multi_fig3.png Graphic file (type QTm)
- <use  "figures/chap_multi_fig3.png" >
-File: figures/chap_multi_fig4.png Graphic file (type QTm)
-
-<use  "figures/chap_multi_fig4.png" >
-File: figures/chap_multi_fig5.png Graphic file (type QTm)
- <use  "figures/chap_multi_fig5.png" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [41]
-[42] [43] [44]
-File: figures/chap_multi_fig6.png Graphic file (type QTm)
- <use  "figures/chap_multi_fig6.png" > [45]
-File: figures/chap_multi_fig7.png Graphic file (type QTm)
+ [35]
 
-<use  "figures/chap_multi_fig7.png" >
-File: figures/chap_multi_fig8.png Graphic file (type QTm)
- <use  "figures/chap_multi_fig8.png" >
-[46]
-Overfull \hbox (6.14027pt too wide) in paragraph at lines 482--484
-\EU1/FandolSong-Regular(0)/m/n/12.045 这 一 算 例 模 拟 的 是 一 道 马 赫 数 为 \EU1/lmr/m/n/
-12.045 3 \EU1/FandolSong-Regular(0)/m/n/12.045 的 激 波 和 正 弦 熵 波 间 的 相 互 作 用 过 程 
-\EU1/lmr/m/n/12.045 [[][]284[][]]\EU1/FandolSong-Regular(0)/m/n/12.045 。|
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@ifnextchar' on input line 164.
+
+
+LaTeX Warning: Reference `eq:minmod' on page 36 undefined on input line 169.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@ifnextchar' on input line 170.
+
+
+LaTeX Warning: Reference `eq:kxrcf' on page 36 undefined on input line 179.
+
+
+LaTeX Warning: Reference `eq:kxrcf' on page 36 undefined on input line 179.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [36]
+
+LaTeX Warning: Reference `tab:detector' on page 37 undefined on input line 206.
+
+
+[37]
+
+LaTeX Warning: Reference `fig:detector_linear' on page 38 undefined on input li
+ne 229.
+
+Invalid UTF-8 byte or sequence at line 232 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 232 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 232 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 232 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 232 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 232 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 232 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 232 replaced by U+FFFD.
+File: figures/detector_linear_multi.eps Graphic file (type eps)
+<figures/detector_linear_multi.eps>
+
+LaTeX Warning: Reference `fig:detector_lax' on page 38 undefined on input line 
+245.
+
+[38]
+Invalid UTF-8 byte or sequence at line 249 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 249 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 249 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 249 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 249 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 249 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 249 replaced by U+FFFD.
+File: figures/detector_lax.eps Graphic file (type eps)
+ <figures/detector_lax.eps>
+
+LaTeX Warning: Reference `fig:detector_shuo' on page 39 undefined on input line
+ 256.
+
+Invalid UTF-8 byte or sequence at line 260 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 260 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 260 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 260 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 260 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 260 replaced by U+FFFD.
+File: figures/detector_shuo.eps Graphic file (type eps)
+<figures/detector_shuo.eps>
+
+LaTeX Warning: Reference `fig:detector_two_blast' on page 39 undefined on input
+ line 266.
+
+Invalid UTF-8 byte or sequence at line 271 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 271 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 271 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 271 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 271 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 271 replaced by U+FFFD.
+File: figures/detector_two_blast.eps Graphic file (type eps)
+<figures/detector_two_blast.eps> [39]
+
+LaTeX Warning: Reference `fig:detector_gasdynamics' on page 40 undefined on inp
+ut line 293.
+
+[40]
+Invalid UTF-8 byte or sequence at line 301 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 301 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 301 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 301 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 301 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 301 replaced by U+FFFD.
+File: figures/detector_gasdynamics_ATV.eps Graphic file (type eps)
+ <figures/detector_gasdynamics_ATV.eps>
+Invalid UTF-8 byte or sequence at line 303 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 303 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 303 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 303 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 303 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 303 replaced by U+FFFD.
+File: figures/detector_gasdynamics_XS.eps Graphic file (type eps)
+
+<figures/detector_gasdynamics_XS.eps>
+Invalid UTF-8 byte or sequence at line 305 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 305 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 305 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 305 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 305 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 305 replaced by U+FFFD.
+File: figures/detector_gasdynamics_BDF.eps Graphic file (type eps)
+ <figures/detector_gasdynamics_BDF.eps>
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+File: figures/detector_gasdynamics_KXRCF.eps Graphic file (type eps)
+
+<figures/detector_gasdynamics_KXRCF.eps>
+Invalid UTF-8 byte or sequence at line 309 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 309 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 309 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 309 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 309 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 309 replaced by U+FFFD.
+File: figures/detector_gasdynamics_TVB.eps Graphic file (type eps)
+
+<figures/detector_gasdynamics_TVB.eps>
+Invalid UTF-8 byte or sequence at line 311 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 311 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 311 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 311 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 311 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 311 replaced by U+FFFD.
+File: figures/detector_gasdynamics_SZ.eps Graphic file (type eps)
+ <figures/detector_gasdynamics_SZ.eps>
+Invalid UTF-8 byte or sequence at line 313 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 313 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 313 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 313 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 313 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 313 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 313 replaced by U+FFFD.
+File: figures/detector_gasdynamics_WENO_400.eps Graphic file (type eps)
+
+<figures/detector_gasdynamics_WENO_400.eps>
+Invalid UTF-8 byte or sequence at line 315 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 315 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 315 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 315 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 315 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 315 replaced by U+FFFD.
+File: figures/detector_gasdynamics_WENO_800.eps Graphic file (type eps)
+
+<figures/detector_gasdynamics_WENO_800.eps>
+Overfull \hbox (9.86095pt too wide) in paragraph at lines 317--318
+ [][] 
  []
 
-File: figures/chap_multi_fig9.png Graphic file (type QTm)
-<use  "figures/chap_multi_fig9.png" >
-File: figures/chap_multi_fig10.png Graphic file (type QTm)
- <use  "figures/chap_multi_fig10.png" >
-[47] [48]
-File: figures/chap_multi_fig11.png Graphic file (type QTm)
- <use  "figures/chap_multi_fig11.png" > [49] [50]
-File: figures/chap_multi_fig12.png Graphic file (type QTm)
 
-<use  "figures/chap_multi_fig12.png" >
-File: figures/chap_multi_fig13.png Graphic file (type QTm)
- <use  "figures/chap_multi_fig13.png" >
-File: figures/chap_multi_fig14.png Graphic file (type QTm)
+LaTeX Warning: Reference `fig:detector_doublemach' on page 41 undefined on inpu
+t line 323.
 
-<use  "figures/chap_multi_fig14.png" >
-File: figures/chap_multi_fig15.png Graphic file (type QTm)
- <use  "figures/chap_multi_fig15.png" >
-File: figures/chap_multi_fig16.png Graphic file (type QTm)
+[41] [42]
+Invalid UTF-8 byte or sequence at line 327 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 327 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 327 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 327 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 327 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 327 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 327 replaced by U+FFFD.
+File: figures/detector_doublemach_WENO.eps Graphic file (type eps)
+ <figures/detector_doublemach_WENO.eps>
+Invalid UTF-8 byte or sequence at line 329 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 329 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 329 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 329 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 329 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 329 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 329 replaced by U+FFFD.
+File: figures/detector_doublemach_TVB.eps Graphic file (type eps)
 
-<use  "figures/chap_multi_fig16.png" >
-File: figures/chap_multi_fig17.png Graphic file (type QTm)
- <use  "figures/chap_multi_fig17.png" >
-File: figures/chap_multi_fig18.png Graphic file (type QTm)
+<figures/detector_doublemach_TVB.eps>
+Invalid UTF-8 byte or sequence at line 331 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 331 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 331 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 331 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 331 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 331 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 331 replaced by U+FFFD.
+File: figures/detector_doublemach_BDF.eps Graphic file (type eps)
+ <figures/detector_doublemach_BDF.eps>
+Invalid UTF-8 byte or sequence at line 333 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 333 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 333 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 333 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 333 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 333 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 333 replaced by U+FFFD.
+File: figures/detector_doublemach_KXRCF.eps Graphic file (type eps)
 
-<use  "figures/chap_multi_fig18.png" >
-Underfull \vbox (badness 5077) has occurred while \output is active []
-
- [51]
-File: figures/chap_multi_fig19.png Graphic file (type QTm)
-
-<use  "figures/chap_multi_fig19.png" > [52]) [53] [54] [55] [56] [57]
+<figures/detector_doublemach_KXRCF.eps>
+Invalid UTF-8 byte or sequence at line 335 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 335 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 335 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 335 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 335 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 335 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 335 replaced by U+FFFD.
+File: figures/detector_doublemach_SZ.eps Graphic file (type eps)
+ <figures/detector_doublemach_SZ.eps>)
+[43] [44]
 \openout2 = `chapter/Chapter-Conclusion.aux'.
 
-
-(./chapter/Chapter-Conclusion.tex [58
-
-
-
-]
+ (./chapter/Chapter-Conclusion.tex
 第三章
-[59]) [60]
+[45
+
+
+
+]) [46]
 \openout2 = `chapter/Chapter-Scale.aux'.
 
  (./chapter/Chapter-Scale.tex
 Appendix\nobreakspace {} A
-[61
+[47
 
 
 
@@ -4647,20 +4789,20 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [62])
-[63]
+ [48])
+[49]
 \openout2 = `chapter/Chapter-2D-DIP.aux'.
 
- (./chapter/Chapter-2D-DIP.tex [64
+ (./chapter/Chapter-2D-DIP.tex [50
 
 
 
 ]
 Appendix\nobreakspace {} B
-[65] [66]) [67]
+[51] [52]) [53]
 \openout2 = `chapter/Chapter-Element-Parameter.aux'.
 
- (./chapter/Chapter-Element-Parameter.tex [68
+ (./chapter/Chapter-Element-Parameter.tex [54
 
 
 
@@ -4670,7 +4812,7 @@ Appendix\nobreakspace {} C
 Underfull \vbox (badness 10000) detected at line 127
  []
 
-) [69] [70]
+) [55] [56]
 \openout2 = `chapter/Chapter_Conclution.aux'.
 
 
@@ -4681,29 +4823,29 @@ Underfull \hbox (badness 1102) in paragraph at lines 52--56
 ractions-
  []
 
-[71
+[57
 
 
 
 
 
-] [72] [73] [74] [75] [76] [77] [78] [79]
+] [58] [59] [60] [61] [62] [63] [64] [65]
 Underfull \hbox (badness 5741) in paragraph at lines 567--571
 []\EU1/lmr/m/n/12.045 Ami Harten, Bjorn Engquist, Stanley Osher, and Sukumar R
  []
 
-[80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90] [91] [92] [93] [94]
-[95] [96] [97] [98] [99] [100] [101] [102]
+[66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78] [79] [80]
+[81] [82] [83] [84] [85] [86] [87] [88]
 Missing character: There is no ∇ in font [lmroman12-regular]:mapping=tex-text!
 Missing character: There is no ∇ in font [lmroman12-regular]:mapping=tex-text!
- [103] [104] [105] [106]) [107]
+ [89] [90] [91] [92]) [93]
 \openout2 = `chapter/pub.aux'.
 
 
-(./chapter/pub.tex [108
+(./chapter/pub.tex [94
 
 
-] [109]) [110]
+] [95]) [96]
 \openout2 = `chapter/resume.aux'.
 
  (./chapter/resume.tex
@@ -4731,14 +4873,14 @@ l.3 \begin{resume}
 l.3 \begin{resume}
                   
 ? 
-) [111
+) [97
 
 
 
 ]
 \openout2 = `chapter/thanks.aux'.
 
- (./chapter/thanks.tex [112
+ (./chapter/thanks.tex [98
 
 
 
@@ -4767,11 +4909,11 @@ l.2 \begin{thanks}
 l.2 \begin{thanks}
                   
 ? 
-) [113] [114]
+) [99] [100]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 162.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 162.
  (./Ph.D thesis.aux (./chapter/abstract.aux)
-(./chapter/Chapter-Introduction.aux) (./chapter/Chapter-Multi-WENO.aux)
+(./chapter/Chapter-Introduction.aux) (./chapter/Chapter-detector.aux)
 (./chapter/Chapter-Conclusion.aux) (./chapter/Chapter-Scale.aux)
 (./chapter/Chapter-2D-DIP.aux) (./chapter/Chapter-Element-Parameter.aux)
 (./chapter/Chapter_Conclution.aux) (./chapter/pub.aux) (./chapter/resume.aux)
@@ -4793,11 +4935,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 162.
  ) 
 Here is how much of TeX's memory you used:
  40144 strings out of 495252
- 803419 string characters out of 6180858
- 781054 words of memory out of 5000000
- 42679 multiletter control sequences out of 15000+600000
- 26513 words of font info for 147 fonts, out of 8000000 for 9000
+ 803088 string characters out of 6180858
+ 781083 words of memory out of 5000000
+ 42684 multiletter control sequences out of 15000+600000
+ 26497 words of font info for 145 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 70i,18n,79p,10484b,975s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,18n,79p,10484b,1117s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Ph.D thesis.pdf (130 pages).
+Output written on Ph.D thesis.pdf (116 pages).
