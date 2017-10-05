@@ -4,6 +4,13 @@ The top-level auxiliary file: Ph.D thesis.aux
 The style file: unsrt.bst
 A level-1 auxiliary file: chapter/abstract.aux
 A level-1 auxiliary file: chapter/Chapter-Introduction.aux
+A level-1 auxiliary file: chapter/Chapter-MHD.aux
+Case mismatch error between cite keys Balsara1999A and balsara1999A
+---line 45 of file chapter/Chapter-MHD.aux
+ : \citation{jiang1999high,Balsara1999A
+ :                                     ,balbas2004non,han2009accurate}
+I'm skipping whatever remains of this command
+A level-1 auxiliary file: chapter/Chapter-Conclusion.aux
 A level-1 auxiliary file: chapter/Chapter-Scale.aux
 A level-1 auxiliary file: chapter/Chapter-2D-DIP.aux
 A level-1 auxiliary file: chapter/Chapter-Element-Parameter.aux
@@ -11,7 +18,7 @@ A level-1 auxiliary file: chapter/Chapter_Conclution.aux
 A level-1 auxiliary file: chapter/pub.aux
 A level-1 auxiliary file: chapter/resume.aux
 A level-1 auxiliary file: chapter/thanks.aux
-Reallocated field_info (elt_size=4) to 10129 items from 5000.
+Reallocated field_info (elt_size=4) to 10819 items from 5000.
 Database file #1: bib/mybibfile.bib
 Repeated entry---line 1749 of file bib/mybibfile.bib
  : @book{lee2008detonation
@@ -125,6 +132,14 @@ Repeated entry---line 6889 of file bib/mybibfile.bib
  : @article{oran1998numerical
  :                           ,
 I'm skipping whatever remains of this entry
+Repeated entry---line 7137 of file bib/mybibfile.bib
+ : @article{zha1993numerical
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 7157 of file bib/mybibfile.bib
+ : @article{zha2004low
+ :                    ,
+I'm skipping whatever remains of this entry
 Warning--empty journal in glimm1970decay
 Warning--can't use both volume and number fields in smooke1988comparison
 Warning--empty year in zhacomparative
@@ -133,7 +148,7 @@ Warning--empty journal in akbar1997mach
 Warning--empty journal in 张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究
 You've used 363 entries,
             1791 wiz_defined-function locations,
-            2240 strings with 58023 characters,
+            2241 strings with 58061 characters,
 and the built_in function-call counts, 83473 in all, are:
 = -- 8030
 > -- 2904
@@ -172,4 +187,4 @@ warning$ -- 6
 while$ -- 963
 width$ -- 366
 write$ -- 3965
-(There were 28 error messages)
+(There were 31 error messages)

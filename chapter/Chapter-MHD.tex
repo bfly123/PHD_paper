@@ -3,21 +3,23 @@
 \chapter{有限紧致格式在理想磁流体中的应用} \label{chap:MHD}
 如前文小节 \ref{chap:Intro_MHD} 中所述，理想磁流体（MHD）方程尽管是模拟磁流体的最简单自恰系统，但是由于电磁场和流场的耦合作用，仍然较Euler方程更为复杂，包括更多的波速、更复杂的特征值系统、非严格双曲特性和更丰富的流场结构等。
 
-由于理想磁流体方程和Euler方程的相似性，很多的流体力学高精度的数值方法都被推广到MHD方程求解中。如Yee等人提出的高精度低耗散滤波格式\cite{yee2007development}。Balbas\cite{balbas2004non}发展的求解一维和二维MHD方程的高分辨率、无振荡中心格式。Gaitonde\cite{gaitonde1999development}将紧致差分格式和滤波器结合，应用在三维理想磁流体方程求解中。 考虑到无论是中心格式还是紧致格式在求解激波时都需要做特殊的处理的难点，Shen等人\cite{shen2012cusp}将高精度WENO格式推广在MHD方程求解中。然而，如第\ref{sep:detector}章中所述，WENO格式尽管具有高精度和稳定捕捉激波的优点，但是相比中心格式和紧致格式而言，对于高频短波的分辨能力较差。对于这一不足，杂交格式是一个较好的解决思路（前言 \ref{cap:spatial_method} 和第\ref{sep:detector}章中），由于结合了线性格式的高精度、低耗散特性和激波捕捉格式的稳定性，杂交格式理论上应该更适合MHD方程的求解。
+由于MHD特征系统的复杂性，发展适合MHD方程的近似黎曼求解器是一项困难的工作。在MHD求解的早期工作中，很多常见的通量差分分裂方法都被发展到MHD求解中，如Roe求解器\cite{brio1988upwind,roe1996notes,dai1994approximate}、HLL求解器\cite{janhunen2000positive}和HLLC求解器\cite{gurski2004hllc,honkkila2007hllc,miyoshi2005multi}等。由于MHD方程对于特征变量并不是一次齐次的，因此不能直接采用流通矢量方法，MacCormack通过引入额外变量$\tilde{a}$ \cite{maccormack2010non,maccormackupwind}将\cite{lombard1983multi}中的方法推广到MHD求解中。然而，由于流通矢量分裂方法基于特征值和特征向量运算，在MHD方程中，该类方法会异常复杂。
 
-另一方面，由于MHD特征系统的复杂性，发展适合MHD方程的近似黎曼求解器是另外一项更具有挑战性的工作。关于MHD求解的早期工作中，很多常见的通量差分分裂方法都被发展到MHD求解中，如Roe求解器\cite{brio1988upwind,roe1996notes,dai1994approximate}、HLL求解器\cite{janhunen2000positive}和HLLC求解器\cite{gurski2004hllc,honkkila2007hllc,miyoshi2005multi}等。由于MHD方程对于特征变量并不是一次齐次的，因此不能直接采用流通矢量方法，MacCormack通过引入额外变量$\tilde{a}$ \cite{maccormack2010non,maccormackupwind}将\cite{lombard1983multi}中的方法推广到MHD求解中。然而，由于流通矢量分裂方法基于特征值和特征向量运算，在MHD方程中，该类方法会异常复杂。
-
-近些年，对流迎风分离压力类方法在流体力学求解中取得巨大成功，如章节 \ref{riemann_solver} 中所介绍的，包括Liou等人提出的AUSM系列格式\cite{liou1993new,wadaaccurate,liou1995progress,liou1996sequel,liou2001ten}、Van Leer  H\"{a}nel 格式\cite{hanel1987accuracy}和Edwards等人提出的LDFSS格式\cite{edwards1997low}等。这些格式都属于H-CUSP类格式。然而，总焓$H$并不能沿传播方向保持守恒，而总能$E$却是守恒的，据此，Zha等人提出在对流项使用总能的E-CUSP格式\cite{zha1993numerical,zha1999numerical,zhacomparative,zha2004calculation,zha2011improved}，在流体力学方程求解中取得了很好的结果。
+近些年，对流迎风分离压力（convection upwind splitting pressure/CUSP）类方法在流体力学求解中取得巨大成功，如章节 \ref{riemann_solver} 中所介绍的，包括Liou等人提出的AUSM系列格式\cite{liou1993new,wadaaccurate,liou1995progress,liou1996sequel,liou2001ten}、Van Leer  H\"{a}nel 格式\cite{hanel1987accuracy}和Edwards等人提出的LDFSS格式\cite{edwards1997low}等。这些格式都属于H-CUSP类格式。然而，总焓$H$并不能沿传播方向保持守恒，而总能$E$却是守恒的\cite{zha2004low,zha1993numerical}，据此，Zha等人提出在对流项使用总能的E-CUSP格式\cite{zha1993numerical,zha1999numerical,zhacomparative,zha2004calculation,zha2011improved}，在流体力学方程求解中取得了很好的结果。
 
 Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，Han等人随后\cite{han2009accurate}发展了一套求解MHD方程的AUSMPW+/M-AUSMPW+格式。2012年，Shen等人\cite{shen2012cusp}等人将更为稳定的E-CUSP格式发展到MHD求解中，认为该格式可以很好的求解MHD中的复杂的波动特性。
 
-本章，我们将采用了SZ识别方法的有限紧致格式\cite{shen2011generalized,shen2006high}和为磁流体方程求解发展的E-CUSP格式\cite{shen2012cusp}相结合，用来求解理想磁流体方程，通过数值算例验证该求解体系的鲁棒性和准确性。
+另一方面，在空间离散格式方面，由于理想磁流体方程和Euler方程的相似性，很多的流体力学高精度的数值方法都被推广到MHD方程求解中。如Yee等人提出了高精度低耗散滤波格式\cite{yee2007development}。Balbas\cite{balbas2004non}发展了求解一维和二维MHD方程的高分辨率、无振荡中心格式。Gaitonde\cite{gaitonde1999development}将紧致差分格式和滤波器结合，应用于三维理想磁流体方程求解中。 考虑到中心格式和紧致格式在求解激波时的难点，Shen等人\cite{shen2012cusp}将高精度WENO格式推广在MHD方程求解中。然而，如第\ref{sep:detector}章中所述，WENO格式尽管具有高精度和稳定捕捉激波的优点，但是相比中心格式和紧致格式而言，对于高频短波的分辨能力较差。对于这一不足，采用杂交格式是一个较好的解决思路（前言 \ref{cap:spatial_method} 和第\ref{sep:detector}章中），由于结合了线性格式的高精度、低耗散特性和激波捕捉格式的稳定性，杂交格式理论上应该更适合MHD方程的求解。
+
+本章推广发展了求解理想磁流体方程的E-CUSP与有限紧致格式相结合的数值方法，并通过数值算例验证了该求解方法的鲁棒性和准确性。
 
 
 \section{数值方法}
-本章空间离散采用有限紧致格式 （章节 \ref{sep:compact})，时间离散采用三阶Runge-Kutta格式（章节 \ref{chap:RK}），分裂方法采用E-CUSP格式。
-\subsection{E-CUSP近似李曼求解器\cite{shen2012cusp}} E-CUSP格式的构造基于特征分析\cite{zha1993numerical,zha1999numerical,zhacomparative} ，
-对于控制方程 (\ref{eq1_2})，E-CUSP格式基本思想是将通量$\bm{F}$分裂分对流通量$\bm{F}^C$和压力通量$\bm{F}^P$，
+本章的主要内容是推广E-CUSP格式及有限紧致格式以用于理想磁流体方程的求解，为了完整性，下面主要给出MHD方程的E-CUSP形式以及保证磁场满足散度为零限制条件的求解方法。
+\subsection{E-CUSP近似黎曼求解器\cite{shen2012cusp}}
+由于近似黎曼求解器的构造都是针对于一维问题，因此在高维问题的求解中，需要在各个空间维度分别采用近似黎曼求解器。为了简洁，对于控制方程 (\ref{eq1_2})，这里仅以$x$方向的$\bm{F}$通量为例介绍E-CUSP格式的构造过程。
+
+E-CUSP格式的构造基于特征分析\cite{zha1993numerical,zha1999numerical,zhacomparative}，基本思想是将通量$\bm{F}$分裂分对流通量$\bm{F}^C$和压力通量$\bm{F}^P$，
 \begin{equation}
   \bm{F}=\bm{F}^C+\bm{F}^P =\left(
   \begin{array}{l}
@@ -38,15 +40,11 @@ Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，H
 	\end{array}
 	\right)
 \end{equation}
-通量$\bm{F}^C$特征值为$(u,u,u,u,u)$，代表对流过程，通量$\bm{F}^P$特征值为$(0,0,0,-a,a)$，代表延声速向各个方向传播的压力波。根据它们的不同特征，Zha等人\cite{zha1993numerical,zha1999numerical,zhacomparative}建议对于对流项采取迎风重构，对于压力项在亚声速区采用同时考虑上游和下游的重构方式。
+通量$\bm{F}^C$特征值为$(u,u,u,u,u)$，代表对流过程，通量$\bm{F}^P$特征值为$(0,0,0,-a,a)$，代表向各个方向传播的声波，根据它们的不同特征，Zha等人\cite{zha1993numerical,zha1999numerical,zhacomparative}认为对流项$\bm{F}^C$应遵从迎风性质，压力项$\bm{F}^P$应采用上、下游加权平均的形式，权重为$u \pm a$。
 
-理想磁流体的特征系统含有三个不同的特征波速---快波$c_f$、慢波$c_s$和中速Alfv\'{e}n波，异常复杂，目前尚没有和流体力学方程$\bm{F}^P$项对应的精确的通量公式。然而由于磁流体方程有和流体力学方程相似的波动特性，E-CUSP的基本思想也可以推广到求解MHD方程中来。
+理想磁流体的特征系统含有三个不同的特征波速---快波$c_f$、慢波$c_s$和中速Alfv\'{e}n波，异常复杂，目前尚没有和流体力学方程$\bm{F}^P$项对应的精确的通量公式\cite{shen2012cusp}。然而由于磁流体方程具有和流体力学方程相似的波动特性，E-CUSP的基本思想也可以推广到求解MHD方程中来。
 
-一维MHD方程的空间半离散为
-\begin{equation}
-  \frac{d\bm{U}}{dt}=\frac{1}{\Delta x}(\bm{F}_{i+1/2}-\bm{F}_{i-1/2})=0,
-\end{equation}
-通量$\bm{F}$可以分解为
+在$x$方向，通量$\bm{F}$可以分解为
 \begin{equation}\label{eq:ecusp_E}
   \bm{F}={\bm{f}} u+\bm{P}+\bm{\psi} u
 \end{equation}
@@ -93,7 +91,15 @@ Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，H
 	  \end{equation*}
 和E-CUSP格式中将$pu$从焓项$\rho H u$中分裂出来类似，$p_tu$也被分裂出来。
 
-根据\cite{zha2011improved}中的E-CUSP构造形式，可以给出数值通量为：
+方程 (\ref{eq1_2}) 的空间半离散形式为
+\begin{equation}\label{eq:half_MHD}
+  \begin{array}{ll}
+	\displaystyle  \frac{d\bm{U}}{dt} & 	\displaystyle +\frac{\bm{F}_{i+1/2,j,k}-\bm{F}_{i-1/2,j,k}}{\Delta x}
+	+\frac{\bm{G}_{i,j+1/2}-\bm{G}_{i,j-1/2,k}}{\Delta y}\\
+	\displaystyle &  \displaystyle+\frac{\bm{H}_{i,j,k+1/2}-\bm{H}_{i,j,k-1/2}}{\Delta z}=0
+  \end{array}
+\end{equation}
+根据\cite{zha2011improved}中的E-CUSP构造形式，可以给出$x$方向数值通量为：
 \begin{equation}
   \bm{F}_{1/2}=a_{1/2}[C^+{\bm{f}}_L+C^-\bm{f}_R]+[D_L^+ \bm{P}_L + D_R^-\bm{P}_R]+\bm{\psi}_{1/2}
 \end{equation}
@@ -111,7 +117,7 @@ Agarwal等人\cite{agarwal1999comparative}首先将AUSM格式应用在一维MHD方程求解中，H
 \end{array}
 \end{equation}
 
-在文章\cite{han2009accurate}中，马赫数是通过快波波速来定义的$M=\frac{u}{c_f}$，意味着$M_{L,R}$可以定义为$M_{L,R}=\frac{u_{L,R}}{c_{f_{1/2}}}$。然而，公式 (\ref{eq:ecusp_E}) 中的压力项不再是由单个波速决定的，如何计算相对波速$M_{L,R}$仍然是个待解决的问题。Shang\cite{shang2001recent}指出在高频和低频波，快波波速和声波相同，但是对于中频波，快波波速明显要高于声波波速。在\cite{shen2012cusp}中，采用的是声波和快波波速平均的形式
+在文章\cite{han2009accurate}中，马赫数是通过快波波速来定义的$M=\frac{u}{c_f}$，意味着$M_{L,R}$可以定义为$M_{L,R}=\frac{u_{L,R}}{c_{f_{1/2}}}$。然而，公式 (\ref{eq:ecusp_E}) 中的压力项不再是由单个波速决定的，如何计算相对马赫数$M_{L,R}$仍然是个待解决的问题。Shang\cite{shang2001recent}指出在高频和低频波，快波波速和声波相同，但是对于中频波，快波波速明显要高于声波波速。在\cite{shen2012cusp}中，采用的是声波和快波波速平均的形式
 \begin{equation}
 M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \end{equation}
@@ -119,9 +125,11 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \begin{equation*}
   a_{1/2}=\frac{1}{2}(C_{fL}+C_L+C_{fR}+C_R)
 \end{equation*}
-这种平均方式可以保证结果具有更好的稳定性。
-\subsection{控制输运（Constrained Transport/CT）方法\cite{balsara1999A}}
-数值模拟MHD方程时，需要满足磁场散度为零的限制条件，$\nabla \cdot \bm{B}=0$。有几种方法可以满足这一条件，Powell等人通过在原方程中添加一个和$\nabla \cdot \bm{B}$成正比的源项，得到新的特征系统。但是，新的系统会存在一些不确定性\cite{powell1999solution}。投影方法\cite{brackbill1980effect}通过求解泊松方程和限制边界条件来满足磁场散度为零条件。Balsara和Spicer\cite{balsara1999A}提出的控制输运方法是另外一种可以将散度误差控制在机器误差精度的方法。Toth\cite{toth2000b}认为控制输运方法是他所有测试过的方法中最准确的。因此本文采用控制输运方法。
+这种平均方式可以保证方法具有更好的稳定性。
+
+由于有限紧致格式既能无振荡捕捉激波，在光滑区域有具有相应紧致格式的谱分辨特性，因此本文利用有限紧致格式对$\bm{f}$进行重构。另外对半离散方程(\ref{eq:half_MHD})的时间积分采用了三阶TVD Runge-Kutta方法。
+\subsection{限制输运（Constrained Transport/CT）方法\cite{balsara1999A}}
+数值模拟MHD方程时，需要满足磁场散度为零的限制条件，$\nabla \cdot \bm{B}=0$。为了满足这一条件，Powell等人通过在原方程中添加一个和$\nabla \cdot \bm{B}$成正比的源项，得到新的特征系统。但是，新的系统会存在一些不确定性\cite{powell1999solution}；投影方法\cite{brackbill1980effect}通过求解泊松方程和限制边界条件来满足磁场散度为零条件；Balsara和Spicer\cite{balsara1999A}提出的限制输运方法是另外一种可以将散度误差控制在机器误差精度的方法。Toth\cite{toth2000b}认为限制输运方法是他所有测试过的方法中最准确的。因此本文采用限制输运方法。
 
 首先，给出法拉第方程
 \begin{equation}\label{eq:BE}
@@ -131,8 +139,8 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \begin{equation}
   \bm{E} =-\bm{V}\times \bm{B}
 \end{equation}
-在控制输运方法中，
-磁场强度$\bm{B}$沿区域边缘取平均值$\bm{B}$。 方程 (\ref{eq:BE}) 的半离散形式为:
+在限制输运方法中，
+磁场强度$\bm{B}$沿区域边缘取平均值$\bm{B}$。针对于三维方程， (\ref{eq:BE}) 的半离散形式为:
   \begin{equation}
 	\begin{array}{l}
 	  \displaystyle \frac{d}{dt}\overline{B}_{x_{\!i\!-\!1\!/\!2,j,k}}\!=\!-\frac{E_{z_{i\!-\!1\!/\!2,j\!+\!1\!/\!2,k}}\!-\!E_{z_{i\!-\!1\!/\!2.j\!-\!1\!/\!2,k}}}{\delta y}\!+\!\frac{E_{z_{i\!-\!1\!/\!2,j,k\!+\!1\!/\!2}}\!-\!E_{z_{i\!-\!1\!/\!2,j,k\!-\!1\!/\!2}}}{\delta z}\\[0.5em]
@@ -148,7 +156,8 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 		{E}_{z_{i+1/2,j+1/2,k}}\!=\frac{1}{4}({G}_{6i,j+1/2,k}+{G}_{6i+1,j+1/2,k}\!-\!{F}_{7i+1/2,j,k}\!-\!{F}_{7i+1/2,j+1,k})
 		\end{array}
 	  \end{equation*}
-  $F_n$,$G_n$,$H_n$ ($n=6,7,8$) 是三维空间的第n通量。
+	  $F_n$,$G_n$,$H_n$ ($n=6,7,8$) 是方程(\ref{eq1_2}) 的三个空间维度通量的第$n$个分量。
+	  第n通量。
   二维情况下，通量可简化为:
 	  \begin{equation*}
 		\begin{array}{l}
@@ -163,7 +172,7 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \end{equation}
 \section{数值算例}
 \subsection{二维旋转偏振Alfv\'{e}n波\cite{toth2000b}}
-该算例是一个存在理论解的光滑算例，Alfv\'{e}n波延与x轴成$30^\circ$传播，波长为1。计算区域为$x\in[0,1/\text{cos}\alpha],y\in [0,1/\text{sin}\alpha]$。初始条件为
+该算例是一个存在理论解的光滑算例，Alfv\'{e}n波延与$x$轴成$\alpha=30^\circ$角传播，波长为1。计算区域为$x\in[0,1/\text{cos}\alpha],y\in [0,1/\text{sin}\alpha]$。初始条件为
 \begin{equation*}
   \begin{array}{l}
 	\rho =1,\hspace{0.3cm} p=0.1\\
@@ -174,7 +183,7 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \end{equation*}
 其中$B_{\perp}=B_y\text{cos}\alpha -B_x\text{sin}\alpha$，$B_{\parallel}=B_x\text{cos}\alpha +B_y \text{sin}\alpha$，$\gamma=5/3$。
 
-表 \ref{tab:alfven_wave} 给出$t=5$时刻，$B_{\perp}$的$L_1$和$L_\infty$误差，可以看到，采用了有限紧致格式的计算结果和WENO-Z格式的计算结果相比，误差均小了一个量级左右，其中$L_1$精度接近六阶。因此，有限紧致格式对于提高MHD算例光滑区域精度是极为有效的。
+表 \ref{tab:alfven_wave} 给出$t=5$时刻，$B_{\perp}$的$L_1$和$L_\infty$误差，可以看到，采用了有限紧致格式的计算结果和WENO-Z格式的计算结果相比，误差均小了一个量级左右，其中$L_\infty$精度接近六阶。因此，有限紧致格式对于提高MHD算例光滑区域精度是极为有效的。
 
 \begin{table}[htbp]
   \small
@@ -198,8 +207,8 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \label{tab:alfven_wave}
 \end{table}
 
-\subsection{Orzag-Tang MHD湍流算例} 
-由于Orzag-Tang 湍流算例\cite{orszag1979small}具有MHD湍流的诸多重要特点，比如随着涡的发展，存在很多激波间的相互作用，该问题已成为验证MHD数值方法的一个标准算例\cite{jiang1999high,Balsara1999A,balbas2004non,han2009accurate}。
+\subsection{Orzag-Tang MHD湍流问题} 
+由于Orzag-Tang 湍流问题\cite{orszag1979small}具有MHD湍流的诸多重要特点，如复杂的涡结构和激波间相互作用，该问题已成为验证MHD数值方法的一个标准算例\cite{jiang1999high,Balsara1999A,balbas2004non,han2009accurate}。
 
 该问题初始条件为：
 \begin{equation*}
@@ -208,11 +217,11 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \displaystyle  p(x,y)=\gamma, \hspace{0.3cm} B_x=-\text{sin}(y),\hspace{0.3cm} B_y(x,y)=\text{sin} (2x)
 \end{array}
 \end{equation*}
-其中$\gamma=5/3$，计算区域为$[0,2\pi]\times[0,2\pi]$。计算时间为$t=3.0$，边界均采用周期边界条件。计算统一采用$192\times 192$的网格，图 \ref{fig:tang} 给出WENO-Z格式和有限紧致FC格式密度等值线，图中可以看出，不论采用WENO-Z格式还是有限紧致格式都能稳定的计算流场，捕捉流场中复杂的激波间相互作用。图 \ref{fig:tang_line} 给出$x=\pi$线上数据对比图，可以看到新的格式可以更锋利的捕捉波峰和波谷，代表着新的格式具有更低的耗散。
+其中$\gamma=5/3$，计算区域为$[0,2\pi]\times[0,2\pi]$。计算时间为$t=3.0$，边界均采用周期边界条件。计算统一采用$192\times 192$的网格，图 \ref{fig:tang} 给出WENO-Z格式和有限紧致FC格式密度等值线，图中可以看出，不论采用WENO-Z格式还是有限紧致格式都能稳定的计算流场，捕捉流场中复杂的激波间相互作用。图 \ref{fig:tang_line} 给出直线$x=\pi$上的数据对比图，可以看到新的格式可以得到更高的波峰和更低的波谷，代表着新的格式具有更低的耗散。
 \begin{figure}
   \centering
-  \includegraphics[width=5cm]{tang_WENO.png}
-  \includegraphics[width=5cm]{tang_FC.png}
+  \includegraphics[width=5cm,height=5cm]{tang_WENO.png}
+  \includegraphics[width=5.2cm,height=4.87cm]{tang_FC.png}
 \caption{Orzag-Tang 湍流算例，不同格式计算结果，密度等值线}
 \label{fig:tang}
 \end{figure}
@@ -220,12 +229,12 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \begin{figure}
   \centering
   \includegraphics[width=8cm]{tang_line.png}
-  \caption{Orzag-Tang 湍流算例，不同格式在线$y=1$上计算结果，密度}
+  \caption{Orzag-Tang 湍流算例，不同格式在直线$y=1$上的计算结果，密度}
   \label{fig:tang_line}
 \end{figure}
 
 \section{小结}
-本章中，我们将有限紧致格式推广到了MHD方程求解中，由于该格式结合了紧致格式的特性，因此具有较WENO-Z格式更低的耗散、更高的精度。通过和无需复杂的特征运算的E-CUSP分裂方法和保证磁场$\nabla \cdot \bm{B}=0$的控制输运方法结合，有限紧致格式可以稳定、高精度的求解理想磁流体问题。新方法的有效性和鲁棒性得到了数值算例的验证。
+本章中，我们将有限紧致格式推广到了MHD方程求解中，由于该格式结合了紧致格式的特性，因此具有较WENO-Z格式更低的耗散、更高的精度。通过和无需复杂的特征运算的E-CUSP分裂方法和保证磁场$\nabla \cdot \bm{B}=0$的限制输运方法结合，有限紧致格式可以稳定、高精度的求解理想磁流体问题。新方法的有效性和鲁棒性得到了数值算例的验证。
 
 
 

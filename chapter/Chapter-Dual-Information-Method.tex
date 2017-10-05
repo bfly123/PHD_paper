@@ -1,21 +1,20 @@
 \XeTeXinputencoding "GB2312"
 \chapter{双信息保存（DIP）方法}\label{chap:dip}
-界面作为最为常见的物理现象之一，广泛的存在于
+界面作为常见的物理现象，广泛的存在于
 力学、化学、生物工程、材料科学和计算机图形学等多个学科领域。
 界面的准确模拟对于多相流动、晶体生长、火焰的发展和传播等等很多方面的研究都有重要意义。
-\section{不同的界面类型和界面方法}
-  界面方法最早可以追溯到1958年的洛斯·阿拉莫斯国家实验室发展的 Particle-In-Cell(PIC)方法\cite{evans1957particle,harlow1957hydrodynamic} 。在第一章 \ref{cap:interface} 节中，对不同的界面方法都有较详细的介绍。
-
-忽略力学模型，界面的运动可以抽象为求解对流方程
+\section{界面类型和界面方法}
+ 第一章 \ref{cap:interface} 节中，简单的介绍了一些界面方法，
+ 忽略力学模型，界面的运动可以抽象为求解对流方程\cite{saurel1999multiphase,kothe1995comparison}
 \begin{equation} \label{eq:interface_mark}
   \frac{\partial z}{\partial t} +\bm{V} \cdot \nabla z =0
   \end{equation}
   其中$\bm{V}$为速度场，$z$为界面处存在间断的物理量，如比热比$\gamma$、密度$\rho$等。
 下面将分别对不同类型的界面进行分析。
 \subsection{传统界面}
-尽管方程 (\ref{eq:interface_mark}) 是最简单的对流方程，然而，如果我们关注于界面的运动时，想要实时的得到几何线（面）是异常困难的。以一维图 \ref{fig:illu_1dinterface} 为例，如果直接对方程 （\ref{eq:interface_mark}) 进行求解，例如采用差分方法，随着间断被耗散，界面将无法识别。
+尽管方程 (\ref{eq:interface_mark}) 是最简单的对流方程，然而，如果我们关注于界面的运动时，想要得到几何线（面）是异常困难的。以一维图 \ref{fig:illu_1dinterface} 为例，如果直接对方程 （\ref{eq:interface_mark}) 进行求解，例如采用差分方法，随着间断被耗散，界面将无法识别。
 
-因此，绝大多数界面方法并不直接求解方程  (\ref{eq:interface_mark}) 本身，而是采用一种追踪的视角进行模拟，图 \ref{fig:illu_1dinterface_method} 给出了不同界面方法的一维示意图。其中锋面追踪方法直接追踪界面； MAC方法在界面一侧添加标记点；而VOF方法在每一个网格引入一个体积分数函数，将界面的运动转化为体积分数的变化。只有level set方法求解方程 (\ref{eq:interface_mark})，但是也并不直接求解间断函数$z$本身，而是以到界面距离为新的函数$\phi$，求解
+因此，大多数界面方法并不直接求解方程  (\ref{eq:interface_mark}) 本身，而是采用一种追踪的方式进行模拟，图 \ref{fig:illu_1dinterface_method} 给出了不同界面方法的一维示意图。其中锋面追踪方法直接追踪界面； MAC方法在界面一侧添加标记点；而VOF方法在每一个网格引入一个体积分数函数，将界面的运动转化为体积分数的变化。只有level set方法求解方程 (\ref{eq:interface_mark})，但是也并不直接求解间断函数$z$本身，而是求解到一个新的到界面的距离函数$\phi$（level set 函数），求解
 \begin{equation*}
 \frac{\partial \phi}{\partial t}+\bm{V}\cdot \nabla \phi=0
 \end{equation*}
@@ -24,7 +23,7 @@
 \input{chapter/tikz/fig_illu_1dinterface_method.tex}
 \input{chapter/tikz/fig_illu_2dinterface.tex}
 
-从示意图 \ref{fig:illu_1dinterface_method} 可以看出，这些界面方法明显可以分成两类，一类是全计算域进行计算的界面捕捉类方法，如VOF和level set方法，另外一类是只在流场部分区域进行追踪的界面追踪类方法，如锋面追踪、MAC方法等。两类方法各有优势，全域计算的方法更适合处理光滑的几何形状，并且易于处理由于流体压缩性导致的膨胀过程，如图 \ref{fig:illu_2dinterface}.a 所示；界面追踪类方法更易于处理锋利夹角、大变形以及界面破碎等问题，如图 \ref{fig:illu_2dinterface}.b 所示。由于各有明显的优势和缺点，有学者尝试将两种类型方法结合，如level set-粒子方法，VOF-粒子方法等方法。
+从示意图 \ref{fig:illu_1dinterface_method} 可以看出，这些界面方法明显可以分成两类，一类是全计算域进行计算的界面捕捉类方法，如VOF和level set方法，另外一类是只在流场部分区域进行追踪的界面追踪类方法，如锋面追踪、MAC方法等。两类方法各有优势，全域计算的方法更适合处理光滑的几何形状，并且易于处理由于流体压缩性导致的膨胀过程，如图 \ref{fig:illu_2dinterface}.a 所示；界面追踪类方法更易于处理锋利夹角、大变形以及界面破碎等问题，如图 \ref{fig:illu_2dinterface}.b 所示。由于各有明显的优势和缺点，有学者尝试将两种类型方法结合，如level set-粒子方法\cite{enright2002hybrid,enright2005fast}，VOF-粒子方法等方法\cite{grosshans2014development}。
 
 \subsection{多相界面和耗散界面}
 除了经常研究的两相界面外，在工业、化学、生物等很多领域中存在三相甚至更多相物质之间的相互作用，我们可以将这种问题称为多相界面问题。相比两相界面丰富的研究，多相界面的研究无论在理论还是数值方面都很少\cite{kim2005phase}。除多相界面外，耗散界面是另外一类较难处理的界面问题，我们在第一章 \ref{chap:intro_diffusive_interface} 小结节中曾对耗散界面做过简单介绍，如化学反应界面就是一类典型的耗散界面。

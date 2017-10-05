@@ -27,27 +27,21 @@
 \contentsline {subsubsection}{\numberline {1.4.3.3}刚性化学反应流动的空间刚性问题}{24}{subsubsection.1.4.3.3}
 \contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{26}{subsubsection.1.4.3.4}
 \contentsline {section}{\numberline {1.5}本文所开展研究内容}{28}{section.1.5}
-\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}间断识别方法比较研究}{31}{chapter.2}
-\contentsline {section}{\numberline {2.1}有限紧致格式（Finite compact scheme）}{31}{section.2.1}
-\contentsline {section}{\numberline {2.2}间断识别方法}{33}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}SZ识别方法\cite {shen2011generalized}}{33}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}平均总变差（Average total variation/ATV）识别方法}{34}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}基于minmod函数的TVB识别方法\cite {cockburn1989tvb}}{34}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}XS识别方法\cite {xu2005anti}}{35}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}Biswas，Devine和Flaherty动量限制（moment limiter）方法\cite {biswas1994parallel}（BDF）}{36}{subsection.2.2.5}
-\contentsline {subsection}{\numberline {2.2.6}KXRCF间断识别方法\cite {krivodonova2004shock}}{36}{subsection.2.2.6}
-\contentsline {section}{\numberline {2.3}数值算例}{37}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}线性对流算例}{37}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}一维激波管算例}{38}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}二维算例}{40}{subsection.2.3.3}
-\contentsline {section}{\numberline {2.4}小结}{43}{section.2.4}
-\contentsline {chapter}{\numberline {第三章\hspace {0.3em}}结论和展望}{45}{chapter.3}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{47}{appendix.A}
-\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{47}{section.A.1}
-\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{49}{section.A.2}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} B\hspace {0.3em}}二维DIP方法伪代码 }{51}{appendix.B}
-\contentsline {chapter}{\numberline {Appendix\nobreakspace {} C\hspace {0.3em}}化学反应不同组分热力学拟合参数}{55}{appendix.C}
-\contentsline {chapter}{参考文献}{57}{appendix*.6}
-\contentsline {chapter}{发表文章目录}{95}{appendix*.7}
-\contentsline {chapter}{简\CTEX@spaceChar \CTEX@spaceChar 历}{97}{appendix*.8}
-\contentsline {chapter}{致\CTEX@spaceChar \CTEX@spaceChar 谢}{99}{appendix*.9}
+\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}有限紧致格式在理想磁流体中的应用}{31}{chapter.2}
+\contentsline {section}{\numberline {2.1}数值方法}{32}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}E-CUSP近似黎曼求解器\cite {shen2012cusp}}{32}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}限制输运（Constrained Transport/CT）方法\cite {balsara1999A}}{34}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}数值算例}{36}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}二维旋转偏振Alfv\'{e}n波\cite {toth2000b}}{36}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Orzag-Tang MHD湍流问题}{36}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}小结}{38}{section.2.3}
+\contentsline {chapter}{\numberline {第三章\hspace {0.3em}}结论和展望}{39}{chapter.3}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} A\hspace {0.3em}}化学反应中相关尺度的探讨}{41}{appendix.A}
+\contentsline {section}{\numberline {A.1}化学反应时间尺度分析方程和空间尺度分析方程}{41}{section.A.1}
+\contentsline {section}{\numberline {A.2}尺度分析\cite {powers2005accurate}}{43}{section.A.2}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} B\hspace {0.3em}}二维DIP方法伪代码 }{45}{appendix.B}
+\contentsline {chapter}{\numberline {Appendix\nobreakspace {} C\hspace {0.3em}}化学反应不同组分热力学拟合参数}{49}{appendix.C}
+\contentsline {chapter}{参考文献}{51}{appendix*.6}
+\contentsline {chapter}{发表文章目录}{89}{appendix*.7}
+\contentsline {chapter}{简\CTEX@spaceChar \CTEX@spaceChar 历}{91}{appendix*.8}
+\contentsline {chapter}{致\CTEX@spaceChar \CTEX@spaceChar 谢}{93}{appendix*.9}
