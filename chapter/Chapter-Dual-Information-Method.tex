@@ -2,7 +2,7 @@
 \chapter{双信息保存（DIP）方法}\label{chap:dip}
 界面作为常见的物理现象，广泛的存在于
 力学、化学、生物工程、材料科学和计算机图形学等多个学科领域。
-界面的准确模拟对于多相流动、晶体生长、火焰的发展和传播等等很多方面的研究都有重要意义。
+界面的准确模拟对于多相流动、晶体生长、火焰的发展和传播等很多方面的研究都有重要意义。
 \section{界面类型和界面方法}
  第一章 \ref{cap:interface} 节中，简单的介绍了一些界面方法，
  忽略力学模型，界面的运动可以抽象为求解对流方程\cite{saurel1999multiphase,kothe1995comparison}
@@ -14,14 +14,14 @@
 \subsection{传统界面}
 尽管方程 (\ref{eq:interface_mark}) 是最简单的对流方程，然而，如果我们关注于界面的运动时，想要得到几何线（面）是异常困难的。以一维图 \ref{fig:illu_1dinterface} 为例，如果直接对方程 （\ref{eq:interface_mark}) 进行求解，例如采用差分方法，随着间断被耗散，界面将无法识别。
 
-因此，大多数界面方法并不直接求解方程  (\ref{eq:interface_mark}) 本身，而是采用一种追踪的方式进行模拟，图 \ref{fig:illu_1dinterface_method} 给出了不同界面方法的一维示意图。其中锋面追踪方法直接追踪界面； MAC方法在界面一侧添加标记点；而VOF方法在每一个网格引入一个体积分数函数，将界面的运动转化为体积分数的变化。只有level set方法求解方程 (\ref{eq:interface_mark})，但是也并不直接求解间断函数$z$本身，而是求解到一个新的到界面的距离函数$\phi$（level set 函数），求解
+因此，大多数界面方法并不直接求解方程  (\ref{eq:interface_mark}) 本身，图 \ref{fig:illu_1dinterface_method} 给出了不同界面方法的一维示意图。其中 锋面追踪方法（图 \ref{fig:illu_1dinterface_method}.a）直接追踪界面；  MAC方法（图 \ref{fig:illu_1dinterface_method}.b）在界面一侧添加标记点；而VOF方法（图 \ref{fig:illu_1dinterface_method}.c）在每一个网格引入一个体积分数函数，将界面的运动转化为体积分数的变化。只有level set方法（图 \ref{fig:illu_1dinterface_method}.c）求解方程 (\ref{eq:interface_mark})，但是也并不直接求解间断函数$z$本身，而是求解到一个到界面的距离函数$\phi$（level set 函数），求解
 \begin{equation*}
 \frac{\partial \phi}{\partial t}+\bm{V}\cdot \nabla \phi=0
 \end{equation*}
 如图 \ref{fig:illu_1dinterface_method}.d 所示，level set方法将$\phi=0$的位置识别为界面位置。 
 \input{chapter/tikz/fig_illu_1dinterface.tex}
-%\input{chapter/tikz/fig_illu_1dinterface_method.tex}
-\input{chapter/tikz/fig_illu_2dinterface.tex}
+\input{chapter/tikz/fig_illu_1dinterface_method.tex}
+%\input{chapter/tikz/fig_illu_2dinterface.tex}
 
 从示意图 \ref{fig:illu_1dinterface_method} 可以看出，这些界面方法明显可以分成两类\cite{bonometti2007interface}，一类是全计算域进行计算的界面捕捉类方法，如VOF和level set方法，另外一类是只在流场部分区域进行追踪的界面追踪类方法，如锋面追踪、MAC方法等。由于各有明显的优势和缺点，有学者尝试将两种类型方法结合，如level set-粒子方法\cite{enright2002hybrid,enright2005fast,li2008hybrid}，VOF-粒子方法等方法\cite{grosshans2014development}。
 
@@ -42,20 +42,20 @@
 \end{enumerate}
 下面我们将引入一种新的粒子类方法，旨在解决这两个问题。
 \subsection{信息点的概念}
-粒子方法是一种最直观的界面方法，具有优良的Lagrangian特性，但是由于它们明显的不足，学者们更愿意将它们作为一种辅助手段，如用作示踪粒子，或者和其它方法结合，用粒子来修正计算结果，如level set-粒子方法，VOF-粒子方法等。粒子方法最大的问题是粒子的离散性和分布的随意性，难以保证全域的覆盖，这样就无法像网格方法一样准确的得到任意位置的信息。
+粒子方法是一种最直观的界面方法，具有优良的拉格朗日追踪特性，但是由于它们明显的不足，学者们更愿意将它们作为一种辅助手段，如用作示踪粒子，或者和其它方法结合，用粒子来修正计算结果，如level set-粒子方法\cite{enright2002hybrid,enright2005fast,li2008hybrid}，VOF-粒子方法法\cite{grosshans2014development}等。粒子方法最大的问题是粒子的离散性和分布难以管理，无法保证全域的覆盖，这样就很难像网格方法一样准确的得到任意空间位置的信息。
 粒子类界面方法主要包括早期的Particle-In-Cell（PIC）方法和Marker-In-Cell（MAC）方法。PIC方法采用携带有质量的真实粒子模拟流体的运动，根据粒子携带的信息可以判断界面位置，然而，由于真实粒子无法人为的生成和抹去，无法保证全计算域每个网格都含有粒子。Marker-and-cell (MAC)方法采用标记粒子，粒子除位置以外不含有其它信息，是完全虚拟的粒子，增加和减少都不会影响流场的物理性质，但是由于它完全不携带信息，只能通过某单元内有粒子和没有粒子来判断单元物质状态和界面位置，因此无法做到覆盖计算域。
 
 在数值模拟中，采用空间网格方法对真实物理场进行离散时，这种离散是真实物理信息在网格点的空间位置上的近似，在计算中，可以加密网格、减少网格或移动网格，尽管这可能影响计算精度，但是并不会改变所研究的物理问题。 类比于网格点，在求解方程 (\ref{eq:interface_mark}) 时，我们引入一套和网格点相似的、携带有输运值的粒子，这种粒子同样可以根据需要增加、减少和移动。
-我们将这种携带有输运值的Lagrangian粒子称为{\bf{信息点}}。
+我们将这种携带有输运值的拉格朗日粒子称为{\bf{信息点}}。
 
 本文的方法中同时含有两类信息点，因此将该方法称为双信息保存方法，下文将分别介绍这两类信息点。
 
 %\input{chapter/tikz/fig_illu_1d_mesh_point.tex}
 
 \subsection{单元信息点（单元点）}
-对于固定网格方法，网格点的位置是确定的，每个时刻都能得到确定的空间点上的计算值，并可以通过高阶插值运算得到空间任何点的近似值；对于运动网格，如自适应加密网格，也可以人为的控制网格加密规律，避免过分畸形的网格分布和网格形状。然而，粒子点的运动完全是由速度场决定的，所以粒子点的分布是不可控的。MAC方法也遇到相同的困难，某单元原本含有粒子，但是随着流场膨胀，单元不再含有粒子，但这并不代表该单元产生了相变。MAC方法的解决策略是在初始计算时，在相应状态的单元内放置多达16个粒子来避免这种错误的发生。但是这样即增加计算和存储，又不能从根本上避免粒子分布不可控这一问题。
+对于固定网格方法，网格点的位置是确定的，每个时刻都能得到确定的空间点上的计算值，并可以通过高阶插值运算得到空间任何点的近似值；对于运动网格，如自适应加密网格，也可以人为的控制网格加密规律，避免过分畸形的网格分布和网格形状。然而，粒子点的运动完全是由速度场决定的，所以粒子点的分布是难以人为控制的。MAC方法也遇到相同的困难，某单元原本含有粒子，但是随着流场变化，单元不再含有粒子，但并不代表该单元一定产生了相变。MAC方法的解决策略是在初始计算时，在相应状态的单元内放置多达16个粒子来避免这种错误的发生。但是这样即增加计算和存储，又不能从根本上避免粒子分布难以控制这一问题。
 
-由于我们构造的信息点是可以根据需要生成和抹去的，因此信息点在一定程度上是可控的，因此我们构造了一个限定在单元内且唯一的信息点，该信息点既可以解决粒子分布问题，又可以用来传递单元上和粒子上的输运值。我们将这种信息点称为单元信息点，简称为{\bf{单元点（cell-point）}}。下面我们以一维为例来介绍单元点求解方程 (\ref{eq:interface_mark}) 的步骤。
+由于信息点可以根据需要生成和抹去，在一定程度上是可控的。因此，可以构造了一个限定在单元内且唯一的信息点，该信息点既可以解决粒子分布问题，又可以用来传递单元上和粒子上的输运值。我们将这种信息点称为单元信息点，简称为{\bf{单元点（cell-point）}}。下面以一维为例来介绍单元点求解方程 (\ref{eq:interface_mark}) 的步骤。
 \begin{enumerate}
   \item[一.] {\bf{初始化}}
 
@@ -96,7 +96,7 @@
 首先考虑这样一个问题，对于图 \ref{fig:illu_case} 中所示的情况，$i$单元点上$z=1$，$i+1$单元点上$z=0$，那么界面究竟是图中哪种情况呢？这在离散问题中其实是无法确定的，需要进行统一规定。根据所研究的问题是否涉及界面厚度分成无厚度界面和耗散界面两类。
 
 \begin{enumerate}[1).] 
-  \item 无厚度界面问题中单元点的计算方法
+  \item 无厚度界面
 
 如果研究的是无厚度的传统界面或多相界面，规定界面位于$z$值较小的信息点位置，既图 \ref{fig:illu_case} 中第二种情况。
 
@@ -134,7 +134,7 @@
 
   \input{chapter/tikz/fig_back_construct.tex}
 
-\item 耗散界面问题中单元点的计算方法
+\item 耗散界面
 
 如果研究的是耗散界面，则选择图 \ref{fig:illu_case} 中第四种情况做为界面真实情况。由于耗散界面存在过渡值，如图 \ref{fig:illu_cellpoint_choose_diffuse} 所示，如果单元内含有多个单元点，采取所有单元点位置和输运值$z$算数平均的形式。
 \input{chapter/tikz/fig_illu_cellpoint_choose_diffuse.tex}
@@ -155,7 +155,7 @@
 \subsection{粒子信息点（粒子点）}
 上文中，我们引入了单元信息点，通过单元信息点可以直接求解方程 (\ref{eq:interface_mark})，无论对于传统的无厚度界面、多于两相物质的多相界面还是具有界面厚度的耗散界面都可以进行模拟。
 
-然而，单元点并不完全是拉格朗日追踪粒子，尽管它弥补了粒子不能全域覆盖、无法计算耗散界面等缺点，但由于每步的更新，新的单元点会不断替代旧的单元点，而新的单元点的生成存在误差，导致对界面结构的保持并不像纯脆的粒子方法，如MAC方法那么好。为了改进这一不足，继续保持粒子方法优良的特性，我们引入了另外一套全域追踪的信息点，在每一步对单元点进行修正。将这种全域追踪、具有纯粒子点特性的信息点，称为{\bf{粒子信息点}}，简称为粒子点。下面我们给出通过粒子点修正单元点的过程。
+然而，单元点并不完全是拉格朗日追踪粒子，尽管它弥补了粒子不能全域覆盖、无法计算耗散界面等缺点，但由于每步的更新，新的单元点会不断替代旧的单元点，而新的单元点的生成存在误差，导致对界面结构的保持并不像纯的粒子方法，如MAC方法，那么准确。为了改进这一不足，继续保持粒子方法优良的特性，我们引入了另外一套全域追踪的信息点，在每一步对单元点进行修正。将这种全域追踪、具有纯粒子点特性的信息点，称为{\bf{粒子信息点}}，简称为粒子点。下面我们给出通过粒子点修正单元点的过程。
 
 \begin{enumerate}
 
@@ -294,10 +294,12 @@ $\Delta t$时间后单元点临时坐标变化为
 \hspace{-0.8cm}\rule [-10pt]{14.3cm}{0.02cm}
 
 \subsection{二维DIP方法}
-粒子方法具有极好的高维拓展性，我们只需要增加$Y$方向的位置函数即可求解二维问题。下面以单元点为例简单的介绍下DIP方法求解二维方程 (\ref{eq:2d_dip}) 的实现过程，详细内容可见附录。
+粒子方法具有极好的高维拓展性，我们只需要增加$Y$方向的位置函数即可求解二维问题。下面简单的介绍下DIP方法求解二维方程 (\ref{eq:2d_dip}) 的实现过程，详细内容可见附录。
   \begin{equation}\label{eq:2d_dip}
   \frac{\partial z}{\partial t}+u\frac{\partial z}{\partial x}+v\frac{\partial z}{\partial y}=0
   \end{equation}
+
+\subsubsection{单元点}
 \begin{enumerate}
   \item[一.] {\bf 初始化}
 
@@ -361,22 +363,136 @@ $i_1=-1,1$， $j_1=-1,1$。权重函数反比于距离，
  $$L_{i_1,j_1}=\sqrt{(X(i+i_1,j+j_1)+i_1)^2+(Y(i+i_1,j+j_1)+j_1)^2}$$
 
 	\end{enumerate}
+\subsubsection{粒子点}
+通过一维DIP方法可以看出，除了初始化外，粒子点的标记和其所在位置并没有任何关系，因此为了简便粒子点仍然采用一维标记。
+\begin{enumerate}
+  \item[一.] {\bf 初始化}
 
-	二维边界处理和一维是相似的，只是由于粒子点标记不再是一维的，随着入流和出流，粒子点标记变化会复杂一些，下面进行简单说明。假设$i=0$一侧为入流边界，对于粒子点入流边界条件为
+我们将初始化中第$(i,j)$单元内的粒子点标记为第$n=i+j\cdot Nx$个粒子点，其中$i=0,1,\cdots,Nx$，$j =0,1,\cdots,Ny$，因此初始粒子点的总数为$N_p=(Nx+1)\times (Ny+1)$，粒子点的初始化为
+	\hspace{0.65cm}
+\begin{equation}
+	\left\{
+  \begin{array}{l}
+  X_p(n)=0\\
+  Y_p(n)=0
+  \end{array}
+  \right.
+  ,
+  \hspace{0.3cm} 
+	\left\{
+  \begin{array}{l}
+  ip(n)=i\\
+  jp(n)=j
+  \end{array}
+  \right.
+  ,
+  \hspace{0.3cm}
+  \bar{z}_p(n)=z(i,j)
+  \end{equation}
+\item[二.] {\bf 粒子点的运动追踪}
+
+	\hspace{0.65cm}
+首先通过一维线性插值的方式得到单元点速度：
+\begin{eqnarray}
+  \left\{
+ \begin{array}{l}
+   \bar{u}_p(n)=(1-|X|)u(ip,jp)+|X|u(ip+s_x,jp)\\
+   \bar{v}_p(n)=(1-|Y|)v(ip,jp)+|Y|v(ip,jp+s_y)\\
+	\end{array}
+	\right.
+	\end{eqnarray}
+为了表达简单，在不引起混淆的情况下将$X_p(n)$、$Y_p(n)$、$ip(n)$和$jp(n)$简写为$X_p$、$Y_p$、$ip$和$jp$。其中
+\begin{equation*}
+  \left\{
+	\begin{array}{l}
+	  s_x=\text{sign}(X_p)\\
+	  s_y=\text{sign}(Y_p)\\
+	  \end{array}
+	\right.
+\end{equation*}
+临时坐标变化：
+\begin{eqnarray*}
+  \left\{
+  \begin{array}{l}
+	L_x=X_p+\bar{u}_p(n)\Delta t/ \Delta x\\
+	L_y=Y_p+\bar{v}_p(n)\Delta t/ \Delta y\\
+	\end{array}
+	\right.
+	\end{eqnarray*}
+所在单元变化和相对坐标变化为
+\begin{eqnarray*}
+  \left\{
+  \begin{array}{l}
+	ip(n)=ip(n)+\text{floor}(L_x+0.5)\\
+	jp(n)=jp(n)+\text{floor}(L_y+0.5)\\
+	X_p(n)=L_x-\text{floor}(L_x+0.5)\\
+	Y_p(n)=L_y-\text{floor}(L_y+0.5)\\
+	\end{array}
+	\right.
+	\end{eqnarray*}
+
+  \item[三.]{\bf 粒子点修正单元点}
+
+	粒子点修正单元点的过程和通过单元点更新单元点是相似的，只是将单元点换成粒子点。具体过程可以参见附录\ref{chap:2D_PID} 中的过程。
+
+	\end{enumerate}
+
+	\subsubsection{二维边界处理}
+
+	二维边界处理和一维是相似的，下面对入流和出流边界条件进行简单介绍。
+
+\begin{enumerate}
+
+\item[一.] {\bf 入流边界条件}
+  和一维相似，假设左侧边界为入流边界，对于单元点，令左侧虚拟单元$(-1,j)$中的单元点始终放在单元中心，输运值为入流值。
+
+\begin{equation}
+  X(-1,j)=0,\hspace{0.3cm} \bar{z}(-1,j)=z_{\text{in}}
+  \end{equation}
+
+  对于粒子点，随着流体的流入，在入流单元中添加新的粒子点，粒子点总数会出现浮动。
 
 \begin{equation}
   \left\{
   \begin{array}{l}
   N_p=N_p+1\\
   ip(N_p)=0\\
+  jp(N_p)=j\\
   X_p(N_p)=0\\ 
+  Y_p(N_p)=0\\ 
   \bar{z}_p(N_p)=z_{\text{in}}
  \end{array} 
  \right.
  \hspace{0.3cm} \text{if}\hspace{0.3cm} \text{Mrk}_p(0,j)=0
   \end{equation}
+  其中 $j=0,1,\cdots,Ny$，
+$\text{Mrk}_p$ 为单元中粒子点数目标记函数。
 
-	
+\item[二.] {\bf 出流边界条件}
+
+  \hspace{0.65cm}
+ 假设右侧为出流条件，对于单元点，令虚拟单元$(Nx+1,j)$中的单元点始终放在单元中心，输运值为$(Nx,j)$单元点输运值，
+\begin{equation}
+  X(Nx+1,j)=0,\hspace{0.3cm} Y(Nx+1,j)=0, \hspace{0.3cm} \bar{z}(Nx+1,j)=\bar{z}(Nx,j)
+  \end{equation}
+对于粒子点，随着流出，粒子点的总数会减少，当有粒子点$ip(n)>Nx$时，将它去掉，并调整序号，
+\begin{equation}
+\left\{
+  \begin{array}{l}
+	ip(n)=ip(N_p)\\
+	jp(n)=jp(N_p)\\
+	X_p(n)=X_p(N_p)\\
+	Y_p(n)=Y_p(N_p)\\
+ \bar{z}_p(n)=\bar{z}_p(N_p)\\
+ N_p=N_p-1
+ \end{array}
+ \right.
+ \hspace{0.3cm} \text{if} \hspace{0.3cm} ip(n)>Nx
+ \end{equation}
+
+ \end{enumerate}
+
+
 
 	\section{数值算例}
 下面我们将通过一维和二维算例验证新方法的有效性。
@@ -387,11 +503,11 @@ $i_1=-1,1$， $j_1=-1,1$。权重函数反比于距离，
 
   对于均匀速度场，粒子点和单元点是完全重合的，信息点（包括粒子点和单元点）间的距离不会变化，所以不会有一个单元存在多个单元点或是没有单元点的情况出现。
 
- 1).  首先测试一个间断函数在$u=1$即方程
+ 1).  首先测试一个间断函数在均匀速度场$u=1$，即方程
 \begin{equation}
   \frac{\partial z}{\partial t}+\frac{\partial z}{\partial x}=0
 \end{equation}
- 的均匀速度场中传播的问题。初始条件为
+ 控制下的传播问题。初始条件为
   \begin{equation*}
 	z=\left\{\begin{array}{l}
 	  1,  \hspace{0.5cm}  \text{if} \hspace{0.3cm} x<0.2\\
@@ -457,9 +573,9 @@ $i_1=-1,1$， $j_1=-1,1$。权重函数反比于距离，
 \begin{enumerate}
   \item 均匀速度场算例
 
-	 该算例采用$u=1$，$v=1$的均匀速度场，即方程
+	 该算例采用$u=1$，$v=1$的均匀速度场，即控制方程为
 	\begin{equation}
-	  \frac{\partial z}{\partial t}+\frac{partial z}{\partial x}+\frac{partial z}{\partial y}=0
+	  \frac{\partial z}{\partial t}+\frac{\partial z}{\partial x}+\frac{\partial z}{\partial y}=0
 	\end{equation}
 	 
 	 计算区域为$[0,1]\times[0,1]$ 初始时刻一个边长为$0.2$的正方形中心位于$(0.2,0.2)$，正方形内$z=1$，其它区域$z=0$，计算网格采用极为稀疏的$20\times 20$，计算时间为$t=0.6$。从图 \ref{fig:DIP_move} 中给出的计算结果可以看到，即便在极其稀疏网格下，DIP方法仍然能准确的计算每一个单元点的运动。

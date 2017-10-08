@@ -1,23 +1,5 @@
 \begin{thebibliography}{100}
 
-\bibitem{shen2012cusp}
-Yiqing Shen, Gecheng Zha, and Manuel~A Huerta.
-\newblock E-cusp scheme for the equations of ideal magnetohydrodynamics with
-  high order weno scheme.
-\newblock {\em Journal of Computational Physics}, 231(19):6233--6247, 2012.
-
-\bibitem{balsara1999A}
-Dinshaw~S Balsara and Daniel~S Spicer.
-\newblock {\em A Staggered Mesh Algorithm Using High Order Godunov Fluxes to
-  Ensure Solenoidal Magnetic Fields in Magnetohydrodynamic Simulations}.
-\newblock Academic Press Professional, Inc., 1999.
-
-\bibitem{toth2000b}
-G{\'a}bor T{\'o}th.
-\newblock The∇{\textperiodcentered} b= 0 constraint in shock-capturing
-  magnetohydrodynamics codes.
-\newblock {\em Journal of Computational Physics}, 161(2):605--652, 2000.
-
 \bibitem{powers2005accurate}
 Joseph~M Powers and Samuel Paolucci.
 \newblock Accurate spatial resolution estimates for reactive supersonic flow
@@ -1285,162 +1267,49 @@ Alan~C Calder, LJ~Curtis, Bruce C~Dursi, et~al.
 \newblock In {\em Proceedings of the 2000 ACM/IEEE conference on
   Supercomputing}, page~56. IEEE Computer Society, 2000.
 
-\bibitem{brio1988upwind}
-Moysey Brio and Cheng~Chin Wu.
-\newblock An upwind differencing scheme for the equations of ideal
-  magnetohydrodynamics.
-\newblock {\em Journal of computational physics}, 75(2):400--422, 1988.
+\bibitem{Hirschfelder1958Theory}
+Joseph~O. Hirschfelder and Charles~F. Curtiss.
+\newblock Theory of detonations. i. irreversible unimolecular reaction.
+\newblock {\em Journal of Chemical Physics}, 28(6):1130--1147, 1958.
 
-\bibitem{dai1994approximate}
-Wenlong Dai and Paul~R Woodward.
-\newblock An approximate riemann solver for ideal magnetohydrodynamics.
-\newblock {\em Journal of Computational Physics}, 111(2):354--372, 1994.
+\bibitem{hairer1999stiff}
+Ernst Hairer and Gerhard Wanner.
+\newblock Stiff differential equations solved by radau methods.
+\newblock {\em Journal of Computational and Applied Mathematics},
+  111(1):93--111, 1999.
 
-\bibitem{janhunen2000positive}
-Pekka Janhunen.
-\newblock A positive conservative method for magnetohydrodynamics based on hll
-  and roe methods.
-\newblock {\em Journal of Computational Physics}, 160(2):649--661, 2000.
+\bibitem{shen2006high}
+Yiqing Shen, Guowei Yang, and Zhi Gao.
+\newblock High-resolution finite compact difference schemes for hyperbolic
+  conservation laws.
+\newblock {\em Journal of Computational Physics}, 216(1):114--137, 2006.
 
-\bibitem{gurski2004hllc}
-Katharine~F Gurski.
-\newblock An hllc-type approximate riemann solver for ideal
-  magnetohydrodynamics.
-\newblock {\em SIAM Journal on Scientific Computing}, 25(6):2165--2187, 2004.
+\bibitem{gao1994FDV}
+高智.
+\newblock 对流扩散方程的高精度差分算法.
+\newblock {\em 北京计算流体力学讨论会文集 (第六辑)}, 1223,
+  1994.
 
-\bibitem{honkkila2007hllc}
-Ville Honkkila and Pekka Janhunen.
-\newblock Hllc solver for ideal relativistic mhd.
-\newblock {\em Journal of Computational Physics}, 223(2):643--656, 2007.
+\bibitem{shen2005FDV}
+申义庆，~高智， 杨顶辉.
+\newblock 一阶双曲方程的摄动有限差分格式.
+\newblock {\em 计算物理}, 22(6):650--656, 2005.
 
-\bibitem{miyoshi2005multi}
-Takahiro Miyoshi and Kanya Kusano.
-\newblock A multi-state hll approximate riemann solver for ideal
-  magnetohydrodynamics.
-\newblock {\em Journal of Computational Physics}, 208(1):315--344, 2005.
+\bibitem{gao2004PFV}
+高智，柏威.
+\newblock 对流扩散方程的摄动有限体积 (pfv) 方法及讨论.
+\newblock {\em 力学学报}, 36(1):88--92, 2004.
 
-\bibitem{maccormack2010non}
-Robert~W MacCormack.
-\newblock Non-equilibrium ionized flow simulations within strong
-  electro-magnetic fields.
-\newblock In {\em 48th AIAA Aerospace Sciences Meeting Including the New
-  Horizons Forum and Aerospace Exposition: Aerospace Sciences Meetings}, pages
-  2010--0225, 2010.
+\bibitem{shampine1994numerical}
+Lawrence~F Shampine.
+\newblock {\em Numerical solution of ordinary differential equations},
+  volume~4.
+\newblock CRC Press, 1994.
 
-\bibitem{maccormackupwind}
-RW~MacCormack.
-\newblock An upwind conservation form method for ideal magnetohydrodynamics
-  equations, aiaa, 1999.
-
-\bibitem{lombard1983multi}
-CK~Lombard, J~Bardina, E~Venkatapathy, et~al.
-\newblock Multi-dimensional formulation of cscm-an upwind flux difference
-  eigenvector split method for the compressible navier-stokes equations.
-\newblock In {\em 6th Computational Fluid Dynamics Conference}, pages 649--664,
-  1983.
-
-\bibitem{liou1995progress}
-Meng-Sing Liou.
-\newblock Progress towards an improved cfd method: Ausm+.
-\newblock {\em AIAA paper}, 1701:155, 1995.
-
-\bibitem{liou2001ten}
-Meng-Sing Liou.
-\newblock {\em Ten Years in the Making: AUSM-family}.
-\newblock National Aeronautics and Space Administration, Glenn Research Center,
-  2001.
-
-\bibitem{hanel1987accuracy}
-D~H{\"a}nel, R~Schwane, and G~Seider.
-\newblock On the accuracy of upwind schemes for the solution of the
-  navier-stokes equations.
-\newblock {\em AIAA paper}, 1105:1987, 1987.
-
-\bibitem{edwards1997low}
-Jack~R Edwards.
-\newblock A low-diffusion flux-splitting scheme for navier-stokes calculations.
-\newblock {\em Computers \& Fluids}, 26(6):635--659, 1997.
-
-\bibitem{zha2004low}
-Ge-Cheng Zha.
-\newblock A low diffusion e-cusp upwind scheme for transonic flows.
-\newblock In {\em 34th AIAA Fluid Dynamics Conference and Exhibit}, page 2707,
-  2004.
-
-\bibitem{zhacomparative}
-GC~Zha.
-\newblock Comparative study of upwind scheme performance for entropy condition
-  and discontinuities, aiaa, 1999.
-\newblock Technical report, Paper 99-CP-3348, June 28-July 1.
-
-\bibitem{zha2004calculation}
-Ge-Cheng Zha and Zongjun Hu.
-\newblock Calculation of transonic internal flows using an efficient
-  high-resolution upwind scheme.
-\newblock {\em AIAA journal}, 42(2):205--214, 2004.
-
-\bibitem{zha2011improved}
-Ge-Cheng Zha, Yiqing Shen, and Baoyuan Wang.
-\newblock An improved low diffusion e-cusp upwind scheme.
-\newblock {\em Computers \& Fluids}, 48(1):214--220, 2011.
-
-\bibitem{agarwal1999comparative}
-RK~Agarwal, J~Augustinus, and DW~Halt.
-\newblock A comparative study of advection upwind split (ausm) and
-  wave/particle split (wps) schemes for fluid and mhd flows.
-\newblock In {\em AIAA 30th Plasmadynamics and Lasers Conference, AIAA Paper,
-  Norfolk, VA}, pages 99--3613, 1999.
-
-\bibitem{han2009accurate}
-Sang-Hoon Han, Jeong-Il Lee, and Kyu~Hong Kim.
-\newblock Accurate and robust pressure weight advection upstream splitting
-  method for magnetohydrodynamics equations.
-\newblock {\em AIAA journal}, 47(4):970, 2009.
-
-\bibitem{yee2007development}
-HC~Yee and Bj{\"o}rn Sj{\"o}green.
-\newblock Development of low dissipative high order filter schemes for
-  multiscale navier--stokes/mhd systems.
-\newblock {\em Journal of Computational Physics}, 225(1):910--934, 2007.
-
-\bibitem{balbas2004non}
-Jorge Balb{\'a}s, Eitan Tadmor, and Cheng-Chin Wu.
-\newblock Non-oscillatory central schemes for one-and two-dimensional mhd
-  equations: I.
-\newblock {\em Journal of Computational Physics}, 201(1):261--285, 2004.
-
-\bibitem{gaitonde1999development}
-Datta~V Gaitonde.
-\newblock Development of a solver for 3-d non-ideal magnetogasdynamics.
-\newblock {\em AIAA paper}, 99:3610, 1999.
-
-\bibitem{shang2001recent}
-JS~Shang.
-\newblock Recent research in magneto-aerodynamics.
-\newblock {\em Progress in Aerospace Sciences}, 37(1):1--20, 2001.
-
-\bibitem{powell1999solution}
-Kenneth~G Powell, Philip~L Roe, Timur~J Linde, et~al.
-\newblock A solution-adaptive upwind scheme for ideal magnetohydrodynamics.
-\newblock {\em Journal of Computational Physics}, 154(2):284--309, 1999.
-
-\bibitem{brackbill1980effect}
-Jeremiah~U Brackbill and Daniel~C Barnes.
-\newblock The effect of nonzero∇{\textperiodcentered} b on the numerical
-  solution of the magnetohydrodynamic equations.
-\newblock {\em Journal of Computational Physics}, 35(3):426--430, 1980.
-
-\bibitem{orszag1979small}
-S.~A Orszag and C.~M Tang.
-\newblock Small-scale structure of two-dimensional magnetohydrodynamic
-  turbulence.
-\newblock {\em Journal of Fluid Mechanics}, 90(1):129--143, 1979.
-
-\bibitem{jiang1999high}
-Guang-Shan Jiang and Cheng-chin Wu.
-\newblock A high-order weno finite difference scheme for the equations of ideal
-  magnetohydrodynamics.
-\newblock {\em Journal of Computational Physics}, 150(2):561--594, 1999.
+\bibitem{dahlquist1963special}
+Germund~G Dahlquist.
+\newblock A special stability problem for linear multistep methods.
+\newblock {\em BIT Numerical Mathematics}, 3(1):27--43, 1963.
 
 \bibitem{strang1988linear}
 G.Strang.
@@ -1610,23 +1479,6 @@ J~Eddie Welch, Francis~Harvey Harlow, John~P Shannon, et~al.
   incompressible, transient fluid-flow problems involving free surfaces.
 \newblock Technical report, Los Alamos Scientific Lab., Univ. of California, N.
   Mex., 1965.
-
-\bibitem{shampine1994numerical}
-Lawrence~F Shampine.
-\newblock {\em Numerical solution of ordinary differential equations},
-  volume~4.
-\newblock CRC Press, 1994.
-
-\bibitem{dahlquist1963special}
-Germund~G Dahlquist.
-\newblock A special stability problem for linear multistep methods.
-\newblock {\em BIT Numerical Mathematics}, 3(1):27--43, 1963.
-
-\bibitem{hairer1999stiff}
-Ernst Hairer and Gerhard Wanner.
-\newblock Stiff differential equations solved by radau methods.
-\newblock {\em Journal of Computational and Applied Mathematics},
-  111(1):93--111, 1999.
 
 \bibitem{helzel2000modified}
 Christiane Helzel, Randall~J Leveque, and Gerald Warnecke.
@@ -1815,6 +1667,12 @@ Yiqing Shen and Gecheng Zha.
   scheme for chemical reacting flows.
 \newblock In {\em 40th Fluid Dynamics Conference and Exhibit}, page 4995, 2010.
 
+\bibitem{zha2004low}
+Ge-Cheng Zha.
+\newblock A low diffusion e-cusp upwind scheme for transonic flows.
+\newblock In {\em 34th AIAA Fluid Dynamics Conference and Exhibit}, page 2707,
+  2004.
+
 \bibitem{soloukhin1966multiheaded}
 RI~Soloukhin.
 \newblock Multiheaded structure of gaseous detonation.
@@ -1841,12 +1699,6 @@ Guang-Shan Jiang and Chi-Wang Shu.
 Bernardo Cockburn and Chi-Wang Shu.
 \newblock Nonlinearly stable compact schemes for shock calculations.
 \newblock {\em SIAM Journal on Numerical Analysis}, 31(3):607--627, 1994.
-
-\bibitem{shen2006high}
-Yiqing Shen, Guowei Yang, and Zhi Gao.
-\newblock High-resolution finite compact difference schemes for hyperbolic
-  conservation laws.
-\newblock {\em Journal of Computational Physics}, 216(1):114--137, 2006.
 
 \bibitem{pirozzoli2011numerical}
 Sergio Pirozzoli.
@@ -1908,26 +1760,161 @@ Paul Woodward and Phillip Colella.
   shocks.
 \newblock {\em Journal of computational physics}, 54(1):115--173, 1984.
 
+\bibitem{yee2007development}
+HC~Yee and Bj{\"o}rn Sj{\"o}green.
+\newblock Development of low dissipative high order filter schemes for
+  multiscale navier--stokes/mhd systems.
+\newblock {\em Journal of Computational Physics}, 225(1):910--934, 2007.
+
+\bibitem{balbas2004non}
+Jorge Balb{\'a}s, Eitan Tadmor, and Cheng-Chin Wu.
+\newblock Non-oscillatory central schemes for one-and two-dimensional mhd
+  equations: I.
+\newblock {\em Journal of Computational Physics}, 201(1):261--285, 2004.
+
+\bibitem{gaitonde1999development}
+Datta~V Gaitonde.
+\newblock Development of a solver for 3-d non-ideal magnetogasdynamics.
+\newblock {\em AIAA paper}, 99:3610, 1999.
+
+\bibitem{shen2012cusp}
+Yiqing Shen, Gecheng Zha, and Manuel~A Huerta.
+\newblock E-cusp scheme for the equations of ideal magnetohydrodynamics with
+  high order weno scheme.
+\newblock {\em Journal of Computational Physics}, 231(19):6233--6247, 2012.
+
+\bibitem{brio1988upwind}
+Moysey Brio and Cheng~Chin Wu.
+\newblock An upwind differencing scheme for the equations of ideal
+  magnetohydrodynamics.
+\newblock {\em Journal of computational physics}, 75(2):400--422, 1988.
+
+\bibitem{dai1994approximate}
+Wenlong Dai and Paul~R Woodward.
+\newblock An approximate riemann solver for ideal magnetohydrodynamics.
+\newblock {\em Journal of Computational Physics}, 111(2):354--372, 1994.
+
+\bibitem{janhunen2000positive}
+Pekka Janhunen.
+\newblock A positive conservative method for magnetohydrodynamics based on hll
+  and roe methods.
+\newblock {\em Journal of Computational Physics}, 160(2):649--661, 2000.
+
+\bibitem{honkkila2007hllc}
+Ville Honkkila and Pekka Janhunen.
+\newblock Hllc solver for ideal relativistic mhd.
+\newblock {\em Journal of Computational Physics}, 223(2):643--656, 2007.
+
+\bibitem{gurski2004hllc}
+Katharine~F Gurski.
+\newblock An hllc-type approximate riemann solver for ideal
+  magnetohydrodynamics.
+\newblock {\em SIAM Journal on Scientific Computing}, 25(6):2165--2187, 2004.
+
+\bibitem{miyoshi2005multi}
+Takahiro Miyoshi and Kanya Kusano.
+\newblock A multi-state hll approximate riemann solver for ideal
+  magnetohydrodynamics.
+\newblock {\em Journal of Computational Physics}, 208(1):315--344, 2005.
+
+\bibitem{lombard1983multi}
+CK~Lombard, J~Bardina, E~Venkatapathy, et~al.
+\newblock Multi-dimensional formulation of cscm-an upwind flux difference
+  eigenvector split method for the compressible navier-stokes equations.
+\newblock In {\em 6th Computational Fluid Dynamics Conference}, pages 649--664,
+  1983.
+
+\bibitem{maccormackupwind}
+RW~MacCormack.
+\newblock An upwind conservation form method for ideal magnetohydrodynamics
+  equations, aiaa, 1999.
+
+\bibitem{maccormack2010non}
+Robert~W MacCormack.
+\newblock Non-equilibrium ionized flow simulations within strong
+  electro-magnetic fields.
+\newblock In {\em 48th AIAA Aerospace Sciences Meeting Including the New
+  Horizons Forum and Aerospace Exposition: Aerospace Sciences Meetings}, pages
+  2010--0225, 2010.
+
+\bibitem{liou1995progress}
+Meng-Sing Liou.
+\newblock Progress towards an improved cfd method: Ausm+.
+\newblock {\em AIAA paper}, 1701:155, 1995.
+
+\bibitem{liou2001ten}
+Meng-Sing Liou.
+\newblock {\em Ten Years in the Making: AUSM-family}.
+\newblock National Aeronautics and Space Administration, Glenn Research Center,
+  2001.
+
+\bibitem{hanel1987accuracy}
+D~H{\"a}nel, R~Schwane, and G~Seider.
+\newblock On the accuracy of upwind schemes for the solution of the
+  navier-stokes equations.
+\newblock {\em AIAA paper}, 1105:1987, 1987.
+
+\bibitem{edwards1997low}
+Jack~R Edwards.
+\newblock A low-diffusion flux-splitting scheme for navier-stokes calculations.
+\newblock {\em Computers \& Fluids}, 26(6):635--659, 1997.
+
+\bibitem{zhacomparative}
+GC~Zha.
+\newblock Comparative study of upwind scheme performance for entropy condition
+  and discontinuities, aiaa, 1999.
+\newblock Technical report, Paper 99-CP-3348, June 28-July 1.
+
+\bibitem{zha2004calculation}
+Ge-Cheng Zha and Zongjun Hu.
+\newblock Calculation of transonic internal flows using an efficient
+  high-resolution upwind scheme.
+\newblock {\em AIAA journal}, 42(2):205--214, 2004.
+
+\bibitem{zha2011improved}
+Ge-Cheng Zha, Yiqing Shen, and Baoyuan Wang.
+\newblock An improved low diffusion e-cusp upwind scheme.
+\newblock {\em Computers \& Fluids}, 48(1):214--220, 2011.
+
+\bibitem{agarwal1999comparative}
+RK~Agarwal, J~Augustinus, and DW~Halt.
+\newblock A comparative study of advection upwind split (ausm) and
+  wave/particle split (wps) schemes for fluid and mhd flows.
+\newblock In {\em AIAA 30th Plasmadynamics and Lasers Conference, AIAA Paper,
+  Norfolk, VA}, pages 99--3613, 1999.
+
+\bibitem{han2009accurate}
+Sang-Hoon Han, Jeong-Il Lee, and Kyu~Hong Kim.
+\newblock Accurate and robust pressure weight advection upstream splitting
+  method for magnetohydrodynamics equations.
+\newblock {\em AIAA journal}, 47(4):970, 2009.
+
+\bibitem{shang2001recent}
+JS~Shang.
+\newblock Recent research in magneto-aerodynamics.
+\newblock {\em Progress in Aerospace Sciences}, 37(1):1--20, 2001.
+
+\bibitem{powell1999solution}
+Kenneth~G Powell, Philip~L Roe, Timur~J Linde, et~al.
+\newblock A solution-adaptive upwind scheme for ideal magnetohydrodynamics.
+\newblock {\em Journal of Computational Physics}, 154(2):284--309, 1999.
+
+\bibitem{brackbill1980effect}
+Jeremiah~U Brackbill and Daniel~C Barnes.
+\newblock The effect of nonzero∇{\textperiodcentered} b on the numerical
+  solution of the magnetohydrodynamic equations.
+\newblock {\em Journal of Computational Physics}, 35(3):426--430, 1980.
+
+\bibitem{toth2000b}
+G{\'a}bor T{\'o}th.
+\newblock The∇{\textperiodcentered} b= 0 constraint in shock-capturing
+  magnetohydrodynamics codes.
+\newblock {\em Journal of Computational Physics}, 161(2):605--652, 2000.
+
 \bibitem{kim2005phase}
 Junseok Kim and John Lowengrub.
 \newblock Phase field modeling and simulation of three-phase flows.
 \newblock {\em Interfaces and free boundaries}, 7(4):435--466, 2005.
-
-\bibitem{gao1994FDV}
-高智.
-\newblock 对流扩散方程的高精度差分算法.
-\newblock {\em 北京计算流体力学讨论会文集 (第六辑)}, 1223,
-  1994.
-
-\bibitem{shen2005FDV}
-申义庆，~高智， 杨顶辉.
-\newblock 一阶双曲方程的摄动有限差分格式.
-\newblock {\em 计算物理}, 22(6):650--656, 2005.
-
-\bibitem{gao2004PFV}
-高智，柏威.
-\newblock 对流扩散方程的摄动有限体积 (pfv) 方法及讨论.
-\newblock {\em 力学学报}, 36(1):88--92, 2004.
 
 \bibitem{strang1968construction}
 Gilbert Strang.
@@ -2073,6 +2060,18 @@ Yiqing Shen, Gecheng Zha, and Xiangying Chen.
   application to vortex-induced vibration flows.
 \newblock {\em Journal of Computational Physics}, 228(22):8283--8300, 2009.
 
+\bibitem{Orszag1979Small}
+S.~A Orszag and C.~M Tang.
+\newblock Small-scale structure of two-dimensional magnetohydrodynamic
+  turbulence.
+\newblock {\em Journal of Fluid Mechanics}, 90(1):129--143, 1979.
+
+\bibitem{Balsara1999A}
+Dinshaw~S Balsara and Daniel~S Spicer.
+\newblock {\em A Staggered Mesh Algorithm Using High Order Godunov Fluxes to
+  Ensure Solenoidal Magnetic Fields in Magnetohydrodynamic Simulations}.
+\newblock Academic Press Professional, Inc., 1999.
+
 \bibitem{olsson2005conservative}
 Elin Olsson and Gunilla Kreiss.
 \newblock A conservative level set method for two phase flow.
@@ -2083,9 +2082,33 @@ Gabriel~D Roy, Sergei~M Frolov, Kazhikathra Kailasanath, et~al.
 \newblock Gaseous and heterogeneous detonations: science to applications.
 \newblock Technical report, DTIC Document, 1999.
 
+\bibitem{jiang1999high}
+Guang-Shan Jiang and Cheng-chin Wu.
+\newblock A high-order weno finite difference scheme for the equations of ideal
+  magnetohydrodynamics.
+\newblock {\em Journal of Computational Physics}, 150(2):561--594, 1999.
+
 \bibitem{ben1989generalized}
 Matania Ben-Artzi.
 \newblock The generalized riemann problem for reactive flows.
 \newblock {\em Journal of Computational physics}, 81(1):70--101, 1989.
+
+\bibitem{saurel1999multiphase}
+Richard Saurel and R{\'e}mi Abgrall.
+\newblock A multiphase godunov method for compressible multifluid and
+  multiphase flows.
+\newblock {\em Journal of Computational Physics}, 150(2):425--467, 1999.
+
+\bibitem{grosshans2014development}
+Holger Grosshans, R-Z Sz{\'a}sz, and Laszlo Fuchs.
+\newblock Development of an efficient statistical volumes of fluid--lagrangian
+  particle tracking coupling method.
+\newblock {\em International Journal for Numerical Methods in Fluids},
+  74(12):898--918, 2014.
+
+\bibitem{kothe1995comparison}
+Douglas~B Kothe and William~J Rider.
+\newblock A comparison of interface tracking methods.
+\newblock Technical report, Los Alamos National Lab., NM (United States), 1995.
 
 \end{thebibliography}

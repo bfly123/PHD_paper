@@ -32,7 +32,7 @@
 
 \hspace{0.12cm} \color{black!60!blue!80}ENDDO
 
-\hspace{0.13cm} \color{black!80} $N_px=Nx,\hspace{0.3cm} N_py=Ny$  
+\hspace{0.13cm} \color{black!80} $N_p=(Nx+1)*(Ny+1)$  
  \hspace{1.0cm}  \color{black!60} !粒子点总数可能变化 \color{black!80}
 
  \hspace{0.14cm}\color{black!60!blue!80}DO
@@ -45,11 +45,12 @@
  \hspace{1.1cm}
 $
   \begin{array}{l}
-	ip(i,j)=i\\
-	jp(i,j)=j\\
-	X_p(i,j)=0\\
-	Y_p(i,j)=0\\
-	\bar{z}_p(i,j)=z(i,j)\\
+	n=i+j*Nx\\
+	ip(n)=i\\
+	jp(n)=j\\
+	X_p(n)=0\\
+	Y_p(n)=0\\
+	\bar{z}_p(n)=z(i,j)\\
 	\end{array}
 $
   \hspace{0.8cm}  \color{black!60} !粒子点初始化 \color{black!80}
@@ -74,7 +75,7 @@ $
 
  \hspace{1.6cm}
  $ \begin{array}{l}
-\text{Mrk}(i,j)=0,\\
+\text{Mrk}(i,j)=0\\
 \text{Mrk}_p(i,j)=0
 \end{array} $  \color{black!60} \hspace{0.7cm} ! 记录单元内信息点和单元点数
 
@@ -190,18 +191,15 @@ Y'(M,N)=[Y(i,j)+\text{Mrk}(M,N)Y'(M,N)]/[\text{Mrk}(M,N)+1]\\
    \scriptsize
  \vspace{0.1cm}
 \hspace{0.7cm}\color{black!60!blue!80}DO
- \color{black!80} $i=0,N_px$
-
-\hspace{1.1cm}{ \color{black!60!blue!80}DO}
- \color{black!80} $j=0,N_py$
-
+ \color{black!80} $n=0,Np$
 \vspace{0.1cm}
-\hspace{1.5cm} $s_x=\text{sign}(X_p(i,j)), s_y=\text{sign}(Y_p(i,j))$
+
+\hspace{1.5cm} $s_x=\text{sign}(X_p(n)), s_y=\text{sign}(Y_p(n))$
 
  \hspace{1.5cm}	$
   \begin{array}{l}
-	\bar{u}_p(i,j)=(1-|X_p|)u(ip,jp)+|X_p|u(ip+s_x,J)\\
-	\bar{v}_p(i,j)=(1-|Y_p|)v(ip,jp)+|Y_p|v(ip,jp+s_y)\\
+	\bar{u}_p(n)=(1-|X_p|)u(ip,jp)+|X_p|u(ip+s_x,jp)\\
+	\bar{v}_p(n)=(1-|Y_p|)v(ip,jp)+|Y_p|v(ip,jp+s_y)\\
 	\end{array}
 $
  \hspace{0.5cm}
@@ -211,8 +209,8 @@ $
 
  \hspace{1.5cm}	$
   \begin{array}{l}
-	L_x=X_p(i,j)+\bar{u}_p(i,j)\Delta t/ \Delta x\\
-	L_y=Y_p(i,j)+\bar{v}_p(i,j)\Delta t/ \Delta y\\
+	L_x=X_p(n)+\bar{u}_p(n)\Delta t/ \Delta x\\
+	L_y=Y_p(n)+\bar{v}_p(n)\Delta t/ \Delta y\\
 	\end{array}
 	$
   \hspace{2.9cm}  \color{black!60} !临时相对坐标变化 \color{black!80}
@@ -221,10 +219,10 @@ $
 
  \hspace{1.5cm}	$
   \begin{array}{l}
-	ip(i,j)=ip(i,j)+\text{floor}(L_x+0.5)\\
-	jp(i,j)=jp(i,j)+\text{floor}(L_y+0.5)\\
-	X_p(i,j)=L_x-\text{floor}(L_x+0.5)\\
-	Y_p(i,j)=L_y-\text{floor}(L_y+0.5)\\
+	ip(n)=ip(n)+\text{floor}(L_x+0.5)\\
+	jp(n)=jp(n)+\text{floor}(L_y+0.5)\\
+	X_p(n)=L_x-\text{floor}(L_x+0.5)\\
+	Y_p(n)=L_y-\text{floor}(L_y+0.5)\\
 	\end{array}
 $
    \color{black!60} \hspace{2.3cm}
@@ -241,24 +239,24 @@ $
 \color{black!80}
 \hspace{2.3cm} 
 $\begin{array}{l}
-  X'(ip,jp)=X_p(i,j)\\
-  Y'(ip,jp)=Y_p(i,j)\\
- \bar{z}'(ip,jp)=\bar{z}_p(i,j)
+  X'(ip,jp)=X_p(n)\\
+  Y'(ip,jp)=Y_p(n)\\
+ \bar{z}'(ip,jp)=\bar{z}_p(n)
 \end{array} 
  $
 
 \hspace{1.7cm} \color{black!60!blue!80}ELSE
 
 \hspace{2.3cm} \color{black!60!blue!80}IF 
-\color{black!80} $\bar{z}_p(i)<\bar{z}'(ip,jp)$  
+\color{black!80} $\bar{z}_p(n)<\bar{z}'(ip,jp)$  
 \color{black!60!blue!80}THEN
 
 \color{black!80}
 \hspace{2.7cm} 
 $\begin{array}{l}
-  X'(ip,jp)=X_p(i,j)\\
-  Y'(ip,jp)=Y_p(i,j)\\
- \bar{z}'(ip,jp)=\bar{z}_p(i,j)
+  X'(ip,jp)=X_p(n)\\
+  Y'(ip,jp)=Y_p(n)\\
+ \bar{z}'(ip,jp)=\bar{z}_p(n)
 \end{array} 
  $
  \hspace{2.8cm}  \color{black!60} ! 多个粒子点，选取$z$值小的点 \color{black!80}
@@ -270,9 +268,9 @@ $\begin{array}{l}
 \color{black!80} 
 \fbox{
 \hspace{1.3cm} 
-$\begin{array}{l} X'(ip,jp)=[X_p(i,j)+\text{Mrk}_p(ip,jp)X'(ip,jp)]/[\text{Mrk}_p(ip,jp)+1]\\
-Y'(ip,jp)=[Y_p(i,j)+\text{Mrk}_p(ip,jp)Y'(ip,jp)]/[\text{Mrk}_p(ip,jp)+1]\\
-\bar{z}'(ip,jp)=[\bar{z}_p(i,j)+\text{Mrk}_p(ip,jp)\bar{z}'(ip,jp)]/[\text{Mrk}_p(ip,jp)+1]
+$\begin{array}{l} X'(ip,jp)=[X_p(n)+\text{Mrk}_p(ip,jp)X'(ip,jp)]/[\text{Mrk}_p(ip,jp)+1]\\
+Y'(ip,jp)=[Y_p(n)+\text{Mrk}_p(ip,jp)Y'(ip,jp)]/[\text{Mrk}_p(ip,jp)+1]\\
+\bar{z}'(ip,jp)=[\bar{z}_p(n)+\text{Mrk}_p(ip,jp)\bar{z}'(ip,jp)]/[\text{Mrk}_p(ip,jp)+1]
 \end{array}$
 \hspace{0.0cm}    \color{black!60} ! 多个粒子点，进行平均\color{black!80}
 }
@@ -293,8 +291,6 @@ Y'(ip,jp)=[Y_p(i,j)+\text{Mrk}_p(ip,jp)Y'(ip,jp)]/[\text{Mrk}_p(ip,jp)+1]\\
 
 \vspace{0.1cm}
   \hspace{1.5cm} \color{black!60!blue!80} END IF 
-
-\hspace{1cm} {\color{black!60!blue!80}END DO
 
 \hspace{0.5cm} END DO}
 
