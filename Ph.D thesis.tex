@@ -88,10 +88,10 @@
         Chinese Academy of Sciences}
   \englishdegree{Doctor}
   \englishmajordegree{Fluid Mechanics}
-  \englishdate{October, 2017}
+  \englishdate{October 2017}
 
   % 封面
-  \maketitle
+  \maketitle\thispagestyle{fancy}
 
   % 英文封面
   \makeenglishtitle
@@ -102,46 +102,46 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frontmatter
 
-  % 摘要
+  % 摘要\thispagestyle{fancy}
   \include{chapter/abstract}
 
   % 目录
-  \tableofcontents
+  \tableofcontents\thispagestyle{fancy}
   % 表格目录
-  \listoftables
+  \listoftables\thispagestyle{fancy}
   % 插图目录
-  \listoffigures
+  \listoffigures\thispagestyle{fancy}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 正文部分
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mainmatter
-  \include{chapter/Chapter-Introduction}
-%\part{上部分}
+%  \include{chapter/Chapter-Introduction}
+%%\part{上部分}
 %\input{chapter/Part_I.tex}
-  \include{chapter/Chapter-Multi-WENO}
-  \include{chapter/Chapter-detector}
-  \include{chapter/Chapter-MHD}
-%%% \part{下部分}
-%\input{chapter/Part_II.tex}
- \include{chapter/Chapter-Dual-Information-Method}
-  \include{chapter/Chapter-NP-method}
-  \include{chapter/Chapter-Stiff-Reaction}
-  \include{chapter/Chapter-elementary-Reaction}
-%%%}
-  \include{chapter/Chapter-Conclusion}
-%
-%%   附录
-  \appendix
-\renewcommand{\appendixname}{Appendix~}
-  \include{chapter/Chapter-Scale}
-  \include{chapter/Chapter-2D-DIP}
- \include{chapter/Chapter-Element-Parameter}
+%  \include{chapter/Chapter-Multi-WENO}
+%  \include{chapter/Chapter-detector}
+%  \include{chapter/Chapter-MHD}
+%%%% \part{下部分}
+%%\input{chapter/Part_II.tex}
+% \include{chapter/Chapter-Dual-Information-Method}
+%  \include{chapter/Chapter-NP-method}
+%  \include{chapter/Chapter-Stiff-Reaction}
+%  \include{chapter/Chapter-elementary-Reaction}
+%%%%}
+%  \include{chapter/Chapter-Conclusion}
+%%
+%%%   附录
+%  \appendix
+%\renewcommand{\appendixname}{Appendix~}
+%  \include{chapter/Chapter-Scale}
+%  \include{chapter/Chapter-2D-DIP}
+% \include{chapter/Chapter-Element-Parameter}
 %  \include{chapter/Chapter_Conclution}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 附件部分
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 附件部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter
 
   % 参考文献

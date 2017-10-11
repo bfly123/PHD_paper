@@ -70,6 +70,8 @@
 %% graphics packages
 \RequirePackage{graphicx}
 \RequirePackage{epstopdf}
+\RequirePackage{fontspec}
+
 %% sort and compress citations
 %\RequirePackage[sort&compress,numbers]{natbib}
 %\RequirePackage[super,authoryear,sort&compress,square]{natbib}
@@ -95,30 +97,139 @@
     \DeclareGraphicsExtensions{.eps,.ps}
   \fi
 \fi
+
+\setmainfont[Mapping=tex-text]{Times New Roman}	% 设置英文字体
+
 \hypersetup{CJKbookmarks,%
        bookmarksnumbered,%
               colorlinks,%
-               linkcolor=blue,%
-               citecolor=blue,%
+               linkcolor=black,%
+               citecolor=black,%
               plainpages=false,%
             pdfstartview=FitH}
 \AtEndOfPackage{\makeatletter\input{CASthesis.cfg}\makeatother}
-\oddsidemargin 1.5 true cm
-\if@twoside
-  \evensidemargin 0 true cm
-\else
-  \evensidemargin 1.5 true cm
-\fi
-\textheight 21 true cm
-\textwidth 14.5 true cm
-\headheight 15pt
-\parskip 0.5ex plus 0.25ex minus 0.25ex
-\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-  \thispagestyle{empty}%
-  \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
-\renewcommand{\floatpagefraction}{0.80}
-\bibliographystyle{unsrt}
-%\bibliographystyle{acm}
+%\oddsidemargin 1.5 true cm
+%\if@twoside
+%  \evensidemargin 0 true cm
+%\else
+%  \evensidemargin 1.5 true cm
+%\fi
+%\textheight 21 true cm
+%\textwidth 14.5 true cm
+%\headheight 15pt
+%\parskip 0.5ex plus 0.25ex minus 0.25ex
+%\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+%  \thispagestyle{empty}%
+%  \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+%\renewcommand{\floatpagefraction}{0.80}
+%%\bibliographystyle{plain}
+%% 页面尺寸设置
+\setlength\parindent{2em}
+\setlength\smallskipamount{3\p@ \@plus 1\p@ \@minus 1\p@}
+\setlength\medskipamount{6\p@ \@plus 2\p@ \@minus 2\p@}
+\setlength\bigskipamount{12\p@ \@plus 4\p@ \@minus 4\p@}
+\setlength\headheight{15\p@}
+\setlength\headsep   {24pt}%% 页眉线到正文的距离
+\setlength\topskip   {5\p@}%% 页眉线到正文的距离??
+\setlength\footskip{30\p@}
+\if@compatibility \setlength\maxdepth{4\p@} \else
+\setlength\maxdepth{.5\topskip} \fi
+\textheight 22.5 true cm
+\textwidth 16.2 true cm
+\setlength\marginparsep{7\p@}
+\setlength\marginparpush{7\p@}
+    \setlength\@tempdima        {\paperwidth}
+    \addtolength\@tempdima      {-\textwidth}
+    \setlength\marginparwidth   {.6\@tempdima}
+    \addtolength\marginparwidth {-\marginparsep}
+    \addtolength\marginparwidth {-0.4in}
+   \ifdim \marginparwidth >2in
+     \setlength\marginparwidth{2in}
+  \fi
+  \@settopoint\marginparwidth
+\oddsidemargin 0 true cm
+\evensidemargin -0.3 true cm
+  \@settopoint\evensidemargin
+  \@settopoint\oddsidemargin
+  \setlength\topmargin{\paperheight}
+  \addtolength\topmargin{-2in}
+  \addtolength\topmargin{-\headheight}
+  \addtolength\topmargin{-\headsep}
+  \addtolength\topmargin{-\textheight}
+  \addtolength\topmargin{-\footskip}     % this might be wrong!
+  \addtolength\topmargin{-.5\topmargin}
+  \@settopoint\topmargin
+\setlength\footnotesep{8.4\p@}
+\setlength{\skip\footins}{10.8\p@ \@plus 4\p@ \@minus 2\p@}
+%% 出现在页面的顶部或底部的浮动对象之间的垂直距离。 缺省为\setlength\floatsep {12\p@ \@plus 2\p@ \@minus 4\p@}。 
+\setlength\floatsep {20pt plus 5pt minus 2pt}
+%% 出现在页面的顶部或底部的浮动对象与文本之间的垂直距离。 缺省为\setlength\textfloatsep{20\p@ \@plus 2\p@ \@minus 4\p@}
+\setlength{\textfloatsep} {19pt plus 2pt minus 2pt}
+%% 出现在页面中间的浮动对象与上下方文本之间的垂直距离。 缺省为\setlength\intextsep {14\p@ \@plus 4\p@ \@minus 4\p@}
+\setlength{\intextsep}{12pt plus 2pt minus 2pt}
+%% 是在双列输出时用 \textfloatsep 的数值{14\p@ \@plus 2\p@ \@minus 4\p@}
+\setlength\dblfloatsep    {10\p@ \@plus 2\p@ \@minus 4\p@}
+\setlength\dbltextfloatsep{10\p@ \@plus 2\p@ \@minus 4\p@}
+\setlength\@fptop{0\p@ \@plus 1fil}
+\setlength\@fpsep{10\p@ \@plus 2fil}
+\setlength\@fpbot{0\p@ \@plus 1fil}
+\setlength\@dblfptop{0\p@ \@plus 1fil}
+\setlength\@dblfpsep{10\p@ \@plus 2fil}
+\setlength\@dblfpbot{0\p@ \@plus 1fil}
+%\setlength\partopsep{130\p@ \@plus 2\p@ \@minus 2\p@}
+\def\@listi{\leftmargin 3em		%%\leftmargini
+            \itemindent 0em
+            \parsep 0\p@  \@plus 1\p@ \@minus 0\p@
+            \topsep 0\p@ \@plus 1\p@   \@minus 0\p@
+            \itemsep 0\p@  \@plus 1\p@ \@minus 0\p@}
+\let\@listI\@listi
+\@listi
+\def\@listii {\leftmargin\leftmarginii
+              \labelwidth\leftmarginii
+              \advance\labelwidth-\labelsep
+              \topsep    0\p@   \@plus2.5\p@ \@minus\p@
+              \parsep    0\p@ \@plus\p@    \@minus\p@
+              \itemsep   \parsep}
+\def\@listiii{\leftmargin\leftmarginiii
+              \labelwidth\leftmarginiii
+              \advance\labelwidth-\labelsep
+              \topsep    0\p@\@plus\p@\@minus\p@
+              \parsep    \z@
+              \partopsep \p@ \@plus\z@ \@minus\p@
+              \itemsep   \topsep}
+\def\@listiv {\leftmargin\leftmarginiv
+              \labelwidth\leftmarginiv
+              \advance\labelwidth-\labelsep}
+\def\@listv  {\leftmargin\leftmarginv
+              \labelwidth\leftmarginv
+              \advance\labelwidth-\labelsep}
+\def\@listvi {\leftmargin\leftmarginvi
+              \labelwidth\leftmarginvi
+              \advance\labelwidth-\labelsep}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setlength\lineskip{50pt plus 2pt minus 2pt}
+%\setlength\baselineskip {500pt}
+%\setlength\normallineskip{10\p@}
+%% 行间距
+\renewcommand\baselinestretch{1.383}
+%% 段间距
+\parskip 0ex plus 0.6ex minus 0ex
+\@lowpenalty   51
+\@medpenalty  151
+\@highpenalty 301
+\setcounter{topnumber}{2}
+\renewcommand\topfraction{0.85}
+\setcounter{bottomnumber}{1}
+\renewcommand\bottomfraction{.65}
+\setcounter{totalnumber}{3}
+\renewcommand\textfraction{0.15}
+\renewcommand\floatpagefraction{0.6}
+\setcounter{dbltopnumber}{2}
+\renewcommand\dbltopfraction{.7}
+\renewcommand\dblfloatpagefraction{.5}
+
+\bibliographystyle{acm}
 \newcommand\CASTspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
 \def\CAST@getfileinfo#1 #2 #3\relax#4\relax{%
   \def\CASTfiledate{#1}%
@@ -160,11 +271,11 @@
       \CAST@label@confidential~
       \CASTunderline[100pt]{\CAST@value@confidential}
     \vskip \stretch{2}
-      \includegraphics[width=0.8\textwidth]{ucas.eps}
+      \includegraphics[width=0.8\textwidth]{CASthes.png}
     \vskip 10pt
-      \bf\heiti\zihao{-1} \CAST@value@degree\CAST@label@thesis
+      \bf\heiti\zihao{-4} \CAST@value@degree\CAST@label@thesis
     \vskip \stretch{2}
-      \bf\songti\zihao{3} \CASTunderline{~\CAST@value@title~}
+      \bf\songti\zihao{2} \CASTunderline{~\CAST@value@title~}
     \vskip \stretch{2}
     \bf\fangsong\zihao{4}
     \def\tabcolsep{1pt}
@@ -218,16 +329,13 @@
   \thispagestyle{empty}
   \begin{center}
     \vspace*{20pt}
-      \bf\zihao{3} \CASTunderline{\ \CAST@value@englishtitle \ }
+      \bf\zihao{2} \CASTunderline{\ \CAST@value@englishtitle \ }
     \vskip \stretch{2}
-      \bf\normalsize By  \\
-      \bf\zihao{4} \CAST@value@englishauthor
+	\bf\zihao{3} \CAST@label@englishstatement
     \vskip \stretch{2}
-      \bf\normalsize \CAST@label@englishstatement
-    \vskip \stretch{2}
-      \bf\normalsize \CAST@value@englishinstitute
+	\bf\zihao{3} \CAST@value@englishinstitute
     \vskip 20pt
-      \bf\normalsize \CAST@value@englishdate
+	\bf\zihao{3} \CAST@value@englishdate
   \end{center}
   \clearpage
   \if@twoside
@@ -236,20 +344,24 @@
   \fi
 }
 \fancypagestyle{plain}{%
-  \fancyhf{}%
-  \renewcommand{\headrulewidth}{0pt}%
-  \renewcommand{\footrulewidth}{0pt}%
+  %  \thispagestyle{fancy}
+  \pagestyle{fancy}
+%  \fancyhead{}%
+ % \renewcommand{\headrulewidth}{0pt}%
+ % \renewcommand{\footrulewidth}{0pt}%
 }
 \pagestyle{fancy}
   \fancyhf{}
-  \fancyhead[RE]{\small \CAST@value@titlemark}
-  \fancyhead[LO]{\small \leftmark}
-  \fancyhead[LE,RO]{\small ~\thepage~}
+  \fancyhead[CE]{\small \CAST@value@titlemark}
+  \fancyhead[CO]{\small \leftmark}
+  %\fancyhead[CE,RO]{\small ~\thepage~}
+  \fancyfoot[CE,CO]{\small ~\thepage~}
+
 \newenvironment{abstract}
-  {\Nchapter{\CAST@label@abstract}}
+  { \Nchapter{\CAST@label@abstract}}
   {}
 \newcommand\keywords[1]{%
-  \vspace{2ex}\noindent{\heiti \CAST@label@keywords} #1}
+  \noindent{\heiti \CAST@label@keywords} #1}
 \newenvironment{englishabstract}
   {\Nchapter{\CAST@label@englishabstract}}
   {}
