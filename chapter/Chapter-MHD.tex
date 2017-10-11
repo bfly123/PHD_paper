@@ -128,8 +128,8 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 这种平均方式可以保证方法具有更好的稳定性。
 
 由于有限紧致格式既能无振荡捕捉激波，在光滑区域有具有相应紧致格式的谱分辨特性，因此本文利用有限紧致格式对$\bm{f}$进行重构。另外对半离散方程(\ref{eq:half_MHD})的时间积分采用了三阶TVD Runge-Kutta方法。
-\subsection{限制输运（Constrained Transport/CT）方法\cite{balsara1999A}}
-数值模拟MHD方程时，需要满足磁场散度为零的限制条件，$\nabla \cdot \bm{B}=0$。为了满足这一条件，Powell等人通过在原方程中添加一个和$\nabla \cdot \bm{B}$成正比的源项，得到新的特征系统。但是，新的系统会存在一些不确定性\cite{powell1999solution}；投影方法\cite{brackbill1980effect}通过求解泊松方程和限制边界条件来满足磁场散度为零条件；Balsara和Spicer\cite{balsara1999A}提出的限制输运方法是另外一种可以将散度误差控制在机器误差精度的方法。Toth\cite{toth2000b}认为限制输运方法是他所有测试过的方法中最准确的。因此本文采用限制输运方法。
+\subsection{限制输运（Constrained Transport/CT）方法 \cite{Balsara1999A} }
+数值模拟MHD方程时，需要满足磁场散度为零的限制条件，$\nabla \cdot \bm{B}=0$。为了满足这一条件，Powell等人通过在原方程中添加一个和$\nabla \cdot \bm{B}$成正比的源项，得到新的特征系统。但是，新的系统会存在一些不确定性\cite{powell1999solution}；投影方法\cite{brackbill1980effect}通过求解泊松方程和限制边界条件来满足磁场散度为零条件；Balsara和Spicer\cite{Balsara1999A}提出的限制输运方法是另外一种可以将散度误差控制在机器误差精度的方法。Toth\cite{toth2000b}认为限制输运方法是他所有测试过的方法中最准确的。因此本文采用限制输运方法。
 
 首先，给出法拉第方程
 \begin{equation}\label{eq:BE}

@@ -1,5 +1,77 @@
 \begin{thebibliography}{100}
 
+\bibitem{jiang2001weighted}
+Li~Jiang, Hua Shan, and Chaoqun Liu.
+\newblock Weighted compact scheme for shock capturing.
+\newblock {\em International Journal of Computational Fluid Dynamics},
+  15(2):147--155, 2001.
+
+\bibitem{henrick2005mapped}
+Andrew~K Henrick, Tariq~D Aslam, and Joseph~M Powers.
+\newblock Mapped weighted essentially non-oscillatory schemes: achieving
+  optimal order near critical points.
+\newblock {\em Journal of Computational Physics}, 207(2):542--567, 2005.
+
+\bibitem{borges2008improved}
+Rafael Borges, Monique Carmona, Bruno Costa, and Wai~Sun Don.
+\newblock An improved weighted essentially non-oscillatory scheme for
+  hyperbolic conservation laws.
+\newblock {\em Journal of Computational Physics}, 227(6):3191--3211, 2008.
+
+\bibitem{shen2014improvement}
+Yiqing Shen and Gecheng Zha.
+\newblock Improvement of weighted essentially non-oscillatory schemes near
+  discontinuities.
+\newblock {\em Computers \& Fluids}, 96:1--9, 2014.
+
+\bibitem{shen2011generalized}
+Yiqing Shen and Gecheng Zha.
+\newblock Generalized finite compact difference scheme for shock/complex
+  flowfield interaction.
+\newblock {\em Journal of Computational Physics}, 230(12):4419--4436, 2011.
+
+\bibitem{cockburn1989tvb}
+Bernardo Cockburn and Chi-Wang Shu.
+\newblock Tvb runge-kutta local projection discontinuous galerkin finite
+  element method for conservation laws. ii. general framework.
+\newblock {\em Mathematics of computation}, 52(186):411--435, 1989.
+
+\bibitem{xu2005anti}
+Zhengfu Xu and Chi-Wang Shu.
+\newblock Anti-diffusive flux corrections for high order finite difference weno
+  schemes.
+\newblock {\em Journal of Computational Physics}, 205(2):458--485, 2005.
+
+\bibitem{biswas1994parallel}
+Rupak Biswas, Karen~D Devine, and Joseph~E Flaherty.
+\newblock Parallel, adaptive finite element methods for conservation laws.
+\newblock {\em Applied Numerical Mathematics}, 14(1-3):255--283, 1994.
+
+\bibitem{krivodonova2004shock}
+Lilia Krivodonova, J~Xin, J-F Remacle, Nicolas Chevaugeon, and Joseph~E
+  Flaherty.
+\newblock Shock detection and limiting with discontinuous galerkin methods for
+  hyperbolic conservation laws.
+\newblock {\em Applied Numerical Mathematics}, 48(3-4):323--338, 2004.
+
+\bibitem{shen2012cusp}
+Yiqing Shen, Gecheng Zha, and Manuel~A Huerta.
+\newblock E-cusp scheme for the equations of ideal magnetohydrodynamics with
+  high order weno scheme.
+\newblock {\em Journal of Computational Physics}, 231(19):6233--6247, 2012.
+
+\bibitem{Balsara1999A}
+Dinshaw~S Balsara and Daniel~S Spicer.
+\newblock A staggered mesh algorithm using high order godunov fluxes to ensure
+  solenoidal magnetic fields in magnetohydrodynamic simulations.
+\newblock pages 270--292, 1999.
+
+\bibitem{toth2000b}
+G{\'a}bor T{\'o}th.
+\newblock The∇{\textperiodcentered} b= 0 constraint in shock-capturing
+  magnetohydrodynamics codes.
+\newblock {\em Journal of Computational Physics}, 161(2):605--652, 2000.
+
 \bibitem{powers2005accurate}
 Joseph~M Powers and Samuel Paolucci.
 \newblock Accurate spatial resolution estimates for reactive supersonic flow
@@ -16,6 +88,11 @@ Wei Wang, Chi-Wang Shu, HC~Yee, and Bj{\"o}rn Sj{\"o}green.
 \newblock High order finite difference methods with subcell resolution for
   advection equations with stiff source terms.
 \newblock {\em Journal of Computational Physics}, 231(1):190--214, 2012.
+
+\bibitem{王昌建2005直管内胞格爆轰的基元反应数值研究}
+王昌建，徐胜利.
+\newblock 直管内胞格爆轰的基元反应数值研究.
+\newblock {\em 爆炸與衝擊}, 25(5):405--416, 2005.
 
 \bibitem{riemann1860fortpflanzung}
 Bernhard Riemann.
@@ -580,12 +657,6 @@ Chi-Wang Shu and Stanley Osher.
   shock-capturing schemes.
 \newblock {\em Journal of Computational Physics}, 77(2):439--471, 1988.
 
-\bibitem{henrick2005mapped}
-Andrew~K Henrick, Tariq~D Aslam, and Joseph~M Powers.
-\newblock Mapped weighted essentially non-oscillatory schemes: achieving
-  optimal order near critical points.
-\newblock {\em Journal of Computational Physics}, 207(2):542--567, 2005.
-
 \bibitem{balsara2000monotonicity}
 Dinshaw~S Balsara and Chi-Wang Shu.
 \newblock Monotonicity preserving weighted essentially non-oscillatory schemes
@@ -625,12 +696,6 @@ Sanjiva~K Lele.
 \newblock Compact finite difference schemes with spectral-like resolution.
 \newblock {\em Journal of computational physics}, 103(1):16--42, 1992.
 
-\bibitem{jiang2001weighted}
-Li~Jiang, Hua Shan, and Chaoqun Liu.
-\newblock Weighted compact scheme for shock capturing.
-\newblock {\em International Journal of Computational Fluid Dynamics},
-  15(2):147--155, 2001.
-
 \bibitem{ghosh2014weighted}
 Debojyoti Ghosh and James~D Baeder.
 \newblock Weighted non-linear compact schemes for the direct numerical
@@ -647,12 +712,6 @@ Jun Peng and Yiqing Shen.
 \newblock Improvement of weighted compact scheme with multi-step strategy for
   supersonic compressible flow.
 \newblock {\em Computers \& Fluids}, 115:243--255, 2015.
-
-\bibitem{shen2014improvement}
-Yiqing Shen and Gecheng Zha.
-\newblock Improvement of weighted essentially non-oscillatory schemes near
-  discontinuities.
-\newblock {\em Computers \& Fluids}, 96:1--9, 2014.
 
 \bibitem{shen2014multistep}
 Yiqing Shen, Li~Liu, and Yan Yang.
@@ -689,12 +748,6 @@ Bruno Costa and Wai~Sun Don.
 \newblock Multi-domain hybrid spectral-weno methods for hyperbolic conservation
   laws.
 \newblock {\em Journal of Computational Physics}, 224(2):970--991, 2007.
-
-\bibitem{shen2011generalized}
-Yiqing Shen and Gecheng Zha.
-\newblock Generalized finite compact difference scheme for shock/complex
-  flowfield interaction.
-\newblock {\em Journal of Computational Physics}, 230(12):4419--4436, 2011.
 
 \bibitem{roe1981approximate}
 Philip~L Roe.
@@ -1035,11 +1088,6 @@ James~A Fay.
 \newblock Two-dimensional gaseous detonations: Velocity deficit.
 \newblock {\em The Physics of Fluids}, 2(3):283--289, 1959.
 
-\bibitem{王昌建2005直管内胞格爆轰的基元反应数值研究}
-王昌建，徐胜利.
-\newblock 直管内胞格爆轰的基元反应数值研究.
-\newblock {\em 爆炸與衝擊}, 25(5):405--416, 2005.
-
 \bibitem{姜宗林2012气相爆轰物理的若干研究进展}
 姜宗林，滕宏辉，刘云峰.
 \newblock 气相爆轰物理的若干研究进展.
@@ -1267,6 +1315,273 @@ Alan~C Calder, LJ~Curtis, Bruce C~Dursi, et~al.
 \newblock In {\em Proceedings of the 2000 ACM/IEEE conference on
   Supercomputing}, page~56. IEEE Computer Society, 2000.
 
+\bibitem{jiang1996efficient}
+Guang-Shan Jiang and Chi-Wang Shu.
+\newblock Efficient implementation of weighted eno schemes.
+\newblock {\em Journal of computational physics}, 126(1):202--228, 1996.
+
+\bibitem{wang2001optimized}
+Zhi~Jian Wang and RF~Chen.
+\newblock Optimized weighted essentially nonoscillatory schemes for linear
+  waves with discontinuity.
+\newblock {\em Journal of Computational Physics}, 174(1):381--404, 2001.
+
+\bibitem{shu1989efficient}
+Chi-Wang Shu and Stanley Osher.
+\newblock Efficient implementation of essentially non-oscillatory
+  shock-capturing schemes, ii.
+\newblock {\em Journal of Computational Physics}, 83(1):32--78, 1989.
+
+\bibitem{cockburn1994nonlinearly}
+Bernardo Cockburn and Chi-Wang Shu.
+\newblock Nonlinearly stable compact schemes for shock calculations.
+\newblock {\em SIAM Journal on Numerical Analysis}, 31(3):607--627, 1994.
+
+\bibitem{shen2006high}
+Yiqing Shen, Guowei Yang, and Zhi Gao.
+\newblock High-resolution finite compact difference schemes for hyperbolic
+  conservation laws.
+\newblock {\em Journal of Computational Physics}, 216(1):114--137, 2006.
+
+\bibitem{H1999Low}
+H.C Yee, N.D Sandham, and M.J Djomehri.
+\newblock Low-dissipative high-order shock-capturing methods using
+  characteristic-based filters.
+\newblock {\em Journal of Computational Physics}, 150(1):199--238, 1999.
+
+\bibitem{Shen2009High}
+Yiqing Shen, Gecheng Zha, and Xiangying Chen.
+\newblock High order conservative differencing for viscous terms and the
+  application to vortex-induced vibration flows.
+\newblock {\em Journal of Computational Physics}, 228(22):8283--8300, 2009.
+
+\bibitem{pirozzoli2011numerical}
+Sergio Pirozzoli.
+\newblock Numerical methods for high-speed flows.
+\newblock {\em Annual review of fluid mechanics}, 43:163--194, 2011.
+
+\bibitem{zhou2007new}
+Qiang Zhou, Zhaohui Yao, Feng He, et~al.
+\newblock A new family of high-order compact upwind difference schemes with
+  good spectral resolution.
+\newblock {\em Journal of Computational Physics}, 227(2):1306--1339, 2007.
+
+\bibitem{li2010hybrid}
+Gang Li and Jianxian Qiu.
+\newblock Hybrid weighted essentially non-oscillatory schemes with different
+  indicators.
+\newblock {\em Journal of Computational Physics}, 229(21):8105--8129, 2010.
+
+\bibitem{zhu2009adaptive}
+Hongqiang Zhu and Jianxian Qiu.
+\newblock Adaptive runge--kutta discontinuous galerkin methods using different
+  indicators: one-dimensional case.
+\newblock {\em Journal of Computational Physics}, 228(18):6957--6976, 2009.
+
+\bibitem{qiu2005comparison}
+Jianxian Qiu and Chi-Wang Shu.
+\newblock A comparison of troubled-cell indicators for runge--kutta
+  discontinuous galerkin methods using weighted essentially nonoscillatory
+  limiters.
+\newblock {\em SIAM Journal on Scientific Computing}, 27(3):995--1013, 2005.
+
+\bibitem{woodward1984numerical}
+Paul Woodward and Phillip Colella.
+\newblock The numerical simulation of two-dimensional fluid flow with strong
+  shocks.
+\newblock {\em Journal of computational physics}, 54(1):115--173, 1984.
+
+\bibitem{brio1988upwind}
+Moysey Brio and Cheng~Chin Wu.
+\newblock An upwind differencing scheme for the equations of ideal
+  magnetohydrodynamics.
+\newblock {\em Journal of computational physics}, 75(2):400--422, 1988.
+
+\bibitem{dai1994approximate}
+Wenlong Dai and Paul~R Woodward.
+\newblock An approximate riemann solver for ideal magnetohydrodynamics.
+\newblock {\em Journal of Computational Physics}, 111(2):354--372, 1994.
+
+\bibitem{janhunen2000positive}
+Pekka Janhunen.
+\newblock A positive conservative method for magnetohydrodynamics based on hll
+  and roe methods.
+\newblock {\em Journal of Computational Physics}, 160(2):649--661, 2000.
+
+\bibitem{gurski2004hllc}
+Katharine~F Gurski.
+\newblock An hllc-type approximate riemann solver for ideal
+  magnetohydrodynamics.
+\newblock {\em SIAM Journal on Scientific Computing}, 25(6):2165--2187, 2004.
+
+\bibitem{honkkila2007hllc}
+Ville Honkkila and Pekka Janhunen.
+\newblock Hllc solver for ideal relativistic mhd.
+\newblock {\em Journal of Computational Physics}, 223(2):643--656, 2007.
+
+\bibitem{miyoshi2005multi}
+Takahiro Miyoshi and Kanya Kusano.
+\newblock A multi-state hll approximate riemann solver for ideal
+  magnetohydrodynamics.
+\newblock {\em Journal of Computational Physics}, 208(1):315--344, 2005.
+
+\bibitem{maccormack2010non}
+Robert~W MacCormack.
+\newblock Non-equilibrium ionized flow simulations within strong
+  electro-magnetic fields.
+\newblock In {\em 48th AIAA Aerospace Sciences Meeting Including the New
+  Horizons Forum and Aerospace Exposition: Aerospace Sciences Meetings}, pages
+  2010--0225, 2010.
+
+\bibitem{maccormackupwind}
+RW~MacCormack.
+\newblock An upwind conservation form method for ideal magnetohydrodynamics
+  equations, aiaa, 1999.
+
+\bibitem{lombard1983multi}
+CK~Lombard, J~Bardina, E~Venkatapathy, et~al.
+\newblock Multi-dimensional formulation of cscm-an upwind flux difference
+  eigenvector split method for the compressible navier-stokes equations.
+\newblock In {\em 6th Computational Fluid Dynamics Conference}, pages 649--664,
+  1983.
+
+\bibitem{liou1995progress}
+Meng-Sing Liou.
+\newblock Progress towards an improved cfd method: Ausm+.
+\newblock {\em AIAA paper}, 1701:155, 1995.
+
+\bibitem{liou2001ten}
+Meng-Sing Liou.
+\newblock {\em Ten Years in the Making: AUSM-family}.
+\newblock National Aeronautics and Space Administration, Glenn Research Center,
+  2001.
+
+\bibitem{hanel1987accuracy}
+D~H{\"a}nel, R~Schwane, and G~Seider.
+\newblock On the accuracy of upwind schemes for the solution of the
+  navier-stokes equations.
+\newblock {\em AIAA paper}, 1105:1987, 1987.
+
+\bibitem{edwards1997low}
+Jack~R Edwards.
+\newblock A low-diffusion flux-splitting scheme for navier-stokes calculations.
+\newblock {\em Computers \& Fluids}, 26(6):635--659, 1997.
+
+\bibitem{zha2004low}
+Ge-Cheng Zha.
+\newblock A low diffusion e-cusp upwind scheme for transonic flows.
+\newblock In {\em 34th AIAA Fluid Dynamics Conference and Exhibit}, page 2707,
+  2004.
+
+\bibitem{zhacomparative}
+GC~Zha.
+\newblock Comparative study of upwind scheme performance for entropy condition
+  and discontinuities, aiaa, 1999.
+\newblock Technical report, Paper 99-CP-3348, June 28-July 1.
+
+\bibitem{zha2004calculation}
+Ge-Cheng Zha and Zongjun Hu.
+\newblock Calculation of transonic internal flows using an efficient
+  high-resolution upwind scheme.
+\newblock {\em AIAA journal}, 42(2):205--214, 2004.
+
+\bibitem{zha2011improved}
+Ge-Cheng Zha, Yiqing Shen, and Baoyuan Wang.
+\newblock An improved low diffusion e-cusp upwind scheme.
+\newblock {\em Computers \& Fluids}, 48(1):214--220, 2011.
+
+\bibitem{agarwal1999comparative}
+RK~Agarwal, J~Augustinus, and DW~Halt.
+\newblock A comparative study of advection upwind split (ausm) and
+  wave/particle split (wps) schemes for fluid and mhd flows.
+\newblock In {\em AIAA 30th Plasmadynamics and Lasers Conference, AIAA Paper,
+  Norfolk, VA}, pages 99--3613, 1999.
+
+\bibitem{han2009accurate}
+Sang-Hoon Han, Jeong-Il Lee, and Kyu~Hong Kim.
+\newblock Accurate and robust pressure weight advection upstream splitting
+  method for magnetohydrodynamics equations.
+\newblock {\em AIAA journal}, 47(4):970, 2009.
+
+\bibitem{yee2007development}
+HC~Yee and Bj{\"o}rn Sj{\"o}green.
+\newblock Development of low dissipative high order filter schemes for
+  multiscale navier--stokes/mhd systems.
+\newblock {\em Journal of Computational Physics}, 225(1):910--934, 2007.
+
+\bibitem{balbas2004non}
+Jorge Balb{\'a}s, Eitan Tadmor, and Cheng-Chin Wu.
+\newblock Non-oscillatory central schemes for one-and two-dimensional mhd
+  equations: I.
+\newblock {\em Journal of Computational Physics}, 201(1):261--285, 2004.
+
+\bibitem{gaitonde1999development}
+Datta~V Gaitonde.
+\newblock Development of a solver for 3-d non-ideal magnetogasdynamics.
+\newblock {\em AIAA paper}, 99:3610, 1999.
+
+\bibitem{shang2001recent}
+JS~Shang.
+\newblock Recent research in magneto-aerodynamics.
+\newblock {\em Progress in Aerospace Sciences}, 37(1):1--20, 2001.
+
+\bibitem{powell1999solution}
+Kenneth~G Powell, Philip~L Roe, Timur~J Linde, et~al.
+\newblock A solution-adaptive upwind scheme for ideal magnetohydrodynamics.
+\newblock {\em Journal of Computational Physics}, 154(2):284--309, 1999.
+
+\bibitem{brackbill1980effect}
+Jeremiah~U Brackbill and Daniel~C Barnes.
+\newblock The effect of nonzero∇{\textperiodcentered} b on the numerical
+  solution of the magnetohydrodynamic equations.
+\newblock {\em Journal of Computational Physics}, 35(3):426--430, 1980.
+
+\bibitem{orszag1979small}
+S.~A Orszag and C.~M Tang.
+\newblock Small-scale structure of two-dimensional magnetohydrodynamic
+  turbulence.
+\newblock {\em Journal of Fluid Mechanics}, 90(1):129--143, 1979.
+
+\bibitem{jiang1999high}
+Guang-Shan Jiang and Cheng-chin Wu.
+\newblock A high-order weno finite difference scheme for the equations of ideal
+  magnetohydrodynamics.
+\newblock {\em Journal of Computational Physics}, 150(2):561--594, 1999.
+
+\bibitem{saurel1999multiphase}
+Richard Saurel and R{\'e}mi Abgrall.
+\newblock A multiphase godunov method for compressible multifluid and
+  multiphase flows.
+\newblock {\em Journal of Computational Physics}, 150(2):425--467, 1999.
+
+\bibitem{kothe1995comparison}
+Douglas~B Kothe and William~J Rider.
+\newblock A comparison of interface tracking methods.
+\newblock Technical report, Los Alamos National Lab., NM (United States), 1995.
+
+\bibitem{grosshans2014development}
+Holger Grosshans, R-Z Sz{\'a}sz, and Laszlo Fuchs.
+\newblock Development of an efficient statistical volumes of fluid--lagrangian
+  particle tracking coupling method.
+\newblock {\em International Journal for Numerical Methods in Fluids},
+  74(12):898--918, 2014.
+
+\bibitem{kim2005phase}
+Junseok Kim and John Lowengrub.
+\newblock Phase field modeling and simulation of three-phase flows.
+\newblock {\em Interfaces and free boundaries}, 7(4):435--466, 2005.
+
+\bibitem{olsson2005conservative}
+Elin Olsson and Gunilla Kreiss.
+\newblock A conservative level set method for two phase flow.
+\newblock {\em Journal of computational physics}, 210(1):225--246, 2005.
+
+\bibitem{aulisa2003mixed}
+Eugenio Aulisa, Sandro Manservisi, and Ruben Scardovelli.
+\newblock A mixed markers and volume-of-fluid method for the reconstruction and
+  advection of interfaces in two-phase and free-boundary flows.
+\newblock {\em Journal of Computational Physics}, 188(2):611--639, 2003.
+
 \bibitem{Hirschfelder1958Theory}
 Joseph~O. Hirschfelder and Charles~F. Curtiss.
 \newblock Theory of detonations. i. irreversible unimolecular reaction.
@@ -1277,12 +1592,6 @@ Ernst Hairer and Gerhard Wanner.
 \newblock Stiff differential equations solved by radau methods.
 \newblock {\em Journal of Computational and Applied Mathematics},
   111(1):93--111, 1999.
-
-\bibitem{shen2006high}
-Yiqing Shen, Guowei Yang, and Zhi Gao.
-\newblock High-resolution finite compact difference schemes for hyperbolic
-  conservation laws.
-\newblock {\em Journal of Computational Physics}, 216(1):114--137, 2006.
 
 \bibitem{gao1994FDV}
 高智.
@@ -1311,27 +1620,185 @@ Germund~G Dahlquist.
 \newblock A special stability problem for linear multistep methods.
 \newblock {\em BIT Numerical Mathematics}, 3(1):27--43, 1963.
 
-\bibitem{strang1988linear}
-G.Strang.
-\newblock {\em Linear Algebra and its Applications, 3rd ed.}
-\newblock Fort Worth, TX: Harcourt Brace Jovanovich, 1988.
+\bibitem{strang1968construction}
+Gilbert Strang.
+\newblock On the construction and comparison of difference schemes.
+\newblock {\em SIAM Journal on Numerical Analysis}, 5(3):506--517, 1968.
+
+\bibitem{chou2007high}
+Ching-Shan Chou and Chi-Wang Shu.
+\newblock High order residual distribution conservative finite difference weno
+  schemes for convection--diffusion steady state problems on non-smooth meshes.
+\newblock {\em Journal of Computational Physics}, 224(2):992--1020, 2007.
+
+\bibitem{ben1989generalized}
+Matania Ben-Artzi.
+\newblock The generalized riemann problem for reactive flows.
+\newblock {\em Journal of Computational physics}, 81(1):70--101, 1989.
+
+\bibitem{chorin1976random}
+Alexandre~Joel Chorin.
+\newblock Random choice solution of hyperbolic systems.
+\newblock {\em Journal of Computational Physics}, 22(4):517--533, 1976.
+
+\bibitem{colella1982glimm}
+Phillip Colella.
+\newblock Glimm's method for gas dynamics.
+\newblock {\em SIAM Journal on Scientific and Statistical Computing},
+  3(1):76--110, 1982.
+
+\bibitem{courant1999supersonic}
+Richard Courant and Kurt~Otto Friedrichs.
+\newblock {\em Supersonic flow and shock waves}, volume~21.
+\newblock Springer Science \& Business Media, 1999.
+
+\bibitem{kotov2012spurious}
+DV~Kotov, HC~Yee, W~Wang, et~al.
+\newblock On spurious numerics in solving reactive equations.
+\newblock {\em Proceedings of the ASTRONUM-2012, The Big Island, Hawaii}, pages
+  24--28, 2012.
+
+\bibitem{helzel2000modified}
+Christiane Helzel, Randall~J Leveque, and Gerald Warnecke.
+\newblock A modified fractional step method for the accurate approximation of
+  detonation waves.
+\newblock {\em SIAM Journal on Scientific Computing}, 22(4):1489--1510, 2000.
+
+\bibitem{tosatto2008numerical}
+Luca Tosatto and Luigi Vigevano.
+\newblock Numerical solution of under-resolved detonations.
+\newblock {\em Journal of Computational Physics}, 227(4):2317--2343, 2008.
+
+\bibitem{hwang2000numerical}
+P~Hwang, RP~Fedkiw, B~Merriman, et~al.
+\newblock Numerical resolution of pulsating detonation waves.
+\newblock {\em DCJ}, 2:1, 2000.
 
 \bibitem{stull1971janaf}
 Daniel~R Stull and Harold Prophet.
 \newblock Janaf thermochemical tables.
 \newblock Technical report, National Standard Reference Data System, 1971.
 
+\bibitem{schultz2000validation}
+E~Schultz and J~Shepherd.
+\newblock Validation of detailed reaction mechanisms for detonation simulation.
+\newblock 2000.
+
+\bibitem{balakrishnan1994turbulent}
+G~Balakrishnan and FA~Williams.
+\newblock Turbulent combustion regimes for hypersonic propulsion employing
+  hydrogen-air diffusion flames.
+\newblock {\em Journal of Propulsion and Power}, 10(3):434--436, 1994.
+
+\bibitem{guirao1989summary}
+CM~Guirao, R~Knystautas, and JHS Lee.
+\newblock {\em A summary of hydrogen-air detonation experiments}.
+\newblock Division of Systems Research, Office of Nuclear Regulatory Research,
+  US Nuclear Regulatory Commission, 1989.
+
+\bibitem{trotsyuk1999numerical}
+AV~Trotsyuk.
+\newblock Numerical simulation of the structure of two-dimensional gaseous
+  detonation of an h2-o2-ar mixture.
+\newblock {\em Combustion, Explosion and Shock Waves}, 35(5):549--558, 1999.
+
+\bibitem{wang2006numerical}
+Chun Wang, De-liang Zhang, and Zong-lin Jiang.
+\newblock Numerical investigation of detonation sweeping on an interface of
+  inert gas and its decoupling.
+\newblock {\em Explosion and Shock Waves}, 26(6):556, 2006.
+
+\bibitem{bollinger1964experimental}
+Loren~E Bollinger.
+\newblock Experimental detonation velocities and induction distances in
+  hydrogen-air mixtures.
+\newblock {\em AIAA Journal}, 2(1):131--133, 1964.
+
+\bibitem{akbar1997mach}
+Raza Akbar.
+\newblock Mach reflection of gaseous detonations.
+\newblock 1997.
+
+\bibitem{oran1998numerical}
+Elaine~S Oran, James~W Weber, Eliza~I Stefaniw, Michel~H Lefebvre, and John~D
+  Anderson.
+\newblock A numerical study of a two-dimensional h 2-o 2-ar detonation using a
+  detailed chemical reaction model.
+\newblock {\em Combustion and Flame}, 113(1):147--163, 1998.
+
+\bibitem{胡宗民2004爆轰波在弯管内传播过程数值分析}
+胡宗民，牟乾辉，张德良等.
+\newblock 爆轰波在弯管内传播过程数值分析.
+\newblock {\em 计算物理}, 21(5):408--414, 2004.
+
+\bibitem{lv2013development}
+Yu~Lv and Matthias Ihme.
+\newblock Development of discontinuous galerkin method for detonation and
+  supersonic combustion.
+\newblock {\em AIAA Paper}, 688:2013, 2013.
+
+\bibitem{deiterding2005high}
+Ralf Deiterding and Georg Bader.
+\newblock High-resolution simulation of detonations with detailed chemistry.
+\newblock In {\em Analysis and Numerics for Conservation Laws}, pages 69--91.
+  Springer, 2005.
+
+\bibitem{eckett2000numerical}
+Christopher~A Eckett.
+\newblock {\em Numerical and analytical studies of the dynamics of gaseous
+  detonations}.
+\newblock PhD thesis, Citeseer, 2000.
+
+\bibitem{edwards1984propagation}
+DH~Edwards, JR~Walker, and MA~Nettleton.
+\newblock On the propagation of detonation waves along wedges.
+\newblock {\em Archivum Combustionis}, 4:197--209, 1984.
+
+\bibitem{guo2007cellular}
+Changming Guo, Changjian Wang, Shengli Xu, et~al.
+\newblock Cellular pattern evolution in gaseous detonation diffraction in a
+  90-branched channel.
+\newblock {\em Combustion and flame}, 148(3):89--99, 2007.
+
+\bibitem{wang2008gaseous}
+CJ~Wang, SL~Xu, and CM~Guo.
+\newblock Gaseous detonation propagation in a bifurcated tube.
+\newblock {\em Journal of Fluid Mechanics}, 599:81--110, 2008.
+
+\bibitem{hu2003numerical}
+X-Y Hu, D-L Zhang, and Z-L Jiang.
+\newblock Numerical simulation of gaseous detonation with detailed chemical
+  reaction model.
+\newblock {\em Acta Aerodynamica Sinica}, 21(1):59--66, 2003.
+
+\bibitem{roy2004pulse}
+GD~Roy, SM~Frolov, AA~Borisov, et~al.
+\newblock Pulse detonation propulsion: challenges, current status, and future
+  perspective.
+\newblock {\em Progress in Energy and Combustion Science}, 30(6):545--672,
+  2004.
+
+\bibitem{张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究}
+张薇，刘云峰，姜宗林等.
+\newblock 气相爆轰波胞格尺度与点火延迟时间关系研究.
+\newblock 2014.
+
+\bibitem{liu2008reconsideration}
+Yunfeng Liu and Zonglin Jiang.
+\newblock Reconsideration on the role of the specific heat ratio in arrhenius
+  law applications.
+\newblock {\em Acta Mechanica Sinica}, 24(3):261--266, 2008.
+
+\bibitem{strang1988linear}
+G.Strang.
+\newblock {\em Linear Algebra and its Applications, 3rd ed.}
+\newblock Fort Worth, TX: Harcourt Brace Jovanovich, 1988.
+
 \bibitem{ashgriz1991flair}
 Nasser Ashgriz and JY~Poo.
 \newblock Flair: Flux line-segment model for advection and interface
   reconstruction.
 \newblock {\em Journal of computational physics}, 93(2):449--468, 1991.
-
-\bibitem{aulisa2003mixed}
-Eugenio Aulisa, Sandro Manservisi, and Ruben Scardovelli.
-\newblock A mixed markers and volume-of-fluid method for the reconstruction and
-  advection of interfaces in two-phase and free-boundary flows.
-\newblock {\em Journal of Computational Physics}, 188(2):611--639, 2003.
 
 \bibitem{sussman2003second}
 Mark Sussman.
@@ -1452,17 +1919,6 @@ Shih-Hung Chang.
 \newblock In {\em Computational Fluid Dynamics Symposium on Aeropropulsion},
   volume~1, pages 215--225, 1991.
 
-\bibitem{tosatto2008numerical}
-Luca Tosatto and Luigi Vigevano.
-\newblock Numerical solution of under-resolved detonations.
-\newblock {\em Journal of Computational Physics}, 227(4):2317--2343, 2008.
-
-\bibitem{kotov2012spurious}
-DV~Kotov, HC~Yee, W~Wang, et~al.
-\newblock On spurious numerics in solving reactive equations.
-\newblock {\em Proceedings of the ASTRONUM-2012, The Big Island, Hawaii}, pages
-  24--28, 2012.
-
 \bibitem{evans1957particle}
 Martha~W Evans, Francis~H Harlow, and Eleazer Bromberg.
 \newblock The particle-in-cell method for hydrodynamic calculations.
@@ -1480,31 +1936,15 @@ J~Eddie Welch, Francis~Harvey Harlow, John~P Shannon, et~al.
 \newblock Technical report, Los Alamos Scientific Lab., Univ. of California, N.
   Mex., 1965.
 
-\bibitem{helzel2000modified}
-Christiane Helzel, Randall~J Leveque, and Gerald Warnecke.
-\newblock A modified fractional step method for the accurate approximation of
-  detonation waves.
-\newblock {\em SIAM Journal on Scientific Computing}, 22(4):1489--1510, 2000.
-
 \bibitem{artizi1989generalized}
 Matania Ben-Artzi.
 \newblock The generalized riemann problem for reactive flows.
 \newblock {\em Journal of Computational physics}, 81(1):70--101, 1989.
 
-\bibitem{hwang2000numerical}
-P~Hwang, RP~Fedkiw, B~Merriman, et~al.
-\newblock Numerical resolution of pulsating detonation waves.
-\newblock {\em DCJ}, 2:1, 2000.
-
 \bibitem{chipman1971stable}
 FH~Chipman.
 \newblock A-stable runge-kutta processes.
 \newblock {\em BIT Numerical Mathematics}, 11(4):384--388, 1971.
-
-\bibitem{chorin1976random}
-Alexandre~Joel Chorin.
-\newblock Random choice solution of hyperbolic systems.
-\newblock {\em Journal of Computational Physics}, 22(4):517--533, 1976.
 
 \bibitem{aslam2001level}
 Tariq~D Aslam.
@@ -1655,460 +2095,20 @@ Bram Van~Leer.
   upstream-centered finite-difference schemes for ideal compressible flow.
 \newblock {\em Journal of Computational Physics}, 23(3):263--275, 1977.
 
-\bibitem{shu1989efficient}
-Chi-Wang Shu and Stanley Osher.
-\newblock Efficient implementation of essentially non-oscillatory
-  shock-capturing schemes, ii.
-\newblock {\em Journal of Computational Physics}, 83(1):32--78, 1989.
-
 \bibitem{shen2010application}
 Yiqing Shen and Gecheng Zha.
 \newblock Application of low diffusion e-cusp scheme with high order weno
   scheme for chemical reacting flows.
 \newblock In {\em 40th Fluid Dynamics Conference and Exhibit}, page 4995, 2010.
 
-\bibitem{zha2004low}
-Ge-Cheng Zha.
-\newblock A low diffusion e-cusp upwind scheme for transonic flows.
-\newblock In {\em 34th AIAA Fluid Dynamics Conference and Exhibit}, page 2707,
-  2004.
-
 \bibitem{soloukhin1966multiheaded}
 RI~Soloukhin.
 \newblock Multiheaded structure of gaseous detonation.
 \newblock {\em Combustion and Flame}, 10(1):51--58, 1966.
 
-\bibitem{borges2008improved}
-Rafael Borges, Monique Carmona, Bruno Costa, and Wai~Sun Don.
-\newblock An improved weighted essentially non-oscillatory scheme for
-  hyperbolic conservation laws.
-\newblock {\em Journal of Computational Physics}, 227(6):3191--3211, 2008.
-
-\bibitem{wang2001optimized}
-Zhi~Jian Wang and RF~Chen.
-\newblock Optimized weighted essentially nonoscillatory schemes for linear
-  waves with discontinuity.
-\newblock {\em Journal of Computational Physics}, 174(1):381--404, 2001.
-
-\bibitem{jiang1996efficient}
-Guang-Shan Jiang and Chi-Wang Shu.
-\newblock Efficient implementation of weighted eno schemes.
-\newblock {\em Journal of computational physics}, 126(1):202--228, 1996.
-
-\bibitem{cockburn1994nonlinearly}
-Bernardo Cockburn and Chi-Wang Shu.
-\newblock Nonlinearly stable compact schemes for shock calculations.
-\newblock {\em SIAM Journal on Numerical Analysis}, 31(3):607--627, 1994.
-
-\bibitem{pirozzoli2011numerical}
-Sergio Pirozzoli.
-\newblock Numerical methods for high-speed flows.
-\newblock {\em Annual review of fluid mechanics}, 43:163--194, 2011.
-
-\bibitem{zhou2007new}
-Qiang Zhou, Zhaohui Yao, Feng He, et~al.
-\newblock A new family of high-order compact upwind difference schemes with
-  good spectral resolution.
-\newblock {\em Journal of Computational Physics}, 227(2):1306--1339, 2007.
-
-\bibitem{li2010hybrid}
-Gang Li and Jianxian Qiu.
-\newblock Hybrid weighted essentially non-oscillatory schemes with different
-  indicators.
-\newblock {\em Journal of Computational Physics}, 229(21):8105--8129, 2010.
-
-\bibitem{qiu2005comparison}
-Jianxian Qiu and Chi-Wang Shu.
-\newblock A comparison of troubled-cell indicators for runge--kutta
-  discontinuous galerkin methods using weighted essentially nonoscillatory
-  limiters.
-\newblock {\em SIAM Journal on Scientific Computing}, 27(3):995--1013, 2005.
-
-\bibitem{zhu2009adaptive}
-Hongqiang Zhu and Jianxian Qiu.
-\newblock Adaptive runge--kutta discontinuous galerkin methods using different
-  indicators: one-dimensional case.
-\newblock {\em Journal of Computational Physics}, 228(18):6957--6976, 2009.
-
-\bibitem{cockburn1989tvb}
-Bernardo Cockburn and Chi-Wang Shu.
-\newblock Tvb runge-kutta local projection discontinuous galerkin finite
-  element method for conservation laws. ii. general framework.
-\newblock {\em Mathematics of computation}, 52(186):411--435, 1989.
-
-\bibitem{xu2005anti}
-Zhengfu Xu and Chi-Wang Shu.
-\newblock Anti-diffusive flux corrections for high order finite difference weno
-  schemes.
-\newblock {\em Journal of Computational Physics}, 205(2):458--485, 2005.
-
-\bibitem{biswas1994parallel}
-Rupak Biswas, Karen~D Devine, and Joseph~E Flaherty.
-\newblock Parallel, adaptive finite element methods for conservation laws.
-\newblock {\em Applied Numerical Mathematics}, 14(1-3):255--283, 1994.
-
-\bibitem{krivodonova2004shock}
-Lilia Krivodonova, J~Xin, J-F Remacle, Nicolas Chevaugeon, and Joseph~E
-  Flaherty.
-\newblock Shock detection and limiting with discontinuous galerkin methods for
-  hyperbolic conservation laws.
-\newblock {\em Applied Numerical Mathematics}, 48(3-4):323--338, 2004.
-
-\bibitem{woodward1984numerical}
-Paul Woodward and Phillip Colella.
-\newblock The numerical simulation of two-dimensional fluid flow with strong
-  shocks.
-\newblock {\em Journal of computational physics}, 54(1):115--173, 1984.
-
-\bibitem{yee2007development}
-HC~Yee and Bj{\"o}rn Sj{\"o}green.
-\newblock Development of low dissipative high order filter schemes for
-  multiscale navier--stokes/mhd systems.
-\newblock {\em Journal of Computational Physics}, 225(1):910--934, 2007.
-
-\bibitem{balbas2004non}
-Jorge Balb{\'a}s, Eitan Tadmor, and Cheng-Chin Wu.
-\newblock Non-oscillatory central schemes for one-and two-dimensional mhd
-  equations: I.
-\newblock {\em Journal of Computational Physics}, 201(1):261--285, 2004.
-
-\bibitem{gaitonde1999development}
-Datta~V Gaitonde.
-\newblock Development of a solver for 3-d non-ideal magnetogasdynamics.
-\newblock {\em AIAA paper}, 99:3610, 1999.
-
-\bibitem{shen2012cusp}
-Yiqing Shen, Gecheng Zha, and Manuel~A Huerta.
-\newblock E-cusp scheme for the equations of ideal magnetohydrodynamics with
-  high order weno scheme.
-\newblock {\em Journal of Computational Physics}, 231(19):6233--6247, 2012.
-
-\bibitem{brio1988upwind}
-Moysey Brio and Cheng~Chin Wu.
-\newblock An upwind differencing scheme for the equations of ideal
-  magnetohydrodynamics.
-\newblock {\em Journal of computational physics}, 75(2):400--422, 1988.
-
-\bibitem{dai1994approximate}
-Wenlong Dai and Paul~R Woodward.
-\newblock An approximate riemann solver for ideal magnetohydrodynamics.
-\newblock {\em Journal of Computational Physics}, 111(2):354--372, 1994.
-
-\bibitem{janhunen2000positive}
-Pekka Janhunen.
-\newblock A positive conservative method for magnetohydrodynamics based on hll
-  and roe methods.
-\newblock {\em Journal of Computational Physics}, 160(2):649--661, 2000.
-
-\bibitem{honkkila2007hllc}
-Ville Honkkila and Pekka Janhunen.
-\newblock Hllc solver for ideal relativistic mhd.
-\newblock {\em Journal of Computational Physics}, 223(2):643--656, 2007.
-
-\bibitem{gurski2004hllc}
-Katharine~F Gurski.
-\newblock An hllc-type approximate riemann solver for ideal
-  magnetohydrodynamics.
-\newblock {\em SIAM Journal on Scientific Computing}, 25(6):2165--2187, 2004.
-
-\bibitem{miyoshi2005multi}
-Takahiro Miyoshi and Kanya Kusano.
-\newblock A multi-state hll approximate riemann solver for ideal
-  magnetohydrodynamics.
-\newblock {\em Journal of Computational Physics}, 208(1):315--344, 2005.
-
-\bibitem{lombard1983multi}
-CK~Lombard, J~Bardina, E~Venkatapathy, et~al.
-\newblock Multi-dimensional formulation of cscm-an upwind flux difference
-  eigenvector split method for the compressible navier-stokes equations.
-\newblock In {\em 6th Computational Fluid Dynamics Conference}, pages 649--664,
-  1983.
-
-\bibitem{maccormackupwind}
-RW~MacCormack.
-\newblock An upwind conservation form method for ideal magnetohydrodynamics
-  equations, aiaa, 1999.
-
-\bibitem{maccormack2010non}
-Robert~W MacCormack.
-\newblock Non-equilibrium ionized flow simulations within strong
-  electro-magnetic fields.
-\newblock In {\em 48th AIAA Aerospace Sciences Meeting Including the New
-  Horizons Forum and Aerospace Exposition: Aerospace Sciences Meetings}, pages
-  2010--0225, 2010.
-
-\bibitem{liou1995progress}
-Meng-Sing Liou.
-\newblock Progress towards an improved cfd method: Ausm+.
-\newblock {\em AIAA paper}, 1701:155, 1995.
-
-\bibitem{liou2001ten}
-Meng-Sing Liou.
-\newblock {\em Ten Years in the Making: AUSM-family}.
-\newblock National Aeronautics and Space Administration, Glenn Research Center,
-  2001.
-
-\bibitem{hanel1987accuracy}
-D~H{\"a}nel, R~Schwane, and G~Seider.
-\newblock On the accuracy of upwind schemes for the solution of the
-  navier-stokes equations.
-\newblock {\em AIAA paper}, 1105:1987, 1987.
-
-\bibitem{edwards1997low}
-Jack~R Edwards.
-\newblock A low-diffusion flux-splitting scheme for navier-stokes calculations.
-\newblock {\em Computers \& Fluids}, 26(6):635--659, 1997.
-
-\bibitem{zhacomparative}
-GC~Zha.
-\newblock Comparative study of upwind scheme performance for entropy condition
-  and discontinuities, aiaa, 1999.
-\newblock Technical report, Paper 99-CP-3348, June 28-July 1.
-
-\bibitem{zha2004calculation}
-Ge-Cheng Zha and Zongjun Hu.
-\newblock Calculation of transonic internal flows using an efficient
-  high-resolution upwind scheme.
-\newblock {\em AIAA journal}, 42(2):205--214, 2004.
-
-\bibitem{zha2011improved}
-Ge-Cheng Zha, Yiqing Shen, and Baoyuan Wang.
-\newblock An improved low diffusion e-cusp upwind scheme.
-\newblock {\em Computers \& Fluids}, 48(1):214--220, 2011.
-
-\bibitem{agarwal1999comparative}
-RK~Agarwal, J~Augustinus, and DW~Halt.
-\newblock A comparative study of advection upwind split (ausm) and
-  wave/particle split (wps) schemes for fluid and mhd flows.
-\newblock In {\em AIAA 30th Plasmadynamics and Lasers Conference, AIAA Paper,
-  Norfolk, VA}, pages 99--3613, 1999.
-
-\bibitem{han2009accurate}
-Sang-Hoon Han, Jeong-Il Lee, and Kyu~Hong Kim.
-\newblock Accurate and robust pressure weight advection upstream splitting
-  method for magnetohydrodynamics equations.
-\newblock {\em AIAA journal}, 47(4):970, 2009.
-
-\bibitem{shang2001recent}
-JS~Shang.
-\newblock Recent research in magneto-aerodynamics.
-\newblock {\em Progress in Aerospace Sciences}, 37(1):1--20, 2001.
-
-\bibitem{powell1999solution}
-Kenneth~G Powell, Philip~L Roe, Timur~J Linde, et~al.
-\newblock A solution-adaptive upwind scheme for ideal magnetohydrodynamics.
-\newblock {\em Journal of Computational Physics}, 154(2):284--309, 1999.
-
-\bibitem{brackbill1980effect}
-Jeremiah~U Brackbill and Daniel~C Barnes.
-\newblock The effect of nonzero∇{\textperiodcentered} b on the numerical
-  solution of the magnetohydrodynamic equations.
-\newblock {\em Journal of Computational Physics}, 35(3):426--430, 1980.
-
-\bibitem{toth2000b}
-G{\'a}bor T{\'o}th.
-\newblock The∇{\textperiodcentered} b= 0 constraint in shock-capturing
-  magnetohydrodynamics codes.
-\newblock {\em Journal of Computational Physics}, 161(2):605--652, 2000.
-
-\bibitem{kim2005phase}
-Junseok Kim and John Lowengrub.
-\newblock Phase field modeling and simulation of three-phase flows.
-\newblock {\em Interfaces and free boundaries}, 7(4):435--466, 2005.
-
-\bibitem{strang1968construction}
-Gilbert Strang.
-\newblock On the construction and comparison of difference schemes.
-\newblock {\em SIAM Journal on Numerical Analysis}, 5(3):506--517, 1968.
-
-\bibitem{chou2007high}
-Ching-Shan Chou and Chi-Wang Shu.
-\newblock High order residual distribution conservative finite difference weno
-  schemes for convection--diffusion steady state problems on non-smooth meshes.
-\newblock {\em Journal of Computational Physics}, 224(2):992--1020, 2007.
-
-\bibitem{colella1982glimm}
-Phillip Colella.
-\newblock Glimm's method for gas dynamics.
-\newblock {\em SIAM Journal on Scientific and Statistical Computing},
-  3(1):76--110, 1982.
-
-\bibitem{courant1999supersonic}
-Richard Courant and Kurt~Otto Friedrichs.
-\newblock {\em Supersonic flow and shock waves}, volume~21.
-\newblock Springer Science \& Business Media, 1999.
-
-\bibitem{schultz2000validation}
-E~Schultz and J~Shepherd.
-\newblock Validation of detailed reaction mechanisms for detonation simulation.
-\newblock 2000.
-
-\bibitem{balakrishnan1994turbulent}
-G~Balakrishnan and FA~Williams.
-\newblock Turbulent combustion regimes for hypersonic propulsion employing
-  hydrogen-air diffusion flames.
-\newblock {\em Journal of Propulsion and Power}, 10(3):434--436, 1994.
-
-\bibitem{trotsyuk1999numerical}
-AV~Trotsyuk.
-\newblock Numerical simulation of the structure of two-dimensional gaseous
-  detonation of an h2-o2-ar mixture.
-\newblock {\em Combustion, Explosion and Shock Waves}, 35(5):549--558, 1999.
-
-\bibitem{guirao1989summary}
-CM~Guirao, R~Knystautas, and JHS Lee.
-\newblock {\em A summary of hydrogen-air detonation experiments}.
-\newblock Division of Systems Research, Office of Nuclear Regulatory Research,
-  US Nuclear Regulatory Commission, 1989.
-
-\bibitem{wang2006numerical}
-Chun Wang, De-liang Zhang, and Zong-lin Jiang.
-\newblock Numerical investigation of detonation sweeping on an interface of
-  inert gas and its decoupling.
-\newblock {\em Explosion and Shock Waves}, 26(6):556, 2006.
-
-\bibitem{bollinger1964experimental}
-Loren~E Bollinger.
-\newblock Experimental detonation velocities and induction distances in
-  hydrogen-air mixtures.
-\newblock {\em AIAA Journal}, 2(1):131--133, 1964.
-
-\bibitem{akbar1997mach}
-Raza Akbar.
-\newblock Mach reflection of gaseous detonations.
-\newblock 1997.
-
-\bibitem{oran1998numerical}
-Elaine~S Oran, James~W Weber, Eliza~I Stefaniw, Michel~H Lefebvre, and John~D
-  Anderson.
-\newblock A numerical study of a two-dimensional h 2-o 2-ar detonation using a
-  detailed chemical reaction model.
-\newblock {\em Combustion and Flame}, 113(1):147--163, 1998.
-
-\bibitem{胡宗民2004爆轰波在弯管内传播过程数值分析}
-胡宗民，牟乾辉，张德良等.
-\newblock 爆轰波在弯管内传播过程数值分析.
-\newblock {\em 计算物理}, 21(5):408--414, 2004.
-
-\bibitem{lv2013development}
-Yu~Lv and Matthias Ihme.
-\newblock Development of discontinuous galerkin method for detonation and
-  supersonic combustion.
-\newblock {\em AIAA Paper}, 688:2013, 2013.
-
-\bibitem{deiterding2005high}
-Ralf Deiterding and Georg Bader.
-\newblock High-resolution simulation of detonations with detailed chemistry.
-\newblock In {\em Analysis and Numerics for Conservation Laws}, pages 69--91.
-  Springer, 2005.
-
-\bibitem{eckett2000numerical}
-Christopher~A Eckett.
-\newblock {\em Numerical and analytical studies of the dynamics of gaseous
-  detonations}.
-\newblock PhD thesis, Citeseer, 2000.
-
-\bibitem{edwards1984propagation}
-DH~Edwards, JR~Walker, and MA~Nettleton.
-\newblock On the propagation of detonation waves along wedges.
-\newblock {\em Archivum Combustionis}, 4:197--209, 1984.
-
-\bibitem{guo2007cellular}
-Changming Guo, Changjian Wang, Shengli Xu, et~al.
-\newblock Cellular pattern evolution in gaseous detonation diffraction in a
-  90-branched channel.
-\newblock {\em Combustion and flame}, 148(3):89--99, 2007.
-
-\bibitem{wang2008gaseous}
-CJ~Wang, SL~Xu, and CM~Guo.
-\newblock Gaseous detonation propagation in a bifurcated tube.
-\newblock {\em Journal of Fluid Mechanics}, 599:81--110, 2008.
-
-\bibitem{hu2003numerical}
-X-Y Hu, D-L Zhang, and Z-L Jiang.
-\newblock Numerical simulation of gaseous detonation with detailed chemical
-  reaction model.
-\newblock {\em Acta Aerodynamica Sinica}, 21(1):59--66, 2003.
-
-\bibitem{liu2008reconsideration}
-Yunfeng Liu and Zonglin Jiang.
-\newblock Reconsideration on the role of the specific heat ratio in arrhenius
-  law applications.
-\newblock {\em Acta Mechanica Sinica}, 24(3):261--266, 2008.
-
-\bibitem{roy2004pulse}
-GD~Roy, SM~Frolov, AA~Borisov, et~al.
-\newblock Pulse detonation propulsion: challenges, current status, and future
-  perspective.
-\newblock {\em Progress in Energy and Combustion Science}, 30(6):545--672,
-  2004.
-
-\bibitem{张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究}
-张薇，刘云峰，姜宗林等.
-\newblock 气相爆轰波胞格尺度与点火延迟时间关系研究.
-\newblock 2014.
-
-\bibitem{H1999Low}
-H.C Yee, N.D Sandham, and M.J Djomehri.
-\newblock Low-dissipative high-order shock-capturing methods using
-  characteristic-based filters.
-\newblock {\em Journal of Computational Physics}, 150(1):199--238, 1999.
-
-\bibitem{Shen2009High}
-Yiqing Shen, Gecheng Zha, and Xiangying Chen.
-\newblock High order conservative differencing for viscous terms and the
-  application to vortex-induced vibration flows.
-\newblock {\em Journal of Computational Physics}, 228(22):8283--8300, 2009.
-
-\bibitem{Orszag1979Small}
-S.~A Orszag and C.~M Tang.
-\newblock Small-scale structure of two-dimensional magnetohydrodynamic
-  turbulence.
-\newblock {\em Journal of Fluid Mechanics}, 90(1):129--143, 1979.
-
-\bibitem{Balsara1999A}
-Dinshaw~S Balsara and Daniel~S Spicer.
-\newblock {\em A Staggered Mesh Algorithm Using High Order Godunov Fluxes to
-  Ensure Solenoidal Magnetic Fields in Magnetohydrodynamic Simulations}.
-\newblock Academic Press Professional, Inc., 1999.
-
-\bibitem{olsson2005conservative}
-Elin Olsson and Gunilla Kreiss.
-\newblock A conservative level set method for two phase flow.
-\newblock {\em Journal of computational physics}, 210(1):225--246, 2005.
-
 \bibitem{roy1999gaseous}
 Gabriel~D Roy, Sergei~M Frolov, Kazhikathra Kailasanath, et~al.
 \newblock Gaseous and heterogeneous detonations: science to applications.
 \newblock Technical report, DTIC Document, 1999.
-
-\bibitem{jiang1999high}
-Guang-Shan Jiang and Cheng-chin Wu.
-\newblock A high-order weno finite difference scheme for the equations of ideal
-  magnetohydrodynamics.
-\newblock {\em Journal of Computational Physics}, 150(2):561--594, 1999.
-
-\bibitem{ben1989generalized}
-Matania Ben-Artzi.
-\newblock The generalized riemann problem for reactive flows.
-\newblock {\em Journal of Computational physics}, 81(1):70--101, 1989.
-
-\bibitem{saurel1999multiphase}
-Richard Saurel and R{\'e}mi Abgrall.
-\newblock A multiphase godunov method for compressible multifluid and
-  multiphase flows.
-\newblock {\em Journal of Computational Physics}, 150(2):425--467, 1999.
-
-\bibitem{grosshans2014development}
-Holger Grosshans, R-Z Sz{\'a}sz, and Laszlo Fuchs.
-\newblock Development of an efficient statistical volumes of fluid--lagrangian
-  particle tracking coupling method.
-\newblock {\em International Journal for Numerical Methods in Fluids},
-  74(12):898--918, 2014.
-
-\bibitem{kothe1995comparison}
-Douglas~B Kothe and William~J Rider.
-\newblock A comparison of interface tracking methods.
-\newblock Technical report, Los Alamos National Lab., NM (United States), 1995.
 
 \end{thebibliography}

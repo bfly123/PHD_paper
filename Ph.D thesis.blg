@@ -4,7 +4,13 @@ The top-level auxiliary file: Ph.D thesis.aux
 The style file: unsrt.bst
 A level-1 auxiliary file: chapter/abstract.aux
 A level-1 auxiliary file: chapter/Chapter-Introduction.aux
+A level-1 auxiliary file: chapter/Chapter-Multi-WENO.aux
+A level-1 auxiliary file: chapter/Chapter-detector.aux
+A level-1 auxiliary file: chapter/Chapter-MHD.aux
+A level-1 auxiliary file: chapter/Chapter-Dual-Information-Method.aux
 A level-1 auxiliary file: chapter/Chapter-NP-method.aux
+A level-1 auxiliary file: chapter/Chapter-Stiff-Reaction.aux
+A level-1 auxiliary file: chapter/Chapter-elementary-Reaction.aux
 A level-1 auxiliary file: chapter/Chapter-Conclusion.aux
 A level-1 auxiliary file: chapter/Chapter-Scale.aux
 A level-1 auxiliary file: chapter/Chapter-2D-DIP.aux
@@ -13,7 +19,7 @@ A level-1 auxiliary file: chapter/Chapter_Conclution.aux
 A level-1 auxiliary file: chapter/pub.aux
 A level-1 auxiliary file: chapter/resume.aux
 A level-1 auxiliary file: chapter/thanks.aux
-Reallocated field_info (elt_size=4) to 10313 items from 5000.
+Reallocated field_info (elt_size=4) to 12199 items from 5000.
 Database file #1: bib/mybibfile.bib
 Repeated entry---line 1749 of file bib/mybibfile.bib
  : @book{lee2008detonation
@@ -139,6 +145,7 @@ Repeated entry---line 7225 of file bib/mybibfile.bib
  : @article{enright2005fast
  :                         ,
 I'm skipping whatever remains of this entry
+Warning--empty journal in Balsara1999A
 Warning--empty journal in glimm1970decay
 Warning--can't use both volume and number fields in smooke1988comparison
 Warning--empty year in zhacomparative
@@ -147,43 +154,43 @@ Warning--empty journal in akbar1997mach
 Warning--empty journal in 张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究
 You've used 367 entries,
             1791 wiz_defined-function locations,
-            2261 strings with 58744 characters,
-and the built_in function-call counts, 84353 in all, are:
-= -- 8114
+            2266 strings with 58926 characters,
+and the built_in function-call counts, 84509 in all, are:
+= -- 8133
 > -- 2939
-< -- 41
+< -- 42
 + -- 1146
 - -- 779
-* -- 6037
-:= -- 13115
+* -- 6047
+:= -- 13130
 add.period$ -- 1110
 call.type$ -- 367
-change.case$ -- 341
+change.case$ -- 342
 chr.to.int$ -- 0
-cite$ -- 373
-duplicate$ -- 3607
-empty$ -- 8511
+cite$ -- 374
+duplicate$ -- 3615
+empty$ -- 8521
 format.name$ -- 779
-if$ -- 18600
+if$ -- 18641
 int.to.chr$ -- 0
 int.to.str$ -- 367
-missing$ -- 378
+missing$ -- 377
 newline$ -- 1836
 num.names$ -- 367
-pop$ -- 736
+pop$ -- 734
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1505
+skip$ -- 1518
 stack$ -- 0
-substring$ -- 7270
-swap$ -- 636
-text.length$ -- 41
+substring$ -- 7298
+swap$ -- 644
+text.length$ -- 42
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 6
-while$ -- 972
+warning$ -- 7
+while$ -- 974
 width$ -- 370
 write$ -- 4009
 (There were 31 error messages)
