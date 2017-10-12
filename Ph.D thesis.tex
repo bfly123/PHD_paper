@@ -27,6 +27,10 @@
 \usepackage{amsmath,bm}
 \usepackage{cases}
 \usepackage{longtable}
+\usepackage{ccaption}
+\usepackage[labelfont=bf,font=small]{caption}
+\DeclareCaptionLabelSeparator{twospace}{\ ~}
+\captionsetup{labelsep=twospace}
 \usetikzlibrary{shapes.geometric, arrows,matrix,positioning,calc}
 %\usepackage[colorlinks,linkcolor=black,hyperindex,CJKbookmarks,dvipdfm]{hyperref}
 \usepackage{url} 
@@ -65,7 +69,8 @@
 
   % 中文封面内容
   \confidential{}
-\title{可压缩流动中间断问题的高分辨率数值求解方法及应用}            % 论文标题
+\title{可压缩流动中间断问题的高分辨率数值
+求解方法及应用}            % 论文标题
 %  \title{}
   \author{刘利}
   \advisor{申义庆~研究员}
@@ -117,21 +122,16 @@
 %% 正文部分
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mainmatter
-%  \include{chapter/Chapter-Introduction}
-%%\part{上部分}
-%\input{chapter/Part_I.tex}
+  \include{chapter/Chapter-Introduction}
 %  \include{chapter/Chapter-Multi-WENO}
 %  \include{chapter/Chapter-detector}
 %  \include{chapter/Chapter-MHD}
-%%%% \part{下部分}
-%%\input{chapter/Part_II.tex}
 % \include{chapter/Chapter-Dual-Information-Method}
 %  \include{chapter/Chapter-NP-method}
 %  \include{chapter/Chapter-Stiff-Reaction}
 %  \include{chapter/Chapter-elementary-Reaction}
-%%%%}
 %  \include{chapter/Chapter-Conclusion}
-%%
+%
 %%%   附录
 %  \appendix
 %\renewcommand{\appendixname}{Appendix~}
@@ -139,9 +139,9 @@
 %  \include{chapter/Chapter-2D-DIP}
 % \include{chapter/Chapter-Element-Parameter}
 %  \include{chapter/Chapter_Conclution}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 附件部分
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter
 
   % 参考文献

@@ -266,18 +266,19 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    \bf\songti\zihao{-4}
+    %\bf\songti\zihao{2}
         \hfill
       \CAST@label@confidential~
       \CASTunderline[100pt]{\CAST@value@confidential}
     \vskip \stretch{2}
-      \includegraphics[width=0.8\textwidth]{CASthes.png}
+      \includegraphics[width=0.7\textwidth]{CASthes.png}
     \vskip 10pt
-      \bf\heiti\zihao{-4} \CAST@value@degree\CAST@label@thesis
+      \bf\heiti\zihao{1} \CAST@value@degree\CAST@label@thesis
+    %  \bf\heiti\Huge \CAST@value@degree\CAST@label@thesis
     \vskip \stretch{2}
-      \bf\songti\zihao{2} \CASTunderline{~\CAST@value@title~}
+      \bf\songti\zihao{3} \CASTunderline{~\CAST@value@title~}
     \vskip \stretch{2}
-    \bf\fangsong\zihao{4}
+    \bf\fangsong\zihao{3}
     \def\tabcolsep{1pt}
     \def\arraystretch{1.5}
     \begin{tabular}{lc}
@@ -345,10 +346,10 @@
 }
 \fancypagestyle{plain}{%
   %  \thispagestyle{fancy}
-  \pagestyle{fancy}
-%  \fancyhead{}%
- % \renewcommand{\headrulewidth}{0pt}%
- % \renewcommand{\footrulewidth}{0pt}%
+ % \pagestyle{fancy}
+  \fancyhead{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
 }
 \pagestyle{fancy}
   \fancyhf{}
