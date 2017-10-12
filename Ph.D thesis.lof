@@ -4,10 +4,13 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces \bf 典型爆轰波压力曲线\cite {shepherd2009detonation}\relax }}{19}{figure.caption.6}
 \contentsline {figure}{\numberline {1.1}{\ignorespaces \bf A typical pressure distribution of detonation waves\relax }}{19}{figure.caption.6}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces 二维胞格结构示意图\cite {shepherd2009detonation}\relax }}{20}{figure.caption.7}
-\contentsline {figure}{\numberline {1.3}{\ignorespaces 一个典型的爆轰波虚假传播计算结果\cite {wang2012high}\relax }}{23}{figure.caption.8}
-\contentsline {figure}{\numberline {1.4}{\ignorespaces $2H_2+O_2+7Ar$反应组分摩尔比变化和激波前沿距离间关系\cite {powers2005accurate}\relax }}{25}{figure.caption.9}
-\contentsline {figure}{\numberline {1.5}{\ignorespaces $2H_2+O_2+7Ar$反应不同组分的长度尺度和激波前沿距离间关系\cite {powers2005accurate}\relax }}{25}{figure.caption.10}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces \bf 二维胞格结构示意图\cite {shepherd2009detonation}\relax }}{20}{figure.caption.7}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces \bf The structure of 2D cellulars\relax }}{20}{figure.caption.7}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces 一个典型的爆轰波虚假传播计算结果\cite {wang2012high}\relax }}{23}{figure.caption.8}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces \bf A typical spurious numerical result of the detonation wave\relax }}{23}{figure.caption.8}
+\contentsline {figure}{\numberline {1.5}{\ignorespaces $2H_2+O_2+7Ar$反应组分摩尔比变化和激波前沿距离间关系\cite {powers2005accurate}\relax }}{25}{figure.caption.9}
+\contentsline {figure}{\numberline {1.5}{\ignorespaces \bf Species mole fraction vs distance\relax }}{25}{figure.caption.9}
+\contentsline {figure}{\numberline {1.5}{\ignorespaces \bf Length scales vs distance\relax }}{26}{figure.caption.10}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

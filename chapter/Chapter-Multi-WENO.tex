@@ -1,13 +1,13 @@
 
 \XeTeXinputencoding "GB2312"
 \chapter{多步加权基本无振荡（Multistep WENO）格式}\label{chap:multiWENO}
-加权基本无振荡格式（WENO）自1994年由Liu等人\cite{liu1994weighted}提出，以及Jiang和Shu\cite{jiang1996efficient}改进以来，在这20年里已得到十分广泛的应用。WENO格式基本思想是将ENO格式\cite{harten1987uniformly}的最光滑子模板用所有子模板的凸组合重构代替。在WENO格式构造中，子模板权重函数的计算对格式的精度和无振荡特性的保持都十分重要。
+加权基本无振荡格式（WENO）自1994年由Liu等人\cite{liu1994weighted}提出及Jiang和Shu\cite{jiang1996efficient}改进以来，在近20年里已得到十分广泛的应用。WENO格式基本思想是将ENO格式\cite{harten1987uniformly}的最光滑子模板用所有子模板的凸组合重构代替。在WENO格式构造中，子模板权重函数的计算对格式的精度和无振荡特性的保持都十分重要。
 
 Jiang和Shu\cite{jiang1996efficient}分析了Liu等人\cite{liu1994weighted}引入的光滑因子，认为采用该光滑因子构造的权重函数只能让$r$阶ENO格式收敛到一个$r+1$阶WENO格式，他们在该文中，构造了一个经典的五阶WENO格式，并给出了构造光滑因子和权重函数的一般框架。2005年Henrick等人\cite{henrick2005mapped}指出，Jiang和Shu提出的光滑度量因子不能提高WENO格式在一阶导数为零的极值点精度，他们在该文章中构造了一个映射函数来得到极值点的最优精度。2008年，Borges等人\cite{borges2008improved}提出采用整体的五点模板来构造光滑因子取代Jiang和Shu经典的光滑因子。另一方面，学者们构造了一系列高于五阶的WENO格式\cite{balsara2000monotonicity,gerolymos2009very,wang2001optimized}。如Martin等人\cite{martin2006bandwidth}提出的$2r$阶精度的对称型WENO格式，可以达到更低耗散的效果。
 
 上面提到的WENO格式都是通过$r$阶精度的ENO格式来设计光滑区域到达$2r-1$或$2r$阶精度的WENO格式，它们的目的都是提高光滑区的精度，尤其是极值点（$f'_i=0$）的精度。但是，对于含有间断的问题，上述的方法在连接光滑区和间断区的过渡点，并不能达到理想精度。例如，Shen和Zha\cite{shen2014improvement}分析了各种五阶WENO格式，发现这些格式在过渡点精度只有三阶。这一缺点会影响五阶格式的整体表现，如在模拟激波诱导的分离流时或在模拟激波/湍流相互作用时。
 
-由于解在过渡区仍然是光滑的，理论上，该点的半点通量可以达到。换言之，可以通过四个点的光滑模板来构造一个四阶通量。在\cite{shen2014improvement}工作中，Shen和Zha引入了两个四阶的通量和一个判断通量光滑/间断的判别器来提高过渡点精度。Shen等人在更早的工作中\cite{shen2001fifth}，指出Jiang和Shu的经典的光滑因子$IS_K$在极值点不能满足$\beta_k=D(1+O(\Delta^2))$条件，并提出一种逐阶的重构方法来满足上述条件。但是这一方法在极值点并不满足五阶收敛的充分必要条件\cite{henrick2005mapped}。
+由于解在过渡区仍然是光滑的，理论上，该点的通量可以达到四阶。换言之，可以通过四个点的光滑模板来构造一个四阶通量。在\cite{shen2014improvement}工作中，Shen和Zha引入了两个四阶的通量和一个判断通量光滑/间断的判别器来提高过渡点精度。Shen等人在更早的工作中\cite{shen2001fifth}，指出Jiang和Shu的经典的光滑因子$IS_K$在极值点不能满足$\beta_k=D(1+O(\Delta^2))$条件，并提出一种逐阶的重构方法来满足上述条件。但是这一方法在极值点并不满足五阶收敛的充分必要条件\cite{henrick2005mapped}。
 
 本章我们基于\cite{shen2014improvement}的分析，
 提出了多步加权的思想，并结合WENO-Z格式及映射函数，给出了一个新的多步加权五阶WENO格式。该格式通过提高过渡点的精度，从而改进了近激波区域的计算精度，为研究激波/复杂流动干扰问题（如激波/边界层干扰引起的分离与再附、激波/涡干扰等）的研究提供了一个有效的数值方法。
@@ -35,7 +35,7 @@ LF方法给出的正负通量为
 \begin{equation}
   \frac{du_i(t)}{dt}=-\frac{1}{\Delta x}(h_{i+1/2}-h_{i-1/2})
 \end{equation}
-其中$h_{i+1/2}=h^+_{i+1/2}+h^-_{i+1/2}$。本文中，我们仅构造 $h^+_{i+1/2}$ 通量，为了简便，文中省略掉了上标 '+'，$h^-_{i+1/2}$的构造遵从相似的规律。
+其中$h_{i+1/2}=h^+_{i+1/2}+h^-_{i+1/2}$。本文中，我们仅构造 $h^+_{i+1/2}$ 通量，为了简便，文中省略掉了上标 `+'，$h^-_{i+1/2}$的构造遵从相似的规律。
 \subsection{加权基本无振荡/WENO格式\cite{jiang2001weighted,henrick2005mapped,borges2008improved}} \label{chap:WENO}
 五阶WENO格式的通量为
 \begin{equation}
@@ -125,7 +125,12 @@ WENO-M格式过$g_k(\omega)$生成新的权重，该格式可以在极值点达到五阶收敛精度。
 \begin{figure}
   \centering
   \includegraphics[width=10cm]{transition_point.png}
-  \caption{过渡点示意图\cite{shen2014improvement}}
+  \caption{\bf 过渡点示意图\cite{shen2014improvement}}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+ \caption{\bf The sketch of transition point}
   \label{transition}
 \end{figure}
 
@@ -209,6 +214,11 @@ $$S_{(i-1)-1/2}^5=(x_{i-4},x_{i-3},\cdots,x_i)$$
   \centering
   \includegraphics[width=10cm]{chap_multi_fig1.png}
   \caption{多步重构过程示意图}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+ \caption{\bf Multistep constructing process}
   \label{fig:illu_multi}
 \end{figure}
 
@@ -318,7 +328,12 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
   \small
   \centering
 \setlength{\belowcaptionskip}{10pt}
-\caption{\small 不同格式精度对比，$T=2$}
+\caption{\bf 不同格式精度对比，$t=2$}
+ \addtocounter{table}{-1}
+\vspace{0.5pt}
+%\SetEnglishCaption
+\renewcommand{\tablename}{Table}
+ \caption{\bf Comparison of accuracy, $T=2$}
   \begin{tabular}{cccccc}
 	\toprule
 	Scheme        & N       & $L_1$ error  & $L_1$ order & $L_{\infty}$ error & $L_{\infty}$ order \\
@@ -348,7 +363,7 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 	  u_0(x)=\left\{
 		\begin{array}{l}
 		  \displaystyle -\text{sin}(\pi x) -\frac{1}{2}x^3, \hspace{0.2cm} -1<x\leqslant 0,\\[0.5em]
-		 \displaystyle  -\text{sin}（\pi x)-\frac{1}{2}x^3+1, \hspace{0.2cm}, 0<x\leqslant 1,\\
+		 \displaystyle  -\text{sin}(\pi x)-\frac{1}{2}x^3+1, \hspace{0.2cm}, 0<x\leqslant 1,\\
 \end{array}
 \right.
 \end{equation}
@@ -361,7 +376,12 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 
   (b)
   \includegraphics[width=10cm]{chap2_fig2.png}
-  \caption{初始条件 (\ref{eq:linear1}) 下的计算结果对比，$t=6$}
+  \caption{\bf 初始条件 (\ref{eq:linear1}) 下的计算结果对比，$\bf t=6$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical result with the initial solution Eq (\ref{eq:linear1}), $\bf t=6$}
   \label{fig:linear2}
 \end{figure}
 
@@ -389,7 +409,12 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
   \centering
   \includegraphics[width=10cm]{chap_multi_fig2.png}
   \includegraphics[width=10cm]{chap_multi_fig3.png}
-  \caption{(a) 初始条件  \ref{eq:linear3} 下计算结果对比，$t=6$， (b) 局部放大图}
+  \caption{ \bf (a) 初始条件  \ref{eq:linear3} 下计算结果对比，$ \bf t=6$， (b) 局部放大图}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf (a) Numerical results with the initial equation  (\ref{eq:linear3}), $\bf t=6$, (b) Locally enlarged plot of Figure \ref{fig:linear3}(a)}
   \label{fig:linear3}
 \end{figure}
 
@@ -397,7 +422,12 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
   \centering
   \includegraphics[width=10cm]{chap_multi_fig4.png}
   \includegraphics[width=10cm]{chap_multi_fig5.png}
-  \caption{(a) 初始条件 (\ref{eq:linear3}) 下计算结果对比，$t=6$， (b) 局部放大图}
+  \caption{\bf (a) 初始条件 (\ref{eq:linear3}) 下计算结果对比，$\bf t=6$， (b) 局部放大图}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf (a) Numerical results with the initial equation  (\ref{eq:linear3}), $\bf t=6$, (b) Locally enlarged plot of Figure \ref{fig:linear4}(a)}
   \label{fig:linear4}
 \end{figure}
 
@@ -417,7 +447,12 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 \begin{figure}
   \centering
   \includegraphics[width=10cm]{chap_multi_fig6.png}
-  \caption{非线性对流方程  (\ref{eq:unlinear_transport}) 下计算结果对比，$t=2$}
+  \caption{\bf 非线性对流方程  (\ref{eq:unlinear_transport}) 下计算结果对比，$\bf t=2$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical results of nonlinear transport equation (\ref{eq:unlinear_transport}), $ \bf t=2$}
   \label{chap_multi_fig6}
 \end{figure}
 
@@ -444,7 +479,12 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 \begin{figure}
   \centering
   \includegraphics[width=10cm]{chap_multi_fig7.png}
-  \caption{Sod 激波管，密度，$t=0.14$}
+  \caption{\bf Sod 激波管，密度，$\bf t=0.14$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Density, Sod problem, $ \bf t=2$}
   \label{chap_multi_fig7}
 \end{figure}
 
@@ -465,7 +505,12 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 \begin{figure}
   \centering
   \includegraphics[width=10cm]{chap_multi_fig8.png}
-  \caption{Lax 激波管，密度，$t=1.3$}
+  \caption{\bf Lax 激波管，密度，$\bf t=1.3$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Density, Lax problem, $ \bf t=1.3$}
   \label{fig:multi_fig8}
 \end{figure}
 
@@ -485,7 +530,13 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 \begin{figure}
   \centering
   \includegraphics[width=10cm]{chap_multi_fig9.png}
-  \caption{Shu-Osher问题算例，密度，$t=1.8$}
+  \caption{\bf Shu-Osher问题算例，密度，$\bf t=1.8$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Density, Shu-Osher  problem, $ \bf t=1.8$}
+
   \label{fig:multi_fig9}
 \end{figure}
 
@@ -494,7 +545,12 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 \begin{figure}
   \centering
   \includegraphics[width=10cm]{chap_multi_fig10.png}
-  \caption{Shu-Osher问题算例，不同网格下的计算结果，$t=1.8$}
+  \caption{\bf Shu-Osher问题算例，不同网格下的计算结果，$\bf t=1.8$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Density, present method with different meshes, Shu-osher problem,$ \bf t=1.8$}
   \label{fig:multi_fig10}
 \end{figure}
 
@@ -514,10 +570,16 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 \end{enumerate}
 
 
+
 \begin{figure}
   \centering
   \includegraphics[width=10cm]{chap_multi_fig11.png}
-  \caption{冲击波相互作用算例，密度，$t=0.038$}
+  \caption{\bf 冲击波相互作用算例，密度，$\bf t=0.038$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Density, interacting blast waves problem, $ \bf t=0.038$}
   \label{fig:multi_fig11}
 \end{figure}
 
@@ -537,7 +599,13 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
   \small
   \centering
 %\setlength{\belowcaptionskip}{10pt}
-\caption{\small 2D线性对流传播方程算例中不同格式计算精度对比，$T=2$}
+\caption{\bf 2D线性对流传播方程算例中不同格式计算精度对比，$\bf T=2$}
+ \addtocounter{table}{-1}
+\vspace{0.5pt}
+%\SetEnglishCaption
+\renewcommand{\tablename}{Table}
+\caption{\bf The accuracy in 2D case, $ \bf t=2$}
+
   \begin{tabular}{cccccc}
 	\toprule
 	Scheme        & N       & $L_1$ error  & $L_1$ order & $L_{\infty}$ error & $L_{\infty}$ order \\
@@ -595,7 +663,12 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
   \centering
   \includegraphics[width=10cm]{chap_multi_fig12.png}
   \includegraphics[width=10cm]{chap_multi_fig13.png}
-  \caption{二维变系数线性对流方程 (\ref{eq:2d_linear}) 算例，(a) 新方法计算结果， (b) 线$x=-0.02$，$-0.48$，$-0.52$上结果比较}
+  \caption{\bf 二维变系数线性对流方程 (\ref{eq:2d_linear}) 算例，(a) 新方法计算结果， (b) 直线$\bf x=-0.02$，$\bf -0.48$，$\bf -0.52$上结果比较}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf(a) Numerical results of Equation (25), present scheme. (b) Comparisons along lines of $\bf x=-0.02$，$\bf -0.48$，$\bf -0.52$,  Equation (\ref{eq:2d_linear})}
   \label{fig:multi_fig12}
 \end{figure}
 
@@ -604,7 +677,13 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 \begin{figure}[htb]
   \centering
   \includegraphics[width=10cm]{chap_multi_fig14.png}
-  \caption{激波/涡相互作用算例，压力分布}
+  \caption{\bf 激波/涡相互作用算例，压力分布}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf The pressure contours of present method, shock/vortex interaction problem}
+
   \label{fig:multi_fig14}
 \end{figure}
 
@@ -614,14 +693,24 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
   \includegraphics[width=7.cm]{chap_multi_fig16.png}
 
   \includegraphics[width=7.cm]{chap_multi_fig17.png}
-  \caption{激波/涡相互作用算例，(a) 中轴线$y=0.5$上压力分布，(b) 波峰局部放大图，(c) 波谷局部放大图}
+  \caption{\bf 激波/涡相互作用算例，(a) 中轴线$\bf y=0.5$上压力分布，(b) 波峰局部放大图，(c) 波谷局部放大图}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf (a) The pressure distribution along the center line of $\bf y=0.5$, (b) locally enlarged plot of Figure \ref{fig:multi_fig15} (a), and (c) locally enlarged plot of Figure \ref{fig:multi_fig15} (a)}
   \label{fig:multi_fig15}
 \end{figure}
 
 \begin{figure}[htb]
   \centering
   \includegraphics[width=10cm]{chap_multi_fig18.png}
-  \caption{激波/涡相互作用算例不同网格下计算结果，中轴线$y=0.5$上压力分布及局部放大图}
+  \caption{\bf 激波/涡相互作用算例不同网格下计算结果，中轴线$\bf y=0.5$上压力分布及局部放大图}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf  The pressure distribution along the center line of $\bf y=0.5$, present method}
   \label{fig:multi_fig16}
 \end{figure}
 
@@ -706,7 +795,11 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 \begin{figure}[htb]
   \centering
   \includegraphics[width=10cm]{chap_multi_fig19.png}
-  \caption{激波/剪切层相互作用算例，密度等值线，$T=120$}
+  \caption{\bf 激波/剪切层相互作用算例，密度等值线，$\bf t=120$}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf  The density contours, shock shear layer interaction problem, $\bf t=120$}
   \label{fig:multi_fig17}
 \end{figure}
 

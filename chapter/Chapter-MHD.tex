@@ -1,9 +1,9 @@
 
 \XeTeXinputencoding "GB2312"
 \chapter{有限紧致格式在理想磁流体中的应用} \label{chap:MHD}
-如前文小节 \ref{chap:Intro_MHD} 中所述，理想磁流体（MHD）方程尽管是模拟磁流体的最简单自恰系统，但是由于电磁场和流场的耦合作用，仍然较Euler方程更为复杂，包括更多的波速、更复杂的特征值系统、非严格双曲特性和更丰富的流场结构等。
+如前文小节 \ref{chap:Intro_MHD} 中所述，理想磁流体（MHD）方程尽管是模拟磁流体的最简单自恰系统，但是由于电磁场和流场的耦合作用，仍然较Euler方程更为复杂，包括更多的波速、更庞大的特征值系统、非严格双曲特性和更丰富的流场结构等。
 
-由于MHD特征系统的复杂性，发展适合MHD方程的近似黎曼求解器是一项困难的工作。在MHD求解的早期工作中，很多常见的通量差分分裂方法都被发展到MHD求解中，如Roe求解器\cite{brio1988upwind,roe1996notes,dai1994approximate}、HLL求解器\cite{janhunen2000positive}和HLLC求解器\cite{gurski2004hllc,honkkila2007hllc,miyoshi2005multi}等。由于MHD方程对于特征变量并不是一次齐次的，因此不能直接采用流通矢量方法，MacCormack通过引入额外变量$\tilde{a}$ \cite{maccormack2010non,maccormackupwind}将\cite{lombard1983multi}中的方法推广到MHD求解中。然而，由于流通矢量分裂方法基于特征值和特征向量运算，在MHD方程中，该类方法会异常复杂。
+由于MHD特征系统的复杂性，发展适合MHD方程的近似黎曼求解器是一项困难的工作。在MHD求解的早期工作中，很多常见的通量差分分裂方法都被发展到MHD求解中，如Roe求解器\cite{brio1988upwind,roe1996notes,dai1994approximate}、HLL求解器\cite{janhunen2000positive}和HLLC求解器\cite{gurski2004hllc,honkkila2007hllc,miyoshi2005multi}等。由于MHD方程对于特征变量并不是一次齐次的，因此不能直接采用流通矢量方法，MacCormack通过引入额外变量$\tilde{a}$ \cite{maccormack2010non,maccormackupwind}将\cite{lombard1983multi}中的方法推广到MHD求解中。然而，由于流通矢量分裂方法基于特征值和特征向量运算，在MHD方程中，该类方法会异常繁琐。
 
 近些年，对流迎风分离压力（convection upwind splitting pressure/CUSP）类方法在流体力学求解中取得巨大成功，如章节 \ref{riemann_solver} 中所介绍的，包括Liou等人提出的AUSM系列格式\cite{liou1993new,wadaaccurate,liou1995progress,liou1996sequel,liou2001ten}、Van Leer  H\"{a}nel 格式\cite{hanel1987accuracy}和Edwards等人提出的LDFSS格式\cite{edwards1997low}等。这些格式都属于H-CUSP类格式。然而，总焓$H$并不能沿传播方向保持守恒，而总能$E$却是守恒的\cite{zha2004low,zha1993numerical}，据此，Zha等人提出在对流项使用总能的E-CUSP格式\cite{zha1993numerical,zha1999numerical,zhacomparative,zha2004calculation,zha2011improved}，在流体力学方程求解中取得了很好的结果。
 
@@ -157,7 +157,7 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 		\end{array}
 	  \end{equation*}
 	  $F_n$,$G_n$,$H_n$ ($n=6,7,8$) 是方程(\ref{eq1_2}) 的三个空间维度通量的第$n$个分量。
-	  第n通量。
+
   二维情况下，通量可简化为:
 	  \begin{equation*}
 		\begin{array}{l}
@@ -189,7 +189,12 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
   \small
   \centering
 \setlength{\belowcaptionskip}{10pt}
-\caption{\small Alfv\'{e}n波算例，不同格式精度对比，$T=5$}
+\caption{\bf Alfv\'{e}n波算例，不同格式精度对比，$\bf t=5$}
+ \addtocounter{table}{-1}
+\vspace{0.5pt}
+%\SetEnglishCaption
+\renewcommand{\tablename}{Table}
+\caption{\bf Comparison of accuracy, Alfv\'{e} wave, $\bf t=5$}
   \begin{tabular}{cccccc}
 	\toprule
 	Scheme        & $N_x\times N_y$       & $L_1$ error  & $L_1$ order & $L_{\infty}$ error & $L_{\infty}$ order \\
@@ -222,7 +227,12 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
   \centering
   \includegraphics[width=5cm,height=5cm]{tang_WENO.png}
   \includegraphics[width=5.2cm,height=4.87cm]{tang_FC.png}
-\caption{Orzag-Tang 湍流算例，不同格式计算结果，密度等值线}
+\caption{\bf Orzag-Tang 湍流算例，不同格式计算结果，密度等值线}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+ \caption{\bf  The density contours, Orzag-Tang turbulence problem}
 \label{fig:tang}
 \end{figure}
 
@@ -230,6 +240,11 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
   \centering
   \includegraphics[width=8cm]{tang_line.png}
   \caption{Orzag-Tang 湍流算例，不同格式在直线$y=1$上的计算结果，密度}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+ \caption{\bf Density  distribution along the line $y=1.0$, Orzag-Tang turbulence problem}
   \label{fig:tang_line}
 \end{figure}
 

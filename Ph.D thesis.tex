@@ -28,7 +28,7 @@
 \usepackage{cases}
 \usepackage{longtable}
 \usepackage{ccaption}
-\usepackage[labelfont=bf,font=small]{caption}
+\usepackage[justification=centering,labelfont=bf,font=small]{caption}
 \DeclareCaptionLabelSeparator{twospace}{\ ~}
 \captionsetup{labelsep=twospace}
 \usetikzlibrary{shapes.geometric, arrows,matrix,positioning,calc}
@@ -113,9 +113,9 @@
   % 目录
   \tableofcontents\thispagestyle{fancy}
   % 表格目录
-  \listoftables\thispagestyle{fancy}
+%  \listoftables\thispagestyle{fancy}
   % 插图目录
-  \listoffigures\thispagestyle{fancy}
+%  \listoffigures\thispagestyle{fancy}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -125,7 +125,7 @@
   \include{chapter/Chapter-Introduction}
 %  \include{chapter/Chapter-Multi-WENO}
 %  \include{chapter/Chapter-detector}
-%  \include{chapter/Chapter-MHD}
+  \include{chapter/Chapter-MHD}
 % \include{chapter/Chapter-Dual-Information-Method}
 %  \include{chapter/Chapter-NP-method}
 %  \include{chapter/Chapter-Stiff-Reaction}
@@ -150,13 +150,13 @@
   \nocite{*}
 
   % 发表文章目录
- \include{chapter/pub}
+ %\include{chapter/pub}
 %
 %  % 个人简历
-  \include{chapter/resume}
+  %\include{chapter/resume}
 %
 %  % 致谢
 %
-  \include{chapter/thanks}
+%  \include{chapter/thanks}
 
 \end{document}

@@ -25,9 +25,14 @@
 \contentsline {subsubsection}{\numberline {1.4.3.1}爆轰波理论}{19}{subsubsection.1.4.3.1}
 \contentsline {subsubsection}{\numberline {1.4.3.2}源项数值刚性问题的时间方法}{21}{subsubsection.1.4.3.2}
 \contentsline {subsubsection}{\numberline {1.4.3.3}刚性化学反应流动问题}{22}{subsubsection.1.4.3.3}
-\contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{24}{subsubsection.1.4.3.4}
+\contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{25}{subsubsection.1.4.3.4}
 \contentsline {section}{\numberline {1.5}本文所开展研究内容}{26}{section.1.5}
-\contentsline {chapter}{参考文献}{29}{chapter*.11}
-\contentsline {chapter}{发表文章目录}{57}{chapter*.12}
-\contentsline {chapter}{简\CTEX@spaceChar \CTEX@spaceChar 历}{59}{chapter*.13}
-\contentsline {chapter}{致\CTEX@spaceChar \CTEX@spaceChar 谢}{61}{chapter*.14}
+\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}有限紧致格式在理想磁流体中的应用}{29}{chapter.2}
+\contentsline {section}{\numberline {2.1}数值方法}{30}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}E-CUSP近似黎曼求解器\cite {shen2012cusp}}{30}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}限制输运（Constrained Transport/CT）方法 \cite {Balsara1999A} }{32}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}数值算例}{33}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}二维旋转偏振Alfv\'{e}n波\cite {toth2000b}}{33}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Orzag-Tang MHD湍流问题}{33}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}小结}{35}{section.2.3}
+\contentsline {chapter}{参考文献}{37}{chapter*.12}
