@@ -1,33 +1,33 @@
 \XeTeXinputencoding "GB2312"
 \chapter{DIP方法在刚性化学反应流动中的应用}\label{chap:stiff_reaction}
 在爆轰波的计算中，除了可能存在如上一章所讨论的由于ODE方程刚性所导致的时间求解问题外，
-还可能产生一种纯粹由空间处理不当而导致非物理解现象，与时间刚性问题相对应，这种问题可称为空间刚性问题。事实上，空间刚性问题也并没有严格的定义，如在文\cite{colella1986theoretical}中，该问题是指爆轰波波速或爆轰波结构可能会出现虚假结果的现象。
-\section{空间刚性问题形成过程的分析}
-空间刚性问题的研究主要针对的是有化学反应源项的Euler方程系统，即方程组 (\ref{eq1_4})。然而该方程系统由于耦合了流动和反应过程，对于分析问题而言过分复杂。 
+还可能产生一种由空间处理不当而导致非物理解现象，与时间刚性问题相对应，这种问题可以称为空间刚性问题。如在文\cite{colella1986theoretical}中，该问题是指爆轰波波速或爆轰波结构可能会出现虚假结果的现象。
+\section{空间刚性问题形成过程的简单分析}
+空间刚性问题的研究主要针对的是有反应源项的Euler方程系统，即方程组 (\ref{eq1_4})。然而该方程系统由于耦合了流动和反应过程，对于分析问题而言过分复杂。 
 1990年 Yee等人发现即便在含源项的线性对流方程 (\ref{eq:linear_source}) 中，也可能存在空间刚性问题。下面我们就该方程简单的分析非物理解产生的过程和原因。
 \begin{equation}\label{eq:linear_source}
 \frac{\partial z}{\partial t}+  \frac{\partial z}{\partial x}=-\mu z(z-0.5)(z-1) 
 \end{equation}
-对于方程 (\ref{eq:linear_source})，为了便于分析问题和进行求解，通常采用算子分裂的方法，将该方程分裂成对流步和反应ODE步两部分，即
-\begin{equation}\label{eq:A_step}
-  \hspace{-1.2cm} 	\text{对流步（A）:} \hspace{0.3cm}  
-\frac{\partial z}{\partial t}+  \frac{\partial z}{\partial x}=0
-\end{equation}
-\begin{equation}\label{eq:R_step}
-	\text{反应步（R）:} \hspace{0.3cm}  
-	\frac{dz}{dt}=-\mu z(z-0.5)(z-1)
-	\end{equation}
-	然后采用一阶分裂算法
-\begin{eqnarray}
-  Z^{n+1}=R(\Delta t) A (\Delta t)
-\end{eqnarray}
-	或者二阶Strang分裂\cite{strang1968construction}算法
-\begin{eqnarray}
-  Z^{n+1}=A(\frac{\Delta t}{2})R(\Delta t) A (\frac{\Delta t}{2})
-\end{eqnarray}
-进行计算。
-
-方程 (\ref{eq:linear_source}) 中的$\mu$是可调参数，如果$\mu$很大时候，ODE方程 (\ref{eq:R_step}) 会存在时间刚性，为了避免时间刚性对求解的影响，采用稳定性好的ODE求解方法，如NP格式，进行求解。为了便于说明问题，这里采用一种特殊的初始条件
+%对于方程 (\ref{eq:linear_source})，为了便于分析问题和进行求解，通常采用算子分裂的方法，将该方程分裂成对流步和反应ODE步两部分，即
+%\begin{equation}\label{eq:A_step}
+%  \hspace{-1.2cm} 	\text{对流步（A）:} \hspace{0.3cm}  
+%\frac{\partial z}{\partial t}+  \frac{\partial z}{\partial x}=0
+%\end{equation}
+%\begin{equation}\label{eq:R_step}
+%	\text{反应步（R）:} \hspace{0.3cm}  
+%	\frac{dz}{dt}=-\mu z(z-0.5)(z-1)
+%	\end{equation}
+%	然后采用一阶分裂算法
+%\begin{eqnarray}
+%  Z^{n+1}=R(\Delta t) A (\Delta t)
+%\end{eqnarray}
+%	或者二阶Strang分裂\cite{strang1968construction}算法
+%\begin{eqnarray}
+%  Z^{n+1}=A(\frac{\Delta t}{2})R(\Delta t) A (\frac{\Delta t}{2})
+%\end{eqnarray}
+%进行计算。
+%
+方程 (\ref{eq:linear_source}) 中的$\mu$是可调参数，如果$\mu$很大时候，ODE方程 (\ref{eq:R_step}) 会存在时间刚性，为了避免时间刚性的影响，可以采用极小的时间步进行求解。便于说明问题，这里采用一种特殊的初始条件
 \begin{eqnarray*}
   z_0(x)=\left\{
 \begin{array}{lcl}
@@ -35,10 +35,10 @@
 	0,&  & {x > 0.3}
 \end{array} \right.
 \end{eqnarray*}
-由于初始条件中只包含$0$和$1$两个值，因此源项并不激活，在每个位置都应该为$0$。但是在真实的计算中并非如此。我们知道，如果采用离散的数值方法进行计算时，例如采用有限差分方法时，不可避免会引入数值耗散，这样原本如图 \ref{fig:illu_stiff}.a 的波形会变成图 \ref{fig:illu_stiff}.b 中所示的情况；如果$\mu$较小时，点$i$和$i+1$的源项在单位时间内产生的影响同样很小，最后结果可能变成如图 \ref{fig:illu_stiff}.c 中的结果；但是如果$\mu$很大时，相应的错误的源项值同样会很大，ODE过程产生的影响可能会如图 \ref{fig:illu_stiff}.d 所示，随着时间累计这种错误的源项激活过程会导致非物理解的出现，也就是前文中所说的空间刚性问题。
+由于初始条件中只包含$0$和$1$两个值，因此源项并不激活，在每个位置都应该为$0$。但是在真实的计算中并非如此。我们知道，如果采用离散的数值方法进行计算时，例如采用有限差分方法时，不可避免会引入数值耗散，这样原本如图 \ref{fig:illu_stiff}.a 的波形会变成图 \ref{fig:illu_stiff}.b 中所示的情况；假设间断运动一个网格的时间为$\delta t$， 如果$\mu$较小时，点$i$和$i+1$的源项在$\delta t$时间内产生的影响同样很小，最后可能变成如图 \ref{fig:illu_stiff}.c 中的结果；但是如果$\mu$值很大，而网格不够精细时，错误的源项值在$\delta t$内的累积同样会很大，ODE过程产生的影响可能会如图 \ref{fig:illu_stiff}.d 所示，这种错误的源项激活过程因此而导致非物理解的出现。
 
-通过上述简单的分析表明：这类非物理解问题主要是在求解对流扩散方程的过程中，由于数值耗散而导致的源项错误激发而产生的，因此，在非严格定义下，我们称这类非物理解的现象为空间刚性问题。
-在化学反应流动方程中这种非物理解的产生过程会更为复杂，但是产生原因是类似的，关于这一点，接下来我们将在反应欧拉方程中进行分析。
+通过上述简单的分析表明：数值求解含源项对流方程时遇到的非物理解问题，主要是由于空间网格不足和数值耗散共同作用而导致的源项错误激发造成的。
+%在化学反应流动方程中这种非物理解的产生过程会更为复杂，但是产生原因是类似的，关于这一点，接下来我们将在反应欧拉方程中进行分析。
 
 \section{求解反应Euler方程的分裂方法}\label{chap:split}
 一维化学反应欧拉方程为
@@ -174,7 +174,7 @@ $\bm Z=
 
  可以看到，方程 (\ref{star_Eq3}) 和含源项的线性对流方程 (\ref{eq:linear_source}) 具有相似的形式，由此也可以推测，组分对流方程中的数值耗散同样可能会导致反应欧拉方程求解中的非物理结果。
 
- 与方程 (\ref{eq:linear_source}) 相同，方程(\ref{star_Eq3}) 同样可以算子分裂成对流项和反应项两部分。这样我们可以构造一种新的分裂方法将方程 (\ref{star_Eq1}) 分裂为如下具有不同特点的三部分
+方程(\ref{star_Eq3}) 可以算子分裂成对流项和反应项两部分。这样我们可以构造一种新的分裂方法将方程 (\ref{star_Eq1}) 分裂为如下具有不同特点的三部分
  \begin{numcases}{}
  \frac{\partial \bm U_{1}}{\partial t}+\frac{\partial \bm F_{1}}{\partial x}=0 \label{EulerEquation}
 \\
@@ -185,14 +185,20 @@ $\bm Z=
 为了减小分裂误差，我们提出利用迭代的方式来求解方程 (\ref{EulerEquation} -\ref{Rfrac})，具体的计算过程如流程图 \ref{fig:illu_split} 所示，其中
 $\hat{\bm U}_1$和 $\hat{\bm Z}$是迭代过程的中间变量，  $E$, $A$ 和$R$分别代表求解欧拉方程 (\ref{EulerEquation}) 、组分对流方程 (\ref{Afrac}) 和反应ODE方程 (\ref{Rfrac}) 的算子。
 \begin{figure}
+  \centering
 \includegraphics[width=14cm]{illu_iteration_process.png}
-\caption{分裂方法迭代过程流程图}
+\caption{\bf 分裂方法迭代过程流程图}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+ \caption{\bf The framework of the solving process for the decoupling method}
 \label{fig:illu_split}
 \end{figure}
 \section{DIP方法在反应Euler方程求解中的应用}
 从当前的文献看，主要有两种处理刚性问题的方式：，一种是限制源项错误的激活过程，如Zhang等人提出的平衡态方法\cite{zhang2014equilibrium}，Bao和Jin提出的随机投影方法\cite{bao2000random,bao2001random,bao2002random}，及Wang等提出的反应步子网格重构方法\cite{wang2012high}等，但是这些方法都需要对刚性做一些预先的假设。另一种减小刚性的方法是限制数值耗散，如Chu和Shu提出的反耗散WENO格式\cite{chou2007high}和Yee等人提出的非线性限制器方法等\cite{yee2011high}，但是想从Euler方程角度消除耗散几乎是不可能的，虽然减小耗散有利于抑制刚性问题的产生，但是即便很小的耗散也足以导致非物理状态的激发\cite{yee2013spurious}。
 
-在第五章中，我们构造了界面捕捉的DIP方法，并通过数值算例验证了DIP方法具有较强的界面捕捉能力。而从某种意义上来说，化学反应（组分对流）可以看作是一种界面运动（方程(\ref{Afrac})），因此在本章中，我们希望将DIP方法应用于(\ref{Afrac})的求解，通过限制（\ref{Afrac}）的耗散来避免非物理解的产生。用DIP方法求解方程（\ref{Afrac}）的过程与第\ref{chap:dip}章中给出的算法是一致的，由于（\ref{Afrac}）可能是组分方程组，因此向量$\bm{Z}$中每个组元都处于相同的速度场，因而不会增加信息点数量。另外，由于反应界面
+在第五章中，我们构造了界面捕捉的DIP方法，并通过数值算例验证了DIP方法具有较强的界面捕捉能力。而化学反应界面正是耗散界面的一种，因此在本章中，我们希望将DIP方法应用于(\ref{Afrac})的求解，通过限制（\ref{Afrac}）的耗散来避免非物理解的产生。用DIP方法求解方程（\ref{Afrac}）的过程与第\ref{chap:dip}章中给出的算法是一致的，由于（\ref{Afrac}）可能是组分方程组，因此向量$\bm{Z}$中每个组元都处于相同的速度场，因而不会增加信息点数量。另外，由于反应界面
 是有厚度的耗散界面，因此我们应该采用针对于耗散界面的处理方法。
 
 \section{NP方法在反应源项ODE求解中的应用}
@@ -287,7 +293,12 @@ $\mu=10$和$\mu=10000$的两种情况，网格$N=200$，计算时间$T=0.3$。
 \centering
 \includegraphics[width=7cm]{nostiff.eps}
 \includegraphics[width=7cm]{stiff.eps}
-\caption{线性对流方程算例， $T=0.3$。 左图： $\mu=10$; 右图： $\mu=10000$}
+\caption{\bf 线性对流方程算例, $\bf t=0.3$, 左图: $\bf \mu=10$; 右图: $\bf \mu=10000$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+ \caption{\bf Numerical results of Equation (\ref{eq:linear_source}), left:  $\bf \mu=10$; right: $\bf \mu=10000$ }
 \label{fig:linear_stiff_result}
 \end{figure}
 \subsection{单步总包反应模型算例}

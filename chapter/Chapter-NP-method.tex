@@ -15,7 +15,7 @@
 例如对于化学反应ODE方程，其中某些组分的时间尺度很小，存在较大的刚性。但是，刚性所在的区域相对计算区域而言很小，考虑到化学反应方程组特征矩阵巨大，隐式求解会存在着复杂的矩阵运算，多数学者目前仍更愿意采用显式格式进行求解。
 
 
-如前言中所讨论的，目前除隐式格式外，也有很少的一些显式格式在一定程度满足刚性稳定的要求，例如，线化梯形公式（LT）\cite{wang2012high,zhang2014equilibrium}，该方法具有二阶精度、显式形式和一定程度的刚性稳定性，因而在如化学反应这种同时存在刚性和非刚性区域，又由于特征矩阵巨大而难以采用隐式格式求解的方程中得到较多的应用。然而，线化梯形公式也仅仅具有二阶精度，在非刚性的区域精度不足，另外，该方法也非绝对的刚性稳定的，刚性过大仍然会出现计算问题。
+如前言中所讨论的，目前除隐式格式外，也有很少的一些显式格式具有一定的稳定性，例如，二阶线化梯形公式（LT）\cite{wang2012high,zhang2014equilibrium}，该格式在化学反应方程求解中得到较多的应用。然而，线化梯形公式仅仅具有二阶精度，在非刚性的区域精度不足，另外，该方法也并非绝对稳定的，刚性过大仍然会出现计算问题。
 
 因此，对于求解可能存在刚性的ODE方程（如化学反应方程），发展高精度的、刚性稳定且具有显形式的格式是一个重要的课题。
 基于数值摄动的思想\cite{gao2010numerical,zhi2000advances,shen2006high}，本章构造了针对于ODE方程 (\ref{eq:ode}) 的数值摄动格式。并通过理论分析和数值计算验证了该类方法的有效性。
@@ -195,14 +195,19 @@ $\cdots$.
 				  \includegraphics[width=4cm]{3orderTNP.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{不同格式在$h$ 复平面上稳定区域}
+	\caption{\bf 不同格式在$\bf h$ 复平面上稳定区域}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+ \caption{\bf  Region of the stability in complex $\bf h$ plane for different schemes}
 	\label{fig:linearstable}
 \end{figure*}
  
 \section{不同格式的数值比较}
 本节将利用数值例子，考察所发展方法的精度及稳定特性。
 \begin{enumerate}
-  \item[算例1).] 首先我们研究如下方程\cite{hairer1999stiff} 
+  \item[算例1.] 首先我们研究如下方程\cite{hairer1999stiff} 
   \begin{equation}\label{eqexample1}
 	\frac{dx}{dt}=f(t,x)=-50(x-\cos t)
   \end{equation}
@@ -228,12 +233,17 @@ $\cdots$.
 					 \includegraphics[width=4.5cm]{rungeKutta.eps}
 				};\\};
 	\end{tikzpicture}
-	\caption{不同格式求解ODE方程  (\ref{eqexample1}) 结果}
+	\caption{ \bf 不同格式求解ODE方程  (\ref{eqexample1}) 结果}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf  Numerical results of Equation (\ref{eqexample1})}
 \label{fig:unlinear1}
 \end{figure}
 图 \ref{fig:unlinear1} 给出不同方法的求解结果。参考解为三阶Runge-Kutta格式在$N=3000$时间步下计算结果。可以看到，一阶显式欧拉格式和三阶Runge-Kutta格式正如前面线性分析的结果一样是不稳定的，二阶NP格式也有一个点过冲。只有三阶NP格式、三阶TNP格式和一阶隐式欧拉格式是稳定的，而一阶隐式欧拉格式精度远远不如三阶NP和TNP格式。另外需要注意的是，尽管隐式格式能得到稳定的结果，然而在每一步都需要迭代。
 
-\item[算例2).]方程
+\item[算例2.]方程
 	\begin{equation}
 		\frac{dx}{dt}=f(t,x)=-x^3, x_0=1, t=[0,1]
 	\end{equation}
@@ -252,7 +262,12 @@ $\cdots$.
   \small
   \centering
 \setlength{\belowcaptionskip}{10pt}
-\caption{\small 不同ODE格式精度分析}
+\caption{\bf 不同ODE格式精度分析}
+ \addtocounter{table}{-1}
+\vspace{0.5pt}
+%\SetEnglishCaption
+\renewcommand{\tablename}{Table}
+ \caption{\bf  The accuracy of different schemes }
   \begin{tabular}{cccccc}
 	\toprule
 	Scheme        & N       & $L_1$ error  & $L_1$ order & $L_{\infty}$ error & $L_{\infty}$ order \\

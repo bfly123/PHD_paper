@@ -27,12 +27,16 @@
 \contentsline {subsubsection}{\numberline {1.4.3.3}刚性化学反应流动问题}{22}{subsubsection.1.4.3.3}
 \contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{25}{subsubsection.1.4.3.4}
 \contentsline {section}{\numberline {1.5}本文所开展研究内容}{26}{section.1.5}
-\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}有限紧致格式在理想磁流体中的应用}{29}{chapter.2}
-\contentsline {section}{\numberline {2.1}数值方法}{30}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}E-CUSP近似黎曼求解器\cite {shen2012cusp}}{30}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}限制输运（Constrained Transport/CT）方法 \cite {Balsara1999A} }{32}{subsection.2.1.2}
-\contentsline {section}{\numberline {2.2}数值算例}{33}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}二维旋转偏振Alfv\'{e}n波\cite {toth2000b}}{33}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Orzag-Tang MHD湍流问题}{33}{subsection.2.2.2}
-\contentsline {section}{\numberline {2.3}小结}{35}{section.2.3}
-\contentsline {chapter}{参考文献}{37}{chapter*.12}
+\contentsline {chapter}{\numberline {第二章\hspace {0.3em}}DIP方法在刚性化学反应流动中的应用}{29}{chapter.2}
+\contentsline {section}{\numberline {2.1}空间刚性问题形成过程的简单分析}{29}{section.2.1}
+\contentsline {section}{\numberline {2.2}求解反应Euler方程的分裂方法}{30}{section.2.2}
+\contentsline {section}{\numberline {2.3}DIP方法在反应Euler方程求解中的应用}{32}{section.2.3}
+\contentsline {section}{\numberline {2.4}NP方法在反应源项ODE求解中的应用}{33}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}固定比热比单步总包反应模型}{33}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}固定比热比多步反应模型}{33}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}数值算例}{34}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}线性对流方程算例}{35}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}单步总包反应模型算例}{35}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}固定比热比多组分模型算例}{47}{subsection.2.5.3}
+\contentsline {section}{\numberline {2.6}小结}{54}{section.2.6}
+\contentsline {chapter}{参考文献}{55}{chapter*.34}

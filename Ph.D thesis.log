@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.24)  12 OCT 2017 23:05
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.24)  13 OCT 2017 23:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2085,7 +2085,7 @@ Package amsthm Warning: Unknown theoremstyle `defination' on input line 46.
 * \ctexset { part = { name={, },number={} } } is set.
 *************************************************
 (./Ph.D thesis.aux (./chapter/abstract.aux) (./chapter/Chapter-Introduction.aux
-) (./chapter/Chapter-MHD.aux))
+) (./chapter/Chapter-Stiff-Reaction.aux))
 \openout1 = `"Ph.D thesis.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
@@ -2106,7 +2106,8 @@ LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 64.
 LaTeX Font Info:    ... okay on input line 64.
 LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 64.
 LaTeX Font Info:    Try loading font information for T3+cmr on input line 64.
- (/usr/share/texmf/tex/latex/tipa/t3cmr.fd
+
+(/usr/share/texmf/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
 LaTeX Font Info:    ... okay on input line 64.
@@ -2445,10 +2446,6 @@ r(0)/m/n/12.045 欧 拉  |（\EU1/TimesNewRoman(0)/m/n/12.045 Lagrangian-
  []
 
 
-LaTeX Warning: Reference `chap:stiff_reaction' on page 24 undefined on input li
-ne 738.
-
-
 Underfull \vbox (badness 6125) has occurred while \output is active []
 
  [24]
@@ -2466,6 +2463,9 @@ LaTeX Warning: Reference `sep:detector' on page 26 undefined on input line 781.
 
 
 
+LaTeX Warning: Reference `chap:MHD' on page 26 undefined on input line 781.
+
+
 LaTeX Warning: Reference `chap:multiWENO' on page 26 undefined on input line 78
 3.
 
@@ -2475,15 +2475,14 @@ LaTeX Warning: Reference `sep:detector' on page 26 undefined on input line 784.
 
 [26]
 
+LaTeX Warning: Reference `chap:MHD' on page 27 undefined on input line 785.
+
+
 LaTeX Warning: Reference `chap:dip' on page 27 undefined on input line 787.
 
 
 LaTeX Warning: Reference `chap:NPmethod' on page 27 undefined on input line 787
 .
-
-
-LaTeX Warning: Reference `chap:stiff_reaction' on page 27 undefined on input li
-ne 787.
 
 
 LaTeX Warning: Reference `chap:element_reaction' on page 27 undefined on input 
@@ -2496,65 +2495,960 @@ LaTeX Warning: Reference `chap:dip' on page 27 undefined on input line 789.
 LaTeX Warning: Reference `chap:NPmethod' on page 27 undefined on input line 791
 .
 
-
-LaTeX Warning: Reference `chap:stiff_reaction' on page 27 undefined on input li
-ne 792.
-
-
-LaTeX Warning: Reference `chap:stiff_reaction' on page 27 undefined on input li
-ne 793.
-
 ) [27]
-\openout2 = `chapter/Chapter-MHD.aux'.
+\openout2 = `chapter/Chapter-Stiff-Reaction.aux'.
 
- (./chapter/Chapter-MHD.tex [28
+ (./chapter/Chapter-Stiff-Reaction.tex [28
 
 
 
 ]
 第二章
 
-LaTeX Warning: Reference `sep:detector' on page 29 undefined on input line 12.
+LaTeX Warning: Reference `eq:R_step' on page 29 undefined on input line 30.
 
+[29] (./chapter/tikz/fig_illu_stiff.tex
 
-LaTeX Warning: Reference `sep:detector' on page 29 undefined on input line 12.
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <7.52812> not available
+(Font)              size <8> substituted on input line 23.
 
-[29]
+)
+Underfull \vbox (badness 3482) has occurred while \output is active []
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 19.
-
-[30] [31]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 131.
-
-
-Underfull \vbox (badness 4726) has occurred while \output is active []
-
- [32]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 174.
-
-[33]
-File: figures/tang_WENO.png Graphic file (type QTm)
- <use  "figures/tang_WENO.png" >
-File: figures/tang_FC.png Graphic file (type QTm)
- <use  "figures/tang_FC.png" >
-File: figures/tang_line.png Graphic file (type QTm)
-
-<use  "figures/tang_line.png" >
+ [30]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34])
-[35] [36
+ [31]
+File: figures/illu_iteration_process.png Graphic file (type QTm)
+
+<use  "figures/illu_iteration_process.png" >
+
+LaTeX Warning: Reference `chap:dip' on page 32 undefined on input line 201.
+
+[32]
+
+LaTeX Warning: Reference `3TNP' on page 33 undefined on input line 205.
+
+[33]
+
+LaTeX Warning: Reference `eq:LF' on page 34 undefined on input line 263.
 
 
-] (./Ph.D thesis.bbl
+LaTeX Warning: Reference `chap:WENO' on page 34 undefined on input line 263.
+
+
+LaTeX Warning: Reference `eq:RK3' on page 34 undefined on input line 263.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34]
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+File: figures/nostiff.eps Graphic file (type eps)
+
+<figures/nostiff.eps>
+Invalid UTF-8 byte or sequence at line 295 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 295 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 295 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 295 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 295 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 295 replaced by U+FFFD.
+File: figures/stiff.eps Graphic file (type eps)
+ <figures/stiff.eps>
+Underfull \vbox (badness 2277) has occurred while \output is active []
+
+ [35]
+[36]
+Invalid UTF-8 byte or sequence at line 354 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 354 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 354 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 354 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 354 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 354 replaced by U+FFFD.
+File: figures/single1DCase2N50P.eps Graphic file (type eps)
+ <figures/single1DCase2N50P.eps>
+Invalid UTF-8 byte or sequence at line 356 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 356 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 356 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 356 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 356 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 356 replaced by U+FFFD.
+File: figures/single1DCase2N50T.eps Graphic file (type eps)
+ <figures/single1DCase2N50T.eps>
+Invalid UTF-8 byte or sequence at line 358 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 358 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 358 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 358 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 358 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 358 replaced by U+FFFD.
+File: figures/single1DCase2N50D.eps Graphic file (type eps)
+
+<figures/single1DCase2N50D.eps>
+Invalid UTF-8 byte or sequence at line 360 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 360 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 360 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 360 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 360 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 360 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 360 replaced by U+FFFD.
+File: figures/single1DCase2N50Z.eps Graphic file (type eps)
+ <figures/single1DCase2N50Z.eps>
+Invalid UTF-8 byte or sequence at line 374 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 374 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 374 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 374 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 374 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 374 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 374 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 374 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 374 replaced by U+FFFD.
+File: figures/single1DCase2N300P.eps Graphic file (type eps)
+
+<figures/single1DCase2N300P.eps>
+Invalid UTF-8 byte or sequence at line 376 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 376 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 376 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 376 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 376 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 376 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 376 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 376 replaced by U+FFFD.
+File: figures/single1DCase2N300T.eps Graphic file (type eps)
+ <figures/single1DCase2N300T.eps>
+Invalid UTF-8 byte or sequence at line 378 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 378 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 378 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 378 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 378 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 378 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 378 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 378 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 378 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 378 replaced by U+FFFD.
+File: figures/single1DCase2N300D.eps Graphic file (type eps)
+
+<figures/single1DCase2N300D.eps>
+Invalid UTF-8 byte or sequence at line 380 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 380 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 380 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 380 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 380 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 380 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 380 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 380 replaced by U+FFFD.
+File: figures/single1DCase2N300Z.eps Graphic file (type eps)
+ <figures/single1DCase2N300Z.eps>
+Invalid UTF-8 byte or sequence at line 393 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 393 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 393 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 393 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 393 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 393 replaced by U+FFFD.
+File: figures/single1DCase2CFLP.eps Graphic file (type eps)
+
+<figures/single1DCase2CFLP.eps>
+Invalid UTF-8 byte or sequence at line 395 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 395 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 395 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 395 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 395 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 395 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 395 replaced by U+FFFD.
+File: figures/single1DCase2CFLZ.eps Graphic file (type eps)
+ <figures/single1DCase2CFLZ.eps>
+Invalid UTF-8 byte or sequence at line 405 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 405 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 405 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 405 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 405 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 405 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 405 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 405 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 405 replaced by U+FFFD.
+File: figures/iteration_speed.eps Graphic file (type eps)
+
+<figures/iteration_speed.eps>
+Underfull \vbox (badness 2205) has occurred while \output is active []
+
+ [37]
+[38]
+Invalid UTF-8 byte or sequence at line 435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 435 replaced by U+FFFD.
+File: figures/single1DCase1N50P.eps Graphic file (type eps)
+ <figures/single1DCase1N50P.eps>
+Invalid UTF-8 byte or sequence at line 437 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 437 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 437 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 437 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 437 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 437 replaced by U+FFFD.
+File: figures/single1DCase1N50T.eps Graphic file (type eps)
+ <figures/single1DCase1N50T.eps>
+Invalid UTF-8 byte or sequence at line 439 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 439 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 439 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 439 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 439 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 439 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 439 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 439 replaced by U+FFFD.
+File: figures/single1DCase1N50D.eps Graphic file (type eps)
+
+<figures/single1DCase1N50D.eps>
+Invalid UTF-8 byte or sequence at line 441 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 441 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 441 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 441 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 441 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 441 replaced by U+FFFD.
+File: figures/single1DCase1N50Z.eps Graphic file (type eps)
+ <figures/single1DCase1N50Z.eps>
+Invalid UTF-8 byte or sequence at line 454 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 454 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 454 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 454 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 454 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 454 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 454 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 454 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 454 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 454 replaced by U+FFFD.
+File: figures/single1DCase1N300P.eps Graphic file (type eps)
+
+<figures/single1DCase1N300P.eps>
+Invalid UTF-8 byte or sequence at line 456 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 456 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 456 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 456 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 456 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 456 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 456 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 456 replaced by U+FFFD.
+File: figures/single1DCase1N300T.eps Graphic file (type eps)
+ <figures/single1DCase1N300T.eps>
+Invalid UTF-8 byte or sequence at line 458 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 458 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 458 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 458 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 458 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 458 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 458 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 458 replaced by U+FFFD.
+File: figures/single1DCase1N300D.eps Graphic file (type eps)
+
+<figures/single1DCase1N300D.eps>
+Invalid UTF-8 byte or sequence at line 460 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 460 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 460 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 460 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 460 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 460 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 460 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 460 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 460 replaced by U+FFFD.
+File: figures/single1DCase1N300Z.eps Graphic file (type eps)
+ <figures/single1DCase1N300Z.eps>
+Invalid UTF-8 byte or sequence at line 473 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 473 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 473 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 473 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 473 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 473 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 473 replaced by U+FFFD.
+File: figures/single1DCase1CFLP.eps Graphic file (type eps)
+
+<figures/single1DCase1CFLP.eps>
+Invalid UTF-8 byte or sequence at line 475 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 475 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 475 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 475 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 475 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 475 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 475 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 475 replaced by U+FFFD.
+File: figures/single1DCase1CFLZ.eps Graphic file (type eps)
+ <figures/single1DCase1CFLZ.eps> [39]
+Invalid UTF-8 byte or sequence at line 509 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 509 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 509 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 509 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 509 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 509 replaced by U+FFFD.
+File: figures/single1DCase3N50P.eps Graphic file (type eps)
+
+<figures/single1DCase3N50P.eps>
+Invalid UTF-8 byte or sequence at line 511 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 511 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 511 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 511 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 511 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 511 replaced by U+FFFD.
+File: figures/single1DCase3N50T.eps Graphic file (type eps)
+ <figures/single1DCase3N50T.eps>
+Invalid UTF-8 byte or sequence at line 513 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 513 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 513 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 513 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 513 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 513 replaced by U+FFFD.
+File: figures/single1DCase3N50D.eps Graphic file (type eps)
+
+<figures/single1DCase3N50D.eps>
+Invalid UTF-8 byte or sequence at line 515 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 515 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 515 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 515 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 515 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 515 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 515 replaced by U+FFFD.
+File: figures/single1DCase3N50Z.eps Graphic file (type eps)
+ <figures/single1DCase3N50Z.eps>
+Invalid UTF-8 byte or sequence at line 528 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 528 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 528 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 528 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 528 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 528 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 528 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 528 replaced by U+FFFD.
+File: figures/single1DCase3N300P.eps Graphic file (type eps)
+
+<figures/single1DCase3N300P.eps>
+Invalid UTF-8 byte or sequence at line 530 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 530 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 530 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 530 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 530 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 530 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 530 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 530 replaced by U+FFFD.
+File: figures/single1DCase3N300T.eps Graphic file (type eps)
+ <figures/single1DCase3N300T.eps>
+Invalid UTF-8 byte or sequence at line 532 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 532 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 532 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 532 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 532 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 532 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 532 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 532 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 532 replaced by U+FFFD.
+File: figures/single1DCase3N300D.eps Graphic file (type eps)
+
+<figures/single1DCase3N300D.eps>
+Invalid UTF-8 byte or sequence at line 534 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 534 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 534 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 534 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 534 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 534 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 534 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 534 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 534 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 534 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 534 replaced by U+FFFD.
+File: figures/single1DCase3N300Z.eps Graphic file (type eps)
+ <figures/single1DCase3N300Z.eps> [40] [41]
+Invalid UTF-8 byte or sequence at line 565 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 565 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 565 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 565 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 565 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 565 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 565 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 565 replaced by U+FFFD.
+File: figures/single1DCase4N300P.eps Graphic file (type eps)
+
+<figures/single1DCase4N300P.eps>
+Invalid UTF-8 byte or sequence at line 567 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 567 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 567 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 567 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 567 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 567 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 567 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 567 replaced by U+FFFD.
+File: figures/single1DCase4N300T.eps Graphic file (type eps)
+ <figures/single1DCase4N300T.eps>
+Invalid UTF-8 byte or sequence at line 569 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 569 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 569 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 569 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 569 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 569 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 569 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 569 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 569 replaced by U+FFFD.
+File: figures/single1DCase4N300D.eps Graphic file (type eps)
+
+<figures/single1DCase4N300D.eps>
+Invalid UTF-8 byte or sequence at line 571 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 571 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 571 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 571 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 571 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 571 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 571 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 571 replaced by U+FFFD.
+File: figures/single1DCase4N300Z.eps Graphic file (type eps)
+ <figures/single1DCase4N300Z.eps>
+Underfull \vbox (badness 1852) has occurred while \output is active []
+
+ [42]
+Invalid UTF-8 byte or sequence at line 601 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 601 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 601 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 601 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 601 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 601 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 601 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 601 replaced by U+FFFD.
+File: figures/single2DCase1ExactInitial.eps Graphic file (type eps)
+
+<figures/single2DCase1ExactInitial.eps>
+Invalid UTF-8 byte or sequence at line 602 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 602 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 602 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 602 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 602 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 602 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 602 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 602 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 602 replaced by U+FFFD.
+File: figures/single2DCase1ExactFinal.eps Graphic file (type eps)
+ <figures/single2DCase1ExactFinal.eps>
+Invalid UTF-8 byte or sequence at line 614 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 614 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 614 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 614 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 614 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 614 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 614 replaced by U+FFFD.
+File: figures/2DsingleCase1N50T0.eps Graphic file (type eps)
+
+<figures/2DsingleCase1N50T0.eps>
+Invalid UTF-8 byte or sequence at line 616 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 616 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 616 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 616 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 616 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 616 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 616 replaced by U+FFFD.
+File: figures/2DsingleCase1N600T0.eps Graphic file (type eps)
+ <figures/2DsingleCase1N600T0.eps>
+Invalid UTF-8 byte or sequence at line 618 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 618 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 618 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 618 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 618 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 618 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 618 replaced by U+FFFD.
+File: figures/2DsingleCase1N50T1.eps Graphic file (type eps)
+
+<figures/2DsingleCase1N50T1.eps>
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+File: figures/2DsingleCase1N600T1.eps Graphic file (type eps)
+ <figures/2DsingleCase1N600T1.eps>
+Invalid UTF-8 byte or sequence at line 622 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 622 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 622 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 622 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 622 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 622 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 622 replaced by U+FFFD.
+File: figures/2DsingleCase1N50T2.eps Graphic file (type eps)
+
+<figures/2DsingleCase1N50T2.eps>
+Invalid UTF-8 byte or sequence at line 624 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 624 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 624 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 624 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 624 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 624 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 624 replaced by U+FFFD.
+File: figures/2DsingleCase1N600T2.eps Graphic file (type eps)
+ <figures/2DsingleCase1N600T2.eps>
+Invalid UTF-8 byte or sequence at line 626 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 626 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 626 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 626 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 626 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 626 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 626 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 626 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 626 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 626 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 626 replaced by U+FFFD.
+File: figures/2DsingleCase1N50T3.eps Graphic file (type eps)
+
+<figures/2DsingleCase1N50T3.eps>
+Invalid UTF-8 byte or sequence at line 628 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 628 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 628 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 628 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 628 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 628 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 628 replaced by U+FFFD.
+File: figures/2DsingleCase1N600T3.eps Graphic file (type eps)
+ <figures/2DsingleCase1N600T3.eps>
+Invalid UTF-8 byte or sequence at line 630 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 630 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 630 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 630 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 630 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 630 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 630 replaced by U+FFFD.
+File: figures/2DsingleCase1N50T4.eps Graphic file (type eps)
+
+<figures/2DsingleCase1N50T4.eps>
+Invalid UTF-8 byte or sequence at line 632 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 632 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 632 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 632 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 632 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 632 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 632 replaced by U+FFFD.
+File: figures/2DsingleCase1N600T4.eps Graphic file (type eps)
+ <figures/2DsingleCase1N600T4.eps>
+Invalid UTF-8 byte or sequence at line 645 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 645 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 645 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 645 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 645 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 645 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 645 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 645 replaced by U+FFFD.
+File: figures/single2DCase1LineP.eps Graphic file (type eps)
+
+<figures/single2DCase1LineP.eps>
+Invalid UTF-8 byte or sequence at line 647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 647 replaced by U+FFFD.
+File: figures/single2DCase1LineZ.eps Graphic file (type eps)
+ <figures/single2DCase1LineZ.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [43]
+[44] [45]
+Invalid UTF-8 byte or sequence at line 681 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 681 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 681 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 681 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 681 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 681 replaced by U+FFFD.
+File: figures/single2DCase2WL.eps Graphic file (type eps)
+ <figures/single2DCase2WL.eps>
+Invalid UTF-8 byte or sequence at line 683 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 683 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 683 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 683 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 683 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 683 replaced by U+FFFD.
+File: figures/single2DCase2MT.eps Graphic file (type eps)
+ <figures/single2DCase2MT.eps>
+Invalid UTF-8 byte or sequence at line 695 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 695 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 695 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 695 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 695 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 695 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 695 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 695 replaced by U+FFFD.
+File: figures/single2DCase2LineP.eps Graphic file (type eps)
+
+<figures/single2DCase2LineP.eps>
+Invalid UTF-8 byte or sequence at line 697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 697 replaced by U+FFFD.
+File: figures/single2DCase2LineT.eps Graphic file (type eps)
+ <figures/single2DCase2LineT.eps>
+Invalid UTF-8 byte or sequence at line 699 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 699 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 699 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 699 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 699 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 699 replaced by U+FFFD.
+File: figures/single2DCase2LineD.eps Graphic file (type eps)
+
+<figures/single2DCase2LineD.eps>
+Invalid UTF-8 byte or sequence at line 701 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 701 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 701 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 701 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 701 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 701 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 701 replaced by U+FFFD.
+File: figures/single2DCase2LineZ.eps Graphic file (type eps)
+ <figures/single2DCase2LineZ.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [46]
+[47]
+Invalid UTF-8 byte or sequence at line 740 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 740 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 740 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 740 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 740 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 740 replaced by U+FFFD.
+File: figures/MultiCase1WENO1.eps Graphic file (type eps)
+ <figures/MultiCase1WENO1.eps>
+Invalid UTF-8 byte or sequence at line 742 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 742 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 742 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 742 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 742 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 742 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 742 replaced by U+FFFD.
+File: figures/MultiCase1WENO2.eps Graphic file (type eps)
+ <figures/MultiCase1WENO2.eps>
+Invalid UTF-8 byte or sequence at line 744 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 744 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 744 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 744 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 744 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 744 replaced by U+FFFD.
+File: figures/MultiCase1Present1.eps Graphic file (type eps)
+
+<figures/MultiCase1Present1.eps>
+Invalid UTF-8 byte or sequence at line 746 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 746 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 746 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 746 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 746 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 746 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 746 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 746 replaced by U+FFFD.
+File: figures/MultiCase1Present2.eps Graphic file (type eps)
+ <figures/MultiCase1Present2.eps>
+Invalid UTF-8 byte or sequence at line 759 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 759 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 759 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 759 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 759 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 759 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 759 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 759 replaced by U+FFFD.
+File: figures/MultiCase1NewP.eps Graphic file (type eps)
+
+<figures/MultiCase1NewP.eps>
+Invalid UTF-8 byte or sequence at line 761 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 761 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 761 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 761 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 761 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 761 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 761 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 761 replaced by U+FFFD.
+File: figures/MultiCase1NewT.eps Graphic file (type eps)
+ <figures/MultiCase1NewT.eps>
+Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
+File: figures/MultiCase1NewD.eps Graphic file (type eps)
+
+<figures/MultiCase1NewD.eps>
+Invalid UTF-8 byte or sequence at line 765 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 765 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 765 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 765 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 765 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 765 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 765 replaced by U+FFFD.
+File: figures/MultiCase1NewZ.eps Graphic file (type eps)
+ <figures/MultiCase1NewZ.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [48]
+Invalid UTF-8 byte or sequence at line 801 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 801 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 801 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 801 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 801 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 801 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 801 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 801 replaced by U+FFFD.
+File: figures/MultiCase2P.eps Graphic file (type eps)
+
+<figures/MultiCase2P.eps>
+Invalid UTF-8 byte or sequence at line 803 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 803 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 803 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 803 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 803 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 803 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 803 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 803 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 803 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 803 replaced by U+FFFD.
+File: figures/MultiCase2T.eps Graphic file (type eps)
+ <figures/MultiCase2T.eps>
+Invalid UTF-8 byte or sequence at line 805 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 805 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 805 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 805 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 805 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 805 replaced by U+FFFD.
+File: figures/MultiCase2Z.eps Graphic file (type eps)
+ <figures/MultiCase2Z.eps>
+Invalid UTF-8 byte or sequence at line 807 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 807 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 807 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 807 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 807 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 807 replaced by U+FFFD.
+File: figures/MultiCase2Z2.eps Graphic file (type eps)
+
+<figures/MultiCase2Z2.eps>
+Underfull \vbox (badness 1533) has occurred while \output is active []
+
+ [49]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [50]
+Invalid UTF-8 byte or sequence at line 852 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 852 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 852 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 852 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 852 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 852 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 852 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 852 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 852 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 852 replaced by U+FFFD.
+File: figures/MultiCase3WENO1.eps Graphic file (type eps)
+
+<figures/MultiCase3WENO1.eps>
+Invalid UTF-8 byte or sequence at line 854 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 854 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 854 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 854 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 854 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 854 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 854 replaced by U+FFFD.
+File: figures/MultiCase3WENO2.eps Graphic file (type eps)
+ <figures/MultiCase3WENO2.eps>
+Invalid UTF-8 byte or sequence at line 856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 856 replaced by U+FFFD.
+File: figures/MultiCase3Present1.eps Graphic file (type eps)
+
+<figures/MultiCase3Present1.eps>
+Invalid UTF-8 byte or sequence at line 858 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 858 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 858 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 858 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 858 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 858 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 858 replaced by U+FFFD.
+File: figures/MultiCase3Present2.eps Graphic file (type eps)
+ <figures/MultiCase3Present2.eps>
+Invalid UTF-8 byte or sequence at line 871 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 871 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 871 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 871 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 871 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 871 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 871 replaced by U+FFFD.
+File: figures/MultiCase3P.eps Graphic file (type eps)
+
+<figures/MultiCase3P.eps>
+Invalid UTF-8 byte or sequence at line 873 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 873 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 873 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 873 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 873 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 873 replaced by U+FFFD.
+File: figures/MultiCase3T.eps Graphic file (type eps)
+ <figures/MultiCase3T.eps>
+Invalid UTF-8 byte or sequence at line 875 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 875 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 875 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 875 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 875 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 875 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 875 replaced by U+FFFD.
+File: figures/MultiCase3Z1.eps Graphic file (type eps)
+ <figures/MultiCase3Z1.eps>
+Invalid UTF-8 byte or sequence at line 877 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 877 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 877 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 877 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 877 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 877 replaced by U+FFFD.
+File: figures/MultiCase3Z3.eps Graphic file (type eps)
+
+<figures/MultiCase3Z3.eps> [51]
+Invalid UTF-8 byte or sequence at line 913 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 913 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 913 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 913 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 913 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 913 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 913 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 913 replaced by U+FFFD.
+File: figures/Multi2DT0.eps Graphic file (type eps)
+ <figures/Multi2DT0.eps>
+Invalid UTF-8 byte or sequence at line 915 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 915 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 915 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 915 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 915 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 915 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 915 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 915 replaced by U+FFFD.
+File: figures/Multi2DT0re.eps Graphic file (type eps)
+
+<figures/Multi2DT0re.eps>
+Invalid UTF-8 byte or sequence at line 917 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 917 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 917 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 917 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 917 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 917 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 917 replaced by U+FFFD.
+File: figures/Multi2DT2.eps Graphic file (type eps)
+ <figures/Multi2DT2.eps>
+Invalid UTF-8 byte or sequence at line 919 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 919 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 919 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 919 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 919 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 919 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 919 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 919 replaced by U+FFFD.
+File: figures/Multi2DT2re.eps Graphic file (type eps)
+ <figures/Multi2DT2re.eps>
+Invalid UTF-8 byte or sequence at line 921 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 921 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 921 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 921 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 921 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 921 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 921 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 921 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 921 replaced by U+FFFD.
+File: figures/Multi2DT4.eps Graphic file (type eps)
+
+<figures/Multi2DT4.eps>
+Invalid UTF-8 byte or sequence at line 923 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 923 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 923 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 923 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 923 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 923 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 923 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 923 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 923 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 923 replaced by U+FFFD.
+File: figures/Multi2DT4re.eps Graphic file (type eps)
+ <figures/Multi2DT4re.eps>
+Invalid UTF-8 byte or sequence at line 925 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 925 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 925 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 925 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 925 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 925 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 925 replaced by U+FFFD.
+File: figures/Multi2DT6.eps Graphic file (type eps)
+ <figures/Multi2DT6.eps>
+Invalid UTF-8 byte or sequence at line 927 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 927 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 927 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 927 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 927 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 927 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 927 replaced by U+FFFD.
+File: figures/Multi2DT6re.eps Graphic file (type eps)
+
+<figures/Multi2DT6re.eps>
+Invalid UTF-8 byte or sequence at line 929 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 929 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 929 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 929 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 929 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 929 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 929 replaced by U+FFFD.
+File: figures/Multi2DT8.eps Graphic file (type eps)
+ <figures/Multi2DT8.eps>
+Invalid UTF-8 byte or sequence at line 931 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 931 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 931 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 931 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 931 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 931 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 931 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 931 replaced by U+FFFD.
+File: figures/Multi2DT8re.eps Graphic file (type eps)
+ <figures/Multi2DT8re.eps>
+Invalid UTF-8 byte or sequence at line 944 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 944 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 944 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 944 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 944 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 944 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 944 replaced by U+FFFD.
+File: figures/Multi2DLine2.eps Graphic file (type eps)
+
+<figures/Multi2DLine2.eps>
+Invalid UTF-8 byte or sequence at line 946 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 946 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 946 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 946 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 946 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 946 replaced by U+FFFD.
+File: figures/Multi2DLine1.eps Graphic file (type eps)
+ <figures/Multi2DLine1.eps>
+
+LaTeX Warning: Reference `chap:dip' on page 52 undefined on input line 955.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [52]
+[53]) [54] (./Ph.D thesis.bbl
 Missing character: There is no ∇ in font Times New Roman/OT:mapping=tex-text;ma
 pping=tex-text;!
- [37
+ [55
+
+
 
 ]
 Underfull \hbox (badness 4582) in paragraph at lines 98--102
@@ -2562,43 +3456,43 @@ Underfull \hbox (badness 4582) in paragraph at lines 98--102
 t/12.045 Über die Fortpflanzung ebener Luftwellen von endlicher
  []
 
-[38]
+[56]
 Underfull \hbox (badness 3612) in paragraph at lines 181--185
 \EU1/TimesNewRoman(0)/m/n/12.045 shock/shock interactions over symmetrical inte
 rsecting wedges.  \EU1/TimesNewRoman(0)/m/it/12.045 AIAA Journal\EU1/TimesNewRo
 man(0)/m/n/12.045 ,
  []
 
-[39] [40] [41]
+[57] [58] [59]
 Underfull \hbox (badness 1194) in paragraph at lines 443--446
 \EU1/TimesNewRoman(0)/m/n/12.045 isentropic gas dynamics andp-systems.  \EU1/Ti
 mesNewRoman(0)/m/it/12.045 Communications in mathematical physics\EU1/TimesNewR
 oman(0)/m/n/12.045 ,
  []
 
-[42] [43] [44] [45]
+[60] [61] [62] [63]
 Underfull \vbox (badness 1014) has occurred while \output is active []
 
- [46]
-[47] [48] [49] [50] [51] [52] [53]
+ [64]
+[65] [66] [67] [68] [69] [70] [71]
 Underfull \vbox (badness 1762) has occurred while \output is active []
 
- [54]
+ [72]
 Underfull \vbox (badness 1014) has occurred while \output is active []
 
- [55]
+ [73]
 Underfull \vbox (badness 1019) has occurred while \output is active []
 
- [56]
+ [74]
 Missing character: There is no ∇ in font Times New Roman/OT:mapping=tex-text;ma
 pping=tex-text;!
 
-[57] [58] [59] [60] [61] [62] [63]) [64]
+[75] [76] [77] [78] [79] [80] [81]) [82]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 162.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 162.
  (./Ph.D thesis.aux
 (./chapter/abstract.aux) (./chapter/Chapter-Introduction.aux)
-(./chapter/Chapter-MHD.aux))
+(./chapter/Chapter-Stiff-Reaction.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 162.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 162.
 
@@ -2615,12 +3509,12 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 162.
  ) 
 Here is how much of TeX's memory you used:
- 41122 strings out of 495252
- 817684 string characters out of 6180858
- 792500 words of memory out of 5000000
- 43711 multiletter control sequences out of 15000+600000
- 26769 words of font info for 161 fonts, out of 8000000 for 9000
+ 41642 strings out of 495252
+ 828783 string characters out of 6180858
+ 828606 words of memory out of 5000000
+ 44137 multiletter control sequences out of 15000+600000
+ 29271 words of font info for 173 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 70i,18n,79p,10484b,999s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,18n,79p,10484b,1050s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Ph.D thesis.pdf (74 pages).
+Output written on Ph.D thesis.pdf (92 pages).
