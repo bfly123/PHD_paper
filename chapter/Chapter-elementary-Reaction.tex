@@ -2,14 +2,13 @@
 \XeTeXinputencoding "GB2312"
 
 \chapter{双信息保存方法在基元反应模型爆轰中的应用}\label{chap:element_reaction}
-上一章我们探讨了在固定比热比的总包反应模型和多步反应模型中的空间刚性问题。如果计算需要更准确的模拟化学反应动力学过程时，一般采用基元反应模型进行模拟。在应用了基元反应模型的化学反应的计算中，通常不会出现空间刚性导致的非物理解，但是问题并没有因此变得简单，基元反应模型求解中会遇到更多的难点：
+上一章我们探讨了在固定比热比的总包反应模型和多步反应模型中的空间刚性问题。如果计算需要更准确的模拟化学反应动力学过程时，一般采用基元反应模型进行模拟。在应用了基元反应模型的化学反应的计算中，通常不会出现空间刚性导致的非物理解，但是在求解中同样会遇到很多的难点，例如：
 \begin{enumerate}[1.]
-  \item 首先不同组分间的空间尺度相差很大，如果网格不足，空间尺度较小的组分就难以准确计算，想要达到完全求解具有最小空间尺度的组分是极为困难的。关于尺度问题见附录 \ref{chap:scale}。
-  \item 采用差分格式计算组分对流过程时，由于格式振荡和源项的作用，并不能保证组分的守恒。
-  \item 基元反应模型中的源项ODE方程时间刚性问题比上一章采用简单反应模型时更为严重。
+  \item 不同组分由于反应速率的差别导致其反应区的长度也相差很大，在网格不足时，反应较快的组分难以准确计算，会产生过度的耗散和数值振荡。
+  \item 采用基元反应模型的源项ODE方程中同样存在着时间刚性问题。
 \end{enumerate}
 
-考虑到无论是固定比热比的多步反应模型，还是基元反应模型，方程并没有本质变化，只是源项形式有所区别，而遇到的空间问题归根结底也都是由于网格不足和方法中的数值耗散造成的。因此，本章将针对带有基元反应模型的爆轰求解，研究DIP方法在基元反应模型中的有效性和鲁棒性。
+考虑到无论是固定比热比的多步反应模型，还是基元反应模型，方程并没有本质变化，只是源项形式有所区别，而遇到的空间问题也都是由于网格不足和方法中的数值耗散造成的。因此，本章将针对带有基元反应模型的爆轰求解，研究DIP方法在基元反应模型中的有效性和鲁棒性。
 
 \section{基元反应模型中的热力学参数}
 在前言 \ref{chap:reaction} 中，我们给出了基元反应模型的源项形式和状态方程，其中各组分的热力学属性通常由实验和拟合得到，针对氢氧爆轰模型，本文采用了JANAF\cite{stull1971janaf}给出的数据和拟合公式（其中$i$代表不同的组分）。
@@ -60,7 +59,6 @@
   e=e(T,z)=\sum_{i=1}^{ns}z_ie_i(T)
 \end{equation}
 对内能进行微分有
-
 \begin{eqnarray}
   \begin{split}
 	 de&=\sum_{i=1}^{ns}e_i dz_i +dT\sum_{i=1}^{ns}z_i\frac{de_i(T)}{dT}\\
@@ -93,11 +91,12 @@
   K_{f,i}=A_k T^{b_i} \text{exp}(\frac{-E_{a,i}}{R_uT})
   \end{equation}
   求得，具体参数见表 \ref{tab:HO}。
+
 \input{chapter/HO_table.tex}
 \subsection{数值结果与分析}
-本小节中分别计算四种不同工况下的氢氧爆轰一维算例，并将计算结果和理论值及实验值进行对比。计算域长为$L$，左边采用固壁条件，右侧采用出流条件。最开始整个区域充满了H$_2$，O$_2$ 和Ar混合物，在固壁端设置有一小段高温、高压点火区域，短时间内迅速引爆混合气体，产生右行的爆轰波。点火参数为$P_\text{ign}=28.0P_0$、$\rho_\text{ign}=5.0\rho_0$ 和 $T_\text{ign}=13.0T_0$。
+本小节中分别计算四种含有不同稀释剂的氢氧爆轰一维算例，并将计算结果和理论值及实验值进行对比，验证方法并分析稀释剂对爆轰稳定性和波速等特性的影响。计算域长为$L$，左边采用固壁条件，右侧采用出流条件。最开始整个区域充满了H$_2$，O$_2$ 和Ar混合物，在固壁端设置有一小段高温、高压点火区域，短时间内迅速引爆混合气体，产生右行的爆轰波。点火参数为$P_\text{ign}=28.0P_0$、$\rho_\text{ign}=5.0\rho_0$ 和 $T_\text{ign}=13.0T_0$。
 
-由于$C-J$理论解和试验结果大约仅有$10\%$左右的误差\cite{guirao1989summary}，我们可以用C-J理论的波速作为理论参考，
+由于C-J理论解和试验结果大约仅有$10\%$左右的误差\cite{guirao1989summary}，我们可以用C-J理论的波速作为理论参考，
 C-J理论需求解下面的五方程系统得到波速和波后物理量
 \begin{equation}
   \begin{array}{c}
@@ -152,7 +151,12 @@ C-J理论需求解下面的五方程系统得到波速和波后物理量
 				  \includegraphics[width=6cm]{HO2_T.png}
 				  \centerline{d:温度分布随时间变化图}
 				\end{minipage}
-  \caption{2H$_2$+O$_2$算例计算结果}
+  \caption{\bf 2H$\bf _2$+O$\bf _2$算例计算结果}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf  Numerical results of  Example \ref{exam81}}
 		 \label{fig:HOcase1}
 			  \end{figure}
 
@@ -190,7 +194,12 @@ C-J理论需求解下面的五方程系统得到波速和波后物理量
 				  \includegraphics[width=6cm]{H2O2Ar_T.png}
 				  \centerline{d:温度分布随时间变化图}
 				\end{minipage}
-  \caption{$2H_2+O_2+Ar$算例计算结果}
+  \caption{\bf 2H$\bf _2$+O$\bf _2$+Ar算例计算结果}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf  Numerical results of  Example \ref{exam82}}
   \label{fig:HOcase2}
 			  \end{figure}
 %
@@ -228,7 +237,12 @@ C-J理论需求解下面的五方程系统得到波速和波后物理量
 				  \includegraphics[width=6cm]{H2O27Ar_T.png}
 				  \centerline{d:温度分布随时间变化图}
 				\end{minipage}
-  \caption{2H$_2$+O$_2$+7Ar算例计算结果}
+  \caption{\bf 2H$\bf _2$+O$\bf _2$+7Ar算例计算结果}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf  Numerical results of  Example \ref{exam83}}
   \label{fig:HOcase3}
 			  \end{figure}
 
@@ -266,7 +280,12 @@ C-J理论需求解下面的五方程系统得到波速和波后物理量
 				  \includegraphics[width=6cm]{H2O21033Ar_Z.png}
 				  \centerline{d:温度分布随时间变化图}
 				\end{minipage}
-  \caption{2H$_2$+O$_2$+10.33Ar算例计算结果}
+  \caption{\bf 2H$\bf _2$+O$\bf _2$+10.33Ar算例计算结果}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf  Numerical results of  Example \ref{exam84}}
   \label{fig:HOcase4}
 			  \end{figure}
 
@@ -278,7 +297,12 @@ C-J理论需求解下面的五方程系统得到波速和波后物理量
 \begin{table}[htbp]
   \centering
 \setlength{\belowcaptionskip}{10pt}
-\caption{\small 不同条件下理论值、计算值和实验值对比}
+\caption{\bf 不同条件下理论值、计算值和实验值对比}
+ \addtocounter{table}{-1}
+\vspace{0.5pt}
+%\SetEnglishCaption
+\renewcommand{\tablename}{Table}
+\caption{\bf The theoretical, computational and experiment detonation speeds in  different conditions}
 \scriptsize
   \begin{tabular}{ccccc}
 	\toprule
@@ -301,8 +325,9 @@ C-J理论需求解下面的五方程系统得到波速和波后物理量
 \end{table}
 
 \normalsize
-\subsection{组分守恒性的比较}
-在该小节中我们选上小节中第四个算例，采用相同的网格$N=12000$和计算时间$T=1200\mu s$，对本文发展的方法和直接WENO方法进行比较。
+\begin{example}\label{exam85}
+\end{example}
+该算例中选取和上个算例 \ref{exam84}相同的计算条件在网格$N=12000$和计算时间$T=1200\mu s$下，对本文发展的方法和直接WENO方法进行比较。
 图 \ref{compare_WENO_1}分别给出压力、波速变化和O$_2$组分和稀释剂Ar的对比结果，可以看到最终爆轰波速收敛到了相同的结果，压力峰值也几乎相同，由此也验证了新方法求解化学反应的有效性。从O$_2$组分分布放大图可以看到，传统高精度方法存在间断前后的振荡，甚至出现组分的负值，而应用了新的方法，计算结果中并无此类现象出现。
 然后，我们研究稀释剂Ar的变化，该组分并不在反应中求解，而是通过
 $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
@@ -341,94 +366,19 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 					\centerline{d:Ar组分分布对比}
 %				  \label{fig:compare:a}
  \end{minipage}
+  \caption{\bf 算例 \ref{exam85} 计算结果}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf  Numerical results of  Example \ref{exam85}}
   \label{compare_WENO_1}
 			  \end{figure}
-
-%%
-%			  \begin{figure}
-%  %\centering
-%  \begin{minipage}[t]{0.5\textwidth}
-%				  \includegraphics[width=6cm]{compare_WENO_O2.eps}
-%					\centerline{a:O$_2$组分分布对比}
-%%				  \label{fig:compare:a}
-% \end{minipage}
-% \hfill
-% \begin{minipage}[t]{0.5\textwidth}
-%			%	  \caption{fig1}
-%			%	  \label{fig:side:a}
-%				  \includegraphics[width=6cm]{compare_WENO_H2O.eps}
 %
-%				  \centerline{b:H$_2$O组分分布对比} 
-%%				  \label{fig:4:b}
-%				\end{minipage}
-%\vfill
-%  \begin{minipage}[t]{0.5\textwidth}
-%				  \includegraphics[width=6cm]{compare_WENO_O2_2.eps}
-%					\centerline{c:O$_2$组分分布放大对比}
-%%				  \label{fig:compare:a}
-% \end{minipage}
-% \hfill
-% \begin{minipage}[t]{0.5\textwidth}
-%			%	  \caption{fig1}
-%			%	  \label{fig:side:a}
-%				  \includegraphics[width=6cm]{compare_WENO_H2O_2.eps}
-%				  \centerline{d:H$_2$O组分分布放大对比} 
-%%				  \label{fig:4:b}
-%				\end{minipage}
-%  \caption{2H$_2$+O$_2$+10.33Ar算例对比结果2}
-%  \label{compare_WENO_2}
-%\end{figure}
-%
-%\begin{figure}
-%  \caption{2H$_2$+O$_2$+10.33Ar算例对比结果3}
-%  \label{compare_WENO_3}
-%\end{figure}
-%
-\subsection{计算精度的比较}
-由于通常计算中，尤其在高维度问题的计算中，能采用的网格步长会远大于上面计算用到的网格步长，因此在这里我们验证在稀疏网格下新方法的效果。
-
-首先我们验证上面的计算结果是否达到网格收敛，以便选用合理的参考解。
-这里采用$N=6000$网格量和$N=12000$网格量进行对比，图 \ref{fig_grid_convergence} 给出两种网格下的计算结果，可以看到在$N=6000$网格下，计算结果已经收敛。
-
-			  \begin{figure}
-  %\centering
-  \begin{minipage}[t]{0.5\textwidth}
-				  %\includegraphics[width=7cm]{grid_convergence_P.eps}
-				  \includegraphics[width=7cm]{grid_convergence_P.png}
-					\centerline{a:压力分布}
-%				  \label{fig:compare:a}
- \end{minipage}
- \hfill
- \begin{minipage}[t]{0.5\textwidth}
-			%	  \caption{fig1}
-			%	  \label{fig:side:a}
-				  %\includegraphics[width=7cm]{grid_convergence_D.eps}
-				  \includegraphics[width=7cm]{grid_convergence_D.png}
-				  \centerline{b:密度分布} 
-%				  \label{fig:4:b}
-				\end{minipage}
-\vfill
-  \begin{minipage}[t]{0.5\textwidth}
-				  %\includegraphics[width=7cm]{grid_convergence_T.eps}
-				  \includegraphics[width=7cm]{grid_convergence_T.png}
-					\centerline{c:温度分布}
-%				  \label{fig:compare:a}
- \end{minipage}
- \hfill
- \begin{minipage}[t]{0.5\textwidth}
-			%	  \caption{fig1}
-			%	  \label{fig:side:a}
-				  %\includegraphics[width=7cm]{grid_convergence_O2.eps}
-				  \includegraphics[width=7cm]{grid_convergence_O2.png}
-				  \centerline{d:$O_2$组分分布} 
-%				  \label{fig:4:b}
-				\end{minipage}
-  \caption{不同网格下计算结果对比}
-  \label{fig_grid_convergence}
-\end{figure}
-
-下面我们在网格$N=600$下，对比新方法和传统方法的计算结果，图 \ref{fig_grid_600} 分别给出压力、温度等物理量的对比，可以看到，新方法比传统方法具有好的精度效果。
-
+			  \begin{example}\label{exam86}
+\end{example}
+在通常的计算中，尤其在高维度问题的计算中，能采用的网格尺寸会远大于上面计算用到的网格尺寸，因此在这里我们验证在稀疏网格下新方法的效果。
+图 \ref{fig_grid_600} 给出不同方法在$N=600$网格下计算结果对比，参考解为$N=6000$网格下已经测试过网格收敛的结果。可以看到，新方法比传统方法具有好的精度效果。
 			  \begin{figure}
   %\centering
   \begin{minipage}[t]{0.5\textwidth}
@@ -464,13 +414,19 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 				  \centerline{d:$Ar$组分分布} 
 %				  \label{fig:4:b}
 				\end{minipage}
-  \caption{稀疏网格下不同方法计算结果对比，$N=600$}
+  \caption{\bf 稀疏网格下不同方法计算结果对比，$\bf N=600$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf  Numerical results of  Example \ref{exam86} $\bf N=600$}
   \label{fig_grid_600}
 \end{figure}
 
-\subsection{二维爆轰}
-在本章的最后我们计算二维爆轰算例，用以验证新方法在化学反应计算中的可靠性。
-\subsubsection{爆轰波胞格结构}
+\begin{example}\label{exam810}
+  \end{example}
+在本章的最后我们计算一个包含胞格结构的简单的二维爆轰算例。
+
 预混爆轰的一个重要的特征是其内在不稳定性，这种不稳定性会导致爆轰波的三维结构和非定常传播的性质，在前言 \ref{chap:detonation} 中有对胞格结构简单的介绍。胞格结构的长度尺寸和高度尺寸都和燃烧机理及反应物息息相关\cite{roy2004pulse}。
 然而，目前尚没有理论可以确定胞格尺寸和气体性质间的物理关系\cite{张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究}，各类爆轰胞格尺寸都需要通过实验测量。
 
@@ -494,7 +450,12 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
   \includegraphics[width=12cm]{cellular1.png}
 
 				  \centerline{b:数值结果} 
-  \caption{2H$_2$+O$_2$+Ar爆轰实验结果和数值结果\cite{王昌建2005直管内胞格爆轰的基元反应数值研究}}
+  \caption{\bf 2H$\bf _2$+O$\bf _2$+Ar爆轰实验结果和数值结果\cite{王昌建2005直管内胞格爆轰的基元反应数值研究}}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf   The experiment and numerical results of Example \ref{exam810}\cite{王昌建2005直管内胞格爆轰的基元反应数值研究}}
   \label{cellular2}
 			  \end{figure}
 
@@ -504,7 +465,12 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 \begin{figure}
   \centering
   \includegraphics[width=12cm]{2d_multi_gama.eps}
-  \caption{2H$_2$+O$_2$+Ar爆轰数值结果}
+  \caption{\bf 2H$\bf _2$+O$ \bf _2$+Ar爆轰新方法的数值结果}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf  Numerical result with the new method of Example \ref{exam810}}
   \label{cellular_exp}
 \end{figure}
 

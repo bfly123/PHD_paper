@@ -1,5 +1,5 @@
 \XeTeXinputencoding "GB2312"
-\chapter{DIP方法在刚性化学反应流动中的应用}\label{chap:stiff_reaction}
+\chapter{双信息保存方法在刚性化学反应流动中的应用}\label{chap:stiff_reaction}
 在爆轰波的计算中，除了可能存在如上一章所讨论的由于ODE方程刚性所导致的时间求解问题外，
 还可能产生一种由空间处理不当而导致非物理解现象，与时间刚性问题相对应，这种问题可以称为空间刚性问题。如在文\cite{colella1986theoretical}中，该问题是指爆轰波波速或爆轰波结构可能会出现虚假结果的现象。
 \section{空间刚性问题形成过程的简单分析}
@@ -27,7 +27,7 @@
 %\end{eqnarray}
 %进行计算。
 %
-方程 (\ref{eq:linear_source}) 中的$\mu$是可调参数，如果$\mu$很大时候，ODE方程 (\ref{eq:R_step}) 会存在时间刚性，为了避免时间刚性的影响，可以采用极小的时间步进行求解。便于说明问题，这里采用一种特殊的初始条件
+方程 (\ref{eq:linear_source}) 中的$\mu$是可调参数，如果$\mu$很大时候，方程 (\ref{eq:linear_source}) 中会存在时间刚性，为了避免时间刚性的影响，可以采用极小的时间步进行求解。便于说明问题，这里采用一种特殊的初始条件
 \begin{eqnarray*}
   z_0(x)=\left\{
 \begin{array}{lcl}
@@ -360,7 +360,12 @@ $$
 	\includegraphics[width=6cm]{single1DCase2N50Z.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp53} 的计算结果， $T=3\times 10^{-7}$， $N=50$} 
+	\caption{\bf 算例 \ref{exp53} 的计算结果， $ \bf t=3\times 10^{-7}$,  $\bf N=50$} 
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical results of Example \ref{exp53}}
 	\label{fig53n50}
 \end{figure}
 
@@ -380,7 +385,12 @@ $$
 	\includegraphics[width=6cm]{single1DCase2N300Z.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例  \ref{exp53} 的计算结果， $T=3\times 10^{-7}$， $N=300$} 
+	\caption{\bf 算例  \ref{exp53} 的计算结果， $\bf t=3\times 10^{-7}$， $\bf N=300$} 
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical results of Example \ref{exp53}, $\bf t=3\times 10^{-7}$， $\bf N=300$}
 	\label{fig53n300}
 \end{figure*}
 %
@@ -395,7 +405,12 @@ $$
 				  \includegraphics[width=6cm]{single1DCase2CFLZ.eps}};\\
 				};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp53} 采用 $100/\epsilon$ 的计算结果， $T=3\times 10^{-7}$， $N=300$} 
+	\caption{\bf 算例 \ref{exp53} 采用 $\bf 100/\epsilon$ 的计算结果， $\bf t=3\times 10^{-7}$， $\bf N=300$} 
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical results of Example \ref{exp53} with $\bf 100/\epsilon$, $\bf t=3\times 10^{-7}$, $\bf N=300$}
 	\label{fig53CFL}
 \end{figure}
 %
@@ -404,82 +419,88 @@ $$
 
 	\includegraphics[width=10cm]{iteration_speed.eps}
 
-	\caption{算例 \ref{exp53} 中迭代过程收敛曲线 } 
+	\caption{\bf 算例 \ref{exp53} 中迭代过程收敛曲线 } 
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Convergence history  of Example \ref{exp53} }
+
 	\label{iteration_speed}
 \end{figure}
 
 
-\begin{example}\label{exp52} %[C-J detonation wave Arrhenius case]
-\end{example}
-该算例是另外一个C-J 爆轰算例\cite{wang2012high,helzel2000modified,tosatto2008numerical}，采用Heaviside 源项模型 (\ref{eq:heaviside})。该算例中用到的参数为
-\begin{eqnarray*}
-  (\gamma, q_0, K_0,T_{\text{ign}})= (1.4,25,16418,25)
-\end{eqnarray*}
-初始条件为
-\begin{eqnarray*}
-  (\rho, u,p,z)=\left\{
-	\begin{array}{lcl}
-	  (\rho_b,u_b,p_b,0), &  & x\leqslant 10\\
-	  (1,0,1,1),          &  & x>    10
-   \end{array}\right.
-\end{eqnarray*}
-已燃状态同样可以通过方程 (\ref{eqcjstate}) 求得。
-
-图 \ref{fig52n50} 和图 \ref{fig52n300} 给出 $N=50$ 和 $N=300$ 网格下的计算结果。参考解 ``exact'' 是通过传统方法在$N=10,000$网格下计算得到。可以看到，传统方法在加密的网格下仍然存在非物理解，新方法即便在非常稀疏网格下也能准确的捕捉爆轰波的传播。
-\begin{figure}%\label{1}
-	\centering
-	\begin{tikzpicture}
-    \matrix[column sep=0mm, row sep=0mm]
-		{
-				\node[rectangle]{
-	\includegraphics[width=6cm]{single1DCase1N50P.eps}};&
-				\node[rectangle]{
-	\includegraphics[width=6cm]{single1DCase1N50T.eps}};\\
-				\node[rectangle]{
-	\includegraphics[width=6cm]{single1DCase1N50D.eps}};&
-				\node[rectangle]{
-	\includegraphics[width=6cm]{single1DCase1N50Z.eps}};\\
-		};
-	\end{tikzpicture}
-	\caption{算例 \ref{exp52} 的计算结果， $T=1.8$， $N=50$} 
-	\label{fig52n50}
-\end{figure}
-
-\begin{figure}%\label{1}
-	\centering
-	\begin{tikzpicture}
-    \matrix[column sep=0mm, row sep=0mm]
-		{
-				\node[rectangle]{
-	\includegraphics[width=6cm]{single1DCase1N300P.eps}};&
-				\node[rectangle]{
-	\includegraphics[width=6cm]{single1DCase1N300T.eps}};\\
-				\node[rectangle]{
-	\includegraphics[width=6cm]{single1DCase1N300D.eps}};&
-				\node[rectangle]{
-	\includegraphics[width=6cm]{single1DCase1N300Z.eps}};\\
-		};
-	\end{tikzpicture}
-	\caption{算例 \ref{exp52} 的计算结果， $T=1.8$， $N=300$} 
-	\label{fig52n300}
-\end{figure}
-
-\begin{figure}%\label{1}
-	\centering
-	\begin{tikzpicture}
-    \matrix[column sep=0mm, row sep=0mm](up)
-		{
-				\node[rectangle]{
-	\includegraphics[width=6cm]{single1DCase1CFLP.eps}};&
-				\node[rectangle]{
-				  \includegraphics[width=6cm]{single1DCase1CFLZ.eps}};\\
-				};
-	\end{tikzpicture}
-	\caption{算例 \ref{exp52} 的计算结果，$100K_0$，  $T=1.8$， $N=300$} 
-	\label{fig52CFL}
-\end{figure}
+%\begin{example}\label{exp52} %[C-J detonation wave Arrhenius case]
+%\end{example}
+%该算例是另外一个C-J 爆轰算例\cite{wang2012high,helzel2000modified,tosatto2008numerical}，采用Heaviside 源项模型 (\ref{eq:heaviside})。该算例中用到的参数为
+%\begin{eqnarray*}
+%  (\gamma, q_0, K_0,T_{\text{ign}})= (1.4,25,16418,25)
+%\end{eqnarray*}
+%初始条件为
+%\begin{eqnarray*}
+%  (\rho, u,p,z)=\left\{
+%	\begin{array}{lcl}
+%	  (\rho_b,u_b,p_b,0), &  & x\leqslant 10\\
+%	  (1,0,1,1),          &  & x>    10
+%   \end{array}\right.
+%\end{eqnarray*}
+%已燃状态同样可以通过方程 (\ref{eqcjstate}) 求得。
 %
-
+%图 \ref{fig52n50} 和图 \ref{fig52n300} 给出 $N=50$ 和 $N=300$ 网格下的计算结果。参考解 ``exact'' 是通过传统方法在$N=10,000$网格下计算得到。可以看到，传统方法在加密的网格下仍然存在非物理解，新方法即便在非常稀疏网格下也能准确的捕捉爆轰波的传播。
+%\begin{figure}%\label{1}
+%	\centering
+%	\begin{tikzpicture}
+%    \matrix[column sep=0mm, row sep=0mm]
+%		{
+%				\node[rectangle]{
+%	\includegraphics[width=6cm]{single1DCase1N50P.eps}};&
+%				\node[rectangle]{
+%	\includegraphics[width=6cm]{single1DCase1N50T.eps}};\\
+%				\node[rectangle]{
+%	\includegraphics[width=6cm]{single1DCase1N50D.eps}};&
+%				\node[rectangle]{
+%	\includegraphics[width=6cm]{single1DCase1N50Z.eps}};\\
+%		};
+%	\end{tikzpicture}
+%	\caption{算例 \ref{exp52} 的计算结果， $T=1.8$， $N=50$} 
+%	\label{fig52n50}
+%\end{figure}
+%
+%\begin{figure}%\label{1}
+%	\centering
+%	\begin{tikzpicture}
+%    \matrix[column sep=0mm, row sep=0mm]
+%		{
+%				\node[rectangle]{
+%	\includegraphics[width=6cm]{single1DCase1N300P.eps}};&
+%				\node[rectangle]{
+%	\includegraphics[width=6cm]{single1DCase1N300T.eps}};\\
+%				\node[rectangle]{
+%	\includegraphics[width=6cm]{single1DCase1N300D.eps}};&
+%				\node[rectangle]{
+%	\includegraphics[width=6cm]{single1DCase1N300Z.eps}};\\
+%		};
+%	\end{tikzpicture}
+%	\caption{算例 \ref{exp52} 的计算结果， $T=1.8$， $N=300$} 
+%	\label{fig52n300}
+%\end{figure}
+%
+%\begin{figure}%\label{1}
+%	\centering
+%	\begin{tikzpicture}
+%    \matrix[column sep=0mm, row sep=0mm](up)
+%		{
+%				\node[rectangle]{
+%	\includegraphics[width=6cm]{single1DCase1CFLP.eps}};&
+%				\node[rectangle]{
+%				  \includegraphics[width=6cm]{single1DCase1CFLZ.eps}};\\
+%				};
+%	\end{tikzpicture}
+%	\caption{算例 \ref{exp52} 的计算结果，$100K_0$，  $T=1.8$， $N=300$} 
+%	\label{fig52CFL}
+%\end{figure}
+%%
+%
 \begin{example} \label{exp54}%[A detonation interacting with a rarefaction wave] \label{exp54}
 \end{example}
 
@@ -515,7 +536,13 @@ $$
 	\includegraphics[width=6cm]{single1DCase3N50Z.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp54} 的计算结果， $T=8$， $N=50$} 
+	\caption{\bf 算例 \ref{exp54} 的计算结果， $\bf t=8$， $\bf N=50$} 
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical results of Example \ref{exp54}, $\bf t=8$, $\bf N=50$}
+
 	\label{fig54n50}
 \end{figure}
 
@@ -534,7 +561,12 @@ $$
 	\includegraphics[width=6cm]{single1DCase3N300Z.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp54} 采用$100/\epsilon$的计算结果， $T=8$， $N=300$} 
+	\caption{\bf 算例 \ref{exp54} 采用$\bf 100/\epsilon$的计算结果， $\bf t=8$， $\bf N=300$} 
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical results of Example \ref{exp54}, $\bf t=8$, $\bf N=300$}
 	\label{fig54n300}
 \end{figure}
 
@@ -571,7 +603,13 @@ $$
 	\includegraphics[width=6cm]{single1DCase4N300Z.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp55} 的计算结果， $T=\pi/2$，$N=300$} 
+	\caption{\bf 算例 \ref{exp55} 的计算结果， $\bf t=\pi/2$，$\bf N=300$} 
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical results of Example \ref{exp55},$\bf t=\pi/2$，$\bf N=300$}
+
 	\label{fig55}
 \end{figure}
 
@@ -594,13 +632,19 @@ $$
 \end{eqnarray*}
 其中 $\rho_b$, $u_b$ 和 $p_b$ 都是通过方程 (\ref{eqcjstate}) 计算得到。 
 
-参考解是采用传统方法在 $N=2000\times 400$网格下计算得到的。 图 \ref{fig56n2000} 给出初始时刻和最终时刻($t=1.4\times 10^{-7}$) 的参考结果。图 \ref{fig56n50} 给出新方法分别采用网格 $N=150\times50$ 和 网格 $N=600 \times200$ 在时刻 $T=0$, $T_1=0.28\times 10^{-7}$, $T_2=0.7\times 10^{-7}$, $T_3=1.12\times 10^{-7}$和 $T_4=1.4\times 10^{-7}$ 的计算结果。可以看到，对不同网格，爆轰波的位置都吻合的很好，即便在最粗糙的网格下，仍然可以求解出流场中的结构。我们在图 \ref{fig56line} 中给出传统方法和新的方法采用$N=600\times 200$网格， 在直线$y=0.005$上的计算结果，可以看到，新方法计算结果与参考解吻合的很好，而传统格式的计算结果表现出和一维算例中相似的非物理问题。 
+参考解是采用传统方法在 $N=2000\times 400$网格下计算得到的。 图 \ref{fig56n2000} 给出初始时刻和最终时刻($t=1.4\times 10^{-7}$) 的参考结果。图 \ref{fig56n50} 给出新方法分别采用网格 $N=150\times50$ 和 网格 $N=600 \times200$ 在时刻 $t=0$, $t_1=0.28\times 10^{-7}$, $t_2=0.7\times 10^{-7}$, $t_3=1.12\times 10^{-7}$和 $t_4=1.4\times 10^{-7}$ 的计算结果。可以看到，对不同网格，爆轰波的位置都吻合的很好，即便在最粗糙的网格下，仍然可以求解出流场中的结构。我们在图 \ref{fig56line} 中给出传统方法和新的方法采用$N=600\times 200$网格， 在直线$y=0.005$上的计算结果，可以看到，新方法计算结果与参考解吻合的很好，而传统格式的计算结果表现出和一维算例中相似的非物理问题。 
 
 \begin{figure}
   \centering
 \includegraphics[angle=-90,width=12cm]{single2DCase1ExactInitial.eps}
 \includegraphics[angle=-90,width=12cm]{single2DCase1ExactFinal.eps}
-\caption{算例 \ref{exp56}  的密度等值线图，采用传统方法， $T=0$ 和$T=1.4\times 10^{-7}$，$N=2000\times 400$}
+\caption{\bf 算例 \ref{exp56}  的密度等值线图，采用传统方法， $\bf t=0$ 和$\bf t=1.4\times 10^{-7}$，$\bf N=2000\times 400$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Density contours of Example \ref{exp56} by the tranditional method, $\bf t=0$ and $\bf t=1.4\times 10^{-7}$，$\bf N=2000\times 400$}
+
 \label{fig56n2000}
 \end{figure}
 %
@@ -632,7 +676,13 @@ $$
 	\includegraphics[angle=-90,width=6cm]{2DsingleCase1N600T4.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp56}，新的方法在时刻 $0$, $0.25\times 10^{-7}$, $0.7\times 10^{-7}$, $1.12\times 10^{-7}$ 和 $1.4\times 10^{-7}$ 的计算结果。 左侧： $N=150\times50$，  右侧： $N=600\times200$}
+	\caption{\bf 算例 \ref{exp56}，新的方法在时刻 $\bf 0$, $\bf 0.25\times 10^{-7}$, $\bf 0.7\times 10^{-7}$, $\bf 1.12\times 10^{-7}$ 和 $\bf 1.4\times 10^{-7}$ 的计算结果。 左侧： $\bf N=150\times50$，  右侧： $\bf N=600\times200$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Density contours  of Example \ref{exp56} at time ( $\bf 0$, $\bf 0.25\times 10^{-7}$, $\bf 0.7\times 10^{-7}$, $\bf 1.12\times 10^{-7}$ 和 $\bf 1.4\times 10^{-7}$), the present method  }
+
 	\label{fig56n50}
 \end{figure}
 
@@ -647,7 +697,12 @@ $$
 	\includegraphics[width=6cm]{single2DCase1LineZ.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{ 算例\ref{exp56}，不同方法在线 $y=0.0025$ 上的计算结果，$T=1.4\times 10^{-7}$ }
+	\caption{\bf  算例\ref{exp56}，不同方法在直线 $\bf y=0.0025$ 上的计算结果，$\bf t=1.4\times 10^{-7}$ }
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf The distribution one the line $\bf y=0.0025$ of Example \ref{exp56}, $\bf t=1.4\times 10^{-7}$}
 	\label{fig56line}
 \end{figure}
 
@@ -670,8 +725,8 @@ $$
   r=\sqrt{x^2+y^2}
 \end{eqnarray*}
 该算例求解的是在球面爆轰波在矩形区域内的传播问题。 参考解 ``exact'' 是通过传统方法在 $N=1000\times 500$ 的加密网格下求解得到。
-图 \ref{fig57} 给出采用$N=200\times 100$ 网格分别在时刻 $T_1=0$, $T_2=1$, $T_3=3$ 和 $T_4=5$ 的爆轰波波面位置结果。可以看到新的方法可以准确的捕捉爆轰波面位置。
-图 \ref{fig57line} 给出 $T=5$ 时刻的结果对比。可以看到，新方法的计算结果无论是压力、密度、温度、还是组分质量分数都能很好的与参考解吻合，而传统方法由于数值刚性问题，导致质量分数出现了完全不同的分布。  
+图 \ref{fig57} 给出采用$N=200\times 100$ 网格分别在时刻 $t_1=0$, $t_2=1$, $t_3=3$ 和 $t_4=5$ 的爆轰波波面位置结果。可以看到新的方法可以准确的捕捉爆轰波面位置。
+图 \ref{fig57line} 给出 $t=5$ 时刻的结果对比。可以看到，新方法的计算结果无论是压力、密度、温度、还是组分质量分数都能很好的与参考解吻合，而传统方法由于数值刚性问题，导致质量分数出现了完全不同的分布。  
 \begin{figure}%\label{1}
 	\centering
 	\begin{tikzpicture}
@@ -683,7 +738,13 @@ $$
 	\includegraphics[angle=-90,width=7cm]{single2DCase2MT.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{ 算例 \ref{exp57} 在$z=0.5$ 上的质量分数曲线}
+	\caption{\bf  算例 \ref{exp57} 在$\bf z=0.5$ 上的质量分数曲线}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Mass fraction ( $\bf z=0.5$)  of Example \ref{exp57}}
+
 	\label{fig57}
 \end{figure}
 \begin{figure}%\label{1}
@@ -701,7 +762,12 @@ $$
 	\includegraphics[width=6cm]{single2DCase2LineZ.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp57} 对角线上的计算结果对比， $T=5$}
+	\caption{\bf 算例 \ref{exp57} 对角线上的计算结果对比， $\bf t=5$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Comparison of the numerical results on the diagonal line, Example \ref{exp57}, $\bf t=5$}
 	\label{fig57line}
 \end{figure}
 
@@ -729,7 +795,7 @@ $$
 	  (1,0,1,1/9,8/9,0),          &  & 2.5<x\leqslant 50  
    \end{array}\right.
 \end{eqnarray*}
-参考解是采用传统方法在 $N=10,000$ 网格下计算得到。 采用 $N=200$ 网格 在 $T=4$ 时刻的计算结果 展示在图 \ref{fig58} 中。可以看到， 不论传统方法还是新的方法都能很好的捕捉爆轰波的传播。然而，与文献\cite{zhang2014equilibrium}中类似，将   
+参考解是采用传统方法在 $N=10,000$ 网格下计算得到。 采用 $N=200$ 网格 在 $t=4$ 时刻的计算结果 展示在图 \ref{fig58} 中。可以看到， 不论传统方法还是新的方法都能很好的捕捉爆轰波的传播。然而，与文献\cite{zhang2014equilibrium}中类似，将   
  $q_{\text{H}_2}$ 从100 增大到300时，采用了传统方法的结果 ( 图 \ref{fig58m}) 中又出现非物理结构，而新的方法仍然能很好的计算爆轰波。  
 \begin{figure}%\label{1}
 	\centering
@@ -746,7 +812,13 @@ $$
 	\includegraphics[width=6cm]{MultiCase1Present2.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp58} 计算结果， $T=4$， $N=200$。上图：传统方法； 下图: 新方法}
+	\caption{\bf 算例 \ref{exp58} 计算结果， $\bf t=4$， $\bf N=200$。上图：传统方法； 下图: 新方法}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical results of Example \ref{exp58},$\bf t=4$， $\bf N=200$, top: the traditional method; bottom: the present method}
+
 	\label{fig58}
 \end{figure}
 
@@ -765,56 +837,62 @@ $$
 	\includegraphics[width=6cm]{MultiCase1NewZ.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp58} 采用 $k_{\text{H}_2}=300$ 的计算结果， $T=4$， $N = 200$}
+	\caption{\bf 算例 \ref{exp58} 采用 $\bf k_{\text{H}_2}=300$ 的计算结果， $\bf t=4$， $\bf N = 200$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical results of Example \ref{exp58} with  $\bf k_{\text{H}_2}=300$, $\bf t=4$， $\bf N = 200$}
+
 	\label{fig58m}
 \end{figure}
-
-\begin{example}\label{exp59}
-  \end{example}
-第二个多组分算例出于文献\cite{bao2002random}，反应模型为
-\begin{eqnarray*}
-  \text{CH}_4 +2\text{O}_2 \xrightarrow{} \text{CO}_2 +2\text{H}_2\text{O}
-\end{eqnarray*}
-所用到的反应参数如下
-\begin{eqnarray*}
-  (\gamma,T_{\text{ign}}, 1/\epsilon, q_{\text{CH}_4},q_{\text{O}_2},q_{\text{CO}_2},q_{\text{H}_2\text{O}})=(1.4,2,500, 100,0,0)
- \end{eqnarray*}
-\begin{eqnarray*}
-  (W_{\text{CH}_4},W_{\text{O}_2},W_{\text{CO}_2},W_{\text{H}_2\text{O}})= (16,32,44,18)
-\end{eqnarray*}
-初始条件为
-\begin{eqnarray*}
-  (\rho, u,p,z_{\text{CH}_4},z_{\text{O}_2},z_{\text{CO}_2}, z_{\text{H}_2\text{O}})=\left\{
-	\begin{array}{lcl}
-	  (2,10,40,0.325,0,0,0.675), &  & x\leqslant 2.5\\
-	  (1,0,1,0.1,0.4,0.6,0),          &  & x>   2.5 
-   \end{array}\right.
-\end{eqnarray*}
-该问题由一道爆轰波和紧随其后的接触间断和激波构成。
-参考解 ``exact''采用 $N=10,000$ 网格求得。 图 \ref{fig59} 给出 $N=200$网格在时刻 $T=3$ 的计算结果。 从图中可以看到，采用新方法的计算结果和参考解吻合的很好，而传统方法的结果中的爆轰波波速明显快于参考解。
-\begin{figure}%\label{1}
-	\centering
-	\begin{tikzpicture}
-    \matrix[column sep=0mm, row sep=0mm]
-		{
-				\node[rectangle]{
-	\includegraphics[width=6cm]{MultiCase2P.eps}};&
-				\node[rectangle]{              
-	\includegraphics[width=6cm]{MultiCase2T.eps}};\\
-				\node[rectangle]{              
-	\includegraphics[width=6cm]{MultiCase2Z.eps}};&
-				\node[rectangle]{              
-	\includegraphics[width=6cm]{MultiCase2Z2.eps}};\\
-		};
-	\end{tikzpicture}
-	\caption{算例\ref{exp59} 的计算结果， $T=3$， $N = 200$}
-	\label{fig59}
-\end{figure}
-
+%
+%\begin{example}\label{exp59}
+%  \end{example}
+%第二个多组分算例出于文献\cite{bao2002random}，反应模型为
+%\begin{eqnarray*}
+%  \text{CH}_4 +2\text{O}_2 \xrightarrow{} \text{CO}_2 +2\text{H}_2\text{O}
+%\end{eqnarray*}
+%所用到的反应参数如下
+%\begin{eqnarray*}
+%  (\gamma,T_{\text{ign}}, 1/\epsilon, q_{\text{CH}_4},q_{\text{O}_2},q_{\text{CO}_2},q_{\text{H}_2\text{O}})=(1.4,2,500, 100,0,0)
+% \end{eqnarray*}
+%\begin{eqnarray*}
+%  (W_{\text{CH}_4},W_{\text{O}_2},W_{\text{CO}_2},W_{\text{H}_2\text{O}})= (16,32,44,18)
+%\end{eqnarray*}
+%初始条件为
+%\begin{eqnarray*}
+%  (\rho, u,p,z_{\text{CH}_4},z_{\text{O}_2},z_{\text{CO}_2}, z_{\text{H}_2\text{O}})=\left\{
+%	\begin{array}{lcl}
+%	  (2,10,40,0.325,0,0,0.675), &  & x\leqslant 2.5\\
+%	  (1,0,1,0.1,0.4,0.6,0),          &  & x>   2.5 
+%   \end{array}\right.
+%\end{eqnarray*}
+%该问题由一道爆轰波和紧随其后的接触间断和激波构成。
+%参考解 ``exact''采用 $N=10,000$ 网格求得。 图 \ref{fig59} 给出 $N=200$网格在时刻 $T=3$ 的计算结果。 从图中可以看到，采用新方法的计算结果和参考解吻合的很好，而传统方法的结果中的爆轰波波速明显快于参考解。
+%\begin{figure}%\label{1}
+%	\centering
+%	\begin{tikzpicture}
+%    \matrix[column sep=0mm, row sep=0mm]
+%		{
+%				\node[rectangle]{
+%	\includegraphics[width=6cm]{MultiCase2P.eps}};&
+%				\node[rectangle]{              
+%	\includegraphics[width=6cm]{MultiCase2T.eps}};\\
+%				\node[rectangle]{              
+%	\includegraphics[width=6cm]{MultiCase2Z.eps}};&
+%				\node[rectangle]{              
+%	\includegraphics[width=6cm]{MultiCase2Z2.eps}};\\
+%		};
+%	\end{tikzpicture}
+%	\caption{算例\ref{exp59} 的计算结果， $T=3$， $N = 200$}
+%	\label{fig59}
+%\end{figure}
+%
 \begin{example}\label{exp510}
 \end{example}
 
-最后一个一维多组分算例同样引于文献\cite{bao2002random}。反应模型包含五个组分和两个反应
+第二个一维多组分算例同样引于文献\cite{bao2002random}。反应模型包含五个组分和两个反应
 \begin{eqnarray*}
   \text{H}_2+\text{O}_2 \xrightarrow{}2\text{OH}, \hspace{0.5cm}  2\text{OH}+\text{H}_2\xrightarrow{}2\text{H}_2\text{O}
 \end{eqnarray*}
@@ -858,7 +936,13 @@ $$
 	\includegraphics[width=6cm]{MultiCase3Present2.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp510} 计算结果， $T=3$， $N = 200$。上图： 传统方法； 下图： 新方法}
+	\caption{\bf 算例 \ref{exp510} 计算结果， $\bf t=3$， $\bf N = 200$。上图： 传统方法； 下图： 新方法}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical results of Example \ref{exp510},  $\bf t=3$， $\bf N = 200$, upper: the tranditional method, bottom: the present method}
+
 	\label{fig510}
 \end{figure}
 
@@ -877,7 +961,13 @@ $$
 	\includegraphics[width=6cm]{MultiCase3Z3.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp510} 采用 $T_{\text{ign}}=1.5$ 和 $q_{\text{H}_2}=-50$ 的计算结果。 $T=3$， $N=200$}
+	\caption{\bf 算例 \ref{exp510} 采用 $\bf T_{\text{ign}}=1.5$ 和 $\bf q_{\text{H}_2}=-50$ 的计算结果。 $\bf t=3$， $\bf N=200$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Numerical results of Example \ref{exp510} with $\bf T_{\text{ign}}=1.5$ and $\bf q_{\text{H}_2}=-50$, $\bf t=3$， $\bf N=200$}
+
 	\label{fig510m}
 \end{figure}
 
@@ -931,7 +1021,13 @@ $$
 	\includegraphics[angle=-90,width=6cm]{Multi2DT8re.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp511} 在时刻  $T_1=0, T_2=2, T_3=4, T_4=6$ 和 $T_5=8$ 的密度等值线图。 左图： 新方法， $N=300\times50$， 右图： 传统方法， $N=1500\times250$}
+	\caption{\bf 算例 \ref{exp511} 在时刻  $\bf t_1=0, t_2=2, t_3=4, t_4=6$ 和 $\bf t_5=8$ 的密度等值线图。 左图： 新方法， $\bf N=300\times50$， 右图： 传统方法， $\bf N=1500\times250$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf Density contours of Example \ref{exp511} at time ( $\bf t_1=0, t_2=2, t_3=4, t_4=6$ 和 $\bf t_5=8$), left: the present method, $\bf N=300\times50$, right: the traditional method, $\bf N=1500\times250$}
+
 	\label{fig511}
 \end{figure}
 
@@ -946,13 +1042,19 @@ $$
 	\includegraphics[width=6cm]{Multi2DLine1.eps}};\\
 		};
 	\end{tikzpicture}
-	\caption{算例 \ref{exp511} 中在线 $y=12.5$ 上的计算结果， $T=8$， $N = 300\times50$}
+	\caption{\bf 算例 \ref{exp511} 中在线 $\bf y=12.5$ 上的计算结果， $\bf t=8$， $\bf N = 300\times50$}
+ \addtocounter{figure}{-1}
+\vspace{1.5pt}
+%\SetEnglishCaption
+\renewcommand{\figurename}{Figure}
+\caption{\bf distribution on the line   $\bf y=12.5$ of  Example \ref{exp511}, $\bf t=8$, $\bf N = 300\times50$ }
+
 	\label{fig511line}
 \end{figure}
 
 \section{小结}
 
-在本章中我们首先简单从数值角度分析了化学反应流中空间刚性产生的原因。接下来，提出一种新型的分裂方法，将反应Euler方程分裂为Euler部分、组分对流部分和反应部分三个具有不同求解特点的部分。针对于组分对流步中数值耗散对虚假物理解产生的作用，我们将第\ref{chap:dip}中提出的DIP方法应用在该方程求解中，结合高精度的Euler方程求解方法和稳定的反应步ODE方程3TNP求解方法，发展了一套反应Euler方程求解方法，有效的避免了非物理结果的产生。算例表明，即便在极端的情况下，如非常稀疏的网格或更大的源项刚性，新的方法仍然能得到令人满意的结果。
+在本章中我们首先简单的从数值角度分析了化学反应流中空间刚性产生的原因。接下来，提出一种新型的分裂方法，将反应Euler方程分裂为Euler方程、组分对流方程和反应ODE方程三个具有不同求解特点的部分。针对于组分对流方程中数值耗散对虚假物理解产生的作用，我们将第\ref{chap:dip}中提出的DIP方法应用在该方程求解中，结合高精度的Euler方程求解方法和稳定的反应步ODE方程3TNP求解方法，发展了一套反应Euler方程求解方法，有效的避免了非物理结果的产生。算例表明，即便在极端的情况下，如非常稀疏的网格或更大的源项刚性，新的方法仍然能得到令人满意的结果。
 
 
 
