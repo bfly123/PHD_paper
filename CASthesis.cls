@@ -122,7 +122,7 @@
 %  \thispagestyle{empty}%
 %  \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 %\renewcommand{\floatpagefraction}{0.80}
-%%\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 %% 页面尺寸设置
 \setlength\parindent{2em}
 \setlength\smallskipamount{3\p@ \@plus 1\p@ \@minus 1\p@}
@@ -229,7 +229,7 @@
 \renewcommand\dbltopfraction{.7}
 \renewcommand\dblfloatpagefraction{.5}
 
-\bibliographystyle{acm}
+%\bibliographystyle{acm}
 \newcommand\CASTspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
 \def\CAST@getfileinfo#1 #2 #3\relax#4\relax{%
   \def\CASTfiledate{#1}%
@@ -437,25 +437,26 @@
       \penalty\@highpenalty
     \endgroup
   \fi}
-\renewenvironment{thebibliography}[1]
-     {\Nchapter{\bibname}%
-      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist}
+%\renewenvironment{thebibliography}[1]
+%     {\Nchapter{\bibname}%
+%      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+%      \list{\@biblabel{\@arabic\c@enumiv}}%
+%           {\settowidth\labelwidth{\@biblabel{#1}}%
+%            \leftmargin\labelwidth
+%            \advance\leftmargin\labelsep
+%            \@openbib@code
+%            %\usecounter{enumiv}%
+%            \usecounter{unsrt}%
+%            \let\p@enumiv\@empty
+%            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+%      \sloppy
+%      \clubpenalty4000
+%      \@clubpenalty \clubpenalty
+%      \widowpenalty4000%
+%      \sfcode`\.\@m}
+%     {\def\@noitemerr
+%       {\@latex@warning{Empty `thebibliography' environment}}%
+%      \endlist}
 \newenvironment{publications}[1]
      {\Nchapter{\CAST@label@publications}%
       \@mkboth{\MakeUppercase\CAST@label@publications}

@@ -1,7 +1,7 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Ph.D thesis.aux
-The style file: acm.bst
+The style file: unsrt.bst
 A level-1 auxiliary file: chapter/abstract.aux
 A level-1 auxiliary file: chapter/Chapter-Introduction.aux
 A level-1 auxiliary file: chapter/Chapter-Multi-WENO.aux
@@ -143,52 +143,52 @@ Repeated entry---line 7225 of file bib/mybibfile.bib
  : @article{enright2005fast
  :                         ,
 I'm skipping whatever remains of this entry
-Warning--empty journal in akbar1997mach
-Warning--empty journal in Balsara1999A
 Warning--empty journal in glimm1970decay
-Warning--empty journal in schultz2000validation
 Warning--can't use both volume and number fields in smooke1988comparison
 Warning--empty year in zhacomparative
+Warning--empty journal in Balsara1999A
+Warning--empty journal in schultz2000validation
+Warning--empty journal in akbar1997mach
 Warning--empty journal in 张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究
 You've used 367 entries,
-            2253 wiz_defined-function locations,
-            2345 strings with 59231 characters,
-and the built_in function-call counts, 116546 in all, are:
-= -- 11794
-> -- 4629
-< -- 0
-+ -- 2025
-- -- 1558
-* -- 9625
-:= -- 18899
-add.period$ -- 1101
+            1791 wiz_defined-function locations,
+            2264 strings with 58867 characters,
+and the built_in function-call counts, 84509 in all, are:
+= -- 8133
+> -- 2939
+< -- 42
++ -- 1146
+- -- 779
+* -- 6047
+:= -- 13130
+add.period$ -- 1110
 call.type$ -- 367
-change.case$ -- 1833
+change.case$ -- 342
 chr.to.int$ -- 0
 cite$ -- 374
-duplicate$ -- 3773
-empty$ -- 9679
-format.name$ -- 1558
-if$ -- 23897
+duplicate$ -- 3615
+empty$ -- 8521
+format.name$ -- 779
+if$ -- 18641
 int.to.chr$ -- 0
 int.to.str$ -- 367
 missing$ -- 377
-newline$ -- 1832
-num.names$ -- 734
-pop$ -- 1487
+newline$ -- 1836
+num.names$ -- 367
+pop$ -- 734
 preamble$ -- 1
-purify$ -- 1491
+purify$ -- 0
 quote$ -- 0
-skip$ -- 2237
+skip$ -- 1518
 stack$ -- 0
-substring$ -- 9194
-swap$ -- 903
-text.length$ -- 0
+substring$ -- 7298
+swap$ -- 644
+text.length$ -- 42
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1410
+type$ -- 0
 warning$ -- 7
-while$ -- 1334
+while$ -- 974
 width$ -- 370
-write$ -- 3690
+write$ -- 4009
 (There were 31 error messages)
