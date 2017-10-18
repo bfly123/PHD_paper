@@ -16,17 +16,17 @@
 \contentsline {subsubsection}{\numberline {1.3.2.1}空间离散方法}{12}{subsubsection.1.3.2.1}
 \contentsline {subsubsection}{\numberline {1.3.2.2}近似黎曼求解器}{14}{subsubsection.1.3.2.2}
 \contentsline {subsubsection}{\numberline {1.3.2.3}时间离散方法}{15}{subsubsection.1.3.2.3}
-\contentsline {section}{\numberline {1.4}间断问题数值研究现状和不足}{15}{section.1.4}
+\contentsline {section}{\numberline {1.4}间断问题数值研究现状和不足}{16}{section.1.4}
 \contentsline {subsection}{\numberline {1.4.1}激波捕捉格式和激波分辨率}{16}{subsection.1.4.1}
 \contentsline {subsection}{\numberline {1.4.2}物质界面和界面追踪方法}{16}{subsection.1.4.2}
 \contentsline {subsubsection}{\numberline {1.4.2.1}传统界面}{16}{subsubsection.1.4.2.1}
-\contentsline {subsubsection}{\numberline {1.4.2.2}耗散界面}{17}{subsubsection.1.4.2.2}
-\contentsline {subsection}{\numberline {1.4.3}气相爆轰波}{18}{subsection.1.4.3}
+\contentsline {subsubsection}{\numberline {1.4.2.2}耗散界面}{18}{subsubsection.1.4.2.2}
+\contentsline {subsection}{\numberline {1.4.3}气相爆轰波}{19}{subsection.1.4.3}
 \contentsline {subsubsection}{\numberline {1.4.3.1}爆轰波理论}{19}{subsubsection.1.4.3.1}
 \contentsline {subsubsection}{\numberline {1.4.3.2}源项数值刚性问题的时间方法}{21}{subsubsection.1.4.3.2}
 \contentsline {subsubsection}{\numberline {1.4.3.3}刚性化学反应流动问题}{22}{subsubsection.1.4.3.3}
 \contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{25}{subsubsection.1.4.3.4}
-\contentsline {section}{\numberline {1.5}本文所开展研究内容}{26}{section.1.5}
+\contentsline {section}{\numberline {1.5}本文所开展研究内容}{27}{section.1.5}
 \contentsline {chapter}{\numberline {第二章\hspace {0.3em}}多步加权基本无振荡（Multistep WENO）格式}{29}{chapter.2}
 \contentsline {section}{\numberline {2.1}本章涉及的数值方法}{30}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Lax-Friedrichs（LF）通量分裂方法和空间半离散}{30}{subsection.2.1.1}
@@ -55,51 +55,51 @@
 \contentsline {section}{\numberline {3.3}数值算例}{60}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}线性对流算例}{60}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}一维激波管算例}{61}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}二维算例}{63}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.3}二维算例}{62}{subsection.3.3.3}
 \contentsline {section}{\numberline {3.4}小结}{64}{section.3.4}
-\contentsline {chapter}{\numberline {第四章\hspace {0.3em}}有限紧致格式在理想磁流体中的应用}{69}{chapter.4}
-\contentsline {section}{\numberline {4.1}数值方法}{70}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}E-CUSP近似黎曼求解器\cite {shen2012cusp}}{70}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}限制输运（Constrained Transport/CT）方法 \cite {Balsara1999A} }{72}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}数值算例}{73}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}二维旋转偏振Alfv\'{e}n波\cite {toth2000b}}{73}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Orzag-Tang MHD湍流问题}{73}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}小结}{75}{section.4.3}
-\contentsline {chapter}{\numberline {第五章\hspace {0.3em}}双信息保存（DIP）方法}{77}{chapter.5}
-\contentsline {section}{\numberline {5.1}界面类型和界面方法}{77}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}传统界面}{77}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}多相界面和耗散界面}{79}{subsection.5.1.2}
-\contentsline {section}{\numberline {5.2}双信息保存方法}{79}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}单元点}{80}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}粒子信息点（粒子点）}{84}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}边界处理}{85}{subsection.5.2.3}
-\contentsline {subsection}{\numberline {5.2.4}DIP方法一维伪代码}{87}{subsection.5.2.4}
-\contentsline {subsection}{\numberline {5.2.5}二维DIP方法}{89}{subsection.5.2.5}
-\contentsline {subsubsection}{\numberline {5.2.5.1}单元点}{89}{subsubsection.5.2.5.1}
-\contentsline {subsubsection}{\numberline {5.2.5.2}粒子点}{90}{subsubsection.5.2.5.2}
-\contentsline {subsubsection}{\numberline {5.2.5.3}二维边界处理}{91}{subsubsection.5.2.5.3}
-\contentsline {section}{\numberline {5.3}数值算例}{92}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}一维数值算例}{92}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}二维数值算例}{94}{subsection.5.3.2}
-\contentsline {section}{\numberline {5.4}小结}{100}{section.5.4}
-\contentsline {chapter}{\numberline {第六章\hspace {0.3em}}刚性常微分方程和数值摄动（NP）方法}{103}{chapter.6}
-\contentsline {section}{\numberline {6.1}刚性常微分（ODE）方程}{103}{section.6.1}
-\contentsline {section}{\numberline {6.2}数值摄动（NP）方法}{104}{section.6.2}
-\contentsline {section}{\numberline {6.3}NP格式的稳定性分析}{106}{section.6.3}
-\contentsline {section}{\numberline {6.4}不同格式的数值比较}{108}{section.6.4}
-\contentsline {section}{\numberline {6.5}小结}{109}{section.6.5}
-\contentsline {chapter}{\numberline {第七章\hspace {0.3em}}双信息保存方法在刚性化学反应流动中的应用}{113}{chapter.7}
-\contentsline {section}{\numberline {7.1}空间刚性问题形成过程的简单分析}{113}{section.7.1}
-\contentsline {section}{\numberline {7.2}求解反应Euler方程的分裂方法}{114}{section.7.2}
-\contentsline {section}{\numberline {7.3}DIP方法在反应Euler方程求解中的应用}{116}{section.7.3}
-\contentsline {section}{\numberline {7.4}NP方法在反应源项ODE求解中的应用}{117}{section.7.4}
-\contentsline {subsection}{\numberline {7.4.1}固定比热比单步总包反应模型}{117}{subsection.7.4.1}
-\contentsline {subsection}{\numberline {7.4.2}固定比热比多步反应模型}{117}{subsection.7.4.2}
-\contentsline {section}{\numberline {7.5}数值算例}{118}{section.7.5}
-\contentsline {subsection}{\numberline {7.5.1}线性对流方程算例}{119}{subsection.7.5.1}
-\contentsline {subsection}{\numberline {7.5.2}单步总包反应模型算例}{119}{subsection.7.5.2}
+\contentsline {chapter}{\numberline {第四章\hspace {0.3em}}有限紧致格式在理想磁流体中的应用}{67}{chapter.4}
+\contentsline {section}{\numberline {4.1}数值方法}{68}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}E-CUSP近似黎曼求解器\cite {shen2012cusp}}{68}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}限制输运（Constrained Transport/CT）方法 \cite {Balsara1999A} }{70}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}数值算例}{71}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}二维旋转偏振Alfv\'{e}n波\cite {toth2000b}}{71}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Orzag-Tang MHD湍流问题}{71}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}小结}{73}{section.4.3}
+\contentsline {chapter}{\numberline {第五章\hspace {0.3em}}双信息保存（DIP）方法}{75}{chapter.5}
+\contentsline {section}{\numberline {5.1}界面类型和界面方法}{75}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}传统界面}{75}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}多相界面和耗散界面}{77}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}双信息保存方法}{77}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}单元点}{78}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}粒子信息点（粒子点）}{82}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}边界处理}{83}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}DIP方法一维伪代码}{85}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.5}二维DIP方法}{86}{subsection.5.2.5}
+\contentsline {subsubsection}{\numberline {5.2.5.1}单元点}{86}{subsubsection.5.2.5.1}
+\contentsline {subsubsection}{\numberline {5.2.5.2}粒子点}{88}{subsubsection.5.2.5.2}
+\contentsline {subsubsection}{\numberline {5.2.5.3}二维边界处理}{89}{subsubsection.5.2.5.3}
+\contentsline {section}{\numberline {5.3}数值算例}{90}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}一维数值算例}{90}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}二维数值算例}{93}{subsection.5.3.2}
+\contentsline {section}{\numberline {5.4}小结}{98}{section.5.4}
+\contentsline {chapter}{\numberline {第六章\hspace {0.3em}}刚性常微分方程和数值摄动（NP）方法}{101}{chapter.6}
+\contentsline {section}{\numberline {6.1}刚性常微分（ODE）方程}{101}{section.6.1}
+\contentsline {section}{\numberline {6.2}数值摄动（NP）方法}{102}{section.6.2}
+\contentsline {section}{\numberline {6.3}NP格式的稳定性分析}{104}{section.6.3}
+\contentsline {section}{\numberline {6.4}不同格式的数值比较}{106}{section.6.4}
+\contentsline {section}{\numberline {6.5}小结}{107}{section.6.5}
+\contentsline {chapter}{\numberline {第七章\hspace {0.3em}}双信息保存方法在刚性化学反应流动中的应用}{111}{chapter.7}
+\contentsline {section}{\numberline {7.1}空间刚性问题形成过程的简单分析}{111}{section.7.1}
+\contentsline {section}{\numberline {7.2}求解反应Euler方程的分裂方法}{112}{section.7.2}
+\contentsline {section}{\numberline {7.3}DIP方法在反应Euler方程求解中的应用}{114}{section.7.3}
+\contentsline {section}{\numberline {7.4}NP方法在反应源项ODE求解中的应用}{115}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}固定比热比单步总包反应模型}{115}{subsection.7.4.1}
+\contentsline {subsection}{\numberline {7.4.2}固定比热比多步反应模型}{115}{subsection.7.4.2}
+\contentsline {section}{\numberline {7.5}数值算例}{116}{section.7.5}
+\contentsline {subsection}{\numberline {7.5.1}线性对流方程算例}{117}{subsection.7.5.1}
+\contentsline {subsection}{\numberline {7.5.2}单步总包反应模型算例}{117}{subsection.7.5.2}
 \contentsline {subsection}{\numberline {7.5.3}固定比热比多组分模型算例}{128}{subsection.7.5.3}
-\contentsline {section}{\numberline {7.6}小结}{133}{section.7.6}
+\contentsline {section}{\numberline {7.6}小结}{135}{section.7.6}
 \contentsline {chapter}{\numberline {第八章\hspace {0.3em}}双信息保存方法在基元反应模型爆轰中的应用}{137}{chapter.8}
 \contentsline {section}{\numberline {8.1}基元反应模型中的热力学参数}{137}{section.8.1}
 \contentsline {section}{\numberline {8.2}温度求解方法}{138}{section.8.2}
