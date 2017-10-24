@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.10.9)  18 OCT 2017 14:38
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.10.9)  19 OCT 2017 13:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2212,14 +2212,8 @@ LaTeX Info: Redefining \nameref on input line 64.
  ABD: EveryShipout initializing macros
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-
-*************************************************
-* ctex warning: "deprecated-command"
-* 
-* Command \CTEXunderline is deprecated.
-* You can use the command with prefix \CJK instead.
-*************************************************
 File: CASthes.png Graphic file (type QTm)
+
 <use  "CASthes.png" >
 *************************************************
 * fontspec warning: "script-not-exist"
@@ -3696,7 +3690,7 @@ Invalid UTF-8 byte or sequence at line 762 replaced by U+FFFD.
 File: figures/single2DCase2LineZ.eps Graphic file (type eps)
  <figures/single2DCase2LineZ.eps> [126]
 [127]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 3547) has occurred while \output is active []
 
  [128]
 [129]
@@ -3857,7 +3851,7 @@ Invalid UTF-8 byte or sequence at line 961 replaced by U+FFFD.
 File: figures/MultiCase3Z3.eps Graphic file (type eps)
 
 <figures/MultiCase3Z3.eps>
-Underfull \vbox (badness 4479) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [133]
 [134]
@@ -3980,11 +3974,14 @@ Invalid UTF-8 byte or sequence at line 1042 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1042 replaced by U+FFFD.
 File: figures/Multi2DLine1.eps Graphic file (type eps)
 
-<figures/Multi2DLine1.eps> [135]) [136]
+<figures/Multi2DLine1.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [135])
+[136]
 \openout2 = `chapter/Chapter-elementary-Reaction.aux'.
 
-
-(./chapter/Chapter-elementary-Reaction.tex
+ (./chapter/Chapter-elementary-Reaction.tex
 第八章
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -4438,10 +4435,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
 ### simple group (level 1) entered at line 7 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42472 strings out of 495252
- 853574 string characters out of 6180858
- 921366 words of memory out of 5000000
- 44737 multiletter control sequences out of 15000+600000
+ 42469 strings out of 495252
+ 853516 string characters out of 6180858
+ 922339 words of memory out of 5000000
+ 44734 multiletter control sequences out of 15000+600000
  29303 words of font info for 177 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  70i,18n,79p,10484b,1291s stack positions out of 5000i,500n,10000p,200000b,80000s

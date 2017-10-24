@@ -245,7 +245,7 @@
   \CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
 \def\CASTunderline{\@ifnextchar[\CAST@underline\CTEXunderline}
 \newcommand\classification[1]{\def\CAST@value@classification{#1}}
-\newcommand\confidential[1]{\def\CAST@value@confidential{#1}}
+%\newcommand\confidential[1]{\def\CAST@value@confidential{#1}}
 \newcommand\UDC[1]{\def\CAST@value@UDC{#1}}
 \newcommand\serialnumber[1]{\def\CAST@value@serialnumber{#1}}
 \newcommand\school[1]{\def\CAST@value@school{#1}}
@@ -268,8 +268,8 @@
   \begin{center}
     %\bf\songti\zihao{2}
         \hfill
-      \CAST@label@confidential~
-      \CASTunderline[100pt]{\CAST@value@confidential}
+    %  \CAST@label@confidential~
+    %  \CASTunderline[100pt]{\CAST@value@confidential}
     \vskip \stretch{2}
       \includegraphics[width=0.7\textwidth]{CASthes.png}
     \vskip 10pt

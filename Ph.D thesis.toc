@@ -99,7 +99,7 @@
 \contentsline {subsection}{\numberline {7.5.1}线性对流方程算例}{117}{subsection.7.5.1}
 \contentsline {subsection}{\numberline {7.5.2}单步总包反应模型算例}{117}{subsection.7.5.2}
 \contentsline {subsection}{\numberline {7.5.3}固定比热比多组分模型算例}{128}{subsection.7.5.3}
-\contentsline {section}{\numberline {7.6}小结}{135}{section.7.6}
+\contentsline {section}{\numberline {7.6}小结}{136}{section.7.6}
 \contentsline {chapter}{\numberline {第八章\hspace {0.3em}}双信息保存方法在基元反应模型爆轰中的应用}{137}{chapter.8}
 \contentsline {section}{\numberline {8.1}基元反应模型中的热力学参数}{137}{section.8.1}
 \contentsline {section}{\numberline {8.2}温度求解方法}{138}{section.8.2}

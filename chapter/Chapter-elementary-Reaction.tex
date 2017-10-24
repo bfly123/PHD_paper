@@ -327,7 +327,7 @@ C-J理论需求解下面的五方程系统得到波速和波后物理量
 \normalsize
 \begin{example}\label{exam85}
 \end{example}
-该算例中选取和上个算例 \ref{exam84}相同的计算条件在网格$N=12000$和计算时间$T=1200\mu s$下，对本文发展的方法和直接WENO方法进行比较。
+接下来的算例对新方法和传统方法的计算结果进行对比研究。该算例中选取和上个算例 \ref{exam84}相同的计算条件在网格$N=12000$和计算时间$T=1200\mu s$下，对本文发展的方法和直接WENO方法进行比较。
 图 \ref{compare_WENO_1}分别给出压力、波速变化和O$_2$组分和稀释剂Ar的对比结果，可以看到最终爆轰波速收敛到了相同的结果，压力峰值也几乎相同，由此也验证了新方法求解化学反应的有效性。从O$_2$组分分布放大图可以看到，传统高精度方法存在间断前后的振荡，甚至出现组分的负值，而应用了新的方法，计算结果中并无此类现象出现。
 然后，我们研究稀释剂Ar的变化，该组分并不在反应中求解，而是通过
 $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
@@ -419,7 +419,7 @@ $$ z_{ns}=1-\sum_{i=1}^{ns-1}z_i$$
 \vspace{1.5pt}
 %\SetEnglishCaption
 \renewcommand{\figurename}{Figure}
-\caption{\bf  Numerical results of  Example \ref{exam86} $\bf N=600$}
+\caption{\bf  Numerical results of  Example \ref{exam86}, $\bf N=600$}
   \label{fig_grid_600}
 \end{figure}
 
