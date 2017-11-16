@@ -16,17 +16,17 @@
 \contentsline {subsubsection}{\numberline {1.3.2.1}空间离散方法}{12}{subsubsection.1.3.2.1}
 \contentsline {subsubsection}{\numberline {1.3.2.2}近似黎曼求解器}{14}{subsubsection.1.3.2.2}
 \contentsline {subsubsection}{\numberline {1.3.2.3}时间离散方法}{15}{subsubsection.1.3.2.3}
-\contentsline {section}{\numberline {1.4}间断问题数值研究现状和不足}{16}{section.1.4}
+\contentsline {section}{\numberline {1.4}本文研究背景、内容及意义}{15}{section.1.4}
 \contentsline {subsection}{\numberline {1.4.1}激波捕捉格式和激波分辨率}{16}{subsection.1.4.1}
 \contentsline {subsection}{\numberline {1.4.2}物质界面和界面追踪方法}{16}{subsection.1.4.2}
 \contentsline {subsubsection}{\numberline {1.4.2.1}传统界面}{16}{subsubsection.1.4.2.1}
-\contentsline {subsubsection}{\numberline {1.4.2.2}耗散界面}{18}{subsubsection.1.4.2.2}
-\contentsline {subsection}{\numberline {1.4.3}气相爆轰波}{19}{subsection.1.4.3}
+\contentsline {subsubsection}{\numberline {1.4.2.2}耗散界面}{17}{subsubsection.1.4.2.2}
+\contentsline {subsection}{\numberline {1.4.3}气相爆轰波}{18}{subsection.1.4.3}
 \contentsline {subsubsection}{\numberline {1.4.3.1}爆轰波理论}{19}{subsubsection.1.4.3.1}
 \contentsline {subsubsection}{\numberline {1.4.3.2}源项数值刚性问题的时间方法}{21}{subsubsection.1.4.3.2}
 \contentsline {subsubsection}{\numberline {1.4.3.3}刚性化学反应流动问题}{22}{subsubsection.1.4.3.3}
 \contentsline {subsubsection}{\numberline {1.4.3.4}基元反应模型下爆轰波的数值模拟}{25}{subsubsection.1.4.3.4}
-\contentsline {section}{\numberline {1.5}本文所开展研究内容}{27}{section.1.5}
+\contentsline {section}{\numberline {1.5}本文所开展研究内容}{26}{section.1.5}
 \contentsline {chapter}{\numberline {第二章\hspace {0.3em}}多步加权基本无振荡（Multistep WENO）格式}{29}{chapter.2}
 \contentsline {section}{\numberline {2.1}本章涉及的数值方法}{30}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Lax-Friedrichs（LF）通量分裂方法和空间半离散}{30}{subsection.2.1.1}

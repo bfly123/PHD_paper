@@ -127,68 +127,72 @@ Repeated entry---line 6583 of file bib/mybibfile.bib
  : @article{colella1986theoretical
  :                                ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 6889 of file bib/mybibfile.bib
+I was expecting a `,' or a `}'---line 6763 of file bib/mybibfile.bib
+ :   
+ :   school{RENSSELAER POLYTECHNIC INSTITUTE}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 6891 of file bib/mybibfile.bib
  : @article{oran1998numerical
  :                           ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 7137 of file bib/mybibfile.bib
+Repeated entry---line 7147 of file bib/mybibfile.bib
  : @article{zha1993numerical
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 7157 of file bib/mybibfile.bib
+Repeated entry---line 7167 of file bib/mybibfile.bib
  : @article{zha2004low
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 7225 of file bib/mybibfile.bib
+Repeated entry---line 7235 of file bib/mybibfile.bib
  : @article{enright2005fast
  :                         ,
 I'm skipping whatever remains of this entry
+Warning--empty journal in Balsara1999A
 Warning--empty journal in glimm1970decay
 Warning--can't use both volume and number fields in smooke1988comparison
 Warning--empty year in zhacomparative
-Warning--empty journal in Balsara1999A
 Warning--empty journal in schultz2000validation
-Warning--empty journal in akbar1997mach
-Warning--empty journal in 张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究
+Warning--empty school in akbar1997mach
 You've used 367 entries,
             1791 wiz_defined-function locations,
-            2264 strings with 58867 characters,
-and the built_in function-call counts, 84509 in all, are:
-= -- 8133
+            2265 strings with 58862 characters,
+and the built_in function-call counts, 84598 in all, are:
+= -- 8147
 > -- 2939
 < -- 42
 + -- 1146
 - -- 779
-* -- 6047
-:= -- 13130
+* -- 6064
+:= -- 13142
 add.period$ -- 1110
 call.type$ -- 367
-change.case$ -- 342
+change.case$ -- 341
 chr.to.int$ -- 0
-cite$ -- 374
+cite$ -- 373
 duplicate$ -- 3615
-empty$ -- 8521
+empty$ -- 8528
 format.name$ -- 779
-if$ -- 18641
+if$ -- 18659
 int.to.chr$ -- 0
 int.to.str$ -- 367
-missing$ -- 377
+missing$ -- 376
 newline$ -- 1836
 num.names$ -- 367
-pop$ -- 734
+pop$ -- 728
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1518
+skip$ -- 1517
 stack$ -- 0
-substring$ -- 7298
-swap$ -- 644
+substring$ -- 7323
+swap$ -- 646
 text.length$ -- 42
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 7
-while$ -- 974
+warning$ -- 6
+while$ -- 976
 width$ -- 370
-write$ -- 4009
-(There were 31 error messages)
+write$ -- 4012
+(There were 32 error messages)

@@ -1,5 +1,77 @@
 \begin{thebibliography}{100}
 
+\bibitem{jiang2001weighted}
+Li~Jiang, Hua Shan, and Chaoqun Liu.
+\newblock Weighted compact scheme for shock capturing.
+\newblock {\em International Journal of Computational Fluid Dynamics},
+  15(2):147--155, 2001.
+
+\bibitem{henrick2005mapped}
+Andrew~K Henrick, Tariq~D Aslam, and Joseph~M Powers.
+\newblock Mapped weighted essentially non-oscillatory schemes: achieving
+  optimal order near critical points.
+\newblock {\em Journal of Computational Physics}, 207(2):542--567, 2005.
+
+\bibitem{borges2008improved}
+Rafael Borges, Monique Carmona, Bruno Costa, and Wai~Sun Don.
+\newblock An improved weighted essentially non-oscillatory scheme for
+  hyperbolic conservation laws.
+\newblock {\em Journal of Computational Physics}, 227(6):3191--3211, 2008.
+
+\bibitem{shen2014improvement}
+Yiqing Shen and Gecheng Zha.
+\newblock Improvement of weighted essentially non-oscillatory schemes near
+  discontinuities.
+\newblock {\em Computers \& Fluids}, 96:1--9, 2014.
+
+\bibitem{shen2011generalized}
+Yiqing Shen and Gecheng Zha.
+\newblock Generalized finite compact difference scheme for shock/complex
+  flowfield interaction.
+\newblock {\em Journal of Computational Physics}, 230(12):4419--4436, 2011.
+
+\bibitem{cockburn1989tvb}
+Bernardo Cockburn and Chi-Wang Shu.
+\newblock Tvb runge-kutta local projection discontinuous galerkin finite
+  element method for conservation laws. ii. general framework.
+\newblock {\em Mathematics of computation}, 52(186):411--435, 1989.
+
+\bibitem{xu2005anti}
+Zhengfu Xu and Chi-Wang Shu.
+\newblock Anti-diffusive flux corrections for high order finite difference weno
+  schemes.
+\newblock {\em Journal of Computational Physics}, 205(2):458--485, 2005.
+
+\bibitem{biswas1994parallel}
+Rupak Biswas, Karen~D Devine, and Joseph~E Flaherty.
+\newblock Parallel, adaptive finite element methods for conservation laws.
+\newblock {\em Applied Numerical Mathematics}, 14(1-3):255--283, 1994.
+
+\bibitem{krivodonova2004shock}
+Lilia Krivodonova, J~Xin, J-F Remacle, Nicolas Chevaugeon, and Joseph~E
+  Flaherty.
+\newblock Shock detection and limiting with discontinuous galerkin methods for
+  hyperbolic conservation laws.
+\newblock {\em Applied Numerical Mathematics}, 48(3-4):323--338, 2004.
+
+\bibitem{shen2012cusp}
+Yiqing Shen, Gecheng Zha, and Manuel~A Huerta.
+\newblock E-cusp scheme for the equations of ideal magnetohydrodynamics with
+  high order weno scheme.
+\newblock {\em Journal of Computational Physics}, 231(19):6233--6247, 2012.
+
+\bibitem{Balsara1999A}
+Dinshaw~S Balsara and Daniel~S Spicer.
+\newblock A staggered mesh algorithm using high order godunov fluxes to ensure
+  solenoidal magnetic fields in magnetohydrodynamic simulations.
+\newblock pages 270--292, 1999.
+
+\bibitem{toth2000b}
+G{\'a}bor T{\'o}th.
+\newblock The∇{\textperiodcentered} b= 0 constraint in shock-capturing
+  magnetohydrodynamics codes.
+\newblock {\em Journal of Computational Physics}, 161(2):605--652, 2000.
+
 \bibitem{riemann1860fortpflanzung}
 Bernhard Riemann.
 \newblock {\em {\"U}ber die Fortpflanzung ebener Luftwellen von endlicher
@@ -563,12 +635,6 @@ Chi-Wang Shu and Stanley Osher.
   shock-capturing schemes.
 \newblock {\em Journal of Computational Physics}, 77(2):439--471, 1988.
 
-\bibitem{henrick2005mapped}
-Andrew~K Henrick, Tariq~D Aslam, and Joseph~M Powers.
-\newblock Mapped weighted essentially non-oscillatory schemes: achieving
-  optimal order near critical points.
-\newblock {\em Journal of Computational Physics}, 207(2):542--567, 2005.
-
 \bibitem{balsara2000monotonicity}
 Dinshaw~S Balsara and Chi-Wang Shu.
 \newblock Monotonicity preserving weighted essentially non-oscillatory schemes
@@ -608,12 +674,6 @@ Sanjiva~K Lele.
 \newblock Compact finite difference schemes with spectral-like resolution.
 \newblock {\em Journal of computational physics}, 103(1):16--42, 1992.
 
-\bibitem{jiang2001weighted}
-Li~Jiang, Hua Shan, and Chaoqun Liu.
-\newblock Weighted compact scheme for shock capturing.
-\newblock {\em International Journal of Computational Fluid Dynamics},
-  15(2):147--155, 2001.
-
 \bibitem{ghosh2014weighted}
 Debojyoti Ghosh and James~D Baeder.
 \newblock Weighted non-linear compact schemes for the direct numerical
@@ -630,12 +690,6 @@ Jun Peng and Yiqing Shen.
 \newblock Improvement of weighted compact scheme with multi-step strategy for
   supersonic compressible flow.
 \newblock {\em Computers \& Fluids}, 115:243--255, 2015.
-
-\bibitem{shen2014improvement}
-Yiqing Shen and Gecheng Zha.
-\newblock Improvement of weighted essentially non-oscillatory schemes near
-  discontinuities.
-\newblock {\em Computers \& Fluids}, 96:1--9, 2014.
 
 \bibitem{shen2014multistep}
 Yiqing Shen, Li~Liu, and Yan Yang.
@@ -672,12 +726,6 @@ Bruno Costa and Wai~Sun Don.
 \newblock Multi-domain hybrid spectral-weno methods for hyperbolic conservation
   laws.
 \newblock {\em Journal of Computational Physics}, 224(2):970--991, 2007.
-
-\bibitem{shen2011generalized}
-Yiqing Shen and Gecheng Zha.
-\newblock Generalized finite compact difference scheme for shock/complex
-  flowfield interaction.
-\newblock {\em Journal of Computational Physics}, 230(12):4419--4436, 2011.
 
 \bibitem{roe1981approximate}
 Philip~L Roe.
@@ -1026,7 +1074,7 @@ James~A Fay.
 \bibitem{王昌建2005直管内胞格爆轰的基元反应数值研究}
 王昌建，徐胜利.
 \newblock 直管内胞格爆轰的基元反应数值研究.
-\newblock {\em 爆炸與衝擊}, 25(5):405--416, 2005.
+\newblock {\em 爆炸与冲击}, 25(5):405--416, 2005.
 
 \bibitem{姜宗林2012气相爆轰物理的若干研究进展}
 姜宗林，滕宏辉，刘云峰.
@@ -1272,12 +1320,6 @@ Guang-Shan Jiang and Chi-Wang Shu.
 \newblock Efficient implementation of weighted eno schemes.
 \newblock {\em Journal of computational physics}, 126(1):202--228, 1996.
 
-\bibitem{borges2008improved}
-Rafael Borges, Monique Carmona, Bruno Costa, and Wai~Sun Don.
-\newblock An improved weighted essentially non-oscillatory scheme for
-  hyperbolic conservation laws.
-\newblock {\em Journal of Computational Physics}, 227(6):3191--3211, 2008.
-
 \bibitem{wang2001optimized}
 Zhi~Jian Wang and RF~Chen.
 \newblock Optimized weighted essentially nonoscillatory schemes for linear
@@ -1342,30 +1384,6 @@ Jianxian Qiu and Chi-Wang Shu.
   discontinuous galerkin methods using weighted essentially nonoscillatory
   limiters.
 \newblock {\em SIAM Journal on Scientific Computing}, 27(3):995--1013, 2005.
-
-\bibitem{cockburn1989tvb}
-Bernardo Cockburn and Chi-Wang Shu.
-\newblock Tvb runge-kutta local projection discontinuous galerkin finite
-  element method for conservation laws. ii. general framework.
-\newblock {\em Mathematics of computation}, 52(186):411--435, 1989.
-
-\bibitem{xu2005anti}
-Zhengfu Xu and Chi-Wang Shu.
-\newblock Anti-diffusive flux corrections for high order finite difference weno
-  schemes.
-\newblock {\em Journal of Computational Physics}, 205(2):458--485, 2005.
-
-\bibitem{biswas1994parallel}
-Rupak Biswas, Karen~D Devine, and Joseph~E Flaherty.
-\newblock Parallel, adaptive finite element methods for conservation laws.
-\newblock {\em Applied Numerical Mathematics}, 14(1-3):255--283, 1994.
-
-\bibitem{krivodonova2004shock}
-Lilia Krivodonova, J~Xin, J-F Remacle, Nicolas Chevaugeon, and Joseph~E
-  Flaherty.
-\newblock Shock detection and limiting with discontinuous galerkin methods for
-  hyperbolic conservation laws.
-\newblock {\em Applied Numerical Mathematics}, 48(3-4):323--338, 2004.
 
 \bibitem{woodward1984numerical}
 Paul Woodward and Phillip Colella.
@@ -1485,12 +1503,6 @@ Sang-Hoon Han, Jeong-Il Lee, and Kyu~Hong Kim.
   method for magnetohydrodynamics equations.
 \newblock {\em AIAA journal}, 47(4):970, 2009.
 
-\bibitem{shen2012cusp}
-Yiqing Shen, Gecheng Zha, and Manuel~A Huerta.
-\newblock E-cusp scheme for the equations of ideal magnetohydrodynamics with
-  high order weno scheme.
-\newblock {\em Journal of Computational Physics}, 231(19):6233--6247, 2012.
-
 \bibitem{yee2007development}
 HC~Yee and Bj{\"o}rn Sj{\"o}green.
 \newblock Development of low dissipative high order filter schemes for
@@ -1513,12 +1525,6 @@ JS~Shang.
 \newblock Recent research in magneto-aerodynamics.
 \newblock {\em Progress in Aerospace Sciences}, 37(1):1--20, 2001.
 
-\bibitem{Balsara1999A}
-Dinshaw~S Balsara and Daniel~S Spicer.
-\newblock A staggered mesh algorithm using high order godunov fluxes to ensure
-  solenoidal magnetic fields in magnetohydrodynamic simulations.
-\newblock pages 270--292, 1999.
-
 \bibitem{powell1999solution}
 Kenneth~G Powell, Philip~L Roe, Timur~J Linde, et~al.
 \newblock A solution-adaptive upwind scheme for ideal magnetohydrodynamics.
@@ -1529,12 +1535,6 @@ Jeremiah~U Brackbill and Daniel~C Barnes.
 \newblock The effect of nonzero∇{\textperiodcentered} b on the numerical
   solution of the magnetohydrodynamic equations.
 \newblock {\em Journal of Computational Physics}, 35(3):426--430, 1980.
-
-\bibitem{toth2000b}
-G{\'a}bor T{\'o}th.
-\newblock The∇{\textperiodcentered} b= 0 constraint in shock-capturing
-  magnetohydrodynamics codes.
-\newblock {\em Journal of Computational Physics}, 161(2):605--652, 2000.
 
 \bibitem{orszag1979small}
 S.~A Orszag and C.~M Tang.
@@ -1706,8 +1706,8 @@ Loren~E Bollinger.
 
 \bibitem{akbar1997mach}
 Raza Akbar.
-\newblock Mach reflection of gaseous detonations.
-\newblock 1997.
+\newblock {\em Mach reflection of gaseous detonations}.
+\newblock PhD thesis, 1997.
 
 \bibitem{oran1998numerical}
 Elaine~S Oran, James~W Weber, Eliza~I Stefaniw, Michel~H Lefebvre, and John~D
@@ -1771,7 +1771,7 @@ GD~Roy, SM~Frolov, AA~Borisov, et~al.
 \bibitem{张薇2014气相爆轰波胞格尺度与点火延迟时间关系研究}
 张薇，刘云峰，姜宗林等.
 \newblock 气相爆轰波胞格尺度与点火延迟时间关系研究.
-\newblock 2014.
+\newblock {\em 力学学报}, 46(6):977--981, 2014.
 
 \bibitem{liu2008reconsideration}
 Yunfeng Liu and Zonglin Jiang.

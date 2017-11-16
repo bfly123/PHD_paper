@@ -14,7 +14,7 @@
 \subsection{传统界面}
 尽管方程 (\ref{eq:interface_mark}) 是最简单的对流方程，然而，如果我们关注于界面的运动时，想要得到几何线（面）是异常困难的。以一维图 \ref{fig:illu_1dinterface} 为例，如果直接对方程 （\ref{eq:interface_mark}) 进行求解，例如采用差分方法，随着间断被耗散，界面将无法识别。
 
-因此，大多数界面方法并不直接求解方程  (\ref{eq:interface_mark}) 本身，图 \ref{fig:illu_1dinterface_method} 给出了不同界面方法的一维示意图。其中 锋面追踪方法（图 \ref{fig:illu_1dinterface_method}.a）直接追踪界面；  MAC方法（图 \ref{fig:illu_1dinterface_method}.b）在界面一侧添加标记点；而VOF方法（图 \ref{fig:illu_1dinterface_method}.c）在每一个网格引入一个体积分数函数，将界面的运动转化为体积分数的变化。只有level set方法（图 \ref{fig:illu_1dinterface_method}.c）求解方程 (\ref{eq:interface_mark})，但是也并不直接求解间断函数$z$本身，而是求解到一个到界面的距离函数$\phi$（level set 函数），求解
+因此，大多数界面方法并不直接求解方程  (\ref{eq:interface_mark}) 本身，图 \ref{fig:illu_1dinterface_method} 给出了不同界面方法的一维示意图。其中 锋面追踪方法（图 \ref{fig:illu_1dinterface_method}.a）直接追踪界面；  MAC方法（图 \ref{fig:illu_1dinterface_method}.b）在界面一侧添加标记点；而VOF方法（图 \ref{fig:illu_1dinterface_method}.c）在每一个网格引入一个体积分数函数，将界面的运动转化为体积分数的变化。只有level set方法（图 \ref{fig:illu_1dinterface_method}.d）求解方程 (\ref{eq:interface_mark})，但是也并不直接求解间断函数$z$本身，而是求解到一个到界面的距离函数$\phi$（level set 函数），求解
 \begin{equation*}
 \frac{\partial \phi}{\partial t}+\bm{V}\cdot \nabla \phi=0
 \end{equation*}
@@ -101,7 +101,7 @@
 
   \hspace{0.65cm}
 如果一个单元$i$内没有单元点，需要在单元中心引入新的单元点$X(i)=0$，单元点上对流信息$z$可以通过{\bf{反向速度法}}得到。
-如图 \ref{fig:illu_cell_point_construct_diffuse}， 反向速度法：
+如图 \ref{fig:illu_back_construct}， 反向速度法：
 当前单元中心点以当前速度的反向运动，经过$\Delta t$时间后到达的位置，其所在单元在上一时间步的输运值为当前中心点的输运值。
 结合公式(\ref{eq:cell_point_M})和(\ref{eq:cell_point_X})，可知通过反向速度法定位的单元为：$$M=i+floor(-u(i)\Delta t/\Delta x+0.5)$$
 

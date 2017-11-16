@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.10.9)  19 OCT 2017 13:30
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.10.9)  14 NOV 2017 23:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2421,20 +2421,13 @@ hich appears in the compressible multi-components
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-[6] [7] [8] [9] [10] [11] [12] [13] [14]
-Underfull \vbox (badness 2469) has occurred while \output is active []
-
- [15]
-[16]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [17]
-[18]
+[6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
 File: figures/ZNDexp.png Graphic file (type QTm)
- <use  "figures/ZNDexp.png" > [19]
+
+<use  "figures/ZNDexp.png" > [19]
 File: figures/cellular_exp.png Graphic file (type QTm)
- <use  "figures/cellular_exp.png" >
-[20] [21]
+ <use  "figures/cellular_exp.png" > [20]
+[21]
 File: figures/stiff_exp_p.png Graphic file (type QTm)
  <use  "figures/stiff_exp_p.png" >
 File: figures/stiff_exp_t.png Graphic file (type QTm)
@@ -2451,16 +2444,16 @@ Overfull \hbox (23.50609pt too wide) in paragraph at lines 736--737
 r(0)/m/n/12.045 欧 拉  |（\EU1/TimesNewRoman(0)/m/n/12.045 Lagrangian-
  []
 
-[24]
-File: figures/length_rate.png Graphic file (type QTm)
- <use  "figures/length_rate.png" >
-File: figures/length_optimal.png Graphic file (type QTm)
- <use  "figures/length_optimal.png" >
-[25]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [26])
-[27]
+Underfull \vbox (badness 6125) has occurred while \output is active []
+
+ [24]
+File: figures/length_rate.png Graphic file (type QTm)
+
+<use  "figures/length_rate.png" >
+File: figures/length_optimal.png Graphic file (type QTm)
+ <use  "figures/length_optimal.png" > [25]
+[26]) [27]
 \openout2 = `chapter/Chapter-Multi-WENO.aux'.
 
  (./chapter/Chapter-Multi-WENO.tex [28
@@ -4290,24 +4283,27 @@ Underfull \vbox (badness 10000) detected at line 132
  []
 
 ) [157] [158] (./Ph.D thesis.bbl
-Underfull \hbox (badness 4582) in paragraph at lines 4--8
-[]\EU1/TimesNewRoman(0)/m/sc/12.045 Bernhard Riemann.  \EU1/TimesNewRoman(0)/m/
-it/12.045 Über die Fortpflanzung ebener Luftwellen von endlicher
- []
-
-[159
+Missing character: There is no ∇ in font Times New Roman/OT:mapping=tex-text;ma
+pping=tex-text;!
+ [159
 
 
 
 ]
-Underfull \hbox (badness 3612) in paragraph at lines 87--91
+Underfull \hbox (badness 4582) in paragraph at lines 76--80
+[]\EU1/TimesNewRoman(0)/m/sc/12.045 Bernhard Riemann.  \EU1/TimesNewRoman(0)/m/
+it/12.045 Über die Fortpflanzung ebener Luftwellen von endlicher
+ []
+
+[160]
+Underfull \hbox (badness 3612) in paragraph at lines 159--163
 \EU1/TimesNewRoman(0)/m/sc/12.045 shock/shock interactions over symmetrical int
 ersecting wedges.  \EU1/TimesNewRoman(0)/m/it/12.045 AIAA Journal\EU1/TimesNewR
 oman(0)/m/sc/12.045 ,
  []
 
-[160] [161] [162]
-Underfull \hbox (badness 1194) in paragraph at lines 349--352
+[161] [162] [163]
+Underfull \hbox (badness 1194) in paragraph at lines 421--424
 \EU1/TimesNewRoman(0)/m/sc/12.045 isentropic gas dynamics andp-systems.  \EU1/T
 imesNewRoman(0)/m/it/12.045 Communications in mathematical physics\EU1/TimesNew
 Roman(0)/m/sc/12.045 ,
@@ -4316,25 +4312,22 @@ Roman(0)/m/sc/12.045 ,
 
 Underfull \vbox (badness 1320) has occurred while \output is active []
 
- [163]
-[164]
+ [164]
+[165]
 Underfull \vbox (badness 1019) has occurred while \output is active []
 
- [165]
-[166] [167] [168] [169] [170] [171] [172] [173]
-Underfull \vbox (badness 1325) has occurred while \output is active []
+ [166]
+[167] [168] [169] [170] [171] [172] [173] [174]
+Underfull \vbox (badness 1320) has occurred while \output is active []
 
- [174]
-[175] [176] [177] [178]
+ [175]
+Underfull \vbox (badness 1755) has occurred while \output is active []
+
+ [176]
+[177] [178]
 Missing character: There is no ∇ in font Times New Roman/OT:mapping=tex-text;ma
 pping=tex-text;!
-Missing character: There is no ∇ in font Times New Roman/OT:mapping=tex-text;ma
-pping=tex-text;!
- [179] [180] [181] [182] [183]
-Underfull \vbox (badness 1014) has occurred while \output is active []
-
- [184]
-[185]) [186]
+ [179] [180] [181] [182] [183] [184] [185]) [186]
 \openout2 = `chapter/pub.aux'.
 
  (./chapter/pub.tex [187
@@ -4435,10 +4428,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
 ### simple group (level 1) entered at line 7 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42469 strings out of 495252
- 853516 string characters out of 6180858
- 922339 words of memory out of 5000000
- 44734 multiletter control sequences out of 15000+600000
+ 42478 strings out of 495252
+ 854122 string characters out of 6180858
+ 921432 words of memory out of 5000000
+ 44743 multiletter control sequences out of 15000+600000
  29303 words of font info for 177 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  70i,18n,79p,10484b,1291s stack positions out of 5000i,500n,10000p,200000b,80000s

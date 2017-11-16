@@ -222,7 +222,7 @@ M_{L,R}=\frac{u_{L,R}}{a_{1/2}}
 \displaystyle  p(x,y)=\gamma, \hspace{0.3cm} B_x=-\text{sin}(y),\hspace{0.3cm} B_y(x,y)=\text{sin} (2x)
 \end{array}
 \end{equation*}
-其中$\gamma=5/3$，计算区域为$[0,2\pi]\times[0,2\pi]$。计算时间为$t=3.0$，边界均采用周期边界条件。计算统一采用$192\times 192$的网格，图 \ref{fig:tang} 给出WENO-Z格式和有限紧致FC格式密度等值线，图中可以看出，不论采用WENO-Z格式还是有限紧致格式都能稳定的计算流场，捕捉流场中复杂的激波间相互作用。图 \ref{fig:tang_line} 给出直线$x=\pi$上的数据对比图，可以看到新的格式可以得到更高的波峰和更低的波谷，代表着新的格式具有更低的耗散。
+其中$\gamma=5/3$，计算区域为$[0,2\pi]\times[0,2\pi]$。计算时间为$t=3.0$，边界均采用周期边界条件。计算统一采用$192\times 192$的网格，图 \ref{fig:tang} 给出WENO-Z格式和有限紧致FC格式密度等值线，图中可以看出，该算例中存在复杂的激波/激波相互作用，磁场对流场具有严重的影响。不论采用WENO-Z格式还是有限紧致格式都能稳定的计算流场，捕捉流场中复杂的激波间相互作用。图 \ref{fig:tang_line} 给出直线$x=\pi$上的数据对比图，可以看到新的格式可以得到更高的波峰和更低的波谷，代表着新的格式具有更低的耗散。
 \begin{figure}
   \centering
   \includegraphics[width=5cm,height=5cm]{tang_WENO.png}
