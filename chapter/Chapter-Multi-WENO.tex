@@ -213,7 +213,7 @@ $$S_{(i-1)-1/2}^5=(x_{i-4},x_{i-3},\cdots,x_i)$$
 \begin{figure}
   \centering
   \includegraphics[width=10cm]{chap_multi_fig1.png}
-  \caption{多步重构过程示意图}
+  \caption{\bf 多步重构过程示意图}
  \addtocounter{figure}{-1}
 \vspace{1.5pt}
 %\SetEnglishCaption
@@ -328,12 +328,12 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
   \small
   \centering
 \setlength{\belowcaptionskip}{10pt}
-\caption{\bf 不同格式精度对比，$t=2$}
+\caption{\bf 不同格式精度对比，$\bf t=2$}
  \addtocounter{table}{-1}
 \vspace{0.5pt}
 %\SetEnglishCaption
 \renewcommand{\tablename}{Table}
- \caption{\bf Comparison of accuracy, $T=2$}
+ \caption{\bf Comparison of accuracy, $\bf t=2$}
   \begin{tabular}{cccccc}
 	\toprule
 	Scheme        & N       & $L_1$ error  & $L_1$ order & $L_{\infty}$ error & $L_{\infty}$ order \\
@@ -442,11 +442,11 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 \begin{equation*}
   u_0(x)=0.3+0.7\text{sin}(x),\hspace{0.2cm} 0\leqslant  x \leqslant 2\pi, \hspace{0.2cm} \text{周期边界条件}
 \end{equation*}
-该算例中，通量分裂采用$f^{\pm}=(f\pm au)/2$，其中$f=u^2/2$，$a=\text{max}(u_i)$。图 \ref{chap_multi_fig6} 给出在$N=80$网格下$t=2$时刻的计算结果，可以看到相比于WENO-Z和WENO-M格式，新的格式的计算结果在间断附近更接近参考解。
+该算例中，通量分裂采用$f^{\pm}=(f\pm au)/2$，其中$f=u^2/2$，$a=\text{max}(u_i)$。图 \ref{chap_multi_fig6} 给出在$N=80$网格下$t=2$时刻的计算结果，可以看到相比于WENO-JS、WENO-Z和WENO-M格式，新的格式的计算结果在间断附近更接近参考解。
 
 \begin{figure}
   \centering
-  \includegraphics[width=10cm]{chap_multi_fig6.png}
+  \includegraphics[width=9cm]{burges.png}
   \caption{\bf 非线性对流方程  (\ref{eq:unlinear_transport}) 下计算结果对比，$\bf t=2$}
  \addtocounter{figure}{-1}
 \vspace{1.5pt}
@@ -484,7 +484,7 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
 \vspace{1.5pt}
 %\SetEnglishCaption
 \renewcommand{\figurename}{Figure}
-\caption{\bf Density, Sod problem, $ \bf t=2$}
+\caption{\bf Density, Sod problem, $ \bf t=0.14$}
   \label{chap_multi_fig7}
 \end{figure}
 
@@ -599,7 +599,7 @@ $c_0^5=0.4$，$c_1^5=0.6$是通过两个四阶模板构造五阶迎风格式的最优线性权重。
   \small
   \centering
 %\setlength{\belowcaptionskip}{10pt}
-\caption{\bf 2D线性对流传播方程算例中不同格式计算精度对比，$\bf T=2$}
+\caption{\bf 2D线性对流传播方程算例中不同格式计算精度对比，$\bf t=2$}
  \addtocounter{table}{-1}
 \vspace{0.5pt}
 %\SetEnglishCaption
